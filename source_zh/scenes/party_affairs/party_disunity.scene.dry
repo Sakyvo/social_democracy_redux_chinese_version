@@ -1,4 +1,4 @@
-title: Party Disunity
+title: 党内分裂
 new-page: true
 is-card: true
 view-if: party_disunity_timer = 0 and (dissent >= 0.3 or (reformist_dissent > 30 and not reformists_resign) or (center_dissent > 30 and not centrists_resign) or (left_dissent > 30 and not sapd_formed) or (labor_dissent > 30 and not unions_independent) or (neorevisionist_dissent > 30 and neorevisionism))
@@ -7,19 +7,19 @@ card-image: img/Reichstagsfraktion_der_SPD.jpg
 frequency: 200
 tags: party_affairs
 
-# TODO: party dissent events for every faction, have a good image for this... 
+# TODO: party dissent events for every faction, have a good image for this...
 
-= Party Disunity
+= 党内分裂
 
-The party is being torn apart by internal dissent. Upset at the leadership and general direction, factions have started sabotaging their rivals, hampering our efforts to win votes and carry out our policies.
+本党正被内部不满撕裂。各派系对领导层与总体方针心怀不满，已开始互相掣肘，阻碍我们争取选票与推行政策的努力。
 
-[? if reformist_dissent > 30 : The reformists are upset at our direction.  ?]
-[? if center_dissent > 30 : The centrists are displeased with the direction of our party. ?]
-[? if labor_dissent > 30 : The trade unions disagree with our present course of action. ?]
-[? if left_dissent > 30: Leftists are making noises about another party split. ?]
-[? if neorevisionist_dissent > 30 and neorevisionism = 1 : Neorevisionists are in disagreement about our political direction. ?]
+[? if reformist_dissent > 30 : 改良派对我们的方向心怀不满。 ?]
+[? if center_dissent > 30 : 中间派对本党方向感到失望。 ?]
+[? if labor_dissent > 30 : 工会派对当前行动路线持异议。 ?]
+[? if left_dissent > 30: 左派正在放话，要再来一次分裂。 ?]
+[? if neorevisionist_dissent > 30 and neorevisionism = 1 : 新修正派对本党政治方向存在分歧。 ?]
 
-Something must be done to reinforce party unity.
+必须采取行动以巩固党内团结。
 
 - @enforce_unity
 - @concessions_reformists
@@ -31,60 +31,60 @@ Something must be done to reinforce party unity.
 
 
 @enforce_unity
-title: Enforce party discipline.
+title: 强化党纪。
 on-arrival: reformist_dissent -= 5; center_dissent -= 5; labor_dissent -= 5; left_dissent -= 5; neorevisionist_dissent -= 5; workers_spd -= 4; new_middle_spd -= 2; unemployed_spd -= 2
 
-Enforcing party discipline reduces dissent, but it could lead to an exit of dissenting members.
+强化党纪可削减不满，但也可能导致异见成员出走。
 
 # enforcing party discipline applies to all parties.
 
 # each party has a concessions action and an expulsions action.
 
 @concessions_reformists
-title: Give concessions to the reformists.
+title: 向改良派让步。
 view-if: reformist_dissent > 30
 on-arrival: reformist_dissent -= 7; left_dissent += 5
 
-We have promised to adopt a more reformist posture. This may alienate the left, however.
+我们承诺采取更偏改良派的姿态。但此举可能疏远左派。
 
 @concessions_center
-title: Give concessions to the centrists.
+title: 向中间派让步。
 view-if: center_dissent > 30
 on-arrival: center_dissent -= 7; reformist_dissent += 2; left_dissent += 2; neorevisionist_dissent += 2
 
-We have promised to take more policy suggestions from the centrists. Both the left and reformist wings of the party might be displeased.
+我们承诺更多采纳中间派的政策建议。党内左派与改良派都可能心生不满。
 
 @concessions_left
-title: Give concessions to the left.
+title: 向左派让步。
 view-if: left_dissent > 30
 on-arrival: left_dissent -= 7; reformist_dissent += 5
 
-We have promised that we will listen to the left wing of the party. Of course, this leads to increased dissent from the centrists.
+我们承诺将倾听党内左派的声音。当然，这将招致中间派更强的异议。
 
 @concessions_labor
-title: Give concessions to labor.
+title: 向工会派让步。
 view-if: labor_dissent > 30
 on-arrival: labor_dissent -= 7; center_dissent += 5
 
-The trade unions will be granted more influence in party decision making. This upsets the centrists, who would prefer to centralize political decision making within the party.
+工会将在党的决策中获得更大影响力。这令中间派不悦——他们更希望将政治决策集中于党内。
 
 @concessions_neorevisionists
-title: Give concessions to the neorevisionists.
+title: 向新修正派让步。
 view-if: neorevisionist_dissent > 30 and neorevisionism = 1
 on-arrival: neorevisionist_dissent -= 7; center_dissent += 5;
 
-Giving the neorevisionists more influence will cause increased dissent from the centrists.
+向新修正派赋予更多影响力，将招致中间派更强的异议。
 
 
 @do_nothing
-title: Let the factions argue with themselves.
+title: 让各派自行争论。
 on-arrival: labor_dissent += 1; left_dissent += 1; center_dissent += 1; reformist_dissent += 1
 
-Let the factions bicker; perhaps dissent is healthy for the party.
+任由各派争吵；或许争鸣对党而言也是健康的。
 
 # TODO: should we be allowed to preemptively expel factions?
 
 @expel_reformists
-title: Expel the dissident reformists.
+title: 驱逐异见改良派。
 view-if: reformist_dissent > 30
 

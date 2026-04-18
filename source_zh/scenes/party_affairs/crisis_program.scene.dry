@@ -1,4 +1,4 @@
-title: The Economic Crisis
+title: 经济危机
 new-page: true
 is-card: true
 view-if: crisis_urgency >= 1 and crisis_program_timer = 0 and economic_plan = 0 and black_thursday_seen == 1
@@ -7,106 +7,106 @@ on-arrival: month_actions += 1; crisis_program_timer = 5
 card-image: img/bankrun.jpg
 tags: party_affairs, govt_affairs
 
-= Addressing the Economic Crisis
+= 应对经济危机
 
-Our party is wracked as to how to deal with the economic crisis. From the centrist faction, Hilferding argues that the economic crisis must be allowed to play out, because it is simply a part of the cyclic nature of capitalism.
+本党在如何应对经济危机的问题上陷入拉锯。中间派的希法亭主张必须让危机自行演化——因为这不过是资本主义周期性本质的一部分。
 
-From labor, the economist Wladimir Woytinsky argues that we must pursue a massive public works program to reduce unemployment and stimulate demand, perhaps including deficit spending. His opponents, like Hilferding, argue that this plan will cause a return to hyper-inflation, and that it would not even help the economy. In addition, according to Hilferding, Woytinsky's strategy is opposed to Marxist principles.
+来自工会派的经济学家弗拉基米尔·沃伊廷斯基则主张，我们必须推行一项大规模公共以工代赈计划来削减失业、刺激需求，甚至不惜诉诸赤字支出。他的反对者——如希法亭——则认为此计划将导致恶性通胀卷土重来，甚至根本无助于经济复苏。在希法亭看来，沃伊廷斯基的策略更违背马克思主义原则。
 
-The so-called WTB plan, after its chief supporters Woytinsky, Tarnow, and Baade, is receiving more attention within the party.
+以三位主要支持者沃伊廷斯基、塔诺与巴德命名的所谓 WTB 计划，正在党内受到越来越多关注。
 
-However, leftists in the party argue that the WTB plan is merely a bandage over the fundamental flaws of capitalism. They argue that the crisis is an opportunity to end capitalism through massive nationalizations of industry, and finally bring our country to socialism.
+然而，党内左派则认为 WTB 计划不过是给资本主义的根本缺陷贴上一张创可贴。他们主张，这场危机恰是终结资本主义的良机——通过大规模的工业国有化，最终把我们的国家带向社会主义。
 
-Meanwhile, moderates and reformists draw up proposals for a limited plan of job creation through public works, funded through taxes, that does not involve deficit spending or large-scale restructuring of the economy. Labor argues that the plan is inadequate in its scale and ambition.
+与此同时，温和派与改良派则起草了一套方案：以税收资助、不涉赤字支出、也不对经济进行大规模重构的有限就业创造计划。工会派则批评此方案规模与雄心均嫌不足。
 
-- @support_centrist: Support the Centrist view.
-- @support_synthesis: Support the Centrist view.
-- @support_labor: Support the Labor view.
-- @support_left: Support the Left view.
-- @support_moderate: Support the Reformist view.
-- @defer: Defer making a decision until we have more information.
+- @support_centrist: 支持中间派观点。
+- @support_synthesis: 支持中间派观点。
+- @support_labor: 支持工会派观点。
+- @support_left: 支持左派观点。
+- @support_moderate: 支持改良派观点。
+- @defer: 在获得更多信息前，暂缓决策。
 
 @support_centrist
 view-if: synthesis_support < 1
-subtitle: Let the depression play itself out.
+subtitle: 让萧条自行演化。
 on-arrival: center_strength += 5; center_dissent -= 5; labor_dissent += 10; wtb_support -= 1; left_dissent += 10;
 
-Woytinsky and the trade unions vehemently criticize the centrists for their policy. The workers are starving; are we going to callously abandon them and side with bourgeois austerity? On the other hand, the centrists criticize Woytinsky for promising the workers false hope; their position is that nothing can be done to alleviate the depression. They also speak of the fear of another round of hyperinflation that may result from deficit spending.
+沃伊廷斯基与工会激烈抨击中间派的此种方针。工人们已在挨饿，难道我们要冷酷地抛弃他们，转而站到资产阶级紧缩一方？另一方面，中间派则批评沃伊廷斯基向工人许下虚假的希望；他们的立场是：对于缓解萧条，已无计可施。他们还谈及对赤字开支可能引致的又一轮恶性通胀的忧惧。
 
-Our policy course is currently that nothing can be done to alleviate the depression.
+我们当前的政策走向是：对于缓解萧条，已无计可施。
 
 @support_synthesis
 view-if: synthesis_support >= 1
-subtitle: Call for a combined nationalization and job creation program without deficit spending.
+subtitle: 呼吁一套兼具国有化与以工代赈、但不涉赤字支出的综合计划。
 choose-if: historical_mode == 0 or (center_strength >= left_strength and center_strength >= labor_strength and center_strength >= reformist_strength)
 on-arrival: center_strength += 5; labor_dissent += 5; synthesis_support += 1; synthesis_support += 1 if center_strength >= 50
 go-to: synthesis_progress if synthesis_support < 3; synthesis_adopted if synthesis_support >= 3
 
 @synthesis_progress
 
-Our support of the new Centrist economic plan leaves both the Left and Reformist factions unsatisfied, with the Left viewing its extent as inadequate and the Reformists viewing it as unfeasible and unrealistic to pursue nationalizations in the current state of crisis. Labor is left disgruntled, still convinced in the need for a mass, deficit funded public works program, and feeling as though the Centrists have only made this plan to combat their own.
+我们对中间派新经济计划的支持令左派与改良派均感不满：左派认为其力度远远不够，改良派则认为在当前危机下推行国有化既不可行亦不切实际。工会派对此心存不满，仍坚信需要一项大规模、以赤字为后盾的公共以工代赈计划，并觉得中间派拟此方案只是为了对抗他们自己的方案。
 
 @synthesis_adopted
 on-arrival: synthesis_plan_adopted = 1; center_strength += 10; left_dissent -= 5; economic_plan = 4
 
-With our hard work, we have finally convinced the majority of the party to adopt the Centrist economic plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic or Finance ministries. ?][? if spd_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
+经过一番努力，我们终于说服党的大多数采纳中间派经济计划！[? if spd_in_government == 1 : 只要我们掌握经济部或财政部，即可尽快开始实施。 ?][? if spd_in_government = 0 : 我们应在竞选宣传中着重突出此计划。 ?]
 
 
 @support_labor
-subtitle: Call for increased public works and fiscal stimulus.
-unavailable-subtitle: The Labor faction is not strong enough.
+subtitle: 呼吁扩大公共以工代赈，实施财政刺激。
+unavailable-subtitle: 工会派的力量尚不足够。
 choose-if: historical_mode == 0 or (labor_strength >= left_strength and labor_strength >= center_strength and labor_strength >= reformist_strength)
 on-arrival: center_dissent += 10; left_dissent += 5; labor_strength += 5; wtb_support += 1; wtb_support += 1 if labor_strength >= 50
 go-to: plan_adopted if wtb_support >= 3; plan_support if wtb_support < 3
 
 @plan_support
 
-Our support of the WTB plan alienates the orthodox Marxists of the Centrist faction, and faces both opposition and support from a variety of sources across the spectrum. Leftists argue that the plan is flawed because it leaves capitalism intact, while some reformists are cautiously optimistic.
+我们对 WTB 计划的支持疏远了中间派的正统马克思主义者，也招来了各派立场迥异的支持与反对。左派人士认为此计划让资本主义原封不动、存在根本缺陷，而一些改良派则审慎乐观。
 
-We have not yet convinced the party to formally adopt the plan. More work needs to be done.
+我们尚未正式说服党采纳此计划，仍需更多努力。
 
 @plan_adopted
 on-arrival: wtb_adopted = 1; labor_dissent -= 15; reformist_dissent -= 10; labor_strength += 10; center_strength -= 10; center_dissent += 20; left_dissent += 5; economic_plan = 1
 
-With our hard work, we have finally convinced the majority of the party to adopt the WTB plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic or Finance ministries. ?][? if spd_in_government = 0 : We should emphasize the plan in our electoral propaganda. ?]
+经过一番努力，我们终于说服党的大多数采纳 WTB 计划！[? if spd_in_government == 1 : 只要我们掌握经济部或财政部，即可尽快开始实施。 ?][? if spd_in_government = 0 : 我们应在竞选宣传中着重突出此计划。 ?]
 
 @support_left
-subtitle: Call for mass nationalizations and the transformation of the economy.
-unavailable-subtitle: The Left faction is not strong enough.
+subtitle: 呼吁大规模国有化与经济转型。
+unavailable-subtitle: 左派的力量尚不足够。
 choose-if: historical_mode == 0 or (left_strength >= labor_strength and left_strength >= center_strength and left_strength >= reformist_strength)
 on-arrival: left_strength += 10; reformist_dissent += 5; labor_dissent += 5; nationalization_support += 2; nationalization_support += 1 if left_strength >= 50
 go-to: support_left_progress if nationalization_support < 3; adopt_left if nationalization_support >= 3
 
 @support_left_progress
 
-We attempt to convince the party to support a program of mass nationalizations in response to the economic crisis. Leftists argue that this policy is in accordance with our long-standing socialist platform, while reformists and some trade unionists argue that the plan is unrealistic, and that we need to focus on more immediate improvements to workers' lives.
+我们尝试说服党以大规模国有化来应对经济危机。左派人士主张这一政策契合我们长期以来的社会主义纲领；而改良派与部分工会人士则认为此计划脱离实际，我们需要聚焦于更为切近的工人生活改善。
 
-We have not yet formally adopted the plan. More work needs to be done.
+我们尚未正式采纳此计划，仍需更多努力。
 
 @adopt_left
 on-arrival: left_strength += 15; left_dissent -= 10; reformist_dissent += 10; neorevisionist_dissent += 8; labor_dissent += 6; nationalization_adopted = 1; coup_progress += 1; economic_plan = 3; kpd_relation += 5*(1-dissent)
 
-With our hard work, we have convinced the majority of the party to adopt the socialist economic plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic or Finance ministries. ?] Bourgeois opposition is likely to be fierce. [? if spd_in_government == 0 : It might be difficult to enact the plan, given present conditions. ?]
+经过一番努力，我们已说服党的大多数采纳社会主义经济计划！[? if spd_in_government == 1 : 只要我们掌握经济部或财政部，即可尽快开始实施。 ?] 资产阶级的反对料将十分激烈。[? if spd_in_government == 0 : 鉴于当下处境，推行该计划恐非易事。 ?]
 
 @support_moderate
-subtitle: Call for a limited program of job creation without deficit spending.
-unavailable-subtitle: The Reformist faction is not strong enough.
+subtitle: 呼吁一套不涉赤字支出的有限就业创造计划。
+unavailable-subtitle: 改良派的力量尚不足够。
 choose-if: historical_mode == 0 or (reformist_strength >= left_strength and reformist_strength >= center_strength and reformist_strength >= labor_strength)
 on-arrival: moderate_plan_support += 1; reformist_strength += 8; reformist_dissent -= 5; left_dissent += 6; labor_dissent += 5; moderate_plan_support += 1 if reformist_strength >= 50
 go-to: adopt_moderate if moderate_plan_support >= 2; support_moderate_progress if moderate_plan_support < 2
 
 @support_moderate_progress
 
-We attempt to convince the party to support a moderate program of job creation without deficit spending. Advocates of the moderate plan argue that this plan is most likely to receive support from the bourgeois parties, and most practical in the immediate term. Opponents in the left and labor factions criticize the plan for being inadequate in its ambition.
+我们尝试说服党支持一套不涉赤字支出的温和就业创造计划。温和派主张该计划最有可能获得资产阶级诸党的支持，也最具近期可行性。左派与工会派的反对者则批评其雄心不足。
 
-We have not yet adopted the plan. More work needs to be done.
+我们尚未采纳此计划，仍需更多努力。
 
 @adopt_moderate
 on-arrival: reformst_strength += 10; reformist_dissent -= 10; left_dissent += 8; labor_dissent += 6; moderate_plan_adopted = 1; economic_plan = 2; coalition_dissent -= 1 if unemployed > 15; z_relation += 5;
 
-With our hard work, we have convinced the majority of the party to adopt the moderate job creation plan! [? if spd_in_government == 1 : We can begin implementing the plan as soon as possible, as long as we have the Economic or Finance ministries. ?]
+经过一番努力，我们已说服党的大多数采纳温和就业创造计划！[? if spd_in_government == 1 : 只要我们掌握经济部或财政部，即可尽快开始实施。 ?]
 
-- @continue: Continue...
+- @continue: 继续……
 
 @continue
 view-if: neorevisionism == 1 and (z_relation >= 50 and ddp_relation >= 40 and nazi_urgency > 0 and unemployed > 12) or (z_relation >= 70 and ddp_relation >= 50 and unemployed > 10) or (z_relation >= 40 and ddp_relation >= 30 and nazi_urgency > 1 and unemployed > 20) or (z_relation >= 40 and ddp_relation >= 30 and unemployed > 30)
@@ -114,4 +114,4 @@ go-to: weimar_plan
 
 @defer
 
-We hold off on making a decision on economic policy, awaiting more information. Woytinsky and his supporters argue that inaction is a form of action of its own. 
+我们暂缓就经济政策作出决断，等待更多信息。沃伊廷斯基及其支持者则主张——不作为本身亦是一种作为。

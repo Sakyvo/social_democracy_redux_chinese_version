@@ -1,4 +1,4 @@
-title: Campaigning
+title: 竞选活动
 new-page: true
 on-arrival: month_actions += 1
 max-visits: 36
@@ -7,64 +7,64 @@ card-image: img/flags.jpg
 frequency: 100
 tags: party_affairs
 
-= Campaigning
+= 竞选活动
 
-Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?
+无论我们是否处于选举周期，本党始终致力于拓展选民基础。我们应将竞选重心放在哪一群体之上？
 
-- @workers: The urban working class, our traditional support base.
-- @new_middle: The "new middle class" of government employees and white-collar workers.
-- @old_middle: The "old middle class" of small independent businessmen and artisans.
-- @rural: Rural workers and small farmers, who have felt neglected by us in the past.
-- @unemployed: The unemployed.
-- @catholics: Catholics, who typically support the Center Party.
-- @root: We either don't want to or cannot campaign right now.
+- @workers: 城市工人阶级——我们传统的支持基础。
+- @new_middle: 「新中产阶级」——政府雇员与白领工人。
+- @old_middle: 「旧中产阶级」——小独立商人与工匠。
+- @rural: 乡村劳动者与小农——他们过去感觉遭到本党忽视。
+- @unemployed: 失业者。
+- @catholics: 天主教徒——他们通常支持中央党。
+- @root: 我们当前不想竞选，或无力竞选。
 - @easy_discard
 
 @workers
-subtitle: -1 resources
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 on-arrival: workers_spd += 6*(1-dissent); workers_spd -= 2 if unemployed >= 15; workers_spd -= 2 if unemployed >= 25; workers_spd += 6*(1-dissent) if wtb_adopted = 1; resources -= 1; workers_spd += 3*(1-dissent) if nationalization_progress >= 1;
 
-We have increased our campaigning among the workers. [? if unemployed >= 15: The high levels of unemployment make our campaign more difficult. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract workers. ?]
+我们加强了在工人中的竞选工作。[? if unemployed >= 15: 高失业率让竞选更加艰难。 ?][? if wtb_adopted = 1 : 采纳 WTB 计划给我们提供了一个吸引工人的新旗帜。 ?]
 
 @new_middle
-subtitle: -1 resources
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 on-arrival: new_middle_spd += 6*(1-dissent); new_middle_spd -= 4 if socialism <= 49 and peoples_party == 0; resources -= 1; peoples_party_support += 1;
 
-We have increased our campaigning among the new middle class. [? if socialism <= 49 and peoples_party == 0: The popular antipathy towards socialism among this group makes our campaign more difficult. ?] [? if peoples_party > 0: As a people's party, we have an easier time increasing support among the middle class than before. ?]
+我们加强了在新中产阶级中的竞选工作。[? if socialism <= 49 and peoples_party == 0: 此群体对社会主义的普遍反感让竞选更加艰难。 ?] [? if peoples_party > 0: 身为人民党后，我们在中产阶级中提升支持率较以往更为顺利。 ?]
 
 @old_middle
-subtitle: -1 resources
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 on-arrival: old_middle_spd += 5*(1-dissent); resources -= 1; old_middle_spd -= 3 if nationalism >= 51 and peoples_party == 0; peoples_party_support += 1
 
-We have increased our campaigning among the old middle class. [? if nationalism >= 51 and peoples_party == 0: The high levels of nationalism among this group make our campaign more difficult. ?] [? if peoples_party > 0: As a people's party, we have an easier time increasing support among the middle class than before. ?]
+我们加强了在旧中产阶级中的竞选工作。[? if nationalism >= 51 and peoples_party == 0: 此群体高涨的民族主义情绪让竞选更加艰难。 ?] [? if peoples_party > 0: 身为人民党后，我们在中产阶级中提升支持率较以往更为顺利。 ?]
 
 @rural
-subtitle: -1 resources
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 on-arrival: rural_spd += 5*(1-dissent); rural_spd -= 3*(1-dissent) if peoples_party == 0; resources -= 1; peoples_party_support += 1; rural_spd += 3*(1-dissent) if rural_policy >= 2
 
-We have increased our campaigning among farmers. [? if peoples_party == 0: We have not historically campaigned much among the farmers, and they do not trust us. ?][? if peoples_party > 0: As a people's party, we have an easier time increasing support among farmers than before. ?][? if rural_policy >= 2 : Our rural policies have made it easier for us to build support among farmers. ?]
+我们加强了在农民中的竞选工作。[? if peoples_party == 0: 我们历史上鲜少在农民中开展竞选，他们对我们心存芥蒂。 ?][? if peoples_party > 0: 身为人民党后，我们在农民中提升支持率较以往更为顺利。 ?][? if rural_policy >= 2 : 我们的乡村政策让我们更容易在农民中建立支持。 ?]
 
 @unemployed
-subtitle: -1 resources
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 on-arrival: unemployed_spd += 6*(1-dissent); resources -= 1; unemployed_spd -= 3 if welfare < 0; unemployed_spd += 6*(1-dissent) if wtb_adopted = 1; unemployed_spd += 3*(1-dissent) if welfare >= 2;
 
-We have increased our campaigning among the unemployed. [? if welfare < 0: The welfare cuts and resultant poverty make our campaign more difficult, since we are associated with the government that enacted these cuts, and our campaign may even backfire. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract support from the unemployed. ?]
+我们加强了在失业者中的竞选工作。[? if welfare < 0: 福利削减与随之而来的贫困让竞选更为艰难——因为我们被与执行削减的政府挂钩，竞选甚至可能适得其反。 ?][? if wtb_adopted = 1 : 采纳 WTB 计划给我们提供了一个吸引失业者支持的新旗帜。 ?]
 
 @catholics
-subtitle: -1 resources
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 view-if: peoples_party == 1
 on-arrival: catholics_spd += 6*(1-dissent); resources -= 1
 
-We have increased our campaigning among Catholics.
+我们加强了在天主教徒中的竞选工作。

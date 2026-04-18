@@ -1,4 +1,4 @@
-title: Media
+title: 媒体
 new-page: true
 is-card: true
 tags: party_affairs
@@ -7,9 +7,9 @@ on-arrival: month_actions += 1; media_timer += 6;
 card-image: img/sangerbund.jpg
 #subtitle: Setting the direction for our newspapers and radio.
 
-= Media
+= 媒体
 
-The SPD runs a veritable media empire, with many newspapers throughout every German city and region. We could use the media for various purposes...
+社民党经营着一个名副其实的媒体帝国，在德国几乎每一座城市与地区都拥有报纸。我们可将其用于多种用途……
 
 - @commercial
 - @campaign
@@ -18,65 +18,65 @@ The SPD runs a veritable media empire, with many newspapers throughout every Ger
 - @radio_2
 - @radio_3
 - @radio_4
-- @return: We should not do anything with media at the moment.
+- @return: 暂不对媒体做任何安排。
 - @easy_discard
 - @cancel_advisor_action
 
 @commercial
-title: Make our newspapers more commercialized by broadening their appeal beyond party supporters.
-subtitle: This might upset ideological purists, but it may bring in more funds and perhaps expose the middle class to socialist views.
+title: 使我们的报纸更加商业化，将受众拓展至党员支持者之外。
+subtitle: 此举可能惹恼理论纯粹派，但可为本党带来更多资金，或能让中产阶级接触到社会主义观点。
 on-arrival: resources += 1; commercialized_media += 1; new_middle_spd += 4*(1 - dissent); old_middle_spd += 3*(1-dissent); left_dissent += 10; labor_dissent += 10
 
-Our commercialized newspapers are able to bring in more funds. However, the left and labor factions express their displeasure.
+我们的商业化报纸能够带来更多资金。然而左派与工会派对此表达了不满。
 
 @campaign
-title: The purpose of our media is to elect more Social Democrats.
-subtitle: Our newspapers will focus on the electoral campaign.
+title: 我们的媒体旨在选出更多社会民主党人。
+subtitle: 我们的报纸将聚焦选举竞选。
 on-arrival: campaign_media += 1; workers_spd += 4*(1 - dissent); unemployed_spd += 2*(1-dissent);
 
-Our campaign media is mostly reaching the workers who are already saturated with Socialist propaganda, but it must be doing *something*, or at least that is what we hope.
+我们的竞选媒体主要触及已饱受社会主义宣传浸染的工人，但它总该起到*一些*作用——至少我们抱持此希望。
 
 @ideological
-title: We will have vibrant ideological debate within our newspapers.
-subtitle: There will be space for all factions to air their views.
+title: 我们的报纸将保持活跃的思想辩论。
+subtitle: 各派系都有发表观点的空间。
 on-arrival: left_dissent -= 6; labor_dissent -= 6; center_dissent -= 6; reformist_dissent -= 6; neorevisionist_dissent -= 6
 
-This has been our media course historically, and it has successfully paved over the many tensions in our party.
+这是我们历史上一贯的媒体路线，成功弥合了党内的诸多张力。
 
 @radio
-title: Why not fund a radio station?
-subtitle: -2 resources
+title: 不妨资助一家电台？
+subtitle: -2 资源
 choose-if: resources >= 2
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 view-if: radio = 0
 on-arrival: radio += 1; resources -= 2; new_middle_spd += 4*(1 - dissent); old_middle_spd += 3*(1 - dissent); workers_spd += 2*(1 - dissent); labor_dissent += 5; socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent) if pacifism > 1; pro_republic += 3*(1-dissent) if democratization > 1
 
-Our new radio station allows us to connect to people in a more intimate setting than before, spreading the message of socialism along with music and other popular content. Since most proletarians cannot afford family radios right now, we are reaching the middle class, a fact of which our labor comrades are painfully aware.
+我们新办的电台能够以更亲密的方式接触民众，让社会主义讯息伴随音乐与各种大众内容一同传播。由于多数无产者当下尚无能力购置家用收音机，我们触及的主要是中产阶级——这一事实让工会派同志痛感难忍。
 
 @radio_2
-title: We must keep on building up our radio network.
-subtitle: -1 resources
+title: 我们必须继续扩建广播网。
+subtitle: -1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 view-if: radio > 0 and radio <= 3
 on-arrival: radio += 1; resources -= 1; new_middle_spd += 5*(1 - dissent); old_middle_spd += 3*(1 - dissent); workers_spd += 3*(1 - dissent); socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 3*(1-dissent)*(democratization-2) if democratization > 2
 
-Our new radio network has a mix of popular and political programming, and is proving a success.
+我们的新广播网混合了大众节目与政治内容，正在取得成功。
 
 @radio_3
-title: We must keep on building up our radio network.
-subtitle: It is now financially self-sufficient, and does not require any more resources.
+title: 我们必须继续扩建广播网。
+subtitle: 该电台现已实现财务自立，无需再投入资源。
 view-if: radio > 3 and radio <= 5 and year <= 1931
 on-arrival: radio += 1; new_middle_spd += 5*(1 - dissent); old_middle_spd += 4*(1 - dissent); workers_spd += 4*(1 - dissent); rural_spd += 3*(1 - dissent); unemployed_spd += 2*(1-dissent); socialism += 3*(1 - dissent); nationalism -= 3*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 3*(1-dissent)*(democratization-2) if democratization > 2
 
-Our radio network has become a successful tool for spreading our message.
+我们的广播网已成为传播本党讯息的成功工具。
 
 @radio_4
-title: We should keep on supporting our radio network.
-subtitle: As radio becomes more common, the novelty is beginning to wear off, and radio is becoming saturated in society. -1 resources
+title: 我们应继续支持广播网。
+subtitle: 随着广播日益普及，新鲜感逐渐褪去，市场也开始饱和。-1 资源
 choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
+unavailable-subtitle: 资源不足。
 view-if: radio > 3 and (radio >= 6 or year >= 1932) and radio <= 9
 on-arrival: radio += 1; resources -= 1; new_middle_spd += 3*(1 - dissent); old_middle_spd += 2*(1 - dissent); workers_spd += 3*(1 - dissent); rural_spd += 2*(1 - dissent); unemployed_spd += 2*(1-dissent); socialism += 2*(1 - dissent); nationalism -= 2*(1 - dissent)*(pacifism-2) if pacifism > 2; pro_republic += 2*(1-dissent)*(democratization-2) if democratization > 2
 
-We are continuing to invest in our radio stations. Both commercial and political radio are becoming more prevalent, making it harder to spread our message amidst the competition.
+我们继续在广播电台上加码投入。商业广播与政治广播都日渐普遍，让我们在竞争之中更难传递本党讯息。
