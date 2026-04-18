@@ -27,7 +27,7 @@ build-zh.cmd        # Windows
 | #1 | 框架搭建 + UI 固定文案 + TERMINOLOGY.md | ✅ 完成 |
 | #2 Part 1 | 主菜单入口 + qdisplays + 小工具场景 + 模组信息 + 制作人员（`root` 文本、`main`、`return`、`cancel_advisor_action`、`easy_discard`、`set_next_election_time`、`1930_root`/`1925_root` 标题、`qdisplays/*`（10 个全）、`mod_info`、`credits`） | ✅ 完成 |
 | #2 Part 2 | `library`（资料库正文 ~543 行）+ `status`（左侧状态面板 ~215 行）+ `election_simulation`/`election_algorithm` | ✅ 完成 |
-| #2 Part 3 | `game_over`（结局分支 ~658 行）+ `post_event`（2195 行，大型事件后处理） | ⏳ 待做 |
+| #2 Part 3 | `game_over`（结局分支 ~658 行）+ `post_event`（2195 行，大型事件后处理） | 🔄 Part 3a `game_over` 已完成；Part 3b `post_event` 待做 |
 | #3 | 年度事件（`events/1926.dry` ~ `events/1936.dry`） | ⏳ 待做 |
 | #4 | 顾问（`advisors/`） | ⏳ 待做 |
 | #5 | 党务（`party_affairs/`） | ⏳ 待做 |
