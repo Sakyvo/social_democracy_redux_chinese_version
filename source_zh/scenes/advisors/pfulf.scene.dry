@@ -1,53 +1,53 @@
-title: Antonie Pfülf
+title: 安东妮·普夫尔夫
 is-pinned-card: true
 tags: advisor, centrist
 card-image: img/portraits/PfülfAntonie.jpg
 view-if: pfulf_advisor = 1
-new-page: true 
+new-page: true
 
-= Antonie Pfülf
+= 安东妮·普夫尔夫
 
-Pfülf is a former teacher from Bavaria who came from a conservative Catholic family. She is an activist for women's rights and for broadening the support of the SPD. 
+普夫尔夫是一位出身巴伐利亚保守天主教家庭的前任教师，致力于妇女权利运动，并主张扩展社民党的基本盘。
 
 - @support_peoples_party
 - @build_peoples_party
 - @campaigning_peoples_party
 - @womens_rights_
-- @root: Return to main
+- @root: 返回主界面
 
 @support_peoples_party
-title: Build support for a People's Party
-subtitle: Can we expand our party beyond the industrial working class?
+title: 为「人民党」构建支持
+subtitle: 我们能否将党的基础扩展到工业工人阶级之外？
 view-if: peoples_party = 0
 choose-if: peoples_party_support <= 4 and advisor_action_timer = 0 and peoples_party = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if peoples_party_support > 4: There is already substantial support for a People's Party. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?][? if peoples_party_support > 4: 「人民党」的支持已相当可观。 ?]
 on-arrival: advisor_action_timer = 6; peoples_party_support += 1; reformist_strength += 5;
 
-We are building up support for the idea of a People's Party.
+我们正在积累对「人民党」理念的支持。
 
 @build_peoples_party
-title: Building a People's Party
-subtitle: Can we expand our party beyond the industrial working class?
+title: 建立「人民党」
+subtitle: 我们能否将党的基础扩展到工业工人阶级之外？
 view-if: peoples_party = 0
 choose-if: peoples_party_support >= 3 and advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if peoples_party_support < 3: There is not enough support for this policy within the party. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?][? if peoples_party_support < 3: 党内对此政策的支持尚不足。 ?]
 on-arrival: advisor_action_timer = 6; last_advisor_action = 1
 go-to: peoples_party
 
 @campaigning_peoples_party
-title: Campaigning as a People's Party
-subtitle: Campaigning with some of our previously nontraditional demographics.
+title: 以「人民党」身份竞选
+subtitle: 面向我们从前非传统的选民群体开展竞选。
 view-if: peoples_party = 1
 choose-if: advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 on-arrival: advisor_action_timer = 6; last_advisor_action = 1
 go-to: peoples_party_campaigning
 
 
 @womens_rights_
-title: Women's rights
-subtitle: Enact policy with regards to women's rights.
+title: 妇女权利
+subtitle: 推动有关妇女权利的政策。
 choose-if: advisor_action_timer = 0 and spd_in_government
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not spd_in_government : The SPD is not currently in government. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?][? if not spd_in_government : 社民党当前不在政府之中。 ?]
 on-arrival: advisor_action_timer = 6; womens_rights_timer -= 10; last_advisor_action = 1
 go-to: womens_rights

@@ -1,45 +1,45 @@
-title: Marie Juchacz
+title: 玛丽·尤哈茨
 is-pinned-card: true
 tags: advisor, reformist
 card-image: img/portraits/JuchaczMarie.jpg
 view-if: juchacz_advisor = 1
-new-page: true 
+new-page: true
 
-= Marie Juchacz
+= 玛丽·尤哈茨
 
-Juchacz is the founder of the Worker's Welfare, our mutual aid organization; her experiences as a single mother in poverty led her to socialism. She is the most senior woman among the SPD leadership, who is often treated as the "go-to" when the predominantly male leadership sought out womens' voices.
+尤哈茨是「工人福利」（Arbeiterwohlfahrt，我党所属的互助组织）的创始人；身为贫困中的单亲母亲的经历使她走上社会主义道路。她是社民党高层最资深的女性，在以男性为主的领导层寻求女性声音时，往往被当作「首选顾问」。
 
 - @emergency_fundraising
 - @welfare
 - @organizing_women
-- @root: Return to main
+- @root: 返回主界面
 
 @emergency_fundraising
-title: Emergency Fundraising
-subtitle: An emergency infusion of resources.
+title: 紧急筹资
+subtitle: 紧急注入一笔资源。
 view-if: difficulty < 1
 choose-if: advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 on-arrival: advisor_action_timer = 6; resources += dues
 
-We have gained +[+ dues +] resources.
+我们获得了 +[+ dues +] 资源。
 
 @welfare
-title: Support Workers' Welfare, our mutual aid organization.
-subtitle: -1 resources
+title: 资助我们的互助组织「工人福利」。
+subtitle: -1 资源
 choose-if: resources > 0 and advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if resources < 0: Not enough resources. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?][? if resources < 0: 资源不足。 ?]
 on-arrival: resources -= 1; workers_aid += 1; unemployed_spd += 5*(1 - dissent); workers_spd += 3*(1-dissent); workers_spd += 2*(1-dissent) if black_thursday_seen; advisor_action_timer = 6;
 
-We have increased funding to Workers' Welfare. [? if black_thursday_seen > 0 : In an age of economic crisis, this will be helpful for improving our standing among the unemployed. ?]
+我们加大了对「工人福利」的拨款。[? if black_thursday_seen > 0 : 在经济危机时期，这将有助于提升我们在失业者中的声望。 ?]
 
 @organizing_women
-title: Organizing women
-subtitle: Juchacz's strategies are aimed at more "traditional" women.
+title: 组织妇女
+subtitle: 尤哈茨的策略面向更「传统」的女性群体。
 choose-if: advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 on-arrival: womens_rights += 1; workers_spd += 4*(1-dissent); rural_spd += 3*(1-dissent); old_middle_spd += 3*(1-dissent); advisor_action_timer = 6
 
-Juchacz's strategies for organizing women are aimed at working-class housewives, and acknowledge women's traditional household roles. We argue that our economic welfare programs will improve the livelihoods of women and their families.
+尤哈茨的妇女组织策略面向工人阶级家庭主妇，承认女性的传统家务角色。我们主张，本党的经济福利计划将改善女性及其家庭的生活。
 
-[? if spd_r < 50 : Unfortunately, women still disproportionately support the bourgeois parties. ?]
+[? if spd_r < 50 : 遗憾的是，女性仍不成比例地支持着资产阶级诸党。 ?]

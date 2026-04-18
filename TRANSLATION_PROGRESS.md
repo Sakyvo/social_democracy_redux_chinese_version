@@ -29,7 +29,7 @@ build-zh.cmd        # Windows
 | #2 Part 2 | `library`（资料库正文 ~543 行）+ `status`（左侧状态面板 ~215 行）+ `election_simulation`/`election_algorithm` | ✅ 完成 |
 | #2 Part 3 | `game_over`（结局分支 ~658 行）+ `post_event`（2195 行，大型事件后处理） | ✅ 完成（Part 3a game_over + Part 3b post_event；post_event 全文 2195 行几乎全为 JS 逻辑，实际玩家可见文本仅两处） |
 | #3 | 年度事件（`events/1926.dry` ~ `events/1936.dry`） | ✅ 完成 |
-| #4 | 顾问（`advisors/`） | ⏳ 待做 |
+| #4 | 顾问（`advisors/`） | ✅ 完成 |
 | #5 | 党务（`party_affairs/`） | ⏳ 待做 |
 | #6 | 政务（`government_affairs/`） | ⏳ 待做 |
 | #7 | 总统事务（`presidential_affairs/`） | ⏳ 待做 |

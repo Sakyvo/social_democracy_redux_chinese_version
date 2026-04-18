@@ -1,32 +1,32 @@
-title: Rudolf Wissell
+title: 鲁道夫·维塞尔
 is-pinned-card: true
 tags: advisor, labor
 card-image: img/portraits/WissellRudolf.jpg
 view-if: wissell_advisor = 1
-new-page: true 
+new-page: true
 
-= Rudolf Wissell
+= 鲁道夫·维塞尔
 
-Wissell is a labor economist working for the ADGB, the federation of free trade unions, and has been a labor minister on multiple occasions. His priority is to improve conditions for organized workers.
+维塞尔是一位效力于 ADGB（自由工会联合会）的劳工经济学家，曾多次出任劳工部长。他的首要目标是改善有组织工人的状况。
 
 - @labor_rights_
 - @union_unity
-- @root: Return to main
+- @root: 返回主界面
 
 @labor_rights_
-title: Labor Rights
-subtitle: As Labor Minister, Wissell can help set regulations for working conditions.
+title: 劳工权利
+subtitle: 身为劳工部长，维塞尔可制定劳动条件的法规。
 choose-if: advisor_action_timer <= 0 and spd_in_government and labor_minister_party = "SPD"
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if labor_minister_party != "SPD" : The SPD does not control the Labor Ministry. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?][? if labor_minister_party != "SPD" : 社民党未掌握劳工部。 ?]
 on-arrival: advisor_action_timer = 6; labor_rights_timer -= 10; last_advisor_action = 1
 go-to: labor_rights
 
 
 @union_unity
-title: Union-party coordination
-subtitle: Reduce dissent among the unions.
+title: 工会—政党协调
+subtitle: 缓解工会派的不满。
 choose-if: advisor_action_timer <= 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 on-arrival: advisor_action_timer = 6; labor_dissent -= 5; labor_strength += 5
 
-We have reduced tensions with the Labor faction, and increased its strength in the party.
+我们缓和了与工会派的紧张关系，并增强了其在党内的力量。
