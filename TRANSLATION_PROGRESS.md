@@ -25,15 +25,16 @@ build-zh.cmd        # Windows
 | 批次 | 范围 | 状态 |
 |---|---|---|
 | #1 | 框架搭建 + UI 固定文案 + TERMINOLOGY.md | ✅ 完成 |
-| #2 | 根场景（`root`, `main`, `1928_root`, `1930_root`, `1925_root`, `credits`, `mod_info`, `game_over`, `return`, `post_event`, `start_menu`, `status`, `library`, `election_simulation` 等） | ⏳ 待做 |
+| #2 Part 1 | 主菜单入口 + qdisplays + 小工具场景 + 模组信息 + 制作人员（`root` 文本、`main`、`return`、`cancel_advisor_action`、`easy_discard`、`set_next_election_time`、`1930_root`/`1925_root` 标题、`qdisplays/*`（10 个全）、`mod_info`、`credits`） | ✅ 完成 |
+| #2 Part 2 | `library`（资料库正文 ~543 行）+ `status`（左侧状态面板 ~215 行）+ `election_simulation`/`election_algorithm` | ⏳ 待做 |
+| #2 Part 3 | `game_over`（结局分支 ~658 行）+ `post_event`（2195 行，大型事件后处理） | ⏳ 待做 |
 | #3 | 年度事件（`events/1926.dry` ~ `events/1936.dry`） | ⏳ 待做 |
 | #4 | 顾问（`advisors/`） | ⏳ 待做 |
 | #5 | 党务（`party_affairs/`） | ⏳ 待做 |
 | #6 | 政务（`government_affairs/`） | ⏳ 待做 |
 | #7 | 总统事务（`presidential_affairs/`） | ⏳ 待做 |
 | #8 | 杂项事件（`events/` 非年度部分） | ⏳ 待做 |
-| #9 | qdisplays（面板显示） | ⏳ 待做 |
-| #10 | 校对 + 术语一致性扫描 + 最终构建验证 | ⏳ 待做 |
+| #9 | 校对 + 术语一致性扫描 + 最终构建验证 | ⏳ 待做 |
 
 ## 翻译约束
 见 [`TERMINOLOGY.md`](./TERMINOLOGY.md) §九 翻译风格约定。

@@ -1,9 +1,9 @@
 
-# kpd influence
+# 德共影响力
 
-(..1) marginal
-(1..2) budding
-(2..4) noticeable
-(4..6) considerable
-(6..8) worrying
-(8..) dangerous
+(..1) 微乎其微
+(1..2) 初露端倪
+(2..4) 已显声势
+(4..6) 不容小觑
+(6..8) 堪忧
+(8..) 危险
