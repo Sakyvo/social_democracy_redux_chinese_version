@@ -31,7 +31,7 @@ build-zh.cmd        # Windows
 | #3 | 年度事件（`events/1926.dry` ~ `events/1936.dry`） | ✅ 完成 |
 | #4 | 顾问（`advisors/`） | ✅ 完成 |
 | #5 | 党务（`party_affairs/`） | ✅ 完成（22 个文件全部翻译；Part 1 + Part 2a + Part 2b） |
-| #6 | 政务（`government_affairs/`） | ⏳ 待做 |
+| #6 | 政务（`government_affairs/`） | 🔄 Part 1 完成（legislative_menu 立法菜单）；Part 2/3 待做 |
 | #7 | 总统事务（`presidential_affairs/`） | ⏳ 待做 |
 | #8 | 杂项事件（`events/` 非年度部分） | ⏳ 待做 |
 | #9 | 校对 + 术语一致性扫描 + 最终构建验证 | ⏳ 待做 |
