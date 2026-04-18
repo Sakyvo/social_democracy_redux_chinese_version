@@ -1,4 +1,4 @@
-title: Post Event
+title: 事件后处理
 new-page: true
 on-arrival: {!
 Q.last_advisor_action = 0;
@@ -2186,7 +2186,7 @@ if (typeof window !== "undefined" && window.generateBar) {
 !}
 go-to: events_choice if has_event = 1 and not go_to_advisor_loss; main if has_event = 0 and difficulty >= 0 and not go_to_advisor_loss; main.main_easy if has_event = 0 and difficulty < 0 and not go_to_advisor_loss; vonc_advisor_kidnapping if go_to_advisor_loss
 
-= [+ month : month +] [+ year +]
+= [+ year +] 年 [+ month : month +]
 
 @events_choice
 
