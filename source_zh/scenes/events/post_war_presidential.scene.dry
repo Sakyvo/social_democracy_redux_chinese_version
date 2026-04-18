@@ -1,0 +1,712 @@
+title: Presidential Election
+subtitle: Finally, presidential elections can be held again...
+view-if: presidential_timer <= 0 and victory_republic and not presidency_abolished and presidency_vacated
+frequency: 1000
+max-visits: 1
+new-page: true
+on-arrival: old_braun = braun_campaign; braun_campaign = 0; spd_support_thalmann = 0; spd_support_gessler = 0; kpd_support_braun = 0; z_support_braun = 0; wirth_campaign = 1 if president == "Wirth"; hergt_campaign = 1 if dnvp_banned != 1; luther_campaign = 1 if dvp_banned != 1 and dvp_relation < 35; gessler_campaign = 1 if dvp_banned != 1 and dvp_relation >= 35; thalmann_campaign = 1 if kpd_party_leader != "Conciliators" and kpd_banned != 1; munzenburg_campaign = 1 if kpd_party_leader == "Conciliators" and kpd_banned != 1; adenauer_campaign = 1 if z_relation < 50 and president != "Wirth"
+tags: event
+go-to: election_algorithm
+set-jump: pres_election
+
+= Presidential Elections
+
+Finally, as the country emerges from civil war, presidential elections will be held. [? if not kpd_banned : The KPD is planning to run [? if kpd_party_leader == "Conciliators" : Willi Münzenberg?][? if kpd_party_leader != "Conciliators" : Ernst Thälmann?] ?][? if z_relation < 50 or dvp_banned != 1 or dnvp_banned != 1 :[? if not kpd_banned :, while the?][? if kpd_banned : The?] right rallies behind[? if dnvp_banned != 1 : Oskar Hergt?][? if dnvp_banned and dvp_banned != 1 and dvp_relation < 35 : Hans Luther?][? if dnvp_banned and dvp_banned and president == "Wirth" : Joseph Wirth?][? if dnvp_banned and dvp_banned and president != "Wirth" and z_relation < 50 : Konrad Adenauer?][? if dvp_banned != 1 and dnvp_banned and dvp_relation >= 35 : Otto Gessler ?] ?]. 
+
+[? if president == "Wirth" : Joseph Wirth is tired, but will run for re-election if we support him. ?] We may convince Otto Braun to run, or back another candidate. Kurt Schumacher rose to prominence during the civil war, and we may choose to run him if Otto Braun is unwilling.
+
+@pres_election
+
+- @support_braun: Run Otto Braun.
+- @support_schumacher: Run Kurt Schumacher.
+- @support_wirth: Support Joseph Wirth.
+- @support_thalmann: Support Ernst Thälmann.
+- @support_munzenburg: Support Willi Münzenberg.
+- @support_gessler: Support Otto Gessler.
+- @support_adenauer: Support Konrad Adenauer.
+
+@support_braun
+subtitle: -2 resources.
+choose-if: not old_braun and spd_prussia
+unavailable-subtitle: He's sleepy.
+on-arrival: resources -= 2; braun_campaign = 1; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50; z_support_braun = 1 if z_relation >= 50
+go-to: spd_presidential
+
+Otto Braun reluctantly agrees to run for President, and enters into the race as our candidate. [? if motivate_adenauer : Our entering the race has motivated the Center Party to run Konrad Adenauer against us. ?][? if z_relation >= 50 : The Center Party backs Otto Braun. ?]
+
+@support_schumacher
+subtitle: -2 resources.
+on-arrival: resources -= 2; schumacher_campaign = 1; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50; z_support_schumacher = 1 if z_relation >= 50
+go-to: spd_presidential
+
+Kurt Schumacher happily agrees to run for President, and enters into the race as our candidate. [? if motivate_adenauer : Our entering the race has motivated the Center Party to run Konrad Adenauer against us. ?][? if z_relation >= 50 : The Center Party backs Otto Braun. ?]
+
+@support_wirth
+subtitle: The incumbent, interim president.
+view-if: wirth_campaign
+on-arrival: z_relation += 5
+
+Joseph Wirth, after some consideration, agrees to run for re-election as the Weimar candidate, with backing from us, [+ ddp_name +], and of course the Center Party.
+
+- @final_election: The final results...
+
+@support_thalmann
+subtitle: Thälmann is very unpopular among the reformists.
+view-if: kpd_party_leader != "Conciliators"
+choose-if: kpd_relation >= 50 and reformist_strength < left_strength
+unavailable-subtitle: [? if kpd_relation < 50 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this arrangement. ?]
+
+Supporting Thälmann is rather unpopular in our party, even if the Communists accept our support. Are we sure?
+
+- @support_thalmann_2: Yes, we will support Thälmann, despite the reformists' pleas against it.
+- @pres_election: Support someone else.
+
+@support_thalmann_2
+on-arrival: spd_support_thalmann = 1; reformist_dissent += 15; center_dissent += 10; labor_dissent += 5; neorevisionist_dissent += 10; catholics_spd -= 5; workers_spd -= 3; kpd_relation += 10; communist_coalition += 2; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 10; weimar_dissent += 3; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
+
+Fine. We have thrown our support to Chairman Thälmann of the KPD.
+
+- @final_election: The final results...
+
+@support_munzenburg
+subtitle: Supporting Münzenberg is unpopular among the reformists, but less so than Thälmann would've been.
+view-if: kpd_party_leader == "Conciliators"
+choose-if: kpd_relation >= 40 and reformist_strength < left_strength
+unavailable-subtitle: [? if kpd_relation < 40 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this arrangement. ?]
+on-arrival: spd_support_munzenburg = 1; kpd_relation += 5; reformist_dissent += 5; ddp_relation -= 3; dvp_relation -= 5; z_relation -= 5; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
+
+We have endorsed Willi Münzenberg of the KPD.
+
+- @final_election: The final results...
+
+@support_gessler
+subtitle: Otto Gessler is running as the DVP's candidate.
+view-if: not dvp_banned and gessler_campaign and not wirth_campaign
+on-arrival: left_dissent += 5; spd_support_gessler = 1; z_support_gessler = 1 if z_relation >= 45; adenauer_campaign = 0 if z_relation >= 45
+
+We have endorsed Otto Gessler of the Bürgerblock. [? if z_relation >= 45 : The Center Party soon follows suite. ?]
+
+- @final_election: The final results...
+
+@support_adenauer
+subtitle: Konrad Adenauer may run as the Center Party's candidate.
+view-if: not wirth_campaign
+on-arrival: spd_support_adenauer = 1; adenauer_campaign = 1
+
+We have endorsed Konrad Adenauer of the Center Party.
+
+- @final_election: The final results...
+
+## todo: center support should be based on risks, so Z backs gessler alongside SPD if KPD strong, runs with SPD if DNVP/DVP strong, otherwise runs alone even if good relations
+
+@spd_presidential
+
+- @convince_z: Can we sway the Center Party?
+- @convince_kpd: Can we convince the KPD?
+- @final_election: The final results...
+
+@convince_z
+view-if: (not z_support_braun and braun_campaign) or (not z_support_schumacher and schumacher_campaign)
+choose-if: (z_relation >= 40 or (z_relation >= 35 and hergt_plurality)) and (z_votes < spd_votes + ddp_votes or (z_votes < spd_votes + ddp_votes + kpd_votes and (kpd_support_braun or kpd_support_schumacher)))
+unavailable_subtitle: The Center Party isn't willing to be convinced.
+
+The Center Party isn't currently backing our candidate, but is willing to be convinced.
+
+- @pay_z: Promise to front the resources needed for a joint campaign.
+- @appeal_hergt: Appeal to the threat of Oskar Hegt's election.
+- @spd_presidential: Find another party to support us.
+
+@pay_z
+choose-if: resources >= 2
+unavailable_subtitle: We don't have the resources.
+on-arrival: resources -= 2; adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign
+go-to: spd_presidential
+
+The Center Party has endorsed our candidate and dropped out of the race.
+
+@appeal_hergt
+choose-if: z_relation >= 40
+view-if: hergt_plurality
+unavailable_subtitle: The Center Party doesn't trust us enough.
+on-arrival: adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign
+go-to: spd_presidential
+
+The Center Party has endorsed our candidate and dropped out of the race.
+
+@convince_kpd
+view-if: ((not kpd_support_braun and braun_campaign) or (not kpd_support_schumacher and schumacher_campaign)) and not kpd_banned
+choose-if: (kpd_relation >= 40 or (kpd_relation >= 35 and hergt_plurality)) and (kpd_votes < spd_votes + ddp_votes or (kpd_votes < spd_votes + ddp_votes + z_votes and (z_support_braun or z_support_schumacher)))
+unavailable_subtitle: The Communist Party isn't willing to be convinced.
+
+The Communists are not currently backing our candidate, but are willing to be convinced.
+
+- @use_relations: Use our relations.
+- @pay_kpd: Promise to front the resources needed for a joint campaign.
+- @appeal_hergt_2: Appeal to the threat of Oskar Hegt's election.
+- @spd_presidential: Find another party to support us.
+
+@use_relations
+choose-if: kpd_relation >= 60 or (kpd_relation >= 50 and kpd_party_leader == "Conciliators")
+on-arrival: communist_coalition += 1; thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign;
+unavailable_subtitle: We do not have good enough relations.
+go-to: spd_presidential
+
+The KPD has endorsed our candidate and dropped out of the race.
+
+@pay_kpd
+choose-if: resources >= 2
+unavailable_subtitle: We don't have the resources.
+on-arrival: resources -= 2; thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign
+go-to: spd_presidential
+
+The KPD has endorsed our candidate and dropped out of the race.
+
+@appeal_hergt_2
+choose-if: kpd_relation >= 40
+view-if: hergt_plurality
+unavailable_subtitle: The Communist Party doesn't trust us enough.
+on-arrival: thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign
+go-to: spd_presidential
+
+The KPD has endorsed our candidate and dropped out of the race.
+
+@final_election
+on-arrival: election_round = 0
+go-to: election_algorithm
+set-jump: post_election
+
+
+@post_election
+on-arrival: {!
+Q.braun_votes = 0;
+Q.thalmann_votes = 0;
+Q.schumacher_votes = 0;
+Q.munzenburg_votes = 0;
+Q.gessler_votes = 0;
+Q.luther_votes = 0;
+Q.hergt_votes = 0;
+Q.adenauer_votes = 0;
+Q.wirth_votes = 0;
+
+// initial phase:
+if (Q.braun_campaign) {
+    Q.braun_votes += Q.spd_normalized;
+    Q.braun_votes += Q.ddp_normalized;
+    if (Q.z_support_braun) {
+        Q.braun_votes += Q.z_normalized;
+    }
+    if (Q.kpd_support_braun) {
+        Q.braun_votes += Q.kpd_normalized;
+        Q.braun_votes += Q.sapd_normalized;
+        if (Q.rfb_force) {
+            Q.braun_votes += (Q.rfb_force/2500);
+        }
+    }
+    Q.braun_votes += (Q.pro_republic/1000);
+    Q.braun_votes += ((100-Q.nationalism)/2500);
+    Q.braun_votes += (Q.democratization/100);
+    if (Q.rb_force) {
+        Q.braun_votes += (Q.rb_force/3500);
+    }
+    Q.braun_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.schumacher_campaign) {
+    Q.schumacher_votes += Q.spd_normalized;
+    Q.schumacher_votes += Q.ddp_normalized;
+    if (!Q.munzenburg_campaign) {
+        Q.schumacher_votes += Q.sapd_normalized;
+    }
+    if (Q.z_support_schumacher) {
+        Q.schumacher_votes += Q.z_normalized;
+    }
+    if (Q.kpd_support_schumacher) {
+        Q.schumacher_votes += Q.kpd_normalized;
+        if (Q.rfb_force) {
+            Q.schumacher_votes += (Q.rfb_force/2500);
+        }
+    }
+    Q.schumacher_votes += (Q.pacifism/200);
+    Q.schumacher_votes += (Q.pro_republic/1000);
+    Q.schumacher_votes += ((100-Q.nationalism)/2250);
+    if (Q.rb_force) {
+        Q.schumacher_votes += (Q.rb_force/3000);
+    }
+    Q.schumacher_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.thalmann_campaign) {
+    Q.thalmann_votes += Q.kpd_normalized;
+    if (Q.rfb_force) {
+        Q.thalmann_votes += (Q.rfb_force/1000);
+    }
+    if (Q.kpd_influence) {
+        Q.thalmann_votes += (Q.kpd_influence/100);
+    }
+    if (Q.spd_support_thalmann) {
+        Q.thalmann_votes += Q.spd_normalized;
+        Q.thalmann_votes += Q.sapd_normalized;
+        if (Q.gessler_campaign) {
+            Q.gessler_votes += Q.ddp_normalized;
+        } else if (Q.adenauer_campaign) {
+            Q.adenauer_votes += Q.ddp_normalized;
+        }
+    }
+    Q.thalmann_votes += ((100-Q.pro_republic)/1500);
+    Q.thalmann_votes += (Q.pacifism/250);
+    Q.thalmann_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.munzenburg_campaign) {
+    Q.munzenburg_votes += Q.kpd_normalized;
+    Q.munzenburg_votes += Q.sapd_normalized;
+    if (Q.rfb_force) {
+        Q.munzenburg_votes += (Q.rfb_force/1500);
+    }
+    if (Q.kpd_influence) {
+        Q.munzenburg_votes += (Q.kpd_influence/150);
+    }
+    if (Q.spd_support_munzenburg) {
+        Q.munzenburg_votes += Q.spd_normalized;
+        if (Q.gessler_campaign) {
+            Q.gessler_votes += Q.ddp_normalized;
+        } else if (Q.adenauer_campaign) {
+            Q.adenauer_votes += Q.ddp_normalized;
+        }
+    }
+    Q.munzenburg_votes += (Q.democratization/90);
+    Q.munzenburg_votes += ((100-Q.pro_republic)/1750);
+    Q.munzenburg_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.gessler_campaign) {
+    Q.gessler_votes += Q.dvp_normalized;
+    Q.gessler_votes += (Q.other_normalized*(Q.pro_republic/100))/2;
+    if (!Q.hergt_campaign) {
+        Q.gessler_votes += Q.other_normalized*((100-Q.pro_republic)/100);
+        Q.gessler_votes += ((Q.dnvp_normalized/4)*(Q.pro_republic/100));
+        Q.gessler_votes += ((Q.nsdap_normalized/6)*(Q.pro_republic/100));
+    }
+    if (Q.spd_support_gessler) {
+        Q.gessler_votes += Q.spd_normalized;
+        Q.gessler_votes += Q.ddp_normalized;
+    }
+    if (Q.z_support_gessler) {
+        Q.gessler_votes += Q.z_normalized;
+        Q.gessler_votes += (Q.other_normalized*(Q.pro_republic/100))/2;
+        Q.gessler_votes += ((Q.dnvp_normalized/6)*(Q.pro_republic/100));
+        Q.gessler_votes += ((Q.nsdap_normalized/8)*(Q.pro_republic/100));
+    }
+    if (Q.z_support_braun || Q.z_support_schumacher || Q.wirth_campaign) {
+        Q.gessler_votes += (Q.other_normalized*(Q.pro_republic/100))/2;
+    }
+    Q.gessler_votes += ((10-Q.pacifism)/400);
+    Q.gessler_votes += (Q.nationalism/2250);
+    Q.gessler_votes += (Q.pro_republic/1000);
+    Q.gessler_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.luther_campaign) {
+    Q.luther_votes += Q.dvp_normalized;
+    Q.luther_votes += (Q.other_normalized*(Q.pro_republic/100))/2;
+    if (!Q.hergt_campaign) {
+        Q.luther_votes += Q.other_normalized*((100-Q.pro_republic)/100);
+        Q.luther_votes += ((Q.dnvp_normalized/2)*(Q.pro_republic/100));
+        Q.luther_votes += ((Q.nsdap_normalized/5)*(Q.pro_republic/100));
+    }
+    if (Q.z_support_luther) {
+        Q.luther_votes += Q.z_normalized;
+        Q.luther_votes += (Q.other_normalized*(Q.pro_republic/100))/3;
+    }
+    if (Q.z_support_braun || Q.z_support_schumacher || Q.wirth_campaign) {
+        Q.gessler_votes += (Q.other_normalized*(Q.pro_republic/100))/3;
+    }
+    Q.luther_votes += (Q.nationalism/2000);
+    Q.luther_votes += ((100-Q.pro_republic)/2500);
+    Q.luther_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.hergt_campaign) {
+    Q.hergt_votes += Q.dnvp_normalized;
+    Q.hergt_votes += Q.other_normalized*((100-Q.pro_republic)/100);
+    Q.hergt_votes += ((Q.nsdap_normalized/3)*(Q.pro_republic/100));
+    if (Q.dvp_support_hergt) {
+        Q.hergt_votes += (Q.dvp_normalized/1.5);
+        Q.hergt_votes += (Q.other_normalized*(Q.pro_republic/100))/4;
+    }
+    Q.hergt_votes += (Q.nationalism/1000);
+    Q.hergt_votes += ((100-Q.pro_republic)/1500);
+    Q.hergt_votes += ((Math.floor(Math.random() * 11))/350);
+}
+if (Q.adenauer_campaign) {
+    Q.adenauer_votes += Q.z_normalized;
+    Q.adenauer_votes += (Q.other_normalized*(Q.pro_republic/100))/2;
+    if (!Q.hergt_campaign && !Q.luther_campaign) {
+        Q.adenauer_votes += Q.other_normalized*((100-Q.pro_republic)/100);
+        Q.adenauer_votes += ((Q.dnvp_normalized/4)*(Q.pro_republic/100));
+        Q.adenauer_votes += ((Q.nsdap_normalized/6)*(Q.pro_republic/100));
+    }
+    Q.adenauer_votes += ((100-Q.nationalism)/1000);
+    Q.adenauer_votes += (Q.pro_republic/1100);
+    Q.adenauer_votes += ((Math.floor(Math.random() * 11))/350);
+    if (Q.spd_support_adenauer) {
+        Q.adenauer_votes += Q.spd_normalized;
+        Q.adenauer_votes += Q.ddp_normalized;
+    }
+    if (Q.dvp_support_adenauer) {
+        Q.adenauer_votes += Q.z_normalized;
+        Q.adenauer_votes += (Q.other_normalized*(Q.pro_republic/100))/2;
+        Q.adenauer_votes += ((Q.dnvp_normalized/6)*(Q.pro_republic/100));
+        Q.adenauer_votes += ((Q.nsdap_normalized/8)*(Q.pro_republic/100));
+    }
+}
+if (Q.wirth_campaign) {
+    Q.wirth_votes += Q.z_normalized;
+    Q.wirth_votes += Q.spd_normalized;
+    Q.wirth_votes += Q.ddp_normalized; 
+    if (Q.hergt_plurality && !Q.kpd_support_wirth) {
+        Q.wirth_votes += Q.sapd_normalized;
+    }
+    Q.wirth_votes += (Q.pro_republic/750);
+    Q.wirth_votes += ((Math.floor(Math.random() * 11))/350);
+    if (Q.kpd_support_wirth) {
+        Q.wirth_votes += Q.sapd_normalized;
+        Q.wirth_votes += Q.kpd_normalized;
+    }
+    if (Q.dvp_support_wirth) {
+        Q.wirth_votes += Q.dvp_normalized;
+        Q.wirth_votes += (Q.other_normalized*(Q.pro_republic/100))/1.5;
+    }
+}
+
+// check for majority
+Q.total_votes_pres = Q.braun_votes + Q.schumacher_votes + Q.thalmann_votes + Q.munzenburg_votes + Q.gessler_votes + Q.luther_votes + Q.hergt_votes + Q.adenauer_votes + Q.wirth_votes;
+Q.braun_votes_normalized = (Q.braun_votes/Q.total_votes_pres);
+Q.schumacher_votes_normalized = (Q.schumacher_votes/Q.total_votes_pres);
+Q.thalmann_votes_normalized = (Q.thalmann_votes/Q.total_votes_pres);
+Q.munzenburg_votes_normalized = (Q.munzenburg_votes/Q.total_votes_pres);
+Q.gessler_votes_normalized = (Q.gessler_votes/Q.total_votes_pres);
+Q.luther_votes_normalized = (Q.luther_votes/Q.total_votes_pres);
+Q.hergt_votes_normalized = (Q.hergt_votes/Q.total_votes_pres);
+Q.adenauer_votes_normalized = (Q.adenauer_votes/Q.total_votes_pres);
+Q.wirth_votes_normalized = (Q.wirth_votes/Q.total_votes_pres);
+
+Q.braun_votes = Math.round(Q.braun_votes_normalized*1000)/10;
+Q.schumacher_votes = Math.round(Q.schumacher_votes_normalized*1000)/10;
+Q.thalmann_votes = Math.round(Q.thalmann_votes_normalized*1000)/10;
+Q.munzenburg_votes = Math.round(Q.munzenburg_votes_normalized*1000)/10;
+Q.gessler_votes = Math.round(Q.gessler_votes_normalized*1000)/10;
+Q.luther_votes = Math.round(Q.luther_votes_normalized*1000)/10;
+Q.hergt_votes = Math.round(Q.hergt_votes_normalized*1000)/10;
+Q.adenauer_votes = Math.round(Q.adenauer_votes_normalized*1000)/10;
+Q.wirth_votes = Math.round(Q.wirth_votes_normalized*1000)/10;
+
+Q.braun_majority = (Q.braun_votes >= 50);
+Q.schumacher_majority = (Q.schumacher_votes >= 50);
+Q.thalmann_majority = (Q.thalmann_votes >= 50);
+Q.munzenburg_majority = (Q.munzenburg_votes >= 50);
+Q.gessler_majority = (Q.gessler_votes >= 50);
+Q.luther_majority = (Q.luther_votes >= 50);
+Q.hergt_majority = (Q.hergt_votes >= 50);
+Q.adenauer_majority = (Q.adenauer_votes >= 50);
+Q.wirth_majority = (Q.wirth_votes >= 50);
+Q.any_majority = Q.braun_majority | Q.schumacher_majority | Q.thalmann_majority | Q.munzenburg_majority | Q.gessler_majority | Q.luther_majority | Q.hergt_majority | Q.adenauer_majority | Q.wirth_majority;
+
+// check for plurality
+Q.braun_plurality = 0;
+Q.schumacher_plurality = 0;
+Q.thalmann_plurality = 0;
+Q.munzenburg_plurality = 0;
+Q.gessler_plurality = 0;
+Q.luther_plurality = 0;
+Q.hergt_plurality = 0;
+Q.adenauer_plurality = 0;
+Q.wirth_plurality = 0;
+
+Q.braun_plurality = (Q.braun_votes >= Q.schumacher_votes && Q.braun_votes >= Q.thalmann_votes && Q.braun_votes >= Q.munzenburg_votes && Q.braun_votes >= Q.gessler_votes && Q.braun_votes >= Q.luther_votes && Q.braun_votes >= Q.hergt_votes && Q.braun_votes >= Q.adenauer_votes && Q.braun_votes >= Q.wirth_votes);
+Q.schumacher_plurality = (Q.schumacher_votes >= Q.braun_votes && Q.schumacher_votes >= Q.thalmann_votes && Q.schumacher_votes >= Q.munzenburg_votes && Q.schumacher_votes >= Q.gessler_votes && Q.schumacher_votes >= Q.luther_votes && Q.schumacher_votes >= Q.hergt_votes && Q.schumacher_votes >= Q.adenauer_votes && Q.schumacher_votes >= Q.wirth_votes);
+Q.thalmann_plurality = (Q.thalmann_votes >= Q.braun_votes && Q.thalmann_votes >= Q.schumacher_votes && Q.thalmann_votes >= Q.munzenburg_votes && Q.thalmann_votes >= Q.gessler_votes && Q.thalmann_votes >= Q.luther_votes && Q.thalmann_votes >= Q.hergt_votes && Q.thalmann_votes >= Q.adenauer_votes && Q.thalmann_votes >= Q.wirth_votes);
+Q.munzenburg_plurality = (Q.munzenburg_votes >= Q.braun_votes && Q.munzenburg_votes >= Q.schumacher_votes && Q.munzenburg_votes >= Q.thalmann_votes && Q.munzenburg_votes >= Q.gessler_votes && Q.munzenburg_votes >= Q.luther_votes && Q.munzenburg_votes >= Q.hergt_votes && Q.munzenburg_votes >= Q.adenauer_votes && Q.munzenburg_votes >= Q.wirth_votes);
+Q.gessler_plurality = (Q.gessler_votes >= Q.braun_votes && Q.gessler_votes >= Q.schumacher_votes && Q.gessler_votes >= Q.thalmann_votes && Q.gessler_votes >= Q.munzenburg_votes && Q.gessler_votes >= Q.luther_votes && Q.gessler_votes >= Q.hergt_votes && Q.gessler_votes >= Q.adenauer_votes && Q.gessler_votes >= Q.wirth_votes);
+Q.luther_plurality = (Q.luther_votes >= Q.braun_votes && Q.luther_votes >= Q.schumacher_votes && Q.luther_votes >= Q.thalmann_votes && Q.luther_votes >= Q.munzenburg_votes && Q.luther_votes >= Q.gessler_votes && Q.luther_votes >= Q.hergt_votes && Q.luther_votes >= Q.adenauer_votes && Q.luther_votes >= Q.wirth_votes);
+Q.hergt_plurality = (Q.hergt_votes >= Q.braun_votes && Q.hergt_votes >= Q.schumacher_votes && Q.hergt_votes >= Q.thalmann_votes && Q.hergt_votes >= Q.munzenburg_votes && Q.hergt_votes >= Q.gessler_votes && Q.hergt_votes >= Q.luther_votes && Q.hergt_votes >= Q.adenauer_votes && Q.hergt_votes >= Q.wirth_votes);
+Q.adenauer_plurality = (Q.adenauer_votes >= Q.braun_votes && Q.adenauer_votes >= Q.schumacher_votes && Q.adenauer_votes >= Q.thalmann_votes && Q.adenauer_votes >= Q.munzenburg_votes && Q.adenauer_votes >= Q.gessler_votes && Q.adenauer_votes >= Q.luther_votes && Q.adenauer_votes >= Q.hergt_votes && Q.adenauer_votes >= Q.wirth_votes);
+Q.wirth_plurality = (Q.wirth_votes >= Q.braun_votes && Q.wirth_votes >= Q.schumacher_votes && Q.wirth_votes >= Q.thalmann_votes && Q.wirth_votes >= Q.munzenburg_votes && Q.wirth_votes >= Q.gessler_votes && Q.wirth_votes >= Q.luther_votes && Q.wirth_votes >= Q.hergt_votes && Q.wirth_votes >= Q.adenauer_votes);
+
+if (Q.braun_plurality) {
+    Q.plurality_votes = Q.braun_votes;
+} else if (Q.schumacher_plurality) {
+    Q.plurality_votes = Q.schumacher_votes;
+} else if (Q.thalmann_plurality) {
+    Q.plurality_votes = Q.thalmann_votes;
+} else if (Q.munzenburg_plurality) {
+    Q.plurality_votes = Q.munzenburg_votes;
+} else if (Q.gessler_plurality) {
+    Q.plurality_votes = Q.gessler_votes;
+} else if (Q.luther_plurality) {
+    Q.plurality_votes = Q.luther_votes;
+} else if (Q.hergt_plurality) {
+    Q.plurality_votes = Q.hergt_votes;
+} else if (Q.adenauer_plurality) {
+    Q.plurality_votes = Q.adenauer_votes;
+} else if (Q.wirth_plurality) {
+    Q.plurality_votes = Q.wirth_votes;
+}
+
+Q.election_round += 1;
+
+// making the vote numbers nicer for the display
+Q.braun_votes_disp = Q.braun_votes.toFixed(1);
+Q.schumacher_votes_disp = Q.schumacher_votes.toFixed(1);
+Q.thalmann_votes_disp = Q.thalmann_votes.toFixed(1);
+Q.munzenburg_votes_disp = Q.munzenburg_votes.toFixed(1);
+Q.gessler_votes_disp = Q.gessler_votes.toFixed(1);
+Q.luther_votes_disp = Q.luther_votes.toFixed(1);
+Q.hergt_votes_disp = Q.hergt_votes.toFixed(1);
+Q.adenauer_votes_disp = Q.adenauer_votes.toFixed(1);
+Q.wirth_votes_disp = Q.wirth_votes.toFixed(1);
+!}
+go-to: braun_wins if braun_majority == 1; schumacher_wins if schumacher_majority == 1; thalmann_wins if thalmann_majority == 1; munzenburg_wins if munzenburg_majority == 1; gessler_wins if gessler_majority == 1; luther_wins if luther_majority == 1; hergt_wins if hergt_majority == 1; adenauer_wins if adenauer_majority == 1; wirth_wins if wirth_majority == 1; no_majority_round1 if any_majority == 0 and election_round == 1; round2_results if election_round >= 2
+
+Results:
+
+[? if thalmann_campaign : Thälmann - [+ thalmann_votes_disp +]% ?]
+[? if munzenburg_campaign : Münzenberg - [+ munzenburg_votes_disp +]% ?]
+
+[? if braun_campaign : Braun - [+ braun_votes_disp +]% ?]
+[? if schumacher_campaign : Schumacher - [+ schumacher_votes_disp +]% ?]
+
+[? if wirth_campaign : Wirth - [+ wirth_votes_disp +]% ?]
+[? if adenauer_campaign : Adenauer - [+ adenauer_votes_disp +]% ?]
+
+[? if gessler_campaign : Gessler - [+ gessler_votes_disp +]% ?]
+[? if luther_campaign : Luther - [+ luther_votes_disp +]% ?]
+
+[? if hergt_campaign : Hergt - [+ hergt_votes_disp +]% ?]
+
+@no_majority_round1
+go-to: luther_back_hergt if hergt_campaign and luther_campaign and hergt_votes >= (luther_votes*2) and (hergt_votes >= adenauer_votes and hergt_votes >= wirth_votes) and (braun_plurality or thalmann_plurality or schumacher_plurality or munzenburg_plurality); luther_back_adenauer if luther_campaign and adenauer_campaign and adenauer_votes >= luther_votes and (adenauer_votes >= hergt_votes) and (braun_plurality or thalmann_plurality or schumacher_plurality or munzenburg_plurality); hergt_drop_out if hergt_campaign and (braun_plurality or thalmann_plurality or munzenburg_plurality or schumacher_plurality) and (not luther_campaign or (adenauer_votes >= luther_votes and (adenauer_votes >= hergt_votes))); luther_back_wirth if luther_campaign and wirth_campaign and (thalmann_plurality or munzenburg_plurality and hergt_votes < wirth_votes); gessler_back_wirth if wirth_campaign and gessler_campaign and (thalmann_plurality or munzenburg_plurality or (hergt_plurality and dvp_relation >= 40)); munzenburg_back_wirth if wirth_campaign and munzenburg_campaign and (kpd_relation >= 45 and hergt_plurality) or (kpd_relation >= 65 and luther_plurality); gessler_back_adenauer if gessler_campaign and adenauer_votes >= gessler_votes and not adenauer_plurality and not spd_support_gessler; adenauer_back_gessler if adenauer_campaign and gessler_campaign and gessler_votes >= adenauer_votes and not gessler_plurality and not spd_support_adenauer
+set-jump: no_majority_round1
+
+- @round2_convince_z: Convince the Center to switch their support to us.
+- @round2_convince_kpd: Convince the KPD to switch their support to us. 
+- @round2_adenauer: Switch our support to Adenauer.
+- @round2_gessler: Switch our support to Gessler.
+- @round2_thalmann: Switch our support to Thälmann.
+- @round2_munzenburg: Switch our support to Münzenberg.
+- @round2_vote: Let the second round voting begin.
+
+@luther_back_hergt
+on-arrival: dvp_support_hergt = 1; luther_campaign = 0; hergt_plurality = 1 if luther_votes + hergt_votes >= plurality_votes
+go-to: no_majority_round1
+
+Hans Luther of the DVP has dropped out to consolidate the vote for the right, endorsing Oskar Hergt of the DNVP.
+
+@luther_back_adenauer
+on-arrival: dvp_support_adenauer = 1; luther_campaign = 0
+go-to: no_majority_round1
+
+Hans Luther of the DVP has dropped out to consolidate the vote for the bourgeois parties, endorsing Adenauer of the Center Party.
+
+@hergt_drop_out
+on-arrival: hergt_campaign = 0; dvp_support_adenauer = 1 if dvp_support_hergt; dvp_support_hergt = 0;
+go-to: no_majority_round1
+
+Oskar Hergt of the DNVP has dropped out, leaving the right-wing parties to rally behind[? if luther_campaign : Luther?][? if gessler_campaign : Gessler ?][? if adenauer_campaign and not gessler_campaign and not luther_campaign : Adenauer ?][? if not adenauer_campaign and not gessler_campaign and not luther_campaign and wirth_campaign : Wirth ?].
+
+@luther_back_wirth
+on-arrival: dvp_support_wirth = 1; luther_campaign = 0
+go-to: no_majority_round1
+
+Hans Luther of the DVP has dropped and endorsed Joseph Wirth to consolidate the vote of the anticommunist parties.
+
+@gessler_back_wirth
+on-arrival: dvp_support_wirth = 1; gessler_campaign = 0;
+go-to: no_majority_round1
+
+Otto Gessler has dropped out and endorsed Joseph Wirth to consolidate the vote of the moderate parties.
+
+@gessler_back_adenauer
+on-arrival: dvp_support_adenauer = 1; gessler_campaign = 0
+go-to: no_majority_round1
+
+In order to consolidate the vote for the moderate Bürgerblock, Otto Gessler has dropped out and endorsed Konrad Adenauer.
+
+@adenauer_back_gessler
+on-arrival: z_support_gessler = 1; adenauer_campaign = 0;
+go-to: no_majority_round1
+
+In order to consolidate the vote for the moderate Bürgerblock, Konrad Adenauer has dropped out and endorsed Otto Gessler.
+
+@munzenburg_back_wirth
+on-arrival: kpd_support_wirth = 1; munzenburg_campaign = 0
+go-to: no_majority_round1
+
+In a surprise move, Willi Münzenberg has dropped out and endorsed Joseph Wirth as part of the emerging "Popular Front" tactic, in order to prevent the election of a right-wing president.
+
+@round2_convince_z
+view-if: (braun_campaign or schumacher_campaign) and not z_support_braun and not z_support_schumacher
+choose-if: z_relation >= 35 and braun_votes >= z_votes
+unavailable-subtitle: The Center Party isn't willing to be convinced.
+max-visits: 1
+
+The Center Party isn't currently backing our candidate, but is willing to be convinced.
+
+- @relation_z2: Use our relations.
+- @pay_z2: Promise to front the resources needed for a joint campaign.
+- @appeal_hergt2: Appeal to the threat of Oskar Hegt's election.
+- @no_majority_round1: Nevermind the Center Party.
+
+@relation_z2
+choose-if: z_relation >= 45
+on-arrival: adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign; z_support_luther = 0; z_support_gessler = 0; braun_plurality = 1 if braun_campaign and z_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and z_votes + schumacher_votes >= plurality_votes
+go-to: no_majority_round1
+
+The Center Party has endorsed our candidate and dropped out of the race.
+
+@pay_z2
+choose-if: resources >= 2
+unavailable_subtitle: We don't have the resources.
+on-arrival: resources -= 2; adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign; z_support_luther = 0; z_support_gessler = 0; braun_plurality = 1 if braun_campaign and z_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and z_votes + schumacher_votes >= plurality_votes
+go-to: no_majority_round1
+
+The Center Party has endorsed our candidate and dropped out of the race.
+
+@appeal_hergt2
+choose-if: z_relation >= 40
+view-if: hergt_plurality
+unavailable_subtitle: The Center Party doesn't trust us enough.
+on-arrival: adenauer_campaign = 0; z_support_gessler = 0; z_support_luther = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and z_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and z_votes + schumacher_votes >= plurality_votes
+go-to: no_majority_round1
+
+The Center Party has endorsed our candidate and dropped out of the race.
+
+@round2_convince_kpd
+view-if: ((not kpd_support_braun and braun_campaign) or (not kpd_support_schumacher and schumacher_campaign)) and not kpd_banned
+choose-if: (kpd_relation >= 40 or (kpd_relation >= 35 and hergt_plurality)) and (kpd_votes < spd_votes + ddp_votes or (kpd_votes < spd_votes + ddp_votes + z_votes and (z_support_braun or z_support_schumacher)))
+unavailable_subtitle: The Communist Party isn't willing to be convinced.
+max-visits: 1
+
+The Communists are not currently backing our candidate, but are willing to be convinced.
+
+- @use_relations2: Use our relations.
+- @pay_kpd2: Promise to front the resources needed for a joint campaign.
+- @appeal_hergt2_2: Appeal to the threat of Oskar Hegt's election.
+- @no_majority_round1: Nevermind the KPD.
+
+@use_relations2
+choose-if: kpd_relation >= 60 or (kpd_relation >= 50 and kpd_party_leader == "Conciliators")
+on-arrival: communist_coalition += 1; thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and kpd_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and kpd_votes + schumacher_votes >= plurality_votes
+unavailable_subtitle: We do not have good enough relations.
+go-to: no_majority_round1
+
+The KPD has endorsed our candidate and dropped out of the race.
+
+@pay_kpd2
+choose-if: resources >= 2
+unavailable_subtitle: We don't have the resources.
+on-arrival: resources -= 2; thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and kpd_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and kpd_votes + schumacher_votes >= plurality_votes
+go-to: no_majority_round1
+
+The KPD has endorsed our candidate and dropped out of the race.
+
+@appeal_hergt2_2
+choose-if: kpd_relation >= 40
+view-if: hergt_plurality
+unavailable_subtitle: The Communist Party doesn't trust us enough.
+on-arrival: thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and kpd_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and kpd_votes + schumacher_votes >= plurality_votes
+go-to: no_majority_round1
+
+The KPD has endorsed our candidate and dropped out of the race.
+
+@round2_adenauer
+view-if: not spd_support_adenauer and adenauer_campaign
+on-arrival: braun_campaign = 0; schumacher_campaign = 0; motivate_gessler = 1 if spd_support_gessler and not adenauer_plurality and adenauer_votes >= gessler_votes; gessler_campaign = 0 if spd_support_gessler and not adenauer_plurality and adenauer_votes >= gessler_votes; dvp_support_adenauer = 1 if spd_support_gessler and not adenauer_plurality and adenauer_votes >= gessler_votes; spd_support_braun = 0; spd_support_thalmann = 0; spd_support_schumacher = 0; spd_support_munzenburg = 0; spd_support_gessler = 0; spd_support_adenauer = 1; kpd_support_braun = 0; kpd_support_schumacher = 0; thalmann_campaign = 1 if not kpd_banned and kpd_party_leader != "Conciliators"; munzenburg_campaign = 1 if not kpd_banned and kpd_party_leader == "Conciliators"
+
+We switch our endorsement to Konrad Adenauer of the Center Party. [? if motivate_gessler : Otto Gessler has followed suit, dropping out of the race and endorsing Konrad Adenauer. ?]
+
+- @round2_vote: Let the second round of voting begin...
+
+@round2_gessler
+view-if: not spd_support_gessler and gessler_campaign
+on-arrival: braun_campaign = 0; schumacher_campaign = 0; motivate_ade = 1 if spd_support_adenauer and not gessler_plurality and gessler_votes >= adenauer_votes; adenauer_campaign = 0 if motivate_ade; z_support_gessler = 1 if motivate_ade; spd_support_braun = 0; spd_support_thalmann = 0; spd_support_schumacher = 0; spd_support_munzenburg = 0; spd_support_gessler = 1; spd_support_adenauer = 0; kpd_support_braun = 0; kpd_support_schumacher = 0; thalmann_campaign = 1 if not kpd_banned and kpd_party_leader != "Conciliators"; munzenburg_campaign = 1 if not kpd_banned and kpd_party_leader == "Conciliators"
+
+We switch our endorsement to Otto Gessler. [? if motivate_ade : Konrad Adenauer has followed suit, dropping out of the race and endorsing Otto Gessler. ?]
+
+- @round2_vote: Let the second round of voting begin...
+
+@round2_thalmann
+view-if: not spd_support_thalmann and not kpd_support_braun and not kpd_support_schumacher and thalmann_campaign
+choose-if: kpd_relation >= 50 and left_strength > reformist_strength 
+unavailable-subtitle: [? if kpd_relation < 50 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this bizarre arrangement. ?]
+max-visits: 1
+
+Supporting Thälmann is rather unpopular in our party, even if the Communists accept our support. Are we sure?
+
+- @round2_thalmann_2_2: Yes, we will support Thälmann, despite the reformists' pleas against it.
+- @no_majority_round1: Never mind.
+
+@round2_thalmann_2_2
+on-arrival: spd_support_thalmann = 1; reformist_dissent += 15; center_dissent += 10; labor_dissent += 5; neorevisionist_dissent += 10; catholics_spd -= 5; workers_spd -= 3; kpd_relation += 10; communist_coalition += 2; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 10; weimar_dissent += 3; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
+
+Fine. We have thrown our support to Chairman Thälmann of the KPD.
+
+- @round2_vote: Let the second round of voting begin...
+
+@round2_munzenburg
+subtitle: Supporting Münzenberg is unpopular among the reformists, but less so than Thälmann would've been.
+view-if: munzenburg_campaign and not spd_support_munzenburg and not kpd_support_braun and not kpd_support_schumacher
+choose-if: kpd_relation >= 40 and reformist_strength < left_strength
+unavailable-subtitle: [? if kpd_relation < 40 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this arrangement. ?]
+on-arrival: spd_support_munzenburg = 1; kpd_relation += 5; reformist_dissent += 5; ddp_relation -= 3; dvp_relation -= 5; z_relation -= 5; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
+
+We have endorsed Willi Münzenberg of the KPD.
+
+- @round2_vote: Let the second round of voting begin...
+
+@round2_vote
+go-to: election_algorithm
+set-jump: post_election
+
+@round2_results
+go-to: braun_wins if braun_plurality; schumacher_wins if schumacher_plurality; thalmann_wins if thalmann_plurality; munzenburg_wins if munzenburg_plurality; gessler_wins if gessler_plurality; luther_wins if luther_plurlity == 1; hergt_wins if hergt_plurality; adenauer_wins if adenauer_plurality; wirth_wins if wirth_plurality
+
+@braun_wins
+on-arrival: president = "Braun"
+
+Otto Braun of the SPD has won the election!
+
+@schumacher_wins
+on-arrival: president = "Schumacher"
+
+Kurt Schumacher of the SPD has won the election!
+
+@thalmann_wins
+on-arrival: president = "Thälmann"
+
+Ernst Thälmann of the KPD has won the election!
+
+@munzenburg_wins
+on-arrival: president = "Münzenberg"
+achievement: rote_millionar
+
+Willi Münzenberg of the KPD has won the election!
+
+@gessler_wins
+on-arrival: president = "Gessler"
+
+Otto Gessler of the liberal bloc has won the election!
+
+@luther_wins
+on-arrival: president = "Luther"
+
+Hans Luther of the DVP has won the elections.
+
+@hergt_wins
+on-arrival: president = "Hergt"
+
+Oskar Hergt of the DNVP has won the elections, somehow, even after we crushed the reactionaries in a civil war.
+
+@adenauer_wins
+on-arrival: president = "Adenauer"
+
+Konrad Adenauer of the Center Party has won the elections!
+
+@wirth_wins
+on-arrival: president = "Wirth"
+
+Joseph Wirth of the Center Party has won the elections!

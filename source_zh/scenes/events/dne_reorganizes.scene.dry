@@ -1,0 +1,22 @@
+title: The DNE Consolidates
+subtitle: The pro-Schleicher NSDAP splinter has taken a new form...
+view-if: dne_timer <= 0 and dne_formed
+on-arrival: dne_reorganized = 1; labor_dissent += 15;
+max-visits: 1
+new-page: true
+tags: event
+
+= The DNE Consolidates
+
+What was at first a Strasserist split from the NSDAP to support Kurt von Schleicher has reorganized into the political arm of Kurt von Schleicher's government. Opening itself up to politicians all ideologies, the party has become a strange syncretic front of all those in support of Schleicher, and in lesser cases even those not ideologically supportive of Schleicher but opportunists simply seeing membership in the party as a quick and easy way to rise the ranks. 
+
+It is clear that Schleicher is attempting to use the DNE as the basis of a personalist party with which to secure his government's fate come the next elections. As emergency decrees slowly strip more and more press freedoms, the DNE has an increasingly large advantage. 
+
+- @and: And...
+
+@and
+view-if: labor_dissent >= 60 and not unions_independent
+subtitle: The ADGB reconsiders its allegiances
+on-arrival: unions_independent = 1; workers_spd -= 20; unemployed_spd -= 10; workers_dne += 15; unemployed_dne += 10
+
+The ADGB has announced its separation from the SPD. It has gone to join Schleicher in his fledgling dictatorship. 

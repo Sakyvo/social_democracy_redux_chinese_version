@@ -1,0 +1,30 @@
+title: Martial Law!
+subtitle: The Harzburg Cabinet has declared martial law
+view-if: seldte_times >= 1 and harzburg_r >= 50 and chancellor == "Seldte" and papen_chancellor_timer <= 0
+new-page: true
+on-arrival: sh_militancy += 0.03
+tags: event
+
+= Martial Law
+
+Seeing the continuing collapse of order in Germany, and convinced that they would be able to quell any resistance, President [+ president +] and Chancellor Seldte have come together to declare a state of martial law in Germany. Though this is unconstitutional, the courts have little sway over the enthusiastic army.
+
+- @seldte_takes_power: What now?
+
+@seldte_takes_power
+subtitle: The beginning of the end.
+
+The destruction of German democracy has begun, not at the hands of the Nazis but at the hands of the reactionaries who wish to see a return to the days of the German Empire. If we do not fight back now, then we may never get another chance, and all we as a party have stood for will be gone in an instant.
+
+- @fight_harzburg: Mobilize our forces and declare a general strike!
+- @reactionary_victory: We have lost.
+
+@reactionary_victory
+
+Party offices are raided by army and police forces. Our leaders are rounded up and arrested. Any and all of our reforms are undone, and a police state under the army's control is cemented. The Nazis have failed to take power, but we cannot take much comfort in the fact when a dictatorial fascist government rules all the same. Perhaps in the far future, we may have our moment in the sun once more. We will have a duty to do better then than we have now.
+
+- @game_over: Game over.
+
+@fight_harzburg
+on-arrival: spd_rebel = 1
+go-to: civil_war

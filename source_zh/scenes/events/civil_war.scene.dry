@@ -1,0 +1,1576 @@
+title: Civil War
+audio: music/communist/A_las_barricadas.ogg
+on-arrival: {!
+Q.rb_strength = Math.round(Q.rb_strength);
+Q.sh_strength = Math.round(Q.sh_strength);
+Q.sa_strength = Math.round(Q.sa_strength);
+// re-calculate dissent, in case we transitioned from, say, the KPD support that raised reformist dissent.
+var total_strength = Q.left_strength + Q.center_strength + Q.labor_strength + Q.reformist_strength + Q.neorevisionist_strength;
+var total_dissent = Q.left_strength*Q.left_dissent + Q.center_strength*Q.center_dissent + Q.labor_strength*Q.labor_dissent + Q.reformist_strength*Q.reformist_dissent + Q.neorevisionist_strength*Q.neorevisionist_dissent;
+
+Q.dissent = 0.01*total_dissent/total_strength;
+console.log('new dissent: ' + Q.dissent);
+
+if (Q.dissent < 0) {
+    Q.dissent = 0;
+} else if (Q.dissent > 0.95) {
+    Q.dissent = 0.95;
+}
+
+Q.civil_war_seen = 1;
+
+// our allies
+Q.total_power = 0;
+// TODO:  lower reichsbanner strength if the party's popularity is very low.
+Q.rb_power = Q.rb_strength*Q.rb_militancy;
+if (Q.dissent > 0.15) {
+    Q.rb_power *= (1 - Q.dissent/1.5);
+}
+if (Q.spd_normalized < 0.25) {
+    Q.rb_power *= (Q.spd_normalized/0.25);
+}
+Q.total_power += Q.rb_power;
+Q.prussian_police_power = Q.prussian_police_strength*Q.prussian_police_militancy*Q.prussian_police_loyalty;
+if (Q.spd_prussia) {
+    Q.total_power += Q.prussian_police_power;
+}
+if (Q.reichswehr_loyalty < 0) {
+    Q.reichswehr_loyalty = 0;
+}
+Q.loyal_reichswehr_power = Q.reichswehr_strength*Q.reichswehr_militancy*Q.reichswehr_loyalty;
+if (Q.spd_in_government && Q.chancellor_party == "SPD") {
+    Q.total_power += Q.loyal_reichswehr_power;
+} else {
+    Q.total_power += Q.loyal_reichswehr_power/4;
+}
+Q.rfb_power = Q.rfb_strength*Q.rfb_militancy;
+if (Q.kpd_relation >= 60) {
+    Q.total_power += Q.rfb_power;
+} else if (Q.kpd_relation >= 45) {
+    Q.total_power += Q.rfb_power*0.5;
+}
+// general strike strength
+// maximum (given 25 labor strength) is 400
+// use normalized workers_spd instead of labor_strength?
+Q.normalized_workers_spd = 100*Q.workers_spd/(Q.workers_spd + Q.workers_kpd + Q.workers_nsdap + Q.workers_other + Q.workers_dnvp + Q.workers_z);
+Q.normalized_workers_kpd = 100*Q.workers_kpd/(Q.workers_spd + Q.workers_kpd + Q.workers_nsdap + Q.workers_other + Q.workers_dnvp + Q.workers_z);
+Q.normalized_workers_total = Q.normalized_workers_spd;
+if (Q.kpd_relation >= 60) {
+    Q.normalized_workers_total += Q.normalized_workers_kpd;
+} else if (Q.kpd_relation >= 45) {
+    Q.normalized_workers_total += Q.normalized_workers_kpd*0.5;
+}
+Q.total_power += (2 - Q.labor_dissent/100)*Q.normalized_workers_total*(2 - Q.unemployed/100)*2.5;
+console.log("Supporter strength:", Q.total_power);
+
+// our enemies
+Q.enemy_power = 0;
+Q.sa_power = Q.sa_strength*Q.sa_militancy;
+Q.enemy_power += Q.sa_power;
+Q.sh_power = Q.sh_strength*Q.sh_militancy;
+Q.enemy_power += Q.sh_power;
+Q.hostile_reichswehr_power = Q.reichswehr_strength*Q.reichswehr_militancy*(1-Q.reichswehr_loyalty);
+Q.enemy_power += Q.hostile_reichswehr_power;
+if (Q.harzburg_purged == 1) {
+    Q.enemy_power *= 0.8;
+}
+console.log("Enemy strength:", Q.enemy_power);
+
+if (Q.total_power > Q.enemy_power*1.1) {
+    Q.republic_victory = 1;
+} else if (Q.total_power/Q.enemy_power >= 0.6) {
+    Q.long_war = 1;
+} else {
+    Q.total_defeat = 1;
+}
+
+Q.is_favorable = 0;
+if (Q.total_power >= Q.enemy_power*0.95) {
+    Q.is_favorable = 1;
+}
+!}
+go-to: war_menu
+
+= The Array of Forces
+
+Our enemies are the nationalist Stahlhelm, with [+ sh_strength +] thousand troops, and the Nazi SA, with [+ sa_strength +] thousand troops. The loyalties of the Reichswehr, with its [+ reichswehr_strength +] thousand regular soldiers, and Prussian police, with [+ prussian_police_strength +] thousand members, are unclear.
+
+[? if chancellor_party == "KPD" or president == "Thälmann" : The KPD's paramilitary, the RFB, is leading the battle, and we are their co-combatants. ?]
+
+On our side, we have the Reichsbanner, at [+ rb_strength +] thousand members. [? if dissent > 0.15 and dissent <= 0.25: It is somewhat weakened by dissent within the party, and some members choose not to fight. ?][? if dissent > 0.25 and dissent < 0.5: It is weakened by dissent within the party, and many members choose not to fight. ?][? if dissent >= 0.5: It is heavily weakened by dissent within the party, and a substantial portion of members choose not to fight. ?]
+
+[? if rb_militancy < 0.25 : Unfortunately, the Reichsbanner are poorly trained and equipped, and will not be able to stand against our more militarized opponents. ?][? if rb_militancy >= 0.25 and rb_militancy < 0.5 : We have spent some resources training and equipping the Reichsbanner. Let us hope our people can persist. ?][? if rb_militancy >= 0.5 : We have spent quite a great deal of resources on turning the Reichsbanner into a fighting force. Let us hope that they survive. ?]
+
+What else do we have?
+
+# note: many scenarios lead to civil war. This calculates the array of forces, and the possible outcomes.
+
+@war_menu
+
+- @rw_help: Appeal to the Reichswehr to stand down.
+- @kpd_help: Call for support from the Communists.
+- @general_strike: Call a general strike!
+- @loyal_police: Call up the loyal portions of the police.
+- @war_outcome: Now, the battle...
+
+@rw_help
+max-visits: 1
+go-to: war_menu
+on-arrival: war_choices += 1
+
+We have urged the Reichswehr to stand down, to avoid killing their countrymen. [? if reichswehr_loyalty < 0.2 : Unfortunately, few heed our calls; the Reichswhere detest us. ?][? if reichswehr_loyalty >= 0.2 and reichswehr_loyalty < 0.4 : Some officers and troops heed our calls to not fight against us. Some even join us. ?][? if reichswehr_loyalty >= 0.4 and reichswehr_loyalty < 0.6 : The Reichswehr is split. Many avoid taking a side, or join our side. ?][? if reichswehr_loyalty >= 0.6 : Surprisingly, the majority of the Reichswehr is on our side! Our preparations have worked. ?]
+
+@kpd_help
+max-visits: 1
+view-if: chancellor_party != "KPD" and president != "Thälmann" 
+go-to: war_menu
+on-arrival: war_choices += 1
+
+There are [+ rfb_strength +] thousand fighters with the Communist RFB, in addition to the workers who support the KPD.
+
+[? if kpd_relation >= 60 : The KPD is entirely on our side, owing to our good relations.. ?][? if kpd_relation < 60 and kpd_relation >= 45 : Most of the KPD is on our side, due to their good relations with us. ?][? if kpd_relation < 45 : The KPD does not support us. ?]
+
+@general_strike
+max-visits: 1
+go-to: war_menu
+on-arrival: war_choices += 1
+
+A general strike stopped the Kapp Putsch in 1920, and it can stop fascism today. [? if normalized_workers_total > 70 : The workers are largely united with us. ?][? if normalized_workers_total >= 50 and normalized_workers_total <= 70 : There is some dissent within labor, but a majority of workers support the general strike. ?][? if normalized_workers_total > 30 and normalized_workers_total < 50 : However, there is substantial dissent within labor, and less than half support the general strike. ?][? if normalized_workers_total <= 30 : However, labor is deeply divided, and most workers do not heed the call to strike. ?]
+
+
+@loyal_police
+max-visits: 1
+go-to: war_menu
+on-arrival: war_choices += 1
+view-if: spd_prussia = 1
+
+Since we still control the Prussian government, we can call upon the Prussian police. [? if prussian_police_loyalty < 0.4 : Unfortunately, the police are politically unreliable at best. ?][? if prussian_police_loyalty >= 0.4 and prussian_police_loyalty < 0.65 : In this crucial hour, the Prussian police are split, with about half actively supporting our efforts. ?][? if prussian_police_loyalty >= 0.65 : Most join in supporting our efforts. Our efforts in cultivating republican loyalties in the police have proven their worth. ?]
+
+
+
+
+@foreign_intervention
+max-visits: 1
+go-to: war_menu
+on-arrival: war_choices += 1; 
+
+# note: the Prussian coup should not trigger foreign intervention...
+
+
+@war_outcome
+view-if: war_choices >= 2
+go-to: defeat if total_defeat = 1; long_war if long_war = 1; republic_victory if republic_victory = 1
+
+@defeat
+
+= Total Defeat
+
+Our forces are no match for those of the reactionaries. Reichsbanner fighters are quickly overpowered by the forces of the Stahlhelm, SA, and Reichswehr. Many are killed before the rest surrender. Our remaining leaders flee the country or face execution, as the reactionaries take absolute power over Germany.
+
+Our resistance will be recorded in the history books, and in the future, our names will be honored. But for now, all is lost.
+
+- @game_over: Game over.
+
+@long_war
+go-to: long_war_intervention if resist_coup == 0; game_over_menu if resist_coup == 1
+
+= Long War
+
+The initial phase of the action ends, and somehow, both sides remain standing.
+
+The war settles into fixed battle lines. This will not be a quick coup, but a long civil war. The nation will destroy itself before it can be rebuilt again.
+
+@game_over_menu
+
+While we might want to call for foreign assistance, the foreign powers see the "Prussian Coup" as a purely internal matter.
+
+- @game_over
+
+# no war
+
+@long_war_intervention
+
+- @west_aid: Perhaps we can receive aid from the Western powers, France and Britain.
+- @soviet_aid: Perhaps we can receive aid from the Soviet Union.
+- @east_aid: Perhaps our eastern neighbors, Poland and Czechoslovakia, can help us. If they know anything, they do not want fascists coming to power in Germany.
+- @austria_aid: Perhaps the SDAPÖ can help us in our fight?
+- @game_over: Game over.
+
+@west_aid
+choose-if: west_relation >= 2
+unavailable-subtitle: Our relations are not strong enough.
+on-arrival: west_aid += 1
+max-visits: 1
+go-to: long_war_intervention
+
+We send a call for help to the West, but their governments are divided on whether or not to support us. We have to survive on our own until they make a decision.
+
+@soviet_aid
+choose-if: (soviet_relation >= 1 and kpd_relation >= 50) or (kpd_relation >= 75)
+on-arrival: soviet_aid += 1
+unavailable-subtitle: Our relations are not strong enough.
+max-visits: 1
+go-to: long_war_intervention
+
+We send a call for help to the Soviet Union. The KPD receives the bulk of the aid, while the Reichsbanner and our loyal military units are left floundering. If we win, this does not bode well for our future.
+
+@east_aid
+choose-if: east_relation >= 2
+on-arrival: east_aid += 1
+unavailable-subtitle: Our relations are not strong enough.
+max-visits: 1
+go-to: long_war_intervention
+
+Poland and Czechoslovakia are largely too absorbed in their own problems to be of much help, but weapons and volunteers filter through the parts of the borders that we control.
+
+@austria_aid
+view-if: austria_victory
+on-arrival: austria_aid += 1
+max-visits: 1
+go-to: long_war_intervention
+
+The Austrian SDAPÖ is still preoccupied in rebuilding Austria and defending it from the continued activity of the Austrofascists and Nazis alike, but they have not forgotten how we helped them bring down Dollfuß. What men they have to spare cross the border, bringing with them much-needed supplies and knowledge on fighting fascism.
+
+@republic_victory
+on-arrival: sa_ban_timer = 16; sh_ban_timer = 16; nsdap_banned = 1; dne_banned = 1 if dne_formed; dne_reorganized = 0 if dne_reorganized; party_bans = 1; sa_banned = 1; sh_banned = 1; constitutional_reform += 1; rfb_banned = 0 if kpd_relation >= 60; kpd_ally = 1 if kpd_relation >= 60; pro_republic += 25; unemployed_spd += 10*(1-dissent); workers_spd += 6*(1-dissent); chancellor = "N/A" if chancellor = "Hitler"; chancellor_party = "I" if chancellor_party = "NSDAP"; victory_republic = 1; unemployed_nsdap *= 0.4; new_middle_nsdap *= 0.5; old_middle_nsdap *= 0.6; workers_nsdap *= 0.5; rural_nsdap *= 0.7; old_middle_dnvp *= 0.6; rural_dnvp *= 0.7; new_middle_dnvp *= 0.6; old_middle_dvp += 5; new_middle_dvp += 5; sa_strength *= 0.2; sh_strength *= 0.2; sa_militancy *= 0.5; sh_militancy *= 0.5; rb_strength *= 0.8; rfb_strength *= 0.8; reichswehr_strength *= reichswehr_loyalty; reichswehr_loyalty += 0.2; socialism += 5; socialism += 5 if kpd_relation >= 60
+
+= Victory for the Republic
+
+The battle lines hold, and the SA, Stahlhelm, and pro-coup Reichswehr forces are defeated. Today, the forces of the republic prevail over the fascists and the reactionaries. There is a new revolution in Germany. Let us hope it produces a longer-lasting peace than the previous one.
+
+- @agenda_gov: We must decide our new agenda.
+- @agenda_reb: We must decide our new agenda.
+- @agenda_kpd: We must decide our new agenda.
+
+@agenda_gov
+view-if: nazi_rebel = 1 and president != "Thälmann"
+
+The defeat of the reactionaries presents to us a unique opportunity. We have multiple issues to address.
+
+- @hindenburg: The presidency.
+- @government: The government.
+
+@hindenburg
+view-if: president == "Hindenburg" and not presidency_decided
+on-arrival: presidency_decided = 1
+subtitle: We may force Hindenburg to resign.
+
+The current President, Hindenburg, has undoubtedly through at the very least complacency enabled the emboldening and empowerment of reactionary forces. With these reactionary forces defeated, we may force his resignation. However, some warn against rocking the boat.
+
+- @keep: Let Hindenburg stay President.
+- @resign: Demand Hindenburg's resignation.
+
+@keep
+on-arrival: left_dissent += 5; kpd_relation -= 5
+
+We choose to allow Hindenburg's presidency to continue.
+
+- @agenda_gov: Continue...
+
+@resign
+on-arrival: presidency_vacated = 1; pro_republic -= 5; z_relation -= 5; dvp_relation -= 10; presidential_timer = 1 if year < 1933; president = "Bumke" if year >= 1933 and judicial_reform < 4; president = "Großmann" if year >= 1933 and judicial_reform >= 4; presidential_timer = 3 if year >= 1933; president = "N/A" if year < 1933
+
+Hindenburg is forced to resign by our forces. [? if year >= 1933 : As is procedure, the president of the Supreme Court is to succeed him as interim. ?]
+
+- @agenda_gov: Continue...
+
+# todo: hindenburg may refuse to resign, allowing the SPD to attempt to impeach him if judicial reform or otherwise referendum against, or just illegally depose him
+# todo: successor election if successfully deposed
+
+@government
+view-if: not government_decided
+on-arrival: government_decided = 1
+
+The reactionary forces may have been defeated, but they are far from being rooted out. Some have called for the transfer of governing powers temporarily to the cabinet through an "Enabling Act" to allow fast action by the government.
+
+- @enabling: We have no choice but to pass an Enabling Act with a six-month duration.
+- @enable_hindenburg: We have no choice but to pass an Enabling Act with a six-month duration.
+- @agenda_gov: We will operate entirely by the book in denazification of Germany.
+
+@enabling
+view-if: president != "Hindenburg"
+on-arrival: pro_republic -= 10; z_relation -= 5; z_relation -= 5 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 10; enabling_act = 1
+
+We pass the Enabling Act with the signature of [+ president +] and a 2/3rds majority of Reichstag voters. This also allows us to pursue further decrees, if we wish.
+
+- @decrees: We must sign decrees.
+- @agenda_gov: That'll be enough.
+
+@enable_hindenburg
+view-if: president == "Hindenburg"
+
+President Hindenburg refuses to sign our Enabling Act, demanding it go to a referendum. What do we do?
+
+- @government: Absolutely nothing, I'm not coding this yet.
+
+@agenda_reb
+view-if: spd_rebel = 1
+on-arrival: judicial_reform += 4
+
+The defeat of the reactionaries presents to us a unique opportunity. We have multiple issues to address.
+
+- @presidency: The presidency.
+- @chancellorship: The cabinet.
+- @constitutional: The constitution.
+- @decrees: The country.
+- @communists: The KPD.
+- @council: The Reichstag.
+
+@presidency
+view-if: not presidency_decided
+on-arrival: presidency_decided = 1
+
+[? if president == "Hindenburg" : As Hindenburg was a reactionary and enabled Hitler to take power, forcing his resignation is a popular idea amongst the party. ?][? if president == "Hitler" : With Hitler's defeat, the role of presidency has become vacant. Usual protocol is for a snap election to be held, but we hold the cards here. ?]
+
+- @snap_election: We will hold new presidential elections.
+#- @braun: We will install Braun as President.
+- @provisional: The Reichstag will elect a provisional president to serve until elections can be held.
+- @abolish: We will abolish the Presidency entirely.
+
+@snap_election
+on-arrival: presidency_vacated = 1; presidential_timer = 2; president = "Bumke" if year >= 1933 and judicial_reform < 4; president = "Großmann" if year >= 1933 and judicial_reform >= 4; president = "N/A" if year < 1933; presidential_timer -= 1 if year < 1933
+go-to: agenda_reb
+
+New presidential elections have been scheduled for shortly.
+
+@braun
+on-arrival: president = "Braun"
+
+We have made Otto Braun the President of Germany.
+
+- @agenda_reb: Continue...
+
+@provisional
+on-arrival: president = "Wirth"; presidential_timer = 12; presidency_vacated = 1; 
+
+We leave the election to the Reichstag, which elects Joseph Wirth of the Center as a compromise candidate.
+
+- @agenda_reb: Continue...
+
+@abolish
+on-arrival: presidency_abolished = 1; presidential_powers = 1; president = "N/A"
+
+We choose to abolish the presidency entirely, in favor of a strictly parliamentary republic.
+
+- @agenda_reb: Continue...
+
+@chancellorship
+view-if: not chancellorship_decided
+on-arrival: leverage = spd_votes; chancellorship_decided = 1; spd_in_government = 1; spd_toleration = 0;
+
+Having deposed the Nazi cabinet through our civil war, we must decide how to fill these roles and distribute positions in our post-war provisional government. Before anything else however, we must choose which party to build our provisional government with.
+
+- @kpd_coalition: Naturally, the Communists.
+- @weimar_coalition_: Naturally, our Weimar partners.
+- @antifa: Perhaps we can build one with both?
+- @no_allies: The SPD will govern alone.
+
+@kpd_coalition
+view-if: kpd_relation >= 45 and communist_coalition >= 3 and kpd_tried != 1
+go-to: chancellor_kpd if kpd_relation >= 60; sway_kpd if kpd_relation < 60
+
+We can pursue the building of a provisional government with the Communists. They will be more likely to approve of radical changes that our Weimar partners would oppose.
+
+@chancellor_kpd
+on-arrival: in_left_front = 1; kpd_relation += 5; z_relation -= 5; ddp_relation -= 5; dvp_relation -= 10; leverage *= ((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy)); time_to_election = 3
+call: set_next_election_time
+
+The Communists are happy to join our provisional government. Who should we choose to be chancellor?
+
+- @breitscheid_2: Appoint Rudolf Breitscheid.
+- @thalmann: Appoint Ernst Thälmann of the Communists.
+
+@sway_kpd
+on-arrival: z_relation -= 5; ddp_relation -= 5; dvp_relation -= 10
+on-departure: kpd_tried = 1
+
+The Communists are demanding the position of Chancellor as a prerequisite to participation in the provisional government. We can concede, look for other partners, or satisfy them in other ways.
+
+- @thalmann: We will concede the Chancellorship to Ernst Thälmann of the Communists.
+- @bribe: Smooth things over with our resources, and appoint Rudolf Breitscheid.
+- @chancellorship: The Communists are unworkable. We'll find other allies.
+
+@bribe
+subtitle: -3 resources.
+on-arrival: resources -= 3; unemployed_kpd += 3; workers_kpd += 3; chancellor = "Breitscheid"; chancellor_party = "SPD"; leverage *= ((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy)); time_to_election = 3
+call: set_next_election_time
+go-to: cabinet_kpd
+
+The Communists concede, and agree to form a coalition.
+
+@weimar_coalition_
+view-if: z_relation >= 40 and ddp_relation >= 20
+on-arrival: in_weimar_coalition = 1; time_to_election = 3
+call: set_next_election_time
+
+- @breitscheid: Appoint Rudolf Breitscheid.
+- @wels: Appoint Otto Wels.
+- @bruning: Appoint Heinrich Brüning of the Center.
+
+@antifa
+view-if: ((((kpd_relation >= 65 and kpd_party_leader == "Thälmann") or (kpd_relation >= 45 and kpd_party_leader == "Conciliators")) and ((z_relation >= 45 and z_party_leader == "Joos") or (z_relation >= 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation >= 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators")) and ddp_relation >= 50 and communist_coalition >= 3) or (z_party_leader == "Joos" and kpd_party_leader == "Conciliators" and z_relation >= 30 and kpd_relation >= 30))
+on-arrival: in_popular_front = 1; leverage *= 0.8; chancellor = "Breitscheid"; chancellor_party = "SPD"; antifa_gov = 1; time_to_election = 3
+call: set_next_election_time
+
+Surprisingly, both the Communists and the Center Party are willing to form a provisional Popular Front government headed by Breitscheid, and due to the changed circumstances the Communists are even willing to take a spot or two on the cabinet. The only position the Center Party is willing to concede to the Communists is the Interior or Labor Ministry.
+
+- @ministries: Let's see.
+
+@no_allies
+on-arrival: in_spd_majority = 1; pro_republic -= 10; rfb_strength += 100; sa_strength += 25; workers_spd -= 3; new_middle_spd -= 3; sh_strength += 50; rb_strength -= 100; z_relation -= 10; ddp_relation -= 10; dvp_relation -= 10; kpd_relation -= 10; coup_progress += 3; reichswehr_loyalty -= 0.05; labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; justice_minister_party = "SPD"; economic_minister_party = "SPD"; foreign_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
+
+We have been forced to rule solely in our provisional govenrment. This has hurt confidence in the post-war government, and all the parties have scrambled to oppose us. At least we will be going ahead with snap elections, right?
+
+- @of_course: Of course.
+- @mocharooms: How can we hold elections in an environment this volatile?
+
+@of_course
+call: set_next_election_time
+on-arrival: time_to_election = 3
+
+We would never do something so blatantly undemocratic as to cancel elections, of course.
+
+- @agenda_reb: Indeed so. We would never.
+
+@mocharooms
+on-arrival: pro_republic -= 3; coup_progress += 2
+
+Are...are you s-sure about this, Mr. Braun? Really? Okay, if you say so...I'll get to it. We won't let those Nazis...we won't...why are you looking at me like that? Mr. Braun?
+
+- @agenda_reb: Let's move on.
+
+@breitscheid
+on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"
+
+- @ministries: Now for the cabinet.
+
+@wels
+on-arrival: chancellor = "Wels"; chancellor_party = "SPD"
+
+- @ministries: Now for the cabinet.
+
+@bruning
+view-if: z_relation >= 45
+on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; leverage += 5; z_relation += 5; kpd_relation -= 10
+
+- @ministries: Now for the cabinet.
+
+@thalmann
+view-if: kpd_relation >= 60 and left_strength > reformist_strength + center_strength + neorevisionist_strength
+on-arrival: chancellor = "Thälmann"; chancellor_party = "KPD"; z_relation -= 10; reformist_dissent += 10; kpd_relation += 5; leverage *= (2*((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy))); time_to_election = 3
+call: set_next_election_time
+
+- @cabinet_kpd: Now for the cabinet.
+
+@breitscheid_2
+on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"
+
+- @cabinet_kpd: Now for the cabinet.
+
+@cabinet_kpd
+on-arrival: labor_minister_party = "KPD"; interior_minister_party = "KPD"; finance_minister_party = "KPD"; economic_minister_party = "KPD"; justice_minister_party = "KPD"; foreign_minister_party = "KPD"; agriculture_minister_party = "KPD"; reichswehr_minister_party = "KPD"
+go-to: real_cabinet_kpd
+
+Now we must build our provisional government, and decide which cabinet positions will go to whom. [? if chancellor_party == "KPD" : The Communists are satisfied by our concession of the Chancellorship and are less likely to demand many positions. ?]
+
+Anything that we don't take will go to the KPD. 
+
+@real_cabinet_kpd
+
+- #mins_kpd
+- #drop_mins_kpd
+
+@labor_kpd
+title: Labor Ministry
+subtitle: Taking the Labor Ministry is expected of us. [? if historical_mode : Labor will be displeased if we do not. ?]
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 5
+view-if: labor_minister_party != "SPD"
+on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
+go-to: real_cabinet_kpd
+
+Rudolf Wissell of the SPD has been appointed labor minister.
+
+@interior_kpd
+title: Interior Ministry
+subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 10
+view-if: interior_minister_party != "SPD"
+on-arrival: leverage -= 10; interior_minister_party = "SPD"; interior_minister = "Severing"
+go-to: real_cabinet_kpd
+
+Carl Severing of the SPD has been appointed Interior Minister.
+
+@finance_kpd
+title: Finance Ministry
+subtitle: The Finance Ministry controls the government budget and taxes.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 10 
+view-if: finance_minister_party != "SPD"
+on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
+go-to: real_cabinet_kpd
+
+Rudolf Hilferding of the SPD has been appointed Finance Minister.
+
+@economic_kpd
+title: Economic Ministry
+subtitle: The Economic Ministry controls broader economic policy.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 15
+view-if: economic_minister_party != "SPD"
+on-arrival: leverage -= 15; economic_minister_party = "SPD"; economic_minister = "Schmidt"
+go-to: real_cabinet_kpd
+
+Robert Schmidt of the SPD has been appointed Economic Minister.
+
+@justice_kpd
+title: Justice Ministry
+subtitle: The Justice Ministry controls the courts.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 10 
+view-if: justice_minister_party != "SPD"
+on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
+go-to: real_cabinet_kpd
+
+Gustav Radbruch of the SPD has been appointed Justice Minister.
+
+@foreign_kpd
+title: Foreign Ministry
+subtitle: This is usually the domain of Gustav Stresemann of the DVP.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 10 
+view-if: foreign_minister_party != "SPD"
+on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
+go-to: real_cabinet_kpd
+
+Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+
+
+@agriculture_kpd
+title: Agricultural Ministry
+subtitle: This is not our usual domain.
+unavailable-subtitle: We do not have enough leverage.
+choose-if: leverage >= 5
+view-if: agriculture_minister_party != "SPD"
+on-arrival: leverage -= 5; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
+go-to: real_cabinet_kpd
+tags: mins_kpd
+
+Fritz Baade of the SPD has been appointed Agriculture Minister.
+
+@reichswehr_kpd
+title: Reichswehr Ministry
+subtitle: Leaving this to the Communists could lead to a coup.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_kpd
+choose-if: leverage >= 5 
+view-if: reichswehr_minister_party != "SPD"
+on-arrival: leverage -= 5; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
+go-to: real_cabinet_kpd
+
+Julius Leber of the SPD has been appointed Reichswehr Minister.
+
+
+
+@no_more_kpd
+title: No more ministries.
+on-arrival: labor_dissent += 10 if historical_mode and labor_minister_party != "SPD"
+subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+tags: mins_kpd
+go-to: agenda_reb
+
+This coalition arrangement is tolerable to all.
+
+@drop_labor_kpd
+title: Drop the Labor Ministry.
+view-if: labor_minister_party = "SPD"
+on-arrival: labor_minister_party = "KPD"; leverage += 5;
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_interior_kpd
+title: Drop the Interior Ministry.
+view-if: interior_minister_party = "SPD"
+on-arrival: interior_minister_party = "KPD"; leverage += 10;
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_finance_kpd
+title: Drop the Finance Ministry.
+view-if: finance_minister_party = "SPD"
+on-arrival: leverage += 10; finance_minister_party = "KPD"
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_economic_kpd
+title: Drop the Economic Ministry.
+view-if: economic_minister_party = "SPD"
+on-arrival: leverage += 15; economic_minister_party = "KPD"
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_justice_kpd
+title: Drop the Justice Ministry.
+view-if: justice_minister_party = "SPD"
+on-arrival: justice_minister_party = "KPD"; leverage += 10;
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_foreign_kpd
+title: Drop the Foreign Ministry.
+view-if: foreign_minister_party = "SPD"
+on-arrival: leverage += 10; foreign_minister_party = "KPD"
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_agriculture_kpd
+title: Drop the Agriculture Ministry.
+view-if: agriculture_minister_party = "SPD"
+on-arrival: agriculture_minister_party = "KPD"; leverage += 5
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@drop_reichswehr_kpd
+title: Drop the Reichswehr Ministry.
+view-if: reichswehr_minister_party = "SPD"
+on-arrival: reichswehr_minister_party = "KPD"; leverage += 5;
+tags: drop_mins_kpd
+go-to: real_cabinet_kpd
+
+@ministries
+
+We can pick from any number of ministries. Controlling a ministry allows us to directly effect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the KPD. ?] [? if in_left_front and reichswehr_minister_party == "KPD" : If the KPD controls the Reichswehr Ministry, the army will most likely revolt. ?]
+
+[? if historical_mode : Labor expects us to take the Labor Ministry in order to represent their interests in government and will be upset if we do not. ?]
+
+- #mins_emergency
+- #drop_mins_emergency
+
+@labor
+title: Labor Ministry
+subtitle: Taking the Labor Ministry is expected of us. [? if historical_mode : Labor will be displeased if we do not. ?]
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 5
+view-if: labor_minister_party != "SPD"
+on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
+go-to: ministries
+
+Rudolf Wissell of the SPD has been appointed labor minister.
+
+@interior
+title: Interior Ministry
+subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 5
+view-if: interior_minister_party != "SPD"
+on-arrival: leverage -= 5; interior_minister_party = "SPD"; interior_minister = "Severing"
+go-to: ministries
+
+Carl Severing of the SPD has been appointed Interior Minister.
+
+@finance
+title: Finance Ministry
+subtitle: The Finance Ministry controls the government budget and taxes.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 10 
+view-if: finance_minister_party != "SPD"
+on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
+go-to: ministries
+
+Rudolf Hilferding of the SPD has been appointed Finance Minister.
+
+@economic
+title: Economic Ministry
+subtitle: The Economic Ministry controls broader economic policy.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 10 
+view-if: economic_minister_party != "SPD"
+on-arrival: leverage -= 10; economic_minister_party = "SPD"; economic_minister = "Schmidt"
+go-to: ministries
+
+Robert Schmidt of the SPD has been appointed Economic Minister.
+
+@justice
+title: Justice Ministry
+subtitle: The Justice Ministry controls the courts.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 10 
+view-if: justice_minister_party != "SPD"
+on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
+go-to: ministries
+
+Gustav Radbruch of the SPD has been appointed Justice Minister.
+
+@foreign
+title: Foreign Ministry
+subtitle: This is usually the domain of Gustav Stresemann of the DVP.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 10 
+view-if: foreign_minister_party != "SPD"
+on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
+go-to: ministries
+
+Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+
+
+@agriculture
+title: Agricultural Ministry
+subtitle: This is not our usual domain.
+unavailable-subtitle: We do not have enough leverage.
+choose-if: leverage >= 10 
+view-if: agriculture_minister_party != "SPD"
+on-arrival: leverage -= 10; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
+go-to: ministries
+tags: mins_emergency
+
+Fritz Baade of the SPD has been appointed Agriculture Minister.
+
+@reichswehr
+title: Reichswehr Ministry
+subtitle: The Ministry responsible for the armed forces is not typically our domain; General Groener and the bourgeois-conservatives will be displeased.
+unavailable-subtitle: We do not have enough leverage.
+tags: mins_emergency
+choose-if: leverage >= 15 
+view-if: reichswehr_minister_party != "SPD"
+on-arrival: leverage -= 15; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
+go-to: ministries
+
+Julius Leber of the SPD has been appointed Reichswehr Minister.
+
+
+
+@no_more
+title: No more ministries.
+on-arrival: labor_dissent += 10 if historical_mode and labor_minister_party != "SPD"; antifa_gov = 0
+subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+tags: mins_emergency
+go-to: agenda_reb
+
+This coalition arrangement is tolerable to all.
+
+@drop_labor
+title: Drop the Labor Ministry.
+view-if: labor_minister_party = "SPD"
+on-arrival: labor_minister_party = "Z" if antifa_gov != 1; labor_minister = "Stegerwald" if antifa_gov != 1; leverage += 5; labor_minister_party = "KPD" if antifa_gov
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_interior
+title: Drop the Interior Ministry.
+view-if: interior_minister_party = "SPD"
+on-arrival: interior_minister_party = "Z" if antifa_gov != 1; interior_minister = "Wirth" if antifa_gov != 1; leverage += 5; interior_minister_party = "KPD" if antifa_gov
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_finance
+title: Drop the Finance Ministry.
+view-if: finance_minister_party = "SPD"
+on-arrival: leverage += 10; finance_minister_party = "Z"; finance_minister = "Köhler"
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_economic
+title: Drop the Economic Ministry.
+view-if: economic_minister_party = "SPD"
+on-arrival: leverage += 10; economic_minister_party = "DDP"; economic_minister = "Dietrich"
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_justice
+title: Drop the Justice Ministry.
+view-if: justice_minister_party = "SPD"
+on-arrival: justice_minister_party = "DDP"; justice_minister = "Koch-Weser"; leverage += 10;
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_foreign
+title: Drop the Foreign Ministry.
+view-if: foreign_minister_party = "SPD"
+on-arrival: leverage += 10; foreign_minister_party = "Z"; foreign_minister = "Wirth"
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_agriculture
+title: Drop the Agriculture Ministry.
+view-if: agriculture_minister_party = "SPD"
+on-arrival: agriculture_minister_party = "DDP"; agriculture_minister = "Dietrich"; leverage += 10
+tags: drop_mins_emergency
+go-to: ministries
+
+@drop_reichswehr
+title: Drop the Reichswehr Ministry.
+view-if: reichswehr_minister_party = "SPD"
+on-arrival: reichswehr_minister_party = "DDP"; reichswehr_minister = "Gessler"; leverage += 15;
+tags: drop_mins_emergency
+go-to: ministries
+
+@constitutional
+view-if: not constitution_decided 
+on-arrival: constitution_decided = 1
+
+We can push through as many constitutional reforms as we want now that we hold de-facto power.
+
+- @vote_threshold: Change the vote threshold.
+- @constructive_vonc: Ban non-constructive votes of no confidence.
+- @presidential_powers: Reduce presidential powers.
+- @supreme_soviet: Empower work councils to make them the new basis of governance.
+- @agenda_reb: We have done enough in this department. Next.
+#- @constitutional_bans: Allow the banning of anti-constitutional parties.
+#- @constitutional_convention: Hold a constitutional convention to draft a wholly new constitution for the country.
+
+@vote_threshold
+subtitle: Change the vote threshold to 5% for parties to be represented in the Reichstag.
+view-if: electoral_threshold = 0
+
+# The left is opposed to this.
+
+Some political thinkers believe that the proliferation of minor parties is responsible for the instability of the republic. They believe that a higher electoral threshold will reduce the influence of small radical parties. Parties that win a plurality in a constituency will maintain their representation, a gift to regional parties such as the [+ bvp_name +]. 
+
+The smaller parties will obviously oppose this reform. [? if z_relation > 30 : The Center Party supports this reform, while their [+ bvp_name +] partners oppose it. ?] [? if kpd_relation > 50 and kpd_normalized >= 0.1 : Perhaps surprisingly, the KPD supports this reform. ?] [? if nsdap_normalized >= 0.2 : The NSDAP supports this reform, as they believe they have something to gain. ?]
+
+The SPD Left opposes this change, as they believe it to be anti-democratic.
+
+- @vote_threshold_2: And so it shall be.
+- @constitutional: See other reform options.
+
+
+@vote_threshold_2
+on-arrival: constitutional_reform += 1; electoral_threshold = 5; ddp_relation -= 25; dvp_relation -= 25; left_dissent += 20; workers_other *= 0.1; new_middle_other *= 0.1; old_middle_other *= 0.1; rural_other *= 0.2; unemployed_other *= 0.2; catholics_other *= 0.1;
+achievement: verfassungsreform
+go-to: constitutional
+
+# this should result in a redistribution of votes - other parties should not get so many votes anymore. maybe ddp and dvp get a recovery of middle-class votes? or maybe they flow to the others.
+
+We have passed a constitutional amendment to increase the electoral threshold to 5%. This is likely to benefit the larger parties and harm the smaller ones.
+
+
+
+@constructive_vonc
+subtitle: Votes of no confidence can only be called if an alternative plan for government formation can be passed, greatly reducing their incidence.
+view-if: constructive_vonc = 0
+
+[? if z_relation >= 30 : The Weimar Coalition parties, the DDP and Center Party, support this reform, which will greatly improve the stability of the government. ?] [? if z_relation < 30 : The DDP supports this reform, but the Center Party does not trust us enough to support the constitutional referendum. ?] The more conservative and radical right-wing parties and the KPD are in opposition, as they seem to relish in the republican system's instability.
+
+- @constructive_vonc_2: And so it shall be.
+- @constitutional: See other reform options.
+
+@constructive_vonc_2
+on-arrival: constitutional_reform += 1; constructive_vonc = 1
+achievement: verfassungsreform
+go-to: constitutional
+
+We have successfully passed a constitutional amendment to ban votes of no confidence when a new government cannot be formed. Hopefully this increases the stability of our governments.
+
+@presidential_powers
+subtitle: The president can no longer dissolve the Reichstag at will, or call a *Reichsexekution* on state governments.
+view-if: presidential_powers = 0
+
+The wide-ranging presidential powers promised by the constitution are a potential gateway to authoritarianism. Thus, we can support reforms that limit the powers of the president, ending his power to unilaterally terminate an elected government and to remove state governments.
+
+The KPD is in favor of this reform, having been victims of the *Reichsexekution* in the past (when KPD-supported state governments in Thuringia and Saxony were removed). The democrats of the DDP also support this. [? if president == "Hindenburg": However, the opposition from conservatives is vehement, as they see a reduction in presidential powers as disrespectful to Hindenburg. ?] [? if z_relation <= 49 and president == "Hindenburg" : Thus, the Center Party has been influenced to oppose these reforms. ?] [? if z_relation > 49 and president == "Hindenburg" : Despite this, the Center Party supports the proposed reform. ?] [? if president == "Braun" : The Center Party supports this reform. ?]
+
+- @presidential_powers_2: And so it shall be.
+- @constitutional: See other reform options.
+
+@presidential_powers_2
+on-arrival: constitutional_reform += 1; presidential_powers = 1
+achievement: verfassungsreform
+go-to: constitutional
+
+We have successfully passed a constitutional amendment to limit presidential powers! Hopefully this results in a less authoritarian Germany.
+
+@supreme_soviet
+subtitle: Establish a new "Supreme Soviet" elected by the works councils to replace the Reichstag.
+view-if: nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1)
+
+Our large-scale socializations of the economy and empowerment of works councils has laid the groundwork for a transition into a full dictatorship of the proletariat, effectively turning the Reichstag into a rump parliament with little genuine power. All to the left of and including most of the SPD will vote for, but we will face immense opposition from everyone else.
+
+- @supreme_soviet_2: And so it shall be.
+- @constitutional: See other reform options.
+
+@supreme_soviet_2
+on-arrival: constitutional_reform += 1; supreme_soviet = 1; capital_strike_progress += 15; z_relation -= 15; ddp_relation -= 25; dvp_relation -= 50; coalition_dissent += 3
+achievement: raterrepublik
+go-to: constitutional
+
+We have successfully passed a constitutional amendment to effectively make works councils the dominant body of governance in the country. 
+
+@decrees
+view-if: not decree_decided
+on-arrival: decree_decided = 1; land_seizure_cost = (4 - land_reform); nationalize_budget = 4; nationalize_budget -= 1 if works_councils >= 2; nationalize_budget -= 1 if works_councils >= 3; nationalize_budget -= 1 if socializations + nationalization_progress >= 2;
+
+With our triumph over the reactionaries, we have for a short while near free-reign in molding Germany to our will. Thus various politicians in the party have eagerly drafted decrees which they now present to us for signing. If we sign too many decrees, we risk weakening confidence in the republic and damaging our relations with the bourgeois parties, however.
+
+- @land_seizure: Sweeping land reform to destroy the base of the reactionaries for good.
+- @mass_nationalization: Mass nationalizations of industry.
+- @wealth_seizure: Seize the Reichsbank and other assets of the rich.
+- @dnvp_ban: Ban the DNVP.
+- @dvp_ban: Ban the DVP.
+- @enable: A sixth-month long Enabling Act to speed denazification up.
+- @agenda_1: That is enough.
+
+@land_seizure
+view-if: land_reform < 4 and not land_seizure
+subtitle: -[+ land_seizure_cost +] budget.
+on-arrival: budget -= land_seizure_cost; land_seizure = 1; land_reform += land_seizure_cost; pro_republic -= (4*land_seizure_cost); coalition_dissent += land_seizure_cost; rural_spd += land_seizure_cost*(5*(1-dissent)); rural_nsdap -= land_seizure_cost*(4*(1-dissent)); unemployed -= land_seizure_cost if unemployed >= 5; dvp_relation -= (5*land_seizure_cost); z_relation -= (4*land_seizure_cost); left_strength += (8*land_seizure_cost); left_dissent -= (5*land_seizure_cost); rural_sol += (3*land_seizure_cost); rural_policy += land_seizure_cost; sa_strength += 25; sh_strength += 10; sa_militancy += 0.05
+
+In a sweeping program of land reform, we seize aristocratic estates and distribute them to the landless farmers working them. The bourgeois parties denounce this abuse of our post-war position, calling it unconstitutional, while the aristocrats who's lands we seize turn to the remaining Nazi insurgents for solasce.
+
+- @decrees_2: Excellent.
+
+@mass_nationalization
+subtitle: -[+ nationalize_budget +] budget. [? if works_councils >= 3 : Our works councils have reduced the budget necessary for this program. ?] [? if socializations >= 2: Our existing socialization policies have reduced the budget necessary for this program. ?]
+view-if: not mass_nationalization and not sapd_formed
+on-arrival: mass_nationalization = 1; ddp_relation -= 4; z_relation -= 5; dvp_relation -= 7; coalition_dissent += 1; capital_strike_progress += 1; pro_republic -= 6; reformist_dissent += 4
+go-to: nationalize_deficit if budget < nationalize_budget; nationalize_no_deficit if budget >= nationalize_budget
+
+@nationalize_no_deficit
+on-arrival: nationalization_progress += 1; capital_strike_progress += 2; unemployed -= 3.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; new_middle_spd -= 2 if not new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 2
+achievement: wirtschaftspolitik
+
+[? if nationalization_progress == 1 : We have begun purchasing idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
+
+[? if nationalization_progress == 1 : The Left argues that this should only be a first step in the socialist transformation of the economy. Eventually, much of the economy must be brought under popular control. ?]
+
+- @decrees_2: Excellent.
+
+@nationalize_deficit
+
+Unfortunately, we do not have the budget to begin buying out industrial facilities. Some are urging for deficit spending in order to purchase factories, while others are encouraging (currently illegal) factory takeovers by workers, or nationalization without compensation. Taking any of these actions would require a vast departure from our previous party stances.
+
+- @nationalize_deficit_1
+- @nationalize_without_compensation
+- @empower_workers
+- @decrees: No, we should not do this.
+
+
+@nationalize_deficit_1
+title: Take a budget deficit to fund the nationalization program.
+choose-if: left_strength > reformist_strength + center_strength or woytinsky_advisor == 1
+subtitle: [? if woytinsky_advisor: Woytinsky can bring us around to supporting a budget deficit. ?]
+unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: The party does not yet support budget deficits for this purpose. ?] [? if not woytinsky_advisor : Perhaps bringing on an advisor might help make this action palatable? ?]
+on-arrival: nationalization_progress += 1; capital_strike_progress += 3; unemployed -= 3 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 2; dvp_relation -= 6; z_relation -= 4; new_middle_spd -= 3; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 3
+achievement: wirtschaftspolitik
+
+[? if woytinsky_advisor: Most of the party, even on the left, are opposed to budget deficits for any purpose, with the exception of Wladimir Woytinsky. While he did not originally support the left's "transformational" plan, he has come around, and has persuaded the party and the Finance Ministry to support budget deficits in limited cases, for the purpose of exiting from the depression. ?]
+
+[? if nationalization_progress == 1 : We have begun purchasing idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
+
+[? if nationalization_progress == 1 : The Left argues that this should only be a first step in the socialist transformation of the economy. Eventually, much of the economy must be brought under popular control. ?]
+
+[? if nationalization_progress > 1 : We purchase additional underutilized enterprises and run them in a coordinated socialist fashion with the works councils, hiring formerly laid off workers. A significant portion of the economy is now under public control. ?]
+
+- @decrees_2: Excellent.
+
+@nationalize_without_compensation
+title: Nationalize without compensation.
+subtitle: There is no reason why we should not simply take over idle factories. This is likely to provoke a confrontation with the capitalists.
+unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: The bulk of the party does not support this quasi-legal action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?]
+choose-if: left_strength > reformist_strength + center_strength and judicial_reform >= 3
+on-arrival: nationalization_progress += 1; capital_strike_progress += 7; coup_progress += 3; unemployed -= 2.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3 and unemployed >= 3; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 6*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 8; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 4
+achievement: wirtschaftspolitik
+
+The capitalists are, predictably, up in arms about our policy of nationalization without compensation. They call it illegal expropriation, and it is. Nevertheless, it is clear that they have failed by keeping their factories idle, and we must take radical action.
+
+[? if nationalization_progress == 1 : We have begun acquiring idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
+
+[? if nationalization_progress > 1 : We acquired additional underutilized enterprises and run them in a coordinated socialist fashion with the works councils, hiring formerly laid off workers. A significant portion of the economy is now under public control. ?]
+
+- @decrees_2: Excellent.
+
+@empower_workers
+title: Empower workers to take over factories.
+subtitle: We can promise to legalize factory occupations, giving the factories over to worker unions. This is highly confrontational, and would likely provoke a reaction from right-wing militants as well as capitalists.
+unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : The bulk of the party does not support this radical action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?] [? if rb_militancy < 0.25 : If we increased the strength of our paramilitary forces, perhaps we could do this. ?] [? if works_councils < 1 : We need the support of the works councils first. ?]
+choose-if: left_strength > reformist_strength + neorevisionist_strength and (judicial_reform >= 3 or rb_militancy >= 0.25) and works_councils >= 1
+on-arrival: nationalization_progress += 1; capital_strike_progress += 6; unemployed -= 3 if unemployed >= 6; unemployed -= 1.5 if works_councils >= 3 and unemployed > 4; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; workers_nsdap -= 5*(1-dissent); unemployed_nsdap -= 5*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 10; factory_takeovers += 1; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 3
+achievement: wirtschaftspolitik
+
+The capitalists are, predictably, up in arms about our policy of legalizing factory occupations. They call it illegal expropriation, and it is. Nevertheless, it is clear that they have failed, and we must take radical action.
+
+- @decrees_2: Excellent.
+
+@wealth_seizure
+view-if: not wealth_seized
+subtitle: +6 budget.
+on-arrival: wealth_seized = 1; upper_tax_rates += 3; coalition_dissent += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 6; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6
+
+We seize the assets of the rich and even the Reichsbank in a mass redistribution of wealth, greatly increasing our budget. Of course, the bourgeoisie and their parties are immediately up in arms about this, threatening our provisional governing coalition.
+
+- @decrees_2: Excellent.
+
+@dnvp_ban
+view-if: not dnvp_banned
+subtitle: We will deny the remaining reactionaries a party.
+on-arrival: dnvp_banned = 1; dvp_relation -= 5; z_relation -= 4 if z_party_leader != "Joos"; pro_republic -= 4; old_middle_dnvp *= 0.9; rural_dnvp *= 0.95; new_middle_dnvp *= 0.8; sh_strength *= 0.9; sh_militancy -= 0.05
+
+Recognizing the DNVP's own participation in the far-right struggle against the Republic, we have banned their party as well, pre-empting a potential moderation in the absence of Hugenberg to lead them.
+
+- @decrees_2: Excellent.
+
+@dvp_ban
+view-if: not dvp_banned and (left_strength > reformist_strength + center_strength) and dnvp_banned
+subtitle: The DVP are hardly better than the other reactionaries.
+on-arrival: dvp_banned = 1; reformist_dissent += 15; center_dissent += 5; z_relation -= 10; ddp_relation -= 10; coalition_dissent += 2; pro_republic -= 7; new_middle_spd -= 4; old_middle_spd -= 5
+
+We have banned the DVP, as well as many smaller adjacent bourgeois reactionary parties. To allow them to continue to exist in our new Republic is a threat to our socialist principles. Unfortunately, Zentrum and the DDP/DStP do not see it that way.
+
+- @decrees_2: Excellent.
+
+@enable
+view-if: not enabling_act
+subtitle: This will be controversial.
+on-arrival: pro_republic -= 10; z_relation -= 6; z_relation -= 6 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 12; enabling_act = 1
+
+We pass an Enabling Act, giving the cabinet greatly heightened powers to combat the Nazis and whipe them out entirely. 
+
+- @decrees_2: Excellent.
+
+@decrees_2
+go-to: decrees
+
+We may continue decrees.
+
+@agenda_1
+go-to: agenda_gov if not spd_rebel; agenda_reb if spd_rebel
+
+We have other items on our agenda.
+
+@communists
+on-arrival: communists_decided = 1
+view-if: kpd_relation < 45 and not communists_decided 
+
+The communists did not help us in our uprising against Hitler. They also arguably contributed to his rise to power through their own extremist anticonstitutional rhetoric. We could ban the party as well as the NSDAP, though the Left is vehemently opposed.
+
+- @ban: Ban the KPD
+- @agenda_reb: We will allow the KPD to continue to exist.
+
+@ban
+on-arrival: kpd_banned = 1; left_dissent += 40; workers_spd -= 5; unemployed_spd -= 5; new_middle_spd += 2; old_middle_spd += 2; z_relation += 10; ddp_relation += 5; dvp_relation += 5
+
+We have banned the KPD. Many workers desert, agitated by the KPD to do so, while our party Left has become increasingly upset  with our party's policy.
+
+- @agenda_reb: Continue...
+
+@council
+view-if: (((kpd_relation >= 60 and ((left_strength >= reformist_strength + neorevisionist_strength) or (in_left_front == 1))) and supreme_soviet != 1 and not (nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1))) and chancellorship_decided and constitution_decided) and reichstag_decided != 1
+on-arrival: reichstag_decided = 1
+
+Many on our party's left as well as in the KPD blame the takeover of the country by the Nazis on liberal democracy itself and call for the dissolution of the Reichstag and its replacement with a "Supreme Soviet" of worker's councils. This idea is opposed by the right of our party, and our bourgeois partners.
+
+- @supreme_soviet_3: And so it shall be.
+- @bad_idea: No, we will keep the Reichstag.
+
+@supreme_soviet_3
+on-arrival: economic_democracy += (3-works_councils) if works_councils < 3; works_councils = 3 if works_councils < 3; kpd_relation += 20; left_strength += 15; labor_strength += 10; labor_dissent += 5; left_dissent -= 10; reformist_dissent += 10; neorevisionist_dissent += 5; constitutional_reform += 1; supreme_soviet = 1; capital_strike_progress += 15; z_relation -= 15; ddp_relation -= 25; dvp_relation -= 50
+go-to: agenda_reb
+
+We have enshrined a new Supreme Soviet in our constitution. Let us hope this move towards a dictatorship of the proletariat puts an end to the risk of fascism for good.
+
+@bad_idea
+on-arrival: left_dissent += 5; kpd_relation -= 5
+go-to: agenda_reb
+
+We refuse to instate a classist and fundamentally undemocratic form of governance. What were we fighting against if not totalitarianism?
+
+@agenda_kpd
+view-if: president == "Thälmann"
+on-arrival: workers_kpd += 10; workers_spd -= 5; unemployed_kpd += 15; unemployed_spd -= 5; unemployed_nsdap -= 5; rfb_strength += 100; rb_strength -= 75; rfb_militancy += 0.05; in_left_front = 1; in_weimar_coalition = 0; in_grand_coalition = 0; in_popular_front = 0; in_spd_majority = 0;
+
+The defeat of the reactionaries leaves us and our socialist partners in near uncontested control over the country. [? if president == "Thälmann" : However, the KPD has a significant upper hand in this relationship, so we must be careful. ?]
+
+- @the_agenda_kpd: Now, the agenda.
+- @the_agenda_spd: Now, the agenda.
+- @the_agenda_power: Now, the agenda.
+
+@the_agenda_kpd
+view-if: president == "Thälmann" and presidential_powers != 1
+on-arrival: negotiating_power = kpd_relation; negotiating_power += (spd_votes - kpd_votes); negotiating_power *= ((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy)); negotiating_power -= ((left_strength/100)*left_dissent); negotiating_power *= 1.25 if kpd_party_leader == "Conciliators"; negotiating_power *= 0.75 if peoples_party = 1
+go-to: menu
+
+Unfortunately, we do not have much control over the agenda of the new Germany, as Thälmann is President and the Presidency retains its overarching powers. [? if kpd_party_leader == "Conciliators" : Luckily, the Conciliator leadership of the KPD will make them more amenable to moderation. ?]
+
+President Thälmann has prepared multiple decrees to pass via Article 48, and we will not be able to negotiate away all of them. 
+
+@menu
+
+DEBUG: [+ negotiating_power +]
+
+- @chancellorship_kpd: The cabinet.
+- @party_legality: The parties.
+- @constitution: The constitution.
+- @decrees_kpd: The country.
+- @noske: It is clear negotiation won't work. We must crush the KPD.
+
+@chancellorship_kpd
+view-if: not chancellorship_decided
+on-arrival: chancellorship_decided = 1
+
+With the reactionaries rising up upon Thälmann's election, he never managed to appoint a true cabinet, or chancellor. We can allow the KPD to have the Chancellorship for more negotiating power, or nominate Breitscheid as is mostly expected by the KPD.
+
+- @pieck: Accept the KPD pick, Wilhelm Pieck.
+- @eberlein: Accept the KPD pick, Hugo Eberlein.
+- @breitscheid_kpd: Nominate Rudolf Breitscheid from our party.
+- @ossietzky: Perhaps the independent Carl von Ossietzky as a compromise?
+- @go_back: Back.
+
+@pieck
+view-if: kpd_party_leader != "Conciliators"
+on-arrival: negotiating_power += 10; chancellor_party = "KPD"; chancellor = "Pieck"; reformist_dissent += 5; neorevisionist_dissent += 5; center_dissent += 5
+
+We accept the KPD's choice, Wilhelm Pieck, conceding significant control over the cabinet to the KPD.
+
+- @cabinet_thalmann: Now for the cabinet.
+
+@eberlein
+view-if: kpd_party_leader == "Conciliators"
+on-arrival: negotiating_power += 10; chancellor_party = "KPD"; chancellor = "Eberlein"; reformist_dissent += 5; neorevisionist_dissent += 5
+
+We accept the KPD's choice, Hugo Eberlein, conceding significant control over the cabinet to the KPD.
+
+- @cabinet_thalmann: Now for the cabinet.
+
+@breitscheid_kpd
+choose-if: negotiating_power >= 10
+unavailable_subtitle: We lack the negotiating power to push for this.
+on-arrival: negotiating_power -= 10; chancellor_party = "SPD"; chancellor = "Breitscheid"
+
+We nominate our own candidate, Rudolf Breitscheid, which the KPD accepts. Our party is reassured, though this gives us less power to object other moves by the KPD.
+
+- @cabinet_thalmann: Interesting.
+
+@ossietzky
+on-arrival: chancellor_party = "I"; chancellor = "Ossietzky"
+
+As a compromise, we have nominated Carl von Ossietzky, an independent socialist. The KPD is surprised, but cautiously accepts. Let's hope that Carl von Ossietzky doesn't have his own agenda and is happy to be a figurehead.
+
+- @cabinet_thalmann: Let's hope...
+
+@go_back
+on-arrival: chancellorship_decided = 0
+go-to: menu
+
+@cabinet_thalmann
+on-arrival: cabinet_stubborn = 50; cabinet_stubborn += 10 if kpd_party_leader == "Conciliators"; cabinet_stubborn -= 20 if chancellor_party == "KPD"; in_left_front = 1; spd_toleration = 0; spd_in_government = 1
+
+The KPD, emboldened by their recent victories, has decided to themselves take positions on the cabinet rather than simply tolerate a Social Democratic one. 
+
+Their requests are for control over the Labor Ministry, the Economic Ministry, the Foreign Ministry, the Interior Ministry, and the Finance Ministry. [? if chancellor_party == "KPD" : Luckily, conceding the position of chancellor will make it easier to negotiate them down from these demands. ?]
+
+- @unconditional_accept: We will accept the KPD's ministry demands, and take the rest for ourselves.
+- @negotiate: We will convince the KPD to drop some of their demands.
+- @sole_spd: We will convince the KPD to allow an all-SPD cabinet.
+
+@unconditional_accept
+on-arrival: kpd_relation += 10; negotiating_power += 10; negotiating_power += 10 if chancellor_party = "KPD"; labor_minister_party = "KPD"; economic_minister_party = "KPD"; interior_minister_party = "KPD"; foreign_minister_party = "KPD"; finance_minister_party = "KPD"; justice_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
+
+We concede to the KPD's ministry demands, to their surprise. This will make negotiating on other matters easier.
+
+- @menu: Now, onwards...
+
+@negotiate
+choose-if: (negotiating_power >= (cabinet_stubborn/3)) or chancellor_party == "KPD"
+on-arrival: cabinet_spot = 0; negotiating_power -= (cabinet_stubborn/3) if chancellor_party != "KPD"; individual_cabinet = ((cabinet_stubborn*(2/3))/5); labor_minister_party = "KPD"; economic_minister_party = "KPD"; interior_minister_party = "KPD"; foreign_minister_party = "KPD"; finance_minister_party = "KPD"; justice_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
+unavailable_subtitle: We do not have the negotiating power to negotiate them down from these demands.
+go-to: begin_ministries
+
+The KPD is happy to moderate their demands for ministries.
+
+@begin_ministries
+
+Which ministries will we pursuade them to drop?
+
+- @sway_labor: Persuade them to drop the Labor Ministry.
+- @sway_interior: Persuade them to drop the Interior Ministry.
+- @sway_finance: Persuade them to drop the Finance Ministry.
+- @sway_economic: Persuade them to drop the Economic Ministry.
+- @sway_foreign: Persuade them to drop the Foreign Ministry.
+- @let_it_be: This is an acceptable cabinet arrangement.
+
+@sway_labor
+view-if: labor_minister_party == "KPD"
+choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
+unavailable_subtitle: The KPD is unwilling to negotiate any further.
+on-arrival: labor_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
+
+We have successfully convinced the KPD to let us have the Labor Ministry.
+
+- @begin_ministries: Excellent.
+
+@sway_interior
+view-if: interior_minister_party == "KPD"
+choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
+unavailable_subtitle: The KPD is unwilling to negotiate any further.
+on-arrival: interior_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
+
+We have successfully convinced the KPD to let us have the Interior Ministry.
+
+- @begin_ministries: Excellent.
+
+@sway_finance
+view-if: finance_minister_party == "KPD"
+choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
+unavailable_subtitle: The KPD is unwilling to negotiate any further.
+on-arrival: finance_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
+
+We have successfully convinced the KPD to let us have the Finance Ministry.
+
+- @begin_ministries: Excellent.
+
+@sway_economic
+view-if: economic_minister_party == "KPD"
+choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
+unavailable_subtitle: The KPD is unwilling to negotiate any further.
+on-arrival: economic_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
+
+We have successfully convinced the KPD to let us have the Economic Ministry.
+
+- @begin_ministries: Excellent.
+
+@sway_foreign
+view-if: foreign_minister_party == "KPD"
+choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
+unavailable_subtitle: The KPD is unwilling to negotiate any further.
+on-arrival: foreign_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
+
+We have successfully convinced the KPD to let us have the Foreign Ministry.
+
+- @begin_ministries: Excellent.
+
+@let_it_be
+view-if: cabinet_spot >= 1
+go-to: menu
+
+We have concluded the cabinet talks.
+
+@sole_spd
+choose-if: chancellor_party != "SPD" and negotiating_power >= (cabinet_stubborn*2)
+on-arrival: negotiating_power -= (cabinet_stubborn*2); labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; economic_minister_party = "SPD"; foreign_minister_party = "SPD"; justice_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
+
+We manage to convince the KPD to allow us control over cabinet. Let's hope this will be worth it.
+
+- @menu: Onwards...
+
+@party_legality
+view-if: party_decided != 1
+on-arrival: party_decided = 1; party_stubborn = 50 if kpd_party_leader != "Conciliators"; party_stubborn = 20 if kpd_party_leader = "Conciliators"
+
+The KPD is adamant on banning the reactionary parties and is highly likely to push for equally harsh crackdowns on the bourgeois parties. [? if peoples_party : Our own status as a 'volkspartei' has even caused some in the KPD to call for us to be banned. ?]
+
+- @defend_joos: Stand up for the Center Party.
+- @defend_kaas: Stand up for the Center Party.
+- @defend_ddp: Stand up for the DDP/DStP.
+- @finalize_party: We're finished in this department.
+- @go_back_2: Back.
+
+@defend_joos
+view-if: z_party_leader == "Joos" and not z_safe
+subtitle: The dominance of trade unions in the party makes this easier.
+unavailable_subtitle: We lack the negotiating power to successfully protest this.
+choose-if: negotiating_power >= party_stubborn
+on-arrival: negotiating_power -= party_stubborn; z_relation += 5; z_safe = 1
+go-to: party_legality
+
+We argue that the Center Party is in a sense proletarian, thanks to the leadership of Joseph Joos, a Catholic trade unionist. They yield and reluctantly agree to allow the party to continue existing.
+
+@defend_kaas
+view-if: z_party_leader != "Joos" and not z_safe
+unavailable_subtitle: We lack the negotiating power to successfully protest this.
+choose-if: negotiating_power >= (party_stubborn*2)
+on-arrival: negotiating_power -= (party_stubborn*2); party_stubborn += 5; z_relation += 5; kpd_relation -= 5; z_safe = 1
+go-to: party_legality
+
+We defend the Center Party in spite of what the Communists view as their enabling of the Nazi threat and opposition to the working class. Still, they concede, reluctantly
+
+@defend_ddp
+view-if: not ddp_safe
+unavailable_subtitle: We lack the negotiating power to successfully protest this.
+choose-if: negotiating_power >= (ddp_votes + (party_stubborn/2))
+on-arrival: negotiating_power -= (ddp_votes + (party_stubborn/2)); party_stubborn += 2; ddp_relation += 10; ddp_safe = 1
+go-to: party_legality
+
+We defend the DDP/DStP, to which the KPD theatrically objects but, not really viewing the DDP/DStP as a threat due to their electorally moribund nature, accepts. 
+
+@go_back_2
+view-if: z_safe + ddp_safe != 2
+on-arrival: party_decided = 0
+go-to: menu
+
+@finalize_party
+on-arrival: z_banned = 1 if z_safe != 1; ddp_banned = 1 if ddp_safe != 1; dnvp_banned = 1; dvp_banned = 1; old_middle_dnvp *= 0.9; rural_dnvp *= 0.95; new_middle_dnvp *= 0.8; sh_strength *= 0.9; sh_militancy -= 0.05
+go-to: menu
+
+@constitution
+view-if: not kpd_constitution_decided
+on-arrival: kpd_constitution_decided = 1; constitution_stubborn = 80; constitution_stubborn -= 10 if kpd_party_leader == "Conciliators"
+
+The KPD has many ideas for drastic changes to the German constitution, primarily for the transition to a council republic. With reactionaries crushed, it will be very difficult to convince the KPD not to transition to a council republic.
+
+- @accept_soviet: Accept the KPD's wishes for a council republic.
+- @conditional: We will agree if the KPD passes other constitutional amendments that we want.
+- @refuse_soviet: We will not compromise the foundations of our republic.
+- @go_back_3: Back.
+
+@accept_soviet
+on-arrival: amendment_cost = 30; reformist_dissent += 15; left_strength += 10; supreme_soviet = 1; z_relation -= 10; ddp_relation -= 10; dvp_relation -= 10; workers_kpd += 10
+
+We accept the KPD's demands for the move towards a council republic, satisfying them. We can push for other constitutional amendments, should we wish.
+
+- @other_amendments: Push for other constitutional amendments.
+- @menu: The constitution is good as is.
+
+@conditional
+choose-if: negotiating_power >= constitution_stubborn
+unavailable_subtitle: We do not have the negotiating power to push for this.
+on-arrival: kpd_relation -= 10; negotiating_power -= constitution_stubborn; amendment_cost = 10; supreme_soviet = 1; workers_kpd += 10
+
+The KPD is incensed that we refuse to give them a blank cheque to pursue their Soviet machinations, but agree to "consider" our other proposals first.
+
+- @other_amendments: So, first off...
+
+@refuse_soviet
+choose-if: negotiating_power >= (constitution_stubborn*2.5)
+unavailable_subtitle: The KPD is entirely unwilling to cede this.
+on-arrival: kpd_relation -= 15; negotiating_power -= (constitution_stubborn*2.5); rfb_strength += 25; rfb_militancy += 0.02; workers_spd -= 5; workers_kpd += 5
+
+The KPD is outraged at our outright refusal, but somehow accepts it, very reluctantly, perhaps due to our relative position of strength. They waste no time in publicizing our refusal and campaigning against us, and overall this does not bode well for cooperation.
+
+- @menu: And so the constitution will remain unchanged...
+
+@go_back_3
+on-arrival: kpd_constitution_decided = 0
+go-to: menu
+
+@other_amendments
+
+The KPD is willing to hear out our proposals.
+
+- @vote_threshold_kpd: Change the vote threshold.
+- @constructive_vonc_kpd: Ban non-constructive votes of no confidence.
+- @presidential_powers_kpd: Reduce presidential powers.
+- @menu: We have done enough in this department. Next.
+#- @constitutional_bans: Allow the banning of anti-constitutional parties.
+#- @constitutional_convention: Hold a constitutional convention to draft a wholly new constitution for the country.
+
+@vote_threshold_kpd
+subtitle: Change the vote threshold to 5% for parties to be represented in the Reichstag.
+view-if: electoral_threshold = 0
+
+The KPD is generally ambivalent towards the idea of an electoral threshold, but is more than happy to accept it, if perhaps for different reasons than us. The Left has however convinced them to oppose the amendment, if just theatrically.
+
+- @vote_threshold_3: We will convince the KPD.
+- @other_amendments: See other reform options.
+
+
+@vote_threshold_3
+choose-if: negotiating_power >= (amendment_cost/2)
+unavailable_subtitle: We do not have the negotiating power to sway the KPD.
+on-arrival: constitutional_reform += 1; negotiating_power -= (amendment_cost/2); electoral_threshold = 5; ddp_relation -= 25; dvp_relation -= 25; left_dissent += 10; workers_other *= 0.1; new_middle_other *= 0.1; old_middle_other *= 0.1; rural_other *= 0.2; unemployed_other *= 0.2; catholics_other *= 0.1;
+achievement: verfassungsreform
+go-to: other_amendments
+
+We have passed a constitutional amendment to increase the electoral threshold to 5%. This is likely to benefit the larger parties and harm the smaller ones.
+
+
+
+@constructive_vonc_kpd
+subtitle: Votes of no confidence can only be called if an alternative plan for government formation can be passed, greatly reducing their incidence.
+view-if: constructive_vonc = 0
+
+[? if chancellor_party == "KPD" : The KPD is all too happy to accept this with the recent agreement for the position to be held by the KPD. ?][? if chancellor_party != "KPD" : The KPD does not have a strong stance on the idea, but is generally opposed for fear of it weakening their influence. ?]
+
+- @constructive_vonc_3: We will convince the KPD.
+- @other_amendments: See other reform options.
+
+@constructive_vonc_3
+choose-if: (negotiating_power >= amendment_cost) or chancellor_party == "KPD"
+on-arrival: constitutional_reform += 1; constructive_vonc = 1; negotiating_power -= amendment_cost if chancellor_party != "KPD"
+achievement: verfassungsreform
+go-to: other_amendments
+
+We have successfully passed a constitutional amendment to ban votes of no confidence when a new government cannot be formed. Hopefully this increases the stability of our governments.
+
+@presidential_powers_kpd
+subtitle: The president can no longer dissolve the Reichstag at will, or call a *Reichsexekution* on state governments.
+view-if: presidential_powers = 0
+on-arrival: multiplier = 3.5 if kpd_party_leader != "Conciliators"; multiplier = 2 if kpd_party_leader = "Conciliators"; multiplier += 0.5 if no_enabling
+
+The KPD is strongly opposed to the weakening of the presidency, viewing it as a direct attack on them and a push towards it as a signal of distrust. [? if kpd_party_leader == "Conciliators" : However, the Conciliator leadership of the KPD is more understanding, and will be easier to convince. ?]
+
+- @presidential_powers_3: We will convince the KPD.
+- @other_amendments: See other reform options.
+
+@presidential_powers_3
+choose-if: negotiating_power >= (amendment_cost*multiplier)
+unavailable_subtitle: The KPD is not willing to accept this.
+on-arrival: constitutional_reform += 1; presidential_powers = 1; negotiating_power -= (amendment_cost*multiplier)
+achievement: verfassungsreform
+go-to: other_amendments
+
+We have successfully passed a constitutional amendment to limit presidential powers! Hopefully this results in a less authoritarian Germany.
+
+@decrees_kpd
+view-if: not decree_kpd_decided
+
+President Thälmann has many decrees planned which he intends to pass through Article 48 of the constitution. Many of these are likely non-negotiable to the KPD, but we can do our best to convince him not to pursue some of them.
+
+- @land_social_kpd: Mass socialization and collectivization of land.
+- @wealth_seizure_kpd: Mass seizure of wealth.
+- @mass_nationalize: Mass nationalizations of industry.
+- @enable_kpd: An "Enabling Act" to help eliminate the reactionaries.
+- @done: We have decided on everything.
+- @go_back_4: Back.
+
+@land_social_kpd
+view-if: land_decided != 1
+on-arrival: land_social_cost = (6 - land_reform); land_seizure_cost = (4 - land_reform); land_stubborn = 40; land_stubborn -= 10 if kpd_party_leader == "Conciliators"; land_stubborn += 10 if land_reform < 1
+
+The Communists have written up a comprehensive plan for the socialization and collectivization of land, going beyond simple redistribution to farmers but towards the complete revolutionizing of the countryside.
+
+Many in our party worry that such radical changes in land ownership may jeopardize our food security, however. What should we do?
+
+- @accept_social: Allow the decree.
+- @negotiate_social: Negotiate the Communists down to a simple land reform program.
+- @refuse_social: Convince the KPD to drop the decree altogether.
+
+@accept_social
+subtitle: -[+ land_social_cost +] budget.
+on-arrival: budget -= land_social_cost; land_decided = 1; socialized_land = 1; reformist_dissent += 5; negotiating_power += 10 if chancellor_party == "KPD"; land_reform += land_social_cost; pro_republic -= (4*land_social_cost); rural_kpd += land_social_cost; rural_nsdap -= (land_social_cost*2); unemployed -= land_social_cost if unemployed >= land_social_cost; dvp_relation -= (7*land_social_cost); z_relation -= (6*land_social_cost); ddp_relation -= (4*land_social_cost); left_strength += (10*land_social_cost); left_dissent -= (8*land_social_cost); rural_sol += land_social_cost; sa_strength += 50; sh_strength += 25; sa_militancy += 0.05
+
+The decree is signed, and a mass campaign of socialization and collectivization in the countrysides begins. For the time being, it proceeds largely without hickup, but many in the SPD are still wary.
+
+- @decrees_kpd: Next on the agenda...
+
+@negotiate_social
+subtitle: -[+ land_seizure_cost +] budget.
+unavailable_subtitle: The Communists are unwilling to concede on this issue.
+choose-if: negotiating_power >= (land_stubborn/2)
+on-arrival: negotiating_power -= (land_stubborn/2); budget -= land_seizure_cost; land_decided = 1; land_reform += land_seizure_cost; pro_republic -= (4*land_seizure_cost); rural_kpd += (land_seizure_cost*3); rural_spd += ((land_seizure_cost*2)*(1-dissent)); rural_nsdap -= land_seizure_cost*(4*(1-dissent)); unemployed -= land_seizure_cost if unemployed >= 5; dvp_relation -= (5*land_seizure_cost); z_relation -= (4*land_seizure_cost); left_strength += (8*land_seizure_cost); left_dissent -= (5*land_seizure_cost); rural_sol += (3*land_seizure_cost); rural_policy += land_seizure_cost; sa_strength += 25; sh_strength += 10; sa_militancy += 0.05
+
+The Communists yield and agree to a more moderate program of land seizure, still dismantling the reactionary powerbase in the countryside without as much upsetting the power balance there.
+
+- @decrees_kpd: Next on the agenda...
+
+@refuse_social
+subtitle: This may offend the KPD.
+choose-if: negotiating_power >= land_stubborn
+unavailable_subtitle: The Communists are unwilling to concede on this issue.
+on-arrival: negotiating_power -= land_stubborn; kpd_relation -= 5; kpd_coalition_dissent += 1 if chancellor_party != "KPD"; rural_spd -= 3; land_decided = 1
+
+The KPD is shocked at our unwillingness to pursue any agrarian reforms at the moment but concedes. They will surely demand other concessions if not this, however.
+
+- @decrees_kpd: Next on the agenda...
+
+@wealth_seizure_kpd
+view-if: wealth_decided != 1
+on-arrival: wealth_stubborn = 60; wealth_stubborn -= 20 if kpd_party_leader == "Conciliators"
+
+In order to finance their other programs, the KPD have made a plan for the seizure of assets from the rich, nationalization of the Reichsbank, and other such measures. Such an action would however surely provoke a confrontation with the capitalists.
+
+- @accept_seizure: Allow the decree.
+- @refuse_seizure: Convince the KPD to drop the decree.
+
+@accept_seizure
+on-arrival: wealth_decided = 1; wealth_seized = 1; upper_tax_rates += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 6; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6
+
+We allow the KPD to go forward with the decree, greatly increasing the budget available to be spent by the government on other directives.
+
+- @decrees_kpd: Next on the agenda...
+
+@refuse_seizure
+choose-if: negotiating_power >= wealth_stubborn
+on-arrival: kpd_relation -= 5; kpd_coalition_dissent += 1 if chancellor_party != "KPD"; negotiating_power -= wealth_stubborn; left_dissent += 10; wealth_decided = 1
+
+- @decrees_kpd: Next on the agenda...
+
+@mass_nationalize
+view-if: left_decided != 1
+on-arrival: left_stubborn = 100; left_stubborn -= 10 if chancellor_party == "KPD" and kpd_party_leader != "Conciliators"
+
+Wanting to bring the economy under state control, the KPD has prepared a decree for the mass nationalizations of industry, claiming it will bring an end to the Great Depression and by dismantling capitalism ensure one never happens again.
+
+- @allow_nationalization: Allow the decree.
+- @refuse_nationalization: Convince the KPD to drop the decree.
+
+@allow_nationalization
+on-arrival: left_decided = 1; nationalization_progress += 1; pro_republic -= 6; capital_strike_progress += 2; unemployed -= 3.5 if unemployed >= 6; new_middle_kpd += 5 if economic_minister_party == "KPD"; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_kpd += 6; unemployed_kpd += 4; coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; old_middle_spd -= 2; economy_goal_completed += 1; inflation += 2
+
+We allow the decree to go ahead, with large swaths of the economy soon being quickly brought under public control. [? if economic_minister_party == "KPD" : Control over the state-run industries falls to the KPD-run Economic Ministry, leading to an expanding bureaucratic base of their party. ?]
+
+# TODO: distinction between deficit or no deficit
+
+- @decrees_kpd: Next on the agenda...
+
+@refuse_nationalization
+choose-if: negotiating_power >= left_stubborn
+unavailable_subtitle: The KPD will not back down on this matter.
+on-arrival: kpd_relation -= 10; left_dissent += 5; workers_spd -= 5; workers_kpd += 5; kpd_coalition_dissent += 1; kpd_coalition_dissent += 1 if chancellor_party != "KPD"; left_decided = 1; negotiating_power -= left_stubborn
+
+We convince the KPD not to go ahead with the mass nationalization, though they by no means have dropped the idea, and likely only backed down due to our position of relative strength in comparison. They campaign against us and overall this spat does not bode well for our cooperation long term.
+
+- @decrees_kpd: Next on the agenda...
+
+@enable_kpd
+view-if: enable_decided != 1
+on-arrival: enable_stubborn = 100; enable_stubborn -= 50 if kpd_party_leader == "Conciliators"; enable_stubborn *= 1.25 if presidential_powers == 1
+
+The KPD, arguing its necessity in rooting out the reactionaries for good, has drafted an "Enabling Act" giving even further sweeping powers to the presidency as well as the cabinet. [? if kpd_party_leader != "Conciliators" : The KPD is quite insistent on this proposal, leading many to believe it as a pretext for a consolidation of power into their hands. ?]
+
+- @accept_enabling: Allow the decree.
+- @refuse_enabling: Convince the KPD to drop the decree.
+
+@accept_enabling
+on-arrival: negotiating_power += 10 if chancellor_party == "KPD"; negotiating_power += 10 if presidential_powers != 1; enable_decided = 1; workers_kpd += 10; rfb_strength += 100; rfb_militancy += 0.05; reichswehr_militancy -= 0.05; unemployed_kpd += 10; unemployed_nsdap -= 10; new_middle_kpd += 10 if chancellor_party == "KPD"; old_middle_nsdap -= 10; new_middle_nsdap -= 10; rural_nsdap -= 10; strife += 1; pro_republic -= 10; z_relation -= 6; z_relation -= 6 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 12; enabling_act = 1; reformist_dissent += 10; neorevisonist_dissent += 15
+
+We allow the KPD to go ahead with their Enabling Act. Immediately, mass crackdowns are launched on the remaining Nazi Party bases, while similar ones are prepared against the other right-wing parties that were banned. Reformists and Neorevisionists protest our compliance in what they view as blatant consolidation of power by the Soviets.
+
+- @decrees_kpd: Next on the agenda...
+
+@refuse_enabling
+choose-if: negotiating_power >= enable_stubborn
+on-arrival: negotiating_power -= enable_stubborn; kpd_relation -= 5 if kpd_party_leader != "Conciliators"; enable_decided = 1
+unavailable_subtitle: The KPD is not willing to budge on this demand.
+
+We convince the KPD not to pursue this decree, arguing that it would only bolster the conviction of anti-republican forces and make us appear no better than them. [? if kpd_party_leader != "Conciliators" : The KPD labels us as weak-willed constitutionalists and says that our inaction will allow reactionary resurgence, but backs down nonetheless. ?]
+
+- @decrees_kpd: Next on the agenda...
+
+@done
+view-if: land_decided == 1 and wealth_decided == 1 and left_decided == 1 and enable_decided == 1
+on-arrival: decree_kpd_decided = 1
+go-to: menu
+
+@go_back_4
+view-if: land_decided != 1 or wealth_decided != 1 or left_decided != 1 or enable_decided != 1
+on-arrival: decree_kpd_decided = 0
+go-to: menu
+
+@noske
+view-if: month == 13
+
+I hate Noske sorry try another time.
+
+- @menu: Aw man.
+
+@the_agenda_spd
+view-if: president != "Thälmann"
+
+Nothing here yet.
+
+@the_agenda_power
+view-if: president == "Thälmann" and presidential_powers == 1
+
+Nothing here yet.

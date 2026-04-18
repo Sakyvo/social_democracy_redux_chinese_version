@@ -1,0 +1,13 @@
+title: The KPD's New Leader
+subtitle: The Comintern has turned on Fischer
+view-if: year == 1925 and month >= 9
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: kpd_party_leader = "Thälmann"; kpd_relation += 5
+
+= The KPD's New Leader
+
+With the Comintern viewing Maslov and Fischer as unreliable and ultra-left deviationists, they have organized for their removal from the KPD's leadership. With Fischer called to Moscow to meet with Stalin, only to be kept there and isolated from the rest of the party, Thälmann, the leader of the RFB, has assumed leadership of the party and distanced himself from her, despite previously being part of her and the arrested Maslov's group.
+
+We have noticed a mild improvement in relationship with the KPD as Thälmann represents a potential step towards reconciliation between our parties, though for the time being any strategy of the KPD to cooperate with us likely remains in bad faith, seeking to drive a wedge between either us and our base or us and our Weimar partners.

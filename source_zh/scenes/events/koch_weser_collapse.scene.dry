@@ -1,0 +1,33 @@
+title: Koch-Weser Resigns!
+subtitle: He is no longer able to keep the coalition together
+view-if: chancellor == "Koch-Weser" and coalition_dissent >= 3
+new-page: true
+tags: event
+max-visits: 1
+go-to: hindie if president == "Hindenburg"; marx if president == "Marx"
+
+= Koch-Weser Resigns
+
+Unable to hold the Grand Coalition together, Koch-Weser has resigned as chancellor.
+
+@hindie
+on-arrival: chancellor = "Marx"; chancellor_party = "Z"
+
+Hindenburg has asked to form a government Wilhelm Marx, who has formed a minority government of the bourgeois parties, to act as a stepping stone either towards a reformed Grand Coalition or a right-wing one.
+
+- @dnvp_tolerates: Regardless of how we vote, the cabinet wins the Reichstag's confidence.
+
+@dnvp_tolerates
+subtitle: The DNVP would vote against any vote of no confidence that we propose.
+on-arrival: spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
+
+We have returned to opposition.
+
+# todo: set dnvp_toleration to one from this, and if DNVP toleration is one then upon rearmament scandal rather than VONCing the DNVP will block our VONC and join gov
+
+@marx
+on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; marx_relation -= 5
+
+Marx has asked to form a government Heinrich Brüning, who has formed a minority government of the bourgeois parties, to act as a stepping stone either towards a reformed Grand Coalition or a right-wing one.
+
+- @dnvp_tolerates: Regardless of how we vote, the cabinet wins the Reichstag's confidence.

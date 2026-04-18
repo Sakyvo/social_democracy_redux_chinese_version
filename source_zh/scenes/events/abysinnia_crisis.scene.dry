@@ -1,0 +1,58 @@
+title: Abysinnia Crisis
+subtitle: A crisis has risen over a border skirmish in Ogaden...
+view-if: year == 1934 and month >= 12
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: abysinnia_timer = 8; unresolved_abysinnia = 1 if ((soviet_relation + kpd_influence + nationalization_progress > west_relation) and (soviet_relation + kpd_influence + nationalization_progress > 2))
+go-to: non_govt if foreign_minister_party != "SPD"; control_foreign if foreign_minister_party == "SPD"
+
+= Abysinnia Crisis
+
+What started as an Anglo-Ethiopian border survey near Somalia has spiralled into an international incident after a skirmish broke out in Walwal between an Ethiopian encampment and an Italian garrison. 
+
+Ethiopia has requested League of Nations arbitration, with both sides demanding compensation for the other's aggression. If not handled correctly, the crisis could escalate.
+
+@non_govt
+
+- @no_foreign: The Foreign Ministry backs France and Britain in their mediation of the crisis.
+- @kpd_foreign: The Foreign Ministry condemns Italian actions.
+
+@no_foreign
+view-if: foreign_minister_party != "KPD"
+
+Influenced by France and Britain, and backed by Germany, the League of Nations absolves both sides of responsibility[? if not unresolved_abysinnia :, though Italy has been warned to halt its military buildup in the region. ?][? if unresolved_abysinnia :. ?][? if west_relation >= 3 and not unresolved_abysinnia : A general consensus has been reached between Germany and France to halt Italian expansion should they not relent in their ambitions on the region. ?]
+
+@kpd_foreign
+view-if: foreign_minister_party == "KPD"
+on-arrival: west_relation -= 2; workers_kpd += 3; new_middle_kpd += 2; dvp_relation -= 3; soviet_relation += 1; unresolved_abysinnia = 1
+
+The Communist foreign ministry condemns Italian aggression and colonialism, though the League of Nations absolves both sides of responsibility anyway, with France and Britain unwilling to take a firm course of action against Italy.
+
+# todo: france and britain will also do the same if KPD-influenced germany, even if SPD foreign ministry
+
+@control_foreign
+
+With our control of the Foreign Ministry, it is up to us to control Germany's position through the Abysinnia Crisis. [? if west_relation >= 2 : Luckily, France does not see us as much of a threat, so they are likely to focus more on Italy. ?]
+
+- @hardline: Demand an end to Italy's military buildup and side with Ethiopia.
+- @mediate: Agree with the consensus and absolve both sides of responsibility.
+
+@hardline
+subtitle: [? if eu : We can use the European Union to pressure Italy into backing down. ?][? if not eu : We can work with France and Britain to sanction Italy should they refuse. ?]
+unavailable-subtitle: [? if west_relation < 7 : France and Britain would never back this. ?][? if not eu : We lack the leverage over Italy necessary. ?][? if unresolved_abysinnia : France and Britain still view us as a threat. ?]
+choose-if: ((eu and west_relation >= 5) or (not eu and west_relation >= 7)) and not unresolved_abysinnia
+on-arrival: unemployed += 1; west_relation -= 1; unemployed += 0.8 if not eu; inflation += 0.2; inflation += 0.6 if not eu; workers_spd += 6*(1-dissent); new_middle_spd += 3*(1-dissent); pacifism += 2; soviet_relation += 1; left_dissent -= 5; kpd_relation += 3; z_relation += 3; abysinnia = 1
+
+We act firmly and decisively to end Italian expansionism, and thanks to our good relations with France and Britain our plan is agreed upon. Sanctions are placed [? if eu : through the European Union ?] and the dispute is arbitrated firmly in Ethiopia's favor. Italy eventually backs down, thoroughly humbled and with its own fascist regime embarassed.
+
+This has been a victory for peace in the world, and a defeat for fascists and militarists. 
+
+@mediate
+subtitle: We will back the French and British opinions on the matter.
+
+Influenced by France and Britain, and backed by Germany, the League of Nations absolves both sides of responsibility[? if not unresolved_abysinnia :, though Italy has been warned to halt its military buildup in the region. ?][? if unresolved_abysinnia :. ?][? if west_relation >= 3 and not unresolved_abysinnia : A general consensus has been reached between Germany and France to halt Italian expansion should they not relent in their ambitions on the region. ?]
+
+
+# todo: followup event in 8 months: italy continues gradual escalation, and tries to convince britain and france to allow them some concessions. or, if firm hand, none at all.
+# todo: france and britain more skeptical and wary of germany if highly leftist, and as a result less willing to bully italy

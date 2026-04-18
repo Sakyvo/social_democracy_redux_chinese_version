@@ -1,0 +1,297 @@
+title: Württemberg Landtag Elections
+new-page: true
+tags: event
+priority: -1
+view-if: landtags_enabled and ((year = wurttemberg_election_year and month >= wurttemberg_election_month) or (year > wurttemberg_election_year)) and not supreme_soviet
+on-arrival: dvp_willing = 0; dvp_willing = 1 if ((dvp_wlelation+spd_votes+(pro_republic/6)) >= ((100-pro_republic)+capital_strike_progress+(coup_progress/2))); z_willing = 0; z_willing = 1 if z_wlelation >= 50 or (z_wlelation >= 25 and bourgeois_coalition < 50)
+on-departure: in_election = 0; wurttemberg_election_year += 4; wurttemberg_election_month -= 1; wurttemberg_election_year -= 1 if wurttemberg_election_month < 1; wurttemberg_election_month += 12 if wurttemberg_election_month < 1; w_elections += 1; wurttemberg_election_time = time + 47;
+set-jump: wurttemberg_election_1928
+
+# the low priority means that this event is only seen after all other events are resolved for the month.
+# note: z_coalition = z_wlelation + (pro_republic/2); z_coalition *= 1.25 if z_party_leader == "Joos";
+
+= Württemberg Elections, [+ month : month +] [+ year +]
+
+The Württemberg elections are to be held now.
+
+- @election_algorithm: May we do our best...
+
+@wurttemberg_election_1928
+on-arrival: {!
+var total_wurttemberg = 0;
+console.log("Starting normalization of Württemberg votes...");
+// normalize wurttembergn votes
+for (var party of Q.parties) {
+    Q[party+'_votes_wurttemberg'] = 0;
+    console.log(`Processing party: ${party}`);
+    
+    for (var c of Q.classes) {
+        let votes = Q['wurttemberg_'+c] * Q[c+'_'+party+'_normalized'] * Q['wurttemberg_'+party];
+        Q[party+'_votes_wurttemberg'] += votes;
+        total_wurttemberg += votes;
+
+        console.log(`  Class: ${c}, Votes: ${votes}, Cumulative Total: ${Q[party+'_votes_wurttemberg']}`);
+    }
+}
+for (var party of Q.parties) {
+    Q[party+'_votes_wurttemberg'] = Math.round((Q[party+'_votes_wurttemberg'] / total_wurttemberg) * 100);
+    console.log(`Final percentage for ${party}: ${Q[party+'_votes_wurttemberg']}%`);
+}
+console.log("Normalization complete. Total Württemberg votes:", total_wurttemberg);
+
+
+// set old results
+// election threshold constitutional reform
+Q.wurttemberg_threshold = 2;
+// banning parties
+var new_party_sum = 0;
+for (var party of Q.parties) {
+    Q['old_' + party + '_wl'] = Q[party + '_wl'];
+    if (Q.constitutional_reform > 0 || Q.wurttemberg_threshold) {
+        if (Q[party + '_votes_wurttemberg'] < Q.wurttemberg_threshold || (Q[party + '_banned'] == 1)) {
+            Q[party + '_wl'] = 0;
+        } else {
+            Q[party + '_wl'] = Q[party + '_votes_wurttemberg'];
+        }
+        new_party_sum += Q[party + '_wl'];
+    } else {
+        Q[party + '_wl'] = Q[party + '_votes_wurttemberg'];
+    }
+        // if we use decimals, then we might want to truncate the numbers
+    if (Q.use_decimals) {
+        Q[party + '_wl_disp'] = Q[party+'_wl'].toFixed(1);
+    }  else {
+            Q[party + '_wl_disp'] = Q[party+'_wl'];
+    }
+    Q['change_' + party + '_wl'] = Q[party + '_wl'] - Q['old_' + party + '_wl'];
+    var sign = Q['change_' + party + '_wl'] > 0 ? '+'  : '';
+    Q['stwl_change_' + party] = sign + Q['change_' + party + '_wl'];//.toFixed(1);
+}
+// calculate new party sum if electoral reform
+if (Q.wurttemberg_threshold && Q.wurttemberg_threshold > 0 || Q.party_bans) {
+    for (var party of Q.parties) {
+        if (Q[party + '_wl'] > 0) {
+            if (Q.use_decimals) {
+                Q[party + '_wl'] = Math.round(Q[party + '_wl']*1000/new_party_sum)/10;
+            } else {
+                Q[party + '_wl'] = Math.round(Q[party + '_wl']*100/new_party_sum);
+            }
+        }
+        if (Q.use_decimals) {
+            Q[party + '_wl_disp'] = Q[party+'_wl'].toFixed(1);
+        } else {
+            Q[party + '_wl_disp'] = Q[party+'_wl'];
+        }
+        Q['change_' + party + '_wl'] = Q[party + '_wl'] - Q['old_' + party + '_wl'];
+        var sign = Q['change_' + party + '_wl'] > 0 ? '+'  : '';
+        Q['stwl_change_' + party] = sign + Q['change_' + party + '_wl'];//.toFixed(1);
+    }
+}
+
+// get change arrows and signs
+
+
+// The largest party can only be the NSDAP or the SPD.
+Q.largest_party = 'SPD';
+if (Q.nsdap_wl >= Q.spd_wl && Q.nsdap_wl >= Q.kpd_wl) {
+    Q.largest_party = 'NSDAP';
+}
+
+if (Q.kpd_wl >= Q.spd_wl && Q.kpd_wl >= Q.nsdap_wl) {
+    Q.largest_party = 'KPD';
+}
+// coalitions
+Q.w_weimar_coalition = Q.spd_wl + Q.ddp_wl + Q.z_wl;
+Q.w_grand_coalition = Q.spd_wl + Q.ddp_wl + Q.z_wl + Q.dvp_wl;
+Q.w_bourgeois_coalition = Q.ddp_wl + Q.z_wl + Q.dvp_wl + Q.other_wl;
+Q.w_center_right_coalition = Q.z_wl + Q.ddp_wl + Q.dvp_wl + Q.other_wl + Q.dnvp_wl;
+Q.w_right_coalition = Q.z_wl + Q.dvp_wl + Q.other_wl + Q.dnvp_wl;
+Q.w_far_right_coalition = Q.dnvp_wl + Q.nsdap_wl;
+Q.w_left_coalition = Q.spd_wl + Q.kpd_wl;
+// this is an absurd concept lol
+Q.w_popular_front_coalition = Q.spd_wl + Q.kpd_wl + Q.z_wl + Q.ddp_wl;
+Q.w_anti_democratic_coalition = Q.kpd_wl + Q.nsdap_wl + Q.dnvp_wl;
+// aka everyone except nazi, kpd, dnvp
+Q.w_neo_weimar_coalition = Q.spd_wl + Q.ddp_wl + Q.z_wl + Q.dvp_wl + Q.other_wl;
+// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
+Q.w_other_nazi = Math.round(Q.other_wl*(1-(Q.pro_republic/100)));
+Q.w_hitler_right_coalition = Q.z_wl + Q.dnvp_wl + Q.nsdap_wl + Q.dvp_wl + Q.other_nazi;
+// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
+Q.w_progressive_coalition = Q.spd_wl + Q.sapd_wl + Q.kpd_wl + Q.ddp_wl;
+// nationaal front
+Q.w_national_front_wl = Q.nsdap_wl + Q.dnvp_wl + Q.dvp_wl + Q.other_wl;
+if (Q.z_national) {
+    Q.w_national_front_wl += Q.z_wl;
+}
+!}
+on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_wl >= 15)
+on-display: {!
+if (Q.sapd_formed == 1) {
+    data = [
+        {    "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_wl*0.8),
+        },
+        {
+            "id": "sapd",
+            "legend": "SAPD",
+            "name": "SAPD",
+            "seats": Math.round(Q.sapd_wl*0.8),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_wl*0.8),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_wl*0.8),
+        },
+        {
+            "id": "z",
+            "legend": "Center",
+            "name": "Center",
+            "seats": Math.round(Q.z_wl*0.8),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_wl*0.8),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_wl*0.8),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_wl*0.8),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_wl*0.8),
+        },
+    ];
+}
+else {
+    data = [
+        {   "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_wl*0.8),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_wl*0.8),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_wl*0.8),
+        },
+        {
+            "id": "z",
+            "legend": "Center",
+            "name": "Center",
+            "seats": Math.round(Q.z_wl*0.8),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_wl*0.8),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_wl*0.8),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_wl*0.8),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_wl*0.8),
+        },
+    ];
+}
+if (window && d3) {
+    var width = 500; 
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50; 
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    } 
+
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+}
+!}
+go-to: coalition_menu
+
+= Election results
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!} 
+{!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_wl +]%** {!</td><td>!} **[+ stwl_change_spd +]** {!</td></tr>!}
+
+[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_wl +]% {!</td><td>!} [+ stwl_change_sapd +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_wl +]% {!</td><td>!} [+ stwl_change_kpd +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_wl +]% {!</td><td>!} [+ stwl_change_ddp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_wl +]% {!</td><td>!} [+ stwl_change_z +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_wl +]% {!</td><td>!} [+ stwl_change_dvp +] {!</td></tr>!}
+ 
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_wl +] % {!</td><td>!} [+ stwl_change_other +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_wl +]% {!</td><td>!} [+ stwl_change_dnvp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_wl +]% {!</td><td>!} [+ stwl_change_nsdap +] {!</td></tr>!}
+{!</table>!}
+
+**Potential coalitions:**
+
+Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ w_weimar_coalition +]%
+
+Grand Coalition (SPD + Z + [+ ddp_name +] + DVP): [+ w_grand_coalition +]%
+
+Bourgeois Coalition (Z + [+ ddp_name +] + DVP + Others): [+ w_bourgeois_coalition +]%
+
+Right-wing Coalition (Z + DVP + Others + DNVP): [+ w_right_coalition +]%
+
+[? if nazi_urgency <= 1 and nsdap_wl >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
+
+[? if w_anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Landtag. A stable governing majority will be almost impossible. ?]
+
+There are some potential coalition arrangements.
+
+@coalition_menu

@@ -1,0 +1,11 @@
+title: Hugenberg Ousted!
+subtitle: The DNVP emerges from crisis
+view-if: hindenburg_dead and coup_progress < 6 and dnvp_votes >= 10 and nationalism < pro_republic and sa_force+sh_force < 50 and right_coalition < 50 and nsdap_votes < spd_votes
+on-arrival: dnvp_reform = 1; dnvp_reform_timer = (nationalism/5); z_relation -= 5; dvp_relation -= 5; old_middle_dnvp -= 2; rural_dnvp += 5; new_middle_dnvp -= 1; sh_militancy -= 0.1; sa_strength -= 50; sh_strength += 50; nationalism += 5; 
+max-visits: 1
+new-page: true
+tags: event
+
+= Hugenberg Ousted
+
+As the crisis in the Nazi Party following their failure to seize power sent shockwaves throughout the far-right, the DNVP found itself regrowing and re-emerging as a relevant fascist force in the country. But as the DNVP's position improved, Hugenberg's only worsened. He had failed, failed to tame the Nazis and ride their wave to power. With no real allies left and the DNVP's reliance on Hugenberg for financing slowly diminishing, the party has effectively ousted him. As a result, the DNVP will be more willing to enter into coalition governments. This could be dangerous for us, but is generally an improvement in the stability of the Republic.

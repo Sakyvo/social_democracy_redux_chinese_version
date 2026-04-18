@@ -1,0 +1,98 @@
+title: Enacting the Weimar Plan
+new-page: true
+is-card: true
+view-if: weimar_plan_adopted == 1 and spd_in_government == 1 and economic_minister_party != "SPD" and finance_minister_party != "SPD" and weimar_enacting_timer = 0
+on-arrival: weimar_enacting_timer += 6; month_actions += 1
+tags: govt_affairs
+card-image: img/muller_cabinet.jpg
+go-to: plan_menu
+on-departure: weimar_dissent += 1 if unemployed < 16
+
+= Enacting the Plan
+
+Now that we are in government, it is time for us to enact our economic plan alongside our partners. As we lack the finance and economic ministries, the task of pursuing the plan has fallen to [+ finance_minister +] of [+ finance_minister_party +] and [+ economic_minister +] of [+ economic_minister_party +]. They are ready to proceed but have approached us to decide how we should go about funding the plan.
+
+@plan_menu
+  
+- @taxes_1: We should fund our plan by raising taxes.
+- @taxes_2: We should fund our plan by raising taxes.
+- @welfare: We have no choice but to cut welfare and social spending to fund our plan.
+- @military: Cuts to military spending will give us the funds we need.
+- @just_enact_1: We will not find ways to raise funds for now and simply begin with the funds that we have.
+- @just_enact_2: We will not find ways to raise funds for now and simply begin with the funds that we have.
+- @delay: We do not have the funds we need. We will have to delay pursuing of our plan.
+
+@taxes_1
+view-if: z_party_leader == "Kaas"
+  
+Funding the plan by increasing taxes is certainly one option, though one that [+ finance_minister +] is reluctant to pursue. His preferred course is to fund the plan via cuts to social spending.
+
+- @convince: We will use our ties with [+ finance_minister_party +] to sway [+ finance_minister +]. 
+- @compromise: Perhaps we can fund the plan through a combination of tax hikes and social spending cuts as a compromise.
+- @plan_menu: What are the other options?
+
+@convince
+choose-if: z_relation >= 70
+unavailable-subtitle: The Center Party is unwilling to be convinced.
+on-arrival: z_relation -= 5
+
+We have managed to convince [+ finance_minister +] to fund the plan with an increase in taxes. Now we must decide how to go about the tax hikes.
+
+- @tax_rich: Our tax hikes will be aimed specifically at the rich.
+- @general_tax: We will raise taxes across the board.
+
+@compromise
+on-arrival: upper_tax_rates += 1; unemployed += 1.4; inflation += 0.7; new_middle_spd -= 2; old_middle_spd -= 2; workers_spd -= 6; unemployed_spd -= 6; workers_kpd += 3; welfare -= 1; reformist_dissent += 10; left_dissent += 10; labor_dissent += 10; center_dissent += 5; neorevisionist_dissent += 5; dvp_relation += 5; z_relation += 3; pro_republic -= 3; coalition_dissent -= 1 if in_grand_coalition; kpd_coalition_dissent += 2; kpd_relation -= 8; works_program += 1; unemployed -= 3 if unemployed >= 8; workers_spd += 6*(1-dissent); unemployed_spd += 4*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 2*(1-dissent); rural_spd += 2*(1-dissent); moderate_plan_progress += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; economic_growth += 1.2
+
+Our suggestion to synthesize both methods of raising funds for the plan is agreeable to [+ finance_minister +] and we do so. This is viewed with suspicion from many of our supporters, and the results are yet unclear, though the economy does seem to be improving.
+  
+@taxes_2
+view-if: z_party_leader == "Joos"
+
+Funding the plan by increasing taxes is certainly one option, and one that, under influence from Joos, [+ finance_minister +] is willing to accept. There still the matter, however, of how to go about increasing taxes.
+
+- @tax_rich: Our tax hikes will be aimed specifically at the rich.
+- @general_tax: We will raise taxes across the board.
+
+@tax_rich
+choose-if: z_relation >= 70 or z_party_leader == "Joos"
+unavailable-subtitle: This is unacceptable to our partners.
+on-arrival: coalition_dissent += 1 if z_party_leader == "Kaas"; z_relation -= 5 if z_party_leader == "Kaas"; upper_tax_rates += 1; capital_strike_progress += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 3; workers_spd += 3*(1-dissent); workers_ddp += 1; old_middle_spd -= 3; old_middle_ddp -= 1; new_middle_spd -= 3; new_middle_ddp -= 1; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if capital_strike_progress >= 5; dvp_relation -= 4; unemployed += 1; finance_goal_completed += 1; inflation += 0.9; works_program += 1; unemployed -= 3 if unemployed >= 8; workers_spd += 5*(1-dissent); workers_ddp += 1; unemployed_spd += 3*(1-dissent); unemployed_ddp += 1; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; old_middle_spd += 1*(1-dissent); old_middle_ddp += 1; rural_spd += 2*(1-dissent); moderate_plan_progress += 1; kpd_coalition_dissent += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; weimar_dissent += 2; economic_growth += 1.2
+
+We have decided to fund our economic plan through increased taxes on the rich. [? if z_party_leader == "Kaas" : This decision strains the integrity of our collaboration, but has been begrudgingly accepted. ?] [? if z_party_leader == "Joos" : This is broadly acceptable to the parties involved, though a confrontation with the capitalists is not impossible should we continue down this course. ?]
+
+@general_tax
+on-arrival: works_program += 1; unemployed -= 3 if unemployed >= 8; inflation += 1.5; workers_spd += 5*(1-dissent); workers_ddp += 1; unemployed_spd += 3*(1-dissent); unemployed_ddp += 1; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; old_middle_spd += 1*(1-dissent); old_middle_ddp += 1; rural_spd += 2*(1-dissent); moderate_plan_progress += 1; kpd_coalition_dissent += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; upper_tax_rates += 1; lower_tax_rates += 1; unemployed += 1.5; capital_strike_progress -= 1; inflation -= 1; new_middle_spd -= 2; new_middle_ddp -= 1; old_middle_spd -= 2; old_middle_ddp -= 1; workers_spd -= 2; workers_ddp -= 1; rural_spd -= 2; rural_z -= 1; kpd_coalition_dissent += 1; kpd_relation -= 5; left_dissent += 5; weimar_dissent += 1; economic_growth += 1.2
+
+We have decided to fund our economic plan through increased taxes on the rich and implementation has begun. Many in our party say that we should have insisted on tax increases exclusively on the rich, but what is done is done and we can only hope that the plan can successfully fix the economy.
+
+@welfare
+on-arrival: workers_spd -= 12; unemployed_spd -= 12; workers_kpd += 4; workers_kpd += 2 if sapd_consolidated == 0; workers_sapd += 2 if sapd_consolidated == 1; welfare -= 2; reformist_dissent += 20; left_dissent += 20; labor_dissent += 20; center_dissent += 10; neorevisionist_dissent += 10; dvp_relation += 10; z_relation += 6 if z_party_leader == "Kaas"; z_relation -= 2 if z_party_leader == "Joos"; pro_republic -= 6; coalition_dissent -= 2 if in_grand_coalition; kpd_coalition_dissent += 2; kpd_relation -= 16; inflation -= 0.6; unemployed += 0.8; works_program += 1; unemployed -= 3 if unemployed >= 8; inflation += 1.5; workers_spd += 6*(1-dissent); unemployed_spd += 4*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 2*(1-dissent); rural_spd += 2*(1-dissent); moderate_plan_progress += 1; kpd_coalition_dissent += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; economic_growth += 1.2
+
+We have decided to fund our economic plan through cuts to welfare and social spending across the board. This angers the workers, who begin to view the Weimar Plan as nothing more than disguised austerity, but it has allowed us to implement the plan. [? if z_party_leader == "Joos" : Joos is puzzled by our course but we reason that welfare cuts in this situation are simply necessary. He folds and agrees with the right-wing of his party satisfied by the measures. ?] [? if z_party_leader == "Kaas" : Our decision is approved of by [+ finance_minister +] and Kaas, bolstering ties, though it has left many in the Catholic trade unions who had been seeking to align with the SPD feeling confused. ?]
+
+@military
+choose-if: reichswehr_strength >= 40 and (((z_relation >= 75 and z_party_leader == "Kaas") or (z_relation >= 50 and z_party_leader == "Joos")) or reichswehr_minister_party == "SPD")
+unavailable-subtitle: [? if reichswehr_strength < 40 : There is not enough left to cut. ?] [? if not ((z_relation >= 75 and z_party_leader == "Kaas") or (z_relation >= 50 and z_party_leader == "Joos")) : Our partners are too committed to the military and not willing to engage in large scale cuts. ?]
+on-arrival: coalition_dissent += 2 if in_grand_coalition == 1; coalition_dissent += 1 if z_party_leader == "Kaas"; reichswehr_militancy -= 2; reichswehr_strength -= 40; dvp_relation -= 10; z_relation -= 5 if z_party_leader == "Kaas"; reichswehr_loyalty -= 0.10; coup_progress += 2; reichswehr_goal_completed = 1; works_program += 1; unemployed -= 3 if unemployed >= 8; inflation += 1.5; workers_spd += 5*(1-dissent); workers_ddp += 1; unemployed_spd += 3*(1-dissent); unemployed_ddp += 1; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; old_middle_spd += 1*(1-dissent); old_middle_ddp += 1; rural_spd += 2*(1-dissent); moderate_plan_progress += 1; kpd_coalition_dissent += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; weimar_dissent += 1
+
+We have decided to fund our economic plan through cuts to military spending. [? if z_party_leader == "Kaas" and reichswehr_minister_party != "SPD" : This was only very reluctantly agreed upon by our partners, who expect us to pay them back in future with concessions in some form. The military is equally upset and rumors of a coup begin to spread around, though likely sensationalist. ?] [? if z_party_leader == "Joos" and reichswehr_minister_party != "SPD" : This has been accepted thanks to the friendly influence of Joos, though it has still caused noticeable tension in government. The military too is upset, and rumors of a coup are spread around, though likely sensationalist. ?] [? if reichswehr_minister_party == "SPD" : As we control the Reichswehr Ministry, we do not even need to convince our partners to take this course and quickly provide the funds needed for the plan by taking from the army. Despite this, though, many are displeased with this and the army is no exception with sensationalist rumors of a coup being passed around. ?]
+
+@just_enact_1
+view-if: budget >= 2
+subtitle: -2 budget.
+on-arrival: budget -= 2; works_program += 1; unemployed -= 3 if unemployed >= 8; inflation += 1.5; workers_spd += 5*(1-dissent); workers_ddp += 1; unemployed_spd += 3*(1-dissent); unemployed_ddp += 1; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; old_middle_spd += 1*(1-dissent); old_middle_ddp += 1; rural_spd += 2*(1-dissent); moderate_plan_progress += 1; kpd_coalition_dissent += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; weimar_dissent += 1 if z_party_leader != "Joos"; economic_growth += 1.2;
+
+We decide to delay a decision on how to raise additional funds as it is not yet necessary thanks to our current surplus that allows us to immediately implement the plan. This is fine by our coalition partners and implementation begins swiftly.
+
+@just_enact_2
+view-if: budget = 1
+subtitle: -1 budget.
+on-arrival: budget -= 1; works_program += 1; unemployed -= 2 if unemployed >= 8; inflation += 1; workers_spd += 3*(1-dissent); workers_ddp += 1; unemployed_spd += 2*(1-dissent); new_middle_spd += 1*(1-dissent); new_middle_ddp += 1; old_middle_ddp += 1; rural_spd += 1*(1-dissent); moderate_plan_progress += 1; kpd_coalition_dissent += 1; inflation += 1 if unemployed < 10; kpd_relation -= 5 if in_popular_front or in_left_front; economic_growth += 0.7
+
+We decide to delay a decision on how to raise additional funds as it is not yet necessary thanks to our current small surplus that allows us to implement the plan, though only partially. This is fine by our coalition partners and partial implementation begins as we deliberate on a more longterm solution to our funding issues.
+
+@delay
+on-arrival: z_relation -= 5 if z_party_leader == "Joos"; ddp_relation -= 5; weimar_dissent += 1 if z_party_leader == "Joos"
+
+This takes our coalition partners by surprise, but they are fine with waiting. [? if z_party_leader == "Joos" : Joos is puzzled by the delay, but he accepts our argument that if we rush implementation the economy will only worsen. ?]

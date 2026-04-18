@@ -1,0 +1,321 @@
+title: Magdeburg Conference
+subtitle: The SPD holds a party conference in Magdeburg
+new-page: true
+tags: event
+view-if: year == 1929 and month >= 5
+set-jump: post_congress
+max-visits: 1
+
+# the low priority means that this event is only seen after all other events are resolved for the month.
+# note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
+
+= Heidelberg Conference
+
+The SPD is holding its biannual conference in the city of Magdeburg, where it is expected that the Armed Forces Commission of the SPD will present its report and guidelines on military policy for vote. [? if spd_in_government and in_grand_coalition : Furthermore, the Grand Coalition with the DVP has come under increasing scrutiny as the left wing agitates against the pragmatic leadership of the party. ?]
+
+- @faction_algorithm: The delegates enter...
+
+@faction_algorithm
+on-arrival: {!
+
+Q.left_votes = 0;
+Q.center_votes = 0;
+Q.reformist_votes = 0;
+Q.labor_votes = 0;
+Q.neorevisionist_votes = 0;
+
+Q.left_workers = 1;
+Q.left_new_middle = 0.7;
+if (Q.new_middle_conscious) {
+    Q.left_new_middle += 0.3;
+}
+Q.left_old_middle = 0;
+Q.left_rural = 0.4;
+Q.left_unemployed = 1.25;
+Q.left_catholics = 0.75;
+
+Q.center_workers = 1;
+Q.center_new_middle = 1;
+if (Q.new_middle_conscious) {
+    Q.center_new_middle += 0.25;
+}
+Q.center_old_middle = 0.5;
+Q.center_rural = 0.5;
+Q.center_unemployed = 0.9;
+Q.center_catholics = 1;
+if (Q.center_strength >= Q.left_strength && Q.center_strength >= Q.reformist_strength) {
+    Q.center_workers += 0.25;
+    Q.center_new_middle += 0.25;
+    Q.center_old_middle += 0.1;
+    Q.center_rural += 0.1;
+    Q.center_unemployed += 0.2;
+    Q.center_catholics += 0.25;
+}
+
+Q.reformist_workers = 0.75;
+Q.reformist_new_middle = 1.5;
+if (Q.new_middle_conscious) {
+    Q.reformist_new_middle -= 0.25;
+}
+Q.reformist_old_middle = 3;
+Q.reformist_rural = 1.5;
+Q.reformist_unemployed = 0.25;
+Q.reformist_catholics = 1.25;
+
+Q.labor_workers = 1.5;
+Q.labor_new_middle = 1;
+if (Q.new_middle_conscious) {
+    Q.labor_new_middle -= 0.3;
+}
+Q.labor_old_middle = 0.1;
+Q.labor_rural = 0.7;
+Q.labor_unemployed = 0.2;
+if (Q.wtb_adopted) {
+    Q.labor_unemployed += 0.3;
+}
+Q.labor_catholics = 1;
+
+Q.neorevisionist_workers = 0;
+Q.neorevisionist_new_middle = 0;
+Q.neorevisionist_old_middle = 0;
+Q.neorevisionist_rural = 0;
+Q.neorevisionist_unemployed = 0;
+Q.neorevisionist_catholics = 0;
+if (Q.neorevisionism) {
+    Q.neorevisionist_workers = 0.6;
+    Q.neorevisionist_new_middle = 1;
+    Q.neorevisionist_old_middle = 2;
+    Q.neorevisionist_rural = 2;
+    Q.neorevisionist_unemployed = Q.rb_militancy;
+    Q.neorevisionist_catholics = 0.75;
+}
+
+var total_spd = 0;
+var total_factions = 0;
+
+// Calculate SPD performance
+var spd_performance = Q.spd_votes - Q.old_spd_performance;
+if (Q.old_spd_performance) {
+    Q.old_spd_performance = Q.spd_votes;
+} else {
+    Q.old_spd_performance = 26;
+}
+if (!spd_performance) {
+    spd_performance = Q.spd_votes - Q.old_spd_performance;
+}
+
+console.log("SPD performance delta:", spd_performance);
+
+// Sum SPD-normalized votes across all classes
+for (var c of Q.classes) {
+    total_spd += (Q[c + '_spd_normalized'] * Q[c]);
+}
+console.log("Total SPD weighted class vote:", total_spd);
+
+// Loop through factions and classes
+for (var faction of Q.factions) {
+    Q[faction + '_votes'] = 0; // Ensure clean start
+
+    for (var c of Q.classes) {
+        var base_vote = ((Q[faction + '_strength'] / 100) * Q[faction + '_' + c]) * ((Q[c + '_spd_normalized'] * Q[c]) / total_spd);
+        var dissent = Q[faction + '_dissent'] || 0;
+        var dissent_modifier = 1 + (dissent / 60) * (-spd_performance / 10) * 5;
+
+        console.log(`[${faction}] + [${c}]`);
+        console.log("  Base vote:", base_vote.toFixed(4));
+        console.log("  Dissent:", dissent);
+        console.log("  Dissent modifier:", dissent_modifier.toFixed(4));
+
+        if (dissent_modifier < 0.1) {
+            dissent_modifier = 0.1;
+        }
+
+        Q[faction + '_votes'] += base_vote * dissent_modifier;
+    }
+
+    console.log(`[${faction}] total votes before normalization:`, Q[faction + '_votes'].toFixed(2));
+
+    total_factions += Q[faction + '_votes'];
+}
+
+// Normalize to percentage
+for (var faction of Q.factions) {
+    Q[faction + '_votes'] = Math.round((Q[faction + '_votes'] / total_factions) * 100);
+    console.log(`[${faction}] normalized vote %:`, Q[faction + '_votes']);
+}
+!}
+go-to: post_congress
+
+@post_congress
+on-arrival: {!
+// set old results
+// election threshold constitutional reform
+// banning parties
+var new_faction_sum = 0;
+for (var faction of Q.factions) {
+    Q['old_' + faction + '_c'] = Q[faction + '_c'];
+    Q[faction + '_c'] = Q[faction + '_votes'];
+        // if we use decimals, then we might want to truncate the numbers
+    if (Q.use_decimals) {
+        Q[faction + '_c_disp'] = Q[faction+'_c'].toFixed(1);
+    }  else {
+            Q[faction + '_c_disp'] = Q[faction+'_c'];
+    }
+    Q['change_' + faction + '_c'] = Q[faction + '_c'] - Q['old_' + faction + '_c'];
+    var sign = Q['change_' + faction + '_c'] > 0 ? '+'  : '';
+    Q['str_change_' + faction] = sign + Q['change_' + faction + '_c'];//.toFixed(1);
+}
+// calculate new faction sum if electoral reform
+if (Q.electoral_threshold && Q.electoral_threshold > 0 || Q.faction_bans) {
+    for (var faction of Q.parties) {
+        if (Q[faction + '_c'] > 0) {
+            if (Q.use_decimals) {
+                Q[faction + '_c'] = Math.round(Q[faction + '_c']*1000/new_faction_sum)/10;
+            } else {
+                Q[faction + '_c'] = Math.round(Q[faction + '_c']*100/new_faction_sum);
+            }
+        }
+        if (Q.use_decimals) {
+            Q[faction + '_c_disp'] = Q[faction+'_c'].toFixed(1);
+        } else {
+            Q[faction + '_c_disp'] = Q[faction+'_c'];
+        }
+        Q['change_' + faction + '_c'] = Q[faction + '_c'] - Q['old_' + faction + '_c'];
+        var sign = Q['change_' + faction + '_c'] > 0 ? '+'  : '';
+        Q['str_change_' + faction] = sign + Q['change_' + faction + '_c'];//.toFixed(1);
+    }
+}
+
+Q.marxist_unity = Q.left_c+Q.center_c;
+Q.toleration_unity = Q.center_c+Q.reformist_c+Q.neorevisionist_c;
+Q.lassalean_unity = Q.reformist_c+Q.neorevisionist_c;
+Q.antitoleration_unity = Q.left_c+Q.labor_c;
+Q.pragmatic_unity = Q.center_c+Q.reformist_c;
+!}
+on-display: {!
+if (!Q.neorevisionism) {
+    data = [
+        {   "id": "left",
+            "legend": "Left",
+            "name": "Left",
+            "seats": Math.round(Q.left_c*3.97),
+        },
+        {
+            "id": "center",
+            "legend": "Center",
+            "name": "Center",
+            "seats": Math.round(Q.center_c*3.97),
+        },
+        {
+            "id": "labor",
+            "legend": "Labor",
+            "name": "Labor",
+            "seats": Math.round(Q.labor_c*3.97),
+        },
+        {
+            "id": "reformist",
+            "legend": "Reformists",
+            "name": "Reformists",
+            "seats": Math.round(Q.reformist_c*3.97),
+        },
+];
+}
+else {
+    data = [
+        {   "id": "left",
+            "legend": "Left",
+            "name": "Left",
+            "seats": Math.round(Q.left_c*3.97),
+        },
+        {
+            "id": "center",
+            "legend": "Center",
+            "name": "Center",
+            "seats": Math.round(Q.center_c*3.97),
+        },
+        {
+            "id": "labor",
+            "legend": "Labor",
+            "name": "Labor",
+            "seats": Math.round(Q.labor_c*3.97),
+        },
+        {
+            "id": "reformist",
+            "legend": "Reformists",
+            "name": "Reformists",
+            "seats": Math.round(Q.reformist_c*3.97),
+        },
+        {
+            "id": "neorevisionist",
+            "legend": "Neorevisionists",
+            "name": "Neorevisionists",
+            "seats": Math.round(Q.neorevisionist_c*3.97),
+        },
+];
+}
+if (window && d3) {
+    var width = 500; 
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50; 
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    } 
+
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+}
+!}
+go-to: coalition_menu if spd_in_government and in_grand_coalition; spd_military_policy if not spd_in_government or not in_grand_coalition
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!} 
+{!<tr><td>Party</td><td>Vote share</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} Left: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} Center: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} Labor: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} Reformists: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
+
+@coalition_menu
+
+[? if panzerkreuzer_funded : The construction of a battlecruiser by a government that the SPD participates in has caused significant backlash, backlash the left hopes to exploit to take down the Grand Coalition. ?][? if not panzerkreuzer_funded : Though the SPD has prevented the construction of a battlecruise, the Grand Coalition remains controversial, and the left hopes to bring it down. ?]
+
+Thus, to pre-empt the left, a motion is submitted by the centrists to pass the matter on to the agenda, while the left around Aufhäuser and Sender attempt to pass a motion to criticize the behavior of the SPD's ministers and press the parliamentary group to advocate a variety of the demands of labor, something the trade unions are naturally sympathetic towards.
+
+- @destroy_groko: The motion by Aufhäuser and Sender against the grand coalition is passed.
+- @preserve_groko: The motion to pass the matter on to the agenda so as to preserve the government is passed.
+
+@destroy_groko
+subtitle: The Left and Labor ([+ antitoleration_unity +]%) [? if antitoleration_unity < 50 : - some centrists may be swayed. ?]
+choose-if: pragmatic_unity < 65
+on-arrival: reformist_dissent += 15; dvp_relation -= 10; z_relation -= 5; ddp_relation -= 5; left_strength += 10; center_dissent += 5; coalition_dissent += 2
+go-to: spd_military_policy
+
+The motion by the left is passed, tying the SPD's ministers and parliamentary group to party discipline for advocacy of the demands of labor irregardless of the concerns of the coalition. Naturally, the bourgeois parties are upset, and the government as a whole less stable.
+
+@preserve_groko
+subtitle: The Center and the Right ([+ pragmatic_unity +]%) [? if pragmatic_unity < 50 : - some trade unionists may be swayed. ?]
+choose-if: antitoleration_unity < 65
+on-arrival: left_dissent += 5; reformist_dissent -= 5; center_strength += 5
+go-to: spd_military_policy
+
+The motion by the center is passed, effectively delaying any firm committment by the SPD either way in the interests of preserving the unity of both party and government. The left is disappointed, but the motion is passed regardless.
+
+@spd_military_policy
+
+Meanwhile, the Armed Forces Commission of the SPD has presented before the conference its report, outlining the guidelines for future military policy by the SPD.
+
+- @wip: WIP
+
+@wip
+subtitle: There should be two options here, but I need to find a good source on the military policy in question before I can add two options for a vote result. But don't worry, you aren't missing out on much, probably. It'd just be like "the left doesn't like this because imperialism but the center and right like it because government" and then you pick which one and trade off some dissent in return. So yeah, it's not so important, don't worry about missing out. The much cooler thing here is the fun graphs of your internal factions. One day I'm gonna tie it to economic plans, just you wait. 
+go-to: root

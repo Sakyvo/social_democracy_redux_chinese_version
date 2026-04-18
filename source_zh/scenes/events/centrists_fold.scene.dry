@@ -1,0 +1,38 @@
+title: The Centrists concede!
+subtitle: Hilferding has come around to an economic plan
+view-if: year >= 1931 and not economic_plan and left_strength < 50 and labor_strength < 50 and reformist_strength < 50 and center_strength >= 20 and not centrists_resign and spd_votes < 28 and nazi_urgency >= 1 and ((dissent_percent+unemployed+(inflation*-1)+(economic_growth*-1)) >= 50)
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: crisis_program_timer = 0; crisis_urgency += 1
+
+= Centrists concede
+
+Seeing the worsening economic situation in Germany, the rising threat of the Nazis, the declining influence of Social Democracy, and the increasing dissent within the party, Rudolf Hilferding has folded and agreed that, while the Great Depression is an inevitable and periodic crisis of capitalism, this does not preclude measures to ease the burden of it upon the working class or begin a move towards socialism.
+
+- @reformist_plan: The Center backs the Reformist plan.
+- @left_plan: The Center backs the Left plan.
+- @synthesis_plan: The Center backs a synthesis of the Left and Reformist plans.
+
+@reformist_plan
+view-if: reformist_strength >= left_strength and reformist_strength >= center_strength
+choose-if: reformist_strength >= left_strength
+on-arrival: left_dissent += 5; left_strength -= 5; reformist_strength += 10; reformist_dissent -= 5; center_dissent -= 5; labor_dissent -= 2; moderate_plan_support += 1
+
+The Centrists have backed the Reformist economic plan for public works and job-creation without deficit spending. This has increased support for the plan within the party and will make it an easier idea to swallow for the rest of the party, though the Left remains opposed.
+
+@left_plan
+view-if: left_strength >= reformist_strength and left_strength >= center_strength
+choose-if: left_strength >= reformist_strength
+on-arrival: reformist_dissent += 5; reformist_strength -= 5; left_strength += 10; left_dissent -= 5; center_dissent -= 5; labor_dissent -= 2; nationalization_support += 1
+
+The Centrists have backed the Left economic plan for large-scale nationalizations of key and idle industries. This has increased support for the plan within the party and will make it an easier idea to swallow for the rest of the party, though the Reformists remain opposed.
+
+@synthesis_plan
+view-if: center_strength >= left_strength and center_strength >= reformist_strength
+choose-if: center_strength >= left_strength and center_strength >= reformist_strength
+on-arrival: center_strength += 5; center_dissent -= 10; synthesis_support += 1
+
+The Centrists have, in an attempt to unite the party behind a single economic plan, combined the Left and Reformist concepts into a single plan, calling for public works without deficit spending to be combined with nationalizations of key and idle industries. Whether this plan will be adopted by the party or not remains to be seen.
+
+# todo : should it be based on the view-ifs, with which plan the centrists back being outside of the player's control, or should it be based on choose-ifs, with it partially out of player control but still an ultimate choice?

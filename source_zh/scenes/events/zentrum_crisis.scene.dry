@@ -1,0 +1,66 @@
+title: Zentrum in Crisis
+new-page: true
+subtitle: The Center Party is split on the Weimar Plan...
+tags: event
+view-if: weimar_dissent >= 8 and z_party_leader == "Joos"
+on-arrival: joos_strength = (z_relation/3); joos_strength += catholics_spd_normalized; joos_strength += workers_z_normalized; joos_strength += (pro_republic/2); right_strength += ((100-pro_republic)/2); right_strength += (kpd_relation/3); right_strength += weimar_dissent; right_strength += economic_democracy; right_strength += land_reform; right_strength += womens_rights; right_strength += (homosexual_rights*2); right_strength += capital_strike_progress if not capital_strike_seen; right_strength += 15 if capital_strike_seen; right_strength += (coup_progress*2); right_strength += dvp_votes; right_strength += other_votes; right_strength += (spd_votes - z_votes); right_strength += (rb_militancy*rb_militarization_cost*10); {!
+Q.joos_strength = Math.round(Q.joos_strength);
+Q.right_strength = Math.round(Q.right_strength);
+if (Q.right_strength < 4) {
+    Q.right_strength = 4;
+}
+!}
+max-visits: 1
+
+= Zentrum in Crisis
+
+As the crisis hitting Germany subsides, the necessity of the Weimar Plan has come into question. Despite Joos' best attempts to assuage concerns, the party right-wing has still turned on him and the plan, seeking to remove it from the party platform. For this task, a broad coalition has formed against Joos. It is impossible to say if Joos will win.
+
+- @vote: Let's hope for the best.
+- @help_joos: Let's help Joos with a minor media campaign.
+
+@help_joos
+subtitle: -1 resource.
+on-arrival: resources -= 1; joos_strength += (radio+commercialized_media)
+
+We provide Joos's campaign with some financial aid and a minor media campaign. Let's hope this is enough to win him the congress.
+
+- @vote: Now the congress.
+
+@vote
+
+Pro-Weimar Delegates: [+ joos_strength +]
+Anti-Weimar Delegates: [+ right_strength +]
+
+- @joos_victory_wide: The "Weimarists" win the vote.
+- @joos_victory_slim: The "Weimarists" narrowly win the vote.
+- @joos_loss_wide: The "Weimarists" lose the vote.
+- @joos_loss_slim: The "Weimarists" narrowly lose the vote.
+
+@joos_victory_wide
+on-arrival: old_middle_z -= 6; rural_z -= 6; new_middle_z -= 3; catholics_z -= 3; workers_z += 2
+view-if: joos_strength >= right_strength and (joos_strength/right_strength) >= 1.1
+
+The Weimar Plan is reaffirmed by a [+ joos_strength +]-[+ right_strength +] vote in the party congress, a safe margin. Some grumblers in the more conservative bases of the party desert, but for the most part the congress puts an end to the question, for now. 
+
+@joos_victory_slim
+on-arrival: old_middle_z -= 12; rural_z -= 10; new_middle_z -= 6; catholics_z -= 8
+view-if: joos_strength >= right_strength and (joos_strength/right_strength) < 1.1
+
+After a long and heated debate and vote, the Weimar Plan is narrowly reaffirmed by a [+ joos_strength +]-[+ right_strength +] vote in the party congress. In the following days, many prominent politicians on the party's right resign, while financial support from capitalists dries up for the party. The Center Party remains our ally, but at what cost for them? Rumors have even gone as far as to suggest that Joseph Joos may be considering resignation, despite his victory in the vote.
+
+@joos_loss_wide
+on-arrival: workers_z -= 5; catholics_spd -= 3; new_middle_z -= 3; weimar_plan_adopted = 0; weimar_rejected = 1; left_dissent += 5; center_dissent += 5; labor_dissent += 2; pro_republic -= 6; z_relation -= 15; workers_sapd += 2 if sapd_consolidated; workers_z -= 3 if unemployed >= 13; z_relation += 10 if return_to_normalcy; pro_republic += 4 if return_to_normalcy; z_party_leader = "Kaas"
+view-if: right_strength >= joos_strength and (right_strength/joos_strength) >= 1.1
+
+The Weimar Plan is defeated by a [+ joos_strength +]-[+ right_strength +] vote in the party congress, a safe margin. Joseph Joos resigns as party leader, with Ludwig Kaas being elected in his place. Demotivated, turnout amongst Catholic trade unionists decreases, with some even looking to other parties.
+
+# todo: Stegerwald can be elected too
+
+@joos_loss_slim
+on-arrival: workers_z -= 10; new_middle_z -= 6; catholics_z -= 3; weimar_plan_adopted = 0; weimar_rejected = 1; left_dissent += 5; center_dissent += 5; labor_dissent += 2; pro_republic -= 6; z_relation -= 15; workers_sapd += 2 if sapd_consolidated; workers_z -= 3 if unemployed >= 13; z_relation += 10 if return_to_normalcy; pro_republic += 4 if return_to_normalcy; z_party_leader = "Kaas"
+view-if: right_strength >= joos_strength and (right_strength/joos_strength) < 1.1
+
+After a long and heated debate and vote, the Weimar Plan is narrowly defeated by a [+ joos_strength +]-[+ right_strength +] vote in the party congress. Joseph Joos resigns as party leader, with Ludwig Kaas being elected in his place. Many Catholic workers desert the party, with some turning to us.
+
+# todo: support changes as %s (eg *= 0.9 instead of -= 5)

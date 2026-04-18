@@ -1,0 +1,21 @@
+title: The Bloodhound Returns
+subtitle: Gustav Noske has approached us with an offer
+view-if: (year == 1934 and month >= 3 and (((nsdap_votes+dnvp_votes)*(1 - (sa_force+sh_force))) >= 50) and (reformist_strength + neorevisionist_strength >= center_strength + labor_strength + left_strength*2) and (dvp_relation >= kpd_relation*2) and (nationalism >= 65 and pro_republic >= 45 and democratization < 2 and pacifism < 3)) and secret_mode
+max-visits: 1
+new-page: true
+tags: event
+
+= The Bloodhound Returns
+
+Emerging from a long period of silence and increasing irrelevancy, former Reichswehr Minister Gustav Noske has re-emerged and approached the increasingly reformist-dominated SPD with a plan. With the increasing threat of the far-right and far-left overthrowing the Republic and its institutions, the intense reactionary resurgence across Germany, and Hindenburg's declining health, Gustav Noske believes that he is the best bet the Weimar Republic has. Thus, he asks for the presidential nomination.
+
+To back him would be risky, and certainly hurt our ties with the communists even further. This is the man who ordered the suppression of the Spartacist Uprising, the man who went so far to the right that he voted for Hindenburg in 1925 alongside the Nazis even while the rest of the party backed Otto Braun and then Wilhelm Marx. Can Gustav Noske really win?
+
+- @back_noske: Yes he can. Tell Noske he has our support.
+- @get_him_out: Who does he think he is? Tell that loser to go right back up to Hanover.
+
+@back_noske
+on-arrival: reichswehr_loyalty += 0.05; noske_running = 1; kpd_relation -= 10; left_dissent += 25; center_dissent += 10; labor_dissent += 10; workers_spd -= 4
+
+@get_him_out
+on-arrival: reformist_dissent += 1; left_dissent -= 5

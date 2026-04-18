@@ -1,0 +1,340 @@
+title: Heidelberg Conference
+subtitle: The SPD holds a party conference in Heidelberg
+new-page: true
+tags: event
+view-if: year == 1925 and month >= 9
+set-jump: post_congress
+max-visits: 1
+
+# the low priority means that this event is only seen after all other events are resolved for the month.
+# note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
+
+= Heidelberg Conference
+
+The SPD is holding its biannual conference in the city of Heidelberg, the burial place of the recently deceased Friedrich Ebert. Among the priorities on the agenda is the drafting of a new party program to replace the Görlitz program, which is seen by many as deviating too far from Marxism and as a result costing the SPD amongst the working class.
+
+Another issue is that of Saxony, where the regional party organization has split nearly in half over Max Heldt's decision to govern with the DVP.
+
+- @faction_algorithm: The delegates enter...
+
+@faction_algorithm
+on-arrival: {!
+
+Q.left_votes = 0;
+Q.center_votes = 0;
+Q.reformist_votes = 0;
+Q.labor_votes = 0;
+Q.neorevisionist_votes = 0;
+
+Q.left_workers = 1;
+Q.left_new_middle = 0.7;
+if (Q.new_middle_conscious) {
+    Q.left_new_middle += 0.3;
+}
+Q.left_old_middle = 0;
+Q.left_rural = 0.4;
+Q.left_unemployed = 1.25;
+Q.left_catholics = 0.75;
+
+Q.center_workers = 1;
+Q.center_new_middle = 1;
+if (Q.new_middle_conscious) {
+    Q.center_new_middle += 0.25;
+}
+Q.center_old_middle = 0.5;
+Q.center_rural = 0.5;
+Q.center_unemployed = 0.9;
+Q.center_catholics = 1;
+if (Q.center_strength >= Q.left_strength && Q.center_strength >= Q.reformist_strength) {
+    Q.center_workers += 0.25;
+    Q.center_new_middle += 0.25;
+    Q.center_old_middle += 0.1;
+    Q.center_rural += 0.1;
+    Q.center_unemployed += 0.2;
+    Q.center_catholics += 0.25;
+}
+
+Q.reformist_workers = 0.75;
+Q.reformist_new_middle = 1.5;
+if (Q.new_middle_conscious) {
+    Q.reformist_new_middle -= 0.25;
+}
+Q.reformist_old_middle = 3;
+Q.reformist_rural = 1.5;
+Q.reformist_unemployed = 0.25;
+Q.reformist_catholics = 1.25;
+
+Q.labor_workers = 1.5;
+Q.labor_new_middle = 1;
+if (Q.new_middle_conscious) {
+    Q.labor_new_middle -= 0.3;
+}
+Q.labor_old_middle = 0.1;
+Q.labor_rural = 0.7;
+Q.labor_unemployed = 0.2;
+if (Q.wtb_adopted) {
+    Q.labor_unemployed += 0.3;
+}
+Q.labor_catholics = 1;
+
+Q.neorevisionist_workers = 0;
+Q.neorevisionist_new_middle = 0;
+Q.neorevisionist_old_middle = 0;
+Q.neorevisionist_rural = 0;
+Q.neorevisionist_unemployed = 0;
+Q.neorevisionist_catholics = 0;
+if (Q.neorevisionism) {
+    Q.neorevisionist_workers = 0.6;
+    Q.neorevisionist_new_middle = 1;
+    Q.neorevisionist_old_middle = 2;
+    Q.neorevisionist_rural = 2;
+    Q.neorevisionist_unemployed = Q.rb_militancy;
+    Q.neorevisionist_catholics = 0.75;
+}
+
+var total_spd = 0;
+var total_factions = 0;
+
+// Calculate SPD performance
+var spd_performance = Q.spd_votes - Q.old_spd_performance;
+if (Q.old_spd_performance) {
+    Q.old_spd_performance = Q.spd_votes;
+} else {
+    Q.old_spd_performance = 26;
+}
+if (!spd_performance) {
+    spd_performance = Q.spd_votes - Q.old_spd_performance;
+}
+
+console.log("SPD performance delta:", spd_performance);
+
+// Sum SPD-normalized votes across all classes
+for (var c of Q.classes) {
+    total_spd += (Q[c + '_spd_normalized'] * Q[c]);
+}
+console.log("Total SPD weighted class vote:", total_spd);
+
+// Loop through factions and classes
+for (var faction of Q.factions) {
+    Q[faction + '_votes'] = 0; // Ensure clean start
+
+    for (var c of Q.classes) {
+        var base_vote = ((Q[faction + '_strength'] / 100) * Q[faction + '_' + c]) * ((Q[c + '_spd_normalized'] * Q[c]) / total_spd);
+        var dissent = Q[faction + '_dissent'] || 0;
+        var dissent_modifier = 1 + (dissent / 60) * (-spd_performance / 10) * 5;
+
+        console.log(`[${faction}] + [${c}]`);
+        console.log("  Base vote:", base_vote.toFixed(4));
+        console.log("  Dissent:", dissent);
+        console.log("  Dissent modifier:", dissent_modifier.toFixed(4));
+
+        if (dissent_modifier < 0.1) {
+            dissent_modifier = 0.1;
+        }
+
+        Q[faction + '_votes'] += base_vote * dissent_modifier;
+    }
+
+    console.log(`[${faction}] total votes before normalization:`, Q[faction + '_votes'].toFixed(2));
+
+    total_factions += Q[faction + '_votes'];
+}
+
+// Normalize to percentage
+for (var faction of Q.factions) {
+    Q[faction + '_votes'] = Math.round((Q[faction + '_votes'] / total_factions) * 100);
+    console.log(`[${faction}] normalized vote %:`, Q[faction + '_votes']);
+}
+!}
+go-to: post_congress
+
+@post_congress
+on-arrival: {!
+// set old results
+// election threshold constitutional reform
+// banning parties
+var new_faction_sum = 0;
+for (var faction of Q.factions) {
+    Q['old_' + faction + '_c'] = Q[faction + '_c'];
+    Q[faction + '_c'] = Q[faction + '_votes'];
+        // if we use decimals, then we might want to truncate the numbers
+    if (Q.use_decimals) {
+        Q[faction + '_c_disp'] = Q[faction+'_c'].toFixed(1);
+    }  else {
+            Q[faction + '_c_disp'] = Q[faction+'_c'];
+    }
+    Q['change_' + faction + '_c'] = Q[faction + '_c'] - Q['old_' + faction + '_c'];
+    var sign = Q['change_' + faction + '_c'] > 0 ? '+'  : '';
+    Q['str_change_' + faction] = sign + Q['change_' + faction + '_c'];//.toFixed(1);
+}
+// calculate new faction sum if electoral reform
+if (Q.electoral_threshold && Q.electoral_threshold > 0 || Q.faction_bans) {
+    for (var faction of Q.parties) {
+        if (Q[faction + '_c'] > 0) {
+            if (Q.use_decimals) {
+                Q[faction + '_c'] = Math.round(Q[faction + '_c']*1000/new_faction_sum)/10;
+            } else {
+                Q[faction + '_c'] = Math.round(Q[faction + '_c']*100/new_faction_sum);
+            }
+        }
+        if (Q.use_decimals) {
+            Q[faction + '_c_disp'] = Q[faction+'_c'].toFixed(1);
+        } else {
+            Q[faction + '_c_disp'] = Q[faction+'_c'];
+        }
+        Q['change_' + faction + '_c'] = Q[faction + '_c'] - Q['old_' + faction + '_c'];
+        var sign = Q['change_' + faction + '_c'] > 0 ? '+'  : '';
+        Q['str_change_' + faction] = sign + Q['change_' + faction + '_c'];//.toFixed(1);
+    }
+}
+
+Q.marxist_unity = Q.left_c+Q.center_c;
+Q.toleration_unity = Q.center_c+Q.reformist_c+Q.neorevisionist_c;
+Q.lassalean_unity = Q.reformist_c+Q.neorevisionist_c;
+Q.antitoleration_unity = Q.left_c+Q.labor_c;
+Q.pragmatic_unity = Q.center_c+Q.reformist_c;
+!}
+on-display: {!
+if (!Q.neorevisionism) {
+    data = [
+        {   "id": "left",
+            "legend": "Left",
+            "name": "Left",
+            "seats": Math.round(Q.left_c*3.98),
+        },
+        {
+            "id": "center",
+            "legend": "Center",
+            "name": "Center",
+            "seats": Math.round(Q.center_c*3.98),
+        },
+        {
+            "id": "labor",
+            "legend": "Labor",
+            "name": "Labor",
+            "seats": Math.round(Q.labor_c*3.98),
+        },
+        {
+            "id": "reformist",
+            "legend": "Reformists",
+            "name": "Reformists",
+            "seats": Math.round(Q.reformist_c*3.98),
+        },
+];
+}
+else {
+    data = [
+        {   "id": "left",
+            "legend": "Left",
+            "name": "Left",
+            "seats": Math.round(Q.left_c*3.98),
+        },
+        {
+            "id": "center",
+            "legend": "Center",
+            "name": "Center",
+            "seats": Math.round(Q.center_c*3.98),
+        },
+        {
+            "id": "labor",
+            "legend": "Labor",
+            "name": "Labor",
+            "seats": Math.round(Q.labor_c*3.98),
+        },
+        {
+            "id": "reformist",
+            "legend": "Reformists",
+            "name": "Reformists",
+            "seats": Math.round(Q.reformist_c*3.98),
+        },
+        {
+            "id": "neorevisionist",
+            "legend": "Neorevisionists",
+            "name": "Neorevisionists",
+            "seats": Math.round(Q.neorevisionist_c*3.98),
+        },
+];
+}
+if (window && d3) {
+    var width = 500; 
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50; 
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    } 
+
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+}
+!}
+go-to: coalition_menu
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!} 
+{!<tr><td>Party</td><td>Vote share</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} Left: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} Center: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} Labor: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} Reformists: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
+
+@coalition_menu
+
+The first matter in the conference is what is to be done regarding the party program. The Center has drafted a new program, a significant shift to the left, though the Left gathered around Levi remains skeptical.
+
+Alternatively, the Görlitz program could be maintained, with revisions to match the changing times. With Heidelberg not even entirely satisfying the party left, this would certainly provoke quite the rebellion.
+
+- @heidelberg: Adopt a new party program as written by the Centrists.
+- @gorlitz: Retain the Görlitz program, but moderately revised.
+
+@heidelberg
+subtitle: The Center ([+ center_c +]%) [? if center_c < 50 : - though the Centrists lack a majority, it can still pass as a compromise resolution. ?]
+choose-if: reformist_c < 50
+on-arrival: heidelberg_program = 1; center_strength += 5; reformist_strength -= 5; left_dissent -= 5; center_dissent -= 10; reformist_dissent += 5; dvp_relation -= 5; kpd_relation += 5
+go-to: coalition_issue
+
+The party has adopted the Heidelberg program, written by Karl Kautsky of the party center and representing a return towards the party's Marxist roots. 
+
+@gorlitz
+subtitle: The Right ([+ reformist_c +]%) [? if reformist_c < 50 : - though the Reformists lack a majority, the trade unions may be convinced. ?]
+choose-if: (reformist_c+labor_c) >= 50
+on-arrival: gorlitz_program = 1; center_strength -= 5; marx_relation += 5; left_strength -= 5; reformist_strength += 10; left_dissent += 20; center_dissent += 15; reformist_dissent -= 5; peoples_party_support += 1; dvp_relation += 5; kpd_relation -= 5; labor_strength += 10 if reformist_c < 50; center_dissent += 5 if reformist_c < 50
+go-to: coalition_issue
+
+The party has, surprisingly, chosen to retain the bulk of the Görlitz program. The left and center wings of the party are incensed by this decision. [? if reformist_c < 50 : The trade unions have been given significant concessions to be convinced of this, further angering the centrists. ?]
+
+@coalition_issue
+
+Max Seydewitz of the left meanwhile has proposed before the conference what would amount to a rejection of coalitions with the bourgeois parties in order to represent the interests of the proletariat in all future struggles without regard to their opinions.
+
+- @seydewitz: The motion is passed by the conference.
+- @silly: The motion is defeated by the conference.
+
+@seydewitz
+choose-if: left_c >= 50 or ((left_c+labor_c >= 50 and not gorlitz_program) or (reformist_c < 50 and seydewitz_advisor and not gorlitz_program and left_c+labor_c >= center_c and president != "Marx" and dvp_relation < 40 and z_relation < 50))
+subtitle: The Left ([+ left_c +]%) [? if left_c < 50 : - though the Leftists lack a majority, the trade unions and dissident centrists may be convinced. ?]
+on-arrival: left_strength += 20; reformist_strength -= 10; reformist_dissent += 25; center_dissent += 10; labor_dissent += ((z_relation+dvp_relation)/10); marx_relation -= 10; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 15; kpd_relation += 10; communist_coalition += 1
+#go-to: saxon_struggle
+
+Surprisingly, the motion to reject cooperation with the bourgeoisie is passed through the conference. The party's right wing is incensed by this decision, with some even threatening revolt.
+
+@silly
+choose-if: left_c < 50
+subtitle: The Center and Right ([+ pragmatic_unity +]%)
+on-arrival: reformist_dissent -= 5; left_dissent += 5
+#go-to: saxon_struggle
+
+As expected, the motion is defeated. The party remains too attached to the Weimar Coalition for such a move to be feasible.
+
+@saxon_struggle
+
+Finally, the last main issue for the conference is what should be done about Saxony, where the SPD has essentially split in half following the decision of Max Heldt to govern with the DVP despite the local party chapter's express refusal.

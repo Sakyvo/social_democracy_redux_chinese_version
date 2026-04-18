@@ -1,0 +1,48 @@
+title: [+ chancellor +]'s Economic Plan
+subtitle: The ruling cabinet takes a staunch pro-business stance
+view-if: year >= 1935 and papen_chancellor_timer <= 0 and (not spd_in_government or spd_toleration) and chancellor_party != "SPD" and chancellor_party != "KPD" and chancellor != "Wirth" and laissez_faire_timer <= 0
+on-arrival: welfare_cut = 1 if welfare >= 2; welfare -= 2 if welfare_cut; budget += 2 if welfare_cut; budget += welfare if not welfare_cut and welfare >= 0; welfare = 0 if not welfare_cut; tax_cut = 1 if budget >= 2 and upper_tax_rates >= 1; budget -= 2 if tax_cut; upper_tax_rates -= 1 if tax_cut; inflation -= 0.4; unemployed += 0.4; economic_growth += 0.5; economic_growth += 0.4 if economic_growth < 2; economic_growth += 0.3 if eu; workers -= 1; old_middle += 1; tariff_hike = 1 if budget <= 0; tariffs += 1 if tariff_hike; inflation += 1 if inflation > 0 and tariff_hike; inflation += 0.5 if inflation <= 0 and tariff_hike; unemployed += 1.5 if tariff_hike; budget += 2 if tariff_hike; west_relation -= 1 if tariff_hike; east_relation -= 1 if tariff_hike; reparations_negotiation -= 2 if tariff_hike; eu_progress -= 1 if eu_progress > 0 and tariff_hike; economic_growth -= 0.4 if tariff_hike;  {! 
+Q.laissez_faire_timer = Math.floor(Math.random() * (14 - 8 + 1)) + 8;
+!}
+new-page: true
+tags: event
+go-to: menu
+# todo: max visits 3, 12 month cooldown
+
+= [+ chancellor +]'s Economic Plan
+
+As the crisis begins to subside worldwide, the [+ chancellor +] cabinet, hoping to stimulate foreign investment to get the economy repaired, have begun rolling back workers' protections, backing employers strongly in labor disputes, cutting welfare, and cutting taxes. Economic growth has marginally increased, but the fruits of this recovery are not being felt in the slightest by the working class.
+
+@menu 
+on-arrival: old_middle_dvp += 5; workers_kpd += 3; unemployed_kpd += 5; new_middle_dvp += 2; old_middle_other += 4
+
+- @bring_down: Bring down this government!
+- @no_choice: We have no choice but to continue toleration.
+- @support_strikes: Support the ADGB in striking against this government.
+- @rally_: Rally against the government!
+
+@bring_down
+view-if: spd_toleration
+on-arrival: time_to_election = 3; spd_toleration = 0; spd_in_government = 0
+call: set_next_election_time
+
+We have called for a vote of no confidence in the Reichstag, bringing down the [+ chancellor +] government. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@no_choice
+view-if: spd_toleration
+on-arrival: workers_spd -= 5; unemployed_spd -= 5; dvp_relation += 2; labor_dissent += 5; left_dissent += 5; reformist_strength += 5
+
+We have no choice but to tolerate these actions for the preservation of democracy.
+
+@support_strikes
+view-if: not unions_independent and not spd_toleration
+subtitle: -1 resource
+choose-if: resources >= 1
+unavailable-subtitle: -1 resource - We can't afford this.
+on-arrival: resources -= 1; workers_spd += 4*(1-dissent); labor_dissent -= 5; labor_strength += 5; unemployed_spd += 4*(1-dissent); workers_z -= 2; 
+
+We provide financial support to the ongoing strikes against the government, intensifying the class conflict that they have initiated and strengthening our relationship with the government.
+
+@rally_
+view-if: not spd_toleration
+go-to: rally.main_rally

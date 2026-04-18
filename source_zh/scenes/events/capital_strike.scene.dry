@@ -1,0 +1,52 @@
+title: Capital Strike
+subtitle: Germany's industries are idling...
+view-if: (capital_strike_progress >= (10+(dvp_relation/100))) and spd_in_government
+new-page: true
+max-visits: 1
+on-arrival: unemployed += 5; weimar_dissent += 2 if weimar_plan_adopted; workers_spd*= 0.7; new_middle_spd -= 15; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 15; unemployed_spd*=0.7; rural_spd -= 15; pro_republic -= 15; capital_strike_seen = 1; z_relation -= 10; dvp_relation -= 10; workers_nsdap += 8 if not capital_nazi; unemployed_nsdap += 10 if not capital_nazi; new_middle_nsdap += 15 if not capital_nazi; old_middle_nsdap += 15 if not capital_nazi ; rral_nsdap += 15 if not capital_nazi; workers_kpd += 4 if capital_nazi; workers_kpd += 2 if capital_nazi and sapd_consolidated == 0; workers_nsdap += 2 if capital_nazi; unemployed_kpd += 7 if capital_nazi; unemployed_nsdap += 2 if capital_nazi; unemployed_dnvp += 1 if capital_nazi; new_middle_kpd += 1 if capital_nazi; new_middle_nsdap += 5 if capital_nazi; new_middle_dnvp += 9 if capital_nazi; old_middle_nsdap += 3 if capital_nazi; old_middle_dnvp += 12 if capital_nazi; rural_dnvp += 15 if capital_nazi; workers_sapd += 2 if sapd_consolidated == 1 and capital_nazi; coalition_dissent += 1; coalition_dissent += 1 if in_grand_coalition; economic_growth -= 4; socialism -= 7
+tags: event
+
+= Capital Strike
+
+Our policies have greatly angered the capitalists. Investment has fallen, and factories are idling, preventing the workers from fulfilling their jobs. Meanwhile, the bourgeois press is a constant chorus of venomous invective directed at us and our economic policies.
+
+What can we do?
+
+- @seize
+- @capital_controls
+- @propaganda
+- @nothing
+
+@seize
+title: Empower workers to seize the factories!
+unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : The bulk of the party does not support this radical action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?] [? if rb_militancy < 0.25 : If we increased the strength of our paramilitary forces, perhaps we could do this. ?] [? if works_councils < 1 : We need the support of the works councils first. ?][? if left_coalition+sapd_r < 50 : The Reichstag is opposed. ?]
+choose-if: left_strength > reformist_strength + neorevisionist_strength and (judicial_reform >= 3 or rb_militancy >= 0.25) and works_councils >= 1 and ((left_coalition+sapd_r >= 50) or (rb_force+rfb_force >= 50))
+on-arrival: nationalization_progress += 1; coup_progress += 6; unemployed -= 2; unemployed -= 1 if works_councils >= 3; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 4; workers_nsdap -= 8*(1-dissent); unemployed_nsdap -= 8*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; factory_takeovers += 1; economic_growth += 2; socialism += 3
+
+If the capitalists are going to attack us, then we must hit them back. We have empowered the workers to seize and take full control of the factories that the capitalists have idled. The fascists, of course, call us thieves and looters.
+
+
+@capital_controls
+title: Enact capital controls to lessen the impact.
+choose-if: judicial_reform >= 2 and (left_coalition+sapd_r >= 50) or (popular_front+sapd_r >= 50 and z_relation >= 60 or (z_party_leader == "Joos" and z_relation >= 40))
+unavailable-subtitle: [? if judicial_reform < 2 : The judiciary would never allow this. ?][? if judicial_reform >= 2 : The Reichstag is opposed. ?]
+on-arrival: unemployed -= 1.5; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); economic_growth += 2;
+
+Capital controls might blunt some of the worst economic components of the capital strike.
+
+
+
+@propaganda
+title: Launch a propaganda campaign blaming the capitalists for the crisis.
+subtitle: -1 resources
+choose-if: (radio >= 2 or commercialized_media >= 3) and resources >= 1
+unavailable-subtitle: [? if radio < 2 and commercialized_media < 3 : We have not built up our media enough. ?] [? if resources < 1: We do not have enough resources. ?]
+on-arrival: workers_spd += 7*(1-dissent); new_middle_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); pro_republic += 5*(1-dissent); resources -= 1; socialism += 5
+
+We launch a counter-propaganda campaign to blame the economic crisis on the capitalists, using all of our media channels to do so. Because of our existing media framework, this is moderately successful in directing popular criticisms towards the capitalists and away from us.
+
+
+@nothing
+title: There is nothing we can do.
+
+There is nothing we can do that is within constitutional and legal bounds.

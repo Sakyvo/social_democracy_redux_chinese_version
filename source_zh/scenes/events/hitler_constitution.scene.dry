@@ -1,0 +1,114 @@
+title: Hitler calls a referendum!
+subtitle: Hitler is attempting to consolidate power…
+view-if: president == "Hitler" and presidential_powers == 1 and sa_banned != 1
+new-page: true
+max-visits: 1
+tags: event
+
+= Constitutional Referendum
+
+With Hitler's election as president he has wasted no time in attempting to consolidate power. His efforts are impeded however thanks to our own changes to the constitution in weakening the powers of the presidency. To bypass this he has called a constitutional referendum on undoing our changes and restoring the presidency's power, and the SA has already mobilized to intimidate voters and attempt to force the referendum through. If this referendum passes, it will mean the end of Germany democracy.
+
+- @mobilize_1: Mobilize the Reichsbanner to try and limit Nazi electoral interference!
+- @mobilize_2: Mobilize the Reichsbanner and Prussian police to try and limit Nazi electoral interference!
+- @campaign: We cannot risk direct confrontation with the SA, we will focus on electoral campaigning for this referendum.
+
+@mobilize_1
+subtitle: This risks escalation.
+unavailable-subtitle: We do not have the forces to resist.
+view-if: spd_prussia != 1
+choose-if: rb_strength*rb_militancy >= 200
+on-arrival: defense_strength = rb_strength*rb_militancy*(1-dissent/2); enemy_strength = sa_strength*sa_militancy
+go-to: prevention_success if defense_strength > enemy_strength and defense_strength - enemy_strength >= 100; prevention_failure if defense_strength < enemy_strength and enemy_strength - defense_strength >= 100; prevention_civil_war if enemy_strength - defense_strength < 100 and enemy_strength - defense_strength > -100
+
+@mobilize_2
+subtitle: This risks escalation.
+view-if: spd_prussia == 1
+on-arrival: defense_strength = rb_strength*rb_militancy*(1-dissent/2); defense_strength += prussian_police_strength*prussian_police_militancy*prussian_police_loyalty; enemy_strength = sa_strength*sa_militancy
+go-to: prevention_success if defense_strength > enemy_strength and defense_strength - enemy_strength >= 100; prevention_failure if defense_strength < enemy_strength and enemy_strength - defense_strength >= 100; prevention_civil_war if enemy_strength - defense_strength < 100 and enemy_strength - defense_strength > -100
+
+@campaign
+on-arrival: enemy_strength = sa_strength*sa_militancy; defense_strength = rb_strength*rb_militancy*(1-dissent/2)
+go-to: hitler_referendum
+
+@prevention_success
+on-arrival: sa_strength -= 50; workers_nsdap -= 2; unemployed_nsdap -= 2; nazi_rage_progress += 2; {!
+Q.nazi_reform = Q.nsdap_normalized + Q.dnvp_normalized + (Q.other_normalized/(Q.pro_republic/100));
+if (Q.dvp_relation < 30) {
+     Q.nazi_reform += Q.dvp_normalized;
+}
+!}
+
+Our forces clash with Hitler's in the streets as the referendum is held, and, shockingly,[? if spd_prussia == 1 : with the help of the Prussian police force, ?] the SA is eventually beaten back allowing the referendum to be held unimpeded. 
+
+- @results_unimpeded: Now the results…
+
+@prevention_failure
+on-arrival: rb_strength -= 50; workers_spd -= 2; unemployed_spd -= 2; {!
+Q.nazi_reform = Q.nsdap_normalized + Q.dnvp_normalized + (Q.other_normalized/(Q.pro_republic/100));
+if (Q.dvp_relation < 30) {
+     Q.nazi_reform += Q.dvp_normalized;
+}
+Q.nazi_reform *= ((Q.enemy_strength*4)/Q.defense_strength)
+!}
+
+Our forces clash with Hitler's and, despite our best efforts, the SA is triumphant. Emboldened by the defeat of the Reichsbanner, the SA ramps up their terror on the streets, making it unlikely that this referendum will be a fair one. 
+
+- @results_rigged: Now the results…
+
+@prevention_civil_war
+on-arrival: spd_rebel = 1
+
+Clashes in the streets between the SA and the Reichsbanner escalate as the Stalhelm enters against our forces under the direction of the Harzburg Front. Communist fighters, emboldened by the chaos, enter the fray as well, and soon any semblance of law and order has collapsed as real control devolves to the clashing paramilitaries. In an attempt to salvage control of the situation Hitler attempts to deploy the Reichswehr and quell the fighting but this has only escalated things further as the ADGB prepares to call a general strike. Whether we want one or not, we have been forced into fighting a civil war.
+
+- @civil_war: It is a civil war.
+
+@results_unimpeded
+
+The election proceeds, with limited electoral interference thanks to our efforts. The results are tallied and Germany holds her breath. [? if nazi_reform >= 0.5 : Despite our successes in ensuring little electoral interference, the referendum succeeds. ?] [? if nazi_reform < 0.5 : Thanks to our efforts in preventing Nazi electoral interference, the referendum fails. Though this is a great victory for democracy, the struggle is not over yet. His recent failures have only frustrated Hitler and he may take much more drastic measures if we continue to impede his efforts of consolidating power. ?]
+
+- @republic_doomed: A grim day for democracy.
+- @republic_safe: A great day for democracy.
+
+@results_rigged
+on-arrival: pro_republic -= 6*(enemy_strength/defense_strength); workers_nsdap += 3*(enemy_strength/defense_strength); unemployed_nsdap += 6*(enemy_strength/defense_strength); new_middle_nsdap += 4*(enemy_strength/defense_strength); old_middle_nsdap += 5*(enemy_strength/defense_strength); rural_nsdap += 5*(enemy_strength/defense_strength); unemployed_kpd -= 8*(enemy_strength/defense_strength); workers_kpd -= 3*(enemy_strength/defense_strength); unemployed_spd -= 4*(enemy_strength/defense_strength); workers_spd -= 2*(enemy_strength/defense_strength)
+  
+The election proceeds under the watchful eye of the SA in the streets, who continue attacks on socialist and communist organizers throughout the voting period and violently disperse attempts to oppose the reform. This reign of terror continues all throughout the voting period and when voting finishes it is [? if nazi_reform >= 0.5 : no surprise for anyone to hear that Hitler's reforms have been approved by a supposed majority of the populace. ?] [? if nazi_reform < 0.5 : a great surprise for everyone when Hitler's reforms are defeated, though barely. ?]
+
+- @judicial_help: Can we get the judiciary to declare the results invalid?
+- @hitler_victorious: What do we do now?
+- @republic_safe: A great day for democracy.
+
+@hitler_referendum
+on-arrival: {!
+Q.nazi_reform = Q.nsdap_normalized + Q.dnvp_normalized + (Q.other_normalized/(Q.pro_republic/100));
+if (Q.dvp_relation < 30) {
+     Q.nazi_reform += Q.dvp_normalized;
+}
+Q.nazi_reform *= (1/(Q.enemy_strength/1000))
+!}
+go-to: @results_rigged
+
+@republic_doomed
+view-if: nazi_reform >= 0.5
+on-arrival: presidential_powers = 0
+go-to: hitler_takes_power
+
+@republic_safe
+view-if: nazi_reform < 0.5
+on-arrival: nazi_rage_progress += 3
+go-to: root
+
+@judicial_help
+view-if: nazi_reform >= 0.5
+choose-if: judicial_reform >= 3
+on-arrival: nazi_rage_progress += 5
+unavailable-subtitle: The judiciary would never agree with us.
+
+We complain to the judiciary that due to the violent interference of the SA the referendum is illegitimate and should be declared such. The judiciary reviews our case and agrees! This has enraged Hitler who begins to consider more radical actions to secure his power.
+
+@hitler_victorious
+view-if: judicial_reform < 3 and nazi_reform >= 0.5
+subtitle: The beginning of the end.
+on-arrival: presidential_powers = 0
+go-to: hitler_takes_power

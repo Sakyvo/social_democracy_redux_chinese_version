@@ -1,0 +1,13 @@
+title: The Bavarian...Workers' Party?
+subtitle: The Bavarians adjust to the new political climate.
+tags: event
+view-if: supreme_soviet and not z_banned
+max-visits: 1
+new-page: true
+on-arrival: bvp_name = "BAP"
+
+= The Bavarian Workers' Party
+
+With the transformation of Germany into a council republic with delegates elected by workers' councils, the Bavarian People's Party has undergone a significant shift, as, relying on the new workers' councils scattered throughout Bavaria to maintain relevance, their labor wing has overtaken the party.
+
+Adjusting to the new climate, they have become the **Bavarian Workers' Party**, ensuring that they will continue to win roughly 3% in every election, now from the workers' councils of the state.

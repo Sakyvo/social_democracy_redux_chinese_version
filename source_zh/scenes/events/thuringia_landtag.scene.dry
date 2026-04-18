@@ -1,0 +1,421 @@
+title: Thuringian Landtag Elections
+new-page: true
+tags: event
+priority: -1
+view-if: landtags_enabled and ((year = thuringia_election_year and month >= thuringia_election_month) or (year > thuringia_election_year)) and not supreme_soviet
+on-arrival: nazi_thuringia = 0; red_thuringia = 0; dvp_willing = 0; dvp_willing = 1 if ((dvp_relation+spd_votes+(pro_republic/6)) >= ((100-pro_republic)+capital_strike_progress+(coup_progress/2))); z_willing = 0; z_willing = 1 if z_relation >= 50 or (z_relation >= 25 and bourgeois_coalition < 50)
+on-departure: in_election = 0; thuringia_election_year += 4; thuringia_election_month -= 1; thuringia_election_year -= 1 if thuringia_election_month < 1; thuringia_election_month += 12 if thuringia_election_month < 1; t_elections += 1; thuringia_election_time = time + 47;
+set-jump: thuringia_election_1928
+
+# the low priority means that this event is only seen after all other events are resolved for the month.
+# note: z_coalition = z_tlelation + (pro_republic/2); z_coalition *= 1.25 if z_party_leader == "Joos";
+
+= Thuringian Elections, [+ month : month +] [+ year +]
+
+The Thuringian elections are to be held now.
+
+- @election_algorithm: May we do our best...
+
+@thuringia_election_1928
+on-arrival: {!
+var total_thuringia = 0;
+console.log("Starting normalization of thuringian votes...");
+// normalize thuringian votes
+for (var party of Q.parties) {
+    Q[party+'_votes_thuringia'] = 0;
+    console.log(`Processing party: ${party}`);
+    
+    for (var c of Q.classes) {
+        let votes = Q['thuringia_'+c] * Q[c+'_'+party+'_normalized'] * Q['thuringia_'+party];
+        Q[party+'_votes_thuringia'] += votes;
+        total_thuringia += votes;
+
+        console.log(`  Class: ${c}, Votes: ${votes}, Cumulative Total: ${Q[party+'_votes_thuringia']}`);
+    }
+}
+for (var party of Q.parties) {
+    Q[party+'_votes_thuringia'] = Math.round((Q[party+'_votes_thuringia'] / total_thuringia) * 100);
+    console.log(`Final percentage for ${party}: ${Q[party+'_votes_thuringia']}%`);
+}
+console.log("Normalization comblete. Total thuringian votes:", total_thuringia);
+
+
+// set old results
+// election threshold constitutional reform
+Q.thuringia_threshold = 2;
+// banning parties
+var new_party_sum = 0;
+for (var party of Q.parties) {
+    Q['old_' + party + '_tl'] = Q[party + '_tl'];
+    if (Q.constitutional_reform > 0 || Q.thuringia_threshold) {
+        if (Q[party + '_votes_thuringia'] < Q.thuringia_threshold || (Q[party + '_banned'] == 1)) {
+            Q[party + '_tl'] = 0;
+        } else {
+            Q[party + '_tl'] = Q[party + '_votes_thuringia'];
+        }
+        new_party_sum += Q[party + '_tl'];
+    } else {
+        Q[party + '_tl'] = Q[party + '_votes_thuringia'];
+    }
+        // if we use decimals, then we might want to truncate the numbers
+    if (Q.use_decimals) {
+        Q[party + '_tl_disp'] = Q[party+'_tl'].toFixed(1);
+    }  else {
+            Q[party + '_tl_disp'] = Q[party+'_tl'];
+    }
+    Q['change_' + party + '_tl'] = Q[party + '_tl'] - Q['old_' + party + '_tl'];
+    var sign = Q['change_' + party + '_tl'] > 0 ? '+'  : '';
+    Q['sttl_change_' + party] = sign + Q['change_' + party + '_tl'];//.toFixed(1);
+}
+// calculate new party sum if electoral reform
+if (Q.thuringia_threshold && Q.thuringia_threshold > 0 || Q.party_bans) {
+    for (var party of Q.parties) {
+        if (Q[party + '_tl'] > 0) {
+            if (Q.use_decimals) {
+                Q[party + '_tl'] = Math.round(Q[party + '_tl']*1000/new_party_sum)/10;
+            } else {
+                Q[party + '_tl'] = Math.round(Q[party + '_tl']*100/new_party_sum);
+            }
+        }
+        if (Q.use_decimals) {
+            Q[party + '_tl_disp'] = Q[party+'_tl'].toFixed(1);
+        } else {
+            Q[party + '_tl_disp'] = Q[party+'_tl'];
+        }
+        Q['change_' + party + '_tl'] = Q[party + '_tl'] - Q['old_' + party + '_tl'];
+        var sign = Q['change_' + party + '_tl'] > 0 ? '+'  : '';
+        Q['sttl_change_' + party] = sign + Q['change_' + party + '_tl'];//.toFixed(1);
+    }
+}
+
+// get change arrows and signs
+
+
+// The largest party can only be the NSDAP or the SPD.
+Q.largest_party = 'SPD';
+if (Q.nsdap_tl >= Q.spd_tl && Q.nsdap_tl >= Q.kpd_tl) {
+    Q.largest_party = 'NSDAP';
+}
+
+if (Q.kpd_tl >= Q.spd_tl && Q.kpd_tl >= Q.nsdap_tl) {
+    Q.largest_party = 'KPD';
+}
+// coalitions
+Q.t_weimar_coalition = Q.spd_tl + Q.ddp_tl + Q.z_tl;
+Q.t_grand_coalition = Q.spd_tl + Q.ddp_tl + Q.z_tl + Q.dvp_tl;
+Q.t_bourgeois_coalition = Q.dvp_tl + Q.dnvp_tl + Q.other_tl;
+Q.frick_coalition = Q.nsdap_tl + Q.dvp_tl + Q.dnvp_tl + Q.other_tl;
+Q.t_center_right_coalition = Q.z_tl + Q.ddp_tl + Q.dvp_tl + Q.other_tl + Q.dnvp_tl;
+Q.t_right_coalition = Q.z_tl + Q.dvp_tl + Q.other_tl + Q.dnvp_tl;
+Q.t_far_right_coalition = Q.dnvp_tl + Q.nsdap_tl;
+Q.t_left_coalition = Q.spd_tl + Q.kpd_tl;
+// this is an absurd concept lol
+Q.t_popular_front_coalition = Q.spd_tl + Q.kpd_tl + Q.ddp_tl;
+Q.t_anti_democratic_coalition = Q.kpd_tl + Q.nsdap_tl + Q.dnvp_tl;
+// aka everyone except nazi, kpd, dnvp
+Q.t_neo_weimar_coalition = Q.spd_tl + Q.ddp_tl + Q.z_tl + Q.dvp_tl + Q.other_tl;
+// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
+Q.t_other_nazi = Math.round(Q.other_tl*(1-(Q.pro_republic/100)));
+Q.t_hitler_right_coalition = Q.z_tl + Q.dnvp_tl + Q.nsdap_tl + Q.dvp_tl + Q.other_nazi;
+// Progressive coalition isn't going to be imblemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
+Q.t_progressive_coalition = Q.spd_tl + Q.sapd_tl + Q.kpd_tl + Q.ddp_tl;
+// nationaal front
+Q.t_national_front_tl = Q.nsdap_tl + Q.dnvp_tl + Q.dvp_tl + Q.other_tl;
+if (Q.z_national) {
+    Q.t_national_front_tl += Q.z_tl;
+}
+!}
+on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_tl >= 15)
+on-display: {!
+if (Q.sapd_formed == 1) {
+    data = [
+        {    "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_tl*0.6),
+        },
+        {
+            "id": "sapd",
+            "legend": "SAPD",
+            "name": "SAPD",
+            "seats": Math.round(Q.sapd_tl*0.6),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_tl*0.6),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_tl*0.6),
+        },
+        {
+            "id": "z",
+            "legend": "Z",
+            "name": "Z",
+            "seats": Math.round(Q.z_tl*0.6),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_tl*0.6),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_tl*0.6),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_tl*0.6),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_tl*0.6),
+        },
+    ];
+}
+else {
+    data = [
+        {   "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_tl*0.6),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_tl*0.6),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_tl*0.6),
+        },
+        {
+            "id": "z",
+            "legend": "Z",
+            "name": "Z",
+            "seats": Math.round(Q.z_tl*0.6),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_tl*0.6),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_tl*0.6),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_tl*0.6),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_tl*0.6),
+        },
+    ];
+}
+if (window && d3) {
+    var width = 500; 
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50; 
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    } 
+
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+}
+!}
+go-to: coalition_menu
+
+= Election results
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!} 
+{!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_tl +]%** {!</td><td>!} **[+ sttl_change_spd +]** {!</td></tr>!}
+
+[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_tl +]% {!</td><td>!} [+ sttl_change_sapd +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_tl +]% {!</td><td>!} [+ sttl_change_kpd +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_tl +]% {!</td><td>!} [+ sttl_change_ddp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z [? if dr_exists : (Unity List) ?]: {!</td><td>!} [+ z_tl +]% {!</td><td>!} [+ sttl_change_z +] {!</td></tr>!}
+ 
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_tl +] % {!</td><td>!} [+ sttl_change_other +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP [? if dr_exists : (Unity List) ?]: {!</td><td>!} [+ dvp_tl +]% {!</td><td>!} [+ sttl_change_dvp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP [? if dr_exists : (Unity List) ?]: {!</td><td>!} [+ dnvp_tl +]% {!</td><td>!} [+ sttl_change_dnvp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_tl +]% {!</td><td>!} [+ sttl_change_nsdap +] {!</td></tr>!}
+{!</table>!}
+
+**Potential coalitions:**
+
+Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ t_weimar_coalition +]%
+
+Grand Coalition (SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP): [+ t_grand_coalition +]%
+
+Bourgeois Coalition (Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others): [+ t_bourgeois_coalition +]%
+
+Right-wing Coalition (Z + [+ bvp_name +] + DVP + Others + DNVP): [+ t_right_coalition +]%
+
+[? if nazi_urgency <= 1 and nsdap_tl >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
+
+[? if t_anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
+
+[? if dr_exists : Thuringia's local DVP and DNVP branches currently run on a joint list, in the past the "Order League" but now the "Unity List", which has the backing of many reactionaries in the state and includes the minor Center Party. ?]
+
+There are some potential coalition arrangements.
+
+@coalition_menu
+
+- @bourgeois_coalition
+- @evil_coalition
+- @left_coalition
+- @spd_majority
+- @no_majority_thuringia
+- @nsdap_majority
+
+@bourgeois_coalition
+title: A right-wing bourgeois coalition.
+subtitle: DVP + DNVP + Others ([+ t_bourgeois_coalition +]%)
+view-if: t_bourgeois_coalition >= 50 or t_elections <= 1
+choose-if: t_bourgeois_coalition >= 50 or (t_elections <= 0 and t_bourgeois_coalition+ddp_tl+nsdap_tl >= 50)
+unavailable-subtitle: DVP + DNVP + Others ([+ t_bourgeois_coalition +]%) - The bourgeois have fallen short of a majority.
+
+The incumbent bourgeois coalition is able to survive[? if t_bourgeois_coalition >= 50 : , thankfully, without Nazi toleration. ?][? if t_bourgeois_coalition < 50 : , though only with the toleration of the Nazi Party is it able to do so. ?]
+
+@evil_coalition
+title: A reactionary coalition, extended to include the NSDAP.
+subtitle: DVP + DNVP + NSDAP + Others ([+ frick_coalition +]%)
+view-if: frick_coalition >= 50 and t_bourgeois_coalition < 50
+choose-if: dvp_relation < 60 or t_anti_democratic_coalition >= 50
+unavailable-subtitle: Thankfully, the DVP does not see the need to include Nazis in government.
+on-arrival: nazi_thuringia = 1; thuringia_nazi_times += 1; new_middle_nsdap += 2; old_middle_nsdap += 2; unemployed_nsdap += 2
+
+The bourgeois parties of Thuringia deeply distrust us, as the regional SPD branch has always been particularly left-leaning. As a result, they have refused to even accept the idea of toleration from us, and instead include the NSDAP in government to secure a majority.
+
+[? if thuringia_nazi_times <= 1 : Immediately, with control over the interior, the Nazis begin to consolidate power within the state as socialists and democrats are persecuted. ?]
+
+@left_coalition
+title: Is a "United Front" possible?
+subtitle: KPD + SPD ([+ t_left_coalition +]%)
+view-if: t_left_coalition >= 50
+choose-if: kpd_relation >= 45 and communist_coalition >= 2
+unavailable-subtitle: The KPD doesn't trust us enough.
+on-arrival: thuringia_kpd += 0.2 if thuringia_kpd < 1.5; coup_progress += 2; capital_strike_progress += 2; red_thuringia = 1; thuringia_nsdap -= 0.1 if thuringia_nsdap >= 0.7; workers_spd += 4*(1-dissent); unemployed_spd += 3*(1-dissent)
+
+Together with the KPD, we have won a majority. The bourgeois parties are up in arms at the prospect of a return to socialist Thuringia, and scramble to oppose the government.
+
+@spd_majority
+title: The SPD may govern alone.
+subtitle: SPD ([+ spd_tl +]%)
+view-if: spd_tl >= 50
+on-arrival: thuringia_spd -= 0.1; workers_spd += 3*(1-dissent); unemployed_spd += 3*(1-dissent)
+
+We have won a majority in Thuringia alone.
+
+@no_majority_thuringia
+view-if: (nsdap_tl < 50) and (t_left_coalition < 50 or kpd_relation < 45 or communist_coalition < 2) and (frick_coalition < 50 or dvp_relation >= 60) and (t_bourgeois_coalition < 50 and (t_elections > 0 or t_bourgeois_coalition+ddp_tl+nsdap_tl < 50))
+title: There is no clear majority.
+
+There is no clear majority in the Landtag. As Thuringia does not operate on constructive VONCs, something must be done to prevent new elections.
+
+- @out_of_our_hands: This is out of our hands.
+
+@out_of_our_hands
+
+Ultimately, the decision is up to the regional SPD branch, though we can guide them.
+
+- @and: And the Thuringian SPD decides...
+
+@and
+go-to: hung_landtag if kpd_thuringia_warmed and t_popular_front_coalition >= 50; new_elections_thuringia if t_neo_weimar_coalition < 50; refused_toleration if t_neo_weimar_coalition >= 50 and left_strength >= 25; accepted_toleration if t_neo_weimar_coalition >= 50 and left_strength < 25
+
+@new_elections_thuringia
+on-arrival: thuringia_election_month = month+5; thuringia_election_year = year; thuringia_election_year += 1 if thuringia_election_month > 12; thuringia_election_month -= 12 if thuringia_election_month > 12; thuringia_dvp -= 0.1 if thuringia_dvp >= 0.3; thuringia_other -= 0.25 if thuringia_other >= 0.7; thuringia_ddp -= 0.1 if thuringia_ddp >= 0.5; thuringia_nsdap += 0.1 if thuringia_nsdap < 1.4; thuringia_kpd += 0.05 if thuringia_kpd < 1.1
+go-to: kpd_did_this if t_left_coalition >= 50
+
+It turns out that it is not only out of our hands but the Thuringian SPD's as well. New elections are called, as there is no viable majority.
+
+@kpd_did_this
+on-arrival: kpd_thuringia_warmed = 1; thuringia_kpd -= 0.3; thuringia_spd += 0.3
+
+The KPD's vote alongside the Nazis to dissolve the Landtag seems to have backfired, and many of their voters in the state turn to us instead.
+
+@hung_landtag
+
+Though there is no majority in favor of any government, the KPD has reversed course due to their poor performance from turning against us and allow in effect a Social Democratic minority government in the state. This is an unstable arrangement.
+
+@refused_toleration
+on-arrival: dvp_relation -= 5; reformist_dissent += 5; center_dissent += 2; thuringia_election_month += 5; thuringia_election_year += 1 if thuringia_election_month > 12; thuringia_election_month -= 12 if thuringia_election_month > 12; thuringia_dvp -= 0.1 if thuringia_dvp >= 0.5; thuringia_other -= 0.25 if thuringia_other >= 0.9; thuringia_ddp -= 0.1 if thuringia_ddp >= 0.7; thuringia_nsdap += 0.1 if thuringia_nsdap < 1.3; thuringia_spd -= 0.1 if thuringia_spd >= 0.8;
+go-to: toleration_p2 if frick_coalition < 50; evil_coalition if frick_coalition >= 50
+set-jump: thingamajig
+
+The Thuringian SPD, heavily influenced by our party's left-wing, refuses to tolerate a bourgeois government.
+
+@toleration_p2
+on-arrival: thuringia_election_month = month+5; thuringia_election_year = year; thuringia_election_year += 1 if thuringia_election_month > 12; thuringia_election_month -= 12 if thuringia_election_month > 12; thuringia_dvp -= 0.1 if thuringia_dvp >= 0.5; thuringia_other -= 0.25 if thuringia_other >= 0.9; thuringia_ddp -= 0.1 if thuringia_ddp >= 0.7; thuringia_nsdap += 0.1 if thuringia_nsdap < 1.3; thuringia_spd -= 0.1 if thuringia_spd >= 0.8;
+
+New elections are called.
+
+@thingamajig
+
+- @based: The Thuringian SPD did the right thing.
+- @cringe: The Thuringian SPD made a mistake.
+
+@based
+on-arrival: left_strength += 5; left_dissent -= 10; reformist_dissent += 5; center_dissent += 5
+
+We take the Thuringian SPD's side, upsetting the reformists and centrists.
+
+@cringe
+on-arrival: left_dissent += 10; left_strength -= 5; reformist_dissent -= 10; center_dissent -= 5
+
+We oppose this anti-toleration stance the Thuringian SPD has taken, assuaging the concerns of our reformists but upsetting the left.
+
+## TODO: nazi government collapses in april 1931, similar thing where SPD decides whether to tolerate or not based on internal politics rather than direct influence
+## TODO: add post_event changes to thuringia_other thuringia_nsdap etc both on their own and from nazi_thuringia
+
+@accepted_toleration
+on-arrival: thuringeration_timer = 10-(left_strength/10); thuringia_kpd += 0.05 if thuringia_kpd < 1.1; thuringia_spd -= 0.05 if thuringia_spd >= 1; thuringia_toleration = 1; left_dissent += 5; reformist_strength += 5
+
+The Thuringian SPD, following the direction of the party away from the left, has decided to tolerate the bourgeois parties in order to prevent the entry of Nazis into government.
+
+@nsdap_majority
+title: NSDAP majority
+subtitle: NSDAP ([+ nsdap_tl +]%)
+view-if: nsdap_tl >= 50
+on-arrival: workers_nsdap += 2; old_middle_nsdap += 6; unemployed_nsdap += 4; new_middle_nsdap += 3; rural_nsdap += 2; thuringia_nsdap += 0.25; nazi_thuringia = 1
+
+The Nazis have won a majority in Thuringia. They immediately begin persecution of left-wing forces in the state.

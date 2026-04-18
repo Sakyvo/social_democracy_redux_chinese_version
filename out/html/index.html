@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta prefix="ifiction: http://babel.ifarchive.org/protocol/iFiction/"
         property="ifiction:ifid" content="7FCDF039-2B77-4179-B795-CBAFA65253AA">
-    <title>Social Democracy: An Alternate History - Autumn Chen</title>
+    <title>社会民主主义：架空历史 - Autumn Chen</title>
     <link rel="stylesheet" type="text/css" href="game.css">
     <script src="jquery-1.11.1.min.js"></script>
     <script src="d3.v7.min.js"></script>
     <script src="d3-parliament.js"></script>
     <script src="d3-linegraph.js"></script>
     <script src="core.js"></script>
-    <script src="game.js"></script>
+    <script src="i18n.js"></script>
+    <script>
+      // 根据 i18n.js 选定的语言动态加载对应的 game 脚本
+      (function(){
+        var s = document.createElement('script');
+        s.src = window.SDAH_GAME_SCRIPT || 'game.js';
+        document.head.appendChild(s);
+      })();
+    </script>
   </head>
   <body>
     <div class="background" id="bg2">
@@ -80,8 +88,28 @@
                 </tr>
 
                 <tr>
+                    <td> <hr> </td>
+                </tr>
+                <tr>
                     <td>
-                        <button onclick="window.hideOptions();">Close</button>
+                        <label for="lang_zh_radio">中文</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="lang_zh_radio" name="sdah_lang" value="zh" onclick="window.setLanguage('zh');">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="lang_en_radio">English</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="lang_en_radio" name="sdah_lang" value="en" onclick="window.setLanguage('en');">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button id="sdah-close-options" onclick="window.hideOptions();">Close</button>
                     </td>
                 </tr>
             </table>
@@ -116,7 +144,7 @@
                     <button class="b export_button" id="export_button_a1">Export</button>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>0</td>
                 <td>
@@ -225,10 +253,10 @@
                 <td colspan="5">
                     <label for="import_save">Import save file:</label> <input type="file" id="import_save" onchange="dendryUI.importSave('import_save');"></input>
                 </td>
-            </tr> 
+            </tr>
             <tr>
                 <td>
-                    <button onclick="dendryUI.hideSaveSlots();">Close</button>
+                    <button id="sdah-close-saves" onclick="dendryUI.hideSaveSlots();">Close</button>
                 </td>
             </tr>
         </table>
@@ -246,13 +274,13 @@
     <div id='page'>
         <div id="mid_panel">
             <header>
-                <h1>Social Democracy: An Alternate History</h1>
-                <h2>Autumn Chen</h2>
+                <h1 id="sdah-header-title">Social Democracy: An Alternate History</h1>
+                <h2 id="sdah-header-author">Autumn Chen</h2>
 
                 <div id="header-links">
                     <a id="stats-link" onclick="window.showStats();" href="#">Library</a>
-                    <a onclick="dendryUI.showSaveSlots();" href="#">Save/Load</a>
-                    <a onclick="window.showOptions();" href="#">Options</a>
+                    <a id="sdah-save-link" onclick="dendryUI.showSaveSlots();" href="#">Save/Load</a>
+                    <a id="sdah-options-link" onclick="window.showOptions();" href="#">Options</a>
                 </div>
             </header>
             <div id="tools_wrapper">

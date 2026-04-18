@@ -1,0 +1,20 @@
+title: The Locarno Pact
+subtitle: Stresemann presents before the Reichstag several treaties
+view-if: year == 1925 and month >= 11
+new-page: true
+on-arrival: locarno_seen = 1; west_relation += 1
+max-visits: 1
+tags: event
+
+= The Locarno Pact
+
+Following negotiations with the powers of the former Entente, Stresemann has presented before the Reichstag the Locarno Treaties, or, collectively, the Locarno Pact. The treaties pledge for peaceful resolutions of disputes and pave the way for German entry into the League of Nations.
+
+Though this seems to be a positive development, the DNVP has turned against the government of Luther in protest of their signing, leaving the government without a majority.
+
+- @resign: The government has resigned, and negotiations for a new one begin.
+
+@resign
+on-arrival: dnvp_in_government = 0; in_right_coalition = 0; nationalism -= 2; new_middle_dnvp -= 3; old_middle_dnvp -= 2; rural_dnvp -= 2; new_middle_other += 2; old_middle_other += 2; rural_other += 2
+
+The government of Luther has fallen. [+ president +] is likely to soon announce a replacement. In the meantime, it continues in caretaker capacity.

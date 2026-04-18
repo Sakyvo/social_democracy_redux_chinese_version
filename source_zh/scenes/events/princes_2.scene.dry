@@ -1,0 +1,68 @@
+title: Expropriation of the Princes
+subtitle: [? if princes_initiated: Campaigning for the referendum begins. ?] The Luther cabinet attempts to propose to us a compromise
+view-if: time = compromise_time and year == 1926 and not spd_in_government
+tags: event
+max-visits: 1
+new-page: true
+
+= Expropriation of the Princes
+
+As the date for the petition on the expropriation of the princes draws nearer, the Luther cabinet has proposed a compromise bill of its own, through which it hopes to resolve the issue without the need for such a direct confrontation in the form of a referendum.
+
+This law would create a special court, which would settle the disputes between princely houses and state governments. It is markedly worse than the DDP's suggestion of last year, but it seems to be the most that the Luther Cabinet is willing to concede.
+
+- @ddp_proposal: Pressure the Luther cabinet into backing the DDP's proposal.
+- @accept_luther: Accept the compromise, lackluster though it may be.
+- @referendum_ftw: We will vote against the compromise, and go ahead with the referendum.
+- @whoops: We will vote against the compromise.
+
+@ddp_proposal
+choose-if: ((dvp_relation+spd_votes+kpd_votes+socialism) >= 150) or (marx_relation >= 50 and president == "Marx" and (dvp_relation+marx_relation+spd_votes+kpd_votes+socialism) >= 180)
+unavailable-subtitle: The parties of the center-right view it as too radical
+on-arrival: dvp_relation -= 5; rural_spd += 4*(1-dissent); workers_kpd -= 2*(1-dissent); workers_spd += 2*(1-dissent); princes_initiated = 0; kpd_relation -= 5
+
+We have managed to pressure the bourgeois parties into backing the DDP's proposal from last year. With this, we are able to justify non-participation in the referendum, though the KPD attack us anyway. 
+
+@accept_luther
+choose-if: reformist_strength > left_strength+labor_strength+center_strength or (reformist_strength > left_strength+labor_strength and not princes_initiated)
+unavailable-subtitle: The party is by far opposed to the bill in question
+on-arrival: left_dissent += 5; kpd_relation -= 10; workers_kpd += 4; workers_spd -= 4; unemployed_kpd += 4; unemployed_spd -= 4; princes_initiated = 0; dvp_relation += 5; z_relation += 5; marx_relation += 5
+
+We have managed to convince our own party into backing the compromise proposed by Luther's cabinet. The left is furious, and many will be voting alongside the KPD anyway.
+
+@referendum_ftw
+on-arrival: marx_relation -= 3
+view-if: princes_initiated
+
+This compromise is utterly unacceptable. Instead, we will go ahead with the referendum for the expropriation of the princes. On that matter, a decision must be made on how the campaign should be conducted.
+
+- @spd_only: The SPD will campaign for the referendum on its own.
+- @united_front: The SPD and KPD must campaign together as a united front.
+
+@whoops
+view-if: not princes_initiated
+
+None of these compromises are acceptable. With no possibility of resolving the matter within the Reichstag, many call for us to still join in the referendum, late though we may be.
+
+- @join_referendum: The SPD will join in the communist initiative.
+- @delulu: The KPD stands alone in this referendum.
+
+@spd_only
+on-arrival: workers_spd += 3*(1-dissent); workers_kpd -= 1; unemployed_spd += 2*(1-dissent); unemployed_kpd -= 1; rural_spd += 2*(1-dissent); z_relation += 3; ddp_relation += 3; dvp_relation += 1
+
+Let there be no mistake that our support for this referendum signals a united front with the KPD. We shall agitate for the bill always separately from the KPD, and carry out our campaigns independently.
+
+@united_front
+on-arrival: princes_bonus += 3; kpd_relation += 10; marx_relation -= 4; reformist_dissent += 10; workers_spd += 2*(1-dissent); workers_kpd += 2; unemployed_spd += 1*(1-dissent); unemployed_kpd += 3; rural_spd += 2*(1-dissent); socialism += 4; z_relation -= 4; ddp_relation -= 3; dvp_relation -= 5
+
+This referendum shall only succeed through the joint mobilization of the proletariat by the SPD and the KPD together. We cannot hope to win if we do not campaign alongside the KPD.
+
+@join_referendum
+on-arrival: princes_initiated = 1; workers_spd += 1*(1-dissent); rural_spd += 1*(1-dissent); marx_relation -= 2; z_relation -= 2; ddp_relation -= 2; dvp_relation -= 3; left_dissent += 5; reformist_dissent += 5
+
+Though there is no way we could directly back the communist suggestion, the ADGB has mediated a bill that both parties are able to agree on after much indecision on our part. The indecision hurts our party's credibility, and leaves both the left and right feeling unsatisfied. Meanwhile, our campaigning for the referendum is carried out separately from the KPD's, so as to not give the impression of a true united front.
+
+@delulu
+on-arrival: workers_kpd += 2; workers_spd -= 2; unemployed_spd -= 3; unemployed_kpd += 3; left_dissent += 10; marx_relation += 5
+
+Despite the continuing pressure, we continue to refuse to join the referendum initiative. Let's hope the consistency and cooperation with bourgeois parties will be worth the inevitable bleed in support towards the communist party.

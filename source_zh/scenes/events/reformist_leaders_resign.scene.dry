@@ -1,0 +1,22 @@
+title: Reformist leaders resign
+new-page: true 
+subtitle: Reformist disagreements with our policies have grown too severe.
+tags: event
+view-if: reformist_dissent >= 60
+on-arrival: reformist_strength *= 0.3; workers_spd -= 10; workers_others += 5; n_advisors -= 1 if braun_advisor == 1; n_advisors -= 1 if severing_advisor == 1; braun_advisor = 0; severing_advisor = 0; rb_strength -= 250; reformists_resign = 1; prussian_police_loyalty -= 0.05 if spd_prussia; socialism -= 3
+go-to: braun_resign_steg if p_weimar_coalition >= 50 and spd_prussia; braun_resign_elec if spd_prussia and p_weimar_coalition < 50
+max-visits: 1
+
+= Reformist leaders resign
+
+Our policy choices have greatly offended the reformist faction. Many of our most experienced leaders have resigned.
+
+@braun_resign_steg
+on-arrival: spd_prussia = 0; z_prussia = 1
+
+Otto Braun, as Minister-President of Prussia, has resigned. His replacement is Adam Stegerwald, voted in by a majority of the Landtag.
+
+@braun_resign_elec
+on-arrival: prussia_election_month = month+3 if ((month+3 < prussia_election_month) or prussia_election_year < year); prussia_election_year = year; prussia_election_year += 1 if prussia_election_month > 12; prussia_election_month -= 12 if prussia_election_month > 12
+
+Otto Braun, as Minister-President of Prussia, has resigned. With no clear majority to replace him, he has dissolved the Landtag for elections.

@@ -1,0 +1,24 @@
+title: Brüning's government falls
+subtitle: The "Economic Party" has turned on Brüning
+new-page: true
+view-if: what_the_hell = 1 and in_bourgeois_coalition = 1 and ((year = 1930 and month >= 12) or (year >= 1931)) and not constructive_vonc and president == "Hindenburg"
+tags: event
+max-visits: 1
+
+= Brüning's government falls
+
+Despite winning a majority through defections from the DNVP, Brüning's austerity measures have still alienated many minor middle class and special interest parties, most prominently the Economic Party which has now turned on him, calling a vote of no confidence.
+
+- @vote_against: Vote for the motion of no confidence, and for new elections.
+- @vote_for: Vote against the motion of no confidence, effectively providing toleration.
+
+@vote_against
+on-arrival: time_to_election = 3; what_the_hell = 0; in_bourgeois_coalition = 0
+call: set_next_election_time
+
+With our continued opposition, the motion of no confidence succeeds, and new elections are called for [+ next_election_month : month +] [+ next_election_year +].
+
+@vote_for
+on-arrival: spd_toleration = 1; what_the_hell = 0; in_bourgeois_coalition = 0; left_dissent += 10; labor_dissent += 5; workers_spd -= 3; unemployed_spd -= 5
+
+We reason that the Nazi growth in local elections is reason to avoid new elections, which may see them grow significantly. The party's left and labor wings are dissatisfied with our arguments, reminding us of the betrayal of the bourgeois parties prior.

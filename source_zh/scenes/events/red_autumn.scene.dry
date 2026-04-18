@@ -1,0 +1,72 @@
+title: Red Autumn
+subtitle: The communists attempt to rally the workers
+view-if: schleichers_scheme_success and year >= 1933 and month >= 10 and month < 12
+on-arrival: rfb_militancy += 0.05; rfb_strength += 200; sa_strength -= 50; rb_strength -= 150; workers_kpd += 5; unemployed_nsdap -= 3; unemployed_kpd += 3; strife += 1; old_middle_nsdap -= 3; rural_nsdap -= 3; new_middle_nsdap -= 2; old_middle_dnvp -= 2; rural_dnvp -= 2; old_middle_dne += 5; rural_dne += 5; new_middle_dne += 4;
+tags: event
+max-visits: 1
+new-page: true
+
+= Red Autumn
+
+As the Nazis collapsed in on themselves and we aided in Schleicher’s unconstitutional moves towards holding on to power, the Communists have filled the growing void of opposition towards Schleicher as best they can, mobilizing radicals into the RFB and organizing in workplaces against what they allege to be fascist dictatorship. Though their message is blunted by the ongoing public works program and the complacency of the trade unions, they have managed to monopolize the antifascist vote and even, though in a lesser sense, breached into the republican vote.
+
+Schleicher has used this supposed threat of communist revolution to justify more emergency measures of suspending press freedoms and the like, further enflaming tensions with the communists.
+
+- @reichstag_fire_schleicher: And…
+
+@reichstag_fire_schleicher
+view-if: strife >= 12
+subtitle: The Reichstag has been burned down!
+
+The Reichstag has been burned to the ground by a foreign communist. [+ president +] signs the **Decree of the Reich President for the Protection of People and State**, or **Reichstag Fire Decree** suspending essential civil liberties under the pretext of preventing communist revolution. 
+
+This decree gives [+ chancellor +] wide-ranging powers with which to suppress the communists and arrest their leaders in the leadup to the [+ next_election_month : month +] election. Despite its blatantly dictatorial nature, there is not much we can do about it.
+
+- @fight: Except fight, before it is too late.
+- @lib: We will have to hope for the best.
+
+@fight
+on-arrival: spd_rebel = 1; kpd_relation += 10; rb_strength *= 0.8; rfb_strength += 100; workers_spd -= 10; workers_dne += 10
+go-to: civil_war
+
+We mobilize what's left of the Reichsbanner and ADGB to resist this blatant crackdown  However, the ADGB refuses to follow along. [? if kpd_party_leader != "Conciliators" : The KPD, seeing its leaders jailed, is more inclined to join us in our final fight against fascism, but will it be enough? ?]
+
+@lib
+on-arrival: {!
+Q.rb_militancy = 0;
+Q.rb_banned = 1; 
+Q.rb_strength -= 250; 
+Q.rfb_banned = 1; 
+Q.rfb_militancy -= 0.1; 
+Q.workers_kpd -= 6;
+Q.workers_dne += 6;
+Q.new_middle_dne += 10;
+Q.old_middle_dne += 10;
+Q.unemployed_dne += 8;
+Q.unemployed_kpd -= 8;
+Q.catholics_dne += 5;
+Q.catholics_spd -= 8;
+Q.catholics -= 1;
+Q.workers -= 2;
+Q.new_middle_dvp -= 3;
+Q.old_middle_dvp -= 3;
+Q.rural_dvp -= 3;
+Q.catholics_dvp -= 1;
+Q.new_middle_other -= 2;
+Q.old_middle_other -= 2;
+Q.rural_other -= 2;
+Q.rural_dnvp -= 1;
+Q.new_middle_dnvp -= 1;
+Q.old_middle_dnvp -= 1;
+Q.new_middle_spd -= 1;
+Q.old_middle_spd -= 1;
+Q.rural_spd -= 3;
+if (Q.peoples_party || Q.spd_votes >= 30) {
+    Q.new_middle_spd -= 8;
+    Q.old_middle_spd -= 10;
+    Q.rural_spd -= 10;
+    Q.catholics_spd -= 6;
+} 
+!}
+
+What can we do? With Prussia gone, there is no way we can resist by force. Besides, perhaps the threat is real.

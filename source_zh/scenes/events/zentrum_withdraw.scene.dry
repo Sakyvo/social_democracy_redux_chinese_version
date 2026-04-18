@@ -1,0 +1,29 @@
+title: The Weimar Plan Collapses!
+new-page: true
+subtitle: The Center Party has abandoned the Weimar Plan...
+tags: event
+view-if: weimar_dissent >= 6 and z_party_leader != "Joos" and weimar_plan_adopted
+on-arrival: weimar_plan_adopted = 0; weimar_rejected = 1; left_dissent += 5; center_dissent += 5; labor_dissent += 2; workers_spd -= 3; workers_z -= 2; new_middle_spd -= 2; new_middle_ddp -= 1; pro_republic -= 6; z_relation -= 15; workers_sapd += 2 if sapd_consolidated; workers_z -= 3 if unemployed >= 13; z_relation += 10 if return_to_normalcy; pro_republic += 4 if return_to_normalcy
+max-visits: 1
+
+= Weimar Plan Collapse
+
+A crisis! The Center Party has abandoned the Weimar Plan at a recent party congress, removing it from their party platform and cancelling plans for further joint rallies. They believe the crisis has subsided and there is no purpose to further cooperation. [? if unemployed >= 13 : This is despite the best attempts of Joseph Joos to rally the Catholic trade unions to the plan's defense. ?]
+
+The Left and Center have, feeling vindicated, renewed their dissent, with the Left calling for a pivot towards the Communists for reliable allies against fascism. Meanwhile the [+ ddp_name +]'s status is uncertain, with some in their party calling to also move on.
+
+- @break_toleration: No Weimar Plan, no governing mandate.
+- @troubling: Troubling developments...
+
+@break_toleration
+subtitle: We will put forward a motion of no confidence in the Reichstag.
+view-if: spd_toleration == 1
+on-arrival: next_election_time = time+3 if next_election_time >= time+3; next_election_month = month + 3 if next_election_time >= time+3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0;
+
+We have definitively broken with the [+ chancellor +] government, and have voted against them in a vote of no confidence.
+
+New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+
+@troubling
+
+With the Weimar Plan's discrediting in other parties, its future even within Social Democracy becomes uncertain.

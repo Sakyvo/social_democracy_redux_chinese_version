@@ -1,0 +1,72 @@
+title: The Iron Front
+new-page: true
+is-card: true
+view-if: iron_front_formed == 1 and iron_front_independent == 0 and iron_front_timer = 0
+on-arrival: iron_front_timer = 7; month_actions += 1; rb_militarization_cost = 2 if rb_militancy > 0.1 else rb_militarization_cost = 1; rb_militarization_cost = 3 if rb_militancy > 0.25
+card-image: img/iron_front.png
+frequency: 200
+tags: party_affairs, antifascism
+
+= The Iron Front
+
+The Iron Front is our new antifascist coordination front, consisting of the SPD, the trade unions, and the Reichsbanner. How should we use the Iron Front?
+
+[? if workers_spd < 45 or workers_spd < workers_nsdap or workers_spd < workers_kpd : Unfortunately, the Iron Front's effectiveness is dragged down by the SPD's unpopularity, as the SPD is no longer the dominant party among the workers. Many Reichsbanner members have left, and many workers are not interested. ?]
+
+- @defense: Rally for defense against the fascists with the Reichsbanner.
+- @pacifism: Rally for pacifism, against nationalism and war.
+- @republic: Rally to save the democratic republic against dictatorship.
+- @wtb: Rally for economic change and the WTB-Plan.
+- @weimar_1: A joint rally by the Weimar parties on behalf of our economic plan, tauting it as a republican compromise.
+- @weimar_2: A joint rally by the Weimar parties on behalf of our economic plan, tauting it as a republican compromise.
+- @antisemitism
+- @easy_discard
+
+@defense
+subtitle: -[+ rb_militarization_cost +] resources
+choose-if: resources >= rb_militarization_cost
+on-arrival: resources -= rb_militarization_cost; rb_strength += 50; rb_militancy += 0.05; z_relation -= 5 if historical_mode
+
+The Iron Front rallies for the militant defense of the republic against the fascist paramilitaries, strengthening the Reichsbanner.
+
+[? if historical_mode : The Center Party decries the militarization of the Reichsbanner and Iron Front, and its members are leaving the republican organization. ?]
+
+
+@pacifism
+on-arrival: pacifism += 1; nationalism -= 5 if pacifism >= 3; workers_spd += 5*(1-dissent) if pacifism >= 4; unemployed_spd += 4*(1-dissent) if pacifism >= 4; new_middle_spd += 4*(1-dissent) if pacifism >= 4
+
+The Iron Front rallies against nationalism and war.
+
+@republic
+on-arrival: pro_republic += 5*(1-dissent); democratization += 1; workers_spd += 5*(1-dissent) if democratization >= 4; unemployed_spd += 4*(1-dissent) if democratization >= 4; new_middle_spd += 4*(1-dissent) if democratization >= 4
+
+The Iron Front rallies in defense of the democratic republic and against dictatorship.
+
+@wtb
+view-if: wtb_adopted == 1
+choose-if: return_to_normalcy = 0
+unavailable-subtitle: The economic crisis is largely over now, and the public is no longer interested in hearing about it.
+on-arrival: workers_spd += 8*(1-dissent); unemployed_spd += 8*(1-dissent); new_middle_spd += 5*(1-dissent); old_middle_spd += 3*(1-dissent); rural_spd += 3*(1-dissent);
+
+The WTB-Plan is the rallying point for the entire SPD and its affiliated organizations, including the Iron Front.
+
+@weimar_1
+view-if: moderate_plan_adopted = 1 and weimar_rejected != 1 and weimar_plan_adopted != 1
+subtitle: We will first need to convince our Weimar partners of the plan's merits.
+unavailable-subtitle: Our Weimar partners are not willing to be convinced of the plan's merits.
+choose-if: weimar_willingness == 1
+go-to: weimar_plan
+
+@weimar_2
+view-if: weimar_plan_adopted = 1
+on-arrival: moderate_plan_support += 1; workers_spd += ((6*(1-dissent))*(pro_republic/100)); unemployed_spd += ((6*(1-dissent))*(pro_republic/100)); rural_spd += ((5*(1-dissent))*(pro_republic/100)); new_middle_spd += ((5*(1-dissent))*(pro_republic/100)); old_middle_spd += ((5*(1-dissent))*(pro_republic/100)); workers_ddp += 3*(pro_republic/100); unemployed_nsdap -= 4*(pro_republic/100); unemployed_kpd -= 4*(pro_republic/100); rural_z += 4*(pro_republic/100); new_middle_ddp += 4*(pro_republic/100); old_middle_ddp += 3*(pro_republic/100); old_middle_z += 3*(pro_republic/100); workers_nsdap -= 4*(pro_republic/100); new_middle_nsdap -= 6*(pro_republic/100); old_middle_nsdap -= 4*(pro_republic/100); peoples_party_support += 2; neorevisionist_strength += 10; left_strength -= 3; left_dissent += 5; kpd_relation -= 10; pro_republic += 8*(((z_relation + ddp_relation)/2)/100); weimar_rallies += 1; weimar_dissent += 1 if weimar_rallies > 3; weimar_dissent += 1 if pro_republic >= 75
+
+We rally alongside politicians from Zentrum and the DDP, united through the Iron Front behind our economic plan and support of the republic. [? if pro_republic < 40 : Such a show of democratic solidarity bolsters republican forces, but as extremist and anti-democratic rhetoric has recently entered the mainstream, many who hear our message remain unconvinced, and many on the Left of the party even criticize the rally and our alignment with the bourgeois parties. ?] [? if pro_republic > 40 and pro_republic < 60 : Such a show of democratic solidarity bolsters republican forces, helping match the now prevalent anti-democratic rhetoric from the far-left and far-right, though many on the Left oppose our decision to align with the bourgeois parties. ?] [? if pro_republic > 60 : Such a show of democratic solidarity has greatly bolstered republican forces, helping combat the increasingly prevalent anti-democratic rhetoric from the far-left and far-right. Nevertheless, some on the Left of the party still oppose our alignment with the bourgeois parties. ?]
+
+@antisemitism
+title: Rally against antisemitism and in defense of Jewish Germans.
+view-if: confronting_antisemitism > 1
+on-arrival: nationalism -= 4*(1-dissent); pro_republic += 3*(1-dissent); confronting_antisemitism += 1; workers_nsdap -= 4*(1-dissent); unemployed_nsdap -= 4*(1-dissent);
+
+# TODO
+The Nazis and other far-right political movements are increasingly turning their hatred against the Jewish community of Germany. The Iron Front rallies in defense of individual Jews and the broader community against violence.

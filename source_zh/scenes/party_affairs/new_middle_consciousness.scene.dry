@@ -1,0 +1,33 @@
+title: Class Consciousness of the New Middle Class
+new-page: true
+is-card: true
+tags: party_affairs
+view-if: socialism >= 57 and radio >= 1 and new_middle_spd_normalized >= 15
+on-arrival: month_actions += 1
+card-image: img/new-middle-conscious.jpg
+max-visits: 1
+
+= Class Consciousness of the New Middle Class
+
+As socialism grows increasingly popular around the country, it has begun to take hold of the new middle class as well, with them becoming more and more open to socialist ideas and increasingly considering themselves part of the proletariat. Though still by far more moderate than the industrial workers, there is real potential to be exploited here in order to expand the SPD's base without diluting its class character.
+
+- @awaken: Awaken their class consciousness!
+- @refute: No, we will not do this.
+- @easy_discard_1: Return card to hand.
+- @cancel_advisor_action
+
+@easy_discard_1
+view-if: last_advisor_action = 0
+go-to: easy_discard
+
+@awaken
+choose-if: resources >= 1 or aufhauser_advisor or radio >= 2
+subtitle: [? if radio < 2 and not aufhauser_advisor : -1 resource. ?][? if aufhauser_advisor : Aufhäuser can use the AfA-bund to do this. ?][? if radio >= 2 : We can use our existing radio program for this. ?]
+unavailable_subtitle: [? if radio < 2 and not aufhauser_advisor : -1 resource. ?] Consider hiring Aufhäuser, or expanding radio programs.
+on-arrival: new_middle_spd += 10*(1-dissent); reformist_dissent += 2; labor_dissent += 3; left_strength += 5; socialism += 4*(1-dissent); new_middle_conscious = 1
+
+We have taken advantage of the situation, and awoken the class character of the white collar workers. Increasingly, they flock to our party.
+
+@refute
+
+We will not do this.

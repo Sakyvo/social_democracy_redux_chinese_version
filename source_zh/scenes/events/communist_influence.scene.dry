@@ -1,0 +1,13 @@
+title: Communists Gaining Influence...
+subtitle: The KPD is becoming increasingly powerful.
+new-page: true
+on-arrival: communist_influence_seen = 1
+view-if: kpd_influence >= 6
+tags: event
+max-visits: 1
+
+= Communist Influence
+
+Ever since the KPD properly entered government by taking positions on the cabinet themselves, we have been noticing their influence increasing. More and more bureaucrats are replaced with communist counterparts, as the ministries are consolidated by the KPD and then used to wield radical policy which we have been allowing to pass.
+
+Some in our party warn of an impending Communist coup, but on the other hand, is it not natural that a party in government would gain influence? Nevertheless, this is something we should perhaps keep an eye on if we don't want the KPD seizing power.

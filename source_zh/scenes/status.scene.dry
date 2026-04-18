@@ -1,0 +1,216 @@
+title: Status
+new-page: true
+is-special: true
+on-arrival: {!
+if (Q.unemployed) {
+    Q.unemployed_2 = Q.unemployed.toFixed(1);
+}
+if (Q.inflation) {
+    Q.inflation_2 = Q.inflation.toFixed(1);
+}
+Q.economic_growth_2 = '0';
+if (Q.economic_growth) {
+    Q.economic_growth_2 = Q.economic_growth.toFixed(1);
+}
+!}
+
+= Status
+
+[+ month : month +] [+ year +]
+
+Resources available: [+ resources +]
+
+SPD position: [? if spd_toleration : toleration ?][? if spd_in_government : in government - ?][? if spd_toleration == 0 and spd_in_government == 0 and spd_caretaker == 0 : opposition ?][? if spd_caretaker : caretaker government ?]
+[? if in_weimar_coalition and spd_in_government: Weimar Coalition ?][? if in_grand_coalition and spd_in_government: Grand Coalition ?][? if in_popular_front and spd_in_government: Popular Front ?][? if in_left_front and spd_in_government: Left Front ?][? if in_spd_majority and spd_in_government: SPD majority ?][? if in_minority_government and spd_in_government: minority government ?][? if in_emergency_government and spd_in_government: emergency government ?]
+
+[? if spd_in_government and not in_spd_majority and not in_left_front : Coalition dissent: [+ coalition_dissent : coalition_dissent +] ?]
+
+[? if spd_in_government and (in_left_front or in_popular_front): KPD coalition dissent: [+ kpd_coalition_dissent : coalition_dissent +] ?]
+
+Internal dissent: [+ dissent_percent : dissent +]
+
+[? if communist_influence_seen : KPD influence: [+ kpd_influence : kpd_influence +] ?]
+
+= Government
+
+President: [+ president +]
+
+[? if president == "Marx" : Presidential Relations: [+ marx_relation : relationships +] ?]
+
+Chancellor: [+ chancellor +] ([+ chancellor_party +])
+
+Reichstag composition:
+
+# 1928: 30, 1930: 25, 1932: 22
+SPD: [+ spd_r +]%
+[? if sapd_formed == 1 : SAPD: [+ sapd_r +]% ?]
+# 1928: 15, 1930: 15, 1932: 
+Z + BVP: [+ z_r +]%
+# 1928: 10, 1930: 13
+KPD: [+ kpd_r +]%
+# 1928: 5, 1930: 4 (as DstP)
+DDP: [+ ddp_r +]%
+# 1928: 9, 1930: 5
+DVP: [+ dvp_r +]%
+# 1928: 14, 1930: 7
+DNVP: [+ dnvp_r +]%
+# 1928: 3, 1930: 18
+NSDAP: [+ nsdap_r +]%
+# 1928: 9, 1930: 10
+Others: [+ other_r +]%
+
+[? if spd_in_government = 1 : Budget: [+ budget +] ?]
+
+Next election: [+ next_election_month : month +] [+ next_election_year +]
+
+= Economics
+
+Inflation: [+ inflation_2 +]%
+
+[? if black_thursday_seen = 1 : Unemployment: [+ unemployed_2 +]% ?]
+
+Economic growth: [+ economic_growth_2 +]%
+
+
+# = Public Opinion
+
+@politics
+
+= Inter-party Relations
+
+
+Z: [+ z_relation : relationships +]
+
+DDP: [+ ddp_relation : relationships +]
+
+DVP: [+ dvp_relation : relationships +]
+
+KPD: [+ kpd_relation : relationships +]
+
+DNVP: [+ dnvp_relation : relationships +]
+
+NSDAP: [+ nsdap_relation : relationships +]
+
+= Internal Factions of the SPD
+
+Left strength: [+ left_strength : strength +], dissent: [+ left_dissent : dissent +]
+
+Center strength: [+ center_strength : strength +], dissent: [+ center_dissent : dissent +]
+
+Labor strength: [+ labor_strength : strength +], dissent: [+ labor_dissent : dissent +]
+
+Reformist strength: [+ reformist_strength : strength +], dissent: [+ reformist_dissent : dissent +]
+
+[? if neorevisionism > 0 : Neorevisionist strength: [+ neorevisionist_strength : strength +], dissent: [+ neorevisionist_dissent : dissent +] ?]
+
+
+@paramilitaries
+on-arrival: {!
+if (Q.rb_strength) {
+    Q.rb_strength_2 = Q.rb_strength.toFixed(1);
+}
+if (Q.rfb_strength) {
+    Q.rfb_strength_2 = Q.rfb_strength.toFixed(1);
+}
+if (Q.sh_strength) {
+    Q.sh_strength_2 = Q.sh_strength.toFixed(1);
+}
+if (Q.sa_strength) {
+    Q.sa_strength_2 = Q.sa_strength.toFixed(1);
+}
+!}
+
+= Distribution of Power
+
+SA: [+ sa_force +]%
+
+Stalhelm: [+ sh_force +]%
+
+Reichsbanner: [+ rb_force +]%
+
+RFB: [+ rfb_force +]%
+
+Prussia: [+ prussia_force +]%
+
+Reichswehr: [+ army_force +]%
+
+= Paramilitaries
+
+Reichsbanner Strength: [+ rb_strength_2 +] thousand
+
+Reichsbanner Militarization: [+ rb_militancy : militancy +]
+
+RFB Strength: [+ rfb_strength_2 +] thousand
+
+RFB Militarization: [+ rfb_militancy : militancy +]
+
+Stahlhelm Strength: [+ sh_strength_2 +] thousand
+
+Stahlhelm Militarization: [+ sh_militancy : militancy +]
+
+SA Strength: [+ sa_strength_2 +] thousand
+
+SA Militarization: [+ sa_militancy : militancy +]
+
+= Official military/paramilitaries
+
+Reichswehr: [+ reichswehr_strength +] thousand troops.
+
+Reichswehr Loyalty: [+ reichswehr_loyalty : loyalty +]
+
+Prussian police: [+ prussian_police_strength +] thousand members.
+
+Prussian police loyalty: [+ prussian_police_loyalty : loyalty +]
+
+[? if spd_in_government : Interior police loyalty: [+ interior_police_loyalty : loyalty +] ?]
+
+@polls
+on-arrival: {!
+Q.pro_republic_disp = Math.round(Q.pro_republic);
+Q.nationalism_disp = Math.round(Q.nationalism);
+Q.socialism_disp = Math.round(Q.socialism);
+!}
+
+= Projected election results
+
+(if the election were to be held now):
+
+SPD: [+ spd_votes +]%
+
+[? if sapd_formed == 1 : SAPD: [+ sapd_votes +]% ?]
+
+Z + BVP: [+ z_votes +]%
+
+KPD: [+ kpd_votes +]%
+
+[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]: [+ ddp_votes +]%
+
+DVP: [+ dvp_votes +]%
+
+DNVP: [+ dnvp_votes +]%
+
+[? if dne_formed : DNE: [+ dne_votes +]% ?]
+
+NSDAP: [+ nsdap_votes +]%
+
+Others: [+ other_votes +]%
+
+**Detailed results for each demographic**
+
+Support for the Republic: [+ pro_republic_disp +]%
+
+Support for Socialism: [+ socialism_disp +]%
+
+Support for Nationalism: [+ nationalism_disp +]%
+
+Workers: SPD: [+ workers_spd_display +]%, [? if sapd_formed == 1 : SAPD: [+ workers_sapd_display +]%, ?] Z: [+ workers_z_display +]%, KPD: [+ workers_kpd_display +]%, DDP: [+ workers_ddp_display +]%, DVP: [+ workers_dvp_display +]%; DNVP: [+ workers_dnvp_display +]%, [? if dne_formed : DNE: [+ workers_dne_display +]%, ?] NSDAP: [+ workers_nsdap_display +]%, Others: [+ workers_other_display +]%
+
+New Middle Class: SPD: [+ new_middle_spd_display +]%, [? if sapd_formed == 1 : SAPD: [+ new_middle_sapd_display +]%, ?] Z: [+ new_middle_z_display +]%, KPD: [+ new_middle_kpd_display +]%, DDP: [+ new_middle_ddp_display +]%, DVP: [+ new_middle_dvp_display +]%; DNVP: [+ new_middle_dnvp_display +]%, [? if dne_formed : DNE: [+ new_middle_dne_display +]%, ?] NSDAP: [+ new_middle_nsdap_display +]%, Others: [+ new_middle_other_display +]%
+
+Old Middle Class: SPD: [+ old_middle_spd_display +]%, [? if sapd_formed == 1 : SAPD: [+ old_middle_sapd_display +]%, ?] Z: [+ old_middle_z_display +]%, KPD: [+ old_middle_kpd_display +]%, DDP: [+ old_middle_ddp_display +]%, DVP: [+ old_middle_dvp_display +]%; DNVP: [+ old_middle_dnvp_display +]%, [? if dne_formed : DNE: [+ old_middle_dne_display +]%, ?] NSDAP: [+ old_middle_nsdap_display +]%, Others: [+ old_middle_other_display +]%
+
+Rural: SPD: [+ rural_spd_display +]%, [? if sapd_formed == 1 : SAPD: [+ rural_sapd_display +]%, ?] Z: [+ rural_z_display +]%, KPD: [+ rural_kpd_display +]%, DDP: [+ rural_ddp_display +]%, DVP: [+ rural_dvp_display +]%; DNVP: [+ rural_dnvp_display +]%, [? if dne_formed : DNE: [+ rural_dne_display +]%, ?] NSDAP: [+ rural_nsdap_display +]%, Others: [+ rural_other_display +]%
+
+Unemployed: SPD: [+ unemployed_spd_display +]%, [? if sapd_formed == 1 : SAPD: [+ unemployed_sapd_display +]%, ?] Z: [+ unemployed_z_display +]%, KPD: [+ unemployed_kpd_display +]%, DDP: [+ unemployed_ddp_display +]%, DVP: [+ unemployed_dvp_display +]%; DNVP: [+ unemployed_dnvp_display +]%, [? if dne_formed : DNE: [+ unemployed_dne_display +]%, ?] NSDAP: [+ unemployed_nsdap_display +]%, Others: [+ unemployed_other_display +]%
+
+Catholics: SPD: [+ catholics_spd_display +]%, [? if sapd_formed == 1 : SAPD: [+ catholics_sapd_display +]%, ?] Z: [+ catholics_z_display +]%, KPD: [+ catholics_kpd_display +]%, DDP: [+ catholics_ddp_display +]%, DVP: [+ catholics_dvp_display +]%; DNVP: [+ catholics_dnvp_display +]%, [? if dne_formed : DNE: [+ catholics_dne_display +]%, ?] NSDAP: [+ catholics_nsdap_display +]%, Others: [+ catholics_other_display +]%

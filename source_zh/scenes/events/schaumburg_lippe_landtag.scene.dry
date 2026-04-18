@@ -1,0 +1,334 @@
+title: Schaumburg-Lippe Landtag Elections
+new-page: true
+tags: event
+priority: -1
+view-if: landtags_enabled and ((year = schaumburg_lippe_election_year and month >= schaumburg_lippe_election_month) or (year > schaumburg_lippe_election_year)) and not supreme_soviet
+on-arrival: dvp_willing = 0; dvp_willing = 1 if ((dvp_schlelation+spd_votes+(pro_republic/6)) >= ((100-pro_republic)+capital_strike_progress+(coup_progress/2))); z_willing = 0; z_willing = 1 if z_schlelation >= 50 or (z_schlelation >= 25 and bourgeois_coalition < 50)
+on-departure: in_election = 0; schaumburg_lippe_election_year += 3; schaumburg_lippe_election_month += 1; schaumburg_lippe_election_year += 1 if schaumburg_lippe_election_month > 12; schaumburg_lippe_election_month -= 12 if schaumburg_lippe_election_month > 12; sch_elections += 1; schaumburg_lippe_election_time = time + 37;
+set-jump: schaumburg_lippe_election_1928
+
+# the low priority means that this event is only seen after all other events are resolved for the month.
+# note: z_coalition = z_schlelation + (pro_republic/2); z_coalition *= 1.25 if z_party_leader == "Joos";
+
+= Schaumburg-Lippe Elections, [+ month : month +] [+ year +]
+
+The Schaumburg-Lippe elections are to be held now.
+
+- @election_algorithm: May we do our best...
+
+@schaumburg_lippe_election_1928
+on-arrival: {!
+var total_schaumburg_lippe = 0;
+console.log("Starting normalization of Schaumburg-Lippe votes...");
+// normalize schaumburg_lippen votes
+for (var party of Q.parties) {
+    Q[party+'_votes_schaumburg_lippe'] = 0;
+    console.log(`Processing party: ${party}`);
+    
+    for (var c of Q.classes) {
+        let votes = Q['schaumburg_lippe_'+c] * Q[c+'_'+party+'_normalized'] * Q['schaumburg_lippe_'+party];
+        Q[party+'_votes_schaumburg_lippe'] += votes;
+        total_schaumburg_lippe += votes;
+
+        console.log(`  Class: ${c}, Votes: ${votes}, Cumulative Total: ${Q[party+'_votes_schaumburg_lippe']}`);
+    }
+}
+for (var party of Q.parties) {
+    Q[party+'_votes_schaumburg_lippe'] = Math.round((Q[party+'_votes_schaumburg_lippe'] / total_schaumburg_lippe) * 100);
+    console.log(`Final percentage for ${party}: ${Q[party+'_votes_schaumburg_lippe']}%`);
+}
+console.log("Normalization complete. Total Schaumburg-Lippe votes:", total_schaumburg_lippe);
+
+
+// set old results
+// election threshold constitutional reform
+// banning parties
+var new_party_sum = 0;
+for (var party of Q.parties) {
+    Q['old_' + party + '_schl'] = Q[party + '_schl'];
+    if (Q.constitutional_reform > 0) {
+        if (Q[party + '_votes_schaumburg_lippe'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || (Q[party + '_banned'] == 1)) {
+            Q[party + '_schl'] = 0;
+        } else {
+            Q[party + '_schl'] = Q[party + '_votes_schaumburg_lippe'];
+        }
+        new_party_sum += Q[party + '_schl'];
+    } else {
+        Q[party + '_schl'] = Q[party + '_votes_schaumburg_lippe'];
+    }
+        // if we use decimals, then we might want to truncate the numbers
+    if (Q.use_decimals) {
+        Q[party + '_schl_disp'] = Q[party+'_schl'].toFixed(1);
+    }  else {
+            Q[party + '_schl_disp'] = Q[party+'_schl'];
+    }
+    Q['change_' + party + '_schl'] = Q[party + '_schl'] - Q['old_' + party + '_schl'];
+    var sign = Q['change_' + party + '_schl'] > 0 ? '+'  : '';
+    Q['stpl_change_' + party] = sign + Q['change_' + party + '_schl'];//.toFixed(1);
+}
+// calculate new party sum if electoral reform
+if (Q.electoral_threshold && Q.electoral_threshold > 0 || Q.party_bans) {
+    for (var party of Q.parties) {
+        if (Q[party + '_schl'] > 0) {
+            if (Q.use_decimals) {
+                Q[party + '_schl'] = Math.round(Q[party + '_schl']*1000/new_party_sum)/10;
+            } else {
+                Q[party + '_schl'] = Math.round(Q[party + '_schl']*100/new_party_sum);
+            }
+        }
+        if (Q.use_decimals) {
+            Q[party + '_schl_disp'] = Q[party+'_schl'].toFixed(1);
+        } else {
+            Q[party + '_schl_disp'] = Q[party+'_schl'];
+        }
+        Q['change_' + party + '_schl'] = Q[party + '_schl'] - Q['old_' + party + '_schl'];
+        var sign = Q['change_' + party + '_schl'] > 0 ? '+'  : '';
+        Q['stpl_change_' + party] = sign + Q['change_' + party + '_schl'];//.toFixed(1);
+    }
+}
+
+// get change arrows and signs
+
+
+// The largest party can only be the NSDAP or the SPD.
+Q.largest_party = 'SPD';
+if (Q.nsdap_schl >= Q.spd_schl && Q.nsdap_schl >= Q.kpd_schl) {
+    Q.largest_party = 'NSDAP';
+}
+
+if (Q.kpd_schl >= Q.spd_schl && Q.kpd_schl >= Q.nsdap_schl) {
+    Q.largest_party = 'KPD';
+}
+// coalitions
+Q.sch_social_liberal = Q.spd_schl + Q.ddp_schl;
+Q.sch_huh = Q.spd_schl + Q.ddp_schl + Q.dnvp_schl;
+
+Q.sch_weimar_coalition = Q.spd_schl + Q.ddp_schl + Q.z_schl;
+Q.sch_grand_coalition = Q.spd_schl + Q.ddp_schl + Q.z_schl + Q.dvp_schl;
+Q.sch_bourgeois_coalition = Q.ddp_schl + Q.z_schl + Q.dvp_schl + Q.other_schl;
+Q.sch_center_right_coalition = Q.z_schl + Q.ddp_schl + Q.dvp_schl + Q.other_schl + Q.dnvp_schl;
+Q.sch_right_coalition = Q.z_schl + Q.dvp_schl + Q.other_schl + Q.dnvp_schl;
+Q.sch_far_right_coalition = Q.dnvp_schl + Q.nsdap_schl;
+Q.sch_left_coalition = Q.spd_schl + Q.kpd_schl;
+// this is an absurd concept lol
+Q.sch_popular_front_coalition = Q.spd_schl + Q.kpd_schl + Q.z_schl + Q.ddp_schl;
+Q.sch_anti_democratic_coalition = Q.kpd_schl + Q.nsdap_schl + Q.dnvp_schl;
+// aka everyone except nazi, kpd, dnvp
+Q.sch_neo_weimar_coalition = Q.spd_schl + Q.ddp_schl + Q.z_schl + Q.dvp_schl + Q.other_schl;
+// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
+Q.sch_other_nazi = Math.round(Q.other_schl*(1-(Q.pro_republic/100)));
+Q.sch_hitler_right_coalition = Q.z_schl + Q.dnvp_schl + Q.nsdap_schl + Q.dvp_schl + Q.other_nazi;
+// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
+Q.sch_progressive_coalition = Q.spd_schl + Q.sapd_schl + Q.kpd_schl + Q.ddp_schl;
+// nationaal front
+Q.sch_national_front_schl = Q.nsdap_schl + Q.dnvp_schl + Q.dvp_schl + Q.other_schl;
+if (Q.z_national) {
+    Q.sch_national_front_schl += Q.z_schl;
+}
+!}
+on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_schl >= 15)
+on-display: {!
+if (Q.sapd_formed == 1) {
+    data = [
+        {    "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_schl*0.15),
+        },
+        {
+            "id": "sapd",
+            "legend": "SAPD",
+            "name": "SAPD",
+            "seats": Math.round(Q.sapd_schl*0.15),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_schl*0.15),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_schl*0.15),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_schl*0.15),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_schl*0.15),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_schl*0.15),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_schl*0.15),
+        },
+    ];
+}
+else {
+    data = [
+        {   "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_schl*0.15),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_schl*0.15),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_schl*0.15),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_schl*0.15),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_schl*0.15),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_schl*0.15),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_schl*0.15),
+        },
+    ];
+}
+if (window && d3) {
+    var width = 500; 
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50; 
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    } 
+
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+}
+!}
+go-to: coalition_menu
+
+= Election results
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!} 
+{!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_schl +]%** {!</td><td>!} **[+ stpl_change_spd +]** {!</td></tr>!}
+
+[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_schl +]% {!</td><td>!} [+ stpl_change_sapd +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_schl +]% {!</td><td>!} [+ stpl_change_kpd +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_schl +]% {!</td><td>!} [+ stpl_change_ddp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_schl +]% {!</td><td>!} [+ stpl_change_z +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_schl +]% {!</td><td>!} [+ stpl_change_dvp +] {!</td></tr>!}
+ 
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_schl +] % {!</td><td>!} [+ stpl_change_other +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_schl +]% {!</td><td>!} [+ stpl_change_dnvp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_schl +]% {!</td><td>!} [+ stpl_change_nsdap +] {!</td></tr>!}
+{!</table>!}
+
+**Potential coalitions:**
+
+Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ sch_weimar_coalition +]%
+
+Grand Coalition (SPD + Z + [+ ddp_name +] + DVP): [+ sch_grand_coalition +]%
+
+Bourgeois Coalition (Z + [+ ddp_name +] + DVP + Others): [+ sch_bourgeois_coalition +]%
+
+Right-wing Coalition (Z + DVP + Others + DNVP): [+ sch_right_coalition +]%
+
+[? if nazi_urgency <= 1 and nsdap_schl >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
+
+[? if sch_anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Landtag. A stable governing majority will be almost impossible. ?]
+
+There are some potential coalition arrangements.
+
+@coalition_menu
+
+- @spd_majority
+- @social_liberal
+- @huh
+- @nazis
+
+@spd_majority
+title: The SPD has won a majority.
+subtitle: SPD ([+ spd_schl +]%)
+view-if: spd_schl >= 50
+choose-if: never
+unavailable-subtitle: SPD ([+ spd_schl +]%) - The SPD wants to include the bourgeois in government.
+
+@social_liberal
+title: A "Social-Liberal" Coalition
+subtitle: SPD + [+ ddp_name +] ([+ sch_social_liberal +]%)
+view-if: sch_social_liberal >= 50 or (sch_social_liberal < 50 and spd_schl < 50 and (sch_huh < 50 or (year >= 1930 and not dnvp_reform)))
+choose-if: year >= 1930 and not dnvp_reform
+unavailable-subtitle: SPD + [+ ddp_name +] ([+ sch_social_liberal +]%) - They want to include the DNVP in government.
+
+A "Social-Liberal" coalition has been formed, including the [+ ddp_name +]. [? if spd_schl >= 50 : This is despite the SPD holding a majority. How queer. ?]
+
+@huh 
+title: ...Huh.
+subtitle: SPD + [+ ddp_name +] + DNVP ([+ sch_huh +]%)
+view-if: sch_huh >= 50 and (year < 1930 or dnvp_reform)
+
+That's...peculiar. [? if spd_schl >= 50 : The SPD, despite holding a lone majority, has gone out of its way to...include the DNVP? ?][? if spd_schl < 50 and sch_social_liberal >= 50 : The SPD, despite holding a majority with just the [+ ddp_name +], has gone out of its way to...include the DNVP? ?]
+
+- @no_judging: The SPD doesn't judge. It may be a bit strange, but they must have had a good reason.
+- @judging: The SPD is *absolutely* judging. Why on earth would Schaumburg-Lippe do this?
+
+@judging
+
+We may never know.
+
+@no_judging
+
+They surely must have. 
+
+@nazis
+title: NSDAP majority.
+subtitle: NSDAP ([+ nsdap_schl +]%)
+view-if: nsdap_schl >= 50
+on-arrival: nazi_schaumburg_lippe = 1; workers_nsdap += 1; new_middle_nsdap += 1; schaumburg_lippe_nsdap += 1; schaumburg_lippe_ddp -= 0.4
+
+The Nazis have won control over Schaumburg-Lippe. That's bad.

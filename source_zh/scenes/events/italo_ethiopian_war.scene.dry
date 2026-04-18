@@ -1,0 +1,19 @@
+title: Second Italo-Ethiopian War
+subtitle: Italian forces have invaded Ethiopia!
+view-if: abysinnia_timer <= 0 and unresolved_abysinnia
+max-visits: 1
+tags: event
+new-page: true
+on-arrival: west_relation -= 1; italo_ethiopian_war = 1; global_tension += 2
+
+= Second Italo-Ethiopian War
+
+After months of unresolved escalation and weak League of Nations action, Italian forces have launched an invasion of Ethiopia, sparking the Second Italo-Ethiopian War. Despite our best efforts to sway them against Italy, France and Britain seem to distrust us and our motives, and are unwilling to alienate a potential ally against us.
+
+(This is a WIP event, stuff soon)
+
+#Italian forces have invaded Ethiopia from Eritrea, sparking a war between the two states. This comes following a prior crisis where Italian forces, operating a garrison well within Ethiopian territory, refused to cooperate with an Anglo-Ethiopian survey of the region and, after a standoff, attacked the Ethiopian encampment.
+
+# todo: global tension. if global tension hits 10, event about increasing tensions, forcing germany to back a bloc, the soviets or the west
+
+#todo: actual options for the event, similar to spanish civil war

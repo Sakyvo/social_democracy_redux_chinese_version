@@ -1,0 +1,466 @@
+title: Saxon Landtag Elections
+new-page: true
+tags: event
+priority: -1
+view-if: landtags_enabled and ((year = saxony_election_year and month >= saxony_election_month) or (year > saxony_election_year)) and not supreme_soviet
+on-arrival: dvp_willing = 0; dvp_willing = 1 if ((dvp_relation+spd_votes+(pro_republic/6)) >= ((100-pro_republic)+capital_strike_progress+(coup_progress/2))); z_willing = 0; z_willing = 1 if z_relation >= 50 or (z_relation >= 25 and bourgeois_coalition < 50)
+on-departure: in_election = 0; saxony_election_year += 4; saxony_election_month -= 1; saxony_election_year -= 1 if saxony_election_month < 1; saxony_election_month += 12 if saxony_election_month < 1; s_elections += 1; saxony_election_time = time + 47;
+set-jump: saxony_election_1928
+
+# the low priority means that this event is only seen after all other events are resolved for the month.
+# note: z_coalition = z_slelation + (pro_republic/2); z_coalition *= 1.25 if z_party_leader == "Joos";
+
+= Saxon Elections, [+ month : month +] [+ year +]
+
+The Saxon elections are to be held now.
+
+- @election_algorithm: May we do our best...
+
+@saxony_election_1928
+on-arrival: {!
+var total_saxony = 0;
+console.log("Starting normalization of Saxon votes...");
+// normalize Saxon votes
+for (var party of Q.parties) {
+    Q[party+'_votes_saxony'] = 0;
+    console.log(`Processing party: ${party}`);
+    
+    for (var c of Q.classes) {
+        let votes = Q['saxony_'+c] * Q[c+'_'+party+'_normalized'] * Q['saxony_'+party];
+        Q[party+'_votes_saxony'] += votes;
+        total_saxony += votes;
+
+        console.log(`  Class: ${c}, Votes: ${votes}, Cumulative Total: ${Q[party+'_votes_saxony']}`);
+    }
+}
+for (var party of Q.parties) {
+    Q[party+'_votes_saxony'] = Math.round((Q[party+'_votes_saxony'] / total_saxony) * 100);
+    console.log(`Final percentage for ${party}: ${Q[party+'_votes_saxony']}%`);
+}
+console.log("Normalization comblete. Total Saxon votes:", total_saxony);
+
+
+// set old results
+// election threshold constitutional reform
+Q.saxony_threshold = 2;
+// banning parties
+var new_party_sum = 0;
+for (var party of Q.parties) {
+    Q['old_' + party + '_sl'] = Q[party + '_sl'];
+    if (Q.constitutional_reform > 0 || Q.saxony_threshold) {
+        if (Q[party + '_votes_saxony'] < Q.saxony_threshold || (Q[party + '_banned'] == 1)) {
+            Q[party + '_sl'] = 0;
+        } else {
+            Q[party + '_sl'] = Q[party + '_votes_saxony'];
+        }
+        new_party_sum += Q[party + '_sl'];
+    } else {
+        Q[party + '_sl'] = Q[party + '_votes_saxony'];
+    }
+        // if we use decimals, then we might want to truncate the numbers
+    if (Q.use_decimals) {
+        Q[party + '_sl_disp'] = Q[party+'_sl'].toFixed(1);
+    }  else {
+            Q[party + '_sl_disp'] = Q[party+'_sl'];
+    }
+    Q['change_' + party + '_sl'] = Q[party + '_sl'] - Q['old_' + party + '_sl'];
+    var sign = Q['change_' + party + '_sl'] > 0 ? '+'  : '';
+    Q['stsl_change_' + party] = sign + Q['change_' + party + '_sl'];//.toFixed(1);
+}
+// calculate new party sum if electoral reform
+if (Q.saxony_threshold && Q.saxony_threshold > 0 || Q.party_bans) {
+    for (var party of Q.parties) {
+        if (Q[party + '_sl'] > 0) {
+            if (Q.use_decimals) {
+                Q[party + '_sl'] = Math.round(Q[party + '_sl']*1000/new_party_sum)/10;
+            } else {
+                Q[party + '_sl'] = Math.round(Q[party + '_sl']*100/new_party_sum);
+            }
+        }
+        if (Q.use_decimals) {
+            Q[party + '_sl_disp'] = Q[party+'_sl'].toFixed(1);
+        } else {
+            Q[party + '_sl_disp'] = Q[party+'_sl'];
+        }
+        Q['change_' + party + '_sl'] = Q[party + '_sl'] - Q['old_' + party + '_sl'];
+        var sign = Q['change_' + party + '_sl'] > 0 ? '+'  : '';
+        Q['stsl_change_' + party] = sign + Q['change_' + party + '_sl'];//.toFixed(1);
+    }
+}
+
+Q.old_aspd_sl = Q.aspd_sl;
+
+var pro_aspd = 0;
+var anti_aspd = 100;
+pro_aspd += Q.nationalism/15;
+anti_aspd += Q.socialism/5;
+pro_aspd += Q.left_strength/10;
+anti_aspd += Q.reformist_strength/5;
+pro_aspd += Q.reformist_dissent/10;
+anti_aspd += Q.left_dissent/5;
+anti_aspd += Q.unemployed/5;
+var total_spd = pro_aspd+anti_aspd;
+pro_aspd = pro_aspd/total_spd;
+Q.aspd_sl = Math.round(Q.spd_sl*pro_aspd);
+Q.spd_sl -= Q.aspd_sl;
+
+Q.change_aspd_sl = Q.aspd_sl - Q.old_aspd_sl;
+var sign_aspd = Q.change_aspd_sl > 0 ? '+'  : '';
+Q.stsl_change_aspd = sign_aspd + Q.change_aspd_sl;//.toFixed(1);
+
+Q.change_spd_sl = Q.spd_sl - Q.old_spd_sl;
+var sign_spd = Q.change_spd_sl > 0 ? '+'  : '';
+Q.stsl_change_spd = sign_spd + Q.change_spd_sl;//.toFixed(1);
+
+// get change arrows and signs
+
+
+// The largest party can only be the NSDAP or the SPD.
+Q.largest_party = 'SPD';
+if (Q.nsdap_sl >= Q.spd_sl && Q.nsdap_sl >= Q.kpd_sl) {
+    Q.largest_party = 'NSDAP';
+}
+
+if (Q.kpd_sl >= Q.spd_sl && Q.kpd_sl >= Q.nsdap_sl) {
+    Q.largest_party = 'KPD';
+}
+// coalitions
+Q.s_weimar_coalition = Q.spd_sl + Q.ddp_sl + Q.z_sl;
+Q.s_grand_coalition = Q.spd_sl + Q.ddp_sl + Q.z_sl + Q.dvp_sl;
+Q.s_anticommunist_coalition = Q.aspd_sl + Q.ddp_sl + Q.dvp_sl + Q.other_sl + Q.dnvp_sl + Q.nsdap_sl;
+Q.s_center_right_coalition = Q.z_sl + Q.ddp_sl + Q.dvp_sl + Q.other_sl + Q.dnvp_sl;
+Q.s_right_coalition = Q.z_sl + Q.dvp_sl + Q.other_sl + Q.dnvp_sl;
+Q.s_far_right_coalition = Q.dnvp_sl + Q.nsdap_sl;
+Q.s_left_coalition = Q.spd_sl + Q.kpd_sl;
+// this is an absurd concept lol
+Q.s_popular_front_coalition = Q.spd_sl + Q.kpd_sl + Q.ddp_sl;
+Q.s_anti_democratic_coalition = Q.kpd_sl + Q.nsdap_sl + Q.dnvp_sl;
+// aka everyone except nazi, kpd, dnvp
+Q.s_neo_weimar_coalition = Q.spd_sl + Q.ddp_sl + Q.z_sl + Q.dvp_sl + Q.other_sl;
+// Hitler + Right-wing parties (only comes into effect if you've alienated Z too badly)
+Q.s_other_nazi = Math.round(Q.other_sl*(1-(Q.pro_republic/100)));
+Q.s_hitler_right_coalition = Q.z_sl + Q.dnvp_sl + Q.nsdap_sl + Q.dvp_sl + Q.other_nazi;
+// Progressive coalition isn't going to be imblemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights
+Q.s_progressive_coalition = Q.spd_sl + Q.aspd_sl + Q.sapd_sl;
+// nationaal front
+Q.s_national_front_sl = Q.nsdap_sl + Q.dnvp_sl + Q.dvp_sl + Q.other_sl;
+if (Q.z_national) {
+    Q.s_national_front_sl += Q.z_sl;
+}
+!}
+on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_sl >= 15)
+on-display: {!
+if (Q.sapd_formed == 1) {
+    data = [
+        {    "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_sl*0.96),
+        },
+        {
+            "id": "sapd",
+            "legend": "SAPD",
+            "name": "SAPD",
+            "seats": Math.round(Q.sapd_sl*0.96),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_sl*0.96),
+        },
+        {
+            "id": "aspd",
+            "legend": "ASPD",
+            "name": "ASPD",
+            "seats": Math.round(Q.aspd_sl*0.96),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_sl*0.96),
+        },
+        {
+            "id": "z",
+            "legend": "Z",
+            "name": "Z",
+            "seats": Math.round(Q.z_sl*0.96),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_sl*0.96),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_sl*0.96),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_sl*0.96),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_sl*0.96),
+        },
+    ];
+}
+else {
+    data = [
+        {   "id": "kpd",
+            "legend": "KPD",
+            "name": "KPD",
+            "seats": Math.round(Q.kpd_sl*0.96),
+        },
+        {
+            "id": "spd",
+            "legend": "SPD",
+            "name": "SPD",
+            "seats": Math.round(Q.spd_sl*0.96),
+        },
+        {
+            "id": "aspd",
+            "legend": "ASPD",
+            "name": "ASPD",
+            "seats": Math.round(Q.aspd_sl*0.96),
+        },
+        {
+            "id": "ddp",
+            "legend": Q.ddp_name,
+            "name": Q.ddp_name,
+            "seats": Math.round(Q.ddp_sl*0.96),
+        },
+        {
+            "id": "z",
+            "legend": "Z",
+            "name": "Z",
+            "seats": Math.round(Q.z_sl*0.96),
+        },
+        {
+            "id": "dvp",
+            "legend": "DVP",
+            "name": "DVP",
+            "seats": Math.round(Q.dvp_sl*0.96),
+        },
+        {
+            "id": "other",
+            "legend": "Other",
+            "name": "Other",
+            "seats": Math.round(Q.other_sl*0.96),
+        },
+        {
+            "id": "dnvp",
+            "legend": "DNVP",
+            "name": "DNVP",
+            "seats": Math.round(Q.dnvp_sl*0.96),
+        },
+        {
+            "id": "nsdap",
+            "legend": "NSDAP",
+            "name": "NSDAP",
+            "seats": Math.round(Q.nsdap_sl*0.96),
+        },
+    ];
+}
+if (window && d3) {
+    var width = 500; 
+    var height = 500;
+    var screenWidth = document.getElementById('content').offsetWidth;
+    if (screenWidth < width - 50) {
+        width = screenWidth - 50; 
+        height = width;
+        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+    } 
+
+    var parliament = d3.parliament();
+    parliament.width(width).height(height).innerRadiusCoef(0.4);
+    parliament.enter.fromCenter(true).smallToBig(true);
+    parliament.exit.toCenter(false).bigToSmall(true);
+    d3.select("#reichstag").datum(data).call(parliament);
+}
+!}
+go-to: coalition_menu
+
+= Election results
+
+{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<table>!} 
+{!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_sl +]%** {!</td><td>!} **[+ stsl_change_spd +]** {!</td></tr>!}
+
+[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_sl +]% {!</td><td>!} [+ stsl_change_sapd +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_sl +]% {!</td><td>!} [+ stsl_change_kpd +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#FF6F61'> </div> !} ASPD: {!</td><td>!} [+ aspd_sl +]% {!</td><td>!} [+ stsl_change_aspd +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_sl +]% {!</td><td>!} [+ stsl_change_ddp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_sl +]% {!</td><td>!} [+ stsl_change_z +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_sl +]% {!</td><td>!} [+ stsl_change_dvp +] {!</td></tr>!}
+ 
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_sl +] % {!</td><td>!} [+ stsl_change_other +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_sl +]% {!</td><td>!} [+ stsl_change_dnvp +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_sl +]% {!</td><td>!} [+ stsl_change_nsdap +] {!</td></tr>!}
+{!</table>!}
+
+**Potential coalitions:**
+
+Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ s_weimar_coalition +]%
+
+Grand Coalition (SPD + Z + [+ ddp_name +] + DVP): [+ s_grand_coalition +]%
+
+Anticommunist Coalition (ASPD + [+ ddp_name +] + Z + DVP + Others + DNVP + NSDAP): [+ s_anticommunist_coalition +]%
+
+[? if nazi_urgency <= 1 and nsdap_sl >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
+
+[? if s_anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Landtag. A stable governing majority will be almost impossible. ?]
+
+There are some potential coalition arrangements.
+
+@coalition_menu
+
+- @socdem_saxony
+- @spd_majority
+- @bourgeois_saxony
+- @anticommunist_coalition
+- @red_saxony
+- @no_majority_saxony
+- @brown_saxony
+
+@socdem_saxony
+title: A progressive coalition.
+subtitle: SPD + ASPD[? if sapd_formed : + SAPD?] ([+ s_progressive_coalition +]%)
+view-if: s_progressive_coalition >= 50 and spd_sl < 50
+on-arrival: workers_spd += 2*(1-dissent); left_dissent -= 5; reformist_dissent -= 5
+
+A moderate socialist coalition is formed with the backing of the ASPD[? if sapd_formed : and SAPD?].
+
+@bourgeois_saxony
+title: A center-right bourgeois coalition.
+subtitle: [+ ddp_name +] + Z + DVP + Others + DNVP ([+ s_center_right_coalition +]%)
+view-if: s_center_right_coalition >= 50 or s_anticommunist_coalition >= 50
+choose-if: s_center_right_coalition >= 50 and (year < 1930 or dnvp_reform)
+unavailable-subtitle: Toleration from the NSDAP and/or ASPD is required.
+on-arrival: saxon_dispute = 1
+
+Surprisingly, the center-right bourgeois parties are capable of a lone majority! [? if s_elections <= 1 : Max Heldt is replaced by a candidate from the DVP, Bünger. ?]
+
+@anticommunist_coalition
+title: An anticommunist coalition, of the bourgeois and their sympathizers.
+subtitle: ASPD + [+ ddp_name +] + Z + DVP + Others + DNVP + NSDAP ([+ s_anticommunist_coalition +]%)
+view-if: s_anticommunist_coalition >= 50 or s_elections <= 1
+choose-if: s_anticommunist_coalition >= 50 and s_center_right_coalition < 50 and s_progressive_coalition < 50 and (year < 1930 or ((dnvp_reform and nazi_reform) or (s_neo_weimar_coalition < 50)))
+unavailable-subtitle: ASPD + [+ ddp_name +] + Z + DVP + Others + DNVP + NSDAP ([+ s_anticommunist_coalition +]%)[? if s_center_right_coalition >= 50 : - the bourgeois don't need the Nazis. ?][? if year >= 1930 : The bourgeois and the reactionaries are no longer open to cooperation. ?]
+on-arrival: saxon_dispute = 1; saxony_nsdap += 0.05 if saxony_nsdap < 1.2; reformist_strength -= 2; nazi_saxony = 1 if nsdap_sl >= s_center_right_coalition; saxony_nsdap += 0.05 if nazi_saxony; saxony_spd -= 0.05 if nazi_saxony; kpd_relation += 5 if nazi_saxony; nazi_urgency += 1 if nazi_saxony;
+
+With the bourgeois parties in Saxony deeply distrusting the regional SPD due to its intense left-wing leanings and a history of class war in the state unlike that of other states, an anticommunist coalition is formed. 
+
+[? if nsdap_sl < s_center_right_coalition : The Nazis are content to simply tolerate the cabinet, luckily, though they are still legitimized through the bourgeois reliance on them to prevent new elections. ?][? if nsdap_sl >= s_center_right_coalition : The Nazis have entered into government, unwilling to be simply tolerating partners of the bourgeois. Immediately, left-wing parties are suppressed. ?]
+
+@red_saxony
+title: A "United Front" with the KPD.
+subtitle: KPD + SPD ([+ s_left_coalition +]%)
+view-if: s_left_coalition >= 50
+choose-if: kpd_relation >= 40 and communist_coalition >= 2
+unavailable-subtitle: The KPD doesn't trust us enough.
+on-arrival: saxony_kpd += 0.2 if saxony_kpd < 1.5; coup_progress += 2; capital_strike_progress += 2; red_saxony = 1; saxony_nsdap -= 0.1 if saxony_nsdap >= 0.7; workers_spd += 4*(1-dissent); unemployed_spd += 3*(1-dissent)
+
+Together with the KPD, we have won a majority. The bourgeois parties are up in arms at the prospect of a return to socialist Saxony, and scramble to oppose the government.
+
+@spd_majority
+title: The SPD may govern alone.
+subtitle: SPD ([+ spd_sl +]%)
+view-if: spd_sl >= 50
+on-arrival: saxony_spd -= 0.1; workers_spd += 3*(1-dissent); unemployed_spd += 3*(1-dissent)
+
+We have won a majority in Saxony alone.
+
+@no_majority_saxony
+view-if: (nsdap_sl < 50) and (s_left_coalition < 50 or kpd_relation < 40 or communist_coalition <2) and (s_anticommunist_coalition < 50 or s_center_right_coalition >= 50 or (year >= 1930 and not nazi_reform and not dnvp_reform)) and (s_center_right_coalition < 50 or (year >= 1930 and not dnvp_reform)) and (spd_sl < 50) and (s_progressive_coalition < 50)
+title: There is no clear majority.
+
+There is no clear majority in the Landtag. As Saxony allows new elections to be called by simple majority vote in the Landtag, something must be done to prevent new elections.
+
+- @out_of_our_hands: This is out of our hands.
+
+@out_of_our_hands
+
+Ultimately, the decision is up to the regional SPD branch, though we can guide them.
+
+- @and: And the Saxon SPD decides...
+
+@and
+go-to: hung_landtag if s_popular_front_coalition >= 50 and kpd_saxony_warmed; new_elections_saxony if s_neo_weimar_coalition < 50; refused_toleration if s_neo_weimar_coalition >= 50 and left_strength >= 20; accepted_toleration if s_neo_weimar_coalition >= 50 and left_strength < 20
+
+@new_elections_saxony
+on-arrival: saxony_election_month = month+3; saxony_election_year = year; saxony_election_year += 1 if saxony_election_month > 12; saxony_election_month -= 12 if saxony_election_month > 12; saxony_dvp -= 0.1 if saxony_dvp >= 0.3; saxony_other -= 0.25 if saxony_other >= 0.7; saxony_ddp -= 0.1 if saxony_ddp >= 0.5; saxony_nsdap += 0.1 if saxony_nsdap < 1.4; saxony_kpd += 0.05 if saxony_kpd < 1.1
+go-to: kpd_did_this if s_left_coalition >= 50
+
+It turns out that it is not only out of our hands but the Saxon SPD's as well. New elections are called, as there is no viable majority.
+
+@kpd_did_this
+on-arrival: kpd_saxony_warmed = 1; saxony_kpd -= 0.3; saxony_spd += 0.3
+
+The KPD's vote alongside the Nazis to dissolve the Landtag seems to have backfired, and many of their voters in the state turn to us instead.
+
+@hung_landtag
+
+Though there is no majority in favor of any government, the KPD has reversed course due to their poor performance from turning against us and vote against dissolving the Landtag. Though the state remains ungovernable, this will not mean new elections, and the previous government will remain in caretaker capacity.
+
+@refused_toleration
+on-arrival: dvp_relation -= 5; reformist_dissent += 5; center_dissent += 2; saxony_election_month += 5; saxony_election_year += 1 if saxony_election_month > 12; saxony_election_month -= 12 if saxony_election_month > 12; saxony_dvp -= 0.1 if saxony_dvp >= 0.5; saxony_other -= 0.25 if saxony_other >= 0.9; saxony_ddp -= 0.1 if saxony_ddp >= 0.7; saxony_nsdap += 0.1 if saxony_nsdap < 1.3; saxony_spd -= 0.1 if saxony_spd >= 0.8;
+go-to: toleration_p2
+set-jump: thingamajig
+
+The Saxon SPD, heavily influenced by our party's left-wing, refuses to tolerate a bourgeois government.
+
+@toleration_p2
+on-arrival: saxony_election_month = month+5; saxony_election_year = year; saxony_election_year += 1 if saxony_election_month > 12; saxony_election_month -= 12 if saxony_election_month > 12; saxony_dvp -= 0.1 if saxony_dvp >= 0.5; saxony_other -= 0.25 if saxony_other >= 0.9; saxony_ddp -= 0.1 if saxony_ddp >= 0.7; saxony_nsdap += 0.1 if saxony_nsdap < 1.3; saxony_spd -= 0.1 if saxony_spd >= 0.8;
+
+New elections are called.
+
+@thingamajig
+
+- @based: The Saxon SPD did the right thing.
+- @cringe: The Saxon SPD made a mistake.
+
+@based
+on-arrival: left_strength += 5; left_dissent -= 10; reformist_dissent += 5; center_dissent += 5
+
+We take the Saxon SPD's side, upsetting the reformists and centrists.
+
+@cringe
+on-arrival: left_dissent += 10; left_strength -= 5; reformist_dissent -= 10; center_dissent -= 5
+
+We oppose this anti-toleration stance the Saxon SPD has taken, assuaging the concerns of our reformists but upsetting the left.
+
+## TODO: nazi government collapses in april 1931, similar thing where SPD decides whether to tolerate or not based on internal politics rather than direct influence
+## TODO: add post_event changes to thuringia_other thuringia_nsdap etc both on their own and from nazi_thuringia
+
+@accepted_toleration
+on-arrival: saxon_dispute = 1; saxolation_timer = 10-(left_strength/10); saxony_kpd += 0.05 if saxony_kpd < 1.1; saxony_spd -= 0.05 if saxony_spd >= 1; saxony_toleration = 1; left_dissent += 5; reformist_strength += 5
+
+## TODO : saxolation
+
+The Saxon SPD, following the direction of the party away from the left, has decided to tolerate the bourgeois parties in order to prevent the entry of Nazis into government.
+
+@brown_saxony
+title: NSDAP majority
+subtitle: NSDAP ([+ nsdap_sl +]%)
+view-if: nsdap_sl >= 50
+on-arrival: saxony_nsdap += 0.25; workers_nsdap += 4; old_middle_nsdap += 5; rural_nsdap += 2
+
+The Nazis have won a majority in Saxony and immediately go about persecuting socialists within the state and consolidating power.

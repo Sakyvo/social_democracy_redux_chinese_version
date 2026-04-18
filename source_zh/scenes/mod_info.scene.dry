@@ -1,0 +1,226 @@
+title: Mod Info
+go-to: flavors
+
+Note: the base game's github is currently mid-update. I have updated the mod to match the github meaning some things might be slightly broken until the main game has finished updating.
+
+@flavors
+new-page: true
+
+= Mod Info
+
+This mod adds a variety of changes to the base game, mostly in the form of flavor and minor improvements.
+
+- @left: Left Plan + Council flavor
+- @centrist: Center flavor
+- @moderate: Reformist Plan flavor
+- @economics: Economic changes
+- @sapd: SAPD flavor
+- @extension: Content to 1936
+- @start_dates: 1930 start date, 1925 start date
+- @landtags: Landtags
+- @legislification: "Legislification" of government cards
+- @civil_war_flavor: Civil War flavor
+- @weakened_presidency_hitler: Weakened Presidency + Hitler takeover flavor
+- @coalition_flavor: Coalition flavor
+- @minor_changes: Other minor changes
+- @plans: Plans for the mod
+- @ideas: Ideas and feedback
+- @changelog: Changelog
+- @root: Back
+
+@moderate
+
+= Reformist Plan flavor
+
+When you adopt the Reformist Plan now, you have an option to try and convince Zentrum and the DDP to adopt the Reformist Plan as a shared programme, as a sort of republican compromise. The Left will oppose this, as will the Center, so you can only do it if the Left is weak enough (tip: Otto Braun's negotiating helps). 
+                                                                                                                                                                                                                                                                                          
+Once you've managed, you can now rally for the Weimar Plan together with Zentrum and the DDP (Julius Leber has an advisor action for this now) which will increase support for the republic, hurt extremist parties and also increase the support of all three of your parties. You can also enact the Weimar Plan through your allies if they are in government and you aren't, or if you lack the Finance/Economic ministry.
+  
+- @flavors: Back
+
+@economics
+
+= Economic Changes
+
+I have added hyperinflation if you have a big budget deficit and high inflation, and plan to add a way to end hyperinflation through the replacement of the Reichsmark with the Volksmark. Also, you can do tax cuts even if you don't have enough budget if you've adopted the WTB plan.
+
+Update: hyperinflation cut out, but other economic changes are planned
+
+@left
+
+= Left Plan flavor
+
+You can rally alongside the KPD for the Left Plan on May Day, leading to confrontations with the fascists and bourgeois outrage. Additionally, you can transition into a full Soviet Republic through a constitutional amendment that comes after the Left Plan.
+
+- @flavors: Back
+
+@centrist
+
+= Centrist flavor
+
+The Centrists now fill their historical niche of being acceptable to both sides of the party and controlling dissent, and you might find the party a lot less stable without them. Furthermore, if the crisis gets too bad, Hilferding may eventually concede to the necessity of an economic plan.
+
+- @flavors: Back
+
+@start_dates
+
+= 1930 and 1925 start dates
+
+You can now start the game in January 1930 for a real challenge. The depression has already hit and your coalition is on the verge of collapse. Or, if you want a less desperate position, then 1925 might be for you. Maybe you can even elect Wilhelm Marx!
+
+- @flavors: Back
+
+@landtags
+
+= Landtags
+
+Though WIP, regional landtags are being added, with the end goal of adding all landtags
+
+- @flavors: Back
+
+@legislification
+
+= Legislification
+
+"Legislification" refers to the new feature of gov card decisions being voted on by the Reichstag, rather than automatic approval so long as the ministry is held.
+
+- @flavors: Back
+
+@sapd
+
+= SAPD flavor
+
+The SAPD is now a distinct party rather than being lumped in with the right-wing "Others"! It also has its own event allowing it to consolidate into an actually formidable force amongst workers if you lean too hard into Volkspartei rhetoric or if Labor, Left and Center all defect, and can then use its position to try and organize an Einheitsfront, with penalties for the SPD and KPD if they refuse.
+
+- @flavors: Back
+
+@civil_war_flavor
+
+= Civil War Flavor
+
+You can play even after a Victory for the Republic outcome in a civil war. This includes cases where your civil war is fought alongside the Communists, where it isn't, where it erupts due to Thalmann taking over, etc. The routes where the Communists fight alongside you have a multitude of content as well.
+
+- @flavors: Back
+
+@weakened_presidency_hitler
+
+= Weakened Presidency Hitler
+
+A very rare scenario in terms of actually occuring in a game, I have added unique scenarios (though quite WIP) for if Hitler is elected President after you weaken the Presidency so that it no longer has unrestrained power. I am thinking of maybe eventually extending this flavor to encompass all Nazi takeovers so that you can play them out a bit even if the result always amounts to the same.
+
+- @flavors: Back
+
+@coalition_flavor
+
+= Coalition Flavor
+
+I have made it so that a right-wing coalition from Zentrum to the DNVP can form in 1928 if the SPD refuses to form a government. This will ban Blutmai regardless of what the SPD does, giving an alternate event, and collapse following the Young Plan referendum due to the DNVP's opposition to the Young Plan. Tied into this, the SPD can agitate for referendums while in opposition or toleration using the new Direct Democracy card. I plan to add more similar flavor to coalitions in future though this is the main one, likely for a while.
+
+- @flavors: Back
+
+@extension
+
+= Content to 1936
+
+Content to 1936 has been added in the form of events, including the Abysinnia Crisis and the Spanish Civil War
+
+- @flavors: Back
+
+@minor_changes
+
+= Minor Changes
+
+The mod also contains many small changes that I felt would be good additions to the game. These include the DNVP and KPD benefitting rather than the NSDAP from a capital strike if the NSDAP has suffered a crisis, new police option for investigating coups (though WIP and potentially redundant), Unity Government won't be offered if there isn't a substantial threat to Germany, the DDP and DVP gaining support from increases in support for the republic, military policy changes, more proactive reactionaries (Hindenburg included), presidential election changes, DVP reducing capital strike progress if in government & friendly, and made it so that Nazis in Crisis won't fire if the economy is still doing very badly. More similar minor tweaks will occur and when they do will be added here.
+
+- @flavors: Back
+
+@changelog
+
+= Changelog
+
+**19/09/2024**: Added right-wing coalition as a possibility in 1928 if the SPD refuses to form a government, plus some bug fixes.
+
+**06/10/2024**: Updated the mod to fit base game's additions with 0.17 and 0.17.1 though mostly preserving the mod form of the features for now. Also added an alternate Blutmai event for if the right-wing coalition has formed, SAPD flavor, changes to defunding the Reichswehr, new coup investigation option for domestic enemies, and another Weimar Plan option (convincing them through the UIC)
+
+**12/10/2024**: Added more SAPD content (WIP and non-functional) as well as hyperinflation and deficit tax cuts.
+
+**13/10/2024**: Iron Front may now defect as part of a new neorevisionist split, may incorporate this into a reformist split either as a DDP/DStP boost or a right-wing SAPD equivalent.
+
+**14/10/2024**: New government card for when in toleration/opposition: Direct Democracy, allowing you to agitate directly for reforms. SAPD conference mechanic finished (I think)
+
+**15/10/2024**: Balancing and changes to Direct Democracy.
+
+**17/10/2024**: More balancing and changes to Direct Democracy; cooldown on certain topics for petitions, higher resource investment, but also higher support increases. Other bug fixes and tweaks.
+
+**19/10/2024**: WIP experimental changes to NSDAP popularity changes
+
+**10/12/2024**: Victory for the Republic made playable, including scenarios for where it results from a KPD presidency.
+
+**15/12/2024**: Endless mode (no content post-end, but still an option)
+
+**17/12/2024**: Updated mod to Death of Hindenburg
+
+**22/12/2024**: Weimar dissent (Weimar Plan can now fall apart)
+
+**25/12/2024**: Greatly expanded KPD content (KPD can now take ministries post war, crisis in the army if they take the Reichswehr, etc.). Playable Victory for the Republic mostly finished, with a few features still WIP.
+
+**3/1/2025**: Gustav Stresemann is no longer willing to concede his position as Foreign Minister (except in some cases)
+
+**4/1/2025**: Presidential elections 1932 added to track differences between the candidates themselves and not just the parties, as well as small RNG factor added,
+
+**5/1/2025**: Monopoly on violence tracker & political violence updates
+
+**6/1/2025**: Military policy updated, Hindenburg can now sack SPD chancellors too
+
+**10/1/2025**: March on Berlin updated for cases where Nazis are not strongest far-right movement
+
+**12/1/2025**: Blutmai tweaks
+
+**16/1/2025**: Support changes changed and Nazi peak implemented
+
+**18/1/2025**: Work in progress timeline extension to around 1937
+
+**20/1/2025**: Some changes to over the time support, including a soft cap on SPD support post return to normalcy
+
+**21/1/2025**: Eviler DVP (sorry guys)
+
+**24/1/2025**: Reichsexekuting Thuringia if SPD president added
+
+**27/1/2025**: Seldte martial law added and generally just more of the March on Berlin seldte variation content
+
+**30/1/2025**: Economic factors feed into each other, effect support. Also modified post-34 bourgeois economic plan to include tariff hikes if budget deficit
+
+**11/2/2025**: Post civil war elections added & new mechanic to radicalize the new middle class, increasing support and making them less offended by leftist actions
+
+**13/2/2025**: Minor faction rework, changing dissent to emphasize the historical Centrist niche of keeping the party together
+
+**14/2/2025**: Hilferding eventually concedes to the necessity of an economic plan...
+
+**16/2/2025**: Political crisis event if multiple elections without majority.
+
+**17/2/2025**: 1930 start date for those who want a challenge!
+
+**2/5/2025**: And a lot more since then, but I forgot to update the changelog: post-hitler content, landtags, legislification, 1925...
+
+**15/5/2025**: Capital strike changes, businesses lose confidence changes, Hamburg tweak
+
+- @flavors: Back
+
+@plans
+
+= Plans for the mod
+
+Legislification, 1925 and landtags.
+
+- @flavors: Back
+
+@ideas
+
+= Ideas and Feedback
+
+If you have any ideas or feedback on my mod you can ask me on the game's discord server (I'm oracle372) or on Reddit (I'm u/CuttleCraft). Please also mention any bugs you may find.
+
+- @flavors: Back
+
+                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                         

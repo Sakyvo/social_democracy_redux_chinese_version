@@ -1,0 +1,13 @@
+title: Unions Declare Independence
+new-page: true 
+subtitle: Labor's disagreements with our policies have grown too severe.
+tags: event
+view-if: labor_dissent >= 60 and not unions_independent
+on-arrival: unions_independent = 1; labor_strength = labor_strength/2; workers_spd -= 20; unemployed_spd -= 10; workers_sapd += 5; workers_sapd += 10 if sapd_consolidated == 1; workers_kpd += 5 if sapd_consolidated == 0; workers_nsdap += 5 if sapd_consolidated == 0; n_advisors -= 1 if woytinsky_advisor == 1; n_advisors -= 1 if leipart_advisor == 1; woytinsky_advisor = 0; leipart_advisor = 0; rb_strength -= 600; sapd_formed = 1 if left_split and sapd_formed != 1; socialism -= 6
+max-visits: 1
+
+= Unions Declare Independence
+
+Our policy choices have greatly offended the labor movement. Union leaders have declared that they are independent of any political party, and some have been seen seeking accomodation with the KPD and NSDAP.
+
+Much of our working-class base has defected, and labor's influence in our party has greatly diminished. [? if left_split = 1 and sapd_formed != 1 : The small SAPD has capitalized on this, helping its rise from an insignificant and small movement into a party able to achieve Reichstag representation, even if little. ?] [? if sapd_formed == 1 : The SAPD has capitalized on this, managing to rally the bulk of the unions around itself and presenting a serious threat to our working class base. ?]

@@ -1,0 +1,59 @@
+title: Saar Referendum
+subtitle: A referendum is to be held on the fate of the Saarland…
+view-if: year >= 1935
+max-visits: 1
+tags: event
+new-page: true
+
+= Saar Referendum
+
+Following Germany’s defeat in the Great War, the Saarland was made into a League of Nations mandate under de-facto French control. Now, however, a referendum is scheduled to take place to decide the future of the territory.
+
+The vote to rejoin Germany is widely expected to succeed, though ultimately the highly Catholic population of the region will be the deciding factor. 
+
+- @campaign_pro: Campaign in favor of rejoining Germany.
+- @campaign_anti: Campaign against rejoining Germany.
+
+@campaign_pro
+on-arrival: spd_saar = 1; saar_pro += (nationalism*2); saar_pro = catholics_spd_normalized; saar_pro += catholics_z_normalized if (z_relation >= 20 or not spd_in_government); saar_anti += (progressive_coalition/5); saar_anti += (homosexual_rights*8); saar_anti += (womens_rights*2); saar_pro += 25 if concordat; saar_anti += 10/(west_relation+1) if west_relation > 0; saar_anti += 20 if west_relation < 0; saar_pro += sa_force; {!
+var saar = Q.saar_pro + Q.saar_anti;
+Q.saar_pro = Math.round((Q.saar_pro/saar)*100);
+Q.saar_anti = Math.round((Q.saar_anti/saar)*100);
+!}
+
+Of course, we campaign in favor of reincorporation. [? if z_relation >= 25 : The Center Party does as well, helping swing the Catholics. ?]
+
+- @victory: [+ saar_pro +]% vote in favor of rejoining Germany.
+- @defeat: [+ saar_pro +]% vote in favor of rejoining Germany.
+
+@campaign_anti
+view-if: chancellor_party == "I" or chancellor_party == "NSDAP" or chancellor_party == "DNVP"
+on-arrival: saar_pro += (nationalism*2); saar_anti = (catholics_spd_normalized/3); saar_pro += catholics_z if z_relation < 70; saar_anti += (kpd_votes/4); saar_anti += (pro_republic/5); saar_anti += democratization; saar_anti += 5/(west_relation+1) if west_relation > 0; saar_anti += 20 if west_relation < 0; saar_pro += sa_force; {!
+var saar = Q.saar_pro + Q.saar_anti;
+Q.saar_pro = Math.round((Q.saar_pro/saar)*100);
+Q.saar_anti = Math.round((Q.saar_anti/saar)*100);
+Q.workers_spd -= 3;
+Q.new_middle_spd -= 4;
+Q.old_middle_spd -= 6;
+Q.rural_spd -= 6;
+Q.unemployed_spd -= 3;
+!}
+
+Due to the threat of the Republic soon falling, we make the heavy handed decision to campaign for a continuation of the mandate. The Nazis gleefully label us traitors to Germany, and our support amongst more nationalistic demographics is hurt.
+
+- @victory: [+ saar_pro +]% vote in favor of rejoining Germany.
+- @defeat: [+ saar_pro +]% vote in favor of rejoining Germany.
+
+@victory
+view-if: saar_pro >= 50
+on-arrival: saarland = 1; catholics += 1; workers_nsdap += 5 if ((saar_pro-sa_force) < 50); workers_spd -= 3 if saar_pro < 70; dvp_relation -= 4 if saar_pro < 70; nationalism += 3
+
+As expected, the vote to rejoin Germany wins with [+ saar_pro +]%. [? if ((saar_pro-sa_force) < 50) : The Nazis were very active in the campaign, intimidating voters with their SA, and have claimed the victory as theirs. ?]
+
+[? if saar_pro < 70 : The margin of victory was surprisingly close for comfort, and our credibility is hurt as a result. ?]
+
+@defeat
+view-if: saar_pro < 50
+on-arrival: workers_spd -= 4 if spd_saar == 1; new_middle_spd -= 4 if spd_saar == 1; old_middle_spd -= 5 if spd_saar == 1; unemployed_spd -= 4 if spd_saar == 1; rural_spd -= 5 if spd_saar == 1; workers_nsdap -= 5 if spd_saar != 1; new_middle_nsdap -= 8 if spd_saar != 1; old_middle_nsdap -= 8 if spd_saar != 1; unemployed_nsdap -= 5 if nsdap_saar != 1; rural_nsdap -= 7 if nsdap_saar == 1; 
+
+Somehow, a majority of [+ saar_anti +]% have voted to stay as a League of Nations mandate. This is a great embarrassment to [? if spd_saar : us ?][? if not spd_saar : the NSDAP ?] as it was widely expected that the vast majority would favor Germany. 

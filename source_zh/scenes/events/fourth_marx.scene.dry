@@ -1,0 +1,36 @@
+title: A New Government Forms
+subtitle: [+ president +] is to appoint a new government
+view-if: year == 1927 and marx_rearmament
+new-page: true
+max-visits: 1
+go-to: hindenburg_menu if president == "Hindenburg"; marx_menu if president == "Marx"
+on-arrival: marx_iv_seen = 1
+tags: event
+
+= A New Government Forms
+
+Following the fall of the previous government over secret rearmament plans by the Reichswehr, negotiations for a new one were begun. Due to our role in bringing down the government, we have been excluded from talks.
+
+@hindenburg_menu
+
+Now, President Hindenburg has announced the formation of a new government.
+
+- @marx_iv: A fourth Marx cabinet.
+
+@marx_iv
+subtitle: Z + BVP + DVP + DNVP ([+ right_coalition +]%)
+on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3; old_middle_other += 3; new_middle_dnvp -= 3; new_middle_other += 3; rural_dnvp -= 3; rural_other += 3
+
+The DNVP has managed to make its way back into the government, as the cabinet is reshuffled to accomodate them. The DDP stays outside of this framework for now, finding Marx's planned policy on schools too favorable towards the denominational schools. 
+
+@marx_menu
+
+Now, President Marx has announced the formation of a new government.
+
+- @bruning_ii: A second Brüning cabinet.
+
+@bruning_ii
+subtitle: Z + BVP + DVP + DNVP ([+ right_coalition +]%)
+on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3; old_middle_other += 3; new_middle_dnvp -= 3; new_middle_other += 3; rural_dnvp -= 3; rural_other += 3
+
+The DNVP has managed to make its way back into the government, as the cabinet is reshuffled to accomodate them. The DDP stays outside of this framework for now, finding Brüning's planned policy on schools too favorable towards the denominational schools. 

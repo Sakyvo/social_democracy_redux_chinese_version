@@ -1,0 +1,48 @@
+title: The National Front!
+new-page: true
+subtitle: The reactionary parties have banded together
+tags: event
+view-if: national_front_progress >= 150 and dvp_relation < 30
+on-arrival: z_national = 1 if z_relation < 20 and z_party_leader != "Joos"
+max-visits: 1
+
+= The National Front
+
+With the Nazis embracing their new tactic of subverting democracy truly from within, many doors have been opened. The "National Opposition" has fallen apart and given way to the "National Front", a new alliance of the BVP, DVP, DNVP and NSDAP as well as many other smaller right-wing parties into a firmly reactionary bloc. [? if z_national : Even the Center Party has joined, despite initial reluctance, thanks to our great hostility. ?]
+
+The moderate right, of course, believes that they are using the NSDAP's Reichstag seats to take power for themselves, but the NSDAP cannot be underestimated. Hitler is sure to try and ride the wave of the National Front to power if it ever so much as gets close to a parliamentary majority.
+
+- @worrying: Worrying.
+
+@worrying
+on-arrival: {!
+var national_gain = Q.nationalism/4;
+var nazi_portion = (100-Q.pro_republic)/4;
+nazi_portion += Q.nazi_urgency;
+nazi_portion += Q.unemployed;
+nazi_portion += Q.pacifism;
+var dnvp_portion = Q.land_reform;
+dnvp_portion += Q.judicial_reform;
+dnvp_portion += Q.democratization;
+dnvp_portion += (1-Q.reichswehr_loyalty)*10;
+var dvp_portion = Q.inflation*4;
+dvp_portion += Q.capital_strike_progress;
+dvp_portion += Q.economic_democracy+Q.nationalization_progress;
+dvp_portion += Q.left_strength/10;
+var total_portion = nazi_portion+dnvp_portion+dvp_portion;
+nazi_portion = nazi_portion/total_portion;
+dnvp_portion = dnvp_portion/total_portion;
+dvp_portion = dvp_portion/total_portion;
+// actual increases
+Q.new_middle_nsdap += national_gain*nazi_portion;
+Q.old_middle_dvp += national_gain*dvp_portion;
+Q.rural_dnvp += national_gain*dnvp_portion;
+Q.new_middle_other *= 0.8;
+Q.old_middle_other *= 0.8;
+Q.rural_other *= 0.8;
+Q.workers_other *= 0.9;
+Q.catholics_other *= 0.9;
+Q.unemployed_other *= 0.9;
+!}
+
+We will have to keep an eye on them.

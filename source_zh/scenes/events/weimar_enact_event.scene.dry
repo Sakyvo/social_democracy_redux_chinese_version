@@ -1,0 +1,9 @@
+title: Enacting the Weimar Plan
+subtitle: Our coalition partners are ready to proceed with the plan.
+new-page: true
+view-if: weimar_plan_adopted == 1 and spd_in_government == 1 and economic_minister_party != "SPD" and finance_minister_party != "SPD"
+max-visits: 1
+on-arrival: weimar_enacting_timer += 6; month_actions += 1
+tags: event
+card-image: img/muller_cabinet.jpg
+go-to: weimar_enacting

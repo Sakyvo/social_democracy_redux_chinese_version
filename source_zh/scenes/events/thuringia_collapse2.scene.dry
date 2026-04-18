@@ -1,0 +1,10 @@
+title: Toleration ends in Thuringia
+subtitle: The Thuringian SPD has turned on the bourgeois parties of the state
+new-page: true
+tags: event
+view-if: landtags_enabled and thuringia_toleration and thuringeration_timer <= 0 and (reformist_strength < left_strength+labor_strength or reformist_strength < center_strength)
+on-arrival: thuringia_toleration = 0; thuringia_election_year = year; thuringia_election_month = month+2; thuringia_election_year += 1 if thuringia_election_month > 12; thuringia_election_month -= 12 if thuringia_election_month > 12;
+
+= End of Toleration in Thuringia
+
+The Thuringian SPD has always been one of the most left-wing in the country, and as such an unstable toleration agreement with the bourgeois parties has fallen apart, forcing new elections for [+ thuringia_election_month : month +] [+ thuringia_election_year +].

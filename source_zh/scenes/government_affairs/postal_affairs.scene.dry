@@ -1,0 +1,95 @@
+title: Postal Affairs
+new-page: true
+is-card: true
+view-if: spd_in_government = 1 and postal_affairs_minister_party = "SPD" and postal_affairs_timer = 0
+on-arrival: month_actions += 1; postal_affairs_timer += 6; postal_loyalty = 0.5 if not postal_loyalty and postal_loyalty != 0; postmen = 10 if not postmen
+card-image: img/postmen.jpg
+#audio: shuffle music/beatles/mr_postman.mp3
+set-bg: img/with_the_beatles.jpg
+tags: govt_affairs
+
+= Postal Affairs
+
+The postal services may not seem to be at first glance a very important ministry but possess surprising potential for clandestine operations.
+
+Current loyalty: [+ postal_loyalty : loyalty +]
+
+- @postal_loyalty: Increase the loyalty of the postal services.
+- @expand_postal: Expand the postal services.
+- @distribute_vorwarts: Distribute Vörwarts through the postal services.
+- @infiltrate_far_right: Infiltrate and hijack far-right mail.
+- @infiltrate_bourgeois: Infiltrate and hijack bourgeois mail.
+- @leak_blackmail: Release the blackmail we have compiled on the bourgeois parties.
+- @militarize: Militarize the postmen.
+
+@postal_loyalty
+on-arrival: postal_loyalty += 0.05
+set-bg: img/map_2.jpg
+
+Through slow and careful reform of the postal ranks, more and more postmen are of republican and socialist character, rather than reactionary. 
+
+@expand_postal
+subtitle: -1 budget
+choose-if: budget >= 1
+on-arrival: postal_loyalty += 0.02; postmen += 10; budget -= 1; new_middle_spd += 3*(1-dissent); old_middle_spd += 3*(1-dissent); democratization += 1
+set-bg: img/map_2.jpg
+
+We expand the postal services, recruiting more people as postmen. The postal services are grateful for the support.
+
+@distribute_vorwarts
+view-if: postal_loyalty >= 0.6
+subtitle: -1 resource
+choose-if: resources >= 1
+on-arrival: postal_loyalty -= 0.03; resources -= 1; workers_spd += 4*(1-dissent); new_middle_spd += 2*(1-dissent); old_middle_spd += 2*(1-dissent); coalition_dissent += 1 if not blackmail
+set-bg: img/map_2.jpg
+
+We distribute Vörwarts articles in the mail secretly, increasing our reach and support. [? if not blackmail : Our bourgeois allies have taken a notice and promptly protest. ?]
+
+@infiltrate_far_right
+view-if: postal_loyalty >= 0.6
+on-arrival: postal_loyalty -= 0.02; coalition_dissent += 1 if not blackmail; investigate_far_right += 1; sa_strength -= 20; workers_nsdap -= 3; new_middle_nsdap -= 3; nazi_urgency += 1 if investigate_far_right == 2; nazi_urgency += 2 if investigate_far_right == 3; workers_nsdap -= 3 if investigate_far_right == 3; new_middle_nsdap -= 3 if investigate_far_right == 3; old_middle_nsdap -= 3 if investigate_far_right == 3; unemployed_spd -= 3 if investigate_far_right == 3; coup_progress -= 1 if coup_progress >= 7
+set-bg: img/map_2.jpg
+
+[? if investigate_far_right == 1 : We have discovered collusion between Hjalmar Schacht, president of the Reichsbank, and the Nazis. This is very useful information. ?]
+[? if investigate_far_right == 2 : We have discovered illegal arms smuggling by the SA, the Nazi paramilitary. ?]
+[? if investigate_far_right == 3 : We have discovered a secret cache of documents from the NSDAP detailing their plan to violently take over the country if they enter into power. This is an anti-constitutional plot, and will be publicized and persecuted. ?]
+[? if investigate_far_right > 3 : Of course the Nazis are doing crimes; everyone knows that. Now, we finally have proof. ?]
+[? if coup_progress >= 6: There are reports of an imminent coup by the far-right. We have attempted to disrupt some of these plans, but the threat is still present. ?]
+
+[? if not blackmail : The bourgeois parties are noticing irregularities, and protest. ?]
+
+@infiltrate_bourgeois
+view-if: postal_loyalty >= 0.7
+on-arrival: postal_loyalty -= 0.05; blackmail += 1; coalition_dissent += 2; coalition_dissent += 1 if in_grand_coalition; coalition_dissent -= 1 if coalition_dissent+blackmail >= 3; coalition_dissent -= (blackmail-1) if blackmail >= 2
+set-bg: img/map_2.jpg
+
+The bourgeois parties are incensed at our unconstitutional acts. [? if blackmail >= 2 : Luckily, however, their outrage is offset by the immense supply of blackmail we have against them. ?]
+
+@leak_blackmail
+view-if: blackmail >= 1
+on-arrival: {! 
+Q.bourgeois_parties = ['ddp', 'z', 'dvp', 'other']
+for (var party of Q.bourgeois_parties) {
+    for (var c of Q.classes) {
+        Q[c+'_'+party] -= (Q.blackmail*4);
+        Q[party+'_relation'] -= (Q.blackmail*10);
+    }
+}
+Q.blackmail = 0;
+Q.coalition_dissent += 100;
+Q.capital_strike_progress += 100;
+!}
+set-bg: img/map_2.jpg
+
+We have leaked our entire arsenal of blackmail against the bourgeois parties, greatly damaging their support. The response on their part is near immediate, as our relations are destroyed overnight.
+
+@militarize
+view-if: postal_loyalty >= 0.7
+choose-if: resources >= 2 and postal_loyalty >= 0.8
+subtitle: -2 resources
+unavailable-subtitle: -2 resources - the postmen must be committed and hardened social democrats.
+on-arrival: resources -= 2; rb_strength += postmen; rb_militancy += 0.15; coup_progress += 5; coalition_dissent += (5-blackmail)
+max-visits: 1
+set-bg: img/map_2.jpg
+
+The postal services are enrolled into the Reichsbanner as auxiliary forces. The bourgeois parties are understandably outraged.

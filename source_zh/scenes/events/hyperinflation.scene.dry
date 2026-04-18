@@ -1,0 +1,46 @@
+title: Hyperinflation
+subtitle: The Reichsmark is collapsing from our deficit spending programs.
+view-if: inflation >= 25 and spd_in_government and hyperinflation >= 0.2
+new-page: true
+max-visits: 1
+on-arrival: capital_strike_progress += 3; hyperinflation += 0.6; workers_spd -= 11; old_middle_spd -= 16; new_middle_spd -= 18; rural_spd -= 14; unemployed_spd -= 10; pro_republic -= 12; unemployed_kpd += 3; unemployed_kpd += 2 if sapd_consolidated == 0; unemployed_sapd += 2 if sapd_consolidated == 1; unemployed_nsdap += 5 if nazis_in_crisis_seen == 0; unemployed_kpd += 3 if nazis_in_crisis_seen == 1; unemployed_kpd += 2 if nazis_in_crisis_seen == 1 and sapd_consolidated == 0; unemployed_sapd += 2 if nazis_in_crisis_seen == 1 and sapd_consolidated == 1; coalition_dissent += 2
+tags: event
+
+= Hyperinflation
+
+Inflation has skyrocketed. People of all classes have seen their purchasing power plummet, and blame the SPD as it seems 1923 is repeating all over again. The extremists against the republic clamor at this opportunity [? if sapd_consolidated : , as does the SAPD, which rallies against us ?].
+
+We must take some action.
+
+- @taxes: We must raise taxes.
+- @welfare: We must reduce welfare and social spending.
+- @price_controls: Impose strict price and wage controls.
+- @volksmark: We must adopt a wholly new currency!
+- @nothing: Realistically, there is nothing we can do.
+
+@taxes
+on-arrival: upper_tax_rates += 2; lower_tax_rates += 2; budget += 4; unemployed += 3; inflation -= 2; hyperinflation -= 0.4; new_middle_spd -= 7; old_middle_spd -= 8; workers_spd -= 5; rural_spd -= 5; kpd_coalition_dissent += 1; kpd_relation -= 10; left_dissent += 10; center_dissent -= 5
+
+Raising taxes is unpopular among everyone, but it might be what it takes to keep inflation under control.
+
+@welfare
+on-arrival: welfare -= 2; budget += 2; capital_strike_progress -= 3; unemployed += 3; new_middle_spd += 6*(1-dissent); old_middle_spd += 6*(1-dissent); workers_spd -= 10; unemployed_spd -= 10; inflation -= 2; hyperinflation -= 0.4; left_dissent += 10; labor_dissent += 10; center_dissent += 5; kpd_coalition_dissent += 1;
+
+Reducing the amount of government spending should reduce the inflation rate, according to classical economics. But it imposes pain upon the people who are suffering the most.
+
+@price_controls
+on-arrival: capital_strike_progress += 6; inflation *= 0.75; hyperinflation = 0; coalition_dissent += 2; unemployed += 2; old_middle_spd -= 8; new_middle_spd -= 6; rural_spd -= 12; workers_spd -= 4; unemployed_spd += 5; labor_dissent += 12; dvp_relation -= 15; z_relation -= 8; ddp_relation -= 6
+
+Price controls are very unpopular with the bourgeoisie and their representatives, as well as rural producers, while wage controls hurt organized workers. However, the policies do stem the tide of inflation, at least somewhat.
+
+@volksmark
+choose-if: year = 1935
+unavailable-subtitle: WIP
+
+Placeholder
+
+@nothing
+on-arrival: capital_strike_progress += 2; coalition_dissent += 1; hyperinflation += 0.1
+
+Realistically, there is nothing we can do to stem the tide of inflation.
+

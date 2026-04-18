@@ -1,0 +1,46 @@
+title: The Nazis Split!
+subtitle: Finally, the internal contradictions of the NSDAP have caught up to it.
+view-if: schleichers_scheme_success and year >= 1933 and (nazi_peak or nazi_peaked) and strasser_percent >= 0.25
+on-arrival: {! 
+Q.parties.push('dne');
+Q.workers_dne = Q.workers_nsdap*Q.strasser_percent;
+Q.unemployed_dne = Q.unemployed_nsdap*Q.strasser_percent;
+Q.new_middle_dne = Q.new_middle_nsdap*(Q.strasser_percent/2);
+Q.old_middle_dne = 0;
+Q.rural_dne = 0;
+Q.catholics_dne = 0;
+Q.workers_nsdap -= Q.workers_dne;
+Q.unemployed_nsdap -= Q.unemployed_dne;
+Q.new_middle_nsdap -= Q.new_middle_dne;
+Q.workers_nsdap *= Q.hitler_percent;
+Q.unemployed_nsdap *= Q.hitler_percent;
+Q.sa_strength *= Q.hitler_percent;
+Q.new_middle_nsdap *= Q.hitler_percent;
+Q.old_middle_nsdap *= Q.hitler_percent;
+Q.rural_nsdap *= Q.hitler_percent;
+Q.catholics_nsdap *= Q.hitler_percent;
+Q.dne_r = 0;
+Q.schleicher_support += Q.dne_r;
+Q.dne_formed = 1;
+Q.labor_dissent += 10;
+for (var state of Q.states) {
+    Q[state+'_dne'] = 0;
+}
+Q.dne_timer = 4;
+!}
+max-visits: 1
+new-page: true
+tags: event
+
+= The Nazis Split
+
+Following the defection of the Strasserists in the NSDAP to support Schleicher, it seemed only a matter of time until the dispute came to a head. Schleicher has announced a reorganization of his cabinet to include several key Strasserist figures, now organized under the Deutsch Nationale Einheitsfront, or the DNE. The aura of invincibility around Hitler has all but completely shattered.
+
+- @and: And...
+
+@and
+view-if: labor_dissent >= 60 and not unions_independent
+subtitle: The ADGB reconsiders its allegiances
+on-arrival: unions_independent = 1; workers_spd -= 20; unemployed_spd -= 10; workers_dne += 10; unemployed_dne += 5
+
+The ADGB has announced its separation from the SPD. It has gone to join Schleicher in his fledgling dictatorship. 

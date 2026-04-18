@@ -1,0 +1,27 @@
+title: A New Spain
+subtitle: The Spanish civil war has finally come to an end...
+view-if: republic_strength <= 0 or national_strength <= 0 and spanish_civil_war
+max-visits: 1
+tags: event
+on-departure: spanish_civil_war = 0
+new-page: true
+
+= A New Spain
+
+After intense and prolonged fighting between fundamentally opposed forces over the future of Spain, a clear winner has finally emerged from the dust, ready to lead Spain forward.
+
+- @republican_victory: The Republicans.
+- @nationalist_victory: The Nationalists.
+
+@republican_victory
+view-if: national_strength <= 0
+on-arrival: pro_republic += 10; socialism += 5; nationalism -= 5; republican_spain = 1
+
+The forces of democracy and socialism have triumphed over the reactionaries in Spain. This bolsters progressivism internationally, even here in Germany. Only time will tell if the new Spanish republic sees a better fate than the last, but hopes are high.
+
+@nationalist_victory
+view-if: republic_strength <= 0
+on-arrival: nationalism += 10; pro_republic -= 5; nationalist_spain = 1
+
+Unfortunately, it seems the reactionaries have won in the struggle for Spain, and crushed the workers' movement in the country. Another country falls to fascism. Let us hope it is the last.
+

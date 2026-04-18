@@ -1,0 +1,44 @@
+title: Hugenberg vs. Brüning
+subtitle: Hugenberg attempts to lead his party against Brüning's government
+new-page: true
+view-if: dnvp_toleration = 1 and year = 1930 and month >= 6 and not constructive_vonc and president == "Hindenburg"
+on-arrival: confrontation_seen = 1; {!
+Q.pro_bruning = 0;
+Q.anti_bruning = 0;
+Q.pro_bruning += Q.pro_republic;
+Q.anti_bruning += Q.nationalism;
+Q.pro_bruning += 100-Q.nationalism;
+Q.anti_bruning += 100-Q.pro_republic;
+var total_dnvp = Q.anti_bruning+Q.pro_bruning;
+Q.pro_bruning = Q.pro_bruning/total_dnvp;
+Q.anti_bruning = Q.anti_bruning/total_dnvp;
+Q.pro_bruning = Math.round(Q.pro_bruning*Q.dnvp_r);
+Q.anti_bruning = Q.dnvp_r-Q.pro_bruning;
+!}
+tags: event
+max-visits: 1
+
+= Hugenberg vs Brüning
+
+Following the dislodging of us from Brüning's government through the unemployment insurance crisis, the DNVP has been split roughly down the middle as Hugenberg attempts to bring down Brüning's cabinet, met with resistance by Westarp and the remaining "moderates" in the party.
+
+We stand to potentially be able to bring Brüning down by voting to override his recent emergency budget cuts, though whether or not we succeed to do so depends on the DNVP's decision.
+
+- @vote_against: Motion in the Reichstag to override Brüning's budget cuts.
+
+@vote_against
+on-arrival: bourgeois_coalition += pro_bruning; rural_dnvp -= 5; old_middle_dnvp -= 3; new_middle_dnvp -= 3; catholics_dnvp -= 2; rural_other += 3; old_middle_other += 2; catholics_other += 2
+go-to: successful_motion if bourgeois_coalition < 50; failed_motion if bourgeois_coalition >= 50
+
+Of course, we will not stand idly by as the bourgeois first expel us from government and then unleash austerity upon the nation. We owe nothing to them after they blew our government up.
+
+@successful_motion
+on-arrival: time_to_election = 3; dnvp_toleration = 0;
+call: set_next_election_time
+
+Despite the defection of Westarp's wing from the party, most of the DNVP still turns on Brüning as per Hugenberg's wishes, allowing the motion to succeed. The Reichstag is dissolved, and snap elections called for [+ next_election_month : month +] [+ next_election_year +].
+
+@failed_motion
+on-arrival: in_bourgeois_coalition = 1; dnvp_toleration = 0; what_the_hell = 1
+
+A majority of the DNVP's deputies follow Westarp in leaving the party and tolerating Brüning, and our motion just barely fails. Perhaps this is a hidden blessing, as we will have more time untainted in opposition with which to rebuild our popularity, all while the bourgeois parties tear themselves up.

@@ -1,0 +1,61 @@
+title: Spanish Civil War
+new-page: true
+is-card: true
+tags: govt_affairs
+on-arrival: spanish_war_timer = 4; month_actions += 1
+view-if: foreign_minister_party == "SPD" and spanish_war_timer <= 0 and spanish_civil_war and spain_involved
+card-image: img/spanish-civil-war-2.jpg
+go-to: winning
+
+Since the Spanish Civil War broke out, we have been active in helping the efforts of the Republicans in combatting fascism. Intervention is popular within our party, but unfortunately much more controversial both in Germany as a whole and abroad. As it is against the Treaty of Versailles, our aid has been forced to remain secret, albeit somewhat of an open one.
+
+@winning
+on-arrival: republic_percent = (republic_strength/(republic_strength+national_strength))
+
+[? if republic_percent < 0.25 : Unfortunately, the situation is bleak for the Republicans. It would take a substantial change in the dynamic of the war to turn the tide. ?][? if republic_percent >= 0.75 : Thankfully, the Republicans are winning. The war may soon be over, unless something drastically changes. ?][? if republic_percent >= 0.6 and republic_percent < 0.75 : It is hard to say with certainty, but it seems that the Republicans have the upper hand. We will have to ensure that it stays that way. ?][? if republic_percent >= 0.4 and republic_percent < 0.6 : Both sides are currently on roughly even footing, but this could easily change. ?][? if republic_percent < 0.4 and republic_percent >= 0.25 : It is hard to say for certain, but it seems that the Nationalists have the upper hand. We should act to remedy this. ?]
+
+- @increase_aid: Send more aid to the Republicans.
+- @volunteers: Smuggle volunteers to Spain to fight for the Republicans.
+- @military_attache: Send military advisors to help the Republicans.
+- @offensive: Focus our aid on attacking the Nationalists.
+- @defensive: Focus our aid on defending the Republicans.
+- @easy_discard
+
+@increase_aid
+subtitle: -1 budget.
+unavailable-subtitle: -1 budget. We don't have the budget.
+choose-if: budget >= 1
+on-arrival: coalition_dissent += 1; budget -= 1; republic_strength += 0.5; aid_level += 2; total_aid += 2; reichswehr_loyalty -= 0.05; coup_progress += 0.5; west_relation -= 1
+
+We send more aid to the Republicans, despite the controversy and potential risks of discovery. Let's hope this is enough.
+
+@volunteers
+choose-if: resources >= 1
+subtitle: -1 resource. We will assist in the flow of socialists into the international brigades of Spain.
+unavailable-subtitle: We don't have the resource needed.
+on-arrival: smuggle_seen = 1
+go-to: international_relations.spain
+
+@military_attache
+subtitle: We will help train Republican forces and draft Republican strategies.
+choose-if: reichswehr_loyalty >= 0.25 and reichswehr_militancy >= 1 and aid_level >= 1
+unavailable-subtitle: [? if reichswehr_loyalty < 0.25 : Our officers can't be trusted with this. ?][? if reichswehr_militancy < 1 : Our officers are too inexperienced. ?][? if aid_level < 1 : Our aid has run dry. We would need to send more to be able to use it. ?]
+on-arrival: republic_strength += 0.25; reichswehr_militancy -= 0.2; republic_strength += 0.25 if reichswehr_militancy >= 3; reichswehr_loyalty -= 0.05; aid_level -= 1; total_aid += 1;
+
+We send our top military advisors and officers to help the Republican forces in their fight.
+
+@offensive
+subtitle: After all, the best defense is a good offense.
+choose-if: aid_level >= 1
+unavailable-subtitle: Our aid has run dry. We would need to send more to be able to use it.
+on-arrival: republic_strength -= 0.1; national_strength -= 0.25; aid_level -= 1; total_aid += 1;
+
+We focus our military aid to the Republicans on offensive operations, hoping to bring a swift end to the conflict by striking at the Nationalists.
+
+@defensive
+subtitle: We will hold the line and wear the Nationalists out.
+choose-if: aid_level >= 1
+unavailable-subtitle: Our aid has run dry. We would need to send more to be able to use it.
+on-arrival: republic_strength += 0.25; national_strength += 0.1; aid_level -= 1; total_aid += 1
+
+We focus our military aid to the Republicans on defensive operations, hoping to wear out the Nationalists until they collapse.
