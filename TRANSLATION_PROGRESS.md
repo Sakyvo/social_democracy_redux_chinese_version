@@ -30,7 +30,7 @@ build-zh.cmd        # Windows
 | #2 Part 3 | `game_over`（结局分支 ~658 行）+ `post_event`（2195 行，大型事件后处理） | ✅ 完成（Part 3a game_over + Part 3b post_event；post_event 全文 2195 行几乎全为 JS 逻辑，实际玩家可见文本仅两处） |
 | #3 | 年度事件（`events/1926.dry` ~ `events/1936.dry`） | ✅ 完成 |
 | #4 | 顾问（`advisors/`） | ✅ 完成 |
-| #5 | 党务（`party_affairs/`） | 🔄 Part 1 完成（战略决策 + 党务管理 11 个文件）；Part 2 待做（意识形态/纲领/党际关系 11 个文件） |
+| #5 | 党务（`party_affairs/`） | 🔄 Part 1 完成（战略决策+党务管理 11 个）+ Part 2a 完成（shuffle_leadership）；Part 2b 待做（意识形态/纲领/党际 10 个） |
 | #6 | 政务（`government_affairs/`） | ⏳ 待做 |
 | #7 | 总统事务（`presidential_affairs/`） | ⏳ 待做 |
 | #8 | 杂项事件（`events/` 非年度部分） | ⏳ 待做 |
