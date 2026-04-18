@@ -1,10 +1,10 @@
-title: Election Simulation
+title: 选举模拟
 set-jump: post_election
 
 
-- @1928: 1928 historical scenario
-- @1930: 1930 historical scenario
-- @1932: 1932 (July) historical scenario
+- @1928: 1928 年历史情境
+- @1930: 1930 年历史情境
+- @1932: 1932 年（7 月）历史情境
 
 @1928
 on-arrival: {!
@@ -300,43 +300,43 @@ Q.anti_democratic_coalition = Q.kpd_r + Q.nsdap_r;
 Q.neo_weimar_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r;
 !}
 
-The electoral system is essentially proportional, with the proportion of Reichstag seats roughly equal to the proportion of votes.
- 
-**Election results:**
+选举制度本质上为比例代表制，国会席位比例大致等同于得票比例。
+
+**选举结果：**
 
 # 1928: 30, 1930: 25, 1932: 22
-SPD: [+ spd_r +]
+SPD：[+ spd_r +]
 
-[? if sapd_formed == 1 : SAPD: [+ sapd_votes +]% ?]
+[? if sapd_formed == 1 : SAPD：[+ sapd_votes +]% ?]
 
-# 1928: 15, 1930: 15, 1932: 
-Z + BVP: [+ z_r +]
+# 1928: 15, 1930: 15, 1932:
+Z + BVP：[+ z_r +]
 
 # 1928: 10, 1930: 13
-KPD: [+ kpd_r +]
+KPD：[+ kpd_r +]
 
 # 1928: 5, 1930: 4 (as DstP)
-DDP: [+ ddp_r +]
+DDP：[+ ddp_r +]
 
 # 1928: 9, 1930: 5
-DVP: [+ dvp_r +]
+DVP：[+ dvp_r +]
 
 # 1928: 14, 1930: 7
-DNVP: [+ dnvp_r +]
+DNVP：[+ dnvp_r +]
 
 # 1928: 3, 1930: 18
-NSDAP: [+ nsdap_r +]
+NSDAP：[+ nsdap_r +]
 
 # 1928: 9, 1930: 10
-Other: [+ other_r +]
+其他：[+ other_r +]
 
-**Potential coalitions:**
+**潜在联合方案：**
 
-Weimar Coalition (SPD + Z + DDP): [+ weimar_coalition +]
+魏玛联合（SPD + Z + DDP）：[+ weimar_coalition +]
 
-Grand Coalition (SPD + Z + BVP + DDP + DVP): [+ grand_coalition +]
+大联合（SPD + Z + BVP + DDP + DVP）：[+ grand_coalition +]
 
-Bourgeois Coalition (Z + BVP + DDP + DVP + Others): [+ bourgeois_coalition +]
+资产阶级联合（Z + BVP + DDP + DVP + 其他）：[+ bourgeois_coalition +]
 
-Right-wing Coalition (Z + BVP + DVP + Others + DNVP): [+ right_coalition +]
+右翼联合（Z + BVP + DVP + 其他 + DNVP）：[+ right_coalition +]
 
