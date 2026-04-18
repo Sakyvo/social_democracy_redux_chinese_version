@@ -1,5 +1,5 @@
 title: 1932
-subtitle: A new year 
+subtitle: 新的一年
 on-arrival: older_republic = old_republic; old_republic = pro_republic; {!
 // increase NSDAP vote share 
 Q.unemployed_kpd -= Q.strife;
@@ -33,6 +33,6 @@ view-if: year = 1932 and month = 1
 priority: 2
 max-visits: 1
 
-A new year begins. [? if works_program = 0 : There is little to no good news in Germany. The economic depression has still not bottomed out. ?][? if works_program >= 1 and unemployment >= 20 : We have begun to launch a public works program, but unemployment is still stubbornly high. The people are beginning to finally have optimism, however. ?][? if works_program >= 1 and unemployment < 20 : We have begun to launch a public works program, and unemployment is finally starting to fall. The people are beginning to finally have optimism. ?]
+新的一年开始了。[? if works_program = 0 : 德国几乎看不到任何好消息，经济萧条仍未见底。 ?][? if works_program >= 1 and unemployment >= 20 : 我们已开始推行一项公共以工代赈计划，但失业率依旧居高不下。尽管如此，人民总算开始重拾乐观。 ?][? if works_program >= 1 and unemployment < 20 : 我们已开始推行一项公共以工代赈计划，失业率终于有所下降。人民总算开始重拾乐观。 ?]
 
-The presidential election is in April of this year.
+今年四月将举行总统大选。

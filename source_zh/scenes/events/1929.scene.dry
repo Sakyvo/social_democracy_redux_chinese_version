@@ -1,5 +1,5 @@
 title: 1929
-subtitle: A new year
+subtitle: 新的一年
 on-arrival: old_republic = pro_republic; {!
 // see post_event.scene.dry for changes.
 Q.economic_growth -= 4;
@@ -16,4 +16,4 @@ view-if: year = 1929 and month = 1
 priority: 2
 max-visits: 1
 
-A new year begins. The economy appears to be slackening; unemployment is increasing throughout the republic, although for the most part, people are still doing well.
+新的一年开始了。经济似乎正在放缓，共和国各地的失业人数都在增加；但就总体而言，人民的日子仍然过得去。

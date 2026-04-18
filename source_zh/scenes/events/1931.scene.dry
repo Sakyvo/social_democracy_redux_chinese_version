@@ -1,5 +1,5 @@
 title: 1931
-subtitle: A new year 
+subtitle: 新的一年
 on-arrival: older_republic = old_republic; old_republic = pro_republic; {!
 // increase NSDAP vote share
 Q.unemployed_kpd -= Q.strife;
@@ -47,4 +47,4 @@ view-if: year = 1931 and month = 1
 priority: 2
 max-visits: 1
 
-A new year begins. [? if works_program = 0 : Unemployment continues to spiral upwards. The strength of the NSDAP continues to rise. ?][? if works_program > 0 : A works program has been enacted in order to reduce unemployment. ?] [? if works_program > 0 and unemployment > 15 : However, unemployment remains too high for comfort. ?]
+新的一年开始了。[? if works_program = 0 : 失业率继续螺旋式上升，纳粹党的势头也不断壮大。 ?][? if works_program > 0 : 为降低失业率，一项以工代赈计划已经实施。 ?] [? if works_program > 0 and unemployment > 15 : 然而，失业率依旧高得令人不安。 ?]

@@ -1,5 +1,5 @@
-title: A New Day in Germany
-subtitle: Has democracy finally triumphed?
+title: 德国的新一天
+subtitle: 民主终于凯旋？
 tags: event
 priority: 3
 view-if: (hindenburg_dead = 1 and president != "Hitler" and president != "Göring" and president != "Seldte") and end_disabled != 1
@@ -9,6 +9,6 @@ on-arrival: {!
 new-page: true
 go-to: game_over_1934
 
-= A New Day in Germany
+= 德国的新一天
 
-After the death of Hindenburg and the presidential election of 1934, it seems as if an era of history is closing. The worst years of political and economic crisis are over, and Nazism's days are numbered. Perhaps Germany will finally enter into a new era of genuine peace...
+随着兴登堡的离世与 1934 年总统大选的落幕，一个时代仿佛正在闭幕。政治与经济危机最艰难的岁月已经过去，纳粹主义的命数也已屈指可数。或许，德国终将迎来一个真正和平的新时代……

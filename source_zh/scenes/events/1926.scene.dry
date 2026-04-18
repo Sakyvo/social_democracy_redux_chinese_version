@@ -1,5 +1,5 @@
 title: 1926
-subtitle: A new year
+subtitle: 新的一年
 on-arrival: old_republic = pro_republic; {!
 // see post_event.scene.dry for changes.
 Q.economic_growth -= 3;
@@ -11,4 +11,4 @@ view-if: year = 1926 and month = 1
 priority: 2
 max-visits: 1
 
-A new year begins. The economy has taken a steeply downhill turn, as unemployment shoots up across the republic. In this environment, we and the communists stand to gain.
+新的一年开始了。经济已急转直下，失业人数在全国范围内飙升。在这样的环境中，我们与共产党人都将从中获益。

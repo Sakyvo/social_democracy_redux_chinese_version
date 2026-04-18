@@ -1,5 +1,5 @@
 title: 1935
-subtitle: A new year
+subtitle: 新的一年
 new-page: true
 tags: event
 priority: 2
@@ -51,6 +51,6 @@ if (Q.pro_republic > 75 && Q.pro_republic > Q.older_republic) {
 }
 !}
 
-A new year begins. Worldwide, the Great Depression is coming to an end, and the effects are being felt here in Germany. [? if economic_growth > 3 : The German economy is growing at an impressive pace, considering the worldwide recession. ?][? if unemployed < 15 : The unemployment rate has fallen substantially, as people across the country return to work. ?][? if inflation > 1 and inflation < 4 : Inflation is healthy, helping fuel the economy and bring down unemployment further. ?]
+新的一年开始了。全世界范围内，大萧条正走向终结，其影响在德国本土也开始显现。[? if economic_growth > 3 : 考虑到全球仍处于衰退之中，德国经济的增长速度已令人瞩目。 ?][? if unemployed < 15 : 随着全国各地的人们重返工作岗位，失业率已大幅下降。 ?][? if inflation > 1 and inflation < 4 : 通胀维持在健康区间，既为经济提供了动力，也有助于进一步压低失业率。 ?]
 
-[? if return_to_normalcy : The Nazis have seemingly missed their window for subverting parliamentary politics and enter a period of internal reorganization. [? if sa_force + sh_force >= 50 : The threat remains, however, that they may attempt to seize power by force as a desperate last attempt at taking power. We must be vigilant. ?] ?]
+[? if return_to_normalcy : 纳粹党似乎已错过了颠覆议会政治的窗口，转而进入内部重整时期。[? if sa_force + sh_force >= 50 : 然而，他们仍有可能在绝望中孤注一掷、以武力夺权。我们必须保持警惕。 ?] ?]

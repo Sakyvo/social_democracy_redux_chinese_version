@@ -1,5 +1,5 @@
 title: 1927
-subtitle: A new year
+subtitle: 新的一年
 on-arrival: old_republic = pro_republic; {!
 // see post_event.scene.dry for changes.
 Q.economic_growth += 5.1;
@@ -22,4 +22,4 @@ view-if: year = 1927 and month = 1
 priority: 2
 max-visits: 1
 
-A new year begins. The economy is beginning to recover from the recession of the previous year, thanks in part to the attempts of stimulation by the current and previous government.
+新的一年开始了。在现任与前任政府的刺激政策推动下，经济正开始从去年的衰退中复苏。

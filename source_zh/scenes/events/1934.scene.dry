@@ -1,5 +1,5 @@
 title: 1934
-subtitle: A new year
+subtitle: 新的一年
 new-page: true
 tags: event
 priority: 2
@@ -32,8 +32,8 @@ if (Q.pro_republic > 75 && Q.pro_republic > Q.older_republic) {
 
 = 1934
 
-A new year begins. [? if works_program = 0 : The economic depression seems to have bottomed out, but there is still much suffering. It is not too late to launch an economic rescue program. ?][? if works_program >= 1 and unemployment >= 15 : We have begun to launch a public works program, but the economy is still troubled. The recovery has begun, but more must be done. ?][? if works_program >= 1 and unemployment < 15 : Our public works program has successfully guided us through the worst of the crisis. The economy is improving, and finally people have optimism for the future. ?]
+新的一年开始了。[? if works_program = 0 : 经济萧条似乎已然触底，但苦难依然深重。现在启动一项经济救援方案仍不为晚。 ?][? if works_program >= 1 and unemployment >= 15 : 我们已开始推行一项公共以工代赈计划，但经济仍未摆脱困境。复苏虽已开启，要做的还远远不够。 ?][? if works_program >= 1 and unemployment < 15 : 我们的公共以工代赈计划成功带领我们挺过了危机最严峻的时刻。经济正在好转，人民终于对未来重拾了希望。 ?]
 
-[? if return_to_normalcy: With the return to normalcy, the political landscape in Germany is shifting. Liberalism is making a return among the middle classes, and the radical parties of the right are declining. ?]
+[? if return_to_normalcy: 随着常态的回归，德国的政治版图正在转变。自由主义在中产阶级中复兴，右翼激进政党则日渐式微。 ?]
 
-[? if president = "Hindenburg" : The president is in poor health; he is not expected to live out the year. ?]
+[? if president = "Hindenburg" : 总统的健康每况愈下，恐怕撑不完今年了。 ?]
