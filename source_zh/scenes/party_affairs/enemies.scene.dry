@@ -1,4 +1,4 @@
-title: Choosing Our Enemies
+title: 选定敌人
 new-page: true
 view-if: year <= 1930 and enemies_timer <= 0
 on-arrival: month_actions += 1; enemies_timer = 18
@@ -7,40 +7,40 @@ is-card: true
 card-image: img/poster_1.png
 tags: party_affairs
 
-= Choosing our enemies
+= 选定敌人
 
-In our media and campaign materials, who should we consider as our main opponents?
+在我们的媒体与竞选宣传中，应把谁视作主要对手？
 
-[? if enemies != 0 : Previously, we had considered the [+ enemies +] as our prior enemies. Is a change of direction necessary? ?]
+[? if enemies != 0 : 我们此前已将 [+ enemies +] 列为首要敌人。是否有必要调整方向？ ?]
 
-- @anti_dem: The anti-democratic parties of the far right and left - the KPD, NSDAP, and DNVP.
-- @far_right: The far right - the NSDAP and DNVP.
-- @nsdap: The NSDAP alone.
-- @kpd: The KPD.
-- @bourgeois: The bourgeois parties - the Center and DVP.
+- @anti_dem: 极右与极左的反民主政党——德共、纳粹党与 DNVP。
+- @far_right: 极右翼——纳粹党与 DNVP。
+- @nsdap: 仅针对纳粹党。
+- @kpd: 德共。
+- @bourgeois: 资产阶级诸党——中央党与 DVP。
 - @easy_discard
 
 @anti_dem
 on-arrival: enemies = "anti-democratic parties"; center_strength += 5; reformist_strength += 5; left_dissent += 5; workers_kpd -= 2; workers_nsdap -= 2; workers_dnvp -= 2; kpd_relation -= 10
 
-Attacking the far right and left is popular among all but the left wing of our party, who would prefer to be fighting the bourgeois parties. This might also hamper our ability to reconcile with the KPD in the future.
+抨击极右与极左受到党内除左派以外所有派系欢迎——左派则更希望同资产阶级诸党斗争。此举也可能削弱我们将来与德共和解的能力。
 
 @far_right
 on-arrival: enemies = "far right"; left_strength += 5; left_dissent -= 5; workers_nsdap -= 3; workers_dnvp -= 3;
 
-Attacking the far right is popular among the entire party, although the left considers the bourgeois parties to be just as dangerous, while the right is critical of our lack of response to the KPD. Our bourgeois coalition partners are also skeptical of our lack of commitment to anti-communism.
+抨击极右翼在全党得到普遍支持；不过左派认为资产阶级诸党同样危险，而右派则批评我们对德共缺乏回应。资产阶级联合伙伴也质疑我们反共立场的坚决程度。
 
 @nsdap
 on-arrival: enemies = "NSDAP"; neorevisionist_strength += 5; nazi_urgency += 1; workers_nsdap -= 4;
 
-[? if nazi_urgency == 0 or nsdap_r < 10 : The NSDAP is a tiny party right now, with more bark than bite. Many in our party are questioning our choices. ?][? if nazi_urgency > 0 and nsdap_r >= 10 : The Nazis are the most urgent problem for us to deal with. ?]
+[? if nazi_urgency == 0 or nsdap_r < 10 : 纳粹党目前只是一个小党，雷声大雨点小。党内许多人质疑我们的选择。 ?][? if nazi_urgency > 0 and nsdap_r >= 10 : 纳粹党是当前我们最迫切需要处理的问题。 ?]
 
 @kpd
 on-arrival: enemies = "KPD"; reformist_strength += 5; left_dissent += 8; reformist_dissent -= 5; kpd_relation -= 15; dvp_relation += 5; z_relation += 5; workers_kpd -= 4;
 
-Attacking the KPD is supported by all but the most left-wing socialists, and wins us some measure of approval among the bourgeois parties. However, If we are to reconcile with the KPD, this may not be the best choice.
+抨击德共获得除最左翼社会主义者以外所有人的支持，也为我们在资产阶级诸党中赢得一定好感。不过，若我们意欲与德共和解，此非上选。
 
 @bourgeois
 on-arrival: enemies = "bourgeois parties"; left_strength += 8; left_dissent -= 5; dvp_relation -= 5; z_relation -= 5; kpd_relation += 5; reformist_dissent += 8; workers_z -= 3; coalition_dissent += 1
 
-Our anti-bourgeois rhetoric is popular among the left, but may make it harder to build the coalitions that are necessary for government in the future.
+反资产阶级的话语在左派中深得人心，但可能让未来构建执政联合更加艰难。

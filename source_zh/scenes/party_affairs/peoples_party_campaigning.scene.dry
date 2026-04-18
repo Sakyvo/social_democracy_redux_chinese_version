@@ -1,4 +1,4 @@
-title: Campaigning (People's Party)
+title: 竞选活动（人民党）
 
 # basically, we can campaign as part of the people's party...
 
@@ -10,41 +10,40 @@ title: Campaigning (People's Party)
 - @campaign_catholics
 
 @campaign_workers
-title: Campaign among the workers, to assuage their doubts about our changes.
+title: 面向工人开展宣传，平息他们对我党转变的疑虑。
 on-arrival: workers_spd += 5*(1-dissent);
 
-The workers are still a key part of our constituency, and we must not alienate them in the transformation of our party.
+工人仍是我们基本盘的核心部分，在本党转型过程中不可疏远他们。
 
 @campaign_middle
-title: Campaign among the middle classes.
+title: 面向中产阶级开展宣传。
 on-arrival: old_middle_spd += 5*(1-dissent); new_middle_spd += 5*(1-dissent)
 
-As a people's party, we represent the employees and small businesspeople of the middle class, and they are becoming receptive to our messages.
+身为人民党，我们代表着中产阶级中的雇员与小商人，他们开始对我们的讯息敞开怀抱。
 
 @campaign_rural
-title: Campaign in rural areas.
+title: 在乡村地区开展宣传。
 choose-if: rural_policy > 0
-unavailable-subtitle: We have not enacted any rural policies yet.
+unavailable-subtitle: 我们尚未推行任何乡村政策。
 on-arrival: rural_spd += 6*(1-dissent)
 
-As a people's party, we represent farmers and rural workers as well, and they are becoming receptive to our messages.
+身为人民党，我们也代表着农民与乡村劳动者，他们开始对我们的讯息敞开怀抱。
 
 @campaign_unemployed
-title: Campaign among the unemployed.
+title: 面向失业者开展宣传。
 on-arrival: unemployed_spd += 5*(1-dissent);
 
-As a people's party, the urban poor are still a key part of our constituency.
+身为人民党，城市贫民仍是我们基本盘的核心部分。
 
 @campaign_women
-title: Campaign among women of all classes.
+title: 面向各阶层女性开展宣传。
 on-arrival: workers_spd += 3*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 3*(1-dissent); rural_spd += 3*(1-dissent); unemployed_spd += 3*(1-dissent);
 
-As a people's party, we represent women of all classes.
+身为人民党，我们代表着各个阶层的女性。
 
 @campaign_catholics
-title: Campaign among political Catholics.
+title: 面向政治天主教徒开展宣传。
 on-arrival: catholics_spd += 5*(1-dissent);
 
-Catholics have historically been tied to the Center Party, but there is no reason why our party cannot appeal to them. The Prussian Concordat in particular is a sign of our friendship with Catholicism.
-
+天主教徒历史上与中央党紧密相连，但本党也完全有理由赢得他们的支持。《普鲁士协定》正是我们对天主教抱持友好姿态的象征。
 
