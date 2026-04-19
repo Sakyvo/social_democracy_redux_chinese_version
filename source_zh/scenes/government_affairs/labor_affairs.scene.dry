@@ -1,4 +1,4 @@
-title: Labor Affairs
+title: 劳工事务
 new-page: true
 is-card: true
 tags: govt_affairs
@@ -9,32 +9,32 @@ on-departure: strike_term_seen = 1
 max-visits: 4
 #subtitle: Addressing labor unrest and strikes.
 
-= Labor Affairs
+= 劳工事务
 
-The industrial Ruhr region is aflame with labor unrest. The employers have started a major lockout to force the workers to take more cuts to wages and benefits.  There is a need for the Labor Ministry to arbitrate in conflicts between employers and workers.
+工业重镇鲁尔区劳工骚动正炽。雇主已发起一场大规模封厂停工，迫使工人接受工资与福利的进一步削减。劳工部需介入雇主与工人之间的纠纷进行仲裁。
 
-- @support_labor: Support labor in their demands.
-- @support_employers: Support the employers in their demands.
-- @balance: Try to strike a compromise between the sides.
+- @support_labor: 支持劳工的诉求。
+- @support_employers: 支持雇主的诉求。
+- @balance: 尝试在双方之间促成妥协。
 - @easy_discard
 
 @support_labor
-subtitle: Popular among the workers, this will alienate the bourgeoisie.
+subtitle: 深得工人心意，但将疏远资产阶级。
 on-arrival: labor_strength += 5; labor_dissent -= 5; left_dissent -= 5; workers_spd += 6*(1-dissent); coalition_dissent += 1; dvp_relation -= 4; capital_strike_progress += 1 if dvp_relation <= 30; capital_strike_progress += 1 if unemployed > 15; capital_strike_progress += 1 if unemployed > 24; labor_goal_completed += 1; inflation += 0.1; pro_labor += 1; strike_term_seen += 1; economic_growth -= 0.1; socialism -= 1
 
-Supporting labor is always popular in the SPD, although many of our coalition partners represent employers, and they are less enthused.
+支持劳工在社民党内一向深得人心，但我们的许多联合伙伴代表雇主利益，热情自然要低得多。
 
 @support_employers
-subtitle: Popular among the bourgeoisie, much less so among the workers.
+subtitle: 深得资产阶级欢迎，却远不为工人所接受。
 on-arrival: labor_dissent += 8; workers_spd -= 3; coalition_dissent -= 1  if coalition_dissent > 0; dvp_relation += 5; z_relation += 5; workers_kpd += 2; workers_kpd += 1 if sapd_consolidated != 1; workers_sapd += 1 if sapd_consolidated == 1; kpd_coalition_dissent += 1; kpd_relation -= 8; capital_strike_progress -= 1 if capital_strike_progress > 1; capital_strike_progress -= 1 if capital_strike_progress > 8; pro_labor -= 1; strike_term_seen += 1; socialism -= 2
 
-The more radical workers despise our suppression of their strikes, recalling the days of Friedrich Ebert.
+较为激进的工人憎恶我们对其罢工的压制，那令人想起弗里德里希·艾伯特的年代。
 
 @balance
-subtitle: Both sides need to share the pain in the current crisis.
+subtitle: 当前危机中，双方都须分担痛苦。
 on-arrival: labor_dissent += 4; workers_spd -= 2; kpd_coalition_dissent += 1; kpd_relation -= 5; strike_term_seen += 1; socialism -= 2
 
-Many workers are unhappy at our compromises, but they will learn to accept that we are all in a shared struggle against economic forces.
+许多工人对我们的妥协感到不满，但他们终将明白：我们大家都在与经济力量共同抗争。
 
 
 

@@ -1,4 +1,4 @@
-title: Council Development
+title: 委员会发展
 is-card: true
 new-page: true
 on-arrival: council_development_timer += 10; month_actions += 1
@@ -6,37 +6,37 @@ view-if: supreme_soviet = 1 and spd_in_government and (economic_minister_party =
 card-image: img/portraits/HilferdingRudolf.jpg
 tags: govt_affairs
 
-= Council Development
+= 委员会发展
 
-As we have made our work councils the basis of governance in Germany, questions arise about exactly how these councils should be managed. Many are calling for the expansion of peasant councils, and some for the establishment of unemployed councils.
+既然我们已将工人委员会作为德国治理的基础，有关这些委员会应如何管理的问题便随之浮现。许多人呼吁扩展农民委员会，也有人主张设立失业者委员会。
 
-- @expand_peasant: Expand peasant councils.
-- @unemployed: Form unemployed councils.
-- @expand_unemployed: Expand unemployed councils.
-- @no_change: Make no changes.
+- @expand_peasant: 扩展农民委员会。
+- @unemployed: 成立失业者委员会。
+- @expand_unemployed: 扩展失业者委员会。
+- @no_change: 维持现状。
 - @easy_discard
 
 @expand_peasant
-subtitle: -1 budget.
+subtitle: -1 预算。
 view-if: rural_prole < 1
 choose-if: land_reform >= 1
-unavailable_subtitle: We need to first begin some land reform programs.
+unavailable_subtitle: 我们需要先启动一些土地改革项目。
 on-arrival: rural_spd += 5*(1-dissent); rural_policy += 1; rural_sol += 2; rural_prole += 0.1; budget -= 1; rural_dnvp -= 3*(1-dissent); rural_nsdap -= 3*(1-dissent);
 
-We expand the peasant councils, leading to increased development and community participation in rural regions as well as expanded suffrage for farmers in our wider council system.
+我们扩展了农民委员会，不仅推动了乡村地区的发展与社区参与，也扩大了农民在我们整个委员会体系中的参政权。
 
 @unemployed
 view-if: lumpenprole = 0
-subtitle: -2 budget.
+subtitle: -2 预算。
 on-arrival: budget -= 2; unemployed_spd += 4*(1-dissent) if sapd_consolidated != 1; lumpenprole = 0.1; unemployed_sapd += 4 if sapd_consolidated; unemployed_kpd += 6; unemployed_nsdap -= 4*(1-dissent); kpd_relation += 4; unemployed -= 0.6 if unemployed >= 8; unemployed -= 1 if unemployed >= 10; unemployed -= 0.4 if unemployed >= 12
 
-We form unemployed councils, expanding suffrage to the jobless workers and even helping find them jobs in many cases. Nazi appeal is diminished, while the Communists quickly organize through the unemployed councils, hoping to expand their margins.
+我们成立了失业者委员会，将选举权扩展至失业工人，并在许多情形下协助他们找到工作。纳粹的吸引力因此削弱；共产党人则借失业者委员会迅速组织起来，意图扩大其支持范围。
 
 @expand_unemployed
 view-if: lumpenprole != 0 and lumpenprole < 1
-subtitle: -1 budget.
+subtitle: -1 预算。
 on-arrival: budget -= 1; unemployed_spd += 2*(1-dissent) if sapd_consolidated != 1; lumpenprole += 0.1; unemployed_sapd += 2 if sapd_consolidated; unemployed_kpd += 3; unemployed_nsdap -= 2*(1-dissent); kpd_relation += 2; unemployed -= 0.3 if unemployed >= 8;
 
 @no_change
 
-The system works as is for now.
+当前体制运作无虞。

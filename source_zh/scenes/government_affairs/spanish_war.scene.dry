@@ -1,4 +1,4 @@
-title: Spanish Civil War
+title: 西班牙内战
 new-page: true
 is-card: true
 tags: govt_affairs
@@ -7,55 +7,55 @@ view-if: foreign_minister_party == "SPD" and spanish_war_timer <= 0 and spanish_
 card-image: img/spanish-civil-war-2.jpg
 go-to: winning
 
-Since the Spanish Civil War broke out, we have been active in helping the efforts of the Republicans in combatting fascism. Intervention is popular within our party, but unfortunately much more controversial both in Germany as a whole and abroad. As it is against the Treaty of Versailles, our aid has been forced to remain secret, albeit somewhat of an open one.
+自西班牙内战爆发以来，我们一直积极协助共和派对抗法西斯主义。介入在我党内部颇得人心，但在德国国内整体以及海外皆具争议。由于此举违反《凡尔赛条约》，我们的援助不得不保持秘密——尽管这是近乎公开的秘密。
 
 @winning
 on-arrival: republic_percent = (republic_strength/(republic_strength+national_strength))
 
-[? if republic_percent < 0.25 : Unfortunately, the situation is bleak for the Republicans. It would take a substantial change in the dynamic of the war to turn the tide. ?][? if republic_percent >= 0.75 : Thankfully, the Republicans are winning. The war may soon be over, unless something drastically changes. ?][? if republic_percent >= 0.6 and republic_percent < 0.75 : It is hard to say with certainty, but it seems that the Republicans have the upper hand. We will have to ensure that it stays that way. ?][? if republic_percent >= 0.4 and republic_percent < 0.6 : Both sides are currently on roughly even footing, but this could easily change. ?][? if republic_percent < 0.4 and republic_percent >= 0.25 : It is hard to say for certain, but it seems that the Nationalists have the upper hand. We should act to remedy this. ?]
+[? if republic_percent < 0.25 : 遗憾的是，共和派处境堪忧。若要扭转战局，需要战争态势发生重大变化。 ?][? if republic_percent >= 0.75 : 所幸共和派节节胜利。若无重大变故，战事或将很快结束。 ?][? if republic_percent >= 0.6 and republic_percent < 0.75 : 虽难下定论，但共和派似乎占据上风。我们须确保局势继续如此。 ?][? if republic_percent >= 0.4 and republic_percent < 0.6 : 双方当前大致势均力敌，但这一局面很可能轻易被打破。 ?][? if republic_percent < 0.4 and republic_percent >= 0.25 : 虽难下定论，但国民派似乎占据上风。我们应采取行动加以扭转。 ?]
 
-- @increase_aid: Send more aid to the Republicans.
-- @volunteers: Smuggle volunteers to Spain to fight for the Republicans.
-- @military_attache: Send military advisors to help the Republicans.
-- @offensive: Focus our aid on attacking the Nationalists.
-- @defensive: Focus our aid on defending the Republicans.
+- @increase_aid: 向共和派提供更多援助。
+- @volunteers: 秘密将志愿者送往西班牙，为共和派而战。
+- @military_attache: 派遣军事顾问协助共和派。
+- @offensive: 将援助集中用于进攻国民派。
+- @defensive: 将援助集中用于保卫共和派。
 - @easy_discard
 
 @increase_aid
-subtitle: -1 budget.
-unavailable-subtitle: -1 budget. We don't have the budget.
+subtitle: -1 预算。
+unavailable-subtitle: -1 预算。我们的预算不足。
 choose-if: budget >= 1
 on-arrival: coalition_dissent += 1; budget -= 1; republic_strength += 0.5; aid_level += 2; total_aid += 2; reichswehr_loyalty -= 0.05; coup_progress += 0.5; west_relation -= 1
 
-We send more aid to the Republicans, despite the controversy and potential risks of discovery. Let's hope this is enough.
+尽管争议不断、且可能招致暴露风险，我们仍向共和派输送更多援助。但愿这已足够。
 
 @volunteers
 choose-if: resources >= 1
-subtitle: -1 resource. We will assist in the flow of socialists into the international brigades of Spain.
-unavailable-subtitle: We don't have the resource needed.
+subtitle: -1 资源。我们将协助社会主义者流入西班牙的国际纵队。
+unavailable-subtitle: 我们没有所需资源。
 on-arrival: smuggle_seen = 1
 go-to: international_relations.spain
 
 @military_attache
-subtitle: We will help train Republican forces and draft Republican strategies.
+subtitle: 我们将协助训练共和派军队，起草共和派的作战方略。
 choose-if: reichswehr_loyalty >= 0.25 and reichswehr_militancy >= 1 and aid_level >= 1
-unavailable-subtitle: [? if reichswehr_loyalty < 0.25 : Our officers can't be trusted with this. ?][? if reichswehr_militancy < 1 : Our officers are too inexperienced. ?][? if aid_level < 1 : Our aid has run dry. We would need to send more to be able to use it. ?]
+unavailable-subtitle: [? if reichswehr_loyalty < 0.25 : 我们的军官不可托付此事。 ?][? if reichswehr_militancy < 1 : 我们的军官经验不足。 ?][? if aid_level < 1 : 我们的援助已近枯竭，需再派送一批方可使用。 ?]
 on-arrival: republic_strength += 0.25; reichswehr_militancy -= 0.2; republic_strength += 0.25 if reichswehr_militancy >= 3; reichswehr_loyalty -= 0.05; aid_level -= 1; total_aid += 1;
 
-We send our top military advisors and officers to help the Republican forces in their fight.
+我们派出最顶尖的军事顾问与军官协助共和派作战。
 
 @offensive
-subtitle: After all, the best defense is a good offense.
+subtitle: 毕竟，最好的防守便是进攻。
 choose-if: aid_level >= 1
-unavailable-subtitle: Our aid has run dry. We would need to send more to be able to use it.
+unavailable-subtitle: 我们的援助已近枯竭，需再派送一批方可使用。
 on-arrival: republic_strength -= 0.1; national_strength -= 0.25; aid_level -= 1; total_aid += 1;
 
-We focus our military aid to the Republicans on offensive operations, hoping to bring a swift end to the conflict by striking at the Nationalists.
+我们将军事援助集中于进攻行动，希望通过打击国民派一举终结冲突。
 
 @defensive
-subtitle: We will hold the line and wear the Nationalists out.
+subtitle: 我们将坚守防线，把国民派拖入持久战。
 choose-if: aid_level >= 1
-unavailable-subtitle: Our aid has run dry. We would need to send more to be able to use it.
+unavailable-subtitle: 我们的援助已近枯竭，需再派送一批方可使用。
 on-arrival: republic_strength += 0.25; national_strength += 0.1; aid_level -= 1; total_aid += 1
 
-We focus our military aid to the Republicans on defensive operations, hoping to wear out the Nationalists until they collapse.
+我们将军事援助集中于防御作战，希望把国民派拖到精疲力竭、最终崩溃。

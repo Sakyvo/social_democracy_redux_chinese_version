@@ -1,4 +1,4 @@
-title: Motion of No Confidence
+title: 不信任动议
 new-page: true
 is-card: true
 card-image: img/portraits/MrVonc
@@ -6,21 +6,21 @@ view-if: in_vonc_coalition
 tags: govt_affairs
 frequency: 2000
 
-= Motion of No Confidence
+= 不信任动议
 
-A motion of no confidence has been tabled against the SPD by the Voncspartei. They do not see any room for negotiation. [+ chancellor +] must resign.
+Voncspartei 党对社民党提出了一项不信任动议。他们认为已无谈判余地。[+ chancellor +] 必须辞职。
 
-- @what: <span style="color: transparent;">VONC</span>  
-- @what2: <span style="color: transparent;">VONC</span>  
+- @what: <span style="color: transparent;">VONC</span>
+- @what2: <span style="color: transparent;">VONC</span>
 
 @what
 choose-if: never
-unavailable-subtitle:   
+unavailable-subtitle:
 
 @what2
 call: set_next_election_time
 on-arrival: time_to_election = 3; chancellor = "&nbsp;"; chancellor_party = "VONC"
 
-The vote succeeds, and our government has resigned. Chancellor <span style="color: transparent;">VONC</span> has been appointed as the head of an acting government, consisting solely of the Voncspartei.
+表决通过，我们的政府已辞职。<span style="color: transparent;">VONC</span> 总理被任命为看守政府的首脑，完全由 Voncspartei 党组成。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新一届选举已定于 [+ next_election_year +] 年 [+ next_election_month : month +]。

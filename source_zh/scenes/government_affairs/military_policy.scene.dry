@@ -1,4 +1,4 @@
-title: Military Policy
+title: 军事政策
 new-page: true
 is-card: true
 tags: govt_affairs
@@ -7,87 +7,87 @@ view-if: spd_in_government = 1 and reichswehr_minister_party = "SPD" and militar
 card-image: img/portraits/LeberJulius.jpg
 #subtitle: Dealing with the Reichswehr.
 
-= Military Policy
+= 军事政策
 
-The Reichswehr is a deeply reactionary institution that has been generally hostile to any notion of socialism or democracy. However, we now control the military as part of the government. What should we do to reform it?
+国防军是一个极为反动的机构，对任何社会主义或民主观念素来持敌对态度。然而，我们现在作为政府的一部分掌控着军队。应如何着手改革？
 
-- @increase_funding: Increase funding for the military to purchase its loyalty.
-- @decrease_funding: Reduce funding for the military so we have more for social spending.
-- @reform: Conduct a thorough reform of the ranks, reducing the influence of reactionaries and making it more hospitable to us.
-- @root: No change to military policy.
+- @increase_funding: 增加军费，以换取军方的忠诚。
+- @decrease_funding: 削减军费，把钱省下来用于社会开支。
+- @reform: 对军队进行彻底整肃，削弱反动势力，使其对我方更为友善。
+- @root: 军事政策不变。
 - @easy_discard
 - @cancel_advisor_action
 
 @increase_funding
-subtitle: -1 budget
+subtitle: -1 预算
 choose-if: budget >= 1
-unavailable-subtitle: We do not have the budget.
+unavailable-subtitle: 我们的预算不足。
 on-arrival: rearmament_vote = 1
 go-to: rearmament_done if not legislature_enabled; legislative_menu if legislature_enabled
 
-We propose a bill to increase military spending.
+我们提出一项增加军费的议案。
 
 @rearmament_done
 on-arrival: budget -= 1; coalition_dissent -= 1  if coalition_dissent > 0; reichswehr_loyalty += 0.07 if reichswehr_loyalty < 1; reichswehr_militancy += 1; left_dissent += 5; kpd_coalition_dissent += 1; west_relation -= 1; east_relation -= 1; reparations_negotiation -= 1; eu_progress -= 1; economic_growth += 0.1
 
-The military and the center-right parties are pleasantly surprised that we would increase military funding. Our membership tends to be anti-military, and is less enthused. Germany's neighbors are watching our military buildup with worry. [? if reparations >= 0 : This is not good for the reparations negotiations. ?]
+军方与中右翼政党对我们主动增加军费感到意外而欣喜。我方基本盘普遍反军方，对此并不买账。德国邻国则忧心忡忡地注视着我们的扩军动向。[? if reparations >= 0 : 此举对赔款谈判十分不利。 ?]
 
 @decrease_funding
-subtitle: +1 budget
-unavailable-subtitle: There is nothing left to cut.
+subtitle: +1 预算
+unavailable-subtitle: 已无可削减之处。
 choose-if: reichswehr_strength >= 20 or reichswehr_militancy >= 1
 on-arrival: disarmament_vote = 1
 go-to: disarmament_done if not legislature_enabled; legislative_menu if legislature_enabled
 
-We propose a bill to increase military spending.
+我们提出一项削减军费的议案。
 
 @disarmament_done
 on-arrival: demilitarizations += 1; budget += 1; coalition_dissent += 1 if in_grand_coalition == 1; dvp_relation -= 8; reichswehr_loyalty -= 0.05 if reichswehr_loyalty > 0; coup_progress += 1; coup_progress += 0.5 if reichswehr_loyalty < 0.2; coup_progress += 0.5 if reichswehr_loyalty < 0.1; coup_progress += 0.5 if reichswehr_loyalty <= 0; coup_progress += 0.5 if harzburg_front_seen; reichswehr_goal_completed = 1; coalition_dissent += 1 if coup_progress >= 4; coalition_dissent += 1 if coup_progress >= 6; coalition_dissent += 1 if coup_progress >= 8; economic_growth -= 0.1
 
-The center-right parties are committed to the military and deeply opposed to our budget cuts. But the decision has been made, and now we must choose how best to implement it, as there are two main ways in which we support the German army: paying and supplying its soldiers on the one hand, but also arming the soldiers with arms and ammunition. In cutting it, we can lay off soldiers and downsize the army, or we can demilitarize it, reducing the quality and quantity of weapons.
+中右翼政党对军方坚定支持，对我们削减预算的做法深恶痛绝。但决定既下，现在必须决定执行方式：我们对军队的支持主要有两面——发饷补给以及配备枪支弹药。若要削减，要么裁军、缩减规模，要么解除其武装、降低武器的质量与数量。
 
-Demilitarization is preferred by our coalition partners and will be harder to rally against by the right, as it is a less blatant move. It will weaken the army more, however. 
+联合伙伴更倾向解除武装这一方式，右翼也较难就此大做文章，因其手段不那么明目张胆；但此举对军力的削弱更大。
 
-- @demilitarize: We will demilitarize the army.
-- @downsize: We will downsize the army.
+- @demilitarize: 我们将解除军队武装。
+- @downsize: 我们将裁减军队规模。
 #- @disband: We will disband the army.
 
 @demilitarize
 choose-if: reichswehr_militancy >= 1
-unavailable-subtitle: The army is but a glorified police force now.
+unavailable-subtitle: 现在的军队不过是更神气一点的警察部队。
 on-arrival: reichswehr_militancy -= 0.5; coalition_dissent -= 1 if coup_progress < 4; dvp_relation += 2; sh_militancy += 0.05; rural_nsdap += 2; rural_dnvp += 1; old_middle_nsdap += 1; new_middle_nsdap += 1
 
-The army has fewer guns, and the guns it does have are lower quality. The reaction from the right is muted by the less noticeable nature of our cuts, but the army remains angry that we are attacking their position, and weapons have gone missing from our stockpiles.
+军队枪支减少，现有武器质量也不如前。由于我们的削减手段较为隐蔽，右翼反应被压低了；但军方仍对我们冲击其地位怒火中烧，且武器也开始从军需库存中「失踪」。
 
-[? if coup_progress < 5 : There is no hint of a coup yet, but we do not know where the line will be drawn. ?][? if coup_progress >= 5 and coup_progress < 8 : Rumors of a coup have begun to spread around, though in terms of actual evidence, there is nothing yet. We must proceed with caution. ?][? if coup_progress >= 8 : Arms and ammunition seem to disappear mysteriously from military supplies, while reactionaries increasingly join the army. Officers meet through the nights, often with Harzburg Front officials as well, and the army's already huge degree of independence seems to somehow grow. Most damning of all is the Harzburg Front's recent condemnation of demilitarization, which seems almost a veiled threat aimed at the government. There can be no uncertainty: a coup plot is in motion, and we might not have much time to prevent it. ?]
+[? if coup_progress < 5 : 目前尚无政变迹象，但底线何在仍未可知。 ?][? if coup_progress >= 5 and coup_progress < 8 : 政变谣言已开始四处流传，不过就实证而言尚无确凿证据。我们须谨慎行事。 ?][? if coup_progress >= 8 : 枪支弹药似乎神秘地从军需中消失，反动分子则愈加踊跃参军。军官们彻夜开会，常常有哈茨堡阵线的官员也在其列，军队本就庞大的独立性愈发膨胀。最令人警觉的是哈茨堡阵线最近对「解除武装」的谴责——这近乎是对政府的含蓄威胁。一切不容置疑：一场政变图谋正在酝酿，我们或许没有多少时间可以阻止。 ?]
 
 @downsize
 view-if: reichswehr_strength >= 20
 on-arrival: reichswehr_strength -= 20; sh_strength += 15; sa_strength += 5; unemployed += 0.1; unemployed_dnvp += 1; unemployed_nsdap += 2; new_middle_nsdap += 2; old_middle_nsdap += 2; rural_nsdap += 3; rural_dnvp += 1; rural_nsdap -= 1 if (not black_thursday_seen or return_to_normalcy); workers_spd -= 2 if nationalism >= 50; nationalism += 2
 
-The army has fewer soldiers, as we decrease its size even further below the already small limit set out for us by Versailles. Many demobilized soldiers have joined the right-wing paramilitaries such as the Stahlhelm and SA, while the right rallies for the defense of Germany.
+军队士兵减少了，我们将其规模进一步压低到《凡尔赛条约》所规定的已属微小的限额之下。许多复员军人加入了钢盔团与冲锋队等右翼准军事组织；右翼则借机为「保卫德国」造势。
 
-Our coalition is upset, as is the army that we are directly attacking their powerful position. [? if coup_progress < 5 : There is no hint of a coup yet, but we do not know where the line will be drawn. ?][? if coup_progress >= 5 and coup_progress < 8 : Rumors of a coup have begun to spread around, though in terms of actual evidence, there is nothing yet. We must proceed with caution. ?][? if coup_progress >= 8 : Arms and ammunition seem to disappear mysteriously from military supplies, while reactionaries increasingly join the army. Officers meet through the nights, often with Harzburg Front officials as well, and the army's already huge degree of independence seems to somehow grow. Most damning of all is the Harzburg Front's recent condemnation of demilitarization, which seems almost a veiled threat aimed at the government. There can be no uncertainty: a coup plot is in motion, and we might not have much time to prevent it. ?]
+联合政府与军方均对我们直接冲击其权威的举动怒火中烧。[? if coup_progress < 5 : 目前尚无政变迹象，但底线何在仍未可知。 ?][? if coup_progress >= 5 and coup_progress < 8 : 政变谣言已开始四处流传，不过就实证而言尚无确凿证据。我们须谨慎行事。 ?][? if coup_progress >= 8 : 枪支弹药似乎神秘地从军需中消失，反动分子则愈加踊跃参军。军官们彻夜开会，常常有哈茨堡阵线的官员也在其列，军队本就庞大的独立性愈发膨胀。最令人警觉的是哈茨堡阵线最近对「解除武装」的谴责——这近乎是对政府的含蓄威胁。一切不容置疑：一场政变图谋正在酝酿，我们或许没有多少时间可以阻止。 ?]
 
 @disband
 view-if: reichswehr_strength < 20 and reichswehr_militancy < 1
 
-WIP
+开发中
 
 @reform
-subtitle: -1 budget
+subtitle: -1 预算
 choose-if: budget >= 1 and reichswehr_loyalty < 1
-unavailable-subtitle: [? if budget < 1 : We do not have the budget. ?][? if reichswehr_loyalty >= 1 : The Reichswehr is already fully loyal to the democratic government. ?]
+unavailable-subtitle: [? if budget < 1 : 我们的预算不足。 ?][? if reichswehr_loyalty >= 1 : 国防军已完全效忠于民主政府。 ?]
 on-arrival: military_reform_vote = 1
 go-to: military_reform_done if not legislature_enabled; legislative_menu if legislature_enabled
 
-We propose a bill to perform substantial reforms in the army.
+我们提出一项对军队进行重大改革的议案。
 
 @military_reform_done
 on-arrival: coalition_dissent += 1 if in_grand_coalition == 1; coalition_dissent += 1 if coup_progress >= 4; coalition_dissent += 1 if coup_progress >= 6; coalition_dissent += 1 if coup_progress >= 8; coup_progress += 0.5 if reichswehr_loyalty < 0.25; coup_progress += 1 if reichswehr_loyalty < 0.1; coup_progress += 1 if reichswehr_loyalty = 0; coup_progress -= 1 if reichswehr_loyalty >= 0.4 and coup_progress > 0; coup_progress -= 1 if reichswehr_loyalty >= 0.6 and coup_progress > 0; reichswehr_loyalty += 0.15; reichswehr_militancy -= 0.25 if reichswehr_loyalty < 0.3; reichswehr_militancy -= 0.1 if reichswehr_loyalty < 0.5 and reichswehr_loyalty >= 0.3; reichswehr_militancy -= (coup_progress/100); sh_militancy += 0.05 if reichswehr_loyalty < 0.3; sh_militancy += 0.05 if reichswehr_militancy < 0.5; sh_militancy += (coup_progress/200); budget -= 1; dvp_relation -= 5; pacifism += 1; democratization += 1;
 
-Our efforts are at least somewhat successful; we have changed the recruiting and training patterns so that more soldiers from non-reactionary backgrounds can join, hopefully changing the culture of the forces. We have also removed some of the officers who supported the previous Kapp putsch. [? if reichswehr_militancy >= 3 : A downside of removing reactionary officers and instituting new republican ones is that the republican replacements tend to be less experienced and require more training. This leaves the Reichswehr weakened by our reforms, for now, though perhaps that is a good thing. ?]
+我们的整肃至少取得了一定成效；招募与训练模式已有调整，使更多非反动背景的士兵得以加入，希望能以此改变军队文化。此外，我们也撤除了一些曾支持卡普政变的军官。[? if reichswehr_militancy >= 3 : 替下反动军官、换上共和派的副作用是，共和派新官往往经验不足、需更多训练——这使国防军在我们的改革期间暂时削弱，但这或许反倒是好事。 ?]
 
 # todo: option to increase training (-1 budget) to make up the loss
 
-[? if coup_progress > 6 and reichswehr_loyalty < 0.6 : The reactionaries, seeing our attempts to weaken their influence have only accelerated their existing coup plans, spurred into action by our moves against them. ?] The center-right parties are committed to the military and deeply suspicious of our efforts to reform it.
+[? if coup_progress > 6 and reichswehr_loyalty < 0.6 : 反动派眼见我们削弱其影响的举动，反而加快了既有的政变图谋——正是我们的冲击把他们逼上了行动之路。 ?] 中右翼政党对军方坚决支持，也对我们的改革意图深怀疑虑。
