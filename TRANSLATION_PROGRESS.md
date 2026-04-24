@@ -32,7 +32,7 @@ build-zh.cmd        # Windows
 | #4 | 顾问（`advisors/`） | ✅ 完成 |
 | #5 | 党务（`party_affairs/`） | ✅ 完成（22 个文件全部翻译；Part 1 + Part 2a + Part 2b） |
 | #6 | 政务（`government_affairs/`） | ✅ 完成（32 个文件全部翻译；Part 1 legislative_menu + Part 2 4 大文件 + Part 3 27 个剩余文件） |
-| #7 | 总统事务（`presidential_affairs/`） | ⏳ 待做 |
+| #7 | 总统事务（`presidential_affairs/`） | ✅ 完成（3 个文件全部翻译） |
 | #8 | 杂项事件（`events/` 非年度部分） | ⏳ 待做 |
 | #9 | 校对 + 术语一致性扫描 + 最终构建验证 | ⏳ 待做 |
 
