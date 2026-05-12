@@ -11,46 +11,46 @@ tags: event
 # If in a grand coalition then the SPD can pressure the coalition to cancel the trial at the expense of dissent.
 # If the trial goes ahead, then reparations negotiation process gets set back by a few steps and relations with the west suffers.
 
-= The Weltbühne Trial
+= 《世界舞台》审判
 
-The left-wing news and literary magazine Weltbühne has been targeted by the national authorities for allegedly revealing state secrets. The magazine published articles alleging a secret rearmament program by the Reichswehr, in contravention of the Treaty of Versailles. The military authorities obviously do not want this information to be known. It does not help that the magazine's editor, Carl von Ossietzky, is a well-known pacifist.
+左翼新闻与文学杂志《世界舞台》（Weltbühne）因涉嫌泄露国家秘密而遭国家当局起诉。该杂志发表文章，指控国防军推行违反《凡尔赛和约》的秘密重整军备计划。军方显然不希望此信息曝光。雪上加霜的是，该杂志主编卡尔·冯·奥西茨基（Carl von Ossietzky）是著名的和平主义者。
 
-[? if spd_in_government and justice_minister_party = "SPD" : With our control of the Justice Ministry, we could simply drop the case. ?]
-[? if spd_in_government and justice_minister_party != "SPD" : The Justice Ministry is seeking to persecute the editor and journalist of Weltbühne. We can try to persuade our coalition partners to drop the case, but they will likely resist. ?]
+[? if spd_in_government and justice_minister_party = "SPD" : 借助我们对司法部的掌控，我们可以直接撤销此案。 ?]
+[? if spd_in_government and justice_minister_party != "SPD" : 司法部正寻求起诉《世界舞台》的主编和记者。我们可以尝试说服联合伙伴撤案，但他们很可能会抵制。 ?]
 
-- @drop_case: Drop the case.
-- @let_persecute: Let justice take its course.
-- @pressure_drop: Pressure our coalition partners to drop the case.
-- @nothing: There is nothing we can do.
+- @drop_case: 撤销此案。
+- @let_persecute: 让司法按其程序进行。
+- @pressure_drop: 向联合伙伴施压撤案。
+- @nothing: 我们无能为力。
 
 @drop_case
 view-if: spd_in_government
 choose-if: spd_in_government and justice_minister_party = "SPD"
-unavailable-subtitle: [? if not spd_in_government : SPD not in government. ?] [? if spd_in_government and justice_minister_party != "SPD": The SPD does not control the Justice Ministry. ?]
+unavailable-subtitle: [? if not spd_in_government : 社民党不在政府中。 ?] [? if spd_in_government and justice_minister_party != "SPD": 社民党不掌控司法部。 ?]
 on-arrival: weltbuhne_dropped = 1; dvp_relation -= 4; nationalism -= 3*(1-dissent); coalition_dissent += 1 if in_grand_coalition; reichswehr_loyalty -= 0.1; west_relation += 1; east_relation += 1; coup_progress += 1; reparations_negotiation += 1; pacifism += 1
 
-The Justice Ministry has dropped all persecution of Carl von Ossietzky and Walter Kreiser, the journalist responsible for the offending publication. In fact, some say that the Weltbühne journalists should be feted as heroes.
+司法部已撤销对卡尔·冯·奥西茨基及涉案出版物的记者瓦尔特·克赖泽的全部起诉。事实上，有人认为应当将《世界舞台》记者誉为英雄。
 
-The Western powers and all countries that feel threatened by German militarism are pleased that we have turned a chapter in our history.
-[? if in_grand_coalition: On the other hand, the right-wing members of our governing coalition disapprove of this action, as does the Reichswehr. ?][? if not in_grand_coalition : On the other hand, the Reichswehr disapproves of dropping the case. ?]
+西方列强及所有对德国军国主义感到威胁的国家欣慰我们已翻开历史新篇章。
+[? if in_grand_coalition: 另一方面，我们执政联合中的右翼成员对此举不以为然，国防军亦然。 ?][? if not in_grand_coalition : 另一方面，国防军不赞成撤案。 ?]
 
 @let_persecute
 view-if: spd_in_government
 on-arrival: weltbuhne_dropped = 0; dvp_relation += 4; reichswehr_loyalty += 0.05; west_relation -= 1; east_relation -= 1; reparations_negotiation -= 1; pacifism -= 1; nationalism += 4; left_dissent += 5
 
-The case progresses slowly, given the military secrets involved, and there will be no determination made for a while. The Reichswehr is pleased of our loyalty. However, the affair has made the Western powers suspicious of our resurgent militarism, as well as displeasing the left wing of the party.
+鉴于涉及军事机密，案件进展缓慢，短期内不会有定论。国防军对我们的忠诚感到满意。然而，此事令西方列强对我们重新抬头的军国主义生疑，亦让党内左翼感到不满。
 
 @pressure_drop
 view-if: spd_in_government and justice_minister_party != "SPD"
 on-arrival: weltbuhne_dropped = 1; dvp_relation -= 5; nationalism += 3*(1-dissent); coalition_dissent += 1; coalition_dissent += 1 if in_grand_coalition; reichswehr_loyalty -= 0.1; coup_progress += 1; west_relation += 1; east_relation += 1; reparations_negotiation += 1
 
-We have pressured the Justice Ministry to drop the case against the Weltbühne, raising tensions with our coalition.
+我们向司法部施压撤销了对《世界舞台》的起诉，加剧了与联合的紧张关系。
 
-The Western powers and all countries that feel threatened by German militarism are pleased that we have turned a chapter in our history.
-On the other hand, the Reichswehr disapproves of dropping the case.
+西方列强及所有对德国军国主义感到威胁的国家欣慰我们已翻开历史新篇章。
+另一方面，国防军不赞成撤案。
 
 @nothing
 view-if: not spd_in_government
 on-arrival: weltbuhne_dropped = 0; west_relation -= 1; east_relation -= 1; reparations_negotiation -= 1; pacifism -= 1; nationalism += 4
 
-The case progresses slowly, given the military secrets involved, and there will be no determination made for a while. However, the affair has made the Western powers suspicious of our resurgent militarism.
+鉴于涉及军事机密，案件进展缓慢，短期内不会有定论。然而，此事令西方列强对我们重新抬头的军国主义生疑。

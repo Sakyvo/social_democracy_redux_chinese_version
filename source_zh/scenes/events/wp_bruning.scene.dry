@@ -5,20 +5,20 @@ view-if: what_the_hell = 1 and in_bourgeois_coalition = 1 and ((year = 1930 and 
 tags: event
 max-visits: 1
 
-= Brüning's government falls
+= 布吕宁倒台
 
-Despite winning a majority through defections from the DNVP, Brüning's austerity measures have still alienated many minor middle class and special interest parties, most prominently the Economic Party which has now turned on him, calling a vote of no confidence.
+尽管布吕宁通过 DNVP 议员的倒戈赢得多数，但其紧缩措施仍然疏远了许多中产阶级小党和特殊利益党派，其中最显著的是「经济党」（Wirtschaftspartei），如今他们转而反对布吕宁，发起不信任投票。
 
-- @vote_against: Vote for the motion of no confidence, and for new elections.
-- @vote_for: Vote against the motion of no confidence, effectively providing toleration.
+- @vote_against: 投票支持不信任案，并要求新选举。
+- @vote_for: 投票反对不信任案，实际上提供容忍。
 
 @vote_against
 on-arrival: time_to_election = 3; what_the_hell = 0; in_bourgeois_coalition = 0
 call: set_next_election_time
 
-With our continued opposition, the motion of no confidence succeeds, and new elections are called for [+ next_election_month : month +] [+ next_election_year +].
+在我们的持续反对下，不信任案通过，新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @vote_for
 on-arrival: spd_toleration = 1; what_the_hell = 0; in_bourgeois_coalition = 0; left_dissent += 10; labor_dissent += 5; workers_spd -= 3; unemployed_spd -= 5
 
-We reason that the Nazi growth in local elections is reason to avoid new elections, which may see them grow significantly. The party's left and labor wings are dissatisfied with our arguments, reminding us of the betrayal of the bourgeois parties prior.
+我们的理由是，地方选举中纳粹的崛起说明应当避免新选举，否则他们可能大幅壮大。党的左翼和劳工派对我们的论据感到不满，提醒我们此前资产阶级政党的背叛。

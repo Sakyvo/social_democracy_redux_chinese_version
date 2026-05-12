@@ -10,33 +10,33 @@ set-jump: post_election_1928
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_relation + (pro_republic/2); z_coalition *= 1.25 if z_party_leader == "Joos";
 
-= Elections, [+ month : month +] [+ year +]
+= 国会大选，[+ month : month +] [+ year +]
 
-The Reichstag elections are to be held now.
+帝国议会选举即将举行。
 
-- @election_algorithm: May we do our best...
+- @election_algorithm: 愿我们全力以赴……
 - @cancel_elections
 #- @martial_law
 
 # secret noske path...
 
 @cancel_elections
-title: We cannot hold the elections now. Cancel the elections.
-subtitle: This is an anti-democratic move that may backfire.
+title: 我们现在无法举行选举。取消选举。
+subtitle: 此举反民主，可能适得其反。
 view-if: in_emergency_government == 1 and president == "Braun" and not presidential_powers
 
-Since we are currently ruling as part of an emergency government, we may use quasi-constitutional trickery to significantly delay these elections, and continue governing via Article 48. This is likely to be extremely unpopular both with our base and with the other parties. However, this may be necessary to prevent the extremists from gaining power.
+由于我们目前以紧急政府形式执政，可借助准宪法手段大幅推迟这次选举，并继续以第48条法令施政。此举可能在我们的基本盘与其他政党之间极度不受欢迎。然而，为阻止极端主义者夺权，此举或有必要。
 
-- @cancel_elections_2: Yes, do it.
-- @election_algorithm: No, let's hold the elections.
+- @cancel_elections_2: 是的，就这样做。
+- @election_algorithm: 不，我们还是举行选举。
 
 @cancel_elections_2
 on-departure: next_election_year = next_election_year + 1; next_election_time = time + 12; pro_republic -= 10; dvp_relation -= 8; z_relation -= 8; ddp_relation -= 10; kpd_relation -= 8; coup_progress += 2; workers_spd -= 4; new_middle_spd -= 5; old_middle_spd -= 5; rural_spd -= 5; catholics_spd -= 5; unemployed_spd -= 5; coup_progress += 2 if nsdap_normalized >= 0.3; coup_progress += 2 if nsdap_normalized + dnvp_normalized >= 0.5; sa_strength += 100 if coup_progress >= 7; sh_strength += 100 if coup_progress >= 7
 achievement: ausnahmezustand
 
-Fine. President [+ president +] has taken the unprecedented step of canceling these elections. New elections are scheduled for [+ next_election_month : month +] [+ next_election_year +].
+好。[+ president +] 总统采取了前所未有的步骤，取消了这次选举。新的选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
-Let us hope this does not backfire.
+让我们希望此举不会弄巧成拙。
 
 @post_election_1928
 on-arrival: {!
@@ -368,7 +368,7 @@ if (window && d3) {
 !}
 go-to: coalition_menu if not vonc_formed; coalition_vonc if vonc_formed
 
-= Election results
+= 选举结果
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
@@ -399,35 +399,35 @@ go-to: coalition_menu if not vonc_formed; coalition_vonc if vonc_formed
 {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_r +]% {!</td><td>!} [+ str_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
-**Potential coalitions:**
+**潜在联合政府：**
 
-Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ weimar_coalition +]%
+魏玛联合 (SPD + Z + [+ ddp_name +])：[+ weimar_coalition +]%
 
-Grand Coalition (SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP): [+ grand_coalition +]%
+大联合 (SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP)：[+ grand_coalition +]%
 
-Bourgeois Coalition (Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others): [+ bourgeois_coalition +]%
+资产阶级联合 (Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他)：[+ bourgeois_coalition +]%
 
-Right-wing Coalition (Z + [+ bvp_name +] + DVP + Others + DNVP): [+ right_coalition +]%
+右翼联合 (Z + [+ bvp_name +] + DVP + 其他 + DNVP)：[+ right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_r >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
+[? if nazi_urgency <= 1 and nsdap_r >= 15 : 纳粹党选票的迅速攀升令人极度忧虑。许多人此前以为该党已奄奄一息；如今，我们中的一些人将其视为德国民主的最大威胁。 ?]
 
-[? if anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
+[? if anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在国会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
-There are some potential coalition arrangements.
+目前有若干潜在的联合政府方案。
 
 @coalition_vonc
 
 - @vonc_coalition: <span style="color: transparent;">VONC</span>
 
 @vonc_coalition
-on-arrival: in_vonc_coalition = 1; spd_in_government = 1; in_spd_majority = 1; 
+on-arrival: in_vonc_coalition = 1; spd_in_government = 1; in_spd_majority = 1;
 
-As expected, the 
+不出所料，
 
-- @braun_majority_chancellor: Otto Braun for Chancellor.
-- @breitscheid_majority_chancellor: Rudolf Breitscheid for Chancellor.
-- @muller_majority_chancellor: Hermann Müller for Chancellor.
-- @wels_majority_chancellor: Otto Wels for Chancellor.
+- @braun_majority_chancellor: 奥托·布劳恩（Otto Braun）出任总理。
+- @breitscheid_majority_chancellor: 鲁道夫·布莱特沙伊德（Rudolf Breitscheid）出任总理。
+- @muller_majority_chancellor: 赫尔曼·穆勒（Hermann Müller）出任总理。
+- @wels_majority_chancellor: 奥托·韦尔斯（Otto Wels）出任总理。
 
 @coalition_menu
 
@@ -460,80 +460,80 @@ As expected, the
 # TODO: black-brown coalition
 
 @national_front_coalition
-title: A "National Front" coalition
+title: 「民族阵线」联合政府
 view-if: national_front
 choose-if: national_front_r >= 50
-subtitle: [? if z_national : Z + ?]BVP + DVP + Others + DNVP + NSDAP ([+ national_front_r +])
-unavailable-subtitle: [? if z_national : Z + ?]BVP + DVP + Others + DNVP + NSDAP ([+ national_front_r +]) - The National Front lacks a majority.
+subtitle: [? if z_national : Z + ?]BVP + DVP + 其他 + DNVP + NSDAP ([+ national_front_r +])
+unavailable-subtitle: [? if z_national : Z + ?]BVP + DVP + 其他 + DNVP + NSDAP ([+ national_front_r +]) - 民族阵线缺乏多数席位。
 on-arrival: started = 0
 go-to: root
 
 @bourgeois_coalition
-title: A "Bourgeois" Coalition
-subtitle: Z + BVP + [+ ddp_name +] + DVP + Others ([+ bourgeois_coalition +]%)
+title: 「资产阶级」联合政府
+subtitle: Z + BVP + [+ ddp_name +] + DVP + 其他 ([+ bourgeois_coalition +]%)
 view-if: bourgeois_coalition >= 50 and (weimar_coalition < 50 or z_willing != 1) and not dvp_banned
 
-The constitutional bourgeois parties have enough votes to form a coalition on their own, without even needing toleration from us. It is likely that such a government will be formed unless we act to prevent it.
+各资产阶级宪政政党的选票足以单独组建联合政府，甚至不需要我们的容忍。除非我们采取行动阻止，否则这样的政府极有可能成形。
 
-- @plead_grand: Plead for the Center to form a "Grand Coalition" with us instead.
-- @let_it_form: Let it form.
+- @plead_grand: 恳请中央党改为与我们组建「大联合」。
+- @let_it_form: 任其成形。
 
 @plead_grand
 subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP  ([+ grand_coalition +]%)
-unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP  ([+ grand_coalition +]%) - The DVP is unwilling to enter such a government[? if z_relation < 30 :, as is the Center party?].
+unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP  ([+ grand_coalition +]%) - DVP 不愿加入这样的政府[? if z_relation < 30 :，中央党亦然?]。
 view-if: not grand_coalition_failed and grand_coalition >= 50
 choose-if: dvp_relation >= 30 and z_relation >= 30
 go-to: grand_coalition
 
-We have managed to convince Zentrum to instead support another Grand Coalition!
+我们已成功说服中央党改而支持新的大联合！
 
 @let_it_form
-subtitle: The Bourgeois Coalition will form.
+subtitle: 资产阶级联合政府将成形。
 on-arrival: spd_in_government = 0; spd_toleration = 0; in_bourgeois_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = ddp_name; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 
-The Bourgeois Coalition is formed, with Brüning as its chancellor. We will have to contend with opposition politics for the time being.
+资产阶级联合政府以布吕宁为总理正式成立。我们暂时只能在野。
 
 @popular_front_coalition
-title: A new "Popular Front" coalition?
+title: 新的「人民阵线」联合政府？
 subtitle: SPD + KPD + Z + [+ ddp_name +] ([+ popular_front_coalition +]%)
-unavailable-subtitle: SPD + KPD + Z + [+ ddp_name +] ([+ popular_front_coalition +]%) - [? if kpd_relation < 50: We do not have good enough relations with the KPD. ?][? if z_relation < 50: We do not have good enough relations with the Center Party. ?][? if communist_coalition < 3 : The Communists are unwilling to compromise at all. ?][? if president == "Hitler" : Hitler refuses to appoint a chancellor under such a governing arrangement. ?][? if president == "Hindenburg" and coup_progress >= 8 and popular_front < 55 and historical_mode : Hindenburg is unwilling to appoint this government. ?]
+unavailable-subtitle: SPD + KPD + Z + [+ ddp_name +] ([+ popular_front_coalition +]%) - [? if kpd_relation < 50: 我们与德共的关系不够好。 ?][? if z_relation < 50: 我们与中央党的关系不够好。 ?][? if communist_coalition < 3 : 共产党人完全不愿妥协。 ?][? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?][? if president == "Hindenburg" and coup_progress >= 8 and popular_front < 55 and historical_mode : 兴登堡不愿任命此届政府。 ?]
 view-if: popular_front_coalition >= 50 or (sapd_formed == 1 and (popular_front_coalition + sapd_r) >= 50)
 choose-if: ((((kpd_relation >= 65 and kpd_party_leader == "Thälmann") or (kpd_relation >= 45 and kpd_party_leader == "Conciliators")) and ((z_relation >= 45 and z_party_leader == "Joos") or (z_relation >= 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation >= 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators")) and ddp_relation >= 50 and communist_coalition >= 3) or (z_party_leader == "Joos" and kpd_party_leader == "Conciliators" and z_relation >= 30 and kpd_relation >= 30)) and president != "Hitler" and (president != "Hindenburg" or ((coup_progress < 8 or popular_front >= 55 or not historical_mode) and not spd_sackings))
 
-Could we really form a coalition that included both the Center and the Communists? It seems like an absurd concept, but given our good relationships with both sides, it is not an impossibility. [? if sapd_formed == 1 and popular_front_coalition < 50 : The SAPD will tolerate this governing arrangement, allowing us to form such a government despite a slim minority. ?]
+我们真的能组建一个同时包括中央党与共产党人的联合政府吗？这看似荒诞不经，但鉴于我们与双方的良好关系，并非全无可能。[? if sapd_formed == 1 and popular_front_coalition < 50 : 德国社会党将容忍这一执政安排，使我们得以在席位微弱的情况下组建政府。 ?]
 
-The far-right might attempt a coup, if such a coalition were formed.
+若这样的联合政府得以成形，极右翼或将尝试发动政变。
 
-- @popular_front_2: Form the Popular Front!
-- @great_popular_front: Form the Popular Front!
+- @popular_front_2: 组建人民阵线！
+- @great_popular_front: 组建人民阵线！
 
 @popular_front_2
 view-if: z_party_leader != "Joos" or kpd_party_leader != "Conciliators"
 
-Somehow, both the Communists and Center are at the very least willing to entertain negotiations. Of course, KPD radicals and Center conservatives derail the negotiations almost immediately. The KPD demands leadership of the coalition for themselves and their chairman Ernst Thälmann, [? if spd_r > kpd_r : despite our higher vote share, ?]while the Center is offended by the prospect of helping Bolsheviks enter government. *Something* must be done to restore balance.
+某种程度上，共产党人与中央党至少愿意进行谈判。当然，德共激进派和中央党保守派几乎立刻令谈判陷入僵局。德共要求以本党主席恩斯特·台尔曼领导联合政府，[? if spd_r > kpd_r : 尽管我们的得票率更高，?]而中央党则对帮助布尔什维克入主政府的前景感到愤慨。必须采取*某些*措施来恢复平衡。
 
 - @popular_front_resources
 - @popular_front_democracy
 - @popular_front_braun
-- @coalition_menu: This is impossible. Try another governing arrangement.
+- @coalition_menu: 此路不通。尝试另一种执政安排。
 
 @popular_front_resources
-title: Use our resources to smooth things over.
-unavailable-subtitle: Required: 4 resources
-subtitle: -4 resources
+title: 动用资源疏通关系。
+unavailable-subtitle: 需要4点资源
+subtitle: -4 资源
 choose-if: resources >= 4
 on-arrival: resources -= 4
 go-to: popular_front_success
 
 @popular_front_democracy
-title: Convince the KPD to accept democracy.
-subtitle: [? if kpd_party_leader == "Conciliators" : The Conciliator leadership of the KPD at least claim to support the Popular Front. ?]
-unavailable-subtitle: Our relationship with the KPD is not high enough.
+title: 说服德共接受民主。
+subtitle: [? if kpd_party_leader == "Conciliators" : 德共的调和派领导层至少声称支持人民阵线。 ?]
+unavailable-subtitle: 我们与德共的关系不够深厚。
 choose-if: (kpd_relation >= 60 and communist_coalition >= 3) or kpd_party_leader == "Conciliators"
 go-to: popular_front_success
 
 @popular_front_braun
-title: Use pressure from President Braun to force the parties to cooperate.
+title: 借助布劳恩总统的压力迫使各党合作。
 view-if: president == "Braun"
 go-to: popular_front_success
 
@@ -543,93 +543,93 @@ on-arrival: spd_in_government = 1; in_popular_front = 1; chancellor = "Breitsche
 achievement: grosse_volksfront
 go-to: popular_front_civil_war if coup_progress >= 10; popular_front_no_civil_war if coup_progress < 10
 
-Somehow, the coalition is successfully formed! The conciliatory leadership of the Center Party and KPD helped make the negotiations possible. We still need a chancellor; the only acceptable choice among the parties was Rudolf Breitscheid of the SPD, acceptable to the Center and KPD [? if president == "Hindenburg" : as well as President Hindenburg, albeit extremely reluctantly ?].
+不知为何，联合政府竟成功组建！中央党与德共的调和派领导层让谈判成为可能。我们仍需确定总理人选；各方唯一能接受的人选是社民党的鲁道夫·布莱特沙伊德，中央党与德共均可接受 [? if president == "Hindenburg" : ，兴登堡总统亦勉强接受 ?]。
 
 @popular_front_success
 on-arrival: spd_in_government = 1; in_popular_front = 1; chancellor = "Breitscheid"; chancellor_party = "SPD"; kpd_relation += 10; coup_progress += 2; in_left_front = 0; in_weimar_coalition = 0; in_grand_coalition = 0; coalition_dissent = 0;
 go-to: popular_front_civil_war if coup_progress >= 10 and (sa_banned != 1 or sh_banned != 1); popular_front_no_civil_war if coup_progress < 10 or (sa_banned and sh_banned)
 achievement: volksfront
 
-Somehow, surprisingly, the coalition is successfully formed! We still need a chancellor; the only acceptable choice among the parties was Rudolf Breitscheid of the SPD, acceptable to the Center and KPD [? if president == "Hindenburg" : as well as President Hindenburg, albeit extremely reluctantly ?].
+出人意料，联合政府竟神奇地成功组建！我们仍需确定总理人选；各方唯一能接受的人选是社民党的鲁道夫·布莱特沙伊德，中央党与德共均可接受 [? if president == "Hindenburg" : ，兴登堡总统亦勉强接受 ?]。
 
 @popular_front_no_civil_war
 on-arrival: kpd_goals_seen = 0; finance_minister_party = "Z"; interior_minister_party = "Z"; economic_minister_party = "Z"; labor_minister_party = "Z"; foreign_minister_party = "Z"; agriculture_minister_party = "Z"; reichswehr_minister = "I"; leverage += kpd_r
 achievement: volksfront
 
-In response to the KPD's entrance into the government, the right-wing takes a "wait-and-see" approach for now. They expect that the Popular Front government will be unstable and incompetent, and will collapse of its own accord, discrediting the left and center and eventually enabling the destruction of the Weimar Republic. Our task is to prove them wrong.
+面对德共入主政府，右翼暂时采取「观望」态度。他们预期人民阵线政府将不稳定且无能，并将自行瓦解，从而使左翼和中间派蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
 
-The KPD has taken an abstentionist position with regards to ministries. They claim to be participating as the "loyal opposition" within the Popular Front government, supporting us from the outside while also running their own propaganda campaigns to turn workers to their side. They seem to expect that the Popular Front would inevitably fail, and that our failure would benefit them.
+德共在部长职位问题上采取弃权立场。他们自称在人民阵线政府内扮演「忠诚反对派」角色，从外部支持我们，同时开展自己的宣传运动，争取工人倒向己方。他们似乎预期人民阵线终将失败，而我们的失败将使他们获益。
 
-- @ministries: First, we must select our ministries.
+- @ministries: 首先，我们必须选定部长。
 
 
 @popular_front_civil_war
 on-arrival: kpd_relation = 80; reichswehr_loyalty += 0.25; nazi_rebel = 1; labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; economic_minister_party = "SPD"; justice_minister_party = "SPD"; foreign_minister_party = "SPD" if spd_r >= 35; foreign_minister_party = "Z" if spd_r < 35; agriculture_minister_party = "Z"; reichswehr_minister_party = "I"
 
-In response to the KPD's entrance into the government, the right-wing immediately launches a coup attempt. Troops of the Stahlhelm and Nazi SA enter Berlin and immediately begin clashing with our supporters! Reactionary officers within the Reichswehr have taken their troops out of the barracks and joined them with the Stahlhelm to stop us from taking power.
+面对德共入主政府，右翼立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，立刻与我们的支持者发生冲突！国防军内的反动军官率部离营，加入钢盔团阻止我们夺取权力。
 
-The Center manages to diffuse some of the hostility from the Reichswehr and the Stahlhelm, but fail to prevent the outbreak of fighting. We are forced to fight on the same side as the KPD, whether we want to or not.
+中央党化解了国防军和钢盔团的部分敌意，但未能阻止战斗爆发。无论是否情愿，我们都被迫与德共并肩作战。
 
-- @civil_war: A civil war, then.
+- @civil_war: 内战，就这样。
 
 
 
 @far_right_coalition
-title: Far-right coalition
+title: 极右联合政府
 subtitle: NSDAP + DNVP ([+ far_right_coalition +]%)
 view-if: far_right_coalition >= 50
 go-to: far_right_win if (year >= 1932 or nsdap_r >= 44) and president != "Braun" and not hitler_seen; far_right_fail if (year < 1932 and nsdap_r < 44) and president != "Braun" and not hitler_seen; far_right_braun if president == "Braun"; far_right_incumbent if hitler_seen
 priority: 2
 
-There are enough votes for the Nazis and the DNVP to form a coalition. [+ nsdap_leader +] has made his participation in government contingent on being appointed chancellor. It is up to President [+ president +] to decide.
+纳粹党与德国国家人民党的选票已足以组建联合政府。[+ nsdap_leader +] 将出任总理作为其参政条件。最终决定权在 [+ president +] 总统手中。
 
 @far_right_win
 on-arrival: chancellor = nsdap_leader; chancellor_party = "NSDAP"
 
-[? if president == "Hindenburg" : President Hindenburg's camarilla ?][? if president == "Braun" : President Braun somehow ?] has decided that [+ nsdap_leader +] must be chancellor [? if president == "Hindenburg": , and the aging president accepts their recommendations. ?][? if president == "Braun" : because it is what the constitution would stipulate. ?]
+[? if president == "Hindenburg" : 兴登堡总统的幕僚小集团 ?][? if president == "Braun" : 布劳恩总统不知为何 ?]决定 [+ nsdap_leader +] 必须出任总理 [? if president == "Hindenburg": ，年迈的总统接受了他们的建议。 ?][? if president == "Braun" : ，因为这是宪法所规定的。 ?]
 
-- @hitler_takes_power: What do we do now?
+- @hitler_takes_power: 我们现在该怎么办？
 
 
 @far_right_fail
 on-arrival: chancellor = "Schleicher"; chancellor_party = "I"; pro_republic -= 10; next_election_time = time+5; next_election_month = month + 5; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
 
-The reactionary establishment is still very skeptical of the Nazis, so instead, [+ president +] appoints Kurt von Schleicher, a former general, as chancellor, to try to "tame" the Nazis.
+反动派建制对纳粹仍抱有极大疑虑，因此 [+ president +] 改而任命前将军库尔特·冯·施莱谢尔为总理，试图「驯服」纳粹。
 
-Schleicher's government is deeply unpopular among all parties of the Reichstag. Despite his support for a coalition with the NSDAP, the Nazis want power all to themselves, without Schleicher.
+施莱谢尔的政府在国会各党中极不受欢迎。尽管他支持与纳粹党组建联合，纳粹却想独揽权力，不愿与施莱谢尔分享。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新的选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @far_right_braun
 on-arrival: coup_progress += 2
 
-President Braun faces a dilemma. Is it "democratic" to let democracy be destroyed, if the majority of voters have willed it so? Some, even on the left, suggest that the Nazis would not *truly* be as horrific as their platform suggests, and that giving them power would let them discredit themselves in the eyes of the public.
+布劳恩总统面临两难。若选民意志如此，任由民主被摧毁，是否算是「民主」？即便在左翼内部，也有人认为纳粹并不会像其纲领所描绘的那般可怖，让他们执政或可令其在公众眼中自我信誉扫地。
 
-Alternatively, Braun could use the emergency powers of the presidency. Article 48 has been used by Hindenburg to promulgate anti-democratic and anti-worker policies; can Article 48 be used for good as well as evil?
+或者，布劳恩可动用总统紧急权力。第48条曾被兴登堡用于颁布反民主、反工人政策；第48条是否也可以为善而非为恶？
 
-- @emergency_braun: We will form an emergency government with [+ president +]'s support.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
-- @far_right_win: Let the Nazis form their government.
+- @emergency_braun: 我们将在 [+ president +] 总统支持下组建紧急政府。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
+- @far_right_win: 让纳粹组建政府。
 
 @far_right_incumbent
 on-arrival: enabling_r += dnvp_r; enabling_r += nsdap_r; enabling_r += other_r; enabling_r += dvp_r if dvp_relation < 45; enabling_r += z_r if z_relation < 30; against_enable += spd_r*(1-(left_strength/100)); against_enable += dvp_r if dvp_relation >= 70; against_enable += z_r if z_relation >= 65; dvp_voted = 1 if dvp_relation >= 70 or dvp_relation < 45; z_voted = 1 if z_relation >= 65 or z_relation < 30
 go-to: enabling_menu
 
-Through their violent electioneering, the Nazis have, together with the DNVP, won a majority. But it is not enough, and Hitler desires total and absolute power. To this end, he has proposed an act - the "Enabling Act" - that would give him and his cabinet legislative powers, bypassing the Reichstag entirely. To pass, it requires a 2/3rds majority vote, though the KPD's deputies are under arrest, preventing them from voting against, as are our own deputies on the party's left-wing.
+通过暴力竞选手段，纳粹与德国国家人民党合计赢得多数，但这还不够——希特勒渴望彻底和绝对的权力。为此，他提出一项法案——「授权法」——将赋予他与内阁立法权力，完全绕过国会。该法通过需要三分之二的多数票，但德共议员已遭逮捕，无法投票反对，我党左翼的部分议员亦然。
 
-The key link now is the Center Party. They have been a valuable partner in upholding the Weimar Constitution - will they stand by us to stop Hitler from destroying it? [? if dvp_relation >= 60 : The DVP too has been surprisingly friendly towards us. Can we convince them to stop Hitler? ?]
+关键环节现在是中央党。他们曾是捍卫魏玛宪法的宝贵伙伴——他们是否会与我们并肩阻止希特勒将其摧毁？ [? if dvp_relation >= 60 : DVP 对我们也出人意料地友好。我们能说服他们阻止希特勒吗？ ?]
 
 @enabling_menu
 
-- @contact_ddp: Can we convince the [+ ddp_name +] to vote against?
-- @contact_z: Can we convince the Center Party to vote against?
-- @contact_dvp: Can we convince the DVP to vote against?
-- @voting_results: We have done all we can. Now we must vote against.
+- @contact_ddp: 我们能说服 [+ ddp_name +] 投票反对吗？
+- @contact_z: 我们能说服中央党投票反对吗？
+- @contact_dvp: 我们能说服 DVP 投票反对吗？
+- @voting_results: 我们已尽力而为。现在只能投票反对。
 
 @contact_dvp
 choose-if: dvp_relation >= 45 and dvp_relation < 70
-unavailable-subtitle: They've already made their decision.
+unavailable-subtitle: 他们已经做出了决定。
 max-visits: 1
 on-arrival: dvp_relation += 5
 go-to: success_dvp if dvp_relation >= 70; partial_dvp if dvp_relation >= 52 and dvp_relation < 70; failure_dvp if dvp_relation < 52
@@ -638,32 +638,32 @@ go-to: success_dvp if dvp_relation >= 70; partial_dvp if dvp_relation >= 52 and 
 on-arrival: dvp_relation += 5; against_enable += dvp_r; dvp_voted = 1
 go-to: enabling_menu
 
-Thanks to our good relations, the DVP promises to vote against.
+凭借我们的良好关系，DVP 承诺投票反对。
 
 @partial_dvp
 
-The DVP isn't convinced by our arguments, and wants more than just ideological nations of antifascism.
+DVP 对我们的论点并不信服，要求的不仅仅是反法西斯主义的理念。
 
-- @bribe_dvp: Give them the resources they need.
-- @failure_dvp: We've done all we can.
+- @bribe_dvp: 给予他们所需的资源。
+- @failure_dvp: 我们已尽力而为。
 
 @bribe_dvp
 choose-if: resources >= 1
-subtitle: -1 resource
+subtitle: -1 资源
 on-arrival: resources -= 1; against_enable += dvp_r; dvp_voted = 1
 go-to: enabling_menu
 
-With our resources as well as our arguments, the DVP is convinced, and promises to vote against.
+凭借我们的资源与论点，DVP 被说服，承诺投票反对。
 
 @failure_dvp
 on-arrival: dvp_relation -= 10; enabling_r += dvp_r; dvp_voted = 1;
 go-to: enabling_menu
 
-Despite our best efforts, the DVP is not convinced. We'll have to hope we can lobby a majority without them.
+尽管我们尽了最大努力，DVP 仍不为所动。只能希望没有他们我们也能争取到多数。
 
 @contact_z
 choose-if: z_relation >= 30 and z_relation < 65
-unavailable-subtitle: They've already made their decision.
+unavailable-subtitle: 他们已经做出了决定。
 max-visits: 1
 on-arrival: z_relation += 5
 go-to: success_z if z_relation >= 60; partial_z if z_relation >= 40 and z_relation < 60; failure_z if z_relation < 40
@@ -672,44 +672,44 @@ go-to: success_z if z_relation >= 60; partial_z if z_relation >= 40 and z_relati
 on-arrival: z_relation += 5; against_enable += z_r; z_voted = 1;
 go-to: enabling_menu
 
-Thanks to our good relations, the Center Party promises to vote against.
+凭借我们的良好关系，中央党承诺投票反对。
 
 @partial_z
 
-The Center Party isn't so easily convinced by our arguments, and wants more than just ideological nations of antifascism.
+中央党对我们的论点并不那么容易信服，要求的不仅仅是反法西斯主义的理念。
 
-- @bribe_z: Give them the resources they need.
-- @joos_clutch: Surely Joos can convince his party?
-- @concordat_kaas: Remind Kaas of the Concordat.
-- @failure_z: We've done all we can.
+- @bribe_z: 给予他们所需的资源。
+- @joos_clutch: 约斯难道不能说服他的党吗？
+- @concordat_kaas: 提醒卡斯关于政教协定的事。
+- @failure_z: 我们已尽力而为。
 
 @bribe_z
 choose-if: resources >= 1
-subtitle: -1 resource
+subtitle: -1 资源
 on-arrival: resources -= 1; against_enable += z_r; z_voted = 1;
 go-to: enabling_menu
 
-With our resources as well as our arguments, the Center Party is convinced, and promises to vote against.
+凭借我们的资源与论点，中央党被说服，承诺投票反对。
 
 @joos_clutch
 view-if: z_party_leader == "Joos"
 on-arrival: against_enable += z_r; z_voted = 1
 go-to: enabling_menu
 
-Despite initial resistance, Joseph Joos eventually convinces a majority of his party to vote against the Enabling Act.
+尽管初遇阻力，约瑟夫·约斯最终说服了党内多数投票反对授权法。
 
 @concordat_kaas
 view-if: z_party_leader == "Kaas" and reichskonkordat
 on-arrival: against_enable += z_r; z_voted = 1
 go-to: enabling_menu
 
-We remind Kaas of the Reichskonkordat that Breitscheid brought about, removing a significant reason for the Center Party to side with the Nazis. Reminded, they promise to vote against.
+我们提醒卡斯布莱特沙伊德所促成的「帝国政教协定」，从而消除了中央党支持纳粹的一个重要理由。受此提醒，他们承诺投票反对。
 
 @failure_z
 on-arrival: z_relation -= 10; enabling_r += z_r; z_voted = 1
 go-to: enabling_menu
 
-Despite our best efforts, the Center Party is not convinced. We'll have to hope we can lobby a majority without them.
+尽管我们尽了最大努力，中央党仍不为所动。只能希望没有他们我们也能争取到多数。
 
 @contact_ddp
 max-visits: 1
@@ -720,28 +720,28 @@ go-to: success_ddp if ddp_relation >= 70; partial_ddp if ddp_relation >= 45 and 
 on-arrival: ddp_relation += 5; against_enable += ddp_r; ddp_voted = 1;
 go-to: enabling_menu
 
-Thanks to our good relations, the [+ ddp_name +] promises to vote against.
+凭借我们的良好关系，[+ ddp_name +] 承诺投票反对。
 
 @partial_ddp
 
-The [+ ddp_name +] isn't so easily convinced by our arguments, and wants more than just ideological nations of antifascism.
+[+ ddp_name +] 对我们的论点并不那么容易信服，要求的不仅仅是反法西斯主义的理念。
 
-- @bribe_ddp: Give them the resources they need.
-- @failure_ddp: We've done all we can.
+- @bribe_ddp: 给予他们所需的资源。
+- @failure_ddp: 我们已尽力而为。
 
 @bribe_ddp
 choose-if: resources >= 1
-subtitle: -1 resource
+subtitle: -1 资源
 on-arrival: resources -= 1; against_enable += ddp_r; ddp_voted = 1
 go-to: enabling_menu
 
-With our resources as well as our arguments, the [+ ddp_name +] is convinced, and promises to vote against.
+凭借我们的资源与论点，[+ ddp_name +] 被说服，承诺投票反对。
 
 @failure_ddp
 on-arrival: ddp_relation -= 10; enabling_r += ddp_r; ddp_voted = 1
 go-to: enabling_menu
 
-Despite our best efforts, the [+ ddp_name +] is not convinced. We'll have to hope we can lobby a majority without them.
+尽管我们尽了最大努力，[+ ddp_name +] 仍不为所动。只能希望没有他们我们也能争取到多数。
 
 @voting_results
 on-arrival: enabling_r += dvp_r if not dvp_voted; enabling_r += z_r if not z_voted; enabling_r += ddp_r if not ddp_voted; {!
@@ -752,71 +752,71 @@ go-to: enabling_act_passed if enabling_r >= 67; enabling_act_failed if enabling_
 
 @enabling_act_passed
 
-Despite our best efforts...the Enabling Act has passed with [+ enabling_r +]% of the votes. [+ chancellor +] has near limitless power, and will begin the process of eliminating any remaining roadblocks.
+尽管我们尽了最大努力……授权法还是以 [+ enabling_r +]% 的票数通过了。[+ chancellor +] 已近乎拥有无限权力，并将开始消除任何剩余的障碍。
 
-Germany is lost.
+德国已经沦陷。
 
-- @game_over: Game over.
-- @fight_enabling: We can still stop Hitler! Mobilize the Reichsbanner.
+- @game_over: 游戏结束。
+- @fight_enabling: 我们还能阻止希特勒！动员黑红金国旗团。
 
 @fight_enabling
 choose-if: rb_force >= 10
-unavailable-subtitle: We lack the force.
+unavailable-subtitle: 我们的力量不足。
 on-arrival: spd_rebel = 1
 go-to: civil_war
 
 @enabling_act_failed
 on-arrival: spd_rebel = 1; sa_militancy -= 0.2; sa_strength *= 0.8; reichswehr_loyalty += 0.25; rb_militancy += 0.1; rb_strength += 500; kpd_relation += 25
 
-[? if president != "Hitler" and president != "Göring" : Somehow, we have stopped Hitler from passing his Enabling Act, with only [+ enabling_r +]% present voting for! Growing frustrated with the chaos on the streets Hitler himself is unleashing, [+ president +] turns on him and demands his resignation while he attempts to call a constitutional referendum to pass the Enabling Act instead. The Reichsbanner swells and fighting in the streets erupts, while the army is deployed, not for but against Hitler as civil war engulfs the nation. ?]
+[? if president != "Hitler" and president != "Göring" : 不知为何，我们阻止了希特勒通过授权法，出席投票中仅有 [+ enabling_r +]% 赞成！[+ president +] 对希特勒自身在街头煽动的混乱愈发失去耐心，要求他辞职，同时试图就授权法发起宪法公投。黑红金国旗团壮大，街头战斗爆发，军队被部署——不是支持希特勒，而是对抗他，内战将这个国家吞噬。 ?]
 
-[? if president == "Hitler" or president == "Göring" : Somehow, we have stopped Hitler from passing his Enabling Act, with only [+ enabling_r +]% present voting for! [+ president +] dissolves the Reichstag for new elections, ruling by decree in the meantime. A constitutional referendum is called as Hitler seeks to pass it outside of the Reichstag's framework, and fighting erupts on the streets as, tired of the chaos, Reichswehr forces begin to join in the emerging rebellion against Hitler and civil war engulfs the nation. ?]
+[? if president == "Hitler" or president == "Göring" : 不知为何，我们阻止了希特勒通过授权法，出席投票中仅有 [+ enabling_r +]% 赞成！[+ president +] 解散国会另行选举，其间以法令统治。一场宪法公投被提出，希特勒试图在国会框架之外推动通过，与此同时街头战斗爆发，疲于乱局的国防军力量开始加入针对希特勒的反抗，内战将这个国家吞噬。 ?]
 
-- @civil_war: To victory!
+- @civil_war: 胜利！
 
 @left_coalition
-title: Is a United Left coalition possible?
+title: 左翼统一联合政府可能实现吗？
 subtitle: SPD + KPD ([+ left_coalition +]%)
-unavailable-subtitle: SPD + KPD ([+ left_coalition +]%). [? if kpd_relation < 50 : We do not have adequate relations with the KPD. ?][? if communist_coalition < 3 : The Communists are too committed to their radical ways to partake in government. ?][? if president == "Hitler" or president == "Göring" or president == "Seldte" or president == "Seeckt" or president == "Hindenburg" : [+ president +] refuses to appoint a chancellor under such a governing arrangement. ?]
+unavailable-subtitle: SPD + KPD ([+ left_coalition +]%)。 [? if kpd_relation < 50 : 我们与德共的关系不够充分。 ?][? if communist_coalition < 3 : 共产党人过于激进，无法参与执政。 ?][? if president == "Hitler" or president == "Göring" or president == "Seldte" or president == "Seeckt" or president == "Hindenburg" : [+ president +] 拒绝在这种执政安排下任命总理。 ?]
 view-if: left_coalition >= 50 or (sapd_formed == 1 and (left_coalition + sapd_r) >= 50)
 choose-if: (kpd_relation >= 50 or (kpd_party_leader == "Conciliators" and kpd_relation >= 40)) and communist_coalition >= 3 and president != "Hitler" and president != "Göring" and president != "Seldte" and president != "Seeckt" and (president != "Hindenburg" or year < 1929)
 
-There are enough votes for a SPD + KPD coalition government, if such a thing were actually possible. [? if sapd_formed == 1 and left_coalition < 50 : The SAPD will tolerate this governing arrangement, allowing us to form such a government despite a slim minority. ?]
+SPD 与 KPD 的选票已足够组建联合政府，如果这真的可行的话。[? if sapd_formed == 1 and left_coalition < 50 : 德国社会党将容忍这一执政安排，使我们得以在席位微弱的情况下组建政府。 ?]
 
-The far-right might attempt a coup, if such a coalition were formed.
+若这样的联合政府得以成形，极右翼或将尝试发动政变。
 
-- @left_coalition_impossible: This is impossible.
-- @left_coalition_possible: This could be possible.
+- @left_coalition_impossible: 这是不可能的。
+- @left_coalition_possible: 这或许可行。
 
 @left_coalition_impossible
 go-to: coalition_menu
 
-A far left coalition is impossible.
+极左联合政府是不可能的。
 
 
 @left_coalition_possible
 
-The KPD is still very reluctant to join a coalition, despite grassroots friendliness between our memberships. The Stalinist leadership is vehemently against such a thing. They demand the appointment of Ernst Thälmann as chancellor in exchange for a coalition. [? if president == "Hindenburg" : There is no chance whatsoever that President Hindenburg would approve of the appointment of a die-hard communist as chancellor. ?] Alternatively, if our relations with them are good enough, we could convince them to support the appointment of one of our centrist or left-leaning members as chancellor.
+德共基层与我们党员的友好往来尽管存在，该党仍对加入联合政府极度抵触。斯大林主义领导层对此坚决反对。他们要求以恩斯特·台尔曼出任总理作为联合的条件，[? if president == "Hindenburg" : 兴登堡总统绝不可能批准任命一名铁杆共产主义者为总理。 ?] 或者，若我们与他们关系足够好，可以说服他们支持任命我们党内的中间或左倾成员为总理。
 
-- @thalmann_chancellor: Appoint Thälmann as chancellor.
+- @thalmann_chancellor: 任命台尔曼为总理。
 - @left_coalition_resources
 - @left_coalition_relations
-- @coalition_menu: Try a different governing arrangement.
+- @coalition_menu: 尝试另一种执政安排。
 
 @thalmann_chancellor
 choose-if: (president == "Braun" or president == "Schumacher" or president == "Juchacz" or president == "Thälmann" or president == "Münzenberg") and reformist_strength + neorevisionist_strength < left_strength
-unavailable-subtitle: [? if president != "Braun": President [+ president +] would never allow such a thing. ?] [? if reformist_strength >= left_strength : Most in the parliamentary party would not support Thälmann as chancellor. ?]
+unavailable-subtitle: [? if president != "Braun": [+ president +] 总统绝不会允许这样的事。 ?] [? if reformist_strength >= left_strength : 议会党团中的多数不支持台尔曼出任总理。 ?]
 on-arrival: chancellor = "Thälmann"; chancellor_party = "KPD"; in_left_front = 1; spd_in_government = 1; kpd_goals_seen = 0; rfb_strength += 100; rfb_militancy += 0.02; workers_kpd += 5; unemployed_kpd += 10; reichswehr_loyalty -= 0.05
 go-to: thalmann_war if not victory_republic; thalmann_no_war if victory_republic
 
-With great reluctance, President [+ president +] appoints [+ chancellor +] as chancellor.
+极不情愿地，[+ president +] 总统任命 [+ chancellor +] 为总理。
 
-Immediately, [+ chancellor +] goes to work building a "Soviet Germany": consolidating as much power as possible in the KPD, purging state institutions of anti-communists, and sending street fighters against the "enemies of the people".
+立即，[+ chancellor +] 着手建设「苏维埃德国」：尽可能将权力集中于德共，清洗国家机构中的反共分子，并派遣街头武装攻击「人民公敌」。
 
 @thalmann_war
 on-arrival: nazi_rebel = 1; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; kpd_relation = 80
 
-In response to [+ chancellor +] being appointed Chancellor, the right-wing forces launches almost immediately launch an attempted coup. Troops of the Stahlhelm and Nazi SA enter Berlin and immediately begin clashing with our supporters! Reactionary officers within the Reichswehr have taken their troops out of the barracks and joined them with the Stahlhelm to stop the KPD from taking power. We are forced to be on the same side as the KPD, whether we want to or not.
+面对 [+ chancellor +] 出任总理，右翼力量几乎立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，立刻与我们的支持者发生冲突！国防军内的反动军官率部离营，加入钢盔团阻止德共夺取权力。无论是否情愿，我们都被迫与德共并肩作战。
 
 - @civil_war
 
@@ -824,22 +824,22 @@ In response to [+ chancellor +] being appointed Chancellor, the right-wing force
 on-arrival: coup_progress += 5; leverage = ((spd_r/(spd_r+kpd_r))*kpd_relation); reformist_dissent += 5; neorevisionist_dissent += 5; z_relation -= 10; rfb_strength += 100; rb_strength -= 50; kpd_relation -= 10; kpd_influence += 3; foreign_minister_party = "KPD"; interior_minister_party = "KPD"; justice_minister_party = "KPD"; labor_minister_party = "KPD"; reichswehr_minister_party = "KPD"; economic_minister_party = "KPD"; finance_minister_party = "KPD"; agriculture_minister_party = "KPD";
 go-to: postwar_left
 
-Despite our appointing of [+ chancellor +] as chancellor, there is no appetite for a civil war so soon after the last. [+ chancellor +] is unopposed as he attempts to consolidate power. There is still, however, the matter of cabinet talks.
+尽管我们任命了 [+ chancellor +] 为总理，距上次内战未久，各方对再度开战毫无胃口。[+ chancellor +] 在无人阻拦的情况下试图巩固权力。不过，内阁谈判的问题仍悬而未决。
 
 #- @communist_victory
 # todo: maybe until proper KPD content is made, just fade to black with communist victory ending? but then appointing thalmann after a civil war should too...
 
 @left_coalition_resources
-title: Use our resources to smooth things over.
-unavailable-subtitle: Required: 3 resources
-subtitle: -3 resources
+title: 动用资源疏通关系。
+unavailable-subtitle: 需要3点资源
+subtitle: -3 资源
 choose-if: resources >= 3
 on-arrival: resources -= 3
 go-to: left_coalition_success
 
 @left_coalition_relations
-title: Convince the KPD to accept democracy.
-unavailable-subtitle: Our relationships with the KPD are not good enough.
+title: 说服德共接受民主。
+unavailable-subtitle: 我们与德共的关系不够好。
 choose-if: kpd_relation >= 60  or kpd_party_leader == "Conciliators"
 go-to: left_coalition_success
 
@@ -849,33 +849,33 @@ on-arrival: spd_in_government = 1; in_left_front = 1; chancellor = "Breitscheid"
 go-to: left_coalition_civil_war if coup_progress >= 10 and (sa_banned != 1 or sh_banned != 1); left_coalition_no_civil_war if (coup_progress < 10 or (sa_banned and sh_banned)) and not victory_republic; post_war_left_coalition if (coup_progress < 10 or (sa_banned and sh_banned)) and victory_republic
 achievement: einheitsfront
 
-Somehow, surprisingly, the left coalition is successfully formed, without appointing Thälmann as chancellor. The consensus choice for chancellor, accepted by the SPD, KPD, and President [+ president +], is Rudolf Breitscheid, who belongs to the centrist faction of the SPD, but was acceptable to the left due to his previous membership in the left-wing anti-war USPD.
+出人意料，左翼联合政府竟神奇地成功组建，而未以台尔曼为总理。经社民党、德共与 [+ president +] 总统协商一致的总理人选是鲁道夫·布莱特沙伊德，他属于社民党中间派，但因曾是左翼反战独立社民党成员而为左翼所接受。
 
 # just raise the coup limit, don't immediately go to civil war
 
 @left_coalition_no_civil_war
 on-arrival: kpd_goals_seen = 0; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.05
 
-In response to the KPD's entrance into the government, the right-wing takes a "wait-and-see" approach for now. They expect that our government will be unstable and incompetent, and will collapse of its own accord, discrediting the left and eventually enabling the destruction of the Weimar Republic. Our task is to prove them wrong.
+面对德共入主政府，右翼暂时采取「观望」态度。他们预期我们的政府将不稳定且无能，并将自行瓦解，从而使左翼蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
 
-The KPD has taken an abstentionist position with regards to ministries. They claim to be participating as the "loyal opposition" in the worker's government, supporting us from the outside while also running their own propaganda campaigns to turn workers to their side. They seem to expect that we would inevitably fail, and that our failure would benefit them. 
+德共在部长职位问题上采取弃权立场。他们自称在工人政府内扮演「忠诚反对派」角色，从外部支持我们，同时开展自己的宣传运动，争取工人倒向己方。他们似乎预期我们终将失败，而我们的失败将使他们获益。
 
-Whatever their reasoning is, the SPD has control over the ministries of government.
+无论他们的盘算如何，社民党现在掌控着政府各部。
 
 @left_coalition_civil_war
 on-arrival: reichswehr_loyalty += 0.1; nazi_rebel = 1; kpd_goals_seen = 0; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD";
 
-In response to the KPD's entrance into the government, the right-wing immediately launches a coup attempt. Troops of the Stahlhelm and Nazi SA enter Berlin and begin clashing with our supporters. Reactionary officers within the Reichswehr have taken their troops out of the barracks and joined them with the Stahlhelm to stop us from taking power.
+面对德共入主政府，右翼立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，开始与我们的支持者冲突。国防军内的反动军官率部离营，加入钢盔团阻止我们夺取权力。
 
-- @civil_war: A civil war, then.
+- @civil_war: 内战，就这样。
 
 @post_war_left_coalition
 on-arrival: kpd_goals_seen = 0; leverage = ((spd_r/(spd_r+kpd_r))*(kpd_relation/1.5)); leverage *= 0.8 if kpd_r > spd_r; leverage *= 0.6 if kpd_r >= 50; foreign_minister_party = "KPD"; interior_minister_party = "KPD"; justice_minister_party = "KPD"; labor_minister_party = "KPD"; reichswehr_minister_party = "KPD"; economic_minister_party = "KPD"; finance_minister_party = "KPD"; agriculture_minister_party = "KPD";
 go-to: postwar_left
 
-In response to the KPD's entrance into the government, the right-wing takes a "wait-and-see" approach for now. They expect that our government will be unstable and incompetent, and will collapse of its own accord, discrediting the left and eventually enabling the destruction of the Weimar Republic. Our task is to prove them wrong.
+面对德共入主政府，右翼暂时采取「观望」态度。他们预期我们的政府将不稳定且无能，并将自行瓦解，从而使左翼蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
 
-With our victory in the civil war, the Communists have found the confidence to directly participate in government. They have dropped their abstentionist approach, and will take any ministry which we do not.
+随着我们在内战中的胜利，共产党人有了直接参与政府的信心。他们放弃了弃权立场，将接受我们未占据的任何部门。
 
 @postwar_left
 
@@ -883,210 +883,210 @@ With our victory in the civil war, the Communists have found the confidence to d
 - #drop_mins_left
 
 @labor_left
-title: Labor Ministry
-subtitle: Taking the Labor Ministry is expected of us. [? if historical_mode : Labor will be displeased if we do not. ?]
-unavailable-subtitle: We do not have enough leverage.
+title: 劳动部
+subtitle: 担任劳动部是我们的本分。[? if historical_mode : 若不担任，劳工将会不满。 ?]
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
 choose-if: leverage >= 5
 view-if: labor_minister_party != "SPD"
 on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
 go-to: postwar_left
 
-Rudolf Wissell of the SPD has been appointed labor minister.
+社民党的鲁道夫·维塞尔（Rudolf Wissell）已被任命为劳动部长。
 
 @interior_left
-title: Interior Ministry
-subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
-unavailable-subtitle: We do not have enough leverage.
+title: 内政部
+subtitle: 担任内政部是我们的本分。内政部掌管国内安全。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
 choose-if: leverage >= 10
 view-if: interior_minister_party != "SPD"
 on-arrival: leverage -= 10; interior_minister_party = "SPD"; interior_minister = "Severing"
 go-to: postwar_left
 
-Carl Severing of the SPD has been appointed Interior Minister.
+社民党的卡尔·泽韦林（Carl Severing）已被任命为内政部长。
 
 @finance_left
-title: Finance Ministry
-subtitle: The Finance Ministry controls the government budget and taxes.
-unavailable-subtitle: We do not have enough leverage.
+title: 财政部
+subtitle: 财政部掌管政府预算与税收。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: finance_minister_party != "SPD"
 on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
 go-to: postwar_left
 
-Rudolf Hilferding of the SPD has been appointed Finance Minister.
+社民党的鲁道夫·希尔弗丁（Rudolf Hilferding）已被任命为财政部长。
 
 @economic_left
-title: Economic Ministry
-subtitle: The Economic Ministry controls broader economic policy.
-unavailable-subtitle: We do not have enough leverage.
+title: 经济部
+subtitle: 经济部掌管更广泛的经济政策。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
-choose-if: leverage >= 15 
+choose-if: leverage >= 15
 view-if: economic_minister_party != "SPD"
 on-arrival: leverage -= 15; economic_minister_party = "SPD"; economic_minister = "Schmidt"
 go-to: postwar_left
 
-Robert Schmidt of the SPD has been appointed Economic Minister.
+社民党的罗伯特·施密特（Robert Schmidt）已被任命为经济部长。
 
 @justice_left
-title: Justice Ministry
-subtitle: The Justice Ministry controls the courts.
-unavailable-subtitle: We do not have enough leverage.
+title: 司法部
+subtitle: 司法部掌管法院。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: justice_minister_party != "SPD"
 on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
 go-to: postwar_left
 
-Gustav Radbruch of the SPD has been appointed Justice Minister.
+社民党的古斯塔夫·拉德布鲁赫（Gustav Radbruch）已被任命为司法部长。
 
 @foreign_left
-title: Foreign Ministry
-subtitle: This is usually the domain of Gustav Stresemann of the DVP.
-unavailable-subtitle: We do not have enough leverage.
+title: 外交部
+subtitle: 该职位通常由 DVP 的古斯塔夫·施特雷泽曼担任。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: foreign_minister_party != "SPD"
 on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
 go-to: postwar_left
 
-Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+社民党的鲁道夫·布莱特沙伊德（Rudolf Breitscheid）已被任命为外交部长。
 
 
 @agriculture_left
-title: Agricultural Ministry
-subtitle: This is not our usual domain.
-unavailable-subtitle: We do not have enough leverage.
-choose-if: leverage >= 5 
+title: 农业部
+subtitle: 这并非我们惯常的领域。
+unavailable-subtitle: 我们的筹码不足。
+choose-if: leverage >= 5
 view-if: agriculture_minister_party != "SPD"
 on-arrival: leverage -= 5; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
 go-to: postwar_left
 tags: mins_left
 
-Fritz Baade of the SPD has been appointed Agriculture Minister.
+社民党的弗里茨·巴德（Fritz Baade）已被任命为农业部长。
 
 @reichswehr_left
-title: Reichswehr Ministry
-subtitle: Leaving this to the Communists could lead to a coup.
-unavailable-subtitle: We do not have enough leverage.
+title: 国防部
+subtitle: 将此职位留给共产党人可能导致政变。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_left
-choose-if: leverage >= 5 
+choose-if: leverage >= 5
 view-if: reichswehr_minister_party != "SPD"
 on-arrival: leverage -= 5; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
 go-to: postwar_left
 
-Julius Leber of the SPD has been appointed Reichswehr Minister.
+社民党的尤利乌斯·勒贝尔（Julius Leber）已被任命为国防部长。
 
 
 
 @no_more_left
-title: No more ministries.
+title: 不再争取更多部委。
 on-arrival: labor_dissent += 10 if historical_mode and labor_minister_party != "SPD"
-subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+subtitle: [? if leverage >= 10 : 我们仍有筹码可争取更多部委。 ?][? if leverage < 10 : 我们剩下的筹码不多了。 ?]
 tags: mins_left
 
-This coalition arrangement is tolerable to all.
+各方都可以接受这一联合安排。
 
 @drop_labor_left
-title: Drop the Labor Ministry.
+title: 让出劳动部。
 view-if: labor_minister_party = "SPD"
 on-arrival: labor_minister_party = "KPD"; leverage += 5;
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_interior_left
-title: Drop the Interior Ministry.
+title: 让出内政部。
 view-if: interior_minister_party = "SPD"
 on-arrival: interior_minister_party = "KPD"; leverage += 10;
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_finance_left
-title: Drop the Finance Ministry.
+title: 让出财政部。
 view-if: finance_minister_party = "SPD"
 on-arrival: leverage += 10; finance_minister_party = "KPD"
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_economic_left
-title: Drop the Economic Ministry.
+title: 让出经济部。
 view-if: economic_minister_party = "SPD"
 on-arrival: leverage += 15; economic_minister_party = "KPD"
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_justice_left
-title: Drop the Justice Ministry.
+title: 让出司法部。
 view-if: justice_minister_party = "SPD"
 on-arrival: justice_minister_party = "KPD"; leverage += 10;
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_foreign_left
-title: Drop the Foreign Ministry.
+title: 让出外交部。
 view-if: foreign_minister_party = "SPD"
 on-arrival: leverage += 10; foreign_minister_party = "KPD"
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_agriculture_left
-title: Drop the Agriculture Ministry.
+title: 让出农业部。
 view-if: agriculture_minister_party = "SPD"
 on-arrival: agriculture_minister_party = "KPD"; leverage += 5
 tags: drop_mins_left
 go-to: postwar_left
 
 @drop_reichswehr_left
-title: Drop the Reichswehr Ministry.
+title: 让出国防部。
 view-if: reichswehr_minister_party = "SPD"
 on-arrival: reichswehr_minister_party = "KPD"; leverage += 5;
 tags: drop_mins_left
 go-to: postwar_left
 
 @kpd_majority
-title: The KPD may govern alone.
+title: 德共可单独执政。
 subtitle: KPD ([+ kpd_r +]%)
 view-if: kpd_r >= 50 and president == "Braun" or president == "Thälmann"
 go-to: kpd_thalmann if president == "Thälmann"; kpd_braun if president == "Braun"
 
 @kpd_thalmann
 
-The Communists have, somehow, won a majority on their own. President Thälmann appoints Wilhelm Pieck to preside over  KPD-only cabinet.
+共产党不知怎的，竟单独赢得了多数。台尔曼总统任命威廉·皮克（Wilhelm Pieck）主持纯德共内阁。
 
-- @communist_victory: The KPD is quick to consolidate power.
+- @communist_victory: 德共迅速巩固权力。
 
 @kpd_braun
 
-The Communists have, somehow, won a majority on their own. However, to actually take power, President Braun must appoint Thälmann Chancellor.
+共产党不知怎的，竟单独赢得了多数。然而，要真正掌权，布劳恩总统必须任命台尔曼为总理。
 
-- @communist_victory: We will appoint Thälmann as Chancellor.
-- @left_coalition: Perhaps they can include us?
+- @communist_victory: 我们将任命台尔曼为总理。
+- @left_coalition: 也许他们可以接纳我们？
 
 @communist_victory
 on-arrival: chancellor_party = "KPD"; chancellor = "Thälmann"
 
-The Communists quickly rebuild Germany in the Soviet image, bringing it into their sphere and rooting out reactionaries and liberals alike. The fascists have been successfully kept away from power, but are the communists really so much better? This is a question that has been debated within our party for a while, and only the next few years can tell.
+共产党迅速以苏联模式重建德国，将其纳入苏联势力范围，根除反动派和自由派。法西斯被成功地阻挡在权力之外，但共产党人真的好得多吗？这是我党内部辩论已久的问题，只有未来几年才能给出答案。
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
 
 # todo: playable thalmann chancellorship
 
 @right_coalition
-title: A right-wing coalition may be formed.
-subtitle: Z + [+ bvp_name +] + DVP + DNVP + Others ([+ right_coalition +]%)
-unavailable-subtitle: The DNVP is not interested in a coalition with the Center.
+title: 可组建右翼联合政府。
+subtitle: Z + [+ bvp_name +] + DVP + DNVP + 其他 ([+ right_coalition +]%)
+unavailable-subtitle: 德国国家人民党无意与中央党组建联合。
 view-if: right_coalition >= 50
 choose-if: year < 1928 or dnvp_reform
 go-to: no_right_coalition if year >= 1930 and not dnvp_reform; right_coalition_2 if year <= 1929 and not dnvp_reform; right_coalition_3 if dnvp_reform
 
-There are enough votes for a right-wing coalition of the Center (+ [+ bvp_name +]), DVP, DNVP, and minor conservative parties.
+中央党（含 [+ bvp_name +]）、DVP、DNVP 和保守派小党的选票已足以组建右翼联合政府。
 
 @no_right_coalition
 go-to: no_majority
 
-However, the DNVP and its leader Hugenberg is refusing to partake in a coalition with the "November criminals" in the Center Party. Thus, there is no clear path towards a Reichstag majority.
+然而，DNVP 及其领袖胡根贝格拒绝与中央党的「十一月罪人」组建联合。因此，国会无路可达多数。
 
 
 
@@ -1097,14 +1097,14 @@ go-to: right_coalition_3 if dnvp_reform; right_coalition_old if not dnvp_reform
 
 @right_coalition_old
 
-Even though the DNVP is very reluctant to participate in such a coalition, they still accede to [? if president == "Hindenburg" : President Hindenburg's wishes ?][? if president != "Hindenburg" : the Center Party's wishes ?] and to allow a government to be formed. Thus, a majority center-right coalition is formed, with Brüning as chancellor.
+尽管 DNVP 极不情愿参与这样的联合，但仍屈从于 [? if president == "Hindenburg" : 兴登堡总统的意愿 ?][? if president != "Hindenburg" : 中央党的意愿 ?]，允许政府得以组建。如此，以布吕宁为总理的多数中右联合政府成立。
 
 @right_coalition_3
 
-With the DNVP's new more amicable position towards participation in parliamentary politics, the right-wing coalition is successfully formed.
+随着 DNVP 在议会政治参与问题上转向更为友善的立场，右翼联合政府得以成功组建。
 
 @no_majority_gessler
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: (weimar_coalition < 50 or not z_willing) and (grand_coalition < 50 or grand_coalition_failed == 1 or dvp_willing != 1) and president = "Gessler" and far_right_coalition < 50 and (right_coalition < 50 or right_coalition_failed) and bourgeois_coalition < 50
 on-arrival: no_majority_elections += 1
 go-to: bruning_lead if no_majority_elections < 3 and (chancellor != "Seldte" or ((harzburg_r < 25 or seldte_times >= 1) and not (army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15))))); luther_lead if no_majority_elections >= 3 and (dvp_relation < 55 or bourgeois_coalition+far_right_coalition >= 50 or ddp_votes < 3) and (chancellor != "Seldte" or ((harzburg_r < 25 or seldte_times >= 1) and not (army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15))))); kulz_lead if dvp_relation >= 45 and bourgeois_coalition+far_right_coalition < 50 and ddp_votes >= 3 and (chancellor != "Seldte" or ((harzburg_r < 25 or seldte_times >= 1) and not (army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15))))); no_majority_seldte if chancellor == "Seldte" and (harzburg_r >= 25 and seldte_times < 1) or (army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15)))
@@ -1112,37 +1112,37 @@ go-to: bruning_lead if no_majority_elections < 3 and (chancellor != "Seldte" or 
 @luther_lead
 on-arrival: chancellor = "Luther"; chancellor_party = "I"
 
-There is no path to an obviously workable majority. President [+ president +] has given Hans Luther, Reichsbank director formerly of the DVP, the task of forming a government, tired of Brüning's repeated failures to govern and hoping that Hans Luther would be able to gain broad Reichstag support.
+无明显可行多数。[+ president +] 总统对布吕宁屡次组阁失败已感厌倦，将组建政府的任务交给前 DVP 成员、帝国银行行长汉斯·路德，希望他能赢得国会广泛支持。
 
-- @toleration_luther: We will tolerate Luther.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_luther: 我们将容忍路德。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @toleration_luther
 choose-if: neo_weimar_coalition >= 50
-unavailable-subtitle: The parties supporting Luther do not have a majority.
+unavailable-subtitle: 支持路德的各党不构成多数。
 on-arrival: spd_in_government = 0; spd_toleration = 1; dvp_relation += 3; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; pro_republic -= 4; left_dissent += 5; labor_dissent += 5; center_dissent += 3; reformist_dissent += 3; workers_spd -= 5; unemployed_spd -= 5
 
-We have decided to tolerate Luther's minority bourgeois government, a controversial decision in our party due to his economic policies and right-wing leanings.
+我们决定容忍路德的少数资产阶级政府——鉴于其经济政策和右翼倾向，这在我党内部颇具争议。
 
 @kulz_lead
 on-arrival: chancellor = "Külz"; chancellor_party = ddp_name
 
-There is no path to an obviously workable majority. President Gessler has given Wilhelm Külz, member of the [+ ddp_name +], the task of forming a government, tired of Brüning's repeated failures to govern and hoping to gain our backing.
+无明显可行多数。盖斯勒总统对布吕宁屡次组阁失败已感厌倦，将组建政府的任务交给 [+ ddp_name +] 成员威廉·屈尔茨，希望赢得我们的支持。
 
-- @toleration_kulz: We will tolerate Külz.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_kulz: 我们将容忍屈尔茨。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @toleration_kulz
 choose-if: neo_weimar_coalition >= 50 or (neo_weimar_coalition+sapd_r >= 50 and kpd_relation >= 30)
-unavailable-subtitle: The parties supporting Külz do not have a majority.
+unavailable-subtitle: 支持屈尔茨的各党不构成多数。
 on-arrival: spd_in_government = 0; spd_toleration = 1; ddp_relation += 5; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; pro_republic -= 2
 
-We have decided to tolerate Külz's minority bourgeois government.
+我们决定容忍屈尔茨的少数资产阶级政府。
 
 @no_majority_seeckt
-title: There is no clear majority
+title: 无明显多数
 view-if: president == "Seeckt" and not (hitler_right_coalition >= 50 and left_strength >= 50 and political_crisis_progress >= 1 and (president == "Hindenburg" or president == "Seeckt") and chancellor == "Brüning")
 go-to: martial_law if army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and chancellor = "Seldte"; switch_to_seldte if chancellor = "Papen"
 
@@ -1150,20 +1150,20 @@ go-to: martial_law if army_force+sh_force >= 50 and dnvp+sh_force < 50 and reich
 on-arrival: chancellor = "Seldte"; chancellor_party = "DNVP"; time_to_election = 3
 call: set_next_election_time
 
-Dissatisfied with the performance of Papen, Hans von Seeckt has dissolved the Reichstag for new elections and appointed Franz Seldte of Der Stalhelm as chancellor.
+汉斯·冯·泽克特对帕彭的表现不满，解散国会另行选举，并任命钢盔团的弗朗茨·泽尔特为总理。
 
 @no_majority_seldte2
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: president == "Seldte"
 go-to: no_majority_nsdap
 
 @no_majority_hitler2
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: president == "Hitler" or president == "Göring"
 go-to: no_majority_nsdap
 
 @no_majority_eckener
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: (weimar_coalition < 50 or not z_willing) and (grand_coalition < 50 or grand_coalition_failed == 1 or dvp_willing != 1) and president = "Eckener" and far_right_coalition < 50 and (right_coalition < 50 or right_coalition_failed) and bourgeois_coalition < 50
 on-arrival: no_majority_elections += 1
 go-to: bruning_lead if no_majority_elections < 1; schacht_lead if investigate_far_right < 1 and spd_r < bourgeois_coalition + dnvp_r and no_majority_elections >= 1 and schacht_election != 1; luther_lead if (investigate_far_right >= 1 or spd_r >= bourgeois_coalition + dnvp_r or schacht_election == 1) and no_majority_elections >= 1
@@ -1171,12 +1171,12 @@ go-to: bruning_lead if no_majority_elections < 1; schacht_lead if investigate_fa
 @schacht_lead
 on-arrival: chancellor = "Schacht"; chancellor_party = "I"; schacht_stalhelm = 1 if sh_banned; sh_banned = 0; welfare -= 1; judicial_reform -= 1 if judicial_reform >= 1; schacht_election = 1; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
 
-There is no path to an obviously workable majority. President Eckener has decided to appoint former Reichsbank director, Hjalmar Schacht, to the position as head of a technocratic cabinet. Eckener expects us to tolerate him, but he is intolerable to most of the party. [? if schacht_stalhelm : He has already legalized the Stalhelm. ?]
+无明显可行多数。埃克纳总统决定改任命前帝国银行行长亚尔马·沙赫特领导技术官僚内阁。埃克纳期望我们容忍他，但本党多数人对他难以接受。[? if schacht_stalhelm : 他已合法化钢盔团。 ?]
 
-Luckily, the difficult decision has been made for us, as regardless of how we vote a majority of the Reichstag votes against him. New elections have been set for The next elections are set for [+ next_election_month : month +] [+ next_election_year +].
+幸而，这一艰难抉择已替我们做出——无论我们如何投票，国会多数都将反对他。新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @no_majority_adenauer
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: (weimar_coalition < 50 or not z_willing) and (grand_coalition < 50 or grand_coalition_failed == 1 or dvp_willing != 1) and president = "Adenauer" and far_right_coalition < 50 and (right_coalition < 50 or right_coalition_failed) and bourgeois_coalition < 50
 on-arrival: no_majority_elections += 1
 go-to: bruning_lead if no_majority_elections < 2; stegerwald_lead if (((z_relation + spd_r < z_r + dvp_r + other_r) or (z_relation + spd_r < national_front and z_national == 1)) and bourgeois_coalition+far_right_coalition >= 50) and no_majority_elections >= 2; wirth_lead if (((z_relation + spd_r >= z_r + dvp_r + other_r and z_national != 1) or (z_relation + spd_r >= national_front)) or bourgeois_coalition+far_right_coalition < 50) and no_majority_elections >= 2
@@ -1184,42 +1184,42 @@ go-to: bruning_lead if no_majority_elections < 2; stegerwald_lead if (((z_relati
 @stegerwald_lead
 on-arrival: chancellor = "Stegerwald"; chancellor_party = "Z"
 
-There is no path to an obviously workable majority. President Adenauer has given Adam Stegerwald of the Center Party's right-wing the task of forming a government, tired of Brüning's repeated failures to govern and hoping that Stegerwald would be able to win over support from the far-right. For better or worse, it seems that this has failed, with the far-right unwilling or unable to back Stegerwald. Now the task falls on us to decide the fate of Stegerwald's government.
+无明显可行多数。阿登纳总统对布吕宁屡次组阁失败感到厌倦，将组建政府的任务交给中央党右翼的亚当·施特格瓦尔德，希望他能争取极右翼的支持。无论好坏，此举似已失败——极右翼不愿或不能支持施特格瓦尔德。如今，决定施特格瓦尔德政府命运的任务落在了我们身上。
 
-- @toleration_stegerwald: We will tolerate Stegerwald.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_stegerwald: 我们将容忍施特格瓦尔德。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @toleration_stegerwald
-choose-if: neo_weimar_coalition >= 50 
-unavailable-subtitle: The parties supporting Stegerwald do not have a majority.
+choose-if: neo_weimar_coalition >= 50
+unavailable-subtitle: 支持施特格瓦尔德的各党不构成多数。
 on-arrival: spd_in_government = 0; spd_toleration = 1; z_relation += 5; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; pro_republic -= 4; left_dissent += 5; labor_dissent += 5; reformist_dissent += 2; center_dissent += 2; workers_spd -= 4; unemployed_spd -= 4
 
-We have decided to tolerate Stegerwald's minority bourgeois government, a controversial decision in our party due to his right-leaning tendencies and conservatism.
+我们决定容忍施特格瓦尔德的少数资产阶级政府——鉴于其右倾倾向和保守主义，这在我党内部颇具争议。
 
 @bruning_lead
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-There is no path to an obviously workable majority. President [+ president +] has given Heinrich Brüning of the Center Party the task of forming a government. As the bourgeois parties lack a majority on their own, the task falls on us to decide the fate of Brüning's government.
+无明显可行多数。[+ president +] 总统将组建政府的任务交给中央党的海因里希·布吕宁。由于资产阶级各党不能独自构成多数，布吕宁政府的命运落在我们手中。
 
-- @toleration_bruning: We will tolerate Brüning.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_bruning: 我们将容忍布吕宁。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @wirth_lead
 choose-if: neo_weimar_coalition >= 50
-unavailable-subtitle: The parties supporting Wirth do not have a majority.
+unavailable-subtitle: 支持维尔特的各党不构成多数。
 on-arrival: chancellor = "Wirth"; chancellor_party = "Z"; wirth_lead = 1
 
-There is no path to an obviously workable majority. President Adenauer has given Joseph Wirth of the Center Party the task of forming a government, tired of Brüning's repeated failures to govern and hoping that Wirth would be able to win over our support. Now the question remains, can he?
+无明显可行多数。阿登纳总统对布吕宁屡次组阁失败感到厌倦，将组建政府的任务交给中央党的约瑟夫·维尔特，希望他能争取我们的支持。现在问题在于，他能做到吗？
 
-- @toleration_wirth: We will tolerate Wirth.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_wirth: 我们将容忍维尔特。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @black_brown
-title: Brüning turns to his right for coalition support.
-subtitle: With we on the left firmly refusing to support his government, Brüning considers a deal with the devil.
+title: 布吕宁转向其右翼寻求联合支持。
+subtitle: 由于我们左翼坚决拒绝支持其政府，布吕宁考虑与魔鬼做交易。
 view-if: hitler_right_coalition >= 50 and left_strength >= 50 and political_crisis_progress >= 1 and (president == "Hindenburg" or president == "Seeckt") and chancellor == "Brüning"
 on-arrival: black_brown_seen = 1; nazi_chance = nsdap_r; nazi_chance += socialism; nazi_chance += nationalism; nazi_chance -= pro_republic; nazi_chance += left_coalition if communist_coalition >= 3 and kpd_relation >= 50; nazi_chance += rb_force+rfb_force; nazi_chance -= sa_force; nazi_chance += (radicalization+capital_strike_progress+coup_progress)*political_crisis_progress;
 go-to: black_brown_success if nazi_chance >= 200 and not hitler_deported; black_brown_failure if nazi_chance < 150 or (nazi_chance < 200 and not hitler_deported); black_brown_goring if hitler_deported and nazi_chance >= 150
@@ -1227,42 +1227,42 @@ go-to: black_brown_success if nazi_chance >= 200 and not hitler_deported; black_
 @black_brown_success
 on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; sa_militancy -= 0.1 if rb_force < 15; sa_strength *= 0.9 if rb_force < 15; z_relation -= 25; dvp_relation -= 25; ddp_relation -= 15
 
-Negotiations are long and tense, with Hitler refusing to concede the position of chancellor. Eventually, somehow, to prevent more elections in which we socialists may gain, the Center Party agrees to allow Hitler as chancellor in return for the majority of cabinet positions, the gradual disarmament of the SA, and assurances of safety for Catholics. Brüning reluctantly steps aside, and Hitler is sworn in as chancellor with [+ hitler_right_coalition +]% behind him.
+谈判漫长而紧张，希特勒拒不让出总理职位。最终，为防止社民党在更多选举中得利，中央党不知怎的同意让希特勒出任总理，作为交换，他将获得多数内阁席位、冲锋队的逐步解除武装、以及对天主教徒安全的保证。布吕宁不情愿地让位，希特勒以 [+ hitler_right_coalition +]% 的支持率宣誓就任总理。
 
-- @hitler_takes_power: What do we do now?
-- @secret_path: What do we do now?
+- @hitler_takes_power: 我们现在该怎么办？
+- @secret_path: 我们现在该怎么办？
 
 @secret_path
 view-if: hitler_seen or presidential_powers
 on-arrival: rb_militancy -= 0.1 if rb_militancy >= 0.1; reichswehr_loyalty = 0 if reichswehr_loyalty > 0
 go-to: slow_consolidation if hitler_seen
 
-[? if hitler_seen : This being Hitler's second tenure as chancellor, he is much more cautious, instead opting to slowly consolidate power. ?][? if presidential_powers : The limitations on presidential powers prevent Hitler from immediately consolidating power. ?]
+[? if hitler_seen : 这是希特勒第二次担任总理，他变得更为谨慎，选择缓慢巩固权力。 ?][? if presidential_powers : 总统权力的限制阻止了希特勒立即巩固权力。 ?]
 
 @slow_consolidation
 on-arrival: sneaky_hitler = 1; impending_fire = 1; time_to_election = 3; z_relation += 10 if not uf_formed; nazi_peak = 0; nazi_decline = 0; labor_dissent += 10 if labor_strength < center_strength; rb_strength -= 200*(dissent); new_middle_nsdap += 4; old_middle_nsdap += 3; catholics_nsdap += 3; rural_nsdap += 4; workers_nsdap += 6; unemployed_nsdap += 10; budget -= 3; economic_growth += 1; economic_growth += 1.5 if economic_growth < 0; inflation += 2; inflation += 1.5 if inflation < 0; unemployed -= 2; unemployed -= 4 if unemployed >= 30
 call: set_next_election_time
 
-A public works program is initiated by the Nazis, alongside subsidies for struggling businesses. Meanwhile, the Nazis contact the ADGB, attempting to turn them against us. Pre-empting a potential betrayal by the Center Party, Hitler dissolves the Reichstag, calling new elections for [+ next_election_month : month +] [+ next_election_year +].
+纳粹党启动了公共工程计划，并对陷入困境的企业给予补贴。与此同时，纳粹与德国总工会（ADGB）接洽，试图使其反对我们。为先发制人地防止中央党可能的背叛，希特勒解散国会，要求于 [+ next_election_month : month +] [+ next_election_year +] 举行新选举。
 
-Hitler is sure to have ideas once the Reichstag next convenes...
+国会下次召开时，希特勒必有所图谋……
 
 @black_brown_failure
 on-arrival: bb_failed = 1; rural_nsdap += 3; old_middle_nsdap += 3; new_middle_nsdap += 3; workers_spd += 4*(1-dissent); workers_z -= 3; unemployed_nsdap -= 3*(1-dissent); workers_nsdap -= 3*(1-dissent);
 
-As expected, the negotiations go nowhere. The Nazis are too intransingent and uncompromising for the bürgerblock to stomach, and inversely the bürgerblock are too demanding and picky for the Nazis. 
+不出所料，谈判毫无进展。纳粹党对资产阶级集团（Bürgerblock）而言过于顽固和不愿妥协，反过来，资产阶级集团对纳粹党而言过于挑剔和苛刻。
 
-- @no_majority: Thus, there is no clear majority.
+- @no_majority: 因此，无明显多数。
 
 @black_brown_goring
 on-arrival: in_right_coalition = 1; nsdap_toleration = 1; judicial_reform -= 2; reichswehr_loyalty -= 0.1; pro_republic -= 5; sa_militancy -= 0.05; new_middle_nsdap += 3; old_middle_nsdap += 6; rural_nsdap += 6; new_middle_spd += 4*(1-dissent); workers_nsdap -= 4*(1-dissent); unemployed_nsdap -= 6*(1-dissent); coup_progress += political_crisis_progress; coup_progress += 2; collapse_month = month+5; collapse_year = year; collapse_year += 1 if collapse_month > 12; collapse_month -= 12 if collapse_month > 12
 
-Somehow, the NSDAP has agreed to join Brüning's government, giving it [+ hitler_right_coalition +]% of the Reichstag. The breaking of the de-facto cordon sanitaire against them significantly helps to legitimize them as a constructive political party in the country, though their association with Brüning's austerity measures simultaneously helps us to break their support amongst the working class.
+纳粹党不知怎的同意加入布吕宁政府，使其在国会获得 [+ hitler_right_coalition +]% 的支持。打破对纳粹的事实上的「防疫线」极大地帮助他们作为一个建设性政党在国内获得合法性，尽管他们与布吕宁紧缩政策的关联同时也帮助我们瓦解他们在工人阶级中的支持。
 
-Immediately, democratic reforms are undone as the cabinet sets to work sending Germany back into the dark ages. For now, democracy is being preserved, but the Nazis are sure to take their first opportunity to fully destroy it.
+民主改革立即被废除，内阁着手将德国送回黑暗时代。目前，民主仍得以保留，但纳粹必定会抓住第一个机会彻底摧毁它。
 
 @schleicher_coalition
-title: Schleicher attempts to hold on to power.
+title: 施莱谢尔试图保住权力。
 view-if: dne_formed and chancellor == "Schleicher"
 subtitle: DNE ([+ dne_r +]%)
 go-to: schleicher_majority if dne_r >= 50 or constructive_vonc; schleicher_negotiate if dne_r < 50 and not constructive_vonc
@@ -1271,97 +1271,97 @@ on-arrival: schleicher_support = dne_r
 @schleicher_majority
 on-arrival: schleicher_victory = 1
 
-With the backing of the DNE behind him, Schleicher is able to hold onto power. [? if constructive_vonc and dne_r < 50 : This is thanks to the constructive motion of no confidence rule, which allows Schleicher to govern in a minority cabinet. ?]
+凭借 DNE 的支持，施莱谢尔得以保住权力。[? if constructive_vonc and dne_r < 50 : 这得益于建设性不信任投票规则，使施莱谢尔得以在少数派内阁中执政。 ?]
 
-- @game_over: Schleicher has won.
+- @game_over: 施莱谢尔获胜。
 
 @schleicher_negotiate
 go-to: schleicher_menu
 
-As Kurt von Schleicher has fallen short of a majority, he must engineer another "Querfront" with which to prop himself up in the Reichstag. With the DNE as his basis, he considers his options.
+由于库尔特·冯·施莱谢尔未能取得多数，他必须再设计一个「横向阵线」（Querfront）在国会中支撑他。以 DNE 为基础，他考虑各种选项。
 
 @schleicher_menu
 
-- @schleicher_spd: The SPD?
-- @schleicher_ddp: The [+ ddp_name +]?
-- @schleicher_z: The Center Party?
-- @schleicher_dvp: The DVP?
-- @schleicher_dnvp: The DNVP?
-- @no_majority_schleicher: Schleicher fails to cobble together a majority.
-- @schleicher_wins: Schleicher has managed to cobble together a majority.
+- @schleicher_spd: 社民党？
+- @schleicher_ddp: [+ ddp_name +]？
+- @schleicher_z: 中央党？
+- @schleicher_dvp: DVP？
+- @schleicher_dnvp: DNVP？
+- @no_majority_schleicher: 施莱谢尔未能拼凑出多数。
+- @schleicher_wins: 施莱谢尔成功拼凑出多数。
 
 @schleicher_spd
-view-if: schleicher_support < 50 
+view-if: schleicher_support < 50
 max-visits: 1
 
-Kurt von Schleicher has reached out once more to our party, promising further public works and even some ministries should we support his government.
+库尔特·冯·施莱谢尔再次接洽我党，承诺更多公共工程，甚至提供部分部长职位以换取我们对其政府的支持。
 
-- @accept_schleicher: Accept.
-- @refuse_schleicher: Refuse! This was a temporary alliance, we will not support a dictator!
+- @accept_schleicher: 接受。
+- @refuse_schleicher: 拒绝！这只是临时联盟，我们绝不支持独裁者！
 
 @accept_schleicher
 on-arrival: schleicher_support += spd_r; schleicher_support -= dnvp_r if dnvp_support_schleicher; spd_support_schleicher = 1; left_dissent += 20; center_dissent += 20; reformist_dissent += 20; neorevisionist_dissent += 20; labor_dissent -= 5
 go-to: schleicher_menu
 
-Despite the protests of our party, we continue to support Schleicher. 
+尽管党内抗议不断，我们仍继续支持施莱谢尔。
 
 @refuse_schleicher
 on-arrival: labor_dissent += 5; spd_refused_schleicher = 1
 go-to: schleicher_menu
 
-Despite the protests of the ADGB, we refuse to support Schleicher a second time.
+尽管 ADGB 抗议，我们仍拒绝再次支持施莱谢尔。
 
 @schleicher_ddp
 view-if: schleicher_support < 50
 choose-if: ddp_name != "DDP" and pro_republic < 40
-unavailable-subtitle: The DDP is unwilling.
+unavailable-subtitle: DDP 不愿支持。
 max-visits: 1
 on-arrival: schleicher_support += ddp_r; ddp_support_schleicher = 1
 go-to: schleicher_menu
 
-The [+ ddp_name +] has agreed to back Schleicher.
+[+ ddp_name +] 已同意支持施莱谢尔。
 
 @schleicher_z
 view-if: schleicher_support < 50
 choose-if: pro_republic < 50 and z_party_leader != "Stegerwald" and (unemployed > 30 or not reichskonkordat)
-unavailable-subtitle: The DDP is unwilling.
+unavailable-subtitle: DDP 不愿支持。
 max-visits: 1
 on-arrival: schleicher_support += z_r; z_support_schleicher = 1
 go-to: schleicher_menu
 
-The Center Party has agreed to back Schleicher[? if not reichskonkordat : in return for a promise of his support for a Reichskonkordat?].
+中央党已同意支持施莱谢尔[? if not reichskonkordat :，以换取他对帝国政教协定的支持承诺?]。
 
 @schleicher_dvp
 view-if: schleicher_support < 50
 choose-if: pro_republic < 55 and nationalism < 55
-unavailable-subtitle: The DVP is unwilling.
+unavailable-subtitle: DVP 不愿支持。
 max-visits: 1
 on-arrival: schleicher_support += (dvp_r+other_r); dvp_support_schleicher = 1
 go-to: schleicher_menu
 
-The DVP has agreed to back Schleicher, alongside the minor other parties.
+DVP 已同意支持施莱谢尔，其他小党亦然。
 
 @schleicher_dnvp
 view-if: schleicher_support < 50
 choose-if: dnvp_reform or (not spd_support_schleicher or sapd_formed)
-unavailable-subtitle: The DNVP is unwilling.
+unavailable-subtitle: DNVP 不愿支持。
 max-visits: 1
 on-arrival: schleicher_support += dnvp_r; dnvp_support_schleicher = 1
 go-to: schleicher_menu
 
-The DNVP has agreed to back Schleicher[? if not sapd_formed and not dnvp_reform : in return for an end of his cooperation with us. ?]
+DNVP 已同意支持施莱谢尔[? if not sapd_formed and not dnvp_reform :，以换取他终止与我们的合作。 ?]
 
 @schleicher_wins
 view-if: schleicher_support >= 50
-subtitle: The Red General secures his future.
+subtitle: 红将军确保了自己的未来。
 on-arrival: schleicher_victory = 1
 
-Having successfully cobbled together an odd mismatch across the political spectrum, Schleicher has won the vote of no confidence against him pushed by the energetic KPD. With the political machine of the DNE behind him, Hindenburg's trust, and the tenuous support of the Reichswehr, Schleicher's future is secure. Hitler has lost, but at what cost?
+施莱谢尔成功地在政治光谱上拼凑出一个古怪的联盟，赢下了由活跃的德共发起的不信任投票。凭借 DNE 的政治机器、兴登堡的信任及国防军勉强的支持，施莱谢尔的未来已确保。希特勒已败，但代价几何？
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
 
 @no_majority_marx
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: (weimar_coalition < 50 or z_willing != 1) and (grand_coalition < 50 or grand_coalition_failed == 1 or dvp_willing != 1) and president = "Marx" and far_right_coalition < 50 and (right_coalition < 50 or right_coalition_failed) and (hitler_right_coalition < 50 or left_strength < 50 or political_crisis_progress < 1 or chancellor != "Brüning" or bb_failed) and bourgeois_coalition < 50 and not (dne_formed and chancellor == "Schleicher")
 on-arrival: no_majority_elections += 1
 go-to: no_majority_bracht if chancellor = "Bracht"; no_majority_scholz if chancellor = "Scholz"; no_majority_bruning2 if chancellor = "Brüning" or chancellor = "Wirth"; no_majority_spd2 if chancellor_party = "SPD" or n_elections <= 1; no_majority_nsdap if chancellor == "Hitler"
@@ -1373,19 +1373,19 @@ go-to: no_majority_bruning_toleration if ((no_majority_elections <= 3 and anti_d
 on-arrival: old_middle_nsdap += 5; rural_nsdap += 5; unemployed_nsdap += 5; new_middle_nsdap += 5; marx_relation -= 5; bracht_r = 0; chancellor = "Bracht"; chancellor_party = "Z" if z_relation < 30; chancellor_party = "I" if z_relation >= 30; sa_banned = 0; pro_republic -= 6; finance_minister_party = "I"; interior_minister_party = "I"; economic_minister_party = "I"; labor_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "I"; reichswehr_minister = "I"; nazi_chance = nsdap_r; nazi_chance += socialism; nazi_chance += nationalism; nazi_chance -= pro_republic; nazi_chance += left_coalition if communist_coalition >= 3 and kpd_relation >= 50; nazi_chance += rb_force+rfb_force; nazi_chance -= sa_force; nazi_chance += (radicalization+capital_strike_progress+coup_progress)*political_crisis_progress; bracht_r = dvp_r; bracht_r += dnvp_r if z_relation < 25; bracht_r += z_r if z_relation < 45; bracht_r += nsdap_r if nazi_chance >= 200
 go-to: bracht_falls if bracht_r < 50; bracht_wins if bracht_r >= 50
 
-There is no path to a majority government. President Marx is tired of the chaos, and appoints Franz Bracht as chancellor instead of Brüning, hoping that Bracht would be able to form a coalition, or at least receive toleration, from the NSDAP. Bracht is significantly to the right of the majority of the Center Party.
+无组建多数政府的途径。马克思总统对乱局已感厌倦，遂任命弗朗茨·布拉赫特（Franz Bracht）取代布吕宁出任总理，期望他能与纳粹党组建联合或至少获得其容忍。布拉赫特的立场明显比中央党多数更靠右。
 
-Bracht is immediately faced with a vote of no confidence. [+ bracht_r +]% vote in support of his government.
+布拉赫特立即面临不信任投票。[+ bracht_r +]% 投票支持其政府。
 
 @bracht_falls
 on-arrival: marx_relation += 10; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
 
-Bracht has failed to win a majority. Seeing no majority in the Reichstag, Wilhelm Marx has called new elections, which have been set for [+ next_election_month : month +] [+ next_election_year +].
+布拉赫特未能赢得多数。马克思见国会无多数，召开新选举，定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @bracht_wins
 on-arrival: pro_republic -= 5; nationalism += 5; coup_progress += 3; reichswehr_loyalty -= 0.1; judicial_reform -= 2
 
-Bracht has somehow won a majority in the Reichstag. Democratic reforms that we undertook in the past are undone. Let us hope President Marx's confidence in Bracht wears thin.
+布拉赫特不知怎的赢得了国会多数。我们过去推行的民主改革被废除。但愿马克思总统对布拉赫特的信任很快耗尽。
 
 @no_majority_bracht
 on-arrival: {!
@@ -1434,66 +1434,66 @@ if (braun_points >= hitler_points && braun_points >= bruning_points) {
 }
 !}
 
-With there still being no majority for Bracht, Wilhelm Marx dismisses him and looks to alternative candidates. 
+由于布拉赫特仍无多数，马克思将其解职，转而寻找其他人选。
 
-- @marx_hitler: Adolf Hitler?
-- @marx_braun: Otto Braun?
-- @marx_bruning: Heinrich Brüning?
-- @marx_wirth: Joseph Wirth?
+- @marx_hitler: 阿道夫·希特勒？
+- @marx_braun: 奥托·布劳恩？
+- @marx_bruning: 海因里希·布吕宁？
+- @marx_wirth: 约瑟夫·维尔特？
 
 @marx_hitler
-subtitle: Perhaps the Nazis can be tamed and demystified?
+subtitle: 也许纳粹可以被驯服并解除其神秘色彩？
 choose-if: hitler_chosen
-unavailable-subtitle: Wilhelm Marx is not willing to appoint Hitler.
+unavailable-subtitle: 马克思不愿任命希特勒。
 on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; marx_appointed_hitler = 1
 go-to: slow_consolidation
 
-Wilhelm Marx has very reluctantly appointed Adolf Hitler of the NSDAP as chancellor.
+马克思极不情愿地任命纳粹党的阿道夫·希特勒为总理。
 
 @marx_braun
-subtitle: Perhaps we can lead Germany out of its crisis.
+subtitle: 也许我们能带领德国走出危机。
 choose-if: braun_chosen
-unavailable-subtitle: Wilhelm Marx is not willing to appoint Braun.
+unavailable-subtitle: 马克思不愿任命布劳恩。
 on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; spd_in_government = 1; pro_republic -= 5; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; z_prussia = 1 if spd_prussia; braun_removed = 1 if spd_prussia; spd_prussia = 0
 
-Wilhelm Marx has appointed Otto Braun as chancellor. [? if braun_removed : He first had to resign as Minister-President of Prussia however. ?]
+马克思任命奥托·布劳恩为总理。[? if braun_removed : 他必须先辞去普鲁士总理一职。 ?]
 
 - @emergency_no_confidence
 
 @marx_bruning
-subtitle: Perhaps Brüning can manage to form a government this time?
+subtitle: 也许布吕宁这次能成功组阁？
 choose-if: bruning_chosen and (z_relation+spd_r < 100)
-unavailable-subtitle: Wilhelm Marx is not willing to appoint Brüning.
+unavailable-subtitle: 马克思不愿任命布吕宁。
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 go-to: no_majority_bruning_toleration
 
-Wilhelm Marx has appointed Heinrich Brüning as head of a minority government.
+马克思任命海因里希·布吕宁领导少数派政府。
 
 @marx_wirth
-subtitle: Perhaps the answer lies in the left-wing of the Center Party?
+subtitle: 也许答案就在中央党的左翼？
 choose-if: bruning_chosen and (z_relation+spd_r >= 100)
-unavailable-subtitle: Wilhelm Marx is not willing to appoint Wirth.
+unavailable-subtitle: 马克思不愿任命维尔特。
 
-Wilhelm Marx has appointed Joseph Wirth as head of a minority government.
+马克思任命约瑟夫·维尔特领导少数派政府。
 
-- @toleration_wirth: We will tolerate Wirth.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_wirth: 我们将容忍维尔特。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 
 
 @no_majority_spd2
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-There is no path to an obviously workable majority. Since President Marx does not see potential for a successful minority or caretaker SPD government, his preferred chancellor is Heinrich Brüning of the Center Party.
+无明显可行多数。由于马克思总统认为成功的社民党少数派或看守政府无望，他属意的总理人选是中央党的海因里希·布吕宁。
 
-- @toleration_bruning: We will tolerate Brüning.
-- @new_grand_coalition: We will try to form a new grand coalition.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_bruning: 我们将容忍布吕宁。
+- @new_grand_coalition: 我们将尝试组建新大联合。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @no_majority
-title: There is no clear governing majority.
+title: 无明显执政多数。
 view-if: (weimar_coalition < 50 or z_willing != 1) and (grand_coalition < 50 or grand_coalition_failed == 1 or dvp_willing != 1) and president = "Hindenburg" and far_right_coalition < 50 and (right_coalition < 50 or right_coalition_failed or dvp_willing != 1) and (hitler_right_coalition < 50 or left_strength < 50 or political_crisis_progress < 1 or chancellor != "Brüning" or bb_failed) and bourgeois_coalition < 50 and not (dne_formed and chancellor == "Schleicher")
 on-arrival: no_majority_elections += 1
 go-to: no_majority_scholz if chancellor = "Scholz"; no_majority_bruning if chancellor = "Brüning" or chancellor = "Wirth"; no_majority_papen if chancellor = "Papen" and no_majority_papen_elections == 0; no_majority_papen_2 if chancellor == "Papen" and no_majority_papen_elections > 0 and not resisted_hitler; no_majority_schleicher if chancellor = "Schleicher"; no_majority_spd if chancellor_party = "SPD" or chancellor == "Marx"; no_majority_seldte if chancellor == "Seldte"; no_majority_nsdap if hitler_seen and chancellor_party == "NSDAP"; no_majority_bruning_back if chancellor == "Papen" and resisted_hitler
@@ -1505,40 +1505,40 @@ go-to: no_majority_scholz if chancellor = "Scholz"; no_majority_bruning if chanc
 @no_majority_scholz
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-With health issues plaguing Ernst Scholz and his seeming inability to command a majority, the mantle has transferred to Brüning of the Center Party.
+由于恩斯特·肖尔茨健康问题困扰，似乎无力掌握多数，重任转移到中央党的布吕宁身上。
 
-- @toleration_bruning: We will tolerate Brüning.
-- @new_grand_coalition: We will try to form a new grand coalition.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_bruning: 我们将容忍布吕宁。
+- @new_grand_coalition: 我们将尝试组建新大联合。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @no_majority_bruning_back
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-With the Reichstag still lacking a majority for Papen, and the failure of Hitler to consolidate power having seemingly spooked Hindenburg into, for the time being, ceasing his reactionary fantasies, Brüning is reappointed chancellor.
+由于国会仍无支持帕彭的多数，加之希特勒巩固权力的失败似乎暂时使兴登堡停止其反动幻想，布吕宁被重新任命为总理。
 
-- @toleration_bruning: We will tolerate Brüning.
-- @new_grand_coalition: We will try to form a new grand coalition.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_bruning: 我们将容忍布吕宁。
+- @new_grand_coalition: 我们将尝试组建新大联合。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @no_majority_nsdap
 
-Following the election, despite heavy rigging, [+ chancellor +] still lacks a majority. However, with many communists and even some socialists jailed, can a no confidence vote still pass?
+选举之后，尽管选票被严重操纵，[+ chancellor +] 仍无多数。然而，由于众多共产党人甚至部分社民党人入狱，不信任投票仍能通过吗？
 
-- @can_it_pass: Let's see.
+- @can_it_pass: 拭目以待。
 
 @can_it_pass
 on-arrival: against_hitler += spd_r*(1-(left_strength/100)); against_hitler += ddp_r if ddp_relation >= 55; against_hitler += z_r if z_relation >= 55; against_hitler += dvp_r if dvp_relation >= 60
 go-to: far_right_incumbent if against_hitler < 50; hitler_defeated if against_hitler >= 50
 
-[? if against_hitler < 50 : The motion of no confidence against Hitler is defeated, allowing the far-right coalition to, despite lacking a majority, govern nonetheless. ?]
+[? if against_hitler < 50 : 针对希特勒的不信任案被否决，允许极右翼联合在缺乏多数的情况下继续执政。 ?]
 
 @hitler_defeated
 on-arrival: chancellor = "Papen"; chancellor_party = "I"; time_to_election = 3; workers -= 2; catholics -= 1; workers_nsdap += 4; new_middle_nsdap += 8; old_middle_nsdap += 8; rural_nsdap += 8; catholics_nsdap += 4; unemployed_nsdap += 6; old_middle_dnvp += 5; rural_dnvp += 5; new_middle_dnvp += 4; catholics_dnvp += 4
 call: set_next_election_time
 
-The motion of no confidence in Hitler succeeds, and he is replaced by vice-chancellor Papen, who calls snap elections. The Nazis, still controlling most state governments after the Reichstag Fire Decree, continue to consolidate, hoping to gain in the next elections, while Papen looks to the Reichswehr in the hopes of declaring martial law.
+针对希特勒的不信任案获得通过，他被副总理帕彭取代，后者召开紧急选举。纳粹党在国会纵火法令之后仍控制大多数州政府，继续巩固势力，期望在下次选举中得利；而帕彭则寄希望于国防军，希望宣布戒严。
 
 @no_majority_seldte
 go-to: martial_law if army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15)); switch_to_papen if president != "Gessler" and (harzburg_r < 25 or seldte_times >= 1) and not (army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15))); seldte_continue if (harzburg_r >= 25 and seldte_times < 1) and not (army_force+sh_force >= 50 and dnvp+sh_force < 50 and reichswehr_loyalty < 0.3 and strife >= 4 and not presidential_powers and (president == "Hindenburg" or (president == "Gessler" and reichswehr_loyalty < 0.15)))
@@ -1546,7 +1546,7 @@ go-to: martial_law if army_force+sh_force >= 50 and dnvp+sh_force < 50 and reich
 @switch_to_papen
 on-arrival: chancellor = "Papen"; chancellor_party = "I"; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; sa_banned = 0; pro_republic -= 8; finance_minister_party = "I"; interior_minister_party = "I"; economic_minister_party = "I"; labor_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "I"; reichswehr_minister = "I";
 
-Following the elections, there is no clear majority. Rather than appoint a continuation of the Harzburg Cabinet however, disappointed with their performance, Hindenburg appoints the independent Franz von Papen, who calls snap elections in a gambit to gain majority Reichstag support through a coalition with the Nazis. Papen is a indenpendent formerly from the Center Party, and is significantly to the right of the majority of the Center Party.
+选举之后，无明显多数。兴登堡对哈茨堡内阁的表现感到失望，未沿用其延续方案，转而任命独立人士弗朗茨·冯·帕彭。帕彭召开紧急选举，企图通过与纳粹党联合获得国会多数支持。帕彭原为中央党人，现以独立身份立场远右于中央党多数。
 
 @seldte_continue
 on-arrival: seldte_times += 1; dvp_relation -= 5; z_relation -= 5; harzburg_r = dnvp_r; harzburg_r += other_r; harzburg_r += 3; harzburg_r += dvp_r if dvp_relation + pro_republic < 85; harzburg_r += z_minus_bvp_r if z_relation + pro_republic < 60 and z_party_leader != "Joos"; stalhelm_strength += 50; stalhelm_militancy += 0.02; reichswehr_loyalty -= 0.05 if reichswehr_loyalty >= 0.05
@@ -1556,15 +1556,15 @@ go-to: seldte_minority if harzburg_r < 50; seldte_majority if harzburg_r >= 50
 on-arrival: time_to_election = 3; old_middle_nsdap -= 3; rural_nsdap -= 2; old_middle_dnvp += 3; rural_dnvp += 3; new_middle_dnvp += 3; workers_spd -= 3; workers_kpd -= 3
 call: set_next_election_time
 
-After the election, the Harzburg Cabinet still lacks a majority. The Reichstag is dissolved for elections once more, while Seldte continues his agendas. 
+选举后，哈茨堡内阁仍无多数。国会再次被解散以举行选举，泽尔特继续其议程。
 
 @seldte_majority
 on-arrival: workers_spd -= 5; workers_kpd -= 5; workers_dnvp += 5; new_middle_dnvp += 7; old_middle_nsdap -= 5; rural_nsdap -= 5; old_middle_dnvp += 8; rural_dnvp += 8; stalhelm_strength += 50
 
-Somehow, the Harzburg Cabinet has this time secured a majority mandate. The continued regression of Germany continues, as does suppression of the left.
+哈茨堡内阁不知怎的此次获得了多数授权。德国的持续倒退仍在继续，对左翼的镇压亦然。
 
-- @fight_harzburg: Rise up before it is too late!
-- @nothing_to_do: There's nothing we can do.
+- @fight_harzburg: 在为时已晚之前奋起反抗！
+- @nothing_to_do: 我们无能为力。
 
 @fight_harzburg
 on-arrival: spd_rebel = 1
@@ -1573,72 +1573,72 @@ go-to: civil_war
 @nothing_to_do
 on-arrival: rb_militancy -= 0.05; rb_strength -= 100; left_dissent += 5; unemployed_nsdap += 5
 
-There is, unfortunately, nothing we can do. We will have to bide our time until we can recapture power.
+很不幸，我们无能为力。我们只能伺机而动，等待重新夺权之时。
 
 @martial_law
 
-Seeing the continuing collapse of order in Germany, and convinced that they would be able to quell any resistance, President [+ president +] and Chancellor Seldte have come together to declare a state of martial law in Germany. Though this is unconstitutional, the courts have little sway over the enthusiastic army.
+[+ president +] 总统与泽尔特总理眼见德国秩序持续崩溃，确信他们能够镇压任何反抗，遂联手宣布德国进入戒严状态。尽管违宪，但法院对热情高涨的军队几无影响。
 
-- @seldte_takes_power: What now?
+- @seldte_takes_power: 接下来如何？
 
 @seldte_takes_power
-subtitle: The beginning of the end.
+subtitle: 终结的开始。
 
-The destruction of German democracy has begun, not at the hands of the Nazis but at the hands of the reactionaries who wish to see a return to the days of the German Empire. If we do not fight back now, then we may never get another chance, and all we as a party have stood for will be gone in an instant.
+德国民主的摧毁已经开始——并非由纳粹之手，而是由那些渴望回归德意志帝国旧日的反动派之手。如果我们现在不反抗，那么我们或许永远不会再有机会，作为政党我们所秉持的一切将在瞬间消失。
 
-- @fight_harzburg: Mobilize our forces and declare a general strike!
-- @reactionary_victory: We have lost.
+- @fight_harzburg: 动员我们的力量，宣布总罢工！
+- @reactionary_victory: 我们已失败。
 
 @reactionary_victory
 
-Party offices are raided by army and police forces. Our leaders are rounded up and arrested. Any and all of our reforms are undone, and a police state under the army's control is cemented. The Nazis have failed to take power, but we cannot take much comfort in the fact when a dictatorial fascist government rules all the same. Perhaps in the far future, we may have our moment in the sun once more. We will have a duty to do better then than we have now.
+党的办公室遭军警查抄，领导人被围捕，所有改革成果被废除，军方控制下的警察国家已成定局。纳粹未能掌权，但当一个独裁的法西斯政府同样掌控一切时，这并不能让我们感到多少安慰。或许在遥远的未来，我们将再有出头之日。届时我们有责任做得比现在更好。
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
 
 
 @no_majority_spd
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-There is no path to an obviously workable majority. Since President Hindenburg is unwilling to work with a minority or caretaker SPD government, his preferred chancellor is Heinrich Brüning of the Center Party, who could lead a "presidential" government.
+无明显可行多数。由于兴登堡总统不愿与社民党少数派或看守政府合作，他属意的总理人选是中央党的海因里希·布吕宁，后者将领导「总统制」政府。
 
-- @toleration_bruning: We will tolerate Brüning.
-- @new_grand_coalition: We will try to form a new grand coalition.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_bruning: 我们将容忍布吕宁。
+- @new_grand_coalition: 我们将尝试组建新大联合。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 
 @no_majority_hitler
-title: Hitler appoints himself chancellor.
+title: 希特勒任命自己为总理。
 on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; foreign_minister_party = "NSDAP"; interior_minister_party = "NSDAP"; justice_minister_party = "NSDAP"; labor_minister_party = "NSDAP"; reichswehr_minister_party = "NSDAP"; economic_minister_party = "NSDAP"; finance_minister_party = "NSDAP"; agriculture_minister_party = "NSDAP"; spd_in_government = 0; spd_toleration = 0
 view-if: president == "Hitler" and presidential_powers and far_right_coalition < 50
 
-Despite the weakened powers of the presidency, appointing a chancellor has remained the duty of the president and Hitler wastes no time in appointing himself chancellor in an unprecedented move.
+尽管总统权力被削弱，任命总理仍是总统的职责，希特勒立即以前所未有的姿态任命自己为总理。
 
-He has promised a campaign of revenge against the socialists, and the Nazis have already spilled blood. In his published manifesto, he promises a campaign of unspeakable horror against Jews, and endless wars of violent expansion that will ruin all of Europe.
+他承诺对社民党人进行报复，纳粹党人已染血染指。在其公布的宣言中，他承诺对犹太人发动难以言喻的恐怖运动，以及将毁灭整个欧洲的无尽暴力扩张战争。
 
-What are we to do now?
+我们现在该怎么办？
 
-- @fight: We will fight on the streets to prevent Hitler from taking power.
-- @vote_against: We will vote against the nazis in the Reichstag.
+- @fight: 我们将在街头战斗，阻止希特勒掌权。
+- @vote_against: 我们将在国会投票反对纳粹。
 #- @judicial_protest: We will file a complaint to the judiciary that this goes against the spirit of the constitution.
 
 
 @fight
 on-arrival: spd_rebel = 1
 
-Do we realize that this means civil war, against the full force of the state?
+我们是否意识到这意味着与全副武装的国家机器开战？
 
-- @civil_war: Yes.
-- @vote_against: We are not ready for war. Instead, we will vote against the nazis in the Reichstag.
+- @civil_war: 是的。
+- @vote_against: 我们尚未准备好开战。改为在国会投票反对纳粹。
 
 @vote_against
 on-arrival: z_no_confidence = 1 if z_relation > 60 or z_party_leader == "Joos" and z_relation > 40; other_no_confidence = 1 if (z_relation + dvp_relation)/2 > 70; no_confidence_votes = spd_r + kpd_r + sapd_r + ddp_r; no_confidence_votes += z_r if z_no_confidence; no_confidence_votes += other_r + dvp_r if other_no_confidence; no_confidence_succeeds = 1 if no_confidence_votes > 50
 
-A motion of no confidence is called against Hitler's government. 
+针对希特勒政府的不信任案被发起。
 
-In total, [+ no_confidence_votes +]% of the Reichstag is against Hitler. [? if no_confidence_succeeds : We have won the vote of no confidence. ?]
+国会中合计 [+ no_confidence_votes +]% 反对希特勒。[? if no_confidence_succeeds : 我们赢下了不信任投票。 ?]
 
-- @no_confidence_elections_new_hitler: There will be new elections.
-- @no_confidence_win_hitler: Hitler has won, for now.
+- @no_confidence_elections_new_hitler: 将举行新选举。
+- @no_confidence_win_hitler: 希特勒暂时获胜。
 
 @no_confidence_elections_new_hitler
 on-arrival: {!
@@ -1669,17 +1669,17 @@ Q.nazi_rage_progress += 2;
 !}
 view-if: no_confidence_votes > 50
 
-The next elections are set for [+ next_election_month : month +] [+ next_election_year +].
+下次选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 
 @no_confidence_win_hitler
 view-if: no_confidence_votes <= 50
 on-arrival: judicial_reform -= 3 if judicial_reform >= 3; judicial_reform -= 2 if judicial_reform = 2; judicial_reform -= 1 if judicial_reform = 1; interior_police_loyalty -= 0.2; workers_nsdap += 2; unemployed_nsdap += 5; new_middle_nsdap += 3; old_middle_nsdap += 3; rural_nsdap += 3; pro_republic -= 5; nazi_rage_progress -= 2
 
-Hitler has won the vote of no confidence. He will continue to govern democratically until he is able to seize total control.
+希特勒赢下了不信任投票。他将继续以民主方式执政，直至能夺取完全控制权。
 
 
-# - if NSDAP is the largest party and the 
+# - if NSDAP is the largest party and the
 
 @no_majority_bruning
 go-to: no_majority_bruning_toleration if (no_majority_elections <= 3 and anti_democratic_coalition <= 50); hindenburg_appoints_papen if no_majority_elections > 3 or anti_democratic_coalition > 50
@@ -1688,161 +1688,161 @@ go-to: no_majority_bruning_toleration if (no_majority_elections <= 3 and anti_de
 @hindenburg_appoints_papen
 on-arrival: chancellor = "Papen"; chancellor_party = "I"; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; sa_banned = 0; pro_republic -= 8; finance_minister_party = "I"; interior_minister_party = "I"; economic_minister_party = "I"; labor_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "I"; reichswehr_minister = "I"; papen_two_term = 1;
 
-There is no path to a majority government. President Hindenburg is tired of the chaos, and appoints Franz von Papen as chancellor instead of Brüning. Papen is a indenpendent formerly from the Center Party, and is significantly to the right of the majority of the Center Party.
+无组建多数政府的途径。兴登堡总统对乱局已感厌倦，遂任命弗朗茨·冯·帕彭取代布吕宁出任总理。帕彭曾是中央党人，现为独立身份，立场明显比中央党多数更靠右。
 
-Papen is immediately faced with a vote of no confidence, given his unpopularity. However the SPD votes, he is guaranteed to fall, due to the unanimous hatred against him from all other parties.
+帕彭因其不受欢迎，立即面临不信任投票。无论社民党如何投票，他注定会倒台，因为其他各党一致对他怀有敌意。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @no_majority_bruning_toleration
 on-arrival: no_majority_bruning_elections += 1
 
-There is no path to a majority government. One option would be to have a continuation of the current Brüning government; if we tolerate it, then it would retain a majority vote against no-confidence.
+无组建多数政府的途径。一种选择是延续当前的布吕宁政府；如果我们容忍它，它就能在不信任投票中保住多数。
 
-Alternatively, we could try to form a "new grand coalition" of all constitutional parties except the NSDAP, KPD, and DNVP. The stumbling block are the minor conservative parties such as the "Economic Party of the Middle Class", who detest any hint of socialism and would ruin the country before working with Marxists.
+或者，我们可以尝试组建一个「新大联合」，包括除纳粹党、德共和德国国家人民党之外的所有合宪政党。绊脚石是「中产阶级经济党」等保守小党，他们厌恶任何一丝社会主义气息，宁愿毁掉国家也不愿与马克思主义者合作。
 
-The third option is to have new elections.
+第三个选择是举行新选举。
 
-- @toleration_bruning: We will tolerate Brüning.
-- @new_grand_coalition: We will try to form a new grand coalition.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @toleration_bruning: 我们将容忍布吕宁。
+- @new_grand_coalition: 我们将尝试组建新大联合。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 - @unity_government
 
 
 @new_grand_coalition
-title: A "New Grand Coalition" of all the constitutional parties?
-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others ([+ neo_weimar_coalition +]%)
+title: 由所有合宪政党组成的「新大联合」？
+subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他 ([+ neo_weimar_coalition +]%)
 view-if: neo_weimar_coalition >= 50 and grand_coalition < 50
 choose-if: z_relation >= 50 and dvp_relation >= 30 and president != "Hitler"
-unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others ([+ neo_weimar_coalition +]%) - [? if z_relation < 50 : We do not have adequate relations with the Center Party. ?][? if dvp_relation < 30 : We do not have adequate relations with the DVP. ?][? if president == "Hitler" : Hitler refuses to appoint a chancellor under such a governing arrangement. ?]
+unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他 ([+ neo_weimar_coalition +]%) - [? if z_relation < 50 : 我们与中央党的关系不充分。 ?][? if dvp_relation < 30 : 我们与 DVP 的关系不充分。 ?][? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?]
 
-How do we convince vehemently anti-socialist parties to allow us to form a majority coalition? Our largely benevolent relations with the Center and DVP may allow us some leverage.
+我们如何说服坚决反社会主义的政党允许我们组建多数联合？我们与中央党和 DVP 的总体良好关系或许能让我们获得一些筹码。
 
 - @use_resources
-- @toleration_bruning: No. We will tolerate a minority government.
-- @new_elections: No. We will have new elections.
+- @toleration_bruning: 不。我们将容忍少数派政府。
+- @new_elections: 不。我们将举行新选举。
 - @unity_government
 
 @use_resources
-title: Use our resources to smooth over the creation of a coalition.
-subtitle: -2 resources
-unavailable-subtitle: Not enough resources (need 2).
+title: 动用资源促成联合的组建。
+subtitle: -2 资源
+unavailable-subtitle: 资源不足（需要 2 点）。
 choose-if: resources >= 2
 on-arrival: resources -= 2; spd_in_government = 1; in_grand_coalition = 1; left_dissent += 4;
 achievement: constitutional_coalition
 
-We transfer some of our campaign funds to our putative coalition partners. Some would call this corruption, but perhaps it is necessary to save our democracy.
+我们将部分竞选资金转给了未来的联合伙伴。有人会称之为腐败，但或许这是拯救我们民主的必要之举。
 
-Now, we have a new grand coalition, a "Constitutional Coalition" of all the non-fascist and non-communist parties. Leftists in our party are somewhat skeptical of this arrangement. 
+如今，我们有了一个新的大联合，一个由所有非法西斯、非共产党派组成的「宪政联合」。我们党内左翼对此安排略有疑虑。
 
 
-Who should be chancellor?
+总理应由谁担任？
 
-- @join_bruning: For better or for worse, it must be Heinrich Brüning of the Center.
-- @braun_chancellor_new: Otto Braun for Chancellor?
+- @join_bruning: 无论好坏，必须是中央党的海因里希·布吕宁。
+- @braun_chancellor_new: 奥托·布劳恩出任总理？
 
 @braun_chancellor_new
-subtitle: This will reduce our leverage in the ministries.
+subtitle: 这将降低我们在各部委的筹码。
 view-if: not historical_mode or not spd_prussia
 on-arrival: leverage -= 10; chancellor = "Braun"; chancellor_party = "SPD"
 go-to: ministries
 
-We have assembled a new coalition under Otto Braun.
+我们已在奥托·布劳恩的领导下组建了新联合。
 
 
 @unity_government
-title: The Center Party offers a "Government of National Unity" under Chancellor Joseph Wirth.
-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others ([+ neo_weimar_coalition +]%)
-unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others ([+ neo_weimar_coalition +]%) - [? if president == "Hitler" : Hitler refuses to appoint a chancellor under such a governing arrangement. ?]
+title: 中央党提议在约瑟夫·维尔特总理领导下组建「民族团结政府」。
+subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他 ([+ neo_weimar_coalition +]%)
+unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他 ([+ neo_weimar_coalition +]%) - [? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?]
 choose-if: president != "Hitler"
 view-if: z_party_leader == "Joos" and neo_weimar_coalition >= 50 and weimar_coalition < 50  and z_relation >= 10 and (anti_democratic_coalition + unemployed) >= 50 and unity_refused != 1
 
-The Center Party leader, Joseph Joos, clearly sees the threat from the ascension of the anti-democratic extremist parties, and thus tries to negotiate a "Government of National Unity" to save the republic. This coalition would be led by Joseph Wirth, a left-leaning member of the Center Party and former chancellor, and would encompass all of the constitutional parties. Our role in this government might be limited, however.
+中央党领袖约瑟夫·约斯清楚地看到反民主极端政党崛起的威胁，因此试图谈判组建一个「民族团结政府」以拯救共和国。该联合将由中央党左翼成员、前总理约瑟夫·维尔特领导，并包括所有合宪政党。然而，我们在这个政府中的作用可能有限。
 
 - @unity_government_2
 - @dvp_refuse
-- @reject_unity_government: No, we will not accept this offer.
+- @reject_unity_government: 不，我们不接受此提议。
 
 @unity_government_2
 view-if: dvp_willing or dvp_relation >= (100-pro_republic)
-title: Accept the offer!
+title: 接受提议！
 on-arrival: chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 1; in_grand_coalition = 1; in_unity_government = 1; leverage = 15; z_relation += 5; dvp_relation += 4
 achievement: constitutional_coalition
 go-to: ministries
 
-We have formed a new unity government of all the constitutional parties! We have a limited choice in ministries for this government.
+我们已组建由所有合宪政党组成的新团结政府！我们在此政府中有限的部委选择。
 
 @dvp_refuse
 view-if: dvp_willing != 1 and dvp_relation < (100-pro_republic) and unity_refused != 1
-title: Accept the offer!
+title: 接受提议！
 on-arrival: z_relation += 5; dvp_relation -= 5; unity_refused = 1
 
-Despite our agreement, crucial components in the plan such as the DVP have become unwilling to enter into such a government. They are too set in their antidemocratic ways. We will have to find an alternative.
+尽管我们已同意，但 DVP 等计划中的关键组成部分不愿加入这样的政府。他们对反民主的立场过于根深蒂固。我们必须另寻替代方案。
 
-- @no_majority: Thus, there is no clear majority.
+- @no_majority: 因此，无明显多数。
 - @brauns_dilemma
-- @coalition_menu: Are there any alternative governments we can form?
+- @coalition_menu: 是否还有其他可组建的政府？
 
 @reject_unity_government
 on-arrival: z_relation -= 8; ddp_relation -= 5; dvp_relation -= 5
 
-Our rejection of the unity government has hurt our relations with the bourgeois and center-right parties.
+我们拒绝团结政府的决定损害了我们与资产阶级和中右翼政党的关系。
 
 - @brauns_dilemma
-- @toleration_bruning: We will tolerate a minority government led by Brüning.
-- @toleration_wirth: We will tolerate a minority government led by Joseph Wirth.
-- @new_elections: There will be new elections.
+- @toleration_bruning: 我们将容忍由布吕宁领导的少数派政府。
+- @toleration_wirth: 我们将容忍由约瑟夫·维尔特领导的少数派政府。
+- @new_elections: 将举行新选举。
 
 
 @toleration_wirth
 view-if: z_party_leader = "Joos" or wirth_lead = 1
 choose-if: president != "Hindenburg"
-unavailable-subtitle: President Hindenburg will not support a minority government led by Joseph Wirth.
+unavailable-subtitle: 兴登堡总统不会支持由约瑟夫·维尔特领导的少数派政府。
 on-arrival: chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 1; z_relation += 5; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; pro_republic -= 2;
 
-We have supported a minority government led by the Center Party under Chancellor Joseph Wirth.
+我们支持由中央党在维尔特总理领导下组建的少数派政府。
 
 
 
 @no_majority_papen
-on-arrival: pro_republic -= 10; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; no_majority_papen_elections += 1; nazi_peak = 1; nazi_peak_timer = 2; nazi_peak_timer += (nsdap_votes/5); workers_ndap -= 6; new_middle_nsdap -= 6; old_middle_nsdap -= 6; rural_nsdap -= 6; unemployed_nsdap -= 6; workers_nsdap -= 3 if largest_party == "NSDAP"; unemployed_nsdap -= 3 if largest_party == "NSDAP"; old_middle_nsdap -= 3 if largest_party == "NSDAP"; new_middle_nsdap -= 3 if largest_party == "NSDAP"; rural_nsdap -= 3 if largest_party == "NSDAP"; 
+on-arrival: pro_republic -= 10; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; no_majority_papen_elections += 1; nazi_peak = 1; nazi_peak_timer = 2; nazi_peak_timer += (nsdap_votes/5); workers_ndap -= 6; new_middle_nsdap -= 6; old_middle_nsdap -= 6; rural_nsdap -= 6; unemployed_nsdap -= 6; workers_nsdap -= 3 if largest_party == "NSDAP"; unemployed_nsdap -= 3 if largest_party == "NSDAP"; old_middle_nsdap -= 3 if largest_party == "NSDAP"; new_middle_nsdap -= 3 if largest_party == "NSDAP"; rural_nsdap -= 3 if largest_party == "NSDAP";
 go-to: papen_second_term if papen_two_term
 
-After the elections, Papen is still deeply unpopular, without any hint of coalition support, and there is a vote of no confidence called against him almost immediately. No matter how we vote, the measure would pass. The Reichstag is dissolved once more.
+选举后，帕彭仍极不受欢迎，毫无联合支持的迹象。针对他的不信任投票几乎立即被发起。无论我们如何投票，该议案都将通过。国会再次被解散。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +]. [? if largest_party == "NSDAP" : With the Nazis, despite becoming the largest party, failing to form a government, their movement loses steam and gives ground to the KPD and DNVP. ?]
+新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。[? if largest_party == "NSDAP" : 尽管纳粹党成为最大党，但他们未能组阁，运动失去势头，把空间让给德共和 DNVP。 ?]
 
-Nazi refusal to support Papen's government has lead to confusion and disappointment amongst its far-right base.
+纳粹拒绝支持帕彭政府，引发其极右翼基本盘的困惑与失望。
 
 @papen_second_term
-on-arrival: judicial_reform -= 2 if judicial_reform >= 2; reichswehr_loyalty -= 0.05; workers_dnvp += 2; new_middle_dnvp += 5; old_middle_dnvp += 6; rural_dnvp += 6; catholics_dnvp += 3; sh_strength += 50; workers_spd -= 3; workers_kpd -= 3; unemployed_kpd -= 2; dvp_relation -= 5; 
+on-arrival: judicial_reform -= 2 if judicial_reform >= 2; reichswehr_loyalty -= 0.05; workers_dnvp += 2; new_middle_dnvp += 5; old_middle_dnvp += 6; rural_dnvp += 6; catholics_dnvp += 3; sh_strength += 50; workers_spd -= 3; workers_kpd -= 3; unemployed_kpd -= 2; dvp_relation -= 5;
 
-Papen has spent this time passing, with Hindenburg's consent, decree after decree that has launched his primary backers in the DNVP back into the forefront of reactionary politics and dismantled our democratic reforms across the country.
+帕彭利用这段时间在兴登堡的同意下颁布一道道法令，将其 DNVP 的主要支持者推回反动政治的前台，并瓦解了我们在全国各地的民主改革成果。
 
 @no_majority_papen_2
 on-arrival: chancellor = "Schleicher"; pro_republic -= 10; next_election_time = time+5; next_election_month = month + 5; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; finance_minister_party = "I"; interior_minister_party = "I"; economic_minister_party = "I"; labor_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "I"; reichswehr_minister = "I";
 
-There is no path to a majority government. Hindenburg is displeased with Papen, and calls on him to resign. Now, former army general Kurt von Schleicher has been appointed chancellor, again as part of a presidential government.
+无组建多数政府的途径。兴登堡对帕彭感到不满，要求其辞职。如今，前陆军将军库尔特·冯·施莱谢尔被任命为总理，同样作为总统制政府的一部分。
 
-Schleicher's government is deeply unpopular among all parties of the Reichstag. Despite his support for a coalition with the NSDAP, the Nazis want power all to themselves, without Schleicher.[? if largest_party == "NSDAP" : However, the Nazis failure again to form a government leads to further loss of momentum. ?]
+施莱谢尔的政府在国会各党中极不受欢迎。尽管他支持与纳粹党组建联合，纳粹却想独揽权力，不愿与施莱谢尔分享。[? if largest_party == "NSDAP" : 然而，纳粹再次未能组阁，进一步丧失势头。 ?]
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 
 @no_majority_schleicher
-subtitle: Who will Hindenburg appoint in his place?
+subtitle: 兴登堡将任命谁替代他？
 on-arrival: schleicher_times += 1
 view-if: schleicher_support < 50 and (spd_support_schleicher or spd_refused_schleicher) and (ddp_support_schleicher or ddp_name == "DDP" or pro_republic >= 40) and (z_support_schleicher or z_party_leader == "Stegerwald" or pro_republic >= 50 or (unemployed <= 30 and reichskonkordat)) and (dvp_support_schleicher or pro_republic >= 55 or nationalism >= 55) and (dnvp_support_schleicher or (spd_support_schleicher and not dnvp_reform and not sapd_formed))
 go-to: hitler_chancellor if schleichers_scheme_success or largest_party == "NSDAP" or schleicher_times > 1; schleicher_second_try if not schleichers_scheme_success and largest_party != "NSDAP" and schleicher_times <= 1
 
 @schleicher_second_try
 
-After the election, there is still no clear majority. Chancellor Kurt von Schleicher claims to have a plan to save Germany, and he has reached out to the Social Democrats with vague promises. He claims that in order to govern, the Reichstag must be temporarily suspended to prevent the Nazis and Communists from disrupting government, in effect giving him and Hindenburg dictatorial powers.
+选举之后，仍无明显多数。库尔特·冯·施莱谢尔总理声称有一项拯救德国的计划，并向社民党人发出了模糊的承诺。他声称，为了执政，必须暂时中止国会以防止纳粹党和共产党干扰政府运作，这实际上将给予他和兴登堡独裁权力。
 
-[? if works_program <= 0: The trade unions are somewhat favorable to Schleicher's plan, as they see a commonality between Schleicher's economic plan and the ADGB's WTB-plan for debt-funded job creation. However, the rest of our party is vehemently against Schleicher. ?]
+[? if works_program <= 0: 工会对施莱谢尔的计划略有好感，因为他们认为施莱谢尔的经济计划与 ADGB 的 WTB 计划（债务融资的就业创造方案）有共通之处。然而，我党其余部分则强烈反对施莱谢尔。 ?]
 
-Rumors are that Schleicher is also reaching out to the Nazis with similar promises of cooperation; he seems to believe that he can "tame" the Nazis. Most in our party do not trust him to not bring the Nazis to power. In addition, working with him would essentially mean the end of our claim to be a "democratic" party.
+有传言称施莱谢尔也以类似的合作承诺接近纳粹党；他似乎认为自己能「驯服」纳粹。我党多数人不相信他不会让纳粹掌权。此外，与他合作实际上意味着我们「民主」政党身份的终结。
 
 # if this works: delay elections by 1 year (requires over 50% support - need Z and DVP and others to join as well based on relations; DNVP might support? Also should depend on Hindenburg relations).
 
@@ -1850,17 +1850,17 @@ Rumors are that Schleicher is also reaching out to the Nazis with similar promis
 - @reject_schleichs
 
 @accept_schleichs
-title: Accept Schleicher's schemes.
-subtitle: We will support the suspension of the Reichstag.
+title: 接受施莱谢尔的阴谋。
+subtitle: 我们将支持中止国会。
 
-Are we sure that we wish to do this? The vast majority of the party is against this proposal.
+我们确定要这样做吗？党内绝大多数人反对此提议。
 
 - @accept_2_schleichs
 - @reject_schleichs
 
 @accept_2_schleichs
-title: Accept Schleicher's schemes.
-subtitle: We will support the suspension of the Reichstag.
+title: 接受施莱谢尔的阴谋。
+subtitle: 我们将支持中止国会。
 on-arrival: schleicher_support = spd_r; workers_spd -= 3; new_middle_spd -= 3; reformist_dissent += 20; left_dissent += 30; center_dissent += 30; neorevisionist_dissent += 25; pro_republic -= 10; schleicher_support += z_r if z_relation >= 50; schleicher_support += other_r + dvp_r if dvp_relation >= 25; schleicher_support += dnvp_r if kpd_relation <= 10 and left_strength + center_strength < labor_strength; labor_dissent -= 10; {!
 Q.strasser_percent = Q.socialism;
 Q.hitler_percent = Q.nationalism;
@@ -1887,30 +1887,30 @@ go-to: schleicher_success if schleicher_support >= 50; schleicher_failed if schl
 
 # There isn't enough resolution in this game to create conditions for when the DNVP would support Schleicher. It's possible that SPD support for Schleicher would push Hugenberg to ally with Hitler.
 
-With the exception of the trade unions, every faction of the SPD is horrified by this betrayal of democracy.
+除工会外，社民党的每个派系都对这种对民主的背叛感到震惊。
 
-[? if kpd_relation <= 10 and left_strength + center_strength < labor_strength: Somehow, the DNVP has agreed to Schleicher's proposal, forming a temporary alliance with the general against Nazis and Communists. ?][? if z_relation >= 50 : The Center Party also supports Schleicher's plan. ?][? if dvp_relation >= 25 : In addition, the DVP and some other smaller parties support this proposal. ?][? if kpd_relation > 10 or left_strength + center_strength >= labor_strength: The DNVP, despite being courted by Schleicher, is not interested in joining this alliance. DNVP chairman Hugenberg seems to prefer working with Hitler to any alliance that includes the SPD. ?]
+[? if kpd_relation <= 10 and left_strength + center_strength < labor_strength: DNVP 不知怎的同意了施莱谢尔的提议，与这位将军结成针对纳粹党和共产党的临时联盟。 ?][? if z_relation >= 50 : 中央党也支持施莱谢尔的计划。 ?][? if dvp_relation >= 25 : 此外，DVP 和其他一些小党支持此提议。 ?][? if kpd_relation > 10 or left_strength + center_strength >= labor_strength: 尽管施莱谢尔多方笼络，DNVP 仍无意加入此联盟。DNVP 主席胡根贝格似乎更倾向于与希特勒合作，而非任何包括社民党的联盟。 ?]
 
-[? if strasser_percent >= 0.25 and schleicher_support >= 50 : Seeing the writing on the wall, many Nazi deputies surrounding Strasser vote for Schleicher's motion alongside us, despite Hitler's continued opposition. Does this signal a Nazi split? ?]
+[? if strasser_percent >= 0.25 and schleicher_support >= 50 : 眼看大势已定，许多围绕施特拉塞尔的纳粹议员不顾希特勒的反对，与我们一同投票支持施莱谢尔的动议。这是否预示着纳粹党的分裂？ ?]
 
 @schleicher_success
 on-arrival: next_election_month = month+13; next_election_time = time+13; next_election_year = year+1; next_election_month -= 12; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; schleichers_scheme_success = 1
 
-The scheme has succeeded - there is a majority in the Reichstag backing Schleicher. New elections have been tentatively set for [+ next_election_month : month +] [+ next_election_year +].
+阴谋成功——国会中已有支持施莱谢尔的多数。新选举暂定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @schleicher_failed
 on-arrival: time_to_election = 3
 call: set_next_election_time
 
-Unfortunately, the coalition supporting the dissolution of the Reichstag does not constitute a majority. With Schleicher still unable to govern, the Reichstag is dissolved for new elections, set for [+ next_election_month : month +] [+ next_election_year +].
+不幸的是，支持解散国会的联盟未构成多数。施莱谢尔仍无法执政，国会被解散以举行新选举，定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @reject_schleichs
-title: Reject Schleicher's schemes.
-subtitle: The Reichstag will continue to meet.
+title: 拒绝施莱谢尔的阴谋。
+subtitle: 国会将继续召开。
 on-arrival: labor_dissent += 10 if works_program = 0; time_to_election = 3
 call: set_next_election_time
 
-In the end, there is no uptake for Schleicher's schemes by any political party. With Schleicher still unable to govern, the Reichstag is dissolved for new elections, set for [+ next_election_month : month +] [+ next_election_year +].
+最终，没有任何政党响应施莱谢尔的阴谋。施莱谢尔仍无法执政，国会被解散以举行新选举，定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 # TODO: there should be a second Schleicher option if the NSDAP isn't the strongest
 
@@ -1918,67 +1918,67 @@ In the end, there is no uptake for Schleicher's schemes by any political party. 
 @hitler_chancellor
 on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"
 
-There is no path to a majority government for now. The scheming around President Hindenburg is leading to only one path - that of Chancellor Adolf Hitler. [? if largest_party == "NSDAP" : Since they are the largest party, it is not exactly contrary to parliamentary procedure, so it is difficult to raise objections solely on procedural grounds. ?] [? if hitler_deported: Despite his earlier deportation, the Nazi leaders and their reactionary allies have connived for the president to give him German citizenship after all. ?]
+目前无组建多数政府之途径。围绕兴登堡总统的阴谋最终通向唯一一条道路——任命阿道夫·希特勒为总理。[? if largest_party == "NSDAP" : 由于他们是最大党，这并不完全违背议会程序，因此难以仅以程序为由提出反对。 ?] [? if hitler_deported: 尽管早先曾被驱逐，纳粹领导人及其反动盟友最终设法让总统授予他德国公民身份。 ?]
 
-- @hitler_takes_power: What now?
+- @hitler_takes_power: 现在怎么办？
 
 # if NSDAP is largest party and Hindenburg is president, then Hindenburg appoints Hitler chancellor.
 
 @spd_majority
-title: SPD majority alone
+title: 社民党单独多数
 subtitle: SPD: [+ spd_r +]%
-unavailable-subtitle: SPD: [+ spd_r +]% - [? if president == "Hitler" : Hitler refuses to appoint a chancellor under such a governing arrangement. ?]
+unavailable-subtitle: SPD: [+ spd_r +]% - [? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?]
 view-if: spd_r >= 50
 choose-if: president != "Hitler"
-on-arrival: chancellor = "Empty"; chancellor_party = "SPD"; spd_in_government = 1; in_spd_majority = 1; pro_republic += 5; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister_party = "SPD"; interior_minister = "Severing"; justice_minister_party = "SPD"; justice_minister = "Radbruch"; labor_minister_party = "SPD"; labor_minister = "Wissell"; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; economic_minister_party = "SPD"; economic_minister = "Schmidt"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"; reichswehr_loyalty -= 0.05; 
+on-arrival: chancellor = "Empty"; chancellor_party = "SPD"; spd_in_government = 1; in_spd_majority = 1; pro_republic += 5; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister_party = "SPD"; interior_minister = "Severing"; justice_minister_party = "SPD"; justice_minister = "Radbruch"; labor_minister_party = "SPD"; labor_minister = "Wissell"; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; economic_minister_party = "SPD"; economic_minister = "Schmidt"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"; reichswehr_loyalty -= 0.05;
 achievement: majority_party
 
-Finally, the SPD can govern alone! Our long campaign of electioneering has paid off. We do not need to worry about coalition government; anything is possible. 
+终于，社民党可以单独执政！我们漫长的竞选活动终见成效。我们不必担心联合政府；一切皆有可能。
 
-Who should be chancellor?
+总理应由谁担任？
 
-- @braun_majority_chancellor: Otto Braun for Chancellor.
-- @breitscheid_majority_chancellor: Rudolf Breitscheid for Chancellor.
-- @muller_majority_chancellor: Hermann Müller for Chancellor.
-- @wels_majority_chancellor: Otto Wels for Chancellor.
+- @braun_majority_chancellor: 奥托·布劳恩（Otto Braun）出任总理。
+- @breitscheid_majority_chancellor: 鲁道夫·布莱特沙伊德（Rudolf Breitscheid）出任总理。
+- @muller_majority_chancellor: 赫尔曼·穆勒（Hermann Müller）出任总理。
+- @wels_majority_chancellor: 奥托·韦尔斯（Otto Wels）出任总理。
 
 @braun_majority_chancellor
 view-if: not historical_mode or not spd_prussia
 on-arrival: chancellor = "Braun"
 
-[? if president == "Braun": Our experts have checked the constitution, and have discovered that there is no specific prohibition against the Chancellor also being the President (the President may not be a member of the Reichstag; there is no law saying that the Chancellor must be a member of the Reichstag). Thus, we have Chancellor-President Otto Braun. ?]
-[? if president != "Braun": Otto Braun has become chancellor of the SPD majority. ?]
+[? if president == "Braun": 我们的专家查阅了宪法，发现并无明文禁止总理同时担任总统的规定（总统不得为国会议员；并无法律规定总理*必须*为国会议员）。因此，我们有了总理兼总统奥托·布劳恩。 ?]
+[? if president != "Braun": 奥托·布劳恩已成为社民党多数派的总理。 ?]
 
 @breitscheid_majority_chancellor
 on-arrival: chancellor = "Breitscheid"
 
-Rudolf Breitscheid has become chancellor of the SPD majority.
+鲁道夫·布莱特沙伊德已成为社民党多数派的总理。
 
 @muller_majority_chancellor
 view-if: muller_dead = 0
 on-arrival: chancellor = "Müller"
 
-Hermann Müller has become chancellor of the SPD majority.
+赫尔曼·穆勒已成为社民党多数派的总理。
 
 @wels_majority_chancellor
 view-if: muller_dead = 1
 on-arrival: chancellor = "Wels"
 
-Otto Wels has become chancellor of the SPD majority.
+奥托·韦尔斯已成为社民党多数派的总理。
 
 # TODO: Otto Wels should be able to be chancellor of a Grand Coalition, Weimar Coalition, or SPD majority after Müller dies.
 
 
 @brauns_dilemma
-title: There is no clear governing majority.
-subtitle: President [+ president +] faces a dilemma.
+title: 无明显执政多数。
+subtitle: [+ president +] 总统面临两难。
 view-if: president == "Braun" or president == "Schumacher" or president == "Juchacz" and (grand_coalition < 50 or grand_coalition_failed == 1 or dvp_willing != 1)
 
-President [+ president +] faces a dilemma. [? if president == "Braun" or president == "Schumacher" : He ?][? if president == "Juchacz" : She ?] desperately desires a socialist or at least democratic government, but the electoral results are not there for such. Article 48 has been used by Hindenburg to promulgate anti-democratic and anti-worker policies; can Article 48 be used for good as well as evil?
+[+ president +] 总统面临两难。[? if president == "Braun" or president == "Schumacher" : 他 ?][? if president == "Juchacz" : 她 ?]迫切期望一个社会主义或至少民主的政府，但选举结果不允许。第 48 条曾被兴登堡用于颁布反民主、反工人的政策；它是否也可以为善而非为恶？
 
-- @emergency_braun: We will form an emergency government with [+ president +]'s support.
-- @new_elections: We will have new elections.
-- @new_elections_2: We will have new elections.
+- @emergency_braun: 我们将在 [+ president +] 的支持下组建紧急政府。
+- @new_elections: 我们将举行新选举。
+- @new_elections_2: 我们将举行新选举。
 - @new_grand_coalition
 - @left_coalition
 - @popular_front_coalition
@@ -1987,75 +1987,75 @@ President [+ president +] faces a dilemma. [? if president == "Braun" or preside
 
 
 @emergency_braun
-title: We will form an emergency government with [+ president +]'s support.
-subtitle: This may have the effect of inflamming public sentiment against us, and the reactionaries will be against us each step of the way.
+title: 我们将在 [+ president +] 的支持下组建紧急政府。
+subtitle: 此举可能激起公众对我们的反感，反动派将在每一步与我们作对。
 on-arrival: sa_strength += 100; sh_strength += 100; in_emergency_government = 1; z_no_confidence = 0; kpd_no_confidence = 0; dvp_no_confidence = 0; other_no_confidence = 0
 go-to: emergency_menu
 
-Yes, an emergency minority government, with the support of the SPD. Who should lead this emergency minority government?
+好，由社民党支持的紧急少数派政府。谁来领导这一紧急少数派政府？
 
 @emergency_menu
 
-- @braun_emergency_chancellor: Otto Braun for Chancellor-President!
-- @braun_emergency_chancellor_2: Otto Braun for emergency Chancellor.
-- @breitscheid_emergency_chancellor: Rudolf Breitscheid for emergency Chancellor.
-- @bruning_emergency_chancellor: Brüning of the Center Party, as a goodwill gesture toward the bourgeoisie.
-- @wirth_emergency_chancellor: Joseph Wirth of the Center Party, as a gesture of republican unity.
+- @braun_emergency_chancellor: 奥托·布劳恩兼任总理兼总统！
+- @braun_emergency_chancellor_2: 奥托·布劳恩出任紧急总理。
+- @breitscheid_emergency_chancellor: 鲁道夫·布莱特沙伊德出任紧急总理。
+- @bruning_emergency_chancellor: 中央党的布吕宁，作为对资产阶级的善意姿态。
+- @wirth_emergency_chancellor: 中央党的约瑟夫·维尔特，作为共和团结的姿态。
 
 @braun_emergency_chancellor
-subtitle: This is unprecedented.
+subtitle: 这是前所未有的。
 view-if: (not historical_mode or not spd_prussia) and president == "Braun"
-on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; spd_in_government = 1; pro_republic -= 5; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.1; 
+on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; spd_in_government = 1; pro_republic -= 5; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.1;
 
-Our experts have checked the constitution, and have discovered that there is no specific prohibition against the Chancellor also being the President (the President may not be a member of the Reichstag; there is no law saying that the Chancellor *must* be a member of the Reichstag).
+我们的专家查阅了宪法，发现并无明文禁止总理同时担任总统的规定（总统不得为国会议员；并无法律规定总理*必须*为国会议员）。
 
-Thus, we have Chancellor-President Otto Braun. He claims that he will resign as soon as the economic-political crisis is over. The right-wing parties, who were once clamoring to replace parliamentary rule with dictatorship or monarchy, are now clamoring for the restoration of democracy.
+因此，我们有了总理兼总统奥托·布劳恩。他声称一旦经济政治危机结束就会辞职。曾经叫嚣以独裁或君主制取代议会统治的右翼政党，现在却叫嚣恢复民主。
 
 - @far_right_coup
-- @emergency_no_confidence: The Nazis immediately call a no-confidence vote against us...
+- @emergency_no_confidence: 纳粹立即对我们发起不信任投票……
 
 @breitscheid_emergency_chancellor
-subtitle: The Communists are warming to him...
+subtitle: 共产党人对他更为接受……
 on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"; spd_in_government = 1; kpd_relation += 5; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.1;
 
-We have appointed Rudolf Breitscheid as emergency chancellor. The Communists consider him less objectionable than the alternatives, although it is unclear whether they will tolerate this government.
+我们已任命鲁道夫·布莱特沙伊德为紧急总理。共产党人认为他比其他替代人选更可接受，但他们是否会容忍此届政府尚不明朗。
 
 - @far_right_coup
 - @emergency_no_confidence
 
 @braun_emergency_chancellor_2
-subtitle: He is an experienced moderate; perhaps what the country needs.
+subtitle: 他是经验丰富的温和派；或许正是国家所需。
 view-if: (not historical_mode or not spd_prussia) and president != "Braun"
 choose-if: not braun_campaign and year < 1935
-unavailable-subtitle: Braun has mostly retired from politics.
+unavailable-subtitle: 布劳恩多已退出政坛。
 on-arrival: chancellor = "Braun"; chancellor_party = "SPD"; spd_in_government = 1; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.05;
 
-We have appointed Rudolf Breitscheid as emergency chancellor. The Communists consider him less objectionable than the alternatives, although it is unclear whether they will tolerate this government.
+我们已任命鲁道夫·布莱特沙伊德为紧急总理。共产党人认为他比其他替代人选更可接受，但他们是否会容忍此届政府尚不明朗。
 
 - @far_right_coup
 - @emergency_no_confidence
 
 @bruning_emergency_chancellor
 
-Brüning is happy to be Chancellor, but not as a figurehead for an all-SPD minority cabinet. He is asking that he be allowed to form a minority bourgeois government, backed by SPD toleration. Otherwise, he will refuse.
+布吕宁乐意担任总理，但不愿作为社民党全员少数派内阁的傀儡。他要求允许他组建少数派资产阶级政府，由社民党容忍。否则，他将拒绝。
 
-- @accept_bruning: Fine. We will allow Brüning to lead a bourgeois cabinet.
-- @emergency_menu: Nevermind. What are the other options?
+- @accept_bruning: 好吧。我们将允许布吕宁领导资产阶级内阁。
+- @emergency_menu: 算了。还有什么其他选择？
 
 @accept_bruning
 choose-if: neo_weimar_coalition >= 50
-unavailable-subtitle: The parties supporting Brüning do not have a majority.
+unavailable-subtitle: 支持布吕宁的各党不构成多数。
 on-arrival: left_dissent += 5; z_relation += 10; spd_in_government = 0; spd_toleration = 1; minority_government = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; pro_republic -= 3; workers_spd -= 4; workers_kpd += 2; workers_kpd += 1 if not sapd_consolidated; workers_sapd += 1 if sapd_consolidated
 
-The Center Party is pleased, and somewhat surprised, that we have appointed [+ chancellor +] as chancellor. Many of our supporters are distraught at this concession to the bourgeoisie, with the SPD holding the presidency.
+中央党感到高兴，甚至有些意外，因为我们任命 [+ chancellor +] 为总理。我们的许多支持者对这一在社民党担任总统情况下向资产阶级的让步感到沮丧。
 
 - @far_right_coup
 
 @wirth_emergency_chancellor
 view-if: z_party_leader == "Joos"
-on-arrival: chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 1; z_relation += 10; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD" 
+on-arrival: chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 1; z_relation += 10; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"
 
-The Center Party is pleased that we have appointed [+ chancellor +] as chancellor.
+中央党对我们任命 [+ chancellor +] 为总理感到高兴。
 
 - @far_right_coup
 - @emergency_no_confidence
@@ -2063,38 +2063,38 @@ The Center Party is pleased that we have appointed [+ chancellor +] as chancello
 
 
 @far_right_coup
-title: The far-right parties immediately launch a military coup against us...
+title: 极右翼政党立即对我们发动军事政变……
 view-if: far_right_coalition >= 45
 on-arrival: sh_strength += 150; sa_strength += 150; sh_militancy += 0.05; sa_militancy += 0.05; nazi_rebel = 1
 
-The far-right parties, seeing that we are willing to deny them government by questionably democratic means, have decided that they can only take power by undemocratic means, and have risen up in force against the sitting government.
+眼见我们以颇具争议的民主手段拒绝其执政，极右翼政党认定他们只能以非民主手段夺权，遂大规模起兵反抗执政政府。
 
-Their numbers are bolstered by the many government workers who are against the prospect of a unified Socialist government. Police and soldiers defect to the SA and Stahlhelm.
+他们的人数因许多反对统一社民党政府的政府工作人员而壮大。警察和士兵叛逃，加入冲锋队和钢盔团。
 
-- @civil_war: It is war.
+- @civil_war: 这是战争。
 
 
 @emergency_no_confidence
-title: The Nazis immediately call a no-confidence vote against us...
+title: 纳粹立即对我们发起不信任投票……
 view-if: far_right_coalition < 45
 on-arrival: z_no_confidence = 1 if z_relation < 45; kpd_no_confidence = 1 if (kpd_relation < 45 or (kpd_r >= spd_r and kpd_r >= nsdap_r and kpd_r + spd_r >= 50)); other_no_confidence = 1 if (z_relation + dvp_relation)/2 < 45; dvp_no_confidence = 1 if dvp_relation < 45; sa_strength += 200; sh_strength += 200; no_confidence_votes = nsdap_r + dnvp_r; no_confidence_votes += z_r if z_no_confidence; no_confidence_votes += kpd_r if kpd_no_confidence; no_confidence_votes += sapd_r if kpd_no_confidence; no_confidence_votes += other_r if other_no_confidence; no_confidence_votes += dvp_r if dvp_no_confidence; kpd_relation -= 10 if kpd_no_confidence; no_confidence_succeeds = 1 if no_confidence_votes > 50
 
-The NSDAP and DNVP will vote against us, of course. The other parties vote their conscience. [? if z_no_confidence: The Center Party is voting against us. ?] [? if kpd_no_confidence: The KPD votes against us. ?] [? if other_no_confidence: The assortment of minor parties are voting against us. ?]
+纳粹党和 DNVP 当然会反对我们。其他政党凭良心投票。[? if z_no_confidence: 中央党反对我们。 ?] [? if kpd_no_confidence: 德共反对我们。 ?] [? if other_no_confidence: 各小党也反对我们。 ?]
 
-In total, [+ no_confidence_votes +]% of the Reichstag is against us. [? if no_confidence_succeeds : We have lost the vote of no confidence. ?]
+国会中合计 [+ no_confidence_votes +]% 反对我们。[? if no_confidence_succeeds : 我们输掉了不信任投票。 ?]
 
-- @no_confidence_lose: We have lost the vote of no confidence.
-- @no_confidence_win: We have won, for now.
+- @no_confidence_lose: 我们输掉了不信任投票。
+- @no_confidence_win: 我们暂时胜利。
 
 @no_confidence_lose
 view-if: no_confidence_votes > 50
 on-arrival: previous_chancellor = chancellor; previous_chancellor_party = chancellor_party; chancellor = "Empty"; chancellor_party = "I"; in_emergency_government = 0
 
-Who should be chancellor instead remains our decision. Is the Reichstag workable?
+谁来出任总理仍是我们的决定。国会还能运作吗？
 
 - @emergency_braun
-- @no_confidence_elections_new: Dissolve the Reichstag for new elections.
-- @coalition_menu: Are there any alternative governments?
+- @no_confidence_elections_new: 解散国会，举行新选举。
+- @coalition_menu: 是否还有其他可组建的政府？
 
 @no_confidence_elections_new
 on-arrival: {!
@@ -2135,12 +2135,12 @@ if (Q.pro_republic < 38) {
     Q.old_middle_nsdap += 5;
     Q.new_middle_nsdap += 5;
     Q.rural_nsdap += 5;
-    Q.unemployed_nsdap += 5;   
+    Q.unemployed_nsdap += 5;
 }
 !}
 view-if: no_confidence_votes > 50
 
-The next elections are set for [+ next_election_month : month +] [+ next_election_year +].
+下次选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 
 @no_confidence_win
@@ -2148,14 +2148,14 @@ view-if: no_confidence_votes <= 50
 on-arrival: in_minority_government = 1; in_emergency_government = 0
 achievement: minderheitsregierung
 
-We have won the vote of no confidence, and are currently ruling under an SPD minority government. Now our task is to fix the country.
+我们赢得了不信任投票，目前作为社民党少数派政府执政。现在我们的任务是修复国家。
 
 
 @weimar_coalition
-title: We can form a Weimar Coalition.
+title: 我们可组建魏玛联合。
 subtitle: SPD + Z + [+ ddp_name +] ([+ weimar_coalition +]%)
 choose-if: president != "Hitler" and z_willing == 1
-unavailable-subtitle: SPD + Z + [+ ddp_name +] ([+ weimar_coalition +]%) - [? if president == "Hitler" : Hitler refuses to appoint a chancellor under such a governing arrangement. ?][? if not z_willing : The Center Party is unwilling to coalition with us. ?]
+unavailable-subtitle: SPD + Z + [+ ddp_name +] ([+ weimar_coalition +]%) - [? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?][? if not z_willing : 中央党不愿与我们组建联合。 ?]
 view-if: weimar_coalition >= 50 or (weimar_coalition + sapd_r >= 50 and kpd_relations >= 30)
 on-arrival: leverage += 5; leverage += 5 if z_party_leader == "Joos"; in_weimar_coalition = 1; spd_in_government = 1; in_popular_front = 0; in_left_front = 0; foreign_minister_party = "Z"; interior_minister_party = "Z"; justice_minister_party = ddp_name; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "Z"; agriculture_minister_party = "Z"; foreign_minister = "Wirth"; interior_minister = "Wirth"; justice_minister = "Koch-Weser"; labor_minister = "Stegerwald"; reichswehr_minister = "Groener"; economic_minister = "Dietrich"; finance_minister = "Köhler"; agriculture_minister = "Hermes";
 achievement: weimar_coalition
@@ -2163,9 +2163,9 @@ go-to: weimar_normal if z_relation >= 40 and bourgeois_coalition < 50; weimar_z 
 
 @weimar_normal
 
-We have enough votes [? if weimar_coalition < 50 : with the SAPD's toleration accounted for ?] to form a "Weimar Coalition" government consisting of the SPD, Center (Z) and Democratic ([+ ddp_name +]) parties! This has been our preferred governing coalition. [? if weimar_coalition < 50 : We will need to take care not to offend the SAPD however. ?]
+我们有足够的选票[? if weimar_coalition < 50 :（计入德国社会党的容忍）?]组建由社民党、中央党（Z）和民主党（[+ ddp_name +]）组成的「魏玛联合」政府！这一直是我们偏好的执政联合。[? if weimar_coalition < 50 : 然而，我们需注意不要冒犯德国社会党。 ?]
 
-Who should be the chancellor?
+总理应由谁担任？
 
 - @muller
 - @braun
@@ -2175,27 +2175,27 @@ Who should be the chancellor?
 - @z_chancellor_wirth
 
 @breitscheid_coalition_chancellor
-title: Rudolf Breitscheid for Chancellor
+title: 鲁道夫·布莱特沙伊德出任总理
 choose-if: (president != "Hindenburg" or not spd_sackings)
-subtitle: Breitscheid is viewed as friendlier towards the left of the SPD.
+subtitle: 布莱特沙伊德被视为对社民党左翼更友好。
 view-if: year >= 1930
 on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD";
 go-to: ministries
 
-Rudolf Breitscheid has been appointed chancellor.
+鲁道夫·布莱特沙伊德已被任命为总理。
 
 @weimar_z
 
-We have enough votes to form a "Weimar Coalition" government consisting of the SPD, Center (Z) and Democratic ([+ ddp_name +]) parties! This has been our preferred governing coalition. However, we have, one way or another, offended the Center Party, and they have demanded the position of Chancellor
+我们有足够的选票组建由社民党、中央党（Z）和民主党（[+ ddp_name +]）组成的「魏玛联合」政府！这一直是我们偏好的执政联合。然而，我们或多或少地冒犯了中央党，他们要求出任总理一职。
 
-- @let_bruning: Let Brüning lead.
-- @let_wirth: Let Wirth lead.
-- @refuse_demand: No, the SPD must lead the government.
+- @let_bruning: 让布吕宁领导。
+- @let_wirth: 让维尔特领导。
+- @refuse_demand: 不，社民党必须领导政府。
 
 @let_bruning
 view-if: z_party_leader != "Joos"
 choose-if: weimar_coalition >= 50
-unavailable-subtitle: The SAPD will not tolerate Brüning.
+unavailable-subtitle: 德国社会党不会容忍布吕宁。
 on-arrival: chancellor_party = "Z"; chancellor = "Brüning"; left_dissent += 5
 go-to: ministries
 
@@ -2209,10 +2209,10 @@ on-arrival: z_relation -= 5; reformist_dissent += 2
 go-to: coalition_menu if bourgeois_coalition < 50; let_it_form if bourgeois_coalition >= 50
 
 @grand_coalition
-title: We can form a Grand Coalition.
+title: 我们可组建大联合。
 view-if: grand_coalition >= 50 and grand_coalition_failed == 0
 choose-if: president != "Hitler" and dvp_willing == 1
-unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP ([+ grand_coalition +]%) - [? if president == "Hitler" : Hitler refuses to appoint a chancellor under such a governing arrangement. ?][? if not dvp_willing : The DVP is unwilling to work with us. ?]
+unavailable-subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP ([+ grand_coalition +]%) - [? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?][? if not dvp_willing : DVP 不愿与我们合作。 ?]
 subtitle: SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP  ([+ grand_coalition +]%)
 on-arrival: in_grand_coalition = 1; in_popular_front = 0; in_left_front = 0
 go-to: grand_coalition_spd_lead if ((n_elections <= 1 and largest_party == "SPD") or (largest_party == "SPD" and spd_r >= 30) and spd_sackings <= 0) or president = "Braun"; grand_coalition_z_lead if president != "Braun" and (spd_sackings > 0 or (n_elections > 1 and spd_r < 30) or (n_elections <= 1 and largest_party != "SPD"))
@@ -2223,19 +2223,19 @@ go-to: grand_coalition_spd_lead if ((n_elections <= 1 and largest_party == "SPD"
 @grand_coalition_z_lead
 go-to: grand_coalition_z_lead_2 if dvp_relation >= 30; grand_coalition_fail if dvp_relation < 30
 
-There are enough votes to form a majority coalition consisting of the SPD, Center (Z), Bavarian People's ([+ bvp_name +]), Democratic ([+ ddp_name +]), and People's (DVP) parties. Given our rather weak electoral performance, [? if spd_no_confidence = 1 : and our previous vote of no confidence against the government, ?][? if no_confidence_against_spd = 1 : and the vote of no confidence against us, ?] President [+ president +] has asked the Center Party to take the lead role in forming a government.
+有足够的选票组建由社民党、中央党（Z）、巴伐利亚人民党（[+ bvp_name +]）、民主党（[+ ddp_name +]）和人民党（DVP）组成的多数联合政府。鉴于我们较弱的选举表现，[? if spd_no_confidence = 1 : 加上我们此前对政府的不信任投票， ?][? if no_confidence_against_spd = 1 : 加上对我们的不信任投票， ?][+ president +] 总统已要求中央党在组建政府中担任主导角色。
 
 # TODO: if the SPD participated in bringing down the previous government via a vote-of-no-confidence, or if we were essentially removed from government by our coalition partners, we should be more reluctant to participate in a new government.
 
 @grand_coalition_z_lead_2
 
-The Center chancellor is likely to be Heinrich Brüning of the Center Party [? if chancellor = "Brüning" : again. ?][? if chancellor != "Brüning": . ?] He is known for his conservatism and sympathy for monarchism, being on the right wing of the Center. [? if austerity >= 2 : Due to the government's austerity policies, many of our members are reluctant to participate in this coalition again. Some support a "toleration" arrangement in which we will provide outside support to prevent the far-right from either entering government or calling a successful no-confidence vote. Others support entering into pure opposition, and letting the right do what it wishes. ?]
+中央党的总理人选很可能[? if chancellor = "Brüning" :再次?]是海因里希·布吕宁[? if chancellor != "Brüning": 。 ?][? if chancellor = "Brüning" : 。 ?]他以保守主义和对君主制的同情而闻名，属中央党右翼。[? if austerity >= 2 : 由于政府的紧缩政策，我党许多成员不愿再次参与此联合。一些人支持「容忍」安排，即我们将提供外部支持以阻止极右翼进入政府或通过不信任投票。另一些人支持纯粹反对，任由右翼为所欲为。 ?]
 
-Brüning is not opposed to a coalition with us. Alternatively, we could enter a "toleration" agreement.
+布吕宁不反对与我们联合。或者，我们可以达成「容忍」协议。
 
-- @join_bruning: Join the Brüning coalition.
-- @bruning_oppo: Join the opposition.
-- @toleration_bruning: We will "tolerate" a minority Brüning government.
+- @join_bruning: 加入布吕宁联合。
+- @bruning_oppo: 加入反对派。
+- @toleration_bruning: 我们将「容忍」布吕宁的少数派政府。
 - @unity_government
 
 @join_bruning
@@ -2243,19 +2243,19 @@ view-if: grand_coalition >= 50 or neo_weimar_coalition >= 50
 on-arrival: spd_in_government = 1; spd_toleration = 0; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; leverage = 25 if leverage >= 25;
 go-to: ministries
 
-Heinrich Brüning welcomes us into his new cabinet. Now, we have our pick of ministries.
+海因里希·布吕宁欢迎我们加入他的新内阁。如今，我们可以挑选各部委。
 
 @bruning_oppo
 on-arrival: spd_in_government = 0; spd_toleration = 0; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; grand_coalition_failed = 1
 
-By refusing to join the grand coalition or tolerating it, we essentially throw the balance of government to the right wing. [? if right_coalition >= 50 : There are enough votes to form a right-wing coalition that includes the DNVP. However, the DNVP leader, Hugenberg, is opposed to a coalition with the "November criminals" of the Center Party. And of course, the NSDAP is not interested in coalition government. This means that there will not be enough votes to form a majority coalition. ?][? if right_coalition < 50 : There are not enough votes to form a right-wing coalition that includes the DNVP, and they are not interested in joining in a coalition with the "November criminals" of the Center Party, anyhow. And of course, the NSDAP is not interested in coalition government. This means that there is no route to a majority coalition. ?]
+通过拒绝加入或容忍大联合，我们实际上将政府的天平推向右翼。[? if right_coalition >= 50 : 有足够的选票组建包括 DNVP 在内的右翼联合。然而，DNVP 领袖胡根贝格反对与中央党的「十一月罪人」组建联合。当然，纳粹党无意参与联合政府。这意味着不会有足够的选票组建多数联合。 ?][? if right_coalition < 50 : 没有足够的选票组建包括 DNVP 在内的右翼联合，而 DNVP 反正也不愿与中央党的「十一月罪人」联合。当然，纳粹党无意参与联合政府。这意味着无路可达多数联合。 ?]
 
-If we do not at least "tolerate" the government, there will be new elections in a few months. In the meantime, the President and Chancellor may use the emergency powers granted by Article 48 of the constitution to essentially govern by decree. And it is not at all clear that we will do any better in the next election.
+如果我们甚至不「容忍」政府，几个月后将举行新选举。其间，总统和总理可援引宪法第 48 条赋予的紧急权力，基本上以法令执政。而且我们能否在下次选举中表现更好完全不明朗。
 
-- @join_bruning: Join the Brüning coalition.
-- @toleration_bruning: We will tolerate Brüning after all.
+- @join_bruning: 加入布吕宁联合。
+- @toleration_bruning: 我们终究将容忍布吕宁。
 - @brauns_dilemma
-- @new_elections: New elections, it is!
+- @new_elections: 那就新选举吧！
 
 
 @new_elections
@@ -2345,38 +2345,38 @@ if (Q.no_majority_elections >= 2) {
 }
 !}
 
-There is no path to a workable Reichstag majority or minority government. The next elections are set for [+ next_election_month : month +] [+ next_election_year +].
+无可行的国会多数或少数派政府。下次选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
-The people's faith in democracy is shaken by this ordeal. Of course, the Nazis are exploiting the instability to claim that democracy is unworkable, and that Germany needs a strong leader.
+人民对民主的信心在此次磨难中受到动摇。当然，纳粹党正利用这种不稳定来宣称民主不可行，并称德国需要一个强人领袖。
 
-[? if left_strength >= 50 : Bourgeois voters and financial backers are increasingly turning to the Nazis as defenders from potential socialist revolution, though as a result Nazi support amongst the working class is diminished. ?]
+[? if left_strength >= 50 : 资产阶级选民和金融支持者越来越多地转向纳粹党，将其视为防范潜在社会主义革命的捍卫者，但因此纳粹党在工人阶级中的支持有所减少。 ?]
 
 @new_elections_2
 view-if: neo_weimar_coalition < 50
 call: set_next_election_time
 on-arrival: time_to_election = 3; strife += 0.5; marx_relation -= 5; pro_republic -= 5; rural_nsdap += 2; old_middle_nsdap += 2; new_middle_nsdap += 2; political_crisis_progress += 1
 
-As the anti-democratic parties hold a majority, there is no path to a majority government. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+由于反民主政党占据多数，无组建多数政府的途径。新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @toleration_bruning
 choose-if: neo_weimar_coalition >= 50
-unavailable-subtitle: The parties supporting Brüning do not have a majority.
+unavailable-subtitle: 支持布吕宁的各党不构成多数。
 on-arrival: spd_in_government = 0; spd_toleration = 1; minority_government = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; pro_republic -= 4; new_middle_dvp -= 5; new_middle_ddp -= 5; old_middle_dvp -= 5; old_middle_ddp -= 5; old_middle_nsdap += 5; new_middle_nsdap += 5; rural_dnvp -= 5;
 
-We have decided to tolerate Brüning's government. This means that we will vote against no-confidence votes to make sure they fail, but also that we will not be directly participating as ministers in the government. Thus, we can prevent a new election and stop the far right from entering government.
+我们决定容忍布吕宁政府。这意味着我们将投票反对不信任案以确保它们失败，但同时我们不会作为部长直接参与政府。如此，我们可阻止新选举并防止极右翼进入政府。
 
 @grand_coalition_fail
 on-arrival: grand_coalition_failed = 1
 
-Unfortunately, the DVP and [+ bvp_name +] are unwilling to enter into another coalition with the SPD, so the grand coalition is unable to be formed.
+不幸的是，DVP 和 [+ bvp_name +] 不愿再次与社民党组建联合，因此大联合无法成立。
 
-- @no_majority: Thus, there is no clear majority.
+- @no_majority: 因此，无明显多数。
 - @brauns_dilemma
-- @right_coalition_2: Perhaps a right-wing coalition may form.
-- @bourgeois_coalition: Perhaps a bourgeois coalition may form.
-- @beg_dvp: Perhaps we could ask the DVP to change their minds?
+- @right_coalition_2: 也许可组建右翼联合。
+- @bourgeois_coalition: 也许可组建资产阶级联合。
+- @beg_dvp: 也许我们可请求 DVP 改变主意？
 - @unity_government
-- @coalition_menu: What are the other governing arrangements?
+- @coalition_menu: 还有什么其他执政安排？
 
 @beg_dvp
 view-if: dvp_relation >= 15
@@ -2385,81 +2385,81 @@ go-to: dvp_conservative if stresemann_dead == 1; dvp_majority if stresemann_dead
 @dvp_majority
 go-to: join_bruning
 
-Under the influence of Gustav Stresemann, the DVP agrees to allow us into the coalition, and so does the [+ bvp_name +].
+在古斯塔夫·施特雷泽曼的影响下，DVP 同意允许我们加入联合，[+ bvp_name +] 亦然。
 
 
 @dvp_conservative
 
-The DVP asks us to adhere to their conservative economic policies (that is, extreme austerity and labor discipline) in exchange for us joining the coalition.
+DVP 要求我们遵循其保守经济政策（即极端紧缩和劳动纪律）以换取我们加入联合。
 
-- @beg_dvp_2: But they would not have a majority without the SPD! The DNVP and NSDAP have no interest in participating in government.
-- @no_majority: There is no chance that we would agree.
+- @beg_dvp_2: 但是没有社民党他们也无法构成多数！DNVP 和纳粹党无意参与政府。
+- @no_majority: 我们绝无可能同意。
 - @brauns_dilemma
-- @coalition_menu: What are the other governing arrangements?
+- @coalition_menu: 还有什么其他执政安排？
 
 
 @beg_dvp_2
 go-to: beg_dvp_succeed; beg_dvp_fail
 
-We make the case that without the SPD, there is no parliamentary majority, given the DNVP and NSDAP's hostility to constitutional government.
+鉴于 DNVP 和纳粹党对宪政政府的敌意，我们指出，没有社民党就没有议会多数。
 
 @beg_dvp_succeed
 go-to: join_bruning
 
-Somehow, we succeed in convincing them! We are now in a coalition.
+我们不知怎的说服了他们！我们如今已加入联合。
 
 
 @beg_dvp_fail
 go-to: no_majority
 
-As expected, the DVP is too set in their anti-democratic ways.
+不出所料，DVP 在反民主立场上过于顽固。
 
 @budget_dispute
 
-As expected, the SPD is the largest party, and this time, we are expected to take the lead role in the formation of the next government, including selecting the chancellor. President [+ president +] has asked us to form a majority coalition with the Center (Z), Bavarian People's ([+ bvp_name +]), Democratic ([+ ddp_name +]), and People's (DVP) parties.
+不出所料，社民党是最大党，这次我们将在下届政府的组建中扮演主导角色，包括选定总理。[+ president +] 总统要求我们与中央党（Z）、巴伐利亚人民党（[+ bvp_name +]）、民主党（[+ ddp_name +]）和人民党（DVP）组建多数联合。
 
-However, the DVP and SPD significantly diverge on the matter of the budget. While the DVP would like to dismantle the welfare state in order to save Germany's finances, this is obviously unacceptable to us. And while we would be happy to increase taxes on the rich, they would not have that. Before a government can be formed, this dispute must be resolved.
+然而，DVP 和社民党在预算问题上分歧严重。DVP 希望拆解福利国家以挽救德国财政，这对我们显然不可接受。而我们乐意增加富人税收，他们却无法接受。组建政府之前，必须解决此争端。
 
-- @postpone: Postpone the issue until after the Young Plan's ratification, preserving the status quo until then.
-- @austerity: Agree to moderate tax increases across the board, and no further modifications.
-- @resign_prussia: Surrender Prussia to the bourgeoisie and delay making a committment.
-- @blow_up: Withdraw from talks, and refuse to form a government.
+- @postpone: 推迟问题至杨格计划批准之后，在此之前维持现状。
+- @austerity: 同意全面适度增税，不作其他修改。
+- @resign_prussia: 将普鲁士拱手让给资产阶级，并推迟做出承诺。
+- @blow_up: 退出谈判，拒绝组建政府。
 
 @postpone
 on-arrival: left_dissent += 5; status_quo = 1; budget_resolved = 1
-subtitle: We won't need to make a commitment for now, but our freedom in government will be severely constrained. The Left is opposed.
+subtitle: 我们暂时无需作出承诺，但我们在政府中的自由将受到严重限制。左翼反对。
 go-to: grand_coalition_spd_lead
 
-The DVP has agreed to this compromise. Our party's left-wing is upset, but what must be done must be done.
+DVP 已同意此妥协。我党左翼感到不满，但该做的必须做。
 
 @austerity
 on-arrival: left_dissent += 5; labor_dissent += 5; upper_tax_rates += 1; lower_tax_rates += 1; budget += 2; workers_spd -= 4; unemployed_spd -= 4; status_quo = 1; budget_resolved = 1; dvp_relation += 4*(1-dissent); kpd_relation -= 3
-subtitle: +3 Budget. The bourgeois parties will be pleasantly pleased, but our actions in government will be highly constrained. Left and Labor are both opposed.
+subtitle: +3 预算。资产阶级政党将欣然满意，但我们在政府中的行动将受到高度限制。左翼和劳工皆反对。
 go-to: grand_coalition_spd_lead
 
-The DVP has agreed to this compromise. Our party's left-wing and the ADGB are both upset, but what must be done must be done.
+DVP 已同意此妥协。我党左翼和 ADGB 皆感不满，但该做的必须做。
 
 @blow_up
-subtitle: [? if right_coalition >= 50 and not right_coalition_failed : The right-wing parties will likely form a coalition. ?][? if right_coalition < 50 or right_coalition_failed : There is no clear majority. ?]
+subtitle: [? if right_coalition >= 50 and not right_coalition_failed : 右翼政党可能组建联合。 ?][? if right_coalition < 50 or right_coalition_failed : 无明显多数。 ?]
 on-arrival: dvp_relation -= 5; z_relation -= 3; left_strength += 5; left_dissent -= 5;
 go-to: right_coalition_2 if right_coalition >= 50 and not right_coalition_failed; no_majority if right_coalition < 50 or right_coalition_failed
 
 @resign_prussia
-subtitle: Is surrendering such a bulwark of democracy worth it for one government?
+subtitle: 为一届政府放弃如此重要的民主堡垒是否值得？
 on-arrival: reformist_dissent += 5; spd_prussia = 0; z_prussia = 1; budget_resolved = 1; labor_dissent += 5; center_dissent += 5
 go-to: grand_coalition_spd_lead
 
-Braun has resigned as Minister-President of Prussia, replaced by Adam Stegerwald. The bourgeois parties accept this concession for now, and the budget issue is left unresolved.
+布劳恩已辞去普鲁士总理一职，由亚当·施特格瓦尔德接替。资产阶级政党暂时接受此让步，预算问题悬而未决。
 
 @grand_coalition_spd_lead
 on-arrival: leverage -= 15 if dvp_relation < 20
 go-to: budget_dispute if not budget_resolved and historical_mode
 
-[? if n_elections <= 1 : As expected, the SPD is the largest party, and this time, we are expected to take the lead role in the formation of the next government, including selecting the chancellor. President [+ president +] has asked us to form a majority coalition with the Center (Z), Bavarian People's ([+ bvp_name +]), Democratic ([+ ddp_name +]), and People's (DVP) parties. ?]
+[? if n_elections <= 1 : 不出所料，社民党是最大党，这次我们将在下届政府的组建中扮演主导角色，包括选定总理。[+ president +] 总统要求我们与中央党（Z）、巴伐利亚人民党（[+ bvp_name +]）、民主党（[+ ddp_name +]）和人民党（DVP）组建多数联合。 ?]
 
-[? if dvp_relation < 20 : As our relation with the DVP is poor, they are demanding more minister posts in order to remain part of the coalition. ?]
+[? if dvp_relation < 20 : 由于我们与 DVP 关系不佳，他们要求更多部长职位以继续留在联合中。 ?]
 
-Who should be the chancellor?
+总理应由谁担任？
 
 - @muller
 - @braun
@@ -2470,107 +2470,107 @@ Who should be the chancellor?
 
 
 @muller
-title: Hermann Müller for Chancellor
+title: 赫尔曼·穆勒出任总理
 view-if: muller_dead = 0
 choose-if: (president != "Hindenburg" or not spd_sackings)
-subtitle: Müller is popular within the party, and is the preferred candidate of the Center and other parties.
+subtitle: 穆勒在党内深得人心，是中央党及其他各党偏好的人选。
 on-arrival: spd_in_government = 1; chancellor = "Müller"; chancellor_party = "SPD"; in_grand_coalition = 1 if in_weimar_coalition == 0
 go-to: ministries
 
-Müller's appointment as chancellor is approved by all our potential allies.
+我们所有潜在盟友均赞成由穆勒出任总理。
 
 @wels
-title: Otto Wels for Chancellor
+title: 奥托·韦尔斯出任总理
 choose-if: (president != "Hindenburg" or not spd_sackings)
 view-if: muller_dead = 1
-subtitle: Otto Wels is a party leader, but can he also be chancellor?
+subtitle: 奥托·韦尔斯是党的领袖，但他能同时担任总理吗？
 on-arrival: spd_in_government = 1; chancellor = "Wels"; chancellor_party = "SPD"; in_grand_coalition = 1 if in_weimar_coalition == 0
 go-to: ministries
 
-Otto Wels's appointment as chancellor is approved by our potential allies.
+我们的潜在盟友均赞成由奥托·韦尔斯出任总理。
 
 @braun
 choose-if: (president != "Hindenburg" or not spd_sackings)
-title: Otto Braun for Chancellor
+title: 奥托·布劳恩出任总理
 view-if: not historical_mode or not spd_prussia
-subtitle: Braun is currently the Minister-President of Prussia, and is one of our most popular leaders. However, other parties may have qualms about concentrating too much power in one man.
+subtitle: 布劳恩目前担任普鲁士总理，是我们最受欢迎的领袖之一。然而，其他党派可能对将过多权力集中于一人有所顾虑。
 
-The Center party has significant qualms about appointing Braun as chancellor, given that he is already Minister-President of Prussia. They ask for either more cabinet positions, or for Braun to resign his state government role.
+中央党对任命布劳恩为总理有重大顾虑，因为他已经是普鲁士总理。他们要么要求更多内阁职位，要么要求布劳恩辞去州政府职务。
 
 - @muller
 - @wels
-- @braun_2: Let the Center have their cabinet positions.
-- @braun_resigned: Let the Center have Prussia.
+- @braun_2: 让中央党获得内阁职位。
+- @braun_resigned: 让中央党获得普鲁士。
 
 @braun_2
-subtitle: Otto Braun will be Chancellor.
+subtitle: 奥托·布劳恩将出任总理。
 view-if: not historical_mode
 on-arrival: spd_in_government = 1; chancellor = "Braun"; chancellor_party = "SPD"; leverage -= 10; in_grand_coalition = 1 if in_weimar_coalition == 0
 go-to: ministries
 
-We have promised to let the Center have more influence in the government in response to the appointment of Braun as chancellor.
+为回应布劳恩出任总理，我们已承诺让中央党在政府中拥有更大影响力。
 
 @braun_resigned
-subtitle: Adam Stegerwald will be Minister-President.
+subtitle: 亚当·施特格瓦尔德将出任普鲁士总理。
 choose-if: spd_prussia
-unavailable-subtitle: Wait, what? Damn, this shit's bugged. Ping me on discord or on reddit, I'll fix it.
+unavailable-subtitle: 等等，这是怎么回事？该死，这玩意有 bug。在 Discord 或 Reddit 上联系我，我会修复。
 on-arrival: spd_prussia = 0; z_prussia = 1; spd_in_government = 1; chancellor = "Braun"; chancellor_party = "SPD"; in_grand_coalition = 1 if in_weimar_coalition == 0
 go-to: ministries
 
-Otto Braun has resigned as Minister-President of Prussia to pursue his aspirations on the national level.
+奥托·布劳恩辞去普鲁士总理一职，以追求其在全国层面的抱负。
 
 @z_chancellor
-title: Let the Center Party have their chancellor.
-subtitle: Heinrich Bruning will be chancellor. This is unexpected and will cause internal dissent, but may give us a better position in negotiating for other cabinet positions.
+title: 让中央党拥有他们的总理。
+subtitle: 海因里希·布吕宁将出任总理。这出人意料，将引发内部异议，但可能让我们在其他内阁职位的谈判中处于更有利地位。
 on-arrival: left_dissent += 5; center_dissent += 5; labor_dissent += 5; z_relation += 10; dvp_relation += 5; kpd_relation -= 5; in_grand_coalition = 1 if in_weimar_coalition == 0; chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 1; leverage += 5
 go-to: ministries
 
-This is highly unexpected, and many in the left and center of our party are criticizing this decision.
+此决定高度出人意料，党内许多左翼和中间派人士对此决定提出批评。
 
-[? if year == 1928 : Since Wilhelm Marx resigned, Heinrich Brüning has been appointed chancellor. ?]
-[? if year > 1928: Heinrich Brüning of the Center Party has been appointed chancellor. ?]
+[? if year == 1928 : 自威廉·马克思辞职以来，海因里希·布吕宁被任命为总理。 ?]
+[? if year > 1928: 中央党的海因里希·布吕宁被任命为总理。 ?]
 
 @z_chancellor_wirth
-title: Let Joseph Wirth of the Center Party be chancellor.
+title: 让中央党的约瑟夫·维尔特出任总理。
 view-if: z_party_leader == "Joos"
-subtitle: Wirth is on the left wing of the Center Party. This may give us a better position in negotiating for other cabinet positions.
+subtitle: 维尔特属中央党左翼。这可能让我们在其他内阁职位的谈判中处于更有利地位。
 on-arrival: left_dissent += 2; z_relation += 6; ddp_relation += 3; kpd_relation -= 5; in_grand_coalition = 1 if in_weimar_coalition == 0; chancellor = "Wirth"; chancellor_party = "Z"; spd_in_government = 1; leverage += 5
 go-to: ministries
 
 
 @no_govt_3
 view-if: (weimar_coalition >= 50 and z_willing == 1) or (grand_coalition >= 50 and grand_coalition_failed != 1 and dvp_willing == 1)
-title: We do not form a government.
-subtitle: [? if right_coalition >= 50 and right_coalition_failed == 0 : A right-wing coalition may form instead. ?] This will cause significant internal dissent, and will lead to increased distrust from the bourgeois parties.
+title: 我们不组建政府。
+subtitle: [? if right_coalition >= 50 and right_coalition_failed == 0 : 可能改为组建右翼联合。 ?] 此举将引发严重内部异议，并导致资产阶级政党的不信任加剧。
 on-arrival: reformist_dissent += 5; center_dissent += 5; labor_dissent += 5; neorevisionist_dissent += 5
 
-Are we sure about not participating in government? This will cause significant internal dissent, and will lead to increased distrust from the bourgeois parties. Even debating this option causes internal backlash. In addition, it is possible that the bourgeois and right-wing parties will also be unable to form a coalition government, leading to a regime appointed by President [+ president +].
+我们真的不参与政府吗？此举将引发严重内部异议，并导致资产阶级政党的不信任加剧。即便辩论这一选项也会引发内部抵制。此外，资产阶级和右翼政党也可能无法组建联合政府，导致由 [+ president +] 总统任命的政权。
 
-- @coalition_menu: What are the governing arrangements?
-- @no_govt_goals: Yes, we're sure.
+- @coalition_menu: 还有什么执政安排？
+- @no_govt_goals: 是的，我们确定。
 
 @no_govt
-title: We do not form the government.
-subtitle: This will cause significant internal dissent, and will lead to increased distrust from the bourgeois parties.
+title: 我们不组建政府。
+subtitle: 此举将引发严重内部异议，并导致资产阶级政党的不信任加剧。
 on-arrival: reformist_dissent += 5; center_dissent += 5; labor_dissent += 5; neorevisionist_dissent += 5
 
-Are we sure about not participating in government? This will cause significant internal dissent, and will lead to increased distrust from the bourgeois parties. Even debating this option causes internal backlash. In addition, it is possible that the bourgeois and right-wing parties will also be unable to form a coalition government, leading to a regime appointed by President [+ president +].
+我们真的不参与政府吗？此举将引发严重内部异议，并导致资产阶级政党的不信任加剧。即便辩论这一选项也会引发内部抵制。此外，资产阶级和右翼政党也可能无法组建联合政府，导致由 [+ president +] 总统任命的政权。
 
 - @muller
 - @braun
 - @z_chancellor
-- @no_govt_goals: Yes, we're sure.
+- @no_govt_goals: 是的，我们确定。
 
 @no_govt_goals
 
-What are our goals here, exactly?
+我们的目标究竟是什么？
 
-- @majority: We hope to reach a socialist majority in the next election.
-- @trap: It is a trap to form a government now. We would be unable to accomplish our goals.
-- @socialism: Revolutionary socialism is our goal.
+- @majority: 我们希望在下次选举中达到社会主义多数。
+- @trap: 此时组建政府是个陷阱。我们将无法实现目标。
+- @socialism: 革命社会主义是我们的目标。
 
 @majority
-on-arrival: kpd_relation += 5; communist_coalition += 1 if comintern_seen 
+on-arrival: kpd_relation += 5; communist_coalition += 1 if comintern_seen
 go-to: no_govt_2
 
 @trap
@@ -2588,229 +2588,229 @@ go-to: right_coalition_post_spd if right_coalition >= 50 and president != "Braun
 
 
 @right_coalition_post_spd
-on-arrival: chancellor = "Brüning"; new_middle_spd -= 3; old_middle_spd -= 2; workers_spd -= 2; catholics_spd -= 4; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year = year + 1 if next_election_month > 12; next_election_month = next_election_month - 12 if next_election_month > 12; 
+on-arrival: chancellor = "Brüning"; new_middle_spd -= 3; old_middle_spd -= 2; workers_spd -= 2; catholics_spd -= 4; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year = year + 1 if next_election_month > 12; next_election_month = next_election_month - 12 if next_election_month > 12;
 
-There are enough votes to form a right-wing coalition of the Z, DVP, DNVP, and various minor parties, essentially replicating the previous Marx government. However, the DNVP is very reluctant to join the government[? if year <= 1928 : , as it had just exited from a coalition with the Center. ?][? if year > 1928 : , as its leader, Alfred Hugenberg, is against the very existence of parliamentary democracy, and is unwilling to join such a coalition anymore. ?]
+有足够的选票组建由 Z、DVP、DNVP 及各小党组成的右翼联合，基本上复制了之前的马克思政府。然而，DNVP 极不愿加入政府[? if year <= 1928 :，因其刚刚退出与中央党的联合。 ?][? if year > 1928 :，因其领袖阿尔弗雷德·胡根贝格反对议会民主的存在，不再愿意加入这样的联合。 ?]
 
-Chancellor Heinrich Brüning of the Center Party currently rules on an emergency basis, as part of a "presidential government". New elections have been called for [+ next_election_month : month +] [+ next_election_year +]
+中央党的海因里希·布吕宁总理目前以紧急方式执政，作为「总统制政府」的一部分。新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 
 @new_elections_spd
 on-arrival: next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year = year + 1 if next_election_month > 12; next_election_month = next_election_month - 12 if next_election_month > 12; new_middle_spd -= 5; old_middle_spd -= 5; workers_spd -= 3; catholics_spd -= 3; in_election = 1
 
-Since the remaining bourgeois and right-wing parties cannot form a tolerable governing agreement, new elections have been called for [+ next_election_month : month +] [+ next_election_year +]. The previous chancellor has resigned, and has been replaced by Heinrich Brüning, also of the Center Party, ruling as part of a presidential cabinet. 
+由于剩余的资产阶级和右翼政党无法形成可容忍的执政协议，新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。前任总理已辞职，由中央党的海因里希·布吕宁接替，作为总统内阁的一部分执政。
 
-We are seen as responsible for the failure to form a government, and many of our middle-class and even some working-class supporters have deserted the party.
+我们被视为未能组建政府的责任方，许多中产阶级甚至部分工人阶级支持者已弃党而去。
 
 
 @ministries
 
-We can pick from any number of ministries. Controlling a ministry allows us to directly effect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the KPD. ?] [? if in_left_front and reichswehr_minister_party == "KPD" : If the KPD controls the Reichswehr Ministry, the army will most likely revolt. ?]
+我们可以从多个部委中挑选。掌控一个部委能让我们在该领域直接影响政策。[? if in_left_front : 任何我们不接手的部委都将交给德共。 ?] [? if in_left_front and reichswehr_minister_party == "KPD" : 如果德共掌控国防部，军队最可能反叛。 ?]
 
-[? if historical_mode : Labor expects us to take the Labor Ministry in order to represent their interests in government and will be upset if we do not. ?]
+[? if historical_mode : 劳工期望我们出任劳动部以在政府中代表其利益，若我们不接，他们将感到不满。 ?]
 
 - #mins_1928
 - #drop_mins_1928
 
 @labor
-title: Labor Ministry
-subtitle: Taking the Labor Ministry is expected of us. [? if historical_mode : Labor will be displeased if we do not. ?]
-unavailable-subtitle: We do not have enough leverage.
+title: 劳动部
+subtitle: 担任劳动部是我们的本分。[? if historical_mode : 若不担任，劳工将不满。 ?]
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
 choose-if: leverage >= 5
 view-if: labor_minister_party != "SPD"
 on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
 go-to: ministries
 
-Rudolf Wissell of the SPD has been appointed labor minister.
+社民党的鲁道夫·维塞尔（Rudolf Wissell）已被任命为劳动部长。
 
 @interior
-title: Interior Ministry
-subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
-unavailable-subtitle: We do not have enough leverage.
+title: 内政部
+subtitle: 担任内政部是我们的本分。内政部掌管国内安全。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
 choose-if: leverage >= 5
 view-if: interior_minister_party != "SPD"
 on-arrival: leverage -= 5; interior_minister_party = "SPD"; interior_minister = "Severing"
 go-to: ministries
 
-Carl Severing of the SPD has been appointed Interior Minister.
+社民党的卡尔·泽韦林（Carl Severing）已被任命为内政部长。
 
 @finance
-title: Finance Ministry
-subtitle: The Finance Ministry controls the government budget and taxes.
-unavailable-subtitle: We do not have enough leverage.
+title: 财政部
+subtitle: 财政部掌管政府预算与税收。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: finance_minister_party != "SPD"
 on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
 go-to: ministries
 
-Rudolf Hilferding of the SPD has been appointed Finance Minister.
+社民党的鲁道夫·希尔弗丁（Rudolf Hilferding）已被任命为财政部长。
 
 @economic
-title: Economic Ministry
-subtitle: The Economic Ministry controls broader economic policy.
-unavailable-subtitle: We do not have enough leverage.
+title: 经济部
+subtitle: 经济部掌管更广泛的经济政策。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: economic_minister_party != "SPD"
 on-arrival: leverage -= 10; economic_minister_party = "SPD"; economic_minister = "Schmidt"
 go-to: ministries
 
-Robert Schmidt of the SPD has been appointed Economic Minister.
+社民党的罗伯特·施密特（Robert Schmidt）已被任命为经济部长。
 
 @justice
-title: Justice Ministry
-subtitle: The Justice Ministry controls the courts.
-unavailable-subtitle: We do not have enough leverage.
+title: 司法部
+subtitle: 司法部掌管法院。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: justice_minister_party != "SPD"
 on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
 go-to: ministries
 
-Gustav Radbruch of the SPD has been appointed Justice Minister.
+社民党的古斯塔夫·拉德布鲁赫（Gustav Radbruch）已被任命为司法部长。
 
 @foreign
-title: Foreign Ministry
-subtitle: This is usually the domain of Gustav Stresemann of the DVP.
-unavailable-subtitle: We do not have enough leverage.
+title: 外交部
+subtitle: 该职位通常由 DVP 的古斯塔夫·施特雷泽曼担任。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
 choose-if: leverage >= 10 and year >= 1928
 view-if: foreign_minister_party != "SPD"
 on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
 go-to: ministries if (stresemann_dead = 1 or in_weimar_coalition or in_left_front or in_popular_front); foreign_fail if stresemann_dead != 1 and not (in_weimar_coalition or in_left_front or in_popular_front)
 
-[? if stresemann_dead = 1 or in_weimar_coalition or in_left_front or in_popular_front : Rudolf Breitscheid of the SPD has been appointed Foreign Minister. ?]
+[? if stresemann_dead = 1 or in_weimar_coalition or in_left_front or in_popular_front : 社民党的鲁道夫·布莱特沙伊德（Rudolf Breitscheid）已被任命为外交部长。 ?]
 
 @foreign_fail
 on-arrival: dvp_relation -= 5
 
-With Gustav Stresemann as the main member of the DVP advocating a Grand Coalition with the SPD in the first place, under the expectation of being made foreign minister, our push for the ministry has caught him completely by surprise. The DVP has refused to cede the foreign ministry. 
+古斯塔夫·施特雷泽曼作为 DVP 中最初推动与社民党组建大联合的核心人物，本期望被任命为外交部长，我们对该部委的争取令他完全措手不及。DVP 拒绝让出外交部。
 
-We can call their bluff, jeopardizing the coalition [? if bourgeois_coalition >= 50 and right_coalition < 50 : and risk a bourgeois coalition forming instead ?][? if right_coalition >= 50 : and risk a right-wing coalition [? if bourgeois_coalition >= 50 : or a bourgeois coalition ?] forming instead ?], or back down.
+我们可以揭穿他们的虚张声势，让联合陷入危机[? if bourgeois_coalition >= 50 and right_coalition < 50 :，并冒着改由资产阶级联合组阁的风险 ?][? if right_coalition >= 50 :，并冒着改由右翼联合[? if bourgeois_coalition >= 50 : 或资产阶级联合 ?]组阁的风险 ?]，或者退让。
 
-- @call_bluff: Call their bluff.
-- @scholz_chancellor: Offer to make Ernst Scholz of the DVP chancellor.
-- @drop_foreign: Concede.
+- @call_bluff: 揭穿他们的虚张声势。
+- @scholz_chancellor: 提议让 DVP 的恩斯特·肖尔茨出任总理。
+- @drop_foreign: 让步。
 
 @call_bluff
 go-to: right_coalition_2 if right_coalition >= 50 and bourgeois_coalition < 50 and dvp_relation < 55; let_it_form if bourgeois_coalition >= 50; new_elections_spd if bourgeois_coalition < 50 and right_coalition < 50 and dvp_relation < 35; ministries if (dvp_relation >= 55 and bourgeois_coalition < 50) or (dvp_relation >= 35 and bourgeois_coalition < 50 and right_coalition < 50)
 on-departure: dvp_relation -= 10 if (dvp_relation >= 55 and bourgeois_coalition < 50) or (dvp_relation >= 35 and bourgeois_coalition < 50 and right_coalition < 50); coalition_dissent += 1 if (dvp_relation >= 55 and bourgeois_coalition < 50) or (dvp_relation >= 35 and bourgeois_coalition < 50 and right_coalition < 50)
 
-[? if (dvp_relation >= 60 and bourgeois_coalition < 50) or (dvp_relation >= 40 and bourgeois_coalition < 50 and right_coalition < 50) : Rudolf Breitscheid of the SPD has been appointed Foreign Minister. ?]
+[? if (dvp_relation >= 60 and bourgeois_coalition < 50) or (dvp_relation >= 40 and bourgeois_coalition < 50 and right_coalition < 50) : 社民党的鲁道夫·布莱特沙伊德（Rudolf Breitscheid）已被任命为外交部长。 ?]
 
 @scholz_chancellor
 on-arrival: dvp_relation -= 10; chancellor = "Scholz"; chancellor_party = "DVP"; left_dissent += 15; labor_dissent += 10; center_dissent += 5; workers_spd -= 4; new_middle_dvp += 2; old_middle_dvp += 3
 go-to: ministries
 
-In exchange for the Chancellory going to Ernst Scholz, we have been granted the Foreign Ministry. Our party is in upheaval over this concession.
+为换取总理职位归于恩斯特·肖尔茨，我们获得了外交部。我党因此让步而陷入动荡。
 
 @agriculture
-title: Agricultural Ministry
-subtitle: This is not our usual domain.
-unavailable-subtitle: We do not have enough leverage.
-choose-if: leverage >= 10 
+title: 农业部
+subtitle: 这并非我们惯常的领域。
+unavailable-subtitle: 我们的筹码不足。
+choose-if: leverage >= 10
 view-if: agriculture_minister_party != "SPD"
 on-arrival: leverage -= 10; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
 go-to: ministries
 tags: mins_1928
 
-Fritz Baade of the SPD has been appointed Agriculture Minister.
+社民党的弗里茨·巴德（Fritz Baade）已被任命为农业部长。
 
 @reichswehr
-title: Reichswehr Ministry
-subtitle: The Ministry responsible for the armed forces is not typically our domain; General Groener and the bourgeois-conservatives will be displeased.
-unavailable-subtitle: We do not have enough leverage.
+title: 国防部
+subtitle: 负责武装部队的部委通常不在我们职权范围内；格勒纳将军和资产阶级保守派将感到不悦。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
 choose-if: leverage >= 15 and year >= 1928
 view-if: reichswehr_minister_party != "SPD"
 on-arrival: leverage -= 15; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; coup_progress += 1
 go-to: ministries
 
-Julius Leber of the SPD has been appointed Reichswehr Minister.
+社民党的尤利乌斯·勒贝尔（Julius Leber）已被任命为国防部长。
 
 @postal_affairs
-title: Postal Affairs Ministry
+title: 邮政部
 view-if: fun_value >= 62 and fun_value < 70 and postal_affairs_minister_party != "SPD"
-subtitle: This is not our typical domain, and it is not recommended we take this ministry unless we're fine with silly jokes.
-unavailable-subtitle: We do not have enough leverage.
+subtitle: 这并非我们的典型领域，除非我们不介意一些无聊的笑话，否则不建议接此部委。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_1928
 choose-if: leverage >= 35 and chancellor == "Wirth"
 on-arrival: leverage -= 35; postal_affairs_minister_party = "SPD"; postal_affairs_minister = "Fillak"
 go-to: ministries
 
-Tobias Fillak of the SPD has been appointed Postal Affairs Minister.
+社民党的托比亚斯·菲利亚克（Tobias Fillak）已被任命为邮政部长。
 
 
 
 @no_more
-title: No more ministries.
+title: 不再争取更多部委。
 on-arrival: labor_dissent += 10 if historical_mode and labor_minister_party != "SPD"
-subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+subtitle: [? if leverage >= 10 : 我们仍有筹码可争取更多部委。 ?][? if leverage < 10 : 我们剩下的筹码不多了。 ?]
 tags: mins_1928
 
-This coalition arrangement is tolerable to all.
+各方都可以接受这一联合安排。
 
 @drop_labor
-title: Drop the Labor Ministry.
+title: 让出劳动部。
 view-if: labor_minister_party = "SPD"
 on-arrival: labor_minister_party = "Z"; labor_minister = "Stegerwald"; leverage += 5;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_interior
-title: Drop the Interior Ministry.
+title: 让出内政部。
 view-if: interior_minister_party = "SPD"
 on-arrival: interior_minister_party = "Z"; interior_minister = "Wirth"; leverage += 5;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_finance
-title: Drop the Finance Ministry.
+title: 让出财政部。
 view-if: finance_minister_party = "SPD"
 on-arrival: finance_minister_party = "DVP"; finance_minister = "Moldenhauer"; leverage += 10; finance_minister_party = "Z" if in_weimar_coalition or in_popular_front; finance_minister = "Köhler" if in_weimar_coalition or in_popular_front
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_economic
-title: Drop the Economic Ministry.
+title: 让出经济部。
 view-if: economic_minister_party = "SPD"
 on-arrival: economic_minister_party = "DVP"; economic_minister = "Curtius"; leverage += 10; economic_minister_party = ddp_name if in_weimar_coalition or in_popular_front; economic_minister = "Dietrich" if in_weimar_coalition or in_popular_front;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_justice
-title: Drop the Justice Ministry.
+title: 让出司法部。
 view-if: justice_minister_party = "SPD"
 on-arrival: justice_minister_party = ddp_name; justice_minister = "Koch-Weser"; leverage += 10;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_foreign
-title: Drop the Foreign Ministry.
+title: 让出外交部。
 view-if: foreign_minister_party = "SPD"
 on-arrival: foreign_minister_party = "DVP"; foreign_minister = "Stresemann"; foreign_minister = "Curtius" if stresemann_dead; leverage += 10; foreign_minister_party = "Z" if in_weimar_coalition or in_popular_front; foreign_minister = "Wirth" if in_weimar_coalition or in_popular_front;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_agriculture
-title: Drop the Agriculture Ministry.
+title: 让出农业部。
 view-if: agriculture_minister_party = "SPD"
 on-arrival: agriculture_minister_party = ddp_name; agriculture_minister = "Dietrich"; leverage += 10; agriculture_minister_party = "Z" if in_weimar_coalition; agriculture_minister = "Hermes" if in_weimar_coalition
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_reichswehr
-title: Drop the Reichswehr Ministry.
+title: 让出国防部。
 view-if: reichswehr_minister_party = "SPD"
 on-arrival: reichswehr_minister_party = "I"; reichswehr_minister = "Groener"; leverage += 15; coup_progress -= 1
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_postal_affairs
-title: Drop the Postal Affairs Ministry.
+title: 让出邮政部。
 view-if: postal_affairs_minister_party == "SPD"
 tags: drop_mins_1928
 on-arrival: leverage += 35; postal_affairs_minister_party = "I"; postal_affairs_minister = "Nobody"
