@@ -1,13 +1,13 @@
 title: Left-wing Split
-new-page: true 
+new-page: true
 subtitle: The Left's disagreements with our policies have grown too severe.
 tags: event
 view-if: left_dissent >= 60
 on-arrival: left_split = 1; thuringia_spd -= 0.05; thuringia_sapd += 0.05; sapd_formed = 1 if centrists_resign = 1 or unions_independent = 1 or (left_strength > center_strength and left_strength > labor_strength and left_strength > reformist_strength and left_strength > neorevisionist_strength); left_strength = left_strength/2; workers_spd -= 5; unemployed_spd -= 5; workers_sapd += 5; workers_kpd += 3; n_advisors -= 1 if levi_advisor == 1; levi_advisor = 0; rb_strength -= 300; kpd_relation -= 5; rb_militancy -= 0.05 if rb_militancy >= 0.1; n_advisors -= 1 if seydewitz_advisor == 1; seydewitz_advisor = 0; n_advisors -= 1 if rosenfeld_advisor == 1; rosenfeld_advisor = 0; n_advisors -= 1 if siemsen_advisor == 1; siemsen_advisor = 0; socialism -= 4
 max-visits: 1
 
-= Left-wing members split
+= 左翼成员分裂
 
-Our policy choices have greatly offended the left, and many of their leaders have split to form a new party, the SAPD, or Socialist Worker's Party. They do not count a huge section of our membership, so this should be survivable. 
+我们的政策选择极大冒犯了左翼，他们的许多领袖出走另立新党——德国社会党（SAPD），即社会主义工人党。他们没有占据我们党员的大部分，因此尚可承受。
 
-[? if centrists_resign = 1 : Many former Centrist Marxists have joined with the SAPD, the party formed by dissident leftists. They have brought their support base and organization skills to the party, leading to its growth as a nascent rival to the SPD for the support of the working class. ?] [? if unions_independent == 1 : Many formerly SPD-affiliated unions have flocked to the SAPD, helping unite the previously scattered trade unions behind it. [? if centrists_resign == 1 : The Center Marxists have helped bring the unions under the SAPD's fold. ?] ?]
+[? if centrists_resign = 1 : 许多前中间派马克思主义者已加入由异议左派组建的德国社会党。他们带来的支持基础和组织能力推动了该党的壮大，使其成为社民党争取工人阶级支持的新生对手。 ?] [? if unions_independent == 1 : 许多前社民党附属工会涌向 SAPD，帮助统一了此前分散的工会。[? if centrists_resign == 1 : 中间派马克思主义者协助将工会纳入 SAPD 麾下。 ?] ?]

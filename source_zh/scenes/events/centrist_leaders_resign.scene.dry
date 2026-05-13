@@ -1,13 +1,13 @@
 title: Centrist leaders resign
-new-page: true 
+new-page: true
 subtitle: Centrist disagreements with our policies have grown too severe.
 tags: event
 view-if: center_dissent >= 60
 on-arrival: center_strength *= 0.3; workers_spd -= 5; n_advisors -= 1 if wels_advisor == 1; n_advisors -= 1 if hilferding_advisor == 1; n_advisors -= 1 if muller_advisor == 1; wels_advisor = 0; hilferding_advisor = 0; muller_advisor = 0; rb_strength -= 100; left_dissent += 3; reformist_dissent += 3; labor_dissent += 2; centrists_resign = 1; sapd_formed = 1 if left_split and sapd_formed != 1
 max-visits: 1
 
-= Centrist leaders resign
+= 中间派领袖辞职
 
-Our policy choices have greatly offended the Centrist faction. Many of our most experienced leaders have resigned.
+我们的政策选择极大冒犯了中间派。我们最有经验的众多领袖已辞职。
 
-[? if left_split = 1 : Many former Centrist Marxists have joined with the SAPD, the party formed by dissident leftists. They have brought their support base and organization skills to the party, leading to its growth as a nascent rival to the SPD for the support of the working class. ?]
+[? if left_split = 1 : 许多前中间派马克思主义者已加入由异议左派组建的德国社会党（SAPD）。他们带来的支持基础和组织能力推动了该党的壮大，使其成为社民党争取工人阶级支持的新生对手。 ?]

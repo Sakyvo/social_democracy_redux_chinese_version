@@ -6,21 +6,21 @@ max-visits: 1
 on-arrival: return_to_normalcy = 1; nazi_peak = 1; nazi_peak_timer = 2; nazi_peak_timer += (nsdap_votes/5); workers_nsdap -= 8; new_middle_nsdap -= 8; old_middle_nsdap -= 8; rural_nsdap -= 8; unemployed_nsdap -= 8; sa_strength *= 0.7; coup_progress -= 4 if coup_progress > 4; new_middle_ddp += 5; new_middle_dvp += 3; old_middle_ddp += 3; old_middle_dvp += 5; old_middle_dnvp += 3; rural_dnvp += 6; rural_ddp += 2; rural_dvp += 2; unemployed_kpd += 3; unemployed_spd += 3; strife -= 2; weimar_dissent += 3 if weimar_plan_adopted; weimar_dissent += 1 if z_party_leader != "Joos" and weimar_plan_adopted; socialism -= 3
 tags: event
 
-= Return to Normalcy
+= 回归常态
 
-Germany is finally recovering from the Great Depression. As the economy gradually improves, the political crisis begins to unravel as well.
+德国终于从大萧条中复苏。随着经济逐步改善，政治危机也开始消解。
 
-Finally, the internal contradictions of the NSDAP have caught up to it. With the improving economic conditions, many business leaders are less interested in supporting them. Tensions between their remaining big capitalist funders and their lower middle class frontliners have come to a head, leading to desertions and public spats. This all saps Hitler's aura of strength, weakening Nazi support across a variety of demographics.
+终于，纳粹党的内部矛盾追上了它。随着经济状况改善，许多商界领袖对支持他们的兴趣减弱。其残余的大资本资助者与下层中产阶级前线之间的紧张关系达到顶点，导致脱党和公开争吵。这一切都消耗了希特勒的强势光环，削弱了纳粹党在各种人群中的支持。
 
-[? if weimar_dissent >= 3 and weimar_plan_adopted == 1 : As the crisis diminishes, questions about the necessity of the Weimar Plan are beginning to spread amongst the Center Party. [? if z_party_leader == "Joos" : Joseph Joos is resisting these pushes, but his grip on the party may not be so strong. ?] ?]
+[? if weimar_dissent >= 3 and weimar_plan_adopted == 1 : 随着危机消退，对魏玛计划必要性的质疑开始在中央党中蔓延。[? if z_party_leader == "Joos" : 约瑟夫·约斯正在抵制这些声音，但他对党的掌控未必如此牢固。 ?] ?]
 
-- @celebrate: This is an occasion to celebrate.
-- @complacency: The Nazis are still a threat. We must not be too complacent.
+- @celebrate: 这是值得庆祝的时刻。
+- @complacency: 纳粹仍是威胁，我们决不可掉以轻心。
 
 @celebrate
 
-This is an occasion to celebrate! Hopefully he Nazis will no longer be a threat to the Republic.
+这是值得庆祝的时刻！希望纳粹再也不会成为共和国的威胁。
 
 @complacency
 
-Even in their weakened state, the Nazis are still a threat. We must not be too complacent.
+即使在虚弱状态下，纳粹仍是威胁。我们决不可掉以轻心。

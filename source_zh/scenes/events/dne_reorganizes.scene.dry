@@ -6,17 +6,17 @@ max-visits: 1
 new-page: true
 tags: event
 
-= The DNE Consolidates
+= DNE 整合
 
-What was at first a Strasserist split from the NSDAP to support Kurt von Schleicher has reorganized into the political arm of Kurt von Schleicher's government. Opening itself up to politicians all ideologies, the party has become a strange syncretic front of all those in support of Schleicher, and in lesser cases even those not ideologically supportive of Schleicher but opportunists simply seeing membership in the party as a quick and easy way to rise the ranks. 
+最初仅是支持库尔特·冯·施莱谢尔的纳粹党施特拉塞尔派分裂，如今已重组为施莱谢尔政府的政治派别。该党向各种意识形态的政客开放，已成为支持施莱谢尔者奇特的折中阵线，更不乏并非意识形态上支持施莱谢尔、仅将入党视为快速升迁捷径的投机分子。
 
-It is clear that Schleicher is attempting to use the DNE as the basis of a personalist party with which to secure his government's fate come the next elections. As emergency decrees slowly strip more and more press freedoms, the DNE has an increasingly large advantage. 
+显然，施莱谢尔正试图把 DNE 作为他个人主义政党的基础，以此确保下次选举时其政府的命运。随着紧急法令逐步剥夺更多新闻自由，DNE 拥有日益巨大的优势。
 
-- @and: And...
+- @and: 还有……
 
 @and
 view-if: labor_dissent >= 60 and not unions_independent
-subtitle: The ADGB reconsiders its allegiances
+subtitle: ADGB 重新考虑其归属
 on-arrival: unions_independent = 1; workers_spd -= 20; unemployed_spd -= 10; workers_dne += 15; unemployed_dne += 10
 
-The ADGB has announced its separation from the SPD. It has gone to join Schleicher in his fledgling dictatorship. 
+ADGB 已宣布脱离社民党，转而加入施莱谢尔的初生独裁政府。

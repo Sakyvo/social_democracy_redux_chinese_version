@@ -5,14 +5,14 @@ max-visits: 1
 new-page: true
 tags: event
 
-= The Bloodhound Returns
+= 「血犬」归来
 
-Emerging from a long period of silence and increasing irrelevancy, former Reichswehr Minister Gustav Noske has re-emerged and approached the increasingly reformist-dominated SPD with a plan. With the increasing threat of the far-right and far-left overthrowing the Republic and its institutions, the intense reactionary resurgence across Germany, and Hindenburg's declining health, Gustav Noske believes that he is the best bet the Weimar Republic has. Thus, he asks for the presidential nomination.
+经过长期沉默和日益边缘化，前国防部长古斯塔夫·诺斯克重新出现，向日益由改良派主导的社民党提出一项计划。鉴于极右翼和极左翼颠覆共和国及其制度的威胁日增、德国各地强烈的反动复兴以及兴登堡日渐衰退的健康，古斯塔夫·诺斯克认为他是魏玛共和国最好的赌注。因此，他要求总统提名。
 
-To back him would be risky, and certainly hurt our ties with the communists even further. This is the man who ordered the suppression of the Spartacist Uprising, the man who went so far to the right that he voted for Hindenburg in 1925 alongside the Nazis even while the rest of the party backed Otto Braun and then Wilhelm Marx. Can Gustav Noske really win?
+支持他将充满风险，必将进一步损害我们与共产党人的关系。这个人下令镇压斯巴达克起义，他右倾如此之深以至于在 1925 年与纳粹一道投票给兴登堡，而其余党员都支持奥托·布劳恩然后是威廉·马克思。古斯塔夫·诺斯克真能赢吗？
 
-- @back_noske: Yes he can. Tell Noske he has our support.
-- @get_him_out: Who does he think he is? Tell that loser to go right back up to Hanover.
+- @back_noske: 是的他能。告诉诺斯克他得到了我们的支持。
+- @get_him_out: 他以为自己是谁？告诉那个失败者赶紧滚回汉诺威去。
 
 @back_noske
 on-arrival: reichswehr_loyalty += 0.05; noske_running = 1; kpd_relation -= 10; left_dissent += 25; center_dissent += 10; labor_dissent += 10; workers_spd -= 4

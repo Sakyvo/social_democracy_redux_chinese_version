@@ -4,4 +4,4 @@ view-if: sa_banned == 1 and sa_ban_timer == 0 and judicial_reform < 2
 on-arrival: sa_banned = 0; sa_strength += 100; sa_militancy += 0.04
 tags: event
 
-Judges have ordered the Nazi SA to be re-legalized. They immediately return to mass recruiting and arming.
+法官们下令重新合法化纳粹冲锋队。他们立即恢复大规模招募和武装。

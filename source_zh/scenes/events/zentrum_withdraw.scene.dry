@@ -6,24 +6,24 @@ view-if: weimar_dissent >= 6 and z_party_leader != "Joos" and weimar_plan_adopte
 on-arrival: weimar_plan_adopted = 0; weimar_rejected = 1; left_dissent += 5; center_dissent += 5; labor_dissent += 2; workers_spd -= 3; workers_z -= 2; new_middle_spd -= 2; new_middle_ddp -= 1; pro_republic -= 6; z_relation -= 15; workers_sapd += 2 if sapd_consolidated; workers_z -= 3 if unemployed >= 13; z_relation += 10 if return_to_normalcy; pro_republic += 4 if return_to_normalcy
 max-visits: 1
 
-= Weimar Plan Collapse
+= 魏玛计划崩溃
 
-A crisis! The Center Party has abandoned the Weimar Plan at a recent party congress, removing it from their party platform and cancelling plans for further joint rallies. They believe the crisis has subsided and there is no purpose to further cooperation. [? if unemployed >= 13 : This is despite the best attempts of Joseph Joos to rally the Catholic trade unions to the plan's defense. ?]
+危机！中央党在最近一次党大会上抛弃了魏玛计划，将其从党纲领中删除并取消进一步的联合集会计划。他们认为危机已平息，无需进一步合作。[? if unemployed >= 13 : 尽管约瑟夫·约斯极力试图集结天主教工会捍卫该计划。 ?]
 
-The Left and Center have, feeling vindicated, renewed their dissent, with the Left calling for a pivot towards the Communists for reliable allies against fascism. Meanwhile the [+ ddp_name +]'s status is uncertain, with some in their party calling to also move on.
+左翼和中间派觉得自身立场得到证实，重新发起异议——左翼呼吁转向共产党作为对抗法西斯主义的可靠盟友。同时，[+ ddp_name +] 的态度也不明朗，党内有人呼吁同样转向他途。
 
-- @break_toleration: No Weimar Plan, no governing mandate.
-- @troubling: Troubling developments...
+- @break_toleration: 没有魏玛计划，就没有执政授权。
+- @troubling: 令人忧虑的发展……
 
 @break_toleration
-subtitle: We will put forward a motion of no confidence in the Reichstag.
+subtitle: 我们将在国会提出不信任投票动议。
 view-if: spd_toleration == 1
 on-arrival: next_election_time = time+3 if next_election_time >= time+3; next_election_month = month + 3 if next_election_time >= time+3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0;
 
-We have definitively broken with the [+ chancellor +] government, and have voted against them in a vote of no confidence.
+我们已与 [+ chancellor +] 政府决定性地决裂，并在不信任投票中投票反对。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @troubling
 
-With the Weimar Plan's discrediting in other parties, its future even within Social Democracy becomes uncertain.
+随着魏玛计划在其他政党中的信誉扫地，即便在社民党内部其前途也变得不确定。

@@ -1,11 +1,11 @@
 title: Hugenberg Ousted!
 subtitle: The DNVP emerges from crisis
 view-if: hindenburg_dead and coup_progress < 6 and dnvp_votes >= 10 and nationalism < pro_republic and sa_force+sh_force < 50 and right_coalition < 50 and nsdap_votes < spd_votes
-on-arrival: dnvp_reform = 1; dnvp_reform_timer = (nationalism/5); z_relation -= 5; dvp_relation -= 5; old_middle_dnvp -= 2; rural_dnvp += 5; new_middle_dnvp -= 1; sh_militancy -= 0.1; sa_strength -= 50; sh_strength += 50; nationalism += 5; 
+on-arrival: dnvp_reform = 1; dnvp_reform_timer = (nationalism/5); z_relation -= 5; dvp_relation -= 5; old_middle_dnvp -= 2; rural_dnvp += 5; new_middle_dnvp -= 1; sh_militancy -= 0.1; sa_strength -= 50; sh_strength += 50; nationalism += 5;
 max-visits: 1
 new-page: true
 tags: event
 
-= Hugenberg Ousted
+= 胡根贝格下台
 
-As the crisis in the Nazi Party following their failure to seize power sent shockwaves throughout the far-right, the DNVP found itself regrowing and re-emerging as a relevant fascist force in the country. But as the DNVP's position improved, Hugenberg's only worsened. He had failed, failed to tame the Nazis and ride their wave to power. With no real allies left and the DNVP's reliance on Hugenberg for financing slowly diminishing, the party has effectively ousted him. As a result, the DNVP will be more willing to enter into coalition governments. This could be dangerous for us, but is generally an improvement in the stability of the Republic.
+随着纳粹党夺权失败后的危机在极右翼中掀起冲击波，DNVP 反而开始重新壮大，重新成为国内具有影响力的法西斯力量。但随着 DNVP 处境改善，胡根贝格的处境只会更糟。他失败了——未能驯服纳粹并借其浪潮上位。失去真正盟友、DNVP 对其财政依赖逐渐减弱后，党内已实际上将他驱逐。结果是，DNVP 将更愿意加入联合政府。这对我们或许是危险的，但总体上对共和国稳定有所改善。

@@ -6,11 +6,11 @@ tags: event
 new-page: true
 on-arrival: west_relation -= 1; italo_ethiopian_war = 1; global_tension += 2
 
-= Second Italo-Ethiopian War
+= 第二次意大利-埃塞俄比亚战争
 
-After months of unresolved escalation and weak League of Nations action, Italian forces have launched an invasion of Ethiopia, sparking the Second Italo-Ethiopian War. Despite our best efforts to sway them against Italy, France and Britain seem to distrust us and our motives, and are unwilling to alienate a potential ally against us.
+经过数月未解决的紧张局势升级和国际联盟的软弱行动，意大利军队对埃塞俄比亚发动入侵，引发了第二次意大利-埃塞俄比亚战争。尽管我们尽全力劝阻其反对意大利，法国和英国似乎仍不信任我们及我们的动机，不愿疏远一个对抗我们的潜在盟友。
 
-(This is a WIP event, stuff soon)
+（此为开发中事件，更多内容即将推出）
 
 #Italian forces have invaded Ethiopia from Eritrea, sparking a war between the two states. This comes following a prior crisis where Italian forces, operating a garrison well within Ethiopian territory, refused to cooperate with an Anglo-Ethiopian survey of the region and, after a standoff, attacked the Ethiopian encampment.
 

@@ -6,15 +6,15 @@ max-visits: 1
 tags: event
 on-arrival: red_banner = 1; workers_kpd += 4; unemployed_kpd += 8; rfb_strength += 50; socialism += 5
 
-= Red Banners Across Germany
+= 红旗插遍德国
 
-With our transition into a Soviet Republic, the Communists have surged in popularity, organizing through the councils to propel themselves into the spotlight. Where the ADGB does not have an assured majority, it is increasingly common for the Communists to win. 
+随着我们向苏维埃共和国转型，共产党人气大涨，通过议会组织将自己推向聚光灯下。在 ADGB 没有稳固多数之处，共产党获胜的情况日益普遍。
 
-Meanwhile, on the streets, their paramilitary RFB swells, parading from city to city, helping in the Communist campaign. Some on the right of our party alledge electoral fraud, but the Communists deny these claims, swearing a legitimate campaign. The unemployed are just happy to have a job, and the growing Communist army proves a gateway for many into radical ideology.
+与此同时，在街头，他们的准军事组织 RFB 不断壮大，从一个城市游行到另一个城市，协助共产党的运动。我党右翼有人指控选举舞弊，但共产党否认这些说法，发誓自己进行的是合法竞选。失业者只是高兴有了工作，而日益壮大的共产党武装为许多人打开了走向激进意识形态的大门。
 
-- @reichsbanner.militant: Fund the Reichsbanner to compete with the Communists.
-- @observe: Observe the situation.
+- @reichsbanner.militant: 资助黑红金国旗团以与共产党人竞争。
+- @observe: 观望局势。
 
 @observe
 
-We will monitor the situation further before taking any action.
+我们将在采取任何行动之前进一步监控局势。

@@ -6,22 +6,22 @@ tags: event
 on-departure: spanish_civil_war = 0
 new-page: true
 
-= A New Spain
+= 新西班牙
 
-After intense and prolonged fighting between fundamentally opposed forces over the future of Spain, a clear winner has finally emerged from the dust, ready to lead Spain forward.
+经过对立力量为西班牙未来进行的激烈持久战，尘埃落定，明确的胜者终于出现，准备引领西班牙前进。
 
-- @republican_victory: The Republicans.
-- @nationalist_victory: The Nationalists.
+- @republican_victory: 共和派。
+- @nationalist_victory: 民族主义派。
 
 @republican_victory
 view-if: national_strength <= 0
 on-arrival: pro_republic += 10; socialism += 5; nationalism -= 5; republican_spain = 1
 
-The forces of democracy and socialism have triumphed over the reactionaries in Spain. This bolsters progressivism internationally, even here in Germany. Only time will tell if the new Spanish republic sees a better fate than the last, but hopes are high.
+民主与社会主义力量战胜了西班牙的反动派。这强化了国际进步主义，包括德国本地。新西班牙共和国能否比上一次拥有更好的命运，只有时间能告诉我们，但希望很大。
 
 @nationalist_victory
 view-if: republic_strength <= 0
 on-arrival: nationalism += 10; pro_republic -= 5; nationalist_spain = 1
 
-Unfortunately, it seems the reactionaries have won in the struggle for Spain, and crushed the workers' movement in the country. Another country falls to fascism. Let us hope it is the last.
+不幸的是，反动派似乎在西班牙之战中获胜，并粉碎了该国的工人运动。又一个国家沦于法西斯主义之手。但愿这是最后一个。
 

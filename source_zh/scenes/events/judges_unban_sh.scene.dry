@@ -4,4 +4,4 @@ view-if: sh_banned == 1 and sh_ban_timer == 0 and judicial_reform < 2
 on-arrival: sh_banned = 0; sh_strength += 100; sh_militancy += 0.01
 tags: event
 
-Judges have ordered the Stahlhelm to be re-legalized. They immediately return to mass recruiting.
+法官们下令重新合法化钢盔团。他们立即恢复大规模招募。

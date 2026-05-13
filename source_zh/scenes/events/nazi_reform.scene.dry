@@ -6,16 +6,16 @@ max-visits: 1
 new-page: true
 tags: event
 
-= [+ year +] Nazi Party Congress
+= [+ year +] 年纳粹党大会
 
-After abandoning revolutionary tactics with the failure of the Beer Hall Putsch and instead attempting to subvert democracy from within through hardline, non-compromising parliamentary participation, the Nazis have seen their tactics yet again fail.
+在啤酒馆政变失败后放弃革命策略，转而通过强硬、不妥协的议会参与从内部颠覆民主——纳粹的策略再次失败。
 
-Now, emerging from a long period of internal re-consolidation, the Nazis have unveiled their new party manifesto. On the surface a significant moderation, [+ nsdap_leader +]'s convictions and those of his party remain unchanged. The Nazis have simply undergone the next natural change in the strategy for destroying democracy, becoming a true trojan horse.
+如今，纳粹党经过长时间的内部重新整合，公布了新的党纲领。表面看来这是一次重大温和化转向，但 [+ nsdap_leader +] 及其党的根本信念毫无改变。纳粹党不过是经历了摧毁民主战略的下一次自然演变，成为真正的特洛伊木马。
 
-- @concern: A troubling development.
-- @iron_front: Maintain pressure on the fascists with the Iron Front!
+- @concern: 令人忧虑的发展。
+- @iron_front: 借助钢铁阵线对法西斯保持压力！
 
 @concern
 on-arrival: nazi_urgency += 1
 
-Hopefully, by now democracy has been entrenched enough that it will be impossible for the Nazis to dislodge.
+希望到目前为止，民主已根深蒂固，使纳粹无法撼动。

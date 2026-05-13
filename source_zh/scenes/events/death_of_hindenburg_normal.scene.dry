@@ -8,10 +8,10 @@ tags: event
 face-image: img/Hindenburg_head.jpg
 go-to: game_over_1934 if end_disabled != 1
 
-= The Death of Hindenburg
+= 兴登堡之死
 
-Paul von Hindenburg has passed away at age 86.
+保罗·冯·兴登堡以 86 岁高龄辞世。
 
-The nation engages in an outpouring of grief for its war hero and former president. Even for committed socialists and republicans, this is a bittersweet moment. Even though he was a manifestation of Prussian militarism and monarchism, he still led the nation through difficult times, without [? if hitler_been_sacked : successfully ?] destroying democracy. It could always have been worse.
+举国为这位战争英雄和前总统而悲痛。即便对坚定的社会主义者和共和派而言，这也是一个苦乐参半的时刻。尽管他是普鲁士军国主义和君主制的化身，他仍然带领国家度过了艰难时期，没有[? if hitler_been_sacked : 成功地?]摧毁民主。情况本可能更糟。
 
-With the passing of Hindenburg, it seems as if an era of history is closing. The worst years of crisis are over, and Nazism's days are numbered. Perhaps Germany will finally enter into a new era of genuine peace...
+随着兴登堡的去世，似乎一个时代的历史正在落幕。最严峻的危机岁月已经过去，纳粹主义的日子也屈指可数。或许德国终将进入一个真正和平的新时代……
