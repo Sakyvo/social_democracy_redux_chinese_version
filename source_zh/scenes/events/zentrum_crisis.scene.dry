@@ -12,48 +12,48 @@ if (Q.right_strength < 4) {
 !}
 max-visits: 1
 
-= Zentrum in Crisis
+= 中央党陷入危机
 
-As the crisis hitting Germany subsides, the necessity of the Weimar Plan has come into question. Despite Joos' best attempts to assuage concerns, the party right-wing has still turned on him and the plan, seeking to remove it from the party platform. For this task, a broad coalition has formed against Joos. It is impossible to say if Joos will win.
+随着冲击德国的危机逐渐退却，魏玛计划的必要性也遭到质疑。尽管约斯尽其所能地安抚各方关切，党内右翼仍对他和该计划倒戈相向，希望将其从党纲中剔除。为此，一个反约斯的广泛联盟已经形成。约斯能否胜出，难以预料。
 
-- @vote: Let's hope for the best.
-- @help_joos: Let's help Joos with a minor media campaign.
+- @vote: 但愿一切顺利。
+- @help_joos: 让我们以一次小规模的媒体运作助约斯一臂之力。
 
 @help_joos
 subtitle: -1 resource.
 on-arrival: resources -= 1; joos_strength += (radio+commercialized_media)
 
-We provide Joos's campaign with some financial aid and a minor media campaign. Let's hope this is enough to win him the congress.
+我们向约斯的运作提供了一定的财政援助和一次小规模的媒体战。但愿这足以让他赢得党代会。
 
-- @vote: Now the congress.
+- @vote: 现在进入党代会环节。
 
 @vote
 
-Pro-Weimar Delegates: [+ joos_strength +]
-Anti-Weimar Delegates: [+ right_strength +]
+支持魏玛代表：[+ joos_strength +]
+反对魏玛代表：[+ right_strength +]
 
-- @joos_victory_wide: The "Weimarists" win the vote.
-- @joos_victory_slim: The "Weimarists" narrowly win the vote.
-- @joos_loss_wide: The "Weimarists" lose the vote.
-- @joos_loss_slim: The "Weimarists" narrowly lose the vote.
+- @joos_victory_wide: "魏玛派"赢得表决。
+- @joos_victory_slim: "魏玛派"以微弱优势赢得表决。
+- @joos_loss_wide: "魏玛派"输掉表决。
+- @joos_loss_slim: "魏玛派"以微弱劣势输掉表决。
 
 @joos_victory_wide
 on-arrival: old_middle_z -= 6; rural_z -= 6; new_middle_z -= 3; catholics_z -= 3; workers_z += 2
 view-if: joos_strength >= right_strength and (joos_strength/right_strength) >= 1.1
 
-The Weimar Plan is reaffirmed by a [+ joos_strength +]-[+ right_strength +] vote in the party congress, a safe margin. Some grumblers in the more conservative bases of the party desert, but for the most part the congress puts an end to the question, for now. 
+党代会以 [+ joos_strength +]–[+ right_strength +] 的安全多数重申魏玛计划。党内更保守的基本盘中一些发牢骚者出走，但党代会基本上为这个问题暂时画上了句号。
 
 @joos_victory_slim
 on-arrival: old_middle_z -= 12; rural_z -= 10; new_middle_z -= 6; catholics_z -= 8
 view-if: joos_strength >= right_strength and (joos_strength/right_strength) < 1.1
 
-After a long and heated debate and vote, the Weimar Plan is narrowly reaffirmed by a [+ joos_strength +]-[+ right_strength +] vote in the party congress. In the following days, many prominent politicians on the party's right resign, while financial support from capitalists dries up for the party. The Center Party remains our ally, but at what cost for them? Rumors have even gone as far as to suggest that Joseph Joos may be considering resignation, despite his victory in the vote.
+经过漫长而激烈的辩论与投票，党代会以 [+ joos_strength +]–[+ right_strength +] 的微弱优势重申魏玛计划。其后数日，许多党内右翼大佬辞职，资本家对中央党的财政支持也悄然撤离。中央党仍是我们的盟友，但他们为此付出的代价又是几何？甚至有传言：尽管赢下表决，约瑟夫·约斯可能正在考虑辞职。
 
 @joos_loss_wide
 on-arrival: workers_z -= 5; catholics_spd -= 3; new_middle_z -= 3; weimar_plan_adopted = 0; weimar_rejected = 1; left_dissent += 5; center_dissent += 5; labor_dissent += 2; pro_republic -= 6; z_relation -= 15; workers_sapd += 2 if sapd_consolidated; workers_z -= 3 if unemployed >= 13; z_relation += 10 if return_to_normalcy; pro_republic += 4 if return_to_normalcy; z_party_leader = "Kaas"
 view-if: right_strength >= joos_strength and (right_strength/joos_strength) >= 1.1
 
-The Weimar Plan is defeated by a [+ joos_strength +]-[+ right_strength +] vote in the party congress, a safe margin. Joseph Joos resigns as party leader, with Ludwig Kaas being elected in his place. Demotivated, turnout amongst Catholic trade unionists decreases, with some even looking to other parties.
+党代会以 [+ joos_strength +]–[+ right_strength +] 的安全多数否决了魏玛计划。约瑟夫·约斯辞去党魁一职，由路德维希·卡斯接任。情绪低落之下，天主教工会人士投票率下降，部分人甚至转投他党。
 
 # todo: Stegerwald can be elected too
 
@@ -61,6 +61,6 @@ The Weimar Plan is defeated by a [+ joos_strength +]-[+ right_strength +] vote i
 on-arrival: workers_z -= 10; new_middle_z -= 6; catholics_z -= 3; weimar_plan_adopted = 0; weimar_rejected = 1; left_dissent += 5; center_dissent += 5; labor_dissent += 2; pro_republic -= 6; z_relation -= 15; workers_sapd += 2 if sapd_consolidated; workers_z -= 3 if unemployed >= 13; z_relation += 10 if return_to_normalcy; pro_republic += 4 if return_to_normalcy; z_party_leader = "Kaas"
 view-if: right_strength >= joos_strength and (right_strength/joos_strength) < 1.1
 
-After a long and heated debate and vote, the Weimar Plan is narrowly defeated by a [+ joos_strength +]-[+ right_strength +] vote in the party congress. Joseph Joos resigns as party leader, with Ludwig Kaas being elected in his place. Many Catholic workers desert the party, with some turning to us.
+经过漫长而激烈的辩论与投票，党代会以 [+ joos_strength +]–[+ right_strength +] 的微弱劣势否决了魏玛计划。约瑟夫·约斯辞去党魁一职，由路德维希·卡斯接任。许多天主教工人离弃中央党，部分人转投我们。
 
 # todo: support changes as %s (eg *= 0.9 instead of -= 5)

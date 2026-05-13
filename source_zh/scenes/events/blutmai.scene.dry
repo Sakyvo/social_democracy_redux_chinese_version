@@ -5,56 +5,56 @@ tags: event
 view-if: year = 1929 and month = 5 and in_right_coalition == 0
 max-visits: 1
 
-= May Day, 1929
+= 1929 年五一
 
-Tensions run high in Berlin. The Communists are planning a demonstration to commemorate the 10th anniversary of the Spartacist Uprising. No one has forgotten that it was our party members who ordered the uprising's suppression, and the Communists still blame us for the deaths of Rosa Luxemburg and Karl Liebknecht.
+柏林局势紧张。共产党人计划举行示威以纪念斯巴达克起义十周年。没人忘记，当年是我党党员下令镇压了那场起义，共产党人至今仍把罗莎·卢森堡（Rosa Luxemburg）和卡尔·李卜克内西（Karl Liebknecht）的死归罪于我们。
 
-Many non-communists are afraid of the possibility of another violent uprising, and our allies in the Prussian coalition are asking the Prussian Interior Ministry to ban the demonstrations.
+许多非共产党人惧怕又一场暴力起义的可能性，我们的普鲁士联合政府盟友正要求普鲁士内政部禁止此次示威。
 
-- @ban: Ban the demonstrations.
-- @allow_police: Allow the demonstrations to proceed, but maintain a heavy police presence.
-- @allow: Allow the demonstrations to proceed.
-- @join: Join in the demonstrations ourselves.
+- @ban: 禁止示威。
+- @allow_police: 允许示威进行，但保持严密的警察部署。
+- @allow: 允许示威照常进行。
+- @join: 我们亲自加入示威。
 
 @ban
 on-arrival: blutmai = 1; kpd_relation -= 25; z_relation += 5; dvp_relation += 5; workers_spd -= 3; unemployed_spd -= 3; workers_kpd += 3; unemployed_kpd += 3; communist_coalition -= 3; strife += 1; left_dissent += 5
 face-image: img/blutmai.jpg
 
-We issued the order to ban the demonstrations, and sent police to enforce the ban. There was a confrontation between the police and Communists, and violence erupted. Reports say that the Berlin police killed dozens of demonstrators and innocent bystanders. The Communists are already calling this incident *Blutmai*, "Bloody May".
+我们下令禁止示威并派警察执行禁令。警察与共产党人发生对峙，暴力冲突爆发。据报道，柏林警察打死了数十名示威者及无辜旁观者。共产党人已开始把这一事件称作*Blutmai*——"血腥五月"。
 
-This may end any attempt at reconciliation with the KPD, but the Center and People's parties approve of our action.
+这或将断绝与德共和解的任何可能，但中央党和德国人民党认可我们的行动。
 
-- @corrupt_police: It is the fault of corrupt and reactionary elements within the police. Purge those responsible.
-- @communist_fault: It is the fault of the Communists for refusing to follow the rule of law.
-- @no_fault: It is an unfortunate incident that should not have happened, but is no one's fault at all.
+- @corrupt_police: 是警察中腐败和反动分子的过错。清洗相关责任人。
+- @communist_fault: 是共产党人拒绝遵守法治的过错。
+- @no_fault: 这是不该发生的不幸事件，但没有任何一方应当负责。
 
 @corrupt_police
 on-arrival: kpd_relation += 10; z_relation -= 2; dvp_relation -= 2; prussian_police_loyalty += 0.05
 
-We arrested the police responsible for the killings, and put them on trial. [? if judicial_reform = 0 : Unfortunately, the reactionary judiciary let them go free with barely any punishment at all. ?]
+我们逮捕了对杀戮负有责任的警察并将其送上法庭。[? if judicial_reform = 0 : 可惜反动派把持的司法系统几乎不加惩罚地放了他们一马。 ?]
 
-This assuages some of the Communists' outrage, but certainly not all.
+这稍稍平息了共产党人的怒火，但远未足够。
 
 @communist_fault
 on-arrival: kpd_relation -= 10; z_relation += 5; dvp_relation += 5; rfb_strength -= 80; rfb_banned = 1; left_dissent += 5
 
-If the KPD continues to act illegally, they must suffer the consequences. Thus, we have banned the RFKB, their paramilitary group. The bourgeois and right-leaning parties approve.
+如果德共继续违法行事，他们就必须承担后果。因此我们查禁了 RFB——他们的准军事组织。资产阶级和倾右各党表示赞同。
 
 @no_fault
 
-This position gains us no allies, and does not alienate anyone any further.
+这一立场不会为我们赢得新的盟友，也不会进一步疏远任何人。
 
 
 @allow_police
 on-arrival: kpd_relation += 5; workers_kpd += 5; unemployed_kpd += 5; socialism += 2
 
-The demonstration proceeds peacefully under the watchful eyes of the police. Onlookers admire the strength of the Communist workers, and perhaps some of our supporters have been peeled off.
+示威在警察的严密注视下和平进行。围观者钦佩共产党工人的力量——也许我们的一部分支持者被他们带走了。
 
 
 @allow
 on-arrival: workers_kpd += 5; unemployed_kpd += 5; kpd_relation += 10; rfb_strength += 50; z_relation -= 3; dvp_relation -= 3; coalition_dissent += 1; rfb_militancy += 0.1; socialism += 2
 
-The demonstration proceeds peacefully, with a minimal police presence. Onlookers admire the strength of the Communist workers, and perhaps some of our members have been peeled off. The KPD will never admit it, but they are developing a less hostile view towards us (even if they do not *like* us yet). Our centrist allies denounce the demonstration, but their cries are ineffectual.
+示威在警察少量部署下和平进行。围观者钦佩共产党工人的力量——也许我们的一部分成员被他们带走了。德共虽然嘴上不会承认，但他们对我们的敌意正在减弱（即便还没到*喜欢*我们的程度）。我们的中间派盟友谴责示威，但他们的呼喊已无济于事。
 
 
 @join
@@ -63,4 +63,4 @@ unavailable-subtitle: The Communists do not trust us enough.
 on-arrival: kpd_relation += 15; volksmai = 1; workers_kpd += 5; unemployed_kpd += 5; workers_spd += 5; unemployed_spd += 5; new_middle_spd -= 5; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 5; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 2; rfb_strength += 100; rfb_militancy += 0.1; sa_strength += 50; sh_strength += 50; socialism += 5
 achievement: die_rote_fahne
 
-It is difficult to persuade the Communists to let us march with them, given the histories of their party and ours. However, they eventually relent. The display of proletarian unity inspires the workers and terrifies the bourgeoisie and middle class. [? if in_grand_coalition : Our coalition partners in the government are outraged at our display with the communists, and are threatening to break up the government. ?] The far-right paramilitaries increase their recruitment to counter us.
+鉴于两党的历史宿怨，要说服共产党人允许我们与他们并肩游行并不容易。不过他们最终还是松了口。无产阶级团结的展示鼓舞了工人，惊吓了资产阶级和中产阶级。[? if in_grand_coalition : 我们在政府中的联合伙伴对我们与共产党人的同台示威极为愤怒，威胁要解散政府。 ?] 极右翼准军事组织增加了招募，以与我们对抗。

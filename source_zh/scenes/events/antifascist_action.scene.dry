@@ -5,28 +5,28 @@ tags: event
 view-if: communist_coalition >= 3 and kpd_relation >= 50 and nazi_urgency >= 2 and left_strength >= 50 and black_brown_seen = 1 and not spd_toleration
 max-visits: 1
 
-= A United Front Against Fascism
+= 反法西斯统一阵线
 
-As the bourgeois voters and industrialists flock to the Nazis following the recent instability and the republic, with Brüning and the Center Party even considering turning to the Nazis for support before negotiations fell apart, the KPD, with whom we have made mends with, proposes the formation of a "united front". [? if iron_front_formed : This would include the already existing Iron Front, but expanded to include KPD-affiliate organizations as well as a joint plan of action. ?]
+随着近来的不稳定与共和国的动荡，资产阶级选民和工业家纷纷投奔纳粹，连布吕宁与中央党都一度考虑过转向纳粹寻求支持（其后谈判破裂）。已与我们冰释前嫌的德共此刻提议组建一个"统一阵线"。[? if iron_front_formed : 该阵线将包含已有的铁阵线，并扩展纳入德共系组织以及一项联合行动方案。 ?]
 
-What remains of the party's right-wing is highly opposed, but doing this would significantly bolster the strength of our forces on the left in case a confrontation with the fascists becomes inevitable. It may also instigate the reactionaries into preempting us, however.
+党内残存的右翼极力反对，但这样做能在与法西斯不可避免的对决中显著加强我方左翼力量，但同时也可能刺激反动派抢先动手。
 
-- @form_uf: Form the United Front between the SPD and KPD!
-- @literally_why_would_anyone_whos_at_this_point_in_the_game_choose_this_like_what: We'll have to turn the offer down.
+- @form_uf: 在社民党与德共之间组建统一阵线！
+- @literally_why_would_anyone_whos_at_this_point_in_the_game_choose_this_like_what: 我们不得不拒绝这一提议。
 
 @form_uf
 on-arrival: antifa_formed = 1; kpd_relation += 10; rb_militancy += 0.03; rfb_militancy += 0.04; coup_progress += communist_coalition; workers_kpd += 4; workers_spd += 6*(1-dissent); unemployed_kpd += 5; unemployed_spd += 5*(1-dissent); new_middle_spd += 5*(1-dissent) if new_middle_conscious; workers_nsdap -= 2; new_middle_nsdap -= 2; unemployed_nsdap -= 2
 go-to: uf_menu
 
-We have formed a United Front, composed of the KPD and SPD's various affiliate organizations through which to fight the class war against the increasingly fascistic bourgeoisie.
+我们组建了统一阵线，由社民党与德共各下属组织汇集而成，通过它对抗日益法西斯化的资产阶级开展阶级斗争。
 
 @uf_menu
 
-- @rally_resources: Launch an ambitious campaign through the United Front!
-- @rally_left: Rally behind the Left Plan!
-- @rally_iron_front: Rally the full force of the Iron Front behind the United Front!
-- @rally_afa: Rally Siegfried Aufhäuser and the AfA-bund behind the United Front!
-- @done: That is enough.
+- @rally_resources: 借统一阵线发起一场雄心勃勃的运动！
+- @rally_left: 在左翼计划的旗帜下集结！
+- @rally_iron_front: 将铁阵线的全部力量纳入统一阵线！
+- @rally_afa: 将西格弗里德·奥夫豪泽与 AfA 联盟纳入统一阵线！
+- @done: 够了。
 
 @rally_resources
 max-visits: 1
@@ -35,7 +35,7 @@ subtitle: -1 resource
 on-arrival: uf_strength += 2; workers_spd += 3*(1-dissent); rb_strength += 100*(1-dissent); rfb_strength += 20; unemployed_spd += 2*(1-dissent); unemployed_kpd += 1; new_middle_spd += 1*(1-dissent); workers_nsdap -= 3*(1-dissent); unemployed_nsdap -= 2*(1-dissent); new_middle_nsdap -= 2*(1-dissent);
 go-to: uf_menu
 
-We launch an ambitious campaign through the new organization, targeting the working class and attacking the bourgeois class. The Reichsbanner swells in membership, as does the RFB.
+我们借这一新组织发起一场雄心勃勃的运动，瞄准工人阶级、攻击资产阶级。黑红金国旗团成员激增，RFB 亦然。
 
 @rally_left
 max-visits: 1
@@ -43,7 +43,7 @@ view-if: nationalization_adopted
 on-arrival: uf_strength += 2; workers_spd += 3*(1-dissent); workers_kpd += 2; unemployed_kpd += 3; unemployed_spd += 2*(1-dissent); workers_nsdap -= 3*(1-dissent); unemployed_nsdap -= 2*(1-dissent); old_middle_nsdap += 3; rural_nsdap += 2; new_middle_nsdap += 2 if not new_middle_conscious
 go-to: uf_menu
 
-We rally behind the Left Plan together with the KPD.
+我们与德共并肩在左翼计划的旗帜下集结。
 
 @rally_iron_front
 max-visits: 1
@@ -51,7 +51,7 @@ view-if: iron_front_formed
 on-arrival: uf_strength += 2; workers_spd += 3*(1-dissent); new_middle_spd += 2*(1-dissent); unemployed_spd += 2*(1-dissent); new_middle_nsdap -= 2*(1-dissent); neorevisionist_strength += 5; neorevisionist_dissent -= 5; rb_strength += 50*(1-dissent);
 go-to: uf_menu
 
-We rally the Iron Front behind the United Front, increasing the SPD's strength compared to the KPD's as well as overall further bolstering the campaign.
+我们把铁阵线纳入统一阵线，相对于德共而言增强了社民党的力量，也整体上进一步壮大了运动。
 
 @rally_afa
 max-visits: 1
@@ -59,14 +59,14 @@ view-if: new_middle_conscious
 on-arrival: uf_strength += 2; new_middle_spd += 5*(1-dissent); new_middle_nsdap -= 3*(1-dissent); workers_spd -= 1; workers_kpd += 1; unemployed_spd -= 2; unemployed_kpd += 2;
 go-to: uf_menu
 
-We rally the AfA-bund behind the United Front, taking advantage of the recent inclination of the new middle class to align with the rest of the proletariat to put an end to Nazi gains in the demographic. As a consequence, however, we have allowed the KPD to grow further in traditional working class groups.
+我们将 AfA 联盟纳入统一阵线，借助新中产阶级近来倾向于与无产阶级其他部分结盟的态势，终结纳粹在该群体中的扩展。但代价是，我们也让德共在传统工人阶级群体中进一步壮大。
 
 @done
 on-arrival: old_middle_nsdap += uf_strength; rural_nsdap += uf_strength/2; new_middle_nsdap += uf_strength/4 if not new_middle_conscious;
 
-That is enough to get the United Front off of its feet and ready to fight fascism. United through this new organization, we shall stand strong. The Nazis grow further amongst the bourgeoisie, who are frightened by our unity, but it is in vain.
+足以让统一阵线起步，开始抗击法西斯主义。借这一新组织凝聚力量，我们将立场坚定。纳粹在被我们的团结吓坏的资产阶级中获得进一步发展，但其势已徒劳。
 
 @literally_why_would_anyone_whos_at_this_point_in_the_game_choose_this_like_what
 on-arrival: communist_coalition -= 1; kpd_relation -= 5; left_dissent += 15; reformist_strength += 10; reformist_dissent -= 20; sa_militancy += 0.02
 
-We politely turn the offer down, so as to retain the party's organizational independence. The dominant Left is perplexed.
+我们礼貌地回绝提议，以保留党组织的独立性。占据主导的左翼对此感到困惑。

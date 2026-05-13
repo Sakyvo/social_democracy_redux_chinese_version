@@ -9,47 +9,47 @@ tags: event
 
 # Must control foreign ministry or have made contact with Austrian socialists.
 
-= Suspension of the Austrian Parliament
+= 奥地利议会被中止
 
-Due to a controversial proposal regarding a railroad strike in the Austrian National Council, all three presidents of the National Council resigned, leaving it without any presiding officers. This is a constitutional crisis. Austrian chancellor Engelbert Dollfuß has taken advantage of this crisis by suspending the parliament and ruling by emergency decree, forming an "Austrofascist" government. Dollfuß consolidates his power by persecuting his political opponents, especially our fellow Social Democrats in the SDAPÖ (Social Democratic Worker's Party of Austria).
+由于奥地利国民议会中一项围绕铁路工人罢工的争议提案，国民议会的三位主席全部辞职，使其陷入无主持人的境地，演变为一场宪政危机。奥地利总理恩格尔伯特·陶尔斐斯（Engelbert Dollfuß）借机中止议会、以紧急法令统治，组建了"奥地利法西斯"政府。陶尔斐斯通过迫害政敌（尤其是与我们同道的奥地利社民党 SDAPÖ）来巩固权力。
 
-Is there anything we could do?
+我们能做些什么？
 
 # - use EU to sanction Austria (will prevent civil war and restore democracy)
 # - apply diplomatic pressure to Austria (without EU)
 # - fund the Schutzbund
 # after this, supporting Austrians will raise sdapo_strength; if sdapo_strength >= 2, they'll enter a long civil war; if sdapo_strength >= 5, they'll win.
 
-- @eu_sanctions: Call upon the European Union to sanction Austria, unless the National Council is restored.
-- @diplomatic_pressure: Apply diplomatic pressure to Austria to restore the National Council.
-- @fund_schutzbund: Support the SDAPÖ's underground organizing.
-- @nothing: Nothing can be done.
+- @eu_sanctions: 呼吁欧洲联盟对奥地利实施制裁，除非国民议会恢复运行。
+- @diplomatic_pressure: 对奥地利施加外交压力，要求其恢复国民议会。
+- @fund_schutzbund: 支持奥地利社民党的地下组织活动。
+- @nothing: 无能为力。
 
 @eu_sanctions
 view-if: eu = 1
 on-arrival: sdapo_strength += 3; sdapo_strength += 1 if customs_union; eu_austria = 1
 
-The European Union is a largely untested body, and from the beginning contained members that are at best quasi-democratic. Most of its members are more concerned by power politics than democratic values. However, as its founder, Germany holds a special influence in the EU, and we manage to persuade the other members to join in the pressure against Austrofascism.
+欧洲联盟在很大程度上尚未经过考验，且从成立之初便包含一些充其量只能算半民主的成员国。它的多数成员更关心的是强权政治，而不是民主价值。然而作为创始国，德国在欧盟中享有特殊影响力，我们设法说服其他成员一同向奥法西斯施压。
 
-The Dollfuß regime does not give in, but it is weakened and isolated.
+陶尔斐斯政权未让步，但已被削弱、陷入孤立。
 
 @diplomatic_pressure
 view-if: foreign_minister_party = "SPD"
 on-arrival: sdapo_strength += 1; sdapo_strength += 2 if customs_union
 
-We still have much economic influence in Austria, and the threat of sanctions.
+我们仍然在奥地利保有相当的经济影响力，且能挥舞制裁这把利剑。
 
-The Dollfuß regime does not give in, but it is somewhat weakened. 
+陶尔斐斯政权未让步，但已有所削弱。
 
 @fund_schutzbund
 on-arrival: resources -= 1; sdapo_strength += 1; sdapo_strength += 1 if customs_union
 subtitle: -1 resource
 choose-if: resources >= 1
 
-It is somewhat of a breach of diplomatic protocol for the SPD to so directly interfere in another country's affairs, supporting the Austrian social democrats.
+社民党如此直接地干涉他国事务、支援奥地利的社会民主派，在外交礼仪上多少属于越界之举。
 
-The Dollfuß regime does not give in, but its opponents have an added advantage. That may not be enough when dealing with the total force of the fascist state.
+陶尔斐斯政权未让步，但其反对者多了一份筹码。面对一个法西斯国家的全部力量，这或许仍不够。
 
 @nothing
 
-Unfortunately, there is nothing we can do for our Austrian comrades.
+很遗憾，我们无法为奥地利的同志们做任何事。

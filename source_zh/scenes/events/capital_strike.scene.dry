@@ -6,11 +6,11 @@ max-visits: 1
 on-arrival: unemployed += 5; weimar_dissent += 2 if weimar_plan_adopted; workers_spd*= 0.7; new_middle_spd -= 15; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 15; unemployed_spd*=0.7; rural_spd -= 15; pro_republic -= 15; capital_strike_seen = 1; z_relation -= 10; dvp_relation -= 10; workers_nsdap += 8 if not capital_nazi; unemployed_nsdap += 10 if not capital_nazi; new_middle_nsdap += 15 if not capital_nazi; old_middle_nsdap += 15 if not capital_nazi ; rral_nsdap += 15 if not capital_nazi; workers_kpd += 4 if capital_nazi; workers_kpd += 2 if capital_nazi and sapd_consolidated == 0; workers_nsdap += 2 if capital_nazi; unemployed_kpd += 7 if capital_nazi; unemployed_nsdap += 2 if capital_nazi; unemployed_dnvp += 1 if capital_nazi; new_middle_kpd += 1 if capital_nazi; new_middle_nsdap += 5 if capital_nazi; new_middle_dnvp += 9 if capital_nazi; old_middle_nsdap += 3 if capital_nazi; old_middle_dnvp += 12 if capital_nazi; rural_dnvp += 15 if capital_nazi; workers_sapd += 2 if sapd_consolidated == 1 and capital_nazi; coalition_dissent += 1; coalition_dissent += 1 if in_grand_coalition; economic_growth -= 4; socialism -= 7
 tags: event
 
-= Capital Strike
+= 资本罢工
 
-Our policies have greatly angered the capitalists. Investment has fallen, and factories are idling, preventing the workers from fulfilling their jobs. Meanwhile, the bourgeois press is a constant chorus of venomous invective directed at us and our economic policies.
+我们的政策大大激怒了资本家。投资骤减，工厂闲置，工人无法照常上岗。与此同时，资产阶级的报刊则化作一支毒舌合唱团，对我们及我们的经济政策百般谩骂。
 
-What can we do?
+我们能做什么？
 
 - @seize
 - @capital_controls
@@ -23,7 +23,7 @@ unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist
 choose-if: left_strength > reformist_strength + neorevisionist_strength and (judicial_reform >= 3 or rb_militancy >= 0.25) and works_councils >= 1 and ((left_coalition+sapd_r >= 50) or (rb_force+rfb_force >= 50))
 on-arrival: nationalization_progress += 1; coup_progress += 6; unemployed -= 2; unemployed -= 1 if works_councils >= 3; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 4; workers_nsdap -= 8*(1-dissent); unemployed_nsdap -= 8*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; factory_takeovers += 1; economic_growth += 2; socialism += 3
 
-If the capitalists are going to attack us, then we must hit them back. We have empowered the workers to seize and take full control of the factories that the capitalists have idled. The fascists, of course, call us thieves and looters.
+资本家既要进攻我们，我们就要回敬。我们已赋予工人权力，让他们接管资本家闲置的工厂并完全掌控。法西斯们当然将我们称为窃贼和劫掠者。
 
 
 @capital_controls
@@ -32,7 +32,7 @@ choose-if: judicial_reform >= 2 and (left_coalition+sapd_r >= 50) or (popular_fr
 unavailable-subtitle: [? if judicial_reform < 2 : The judiciary would never allow this. ?][? if judicial_reform >= 2 : The Reichstag is opposed. ?]
 on-arrival: unemployed -= 1.5; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); economic_growth += 2;
 
-Capital controls might blunt some of the worst economic components of the capital strike.
+资本管制或许能减缓资本罢工最严重的经济冲击。
 
 
 
@@ -43,10 +43,10 @@ choose-if: (radio >= 2 or commercialized_media >= 3) and resources >= 1
 unavailable-subtitle: [? if radio < 2 and commercialized_media < 3 : We have not built up our media enough. ?] [? if resources < 1: We do not have enough resources. ?]
 on-arrival: workers_spd += 7*(1-dissent); new_middle_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); pro_republic += 5*(1-dissent); resources -= 1; socialism += 5
 
-We launch a counter-propaganda campaign to blame the economic crisis on the capitalists, using all of our media channels to do so. Because of our existing media framework, this is moderately successful in directing popular criticisms towards the capitalists and away from us.
+我们发起反向宣传攻势，把经济危机的责任归到资本家头上，并动用所有媒体渠道大力宣讲。凭借我们已建立的媒体网络，这一做法在引导公众把矛头从我们身上转向资本家这件事上颇有成效。
 
 
 @nothing
 title: There is nothing we can do.
 
-There is nothing we can do that is within constitutional and legal bounds.
+在宪法和法律框架之内，我们无能为力。

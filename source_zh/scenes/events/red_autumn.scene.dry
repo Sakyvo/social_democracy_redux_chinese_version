@@ -6,38 +6,38 @@ tags: event
 max-visits: 1
 new-page: true
 
-= Red Autumn
+= 红色之秋
 
-As the Nazis collapsed in on themselves and we aided in Schleicher’s unconstitutional moves towards holding on to power, the Communists have filled the growing void of opposition towards Schleicher as best they can, mobilizing radicals into the RFB and organizing in workplaces against what they allege to be fascist dictatorship. Though their message is blunted by the ongoing public works program and the complacency of the trade unions, they have managed to monopolize the antifascist vote and even, though in a lesser sense, breached into the republican vote.
+随着纳粹自身崩塌，我们又协助施莱彻采取违宪手段死守权力，共产党人尽其所能地填补了反对施莱彻这一日益扩大的真空——他们把激进分子动员进 RFB，并在工作场所组织起来反对他们所称的法西斯独裁。尽管他们的讯息被持续推进的公共工程计划与工会的麻木所削弱，他们仍设法垄断了反法西斯选票，甚至（程度较小地）侵入了共和派选票。
 
-Schleicher has used this supposed threat of communist revolution to justify more emergency measures of suspending press freedoms and the like, further enflaming tensions with the communists.
+施莱彻借这一所谓的共产主义革命威胁，证立了更多紧急措施——中止新闻自由之类，并由此进一步加剧与共产党人的紧张关系。
 
-- @reichstag_fire_schleicher: And…
+- @reichstag_fire_schleicher: 然后……
 
 @reichstag_fire_schleicher
 view-if: strife >= 12
 subtitle: The Reichstag has been burned down!
 
-The Reichstag has been burned to the ground by a foreign communist. [+ president +] signs the **Decree of the Reich President for the Protection of People and State**, or **Reichstag Fire Decree** suspending essential civil liberties under the pretext of preventing communist revolution. 
+国会大厦被一名外籍共产党人焚毁。[+ president +] 签署《国家与人民保护令》（即《国会纵火令》），以防止共产主义革命为名中止了核心公民自由。
 
-This decree gives [+ chancellor +] wide-ranging powers with which to suppress the communists and arrest their leaders in the leadup to the [+ next_election_month : month +] election. Despite its blatantly dictatorial nature, there is not much we can do about it.
+该法令赋予 [+ chancellor +] 总理在 [+ next_election_month : month +] 选举前广泛的权力以镇压共产党人、逮捕其领导人。尽管其独裁本质暴露无遗，我们能做的并不多。
 
-- @fight: Except fight, before it is too late.
-- @lib: We will have to hope for the best.
+- @fight: 趁尚未为时已晚，奋起反抗。
+- @lib: 我们只能寄希望于事态向好。
 
 @fight
 on-arrival: spd_rebel = 1; kpd_relation += 10; rb_strength *= 0.8; rfb_strength += 100; workers_spd -= 10; workers_dne += 10
 go-to: civil_war
 
-We mobilize what's left of the Reichsbanner and ADGB to resist this blatant crackdown  However, the ADGB refuses to follow along. [? if kpd_party_leader != "Conciliators" : The KPD, seeing its leaders jailed, is more inclined to join us in our final fight against fascism, but will it be enough? ?]
+我们动员国旗团残部和 ADGB 抵抗这场赤裸裸的镇压。但 ADGB 拒绝相随。[? if kpd_party_leader != "Conciliators" : 看到领导人被关入大牢的德共，更愿意加入我们对法西斯主义的最终一战，但这够不够？ ?]
 
 @lib
 on-arrival: {!
 Q.rb_militancy = 0;
-Q.rb_banned = 1; 
-Q.rb_strength -= 250; 
-Q.rfb_banned = 1; 
-Q.rfb_militancy -= 0.1; 
+Q.rb_banned = 1;
+Q.rb_strength -= 250;
+Q.rfb_banned = 1;
+Q.rfb_militancy -= 0.1;
 Q.workers_kpd -= 6;
 Q.workers_dne += 6;
 Q.new_middle_dne += 10;
@@ -66,7 +66,7 @@ if (Q.peoples_party || Q.spd_votes >= 30) {
     Q.old_middle_spd -= 10;
     Q.rural_spd -= 10;
     Q.catholics_spd -= 6;
-} 
+}
 !}
 
-What can we do? With Prussia gone, there is no way we can resist by force. Besides, perhaps the threat is real.
+我们能做什么？普鲁士已经丢了，我们无法以武力抵抗。再者，也许威胁是真的。
