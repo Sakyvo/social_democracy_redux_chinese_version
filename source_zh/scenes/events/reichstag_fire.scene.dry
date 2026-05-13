@@ -5,20 +5,20 @@ tags: event
 new-page: true
 max-visits: 1
 
-= Reichstag Fire
+= 国会纵火案
 
-The Reichstag has been burned to the ground, ostensibly by a foreign communist. Whether their accusations are true or not, the Nazis have used this as a pretext to consolidate power as [+ president +] signs the **Decree of the Reich President for the Protection of People and State**, or **Reichstag Fire Decree** suspending essential civil liberties under the pretext of preventing communist revolution. 
+国会被烧毁——据称是一位外国共产党人所为。无论指控是否属实，纳粹党利用此事作为巩固权力的借口——[+ president +] 签署了**《关于保护人民与国家的总统令》**（即**国会纵火法令**），以防止共产主义革命为名暂停了基本公民自由。
 
-This decree gives [+ chancellor +] wide-ranging powers with which to suppress us and arrest our leaders in the leadup to the [+ next_election_month : month +] election. Despite its blatantly dictatorial nature, there is not much we can do about it.
+该法令赋予 [+ chancellor +] 广泛的权力，可以在 [+ next_election_month : month +] 选举前压制我们并逮捕我们的领导人。尽管其专制本质昭然若揭，我们对此却无能为力。
 
-- @fight: Except fight, before it is too late.
-- @lib: We will have to hope for the best.
+- @fight: 除非在为时已晚之前奋起反抗。
+- @lib: 我们只能寄望于最好的结果。
 
 @fight
 on-arrival: spd_rebel = 1; kpd_relation += 20
 go-to: civil_war
 
-We mobilize what's left of the Reichsbanner and ADGB to resist this blatant crackdown. [? if kpd_party_leader != "Conciliators" : The KPD, seeing its leaders jailed, is more inclined to join us in our final fight against fascism, but will it be enough? ?]
+我们动员黑红金国旗团和 ADGB 剩余的力量抵抗这赤裸裸的镇压。[? if kpd_party_leader != "Conciliators" : 眼见自身领袖入狱，德共更倾向于加入我们对法西斯的最后一战，但这够吗？ ?]
 
 @lib
 on-arrival: {!
@@ -26,11 +26,11 @@ Q.rb_militancy = 0;
 Q.nazi_peak = 0;
 Q.nazi_peaked = 1;
 Q.nazi_decline = 0;
-Q.rb_banned = 1; 
-Q.rb_strength -= 250; 
-Q.rfb_banned = 1; 
-Q.rfb_militancy -= 0.1; 
-Q.sa_militancy += 0.05; 
+Q.rb_banned = 1;
+Q.rb_strength -= 250;
+Q.rfb_banned = 1;
+Q.rfb_militancy -= 0.1;
+Q.sa_militancy += 0.05;
 Q.workers_kpd -= 10;
 Q.workers_nsdap += 10;
 Q.new_middle_nsdap += 12;
@@ -59,7 +59,7 @@ if (Q.peoples_party || Q.spd_votes >= 30) {
     Q.old_middle_spd -= 8;
     Q.rural_spd -= 8;
     Q.catholics_spd -= 4;
-} 
+}
 !}
 
-What can we do? With Prussia gone, there is no way we can resist by force. We will just have to try and deny the Nazis an electoral majority.
+我们能做什么？普鲁士已失，我们无法以武力抵抗。我们只能尝试在选举中阻止纳粹获得多数。

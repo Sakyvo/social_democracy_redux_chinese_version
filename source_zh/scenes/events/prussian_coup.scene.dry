@@ -6,25 +6,25 @@ new-page: true
 tags: event
 max-visits: 1
 
-= Coup in Prussia
+= 普鲁士政变
 
-A crisis! Chancellor [+ chancellor +] has ordered the dismissal of the Prussian government in a procedure known as the *Reichsexecution*. His argument is that the Prussian state government is unable to maintain order due to the battles on the streets between the SA, Reichsbanner, and other paramilitaries. This is despite his own government legalizing them.
+危机！[+ chancellor +] 总理以「帝国执行」（Reichsexecution）程序下令解散普鲁士政府。他的理由是，由于冲锋队、黑红金国旗团和其他准军事组织的街头斗争，普鲁士邦政府无法维持秩序。尽管这些组织正是他自己的政府所合法化的。
 
-The legality of the action is questionable. Many of our members are ready to resist.
+这一行动的合法性存疑。我们的许多党员准备抵抗。
 
 - @defend
 - @surrender
 
 
 @defend
-title: Fight against the overthrow attempt!
-subtitle: Labor will call a general strike. The Reichsbanner and the loyal elements of the Prussian police will resist the coup.
-unavailable-subtitle: We do not have the forces to resist.
+title: 反抗推翻企图！
+subtitle: 劳工将宣布总罢工。黑红金国旗团和普鲁士警察忠诚成员将抵抗政变。
+unavailable-subtitle: 我们没有抵抗的力量。
 choose-if: rb_strength*rb_militancy >= 200
 
-The Reichswehr and Stahlhelm are already surrounding Berlin, and the SA is supporting them. This could be civil war. We do realize that, correct? 
+国防军和钢盔团已经包围柏林，冲锋队也在支持他们。这可能演变为内战。我们意识到这一点，对吗？
 
-- @defend_2: We will fight, even if it leads to a civil war.
+- @defend_2: 我们将战斗，即便引发内战。
 - @surrender
 
 @defend_2
@@ -36,9 +36,9 @@ on-arrival: sa_strength *= 0.8; sh_strength *= 0.8; pro_republic += 10; workers_
 achievement: bollwerk_der_demokratie
 go-to: defend_2_victory_2
 
-Our forces confront the government troops and their reactionary auxiliaries, and somehow, our enemies retreat without a fight! They were overwhelmed by our display of strength, and have chosen to slink away. Chancellor [+ chancellor +] withdraws the dismissal of the Prussian government, at least for now.
+我们的力量与政府军和反动后备力量对峙，不知怎的，敌人不战而退！他们被我们的力量展示所慑服，选择悄然离去。[+ chancellor +] 总理撤回了对普鲁士政府的解散，至少目前如此。
 
-The show of force has reinvigorated support for the republic and for the SPD, and has weakened the fascists.
+这一武力展示重振了对共和国和社民党的支持，并削弱了法西斯。
 
 @defend_2_victory_2
 achievement: drei_pfeile
@@ -47,15 +47,15 @@ achievement: drei_pfeile
 @defend_2_civil_war
 on-arrival: spd_rebel = 1
 
-Our forces confront the government troops and their supporters on the streets of Berlin, and armed fighting erupts. The reactionaries do not budge from their positions. We are caught at a disadvantage.
+我们的力量与政府军及其支持者在柏林街头对峙，武装战斗爆发。反动派毫不退让。我们处于劣势。
 
-- @civil_war: It is a civil war.
+- @civil_war: 内战。
 
 
 
 
 @surrender
-title: Give up on the Prussian government.
+title: 放弃普鲁士政府。
 on-arrival: spd_disarray = 1; disarray_timer = 6; spd_prussia = 0; workers_spd -= 5; left_dissent += 10; labor_dissent += 10; rb_militancy = rb_militancy/1.25; rb_strength -= 200;
 
-A pall of hopelessness and despair descends over social democracy. We have failed. Many in the Reichsbanner simply quit, demoralized by their leaders' lack of a call to action.
+社民党笼罩在绝望和阴霾之中。我们失败了。黑红金国旗团中的许多人因为领导层缺乏行动号召而灰心丧气地退出。

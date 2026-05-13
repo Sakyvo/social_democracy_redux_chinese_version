@@ -1,6 +1,6 @@
 title: The SAPD consolidates
 subtitle: As the SPD loses more and more of its base, the SAPD has increasingly consolidated as an alternative.
-view-if: sapd_formed == 1 and centrists_resign == 1 and (unions_independent == 1 or workers_spd_normalized < 35) 
+view-if: sapd_formed == 1 and centrists_resign == 1 and (unions_independent == 1 or workers_spd_normalized < 35)
 on-arrival: sapd_consolidated = 1; {!
 Q.workers_spd -= 10;
 Q.workers_sapd += 10;
@@ -52,10 +52,10 @@ max-visits: 1
 new-page: true
 tags: event
 
-= Consolidation of the SAPD
+= 德国社会党整合
 
-With the unions having left the SPD and the Left and Center defecting to form a new party with them, the SAPD has consolidated and become a genuine competitor to our party. Seeing this growth, anti-Stalinists in the KPD too defect and join the SAPD, creating a strong bloc between our two parties.
+随着工会离开社民党，左翼和中间派纷纷与之共同组建新党，德国社会党（SAPD）已经整合成为我党的真正竞争者。眼见此扩张，德共内部的反斯大林主义者也叛逃加入 SAPD，在我们两党之间形成强大集团。
 
-[? if economic_plan == 0 : Our failure to formulate an economic plan has only strengthened this bloc further as many unemployed supporters of our party join the SAPD in the hopes of getting their jobs back. ?] [? if moderate_plan_adopted == 1 : Our adoption of the moderate economic plan has only bolstered the SAPD further as many of the more radical members in our party feel it is inadequate and find accomodation elsewhere. ?]
+[? if economic_plan == 0 : 我们未能制定经济计划，进一步强化了这一集团——我党许多失业支持者加入 SAPD，希望重新获得工作。 ?] [? if moderate_plan_adopted == 1 : 我们采纳温和经济计划进一步壮大了 SAPD——我党许多更激进的成员认为此计划不足，转而投靠他处。 ?]
 
-- @root: Disturbing.
+- @root: 令人不安。

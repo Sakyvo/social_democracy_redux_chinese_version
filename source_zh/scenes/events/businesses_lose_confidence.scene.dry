@@ -5,32 +5,32 @@ new-page: true
 on-arrival: businesses_lose_confidence_timer += 6; businesses_lose_confidence_seen += 1; coalition_dissent += 1 if businesses_lose_confidence_seen; unemployed += 2; new_middle_spd -= 6; new_middle_spd += 1 if new_middle_conscious; old_middle_spd -= 6; rural_spd -= 5; workers_spd -= 4; unemployed_spd -= 4; dvp_relation -= 6; weimar_dissent += 1 if weimar_plan_adopted; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if chancellor == "Scholz"; economic_growth -= 1; socialism -= 3
 tags: event
 
-= Businesses Lose Confidence
+= 企业丧失信心
 
-Because of our government's policies, which are perceived as anti-business, the capitalists are reducing their investment and laying off workers. This has the immediate effect of raising unemployment and dissent against our government, especially among the middle class.
+由于我们政府的政策被视为反企业的，资本家正在减少投资并解雇工人。这立即导致失业率上升，并加剧人民——尤其是中产阶级——对政府的不满。
 
-The business community has a variety of suggestions as to how we might improve the business environment.
+商界对如何改善营商环境提出了多项建议。
 
-- @taxes: Cut taxes for the upper brackets.
-- @welfare: Reduce welfare and social spending.
-- @nothing: We will not take any action for now.
-- @watch: Just watch us. The economy *will* improve.
+- @taxes: 削减高收入税阶。
+- @welfare: 削减福利和社会支出。
+- @nothing: 我们暂时不采取任何行动。
+- @watch: 看着我们。经济**会**改善。
 
 @taxes
 on-arrival: upper_tax_rates -= 1; budget -= 1; capital_strike_progress -= 1; unemployed -= 1; new_middle_spd += 5*(1-dissent); old_middle_spd += 4*(1-dissent); kpd_coalition_dissent += 1; kpd_relation -= 5; left_dissent += 5
 
-Cutting taxes improves our relationship with the capitalists.
+减税改善了我们与资本家的关系。
 
 @welfare
 on-arrival: welfare -= 1; budget += 1; capital_strike_progress -= 2; new_middle_spd += 4*(1-dissent); old_middle_spd += 4*(1-dissent); workers_spd -= 5; unemployed_spd -= 5; unemployed -= 1; left_dissent += 5; labor_dissent += 5; center_dissent += 5; kpd_coalition_dissent += 1; inflation -= 1;
 
-Cutting welfare improves our relationship with the capitalists, but it hurts our working-class base.
+削减福利改善了我们与资本家的关系，但伤害了我们的工人阶级基本盘。
 
 
 @nothing
 
-Realistically, there is nothing we can do.
+现实地说，我们无能为力。
 
 @watch
 
-Presumably, we have an economic plan that will lead us out of the crisis. The capitalists do not trust us, but we will show them eventually.
+可以推测，我们有一项经济计划能带领我们走出危机。资本家不信任我们，但我们终将向他们证明。

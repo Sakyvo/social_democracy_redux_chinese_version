@@ -6,27 +6,27 @@ tags: event
 view-if: year = 1929 and month >= 10
 max-visits: 1
 
-= Black Thursday
+= 黑色星期四
 
-The stock market in America has had its biggest crash in history. It is too early to tell what the international effects will be, but it cannot be good. Our economy is already feeling the effects - unemployment will rise even more, and wages will fall. As always, it is the capitalists' crisis, and the workers' burden.
+美国股市经历了史上最大的崩盘。国际影响为时尚早，但绝不会是好事。我国经济已感受到影响——失业率将进一步上升，工资将下降。一如既往，这是资本家的危机，工人的负担。
 
 
-- @cap: It is the nature of capitalism...
-- @do_something: We must do something to stop the suffering...
-- @blame: The previous right-wing government is clearly to blame!
+- @cap: 这是资本主义的本质……
+- @do_something: 我们必须做些什么来阻止人民的苦难……
+- @blame: 显然应归咎于此前的右翼政府！
 
 @cap
 on-arrival: socialism += 4
 
-Perhaps this is simply one of the periodic crises of capitalism. Perhaps this moment will simply pass.
+或许这只是资本主义周期性危机之一。或许此刻终将过去。
 
 @do_something
 on-arrival: crisis_urgency += 1
 
-What can we do to staunch the workers' suffering? It is becoming a hotly debated question.
+我们能做什么来缓解工人的苦难？这成为热议话题。
 
 @blame
 view-if: right_coalition_failed == 1 and spd_in_government == 0 and spd_toleration == 0
 on-arrival: z_relation -= 5; workers_spd += 3; workers_kpd -= 2; workers_nsdap -= 1; new_middle_dnvp -= 2; old_middle_dnvp -= 2; rural_dnvp -= 2; catholics_z -= 1
 
-We blame the crisis on the collapsed right-wing government and pitch ourselves as a more moderate alternative to those turning to the NSDAP and the KPD, though until we have adopted a programme to fix the economy there is only so much campaigning on this that we can do.
+我们将危机归咎于已经垮台的右翼政府，将自身定位为相对纳粹党和德共的更温和选择，不过在我们尚未推出修复经济的纲领之前，能就此进行的竞选活动有限。

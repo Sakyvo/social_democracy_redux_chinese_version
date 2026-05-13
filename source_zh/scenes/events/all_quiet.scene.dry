@@ -5,40 +5,40 @@ max-visits: 1
 tags: event
 new-page: true
 
-= All Quiet on the Western Front
+= 西线无战事
 
-The American film *All Quiet on the Western Front*, based on the German novel *Im Westen nichts Neues* by Erich Maria Remarque, is a film about the experiences of German soldiers in the Great War, and how they gradually became disillusioned with the ideas of patriotism and nationalism. 
+美国电影《西线无战事》（All Quiet on the Western Front）改编自埃里希·玛利亚·雷马克（Erich Maria Remarque）的德语小说《Im Westen nichts Neues》，讲述了德国士兵在大战中的经历，以及他们如何逐渐对爱国主义和民族主义思想感到幻灭。
 
-As an anti-war film, it is the target of major protest by far-right actors, especially the Nazis and the Stahlhelm. They are calling for the government to ban the film. If we do not ban it, the SA threatens to violently stop the film from being shown or watched.
+作为一部反战电影，它成为极右翼演员——尤其是纳粹和钢盔团——大规模抗议的目标。他们要求政府禁映该片。如果我们不禁映，冲锋队威胁将以暴力阻止该片的放映或观看。
 
-- @ban: Ban the film, to prevent Nazi violence.
-- @allow: Allow the film to be shown.
-- @allow_protect: Allow the film to be shown, and use the Prussian police to prevent Nazi disruptions.
-- @everyone: In fact, everyone needs to learn the lessons of this film. Give free tickets to students and government employees.
+- @ban: 禁映该片以防纳粹暴力。
+- @allow: 允许该片放映。
+- @allow_protect: 允许该片放映，并出动普鲁士警察阻止纳粹捣乱。
+- @everyone: 事实上，所有人都需要从这部电影中汲取教训。给学生和政府员工发放免费票。
 
 @ban
 on-arrival: old_middle_nsdap += 5; new_middle_nsdap += 4; workers_nsdap += 2; unemployed_nsdap += 2; sa_strength += 50; nationalism += 6; pro_republic -= 5
 
-When we ban the film, the Nazis immediately celebrate it as a major victory; they claim that even the red Marxists agree with them! It is a major boost to their morale.
+我们禁映该片后，纳粹立即将其庆祝为重大胜利；他们宣称连红色马克思主义者都同意他们！这极大鼓舞了他们的士气。
 
 
 @allow
 on-arrival: nationalism += 3; old_middle_nsdap += 4; new_middle_nsdap += 3; workers_nsdap += 1; sa_strength += 15; pro_republic -= 3; strife += 1
 
-While we allow the film, showings are marred by violence. Showings of the film eventually stop, and the Nazis claim victory.
+我们允许放映，但放映被暴力扰乱。最终放映停止，纳粹宣称胜利。
 
 
 @allow_protect
 choose-if: prussian_police_loyalty >= 0.65
-unavailable-subtitle: The police are not willing to protect the film.
+unavailable-subtitle: 警察不愿保护这部电影。
 on-arrival: nationalism -= 4; pro_republic += 4*(1-dissent); strife += 1
 
-Under the protection of the police, the people are allowed to watch the film in peace. Nazi disturbances are kept to a minimum.
+在警察的保护下，民众得以平静地观看这部电影。纳粹的扰乱被控制在最低限度。
 
 @everyone
 choose-if: prussian_police_loyalty >= 0.75
-unavailable-subtitle: The police are unable to guarantee the safety of all the attendees.
+unavailable-subtitle: 警察无法保证所有观众的安全。
 on-arrival: nationalism -= 5; pro_republic += 5*(1-dissent); workers_nsdap -= 3; unemployed_nsdap -= 3; new_middle_nsdap -= 3
 
-Under police protection, crowds throng the film's showings, as Nazis protest outside. The reception is mixed, but a new national conversation develops, reexamining the right-wing histories of the war. Quietly, many minds are changed, or at least affected in subtle ways.
+在警察保护下，人潮涌向影片放映，而纳粹在外抗议。反响褒贬不一，但展开了一场新的全国对话，重新审视右翼对战争的叙事。许多人的观念悄然改变，或至少受到微妙影响。
 

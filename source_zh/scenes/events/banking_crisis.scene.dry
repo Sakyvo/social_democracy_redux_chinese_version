@@ -6,42 +6,42 @@ tags: event
 view-if: customs_union = 1 and banking_crisis_timer = 0
 max-visits: 1
 
-= Banking Crisis
+= 银行危机
 
-The Darmstädter und Nationalbank, or Danat Bank, has collapsed! Along with it goes much of the German banking system. The cause seemed to be due to the government's pursuit of a customs union with Austria, which led to de facto international sanctions.
+达姆施塔特国民银行（Danat Bank）已倒闭！德国银行体系的大部分也随之陷落。原因似乎是政府推动与奥地利的关税同盟，导致事实上的国际制裁。
 
-This is a bourgeois dispute, but the costs will be borne by the proletariat. The people are facing ever-increasing hunger and poverty, and perhaps we are partly to blame.
+这是资产阶级的争端，但代价将由无产阶级承担。人民正面临日益加剧的饥饿和贫困，我们或许也有部分责任。
 
-- @nothing_to_do: There is nothing we can do.
-- @stabilization: Take action to stabilize the economy!
-- @austerity: Chancellor [+ chancellor +]'s response is, as always, more austerity.
-- @end_toleration: We are tired of austerity. End the toleration arrangement!
+- @nothing_to_do: 我们无能为力。
+- @stabilization: 采取行动稳定经济！
+- @austerity: [+ chancellor +] 总理一如既往的回应是更多紧缩。
+- @end_toleration: 我们厌倦了紧缩。终止容忍安排！
 
 @nothing_to_do
 view-if: spd_in_government = 1
 on-arrival: welfare -= 1; workers_spd -= 3; unemployed_spd -= 3; pro_republic -= 3
 
-There is, essentially, nothing we can do.
+实际上，我们无能为力。
 
 @stabilization
 view-if: spd_in_government = 1
-subtitle: -1 budget
+subtitle: -1 预算
 choose-if: budget >= 1
 on-arrival: workers_spd += 3*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 2*(1-dissent); rural_spd += 2*(1-dissent); unemployed -= 2; inflation += 1 if inflation < 0; budget -= 1; workers_nsdap -= 3; economic_growth += 0.9;
 
-In the face of the banking crisis, we have taken emergency action to stabilize the economy by injecting money into the banking system. It might not be enough, but it temporarily staunches the bleeding.
+面对银行危机，我们采取紧急行动，向银行体系注入资金以稳定经济。这或许还不够，但暂时止住了出血。
 
 @austerity
 view-if: spd_in_government = 0
 on-arrival: welfare -= 1; workers_spd -= 2 if spd_toleration; unemployed_spd -= 3 if spd_toleration; left_dissent += 10 if spd_toleration; workers_spd += 3 if not spd_toleration; unemployed_spd += 3 if not spd_toleration; pro_republic -= 3; economic_growth -= 1;
 
-Chancellor [+ chancellor +] responds to the banking crisis with more cuts to welfare.
+[+ chancellor +] 总理对银行危机的回应是进一步削减福利。
 
 @end_toleration
 view-if: spd_toleration = 1
 on-arrival: time_to_election = 3; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0; weimar_dissent += 1 if weimar_plan_adopted
 call: set_next_election_time
 
-We are tired of [+ chancellor +]'s policy of austerity. After [+ chancellor +]'s attempt to use emergency powers to pass another welfare cut, we have worked with the other parties to reverse this policy. In response, the Reichstag has been dissolved, and new elections called.
+我们厌倦了 [+ chancellor +] 的紧缩政策。在 [+ chancellor +] 试图援用紧急权力推行又一项福利削减后，我们与其他政党合作推翻了该政策。作为回应，国会被解散，新选举被召集。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
