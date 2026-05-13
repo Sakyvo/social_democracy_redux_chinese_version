@@ -5,26 +5,26 @@ new-page: true
 max-visits: 1
 tags: event
 
-= The Flag Dispute
+= 国旗之争
 
-It has come to Chancellor Luther's attention that German expatriate groups abroad only accept the black-white-red colors of the Imperial flag, in conflict with the official black-red-gold colors of the foreign service. 
+路德总理获悉，在海外的德国侨民团体只接受帝国国旗的黑—白—红配色，与外交部门所采用的官方黑—红—金配色相冲突。
 
-To ease over tensions with these expatriates, Luther is pushing for a revision of the flag law to make the black-white-red trade flag a secondary flag.
+为缓解与这些侨民的紧张关系，路德正力推修订旗帜法，把黑—白—红商船旗升格为辅旗。
 
-- @unacceptable: This is unacceptable.
+- @unacceptable: 这不可接受。
 
 @unacceptable
 
-And so echo the Center and Democratic parties. Luther has caved, modifying the proposal so that it should only apply in consular institutions abroad. This, still, is too great of a concession to German nationalism, and the DDP is in agreement on this manner.
+中央党和民主党同声反对。路德让步，修改提议，将其限定为只在海外领事机构使用。即便如此，这仍是对德意志民族主义的过度让步，DDP 在这一点上态度一致。
 
-- @in_government: Defeat Luther in a vote of the cabinet.
-- @vonc_luther: Call a motion of no confidence against Luther.
+- @in_government: 在内阁表决中击败路德。
+- @vonc_luther: 对路德发起不信任动议。
 
 @in_government
 view-if: spd_in_government and not spd_toleration
 on-arrival: coalition_dissent += 1
 
-A cabinet vote is called, and Luther is defeated. The matter is dropped, for now.
+内阁举行表决，路德败北。此事暂告一段落。
 
 @vonc_luther
 view-if: spd_toleration and not spd_in_government
@@ -33,18 +33,18 @@ go-to: hindenburg_vonc if president == "Hindenburg"; marx_vonc if president == "
 @hindenburg_vonc
 on-arrival: chancellor = "Gessler"; chancellor_party = "DDP"
 
-The DNVP sides with Luther in the vote of no confidence, and it fails. However, the DDP's proposal for a motion of censure against Luther is successful; he responds by announcing his resignation, effectively meaning the same effect as a vote of no confidence.
+DNVP 在不信任投票中站在路德一边，动议未获通过。然而，DDP 关于谴责路德的动议获得通过；他随即宣布辞职，效果与不信任投票通过无异。
 
-Otto Gessler of the DDP has been appointed as chancellor while a new government is negotiated, with Hindenburg hoping that Gessler may successfully form a government.
+DDP 的奥托·格斯勒被任命为代理总理，新政府的谈判仍在进行；兴登堡寄望格斯勒能成功组阁。
 
-- @vonc_gessler: We cannot support a government in the pockets of the Reichswehr.
+- @vonc_gessler: 我们不能支持一个国防军口袋里的政府。
 
 @vonc_gessler
 
-Of course, there is no way that we could support Gessler's assumption of chancellorship. Another alternative is Konrad Adenauer of the Center Party; he is unwilling to preside over a minority government, and seeks to include us.
+我们当然不可能支持格斯勒出任总理。另一位人选是中央党的康拉德·阿登纳；他不愿主持一届少数派政府，希望把我们也纳入其中。
 
-- @grand_coalition_adenauer: A Grand Coalition is formed!
-- @failed: Adenauer fails to form a government.
+- @grand_coalition_adenauer: 大联合政府成立！
+- @failed: 阿登纳组阁失败。
 
 @grand_coalition_adenauer
 subtitle: SPD + Z + BVP + DDP + DVP (61%)
@@ -53,45 +53,45 @@ unavailable-subtitle: SPD + Z + BVP + DDP + DVP (61%) - [? if z_relation < 50 : 
 on-arrival: left_dissent += 5; coalition_dissent += 1; in_grand_coalition = 1; spd_in_government = 1; leverage = spd_r; leverage -= 5; chancellor = "Adenauer"; chancellor_party = "Z"; workers_spd -= 2; unemployed_spd -= 3; old_middle_dvp -= 2; new_middle_dvp -= 2
 go-to: election_1928.ministries
 
-Surprisingly, negotiations are successful! A "Grand Coalition" has been formed around Konrad Adenauer, and tensions eased over for now.
+出人意料地，谈判取得成功！围绕康拉德·阿登纳组建了一届"大联合政府"，紧张局势暂得缓解。
 
 @failed
 subtitle: The disagreements between the parties are too great.
 on-arrival: z_relation -= 5 if z_relation >= 50 and dvp_relation >= 50; dvp_relation -= 5 if z_relation >= 45 and dvp_relation >= 50
 
-As expected, Adenauer is unable to form a government, either, due to his insistence on including us and disagreements with Stresemann, whom Adenauer views as too Prussian.
+不出所料，阿登纳同样未能组阁——他坚持把我们纳入政府，并与施特雷泽曼存在分歧（阿登纳认为后者太过普鲁士化）。
 
-- @what_now: So who next?
+- @what_now: 那么接下来谁来？
 
 @what_now
 subtitle: Wilhelm Marx assumes the task of government formation.
 on-arrival: chancellor = "Marx"; chancellor_party = "Z"
 
-In the end, another minority government is formed, with Wilhelm Marx at its head. While the DVP[? if z_relation < 40 : and Center Party?] view this minority government as a stepping stone towards a majority one with the DNVP, the DDP[? if z_relation > 50 : and Center Party?] view it as a stepping stone towards a majority one with us.
+最终又组建了一届少数派政府，由威廉·马克斯出任总理。DVP[? if z_relation < 40 : 与中央党 ?] 把这届少数派政府视为通往与 DNVP 组建多数派政府的过渡，DDP[? if z_relation > 50 : 与中央党 ?] 则把它视为通往与我们组建多数派政府的过渡。
 
-Which it shall end up being remains to be seen. For the time being, this is the government that shall rule Germany.
+最终走向何方仍有待观察。眼下，这就是统治德国的政府。
 
-- @root: Tolerable. For now.
-#- @intolerable: Intolerable. We shall call a motion of no confidence.
+- @root: 暂且可以容忍。
+#- @intolerable: 不可容忍。我们将提出不信任动议。
 
 # voncing marx: +10 reformist dissent, +10 left strength, +5 kpd, -10 z, -10 dvp, -5 ddp, DNVP shoots it down and is eventually added to gov
 
 @marx_vonc
 on-arrival: chancellor = "Gessler"; chancellor_party = "DDP"
 
-The DNVP sides with Luther in the vote of no confidence, and it fails. However, the DDP's proposal for a motion of censure against Luther is successful; he responds by announcing his resignation, effectively meaning the same effect as a vote of no confidence.
+DNVP 在不信任投票中站在路德一边，动议未获通过。然而，DDP 关于谴责路德的动议获得通过；他随即宣布辞职，效果与不信任投票通过无异。
 
-With Luther refusing to serve as interim, Otto Gessler succeeds him as Vice Chancellor. However, he and President Marx are under no illusion that he would win our support for a minority government.
+由于路德拒绝担任临时总理，奥托·格斯勒接任副总理。然而他和马克斯总统都心知肚明：他不可能赢得我们对其少数派政府的支持。
 
-- @so_who: So who next?
+- @so_who: 那么接下来谁来？
 
 @so_who
 subtitle: Marx asks Adenauer to form a government
 
-President Marx asks Konrad Adenauer to take on the task of government formation. Unwilling to preside over a temporary minority government as a stepping stone towards a majority one, he has immediately made overtures towards us, hoping to form a Grand Coalition.
+马克斯总统请康拉德·阿登纳承担组阁任务。阿登纳不愿作为通往多数派政府的过渡而主持临时少数派政府，已立刻向我们抛出橄榄枝，希望组建大联合政府。
 
-- @grand_coalition_adenauer2: A Grand Coalition is formed!
-- @failed2: Adenauer fails to form a government.
+- @grand_coalition_adenauer2: 大联合政府成立！
+- @failed2: 阿登纳组阁失败。
 
 @grand_coalition_adenauer2
 subtitle: SPD + Z + BVP + DDP + DVP (61%)
@@ -100,23 +100,23 @@ unavailable-subtitle: SPD + Z + BVP + DDP + DVP (61%) - [? if z_relation < 45 : 
 on-arrival: left_dissent += 5; in_grand_coalition = 1; spd_in_government = 1; leverage = spd_r; leverage -= 5; chancellor = "Adenauer"; chancellor_party = "Z"; workers_spd -= 1; unemployed_spd -= 2; old_middle_dvp -= 2; new_middle_dvp -= 2
 go-to: election_1928.ministries
 
-Surprisingly, negotiations are successful! A "Grand Coalition" has been formed around Konrad Adenauer, and tensions eased over for now. This may not have been possible without the efforts of Marx to ease over tensions.
+出人意料地，谈判取得成功！围绕康拉德·阿登纳组建了一届"大联合政府"，紧张局势暂得缓解。若无马克斯出面斡旋，这或许难以成事。
 
 @failed2
 subtitle: The disagreements between the parties are too great.
 on-arrival: z_relation -= 5 if z_relation >= 45 and dvp_relation >= 50; dvp_relation -= 5 if z_relation >= 40 and dvp_relation >= 50; marx_relation -= 5 if z_relation >= 40 and dvp_relation >= 45
 
-As expected, Adenauer is unable to form a government, either, due to his insistence on including us and disagreements with Stresemann, whom Adenauer views as too Prussian.
+不出所料，阿登纳同样未能组阁——他坚持把我们纳入政府，并与施特雷泽曼存在分歧（阿登纳认为后者太过普鲁士化）。
 
-- @what_now2: Brüning is appointed chancellor.
+- @what_now2: 海因里希·布吕宁被任命为总理。
 
 @what_now2
 subtitle: Z + BVP + DDP + DVP (35%)
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-In the end, another minority government is formed, with Heinrich Brüning at its head. While the DVP[? if z_relation < 40 : and Center Party?] view this minority government as a stepping stone towards a majority one with the DNVP, the DDP[? if z_relation > 50 : and Center Party?] view it as a stepping stone towards a majority one with us.
+最终又组建了一届少数派政府，由海因里希·布吕宁出任总理。DVP[? if z_relation < 40 : 与中央党 ?] 把这届少数派政府视为通往与 DNVP 组建多数派政府的过渡，DDP[? if z_relation > 50 : 与中央党 ?] 则把它视为通往与我们组建多数派政府的过渡。
 
-Which it shall end up being remains to be seen. For the time being, this is the government that shall rule Germany.
+最终走向何方仍有待观察。眼下，这就是统治德国的政府。
 
-- @root: Tolerable. For now.
-#- @intolerable: Intolerable. We shall call a motion of no confidence.
+- @root: 暂且可以容忍。
+#- @intolerable: 不可容忍。我们将提出不信任动议。

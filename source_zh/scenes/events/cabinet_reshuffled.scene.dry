@@ -6,43 +6,43 @@ view-if: chancellor_party != "SPD" and chancellor_party != "KPD" and chancellor 
 tags: event
 go-to: menu if chancellor != "Wirth"; wirth_resign_hindenburg if chancellor == "Wirth" and (president == "Hindenburg" or president == "Adenauer" or president == "Gessler" or president == "Eckener" or president == "Marx"); wirth_resign_braun if chancellor == "Wirth" and (president == "Braun" or president == "Schumacher" or president == "Juchacz")
 
-= Cabinet Reshuffled
+= 内阁改组
 
 @menu
 
-[+ chancellor +] has announced his intentions to [+ president +] to reshuffle the cabinet, sacking and replacing all current SPD ministers and replacing them with bourgeois ones. [? if bourgeois_coalition < 50 and right_coalition < 50 : Luckily, they lack a majority without us, so we can bring them down with a simple motion of no confidence. ?]
+[+ chancellor +] 总理已向 [+ president +] 总统表明意图，将改组内阁——罢免所有社民党籍部长，由资产阶级人士接替。[? if bourgeois_coalition < 50 and right_coalition < 50 : 所幸他们没有我们就拿不到多数，因此一个简单的不信任动议就能让他们下台。 ?]
 
-- @try_assuage: Try to assuage our partners.
-- @right_coalition: The DNVP replaces us in government.
-- @minority_bruning: Brüning's cabinet survives as a minority government.
-- @breitscheid_vonc: Call a constructive motion of no confidence with the KPD!
-- @sack_bruning: [+ president +] will call snap elections.
-- @bourgeois_coalition: The bourgeois have a lone majority.
-- @tolerate: Let the reshuffle happen, and tolerate the new minority government.
-- @no_tolerate: Bring down this new backstabbing government!
+- @try_assuage: 设法安抚我们的伙伴。
+- @right_coalition: 由 DNVP 取代我们入阁。
+- @minority_bruning: 布吕宁内阁作为少数派政府继续存续。
+- @breitscheid_vonc: 与德共一道提出建设性不信任动议！
+- @sack_bruning: [+ president +] 解散国会，举行闪电大选。
+- @bourgeois_coalition: 资产阶级单独拥有多数。
+- @tolerate: 任改组发生，并容忍这届新的少数派政府。
+- @no_tolerate: 推翻这届背后捅刀的新政府！
 
 @try_assuage
 choose-if: chancellor != "Scholz" or dvp_relation >= 55
 unavailable-subtitle: Chancellor Scholz sees no room for compromise.
 
-How do we assuage our partners?
+我们该如何安抚伙伴？
 
-- @give_up_prussia: Give up on leadership of Prussia.
-- @austerity: Enact a massive austerity plan.
-- @resources: Use our resources to reduce dissent within the coalition.
-- @menu: Never mind. What are our options?
+- @give_up_prussia: 放弃普鲁士的领导权。
+- @austerity: 推出一项大规模紧缩计划。
+- @resources: 动用我们的资源以减少联合政府内部的不满。
+- @menu: 算了。我们有什么选项？
 
 @give_up_prussia
 view-if: spd_prussia == 1
-on-arrival: coalition_dissent = 0; spd_prussia = 0; prussian_government = "I"; reformist_dissent += 10; centrist_dissent += 10; labor_dissent += 10; left_dissent += 5; workers_spd -= 5; rural_spd -= 5; 
+on-arrival: coalition_dissent = 0; spd_prussia = 0; prussian_government = "I"; reformist_dissent += 10; centrist_dissent += 10; labor_dissent += 10; left_dissent += 5; workers_spd -= 5; rural_spd -= 5;
 
-Fine. We no longer control the government of Prussia. The vote has been called off.
+行。我们不再掌控普鲁士政府。投票已被取消。
 
 @austerity
 view-if: welfare >= 0
 on-arrival: coalition_dissent = 0; workers_spd -= 10; unemployed_spd -= 10; workers_kpd += 7; workers_nsdap += 3; unemployed_kpd += 5; unemployed_nsdap += 5; left_dissent += 15; center_dissent += 10; labor_dissent += 15; reformist_dissent += 5; welfare -= 2; budget += 1; unemployed += 3; kpd_coalition_dissent += 1; kpd_relation -= 10 if in_popular_front
 
-Fine. We enacted a massive austerity program to cut welfare, in order to maintain the stability of our coalition. The vote has been called off.
+行。我们推出了一项削减福利的大规模紧缩计划，以维持联合政府的稳定。投票已被取消。
 
 @resources
 choose-if: resources >= 3
@@ -50,7 +50,7 @@ unavailable-subtitle: We do not have enough resources.
 subtitle: -3 resources
 on-arrival: resources -= 3; coalition_dissent -= 1;
 
-By transferring resources to our coalition partners, we can reduce their dissent against our policies. This is a crude, but effective solution.
+通过向联合政府伙伴拨付资源，我们可以减少他们对我们各项政策的不满。这是粗暴但有效的办法。
 
 @right_coalition
 view-if: right_coalition >= 50 and bourgeois_coalition < 50
@@ -66,7 +66,7 @@ go-to: election_1928.let_it_form
 view-if: constructive_vonc and ((right_coalition < 50 or right_coalition_failed or year >= 1929 or (year >= 1928 and month >= 8)) and bourgeois_coalition < 50)
 on-arrival: spd_in_government = 0; spd_toleration = 0; minority_government = 1; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = ddp_name; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 
-Due to our own constitutional reforms, we cannot bring [+ chancellor +] down. We will have to prepare for the next election to get our chance.
+由于我们自身的宪政改革，我们无法把 [+ chancellor +] 总理拉下台。我们只能等下届大选再争取机会。
 
 @breitscheid_vonc
 view-if: constructive_vonc and ((right_coalition < 50 or right_coalition_failed or year >= 1929 or month >= 8) and bourgeois_coalition < 50) and (left_coalition >= 50 or kpd_relation >= 50)
@@ -74,7 +74,7 @@ choose-if: left_coalition >= 50 and kpd_relation >= 50
 unavailable-subtitle: [? if left_coalition < 50 : We do not have a majority in favor of Breitscheid. ?][? if kpd_relation < 50 : The Communists are unwilling. ?]
 on-arrival: old_chancellor = chancellor; in_left_front = 1; in_grand_coalition = 0; in_weimar_coalition = 0; in_popular_front = 0; chancellor_party = "SPD"; chancellor = "Breitscheid"; labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; economic_minister_party = "SPD"; justice_minister_party = "SPD"; foreign_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
 
-We have succesfully passed a motion of no confidence to replace [+ old_chancellor +] with Breitscheid. We are now ruling in a united front with the KPD.
+我们成功通过建设性不信任动议，以布赖特沙伊德取代 [+ old_chancellor +]。我们现在与德共组成了左翼阵线执政。
 
 @sack_bruning
 view-if: constructive_vonc and president == "Braun" or president == "Schumacher" or president == "Juchacz"
@@ -83,7 +83,7 @@ unavailable-subtitle: We don't have that power anymore. You really screwed us he
 call: set_next_election_time
 on-arrival: time_to_election = 3; weimar_dissent += 1 if weimar_plan_adopted; spd_in_government = 0; in_grand_coalition = 0; in_weimar_coalition = 0; in_popular_front = 0; spd_toleration = 0; foreign_minister_party = "I"; interior_minister_party = "I"; justice_minister_party = "I"; labor_minister_party = "I"; reichswehr_minister_party = "I"; economic_minister_party = "I"; finance_minister_party = "I"; agriculture_minister_party = "I"; coalition_dissent = 0; pro_republic -= 5; old_middle_spd -= 3; new_middle_spd -= 2; workers_spd -= 3 if pro_republic < 50; workers_spd -= 4 if pro_republic < 40; old_middle_nsdap += 4 if pro_republic < 50; new_middle_nsdap += 3 if pro_republic < 50
 
-We have sacked [+ chancellor +] and called for new elections for [+ next_election_month : month +] [+ next_election_year +].
+我们罢免了 [+ chancellor +]，新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @tolerate
 view-if: not constructive_vonc
@@ -92,7 +92,7 @@ unavailable-subtitle: They don't need us.
 on-arrival: left_dissent += 10; labor_dissent += 5; center_dissent += 5; workers_spd -= 3
 go-to: election_1928.toleration_bruning
 
-Many in the party are incredulous. We have just been expelled from government, and our reaction is to allow this government to govern?
+党内许多人难以置信。我们刚被踢出政府，我们的反应竟然是让这届政府继续治理？
 
 @no_tolerate
 view-if: not constructive_vonc
@@ -101,32 +101,32 @@ unavailable-subtitle: They don't need us.
 go-to: reichstag_dissolved if ((chancellor != "Brüning" and chancellor != "Scholz") or (year >= 1931 or confrontation_seen or president != "Hindenburg")); dnvp_tolerate if ((chancellor == "Brüning" or chancellor == "Scholz") and (year < 1931 and not confrontation_seen and president == "Hindenburg"))
 on-arrival: weimar_dissent += 1 if weimar_plan_adopted; spd_in_government = 0; in_grand_coalition = 0; in_weimar_coalition = 0; in_popular_front = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "I"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = ddp_name; finance_minister_party = "DVP"; agriculture_minister_party = "Z"; labor_minister = "Stegerwald"; interior_minister = "Wirth"; finance_minister = "Moldenhauer"; economic_minister = "Curtius"; justice_minister = "Koch-Weser"; foreign_minister = "Stresemann"; agriculture_minister = "Dietrich"; reichswehr_minister = "Groener";  coalition_dissent = 0; pro_republic -= 5; old_middle_spd -= 3; new_middle_spd -= 2; workers_spd -= 3 if pro_republic < 50; workers_spd -= 4 if pro_republic < 40; old_middle_nsdap += 4 if pro_republic < 50; new_middle_nsdap += 3 if pro_republic < 50; welfare -= 2;
 
-The vote succeeds, and their government has resigned. Chancellor [+ chancellor +] remains as the head of an acting government, consisting solely of the bourgeois parties. He immediately proceeds to cut welfare spending substantially.
+投票通过，他们的政府辞职。[+ chancellor +] 总理仍保留为代理政府首脑，内阁仅由资产阶级各党组成。他随即开始大幅削减福利开支。
 
 @reichstag_dissolved
 call: set_next_election_time
 on-arrival: time_to_election = 3
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @dnvp_tolerate
 on-arrival: dnvp_toleration = 1
 
-The DNVP is split, as what remains of its moderate wing refuses to vote against [+ chancellor +] following Schiele (a high-ranking member of the DNVP) being included in cabinet.
+DNVP 出现分裂，其残存的温和派在席勒（DNVP 的高层成员）被纳入内阁后拒绝对 [+ chancellor +] 投反对票。
 
 @wirth_resign_braun
 call: set_next_election_time
 on-arrival: time_to_election = 3; chancellor = "Wels"; chancellor_party = "SPD"; spd_caretaker = 1; in_grand_coalition = 0; in_weimar_coalition = 0; in_popular_front = 0; spd_toleration = 0; foreign_minister_party = "I"; interior_minister_party = "I"; justice_minister_party = "I"; labor_minister_party = "I"; reichswehr_minister_party = "I"; economic_minister_party = "I"; finance_minister_party = "I"; agriculture_minister_party = "I"; coalition_dissent = 0; pro_republic -= 5;
 
-Unable to bear the stress of keeping the coalition together, Wirth has announced his intentions to resign as chancellor.
+无法承受维系联合政府的压力，维尔特已宣布辞去总理职务。
 
-[+ president +] has appointed as replacement Wels, who is immediately faced with a successful motion of no confidence. New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+[+ president +] 任命韦尔斯接任，而后者立即遭遇了一份成功的不信任动议。新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @wirth_resign_hindenburg
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-Unable to bear the stress of keeping the coalition together, Wirth has announced his intentions to resign as chancellor.
+无法承受维系联合政府的压力，维尔特已宣布辞去总理职务。
 
-[+ president +] appoints Brüning from the Center Party as replacement, who immediately reforms the government.
+[+ president +] 任命中央党的布吕宁接任，后者立即着手改组政府。
 
-- @menu: Brüning sacks our ministers.
+- @menu: 布吕宁罢免我方部长。

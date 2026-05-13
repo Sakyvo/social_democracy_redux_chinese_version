@@ -5,97 +5,97 @@ tags: event
 view-if: month = 5 and communist_coalition >= 3 and kpd_relation >= 60 and nationalization_adopted == 1
 on-arrival: month_actions += 1; spd_dominance = 0; kpd_dominance = 0; fascist_disruption = 0
 
-= May Day
+= 五一劳动节
 
-It is May Day of [+ year +] and as we prepare the possibility is discussed of a rally together with the KPD for the abolition of the capitalist economy and a swift transition towards socialism to end the suffering of the workers from the economic crisis. From what we know the KPD seems amenable to the idea, though it would terrify the bourgeoisie, voters and parties alike. [? if volksmai = 1 : This idea is given legitimacy by the success of our rally with the KPD in 1929. ?] 
+正值 [+ year +] 年的五一，我们在筹备之际，讨论起与德共联手举办集会的可能性——主题是废除资本主义经济、迅速过渡到社会主义以终结经济危机给工人带来的苦难。据我们所知，德共对这一想法持开放态度，但此举无疑会令资产阶级、选民及各党闻风丧胆。[? if volksmai = 1 : 1929 年我们与德共联手举行的集会的成功为这一想法增添了正当性。 ?]
 
-Should we pursue this idea?
+我们应当推进这一构想吗？
 
-- @invite_kpd_1: Let us invite the KPD to a rally of the working class united against capitalism and its crisis!
-- @invite_kpd_2: Let us invite the KPD to a rally of the working class united against capitalism and its crisis!
-- @dismiss: We have a lot in common with the KPD, but it is best to maintain our party's independence. 
+- @invite_kpd_1: 让我们邀请德共一起举行工人阶级团结起来反对资本主义及其危机的集会！
+- @invite_kpd_2: 让我们邀请德共一起举行工人阶级团结起来反对资本主义及其危机的集会！
+- @dismiss: 我们与德共固然多有共同之处，但保持本党的独立性最为要紧。
 
 @dismiss
 on-arrival: left_dissent += 5; center_dissent -= 10; reformist_dissent -= 10; labor_dissent -= 5; neorevisionist_dissent -= 10; left_strength -= 5
 
-We will not participate in such an event with the KPD.
+我们不会与德共共同参加此类活动。
 
 @invite_kpd_1
 view-if: kpd_normalized <= spd_normalized
 
-We have decided to go ahead with our plan and reach out to the KPD. They are open to the idea, but some of their more hardline members require further convincing.
+我们决定推进计划，向德共表达合作意向。他们对此持开放态度，但党内一些更强硬的成员仍需进一步说服。
 
-- @relations: Use our relations.
-- @resources: Use our resources.
-- @appeal_1929: Remind them of our success in 1929.
-#- @let_kpd: Let the KPD organize and manage the rally.
+- @relations: 动用我们的关系。
+- @resources: 动用我们的资源。
+- @appeal_1929: 提醒他们我们在 1929 年的成功。
+#- @let_kpd: 让德共组织并主导集会。
 
 @invite_kpd_2
 view-if: kpd_normalized > spd_normalized
 
-We have decided to go ahead with our plan and reach out to the KPD. They are, to our surprise, more than happy to go ahead with the plan. Preparations are made, with the cost even being fronted by the KPD, and soon everything is ready.
+我们决定推进计划，向德共表达合作意向。出乎意料地，他们非常乐意推进该方案。各项准备就绪，连开支都由德共率先垫付，万事俱备。
 
-- @rally_kpd_2: Now the rally...
-- @rally_disruption: Now the rally...
+- @rally_kpd_2: 现在到了集会环节……
+- @rally_disruption: 现在到了集会环节……
 
 @relations
 view-if: kpd_relation >= 75
 on-arrival: spd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)>=((rfb_strength*rfb_militancy)*kpd_normalized)); kpd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)<((rfb_strength*rfb_militancy)*kpd_normalized)); fascist_disruption = 1 if ((sa_strength*sa_militancy)+(sh_strength*sh_militancy)) >= 1000
 
-Thankfully, due to our great relations, it isn't hard to bring the KPD around to the idea. Preparations are made and it isn't long before everything is ready for the rally.
+幸好我们关系良好，劝德共接受这一构想并不困难。各项准备工作就绪，集会很快可以举行。
 
-- @rally_spd_1: Now the rally...
-- @rally_disruption: Now the rally...
-- @rally_kpd_1: Now the rally...
-#- @rally_fail: Now the rally...
+- @rally_spd_1: 现在到了集会环节……
+- @rally_disruption: 现在到了集会环节……
+- @rally_kpd_1: 现在到了集会环节……
+#- @rally_fail: 现在到了集会环节……
 
 @resources
 subtitle: -1 resources
 choose-if: resources >= 1
 on-arrival: resources -= 1; spd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)>=((rfb_strength*rfb_militancy)*kpd_normalized)); kpd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)<((rfb_strength*rfb_militancy)*kpd_normalized)); fascist_disruption = 1 if ((sa_strength*sa_militancy)+(sh_strength*sh_militancy)) >= 1000
 
-We promise to front the resources needed for organizing the rally, and the KPD accepts this. Preparations are made and it isn't long before everything is ready for the rally.
+我们承诺出资以筹办集会，德共予以接受。各项准备工作就绪，集会很快可以举行。
 
-- @rally_spd_1: Now the rally...
-- @rally_disruption: Now the rally...
-- @rally_kpd_1: Now the rally...
-#- @rally_fail: Now the rally...
+- @rally_spd_1: 现在到了集会环节……
+- @rally_disruption: 现在到了集会环节……
+- @rally_kpd_1: 现在到了集会环节……
+#- @rally_fail: 现在到了集会环节……
 
 @appeal_1929
 view-if: volksmai == 1
 on-arrival: spd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)>=((rfb_strength*rfb_militancy)*kpd_normalized)); kpd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)<((rfb_strength*rfb_militancy)*kpd_normalized)); fascist_disruption = 1 if ((sa_strength*sa_militancy)+(sh_strength*sh_militancy)) >= 1000
 
-We remind them of the successes of our rally in 1929, and they are willing to take that as evidence for the utility of another such rally. Preparations are made and it isn't long before everything is ready for the rally.
+我们提醒他们 1929 年集会的成功，他们愿意以此作为再办一次集会的依据。各项准备工作就绪，集会很快可以举行。
 
-- @rally_spd_1: Now the rally...
-- @rally_disruption: Now the rally...
-- @rally_kpd_1: Now the rally...
-#- @rally_fail: Now the rally...
+- @rally_spd_1: 现在到了集会环节……
+- @rally_disruption: 现在到了集会环节……
+- @rally_kpd_1: 现在到了集会环节……
+#- @rally_fail: 现在到了集会环节……
 
 @rally_kpd_2
 view-if: fascist_disruption != 1
 on-arrival: workers_kpd += 12; unemployed_kpd += 12; workers_spd += 3*(1-dissent); unemployed_spd += 3*(1-dissent); new_middle_spd -= 7; new_middle_spd += 4 if new_middle_conscious; old_middle_spd -= 7; z_relation -= 15; dvp_relation -= 15; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.05; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; socialism += 3
 
-The rally goes ahead, with the KPD taking a very active participatory role. The reason soon becomes clear as they very obviously dominate the rally and proceedings, treating the SPD's involvement as that of a subservient auxilliary. The bulk of support from the rally goes towards the KPD and the SPD is left floundering for the leftovers. The reactionaries notice this and waste no time in calling the SPD a puppet of the KPD. They also expand their forces through the growing anticommunist fears provoked by our rallies with the KPD.
+集会如期举行，德共在其中扮演了极为活跃的角色。原因很快显现：他们显然主导了整场集会和议程，把社民党的参与视为附庸辅助。集会带来的支持绝大部分流向德共，社民党只能捡些残羹冷炙。反动派趁机将社民党称为德共的傀儡。借着我们与德共集会引发的反共情绪上升，他们也扩张了自身力量。
 
 @rally_spd_1
 on-arrival: workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); workers_kpd += 5; unemployed_kpd += 5; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.02; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; unemployed_spd += 3*(1-dissent) if left_strength > reformist_strength; workers_spd += 4*(1-dissent) if nationalization_progress > 0; unemployed_spd += 3*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; socialism += 2
 view-if: spd_dominance == 1 and fascist_disruption != 1
 
-The rally goes ahead, and is largely a success. The bulk of the support gained goes to the SPD, though the KPD is not left out of its fair share. The reactionaries attack us as nothing more than KPD puppets and expand their forces by using the growing anticommunist fears that we have caused as a recruiting tool.
+集会如期举行，整体上颇为成功。所获支持的绝大部分归于社民党，但德共也分得了应得的一份。反动派攻击我们不过是 KPD 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
 
 @rally_disruption
 view-if: fascist_disruption == 1
 
-The SA and Stalhelm have attacked our rally! What started as a show of proletarian unity and action devolves into a bloody violent clash between forces of the communist RFB and the attacking SA and Stalhelm.
+冲锋队和钢盔团袭击了我们的集会！原本展示无产阶级团结与行动的活动，演变为共产党 RFB 与冲锋队、钢盔团之间血腥的暴力冲突。
 
-- @rb: Deploy the Reichsbanner to stand by the RFB. This rally is happening whether the right wants it to or not.
-- @give_up: Call the rally off. We don't want violence.
+- @rb: 部署黑红金国旗团与 RFB 并肩作战。这次集会无论右翼是否情愿，都要进行。
+- @give_up: 取消集会。我们不愿见暴力。
 
 @give_up
 on-arrival: workers_nsdap += 4; rfb_strength -= 25; sa_strength += 25; sh_strength += 25; unemployed_nsdap += 3; kpd_relation -= 10; left_dissent += 5; pacifism += 1; workers_spd -= 7; workers_kpd += 5; workers_sapd += 2; socialism -= 2
 
-The reactionaries have won this show of strength. The KPD lambast us for cowardice, and many workers desert the party.
+反动派在这场实力较量中胜出。德共大肆抨击我们的怯懦，许多工人离弃了我们党。
 
 @rb
 on-arrival: socialist_strength = (rb_strength*rb_militancy*(1-dissent))+(rfb_strength*rfb_militancy); reactionary_strength = (sa_strength*sa_militancy)+(sh_strength*sh_militancy); socialist_strength += (prussian_police_strength*prussian_police_loyalty) if prussian_police_loyalty >= 0.75 and spd_prussia == 1; reactionary_strength += (prussian_police_strength*(1-prussian_police_loyalty)) if (spd_prussia == 1 and prussian_police_loyalty < 0.4 and interior_police_loyalty < 0.5) or (spd_prussia == 0 and prussian_police_loyalty < 0.5); strife += 1; pro_republic -= 3
@@ -104,24 +104,23 @@ go-to: victory if (socialist_strength-reactionary_strength) > 100; defeat if (re
 @victory
 on-arrival: rfb_strength += 75; rb_militancy += 0.03; pacifism -= 1; kpd_relation += 5; workers_kpd += 2; workers_spd += 3; unemployed_kpd += 3; unemployed_spd += 2; unemployed_nsdap -= 5; new_middle_spd -= 3; new_middle_spd += 1 if new_middle_conscious; old_middle_spd -= 3; rural_spd -= 3; z_relation -= 5; dvp_relation -= 5; sa_strength -= 25; sa_militancy += 0.05; sh_strength -= 50; prussian_police_loyalty -= 0.05; interior_police_loyalty -= 0.05; pro_republic -= 5; coup_progress += 2 if spd_in_government == 1; socialism += 2
 
-We have won! Our forces combined with the RFB's have managed to protect our rally. The fight was bloody but we have persevered and now we can go ahead with the rally.
+我们胜了！我们的力量与 RFB 联手，成功护住了集会。战斗是血腥的，但我们坚持下来了，集会得以继续进行。
 
-- @rally_spd_1: Now the rally...
-- @rally_kpd_1: Now the rally...
+- @rally_spd_1: 现在到了集会环节……
+- @rally_kpd_1: 现在到了集会环节……
 
 @defeat
 on-arrival: rfb_strength -= 25; rb_strength -= 75; rb_militancy += 0.02; pacifism -= 1; workers_nsdap += 4; sa_strength += 50; sh_strength += 50; unemployed_nsdap += 3; workers_spd -= 6; workers_kpd -= 4; unemployed_kpd -= 5; unemployed_spd -= 5; old_middle_nsdap += 2; new_middle_nsdap += 2; rural_nsdap += 2; new_middle_spd -= 3; new_middle_spd += 1 if new_middle_conscious; old_middle_spd -= 3; rural_spd -= 3; old_middle_dvp -= 1; rural_dvp -= 1; pro_republic -= 10; socialism -= 1
 
-We have lost the battle, our forces and the communist forces both chased away [? if harzburg_front_seen == 1 : by the forces of the Harzburg Front ?]. Many anticommunist bourgeois voters have joined the NSDAP, impressed by their commitment to defending Germany against revolution, while the SA and Stalhelm recruit from their victory and expand in size.
+我们输掉了这场战斗——我方力量与共产党力量[? if harzburg_front_seen == 1 : 在哈尔茨堡阵线力量打击下 ?]双双被驱散。许多反共的资产阶级选民被纳粹党捍卫德国免受革命的姿态打动，加入了 NSDAP；冲锋队与钢盔团则借胜利之势招募新人，规模壮大。
 
 @tie
 on-arrival: rfb_strength += 50; rb_strength -= 25; strife += 1; pacifism -= 1; pro_republic -= 5; sa_strength += 25; sh_strength += 25; sa_militancy += 0.05; sh_militancy += 0.05; rfb_militancy += 0.05; new_middle_spd -= 2; new_middle_spd += 1 if new_middle_conscious; old_middle_spd -= 2; rural_spd -= 2; unemployed_kpd += 2; unemployed_nsdap += 2; workers_kpd += 1; z_relation -= 2; dvp_relation -= 3; prussian_police_loyalty -= 0.02; interior_police_loyalty -= 0.03; coup_progress += 1; coup_progress += 2 if spd_in_government == 1; kpd_relation += 5
 
-The fight is bloody and long, and when the smoke clears, there is no clear victor. Both sides withdraw their forces from the battleground, and we and the reactionaries both claim victory. One thing is certain, this confrontation will not be our last.
+战斗血腥而漫长，硝烟散去时并无明显胜者。双方都从战场撤回力量，我们与反动派都各自宣告胜利。可以肯定的是：这绝不是我们的最后一次交锋。
 
 @rally_kpd_1
 view-if: kpd_dominance == 1 and fascist_disruption != 1
 on-arrival: workers_spd += 5*(1-dissent); unemployed_spd += 5*(1-dissent); workers_kpd += 10; unemployed_kpd += 10; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.05; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; unemployed_spd += 2*(1-dissent) if left_strength > reformist_strength; workers_spd += 3*(1-dissent) if nationalization_progress > 0; unemployed_spd += 2*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; socialism += 3
 
-The rally goes ahead, and is largely a success, although the bulk of the support gained seems to have gone to the KPD due to their strong showing. The reactionaries have noticed and attack us as nothing more than KPD puppets, expanding their forces by using the growing anticommunist fears that we have caused as a recruiting tool.
-
+集会如期举行，整体上颇为成功，但由于德共强势登场，所获支持的绝大部分流向了德共。反动派注意到此事，攻击我们不过是 KPD 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
