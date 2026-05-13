@@ -5,13 +5,13 @@ new-page: true
 max-visits: 1
 tags: event
 
-= Constitutional Referendum
+= 宪法公投
 
-With Hitler's election as president he has wasted no time in attempting to consolidate power. His efforts are impeded however thanks to our own changes to the constitution in weakening the powers of the presidency. To bypass this he has called a constitutional referendum on undoing our changes and restoring the presidency's power, and the SA has already mobilized to intimidate voters and attempt to force the referendum through. If this referendum passes, it will mean the end of Germany democracy.
+希特勒当选总统后，立刻马不停蹄地开始巩固权力。然而由于我们此前修改宪法、削弱了总统权力，他的努力受阻。为绕过这一障碍，他发起了一场宪法公投，要求撤销我们的修改、恢复总统权力，与此同时冲锋队（SA）已开始动员，恐吓选民、强行推动公投通过。如果这场公投通过，德国民主就此终结。
 
-- @mobilize_1: Mobilize the Reichsbanner to try and limit Nazi electoral interference!
-- @mobilize_2: Mobilize the Reichsbanner and Prussian police to try and limit Nazi electoral interference!
-- @campaign: We cannot risk direct confrontation with the SA, we will focus on electoral campaigning for this referendum.
+- @mobilize_1: 动员黑红金国旗团，尽力遏制纳粹对选举的干预！
+- @mobilize_2: 动员国旗团与普鲁士警察，尽力遏制纳粹对选举的干预！
+- @campaign: 我们不能冒险与冲锋队直接对抗，只能聚焦本次公投的选举宣传。
 
 @mobilize_1
 subtitle: This risks escalation.
@@ -39,9 +39,9 @@ if (Q.dvp_relation < 30) {
 }
 !}
 
-Our forces clash with Hitler's in the streets as the referendum is held, and, shockingly,[? if spd_prussia == 1 : with the help of the Prussian police force, ?] the SA is eventually beaten back allowing the referendum to be held unimpeded. 
+公投举行之际，我们的力量在街头与希特勒的力量交锋；令人震惊的是，[? if spd_prussia == 1 : 在普鲁士警察的协助下， ?] 冲锋队最终被打退，公投得以无阻碍地进行。
 
-- @results_unimpeded: Now the results…
+- @results_unimpeded: 结果出来了……
 
 @prevention_failure
 on-arrival: rb_strength -= 50; workers_spd -= 2; unemployed_spd -= 2; {!
@@ -52,32 +52,32 @@ if (Q.dvp_relation < 30) {
 Q.nazi_reform *= ((Q.enemy_strength*4)/Q.defense_strength)
 !}
 
-Our forces clash with Hitler's and, despite our best efforts, the SA is triumphant. Emboldened by the defeat of the Reichsbanner, the SA ramps up their terror on the streets, making it unlikely that this referendum will be a fair one. 
+我方力量与希特勒方面交锋，尽管竭尽全力，冲锋队仍占了上风。国旗团的失败让冲锋队更加嚣张，加大了街头恐怖，此番公投难有公正可言。
 
-- @results_rigged: Now the results…
+- @results_rigged: 结果出来了……
 
 @prevention_civil_war
 on-arrival: spd_rebel = 1
 
-Clashes in the streets between the SA and the Reichsbanner escalate as the Stalhelm enters against our forces under the direction of the Harzburg Front. Communist fighters, emboldened by the chaos, enter the fray as well, and soon any semblance of law and order has collapsed as real control devolves to the clashing paramilitaries. In an attempt to salvage control of the situation Hitler attempts to deploy the Reichswehr and quell the fighting but this has only escalated things further as the ADGB prepares to call a general strike. Whether we want one or not, we have been forced into fighting a civil war.
+街头冲锋队与国旗团之间的冲突升级，钢盔团在哈尔茨堡阵线指挥下加入了对抗我们的行列。趁乱而起的共产党战士也加入战团，法律与秩序的表象很快崩塌，真正的控制权落入相互厮杀的准军事组织手中。为夺回局势，希特勒试图调动国防军平息战斗，但此举只让事态进一步升级——德国总工会（ADGB）正在准备发起总罢工。无论我们愿不愿意，我们都被迫卷入了一场内战。
 
-- @civil_war: It is a civil war.
+- @civil_war: 这就是内战。
 
 @results_unimpeded
 
-The election proceeds, with limited electoral interference thanks to our efforts. The results are tallied and Germany holds her breath. [? if nazi_reform >= 0.5 : Despite our successes in ensuring little electoral interference, the referendum succeeds. ?] [? if nazi_reform < 0.5 : Thanks to our efforts in preventing Nazi electoral interference, the referendum fails. Though this is a great victory for democracy, the struggle is not over yet. His recent failures have only frustrated Hitler and he may take much more drastic measures if we continue to impede his efforts of consolidating power. ?]
+选举顺利进行，多亏我们的努力，干预受到限制。结果被一一统计，德国屏住了呼吸。[? if nazi_reform >= 0.5 : 尽管我们成功地把选举干预降到很低，公投仍然通过了。 ?] [? if nazi_reform < 0.5 : 多亏我们阻止了纳粹的选举干预，公投未获通过。这是民主的一场重大胜利，但战斗远未结束。最近的失败只会让希特勒更加恼火，如果我们继续阻挠他巩固权力的步伐，他很可能采取更加激烈的手段。 ?]
 
-- @republic_doomed: A grim day for democracy.
-- @republic_safe: A great day for democracy.
+- @republic_doomed: 民主的黯淡一天。
+- @republic_safe: 民主的伟大一天。
 
 @results_rigged
 on-arrival: pro_republic -= 6*(enemy_strength/defense_strength); workers_nsdap += 3*(enemy_strength/defense_strength); unemployed_nsdap += 6*(enemy_strength/defense_strength); new_middle_nsdap += 4*(enemy_strength/defense_strength); old_middle_nsdap += 5*(enemy_strength/defense_strength); rural_nsdap += 5*(enemy_strength/defense_strength); unemployed_kpd -= 8*(enemy_strength/defense_strength); workers_kpd -= 3*(enemy_strength/defense_strength); unemployed_spd -= 4*(enemy_strength/defense_strength); workers_spd -= 2*(enemy_strength/defense_strength)
-  
-The election proceeds under the watchful eye of the SA in the streets, who continue attacks on socialist and communist organizers throughout the voting period and violently disperse attempts to oppose the reform. This reign of terror continues all throughout the voting period and when voting finishes it is [? if nazi_reform >= 0.5 : no surprise for anyone to hear that Hitler's reforms have been approved by a supposed majority of the populace. ?] [? if nazi_reform < 0.5 : a great surprise for everyone when Hitler's reforms are defeated, though barely. ?]
 
-- @judicial_help: Can we get the judiciary to declare the results invalid?
-- @hitler_victorious: What do we do now?
-- @republic_safe: A great day for democracy.
+选举在街头冲锋队的虎视眈眈中进行，他们整个投票期间都在袭击社民党和共产党的组织者，并暴力驱散一切试图反对该改革的行动。这场恐怖统治贯穿整个投票期，当投票结束时，[? if nazi_reform >= 0.5 : 谁也不会感到意外——所谓多数民众"赞成"通过了希特勒的改革。 ?] [? if nazi_reform < 0.5 : 所有人都大为震惊——希特勒的改革被否决，尽管只是险胜。 ?]
+
+- @judicial_help: 我们能否让司法机构宣告结果无效？
+- @hitler_victorious: 我们现在该怎么办？
+- @republic_safe: 民主的伟大一天。
 
 @hitler_referendum
 on-arrival: {!
@@ -105,7 +105,7 @@ choose-if: judicial_reform >= 3
 on-arrival: nazi_rage_progress += 5
 unavailable-subtitle: The judiciary would never agree with us.
 
-We complain to the judiciary that due to the violent interference of the SA the referendum is illegitimate and should be declared such. The judiciary reviews our case and agrees! This has enraged Hitler who begins to consider more radical actions to secure his power.
+我们向司法机构申诉：鉴于冲锋队的暴力干预，该公投不具合法性，应予宣告无效。司法机构审查我们的案件后表示同意！希特勒勃然大怒，开始考虑采取更激进的手段来确保自己的权力。
 
 @hitler_victorious
 view-if: judicial_reform < 3 and nazi_reform >= 0.5
