@@ -5,141 +5,141 @@ on-arrival: panzerkreuzer_b_seen = 1
 new-page: true
 view-if: panzerkreuzer_b_seen = 0 and year = 1931 and month >= 2 and (spd_in_government = 1 or spd_toleration = 1)
 
-= Panzerkreuzer B
+= 装甲巡洋舰 B
 
-The Navy is demanding the construction of another new battlecruiser. [? if panzerkreuzer_funded: The previous battlecruiser had been funded, and has already been launched. Another ship would futher progress Germany's rearmament. ?][? if not panzerkreuzer_funded: The previous battlecruiser requested by the Navy was not funded, thanks to us. The military remains bitter, but nevertheless they are still pursuing their rearmament plan, and must seek funding from the Reichstag. ?]
+海军要求建造另一艘新装甲巡洋舰。[? if panzerkreuzer_funded: 上一艘装甲巡洋舰已获拨款，并已下水。再建一艘将进一步推动德国的重整军备。 ?][? if not panzerkreuzer_funded: 多亏了我们，海军之前要求的装甲巡洋舰未获拨款。军方仍然怨气未消，但他们仍在推进重整军备计划，必须从国会争取拨款。 ?]
 
-Much of our party is deeply opposed to rearmament, while the center and right parties are united in support. What will we do?
+我党许多人坚决反对重整军备，而中间派和右翼各党则一致支持。我们怎么办？
 
-- @vote_yes: Vote yes, for constructing the battlecruiser.
-- @vote_no: Vote no, against constructing the battlecruiser.
-- @abstain: Abstain from the vote.
-- @ministry: Use the Reichswehr Ministry to prevent the construction.
+- @vote_yes: 投赞成票，支持建造该舰。
+- @vote_no: 投反对票，反对建造该舰。
+- @abstain: 弃权。
+- @ministry: 利用国防部阻止建造。
 
 @vote_yes
 on-arrival: bill_support = bourgeois_coalition+far_right_coalition; bill_support += spd_r*(0.75-dissent) if not panzerkreuzer_funded; bill_support += spd_r*(1-dissent) if panzerkreuzer_funded; bill_support = 100*(bill_support/(100-(spd_r*dissent))); left_dissent += 10; labor_dissent += 5; center_dissent += 5; reformist_dissent += 5 if not panzerkreuzer_funded; neorevisionist_dissent += 5 if not panzerkreuzer_funded; panzerkreuzer_b_funded = 1; kpd_coalition_dissent += 1; kpd_relation -= 6; workers_spd -= 4; socialism -= 3; {!
 Q.bill_support = Math.round(Q.bill_support);
 !}
 
-Our grassroots party members are highly critical of our decision. Many party branches have increased their agitation against our parliamentary fraction. [? if panzerkreuzer_funded : However, given the construction of the previous battlecruiser, this seemed to be a foregone conclusion, and the reaction is muted. ?]
+我们党基层成员对这一决定极为不满。许多党部加大力度反对我们的议会党团。[? if panzerkreuzer_funded : 不过，鉴于此前已建造过一艘，这次结果近乎注定，反应并不强烈。 ?]
 
-KPD: Against
+KPD：反对
 
-[? if sapd_formed : SAPD: Against ?]
+[? if sapd_formed : SAPD：反对 ?]
 
-SPD: [? if panzerkreuzer_funded : For ?][? if not panzerkreuzer_funded : Mixed ?]
+SPD：[? if panzerkreuzer_funded : 赞成 ?][? if not panzerkreuzer_funded : 立场分裂 ?]
 
-[+ ddp_name +]: For
+[+ ddp_name +]：赞成
 
-Z: For
+Z：赞成
 
-BVP: For
+BVP：赞成
 
-DVP: For
+DVP：赞成
 
-Others: For
+其他：赞成
 
-DNVP: For
+DNVP：赞成
 
-NSDAP: For
+NSDAP：赞成
 
-With [+ bill_support +]% in favor, the vote succeeds.
+支持率 [+ bill_support +]%，投票通过。
 
-The vote in favor of the battlecruiser easily passes, with opposition only from the KPD. The ship will be built.
+支持建造装甲巡洋舰的投票轻易通过，唯有德共反对。该舰将开建。
 
 @vote_no
 on-arrival: bill_support = (100-progressive_coalition); dvp_relation -= 8; z_relation -= 5; pacifism += 1; nationalism -= 5*(1-dissent); coalition_dissent += 1; workers_spd += 4*(1-dissent) if nationalism < 49; weimar_dissent += 1 if z_party_leader != "Joos" and weimar_plan_adopted
 go-to: built if spd_r + kpd_r + ddp_r < 50; not_built if spd_r + kpd_r + ddp_r >= 50
 
-Our vote against the battlecruiser is unpopular among the right-wing parties[? if in_grand_coalition or in_weimar_coalition: , including our coalition partners ?][? if spd_toleration: , including the minority government that we are currently supporting ?].
+我们反对建造装甲巡洋舰的投票在右翼各党中不受欢迎[? if in_grand_coalition or in_weimar_coalition: ，包括我们的联合政府伙伴 ?][? if spd_toleration: ，包括我们目前支持的少数派政府 ?]。
 
 @abstain
 on-arrival: bill_support = 100*((bourgeois_coalition+far_right_coalition)/(100-(spd_r*(0.9-dissent)))); dvp_relation -= 5; z_relation -= 3; left_dissent += 5; labor_dissent += 5 if not panzerkreuzer_funded; panzerkreuzer_b_funded = 1; kpd_relation -= 3; {!
 Q.bill_support = Math.round(Q.bill_support);
 !}
 
-The center-right parties are critical of our decision to abstain, and the pressure from our left flank is not entirely assuaged. Despite our abstention, the vote in the Reichstag passes, with all parties in favor except the SPD and KPD. The ship will be built.
+中右翼各党对我们弃权的决定提出批评，而左翼的压力也未完全平息。尽管我们弃权，国会投票仍通过——除社民党和德共外所有党都投了赞成票。该舰将开建。
 
-[? if panzerkreuzer_funded : Given the construction of the previous battlecruiser, this seemed to be a foregone conclusion, and the reaction is muted. ?]
+[? if panzerkreuzer_funded : 鉴于此前已建造过一艘，这次结果近乎注定，反应并不强烈。 ?]
 
-KPD: Against
+KPD：反对
 
-[? if sapd_formed : SAPD: Against ?]
+[? if sapd_formed : SAPD：反对 ?]
 
-SPD: Abstain
+SPD：弃权
 
-[+ ddp_name +]: For
+[+ ddp_name +]：赞成
 
-Z: For
+Z：赞成
 
-BVP: For
+BVP：赞成
 
-DVP: For
+DVP：赞成
 
-Others: For
+其他：赞成
 
-DNVP: For
+DNVP：赞成
 
-NSDAP: For
+NSDAP：赞成
 
-With [+ bill_support +]% in favor, the vote succeeds.
+支持率 [+ bill_support +]%，投票通过。
 
 @built
 on-arrival: panzerkreuzer_b_funded = 1
 
-Chancellor [+ chancellor +] brings the matter to a full Reichstag vote, which passes with all parties in favor except the SPD and KPD. The ship will be built.
+[+ chancellor +] 总理将此事提交国会全体表决，结果通过——除社民党和德共外所有党都投了赞成票。该舰将开建。
 
-KPD: Against
+KPD：反对
 
-[? if sapd_formed : SAPD: Against ?]
+[? if sapd_formed : SAPD：反对 ?]
 
-SPD: Against
+SPD：反对
 
-[+ ddp_name +]: For
+[+ ddp_name +]：赞成
 
-Z: For
+Z：赞成
 
-BVP: For
+BVP：赞成
 
-DVP: For
+DVP：赞成
 
-Others: For
+其他：赞成
 
-DNVP: For
+DNVP：赞成
 
-NSDAP: For
+NSDAP：赞成
 
-With [+ bill_support +]% in favor, the vote succeeds.
+支持率 [+ bill_support +]%，投票通过。
 
 @not_built
 on-arrival: panzerkreuzer_b_funded = 0; budget += 1 if panzerkreuzer_funded = 0; coup_progress += 1
 
-Our vote against the battlecruiser succeeds, with the support of the KPD and anti-war portions of the [+ ddp_name +]. The ship will not be built! [? if panzerkreuzer_funded == 0 : We have saved some budget from not funding the two ships. ?]
+我们反对建造装甲巡洋舰的投票获得通过，得到德共与 [+ ddp_name +] 反战派的支持。该舰不会开建！[? if panzerkreuzer_funded == 0 : 我们因未为两艘船拨款而节省了部分预算。 ?]
 
-KPD: Against
+KPD：反对
 
-[? if sapd_formed : SAPD: Against ?]
+[? if sapd_formed : SAPD：反对 ?]
 
-SPD: Against
+SPD：反对
 
-[+ ddp_name +]: For
+[+ ddp_name +]：赞成
 
-Z: For
+Z：赞成
 
-BVP: For
+BVP：赞成
 
-DVP: For
+DVP：赞成
 
-Others: For
+其他：赞成
 
-DNVP: For
+DNVP：赞成
 
-NSDAP: For
+NSDAP：赞成
 
-With but [+ bill_support +]% in favor, the motion fails and is withdrawn.
+仅 [+ bill_support +]% 赞成，动议未获通过、被撤回。
 
 @ministry
 on-arrival: panzerkreuzer_b_funded = 0; budget += 1 if panzerkreuzer_funded = 0; coup_progress += 1; coup_progress += 1 if reichswehr_strength < 100; coup_progress += 1 if panzerkreuzer_funded == 0
 view-if: reichswehr_minister_party == "SPD"
 
-With our control of the Reichswehr Ministry, we have pressured the Navy to abandon its rearmament plans. The ship will not be built. [? if panzerkreuzer_funded == 0 : We have saved some budget from not funding the two ships. ?]
+凭借我们对国防部的掌控，我们已迫使海军放弃其重整军备计划。该舰不会开建。[? if panzerkreuzer_funded == 0 : 我们因未为两艘船拨款而节省了部分预算。 ?]
