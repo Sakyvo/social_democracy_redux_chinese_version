@@ -7,15 +7,15 @@ on-arrival: march_on_berlin_seen += 1; sa_strength += 40; sh_strength += 120; st
 go-to: ask_resign if spd_in_government and (president != "Braun" and president != "Schumacher" and president != "Juchacz" and president != "Thälmann" and president != "Münzenberg" and president != "Adenauer" and (president != "Gessler" or reichswehr_loyalty < 0.2)); govt_menu if president = "Braun" or president = "Schumacher" or president = "Juchacz"; non_govt_menu if spd_in_government = 0 and (president != "Braun" and president != "Schumacher" and president != "Juchacz" and president != "Adenauer" and president != "Thälmann" and president != "Münzenberg" and (president != "Gessler" or reichswehr_loyalty < 0.2)); presidential_support if (president == "Gessler" and reichswehr_loyalty >= 0.2) or president == "Adenauer" or president == "Thälmann" or president == "Münzenberg"
 tags: event
 
-= March on Berlin
+= 向柏林进军
 
-The far right is mobilizing. Paramilitary forces of the Stahlhelm and SA, organized under the Harzburg Front, have marched on Berlin, threatening to violently overthrow the government.
+极右翼正在动员。隶属哈尔茨堡阵线的钢盔团和冲锋队（SA）准军事力量已向柏林进军，威胁要以暴力推翻政府。
 
-They demand either immediate elections under the "supervision" of the nationalist paramilitaries, or else the immediate resignation of the government and appointment of a Harzburg Front cabinet headed by Franz Seldte of the Stalhelm. It is obvious that they are threatening a civil war if their demands are not met.
+他们要求要么在民族主义准军事组织"监督"下立即举行大选，要么政府立即辞职并任命由钢盔团的弗朗茨·塞尔德特领衔的哈尔茨堡阵线内阁。显然，如果不答应他们的要求，他们就会引发内战。
 
 @non_govt_menu
 
-It appears that President [+ president +] is looking favorably upon the fascist proposals. Chancellor [+ chancellor +] has announced plans to resign.
+[+ president +] 总统似乎对法西斯的提议态度积极。[+ chancellor +] 总理已宣布将辞职。
 
 - @fight
 - @accept
@@ -28,22 +28,22 @@ go-to: accept_seldte
 on-arrival: chancellor = "Seldte"; chancellor_party = "DNVP"; labor_minister_party = "I"; interior_minister_party = "DNVP"; finance_minister_party = "I"; justice_minister_party = "DNVP"; economic_minister_party = "I"; foreign_minister_party = "I"; agriculture_minister_party = "DNVP"; reichswehr_minister_party = "I"; spd_in_government = 0; harzburg_r = dnvp_r; harzburg_r += other_r; harzburg_r += 3; harzburg_r += dvp_r if dvp_relation + pro_republic < 85; harzburg_r += z_minus_bvp_r if z_relation + pro_republic < 60 and z_party_leader != "Joos"; coup_progress *= 0.6
 go-to: harzburg_collapse if harzburg_r < 50; harzburg_survive if harzburg_r >= 50
 
-After the resignation of the chancellor, Stalhelm leader Franz Seldte has been appointed chancellor, heading a highly reactionary Harzburg Front cabinet with army general Kurt von Schleicher being made Reichswehr Minister. Despite this development, the Nazis refuse to back or enter the government, straining the Harzburg Front's unity.
+总理辞职后，钢盔团领袖弗朗茨·塞尔德特被任命为总理，领衔一届高度反动的哈尔茨堡阵线内阁，陆军将领库尔特·冯·施莱彻任国防部长。但纳粹拒绝支持或加入政府，让哈尔茨堡阵线的团结岌岌可危。
 
 @harzburg_collapse
 go-to: new_elections_2
 
-With only [+ harzburg_r +]% behind the coup-instated government, a motion of no confidence soon brings the minority Harzburg Cabinet down. Though the coup has not yet lead to an outright destruction of democracy, the Stalhelm spends this time harshly persecuting the political left, while continued minority rule by decree from the reactionaries threatens to undo much of our reforms.
+由于政变扶植起的政府仅获 [+ harzburg_r +]% 支持，一次不信任动议很快便让这一少数派哈尔茨堡内阁倒台。尽管政变尚未直接摧毁民主，但钢盔团趁机严厉迫害政治左翼，与此同时反动派持续以法令进行的少数派统治也威胁要颠覆我们许多改革。
 
 # todo: seldte reichsexekutes prussia? martial law?
 
 @harzburg_survive
 
-Somehow, the Harzburg Cabinet has cobbled together a majority in the Reichstag of [+ harzburg_r +]%, surviving a motion of no confidence. Immediately, harsh persecution of the political left is initiated by the Stalhelm while the state turns a blind eye, and our progressive reforms in government are undone.
+不知怎地，哈尔茨堡内阁拼凑出了 [+ harzburg_r +]% 的国会多数，挺过了不信任动议。钢盔团立刻在国家视而不见的纵容下对政治左翼展开严厉迫害，我们在政府中推动的进步改革被一一推翻。
 
 @ask_resign
 
-President [+ president +] has asked our government to resign.
+[+ president +] 总统要求我们的政府辞职。
 
 - @fight
 - @fight_constitution
@@ -63,34 +63,34 @@ title: Deploy the Reichsbanner and call a general strike to resist the fascists!
 on-arrival: defense_strength = rb_strength*rb_militancy*(1-dissent/2); defense_strength += prussian_police_strength*prussian_police_militancy*prussian_police_loyalty if spd_prussia; enemy_strength = sa_strength*sa_militancy + sh_strength*sh_militancy; defense_strength += workers_spd_normalized*(2 - dissent)*(2 - unemployed/100); defense_strength += reichswehr_strength*reichswehr_loyalty*reichswehr_militancy if president=="Braun" and spd_in_government
 go-to: fight_2_win if defense_strength >= enemy_strength and march_on_berlin_seen <= 1; fight_2_win_2 if defense_strength >= enemy_strength and march_on_berlin_seen > 1; fight_2_pre_civil_war if defense_strength < enemy_strength
 
-The Reichsbanner number at [+ rb_strength +] thousand; many are in Berlin to counter the fascist demonstration.
+黑红金国旗团有 [+ rb_strength +] 千人，许多人云集柏林，以对抗法西斯示威。
 
-[? if spd_prussia: The Prussian police has been deployed against the fascists. ?] [? if spd_in_government and president == "Braun" : The portions of the Reichswehr that are loyal are also deployed. ?]
+[? if spd_prussia: 普鲁士警察已部署对抗法西斯。 ?] [? if spd_in_government and president == "Braun" : 忠诚的国防军部分也已部署。 ?]
 
 
 @fight_2_win
 on-arrival: coup_progress = 0; sa_strength *= 0.8; sh_strength *= 0.6; rb_strength *= 0.9; workers_nsdap -= 8*(1-dissent); unemployed_nsdap -= 6*(1-dissent); new_middle_nsdap -= 4*(1-dissent); workers_spd += 8*(1-dissent); unemployed_spd += 6*(1-dissent); pro_republic += 15
 achievement: drei_pfeile
 
-Our forces confront the fascists, and somehow, the fascists retreat! They were overwhelmed by our display of strength, and have chosen to slink away. The attempted coup is over, at least for now.
+我们的力量与法西斯对峙，奇迹般地，法西斯撤退了！他们被我们的力量展示所震慑，选择悄然退场。这次未遂的政变就此告一段落，至少暂时如此。
 
-The show of force has reinvigorated support for the republic and for the SPD, and has weakened the fascists.
+这次力量的展示重新点燃了对共和国和社民党的支持，并削弱了法西斯。
 
 @fight_2_win_2
 on-arrival: coup_progress = 0; pro_republic += 5; workers_nsdap -= 2*(1-dissent); unemployed_nsdap -= 2*(1-dissent); new_middle_nsdap -= 2*(1-dissent); rb_strength *= 0.9; sa_strength *= 0.9; sh_strength *= 0.9
 
 # if march on Berlin has already been seen
 
-Our forces confront the fascists, and somehow, the fascists retreat! They were overwhelmed by our display of strength, and have chosen to slink away. The attempted coup is over, at least for now.
+我们的力量与法西斯对峙，奇迹般地，法西斯撤退了！他们被我们的力量展示所震慑，选择悄然退场。这次未遂的政变就此告一段落，至少暂时如此。
 
-The show of force has reinvigorated support for the republic and for the SPD, and has weakened the fascists.
+这次力量的展示重新点燃了对共和国和社民党的支持，并削弱了法西斯。
 
 @fight_2_pre_civil_war
 on-arrival: nazi_rebel = 1 if spd_in_government = 1; spd_rebel = 1 if spd_in_government = 0
 
-Our forces confront the fascists on the streets of Berlin, and armed fighting erupts. Neither side is dislodged from their positions.
+我们的力量与法西斯在柏林街头对峙，武装战斗爆发。双方都未撤离阵地。
 
-- @civil_war: It is a civil war.
+- @civil_war: 这就是内战。
 
 
 @fight_constitution
@@ -98,7 +98,7 @@ title: This is unconstitutional! We will keep our positions in government, and a
 choose-if: judicial_reform >= 3
 unavailable-subtitle: The judiciary would never agree with us.
 
-The courts agree that President [+ president +] is wrong to dismiss us, and that we should remain in the government. The President might respect the court's decision for now, but the fascists in the streets do not. They are still demanding snap elections or the resignation of the government, and will remain in the streets until we either meet their demands, or they are forced out.
+法院同意 [+ president +] 总统罢免我们之举有错，我们应当留在政府中。总统或许暂时尊重法院的裁决，但街头的法西斯不会。他们仍然要求闪电大选或政府辞职，并将在街头继续逗留，直到我们答应要求，或他们被驱离。
 
 - @new_elections
 - @fight
@@ -116,7 +116,7 @@ go-to: new_elections_braun_2 if nsdap_normalized + dnvp_normalized >= 0.5; new_e
 
 @new_elections_braun_reject
 
-The fascists reject our offer of free and fair elections. They are demanding that President [+ president +] dismisses the current government and appoints Seldte chancellor.
+法西斯拒绝了我们的自由公正大选提议。他们要求 [+ president +] 总统罢免现政府、任命塞尔德特为总理。
 
 - @braun_appoints_seldte
 - @fight
@@ -124,13 +124,13 @@ The fascists reject our offer of free and fair elections. They are demanding tha
 @new_elections_braun_2
 go-to: new_elections_2
 
-The fascists seem to believe that they would win an election if one were to be held now, so they agree to our holding an election for next month.
+法西斯似乎相信如果现在举行大选他们就会胜出，因此他们同意我们下个月举行选举。
 
 
 @new_elections_hindenburg
 go-to: new_elections_2
 
-With the mediation of various establishment figures, new elections are called for next month, without the use of fascist "electoral monitors".
+通过建制派各方斡旋，下个月的新大选已经确定，不会使用法西斯"选举监督员"。
 
 
 @new_elections_2
@@ -139,7 +139,7 @@ on-arrival: next_election_time = time + 1 if next_election_time > time+1; next_e
 
 @new_elections_hindenburg_reject
 
-Influenced by his inner circle and by the fascists in the streets, President [+ president +] rejects our offer of new free and fair elections, and again demands that we resign. There is no arguing.
+受内圈以及街头法西斯影响，[+ president +] 总统拒绝了我们关于新自由公正大选的提议，再次要求我们辞职。没有商量的余地。
 
 - @resign
 - @fight
@@ -153,7 +153,7 @@ unavailable-subtitle: President Braun cannot resign.
 on-arrival: chancellor = "Papen"; chancellor_party = "I"; spd_in_government = 0;
 go-to: accept
 
-We have resigned our positions in the government.
+我们已辞去在政府中的职位。
 
 
 
@@ -165,20 +165,20 @@ unavailable-subtitle: There is no way President [+ president +] could do such a 
 on-arrival: chancellor = "Seldte"; chancellor_party = "DNVP"; spd_in_government = 0; reichswehr_loyalty -= 0.05; sh_militancy += 0.05; sh_strength += 25; workers_spd -= 6
 go-to: enabling_act
 
-Threatened with a civil war, and unwilling to fight anymore, President [+ president +] dismisses the current government and appoints Seldte of the Stalhelm as chancellor.
+面对内战威胁，无意再战，[+ president +] 总统罢免现政府，任命钢盔团的塞尔德特为总理。
 
 # TODO: needs to actually carry weight if braun is president
 
 @enabling_act
 
-Chancellor Seldte's first action is to put forward many decrees for [+ president +] to sign and force through via Article 48 of the Weimar Constitution. One of the most major ones, if signed, would suspend Articles 114, 115, 117, 118, 123, 124 and 153 of the German constitution, effectively turning Germany into a police state at the whims of the Harzburg Front and paving the way for rampant suppression of the political left. It is clear that he is threatening a civil war if his demands are not met.
+塞尔德特总理的第一项行动，是抛出多份政令，要求 [+ president +] 总统依《魏玛宪法》第48条签署强行通过。其中最重大的一项若获签署，将中止《魏玛宪法》第114、115、117、118、123、124 与 153 条，实际上把德国变为听任哈尔茨堡阵线摆布的警察国家，为对政治左翼的肆意打压铺平道路。显然，如果他的要求得不到满足，他就将引发内战。
 
-- @sign: We have no choice but to sign this decree.
-- @civil_war: Sack Seldte! This is unacceptable!
+- @sign: 我们别无选择，只能签署这份政令。
+- @civil_war: 罢免塞尔德特！这不可接受！
 
 @presidential_support
 
-Luckily, President [+ president +] is on [? if spd_in_government : our ?][? if not spd_in_government : [+ chancellor +]'s ?] side in this crisis. He has recognized the coup for what it is, and is prepared to stand by the government if we resist.
+所幸 [+ president +] 总统在此危机中与[? if spd_in_government : 我们 ?][? if not spd_in_government : [+ chancellor +] ?]站在一边。他识破了这是一场政变，准备好在我们抵抗时坚定地站在政府一边。
 
 - @fight
 - @new_elections
@@ -186,4 +186,4 @@ Luckily, President [+ president +] is on [? if spd_in_government : our ?][? if n
 @sign
 on-arrival: seldte_enabled = 1
 
-Faced with the threat of civil war, we have caved to Seldte's demands.
+面对内战的威胁，我们屈服于塞尔德特的要求。
