@@ -5,30 +5,30 @@ tags: event
 max-visits: 1
 card-image: img/portraits/SchachtHjalmar.jpg
 
-= Schacht against Hilferding
+= 沙赫特 vs 希法亭
 
-Reichsbank president Hjalmar Schacht has criticized Finance Minister Hilferding of the SPD for his budget, which he claims is unbalanced and contains too much social welfare and not enough tax cuts for top earners and businesses. More importantly, he is refusing to release loans necessary for the functioning of the government unless Hilferding either massively changes his budget or resigns.
+帝国银行行长亚尔马·沙赫特（Hjalmar Schacht）批评社民党籍财政部长希法亭的预算案，声称其预算未能平衡，社会福利过多，给顶层收入者和企业的减税却嫌不足。更要紧的是，沙赫特拒绝放出政府运转所必需的贷款，除非希法亭对预算做出重大调整，或者辞职。
 
-Of course, this criticism is unfounded, but the bourgeois establishment does not care.
+当然，这种批评毫无根据，但资产阶级权势阶层并不在意。
 
-- @expose_him: Expose his reactionary dealings!
-- @work_with: Work with him to shape the budget.
-- @hilferding_resign: Hilferding must resign.
+- @expose_him: 揭露他与反动派的勾当！
+- @work_with: 与他合作，重塑预算案。
+- @hilferding_resign: 希法亭必须辞职。
 
 @expose_him
 view-if: investigate_far_right >= 1
 
-We expose to the public Schacht's dealings with the Nazis. For better or worse, he is cowed, and refrains from taking further actions against us.
+我们将沙赫特与纳粹方面的交易公之于众。不论结果好坏，他被慑住了，不再对我们采取进一步动作。
 
 
 @work_with
 
-After a second budget proposal, Schacht still considers Hilferding's budget to be unacceptable, despite more regressive taxes and expenditure cuts.
+在第二轮预算方案中加入了更多累退税与开支削减后，沙赫特依然认为希法亭的预算难以接受。
 
-- @hilferding_resign: Hilferding must resign.
+- @hilferding_resign: 希法亭必须辞职。
 
 
 @hilferding_resign
 on-arrival: finance_minister_party = "DVP" if in_grand_coalition; finance_minister_party = "I" if in_weimar_coalition or in_popular_front or in_left_front; finance_minister = "Moldenhauer"
 
-With no other choice, Hilferding has resigned as Finance Minister, to be replaced by a [? if in_grand_coalition: center-right ?][? if not in_grand_coalition: technocratic ?] candidate.
+别无选择，希法亭辞去财政部长一职，由一位[? if in_grand_coalition: 中右翼 ?][? if not in_grand_coalition: 技术官僚型 ?]人选接任。

@@ -6,21 +6,21 @@ on-arrival: workers_spd *= 0.9 if chancellor_party == "SPD"; workers_spd *= 0.9 
 tags: event
 max-visits: 1
 
-= The Hunger Chancellor
+= 饥饿总理
 
-People are calling Chancellor [+ chancellor +] the Hunger Chancellor because of his perceived callousness in the face of the depression. [? if chancellor_party == "SPD" : This is obviously a very bad sign for us. ?]
+人们正把 [+ chancellor +] 总理称作"饥饿总理"，因为他在大萧条面前显得冷酷无情。[? if chancellor_party == "SPD" : 这显然对我们而言是个非常不妙的征兆。 ?]
 
-[? if spd_toleration == 1 : As we are currently tolerating the [+ chancellor +] government, this could very well reflect badly on us. ?]
+[? if spd_toleration == 1 : 鉴于我们目前正在容忍 [+ chancellor +] 政府，这件事很可能反过来损害我们的形象。 ?]
 
-- @maintain_toleration: Maintain the current governing arrangement.
-- @break_toleration: Break toleration; vote against this government.
+- @maintain_toleration: 维持当前的执政安排。
+- @break_toleration: 终止容忍政策；对该政府投下不信任票。
 
 @maintain_toleration
 subtitle: It is necessary to preserve democracy.
 view-if: spd_toleration == 1
 on-arrival: left_dissent += 10; workers_nsdap += 2; workers_kpd += 3; unemployed_nsdap += 4; workers_spd -= 2; pro_republic -= 4; kpd_relation -= 5
 
-Our policy of toleration continues.
+我们的容忍政策得以延续。
 
 
 @break_toleration
@@ -28,6 +28,6 @@ subtitle: This is likely to result in new elections.
 view-if: spd_toleration == 1
 on-arrival: next_election_time = time+3 if next_election_time >= time+3; next_election_month = month + 3 if next_election_time >= time+3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0; weimar_dissent += 1 if weimar_plan_adopted
 
-We have definitively broken with the [+ chancellor +] government, and have voted against them in a vote of no confidence.
+我们已断然与 [+ chancellor +] 政府决裂，并在不信任投票中投了反对票。
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。

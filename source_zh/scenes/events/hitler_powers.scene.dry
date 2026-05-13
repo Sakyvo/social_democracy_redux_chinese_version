@@ -6,26 +6,26 @@ max-visits: 1
 on-arrival: hitler_powers_seen = 1; sa_strength += 150; sh_strength += 60
 tags: event
 
-= March on Berlin
+= 向柏林进军
 
-The far right is mobilizing. Paramilitary forces of the Stahlhelm and SA, organized under the Harzburg Front, have marched on Berlin, threatening to violently seize power. Forces of the Interior and Reichswehr ministries have been deployed in the streets under orders from their respective Nazi-controlled ministries and have begun securing key points across the country. Clearly, [+ president +] has tired of our attempts to constitutionally obstruct his plans and has decided to ignore the constitution.
+极右翼正在动员。隶属哈尔茨堡阵线的钢盔团和冲锋队（SA）准军事力量已经向柏林进军，威胁要以暴力夺取政权。内政部和国防部的部队在各自由纳粹控制的部委下达的命令下，已开赴街头，开始控制全国各处的关键据点。显然，[+ president +] 已对我们试图依靠宪法阻挠他的计划感到厌烦，决意无视宪法。
 
-- @fight: We will fight on the streets to prevent Hitler from taking power.
-- @give_up: There is nothing we can do.
+- @fight: 我们将在街头作战，阻止希特勒上台。
+- @give_up: 我们已无能为力。
 
 
 @fight
 on-arrival: spd_rebel = 1
 
-Do we realize that this means civil war, against the full force of the state?
+我们是否明白，这意味着要面对整个国家机器，发动一场内战？
 
-- @civil_war: Yes.
-- @give_up: We are not ready for war. There is nothing we can do.
+- @civil_war: 是的。
+- @give_up: 我们没有作战的准备。我们已无能为力。
 
 @give_up
 
-Speeches are made. Votes are held. Bullets fly in the streets. Some socialists are killed or jailed. Others flee the country. The Nazis with total control over the streets unilaterally suspend the constitution.
+演讲一篇接一篇地发表，议会一次接一次地表决，子弹在街头横飞。一些社会主义者被杀或被囚，另一些远走他乡。完全掌控街头的纳粹单方面中止了宪法。
 
-Germany is lost.
+德国陷落了。
 
 - @game_over

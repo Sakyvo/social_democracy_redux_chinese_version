@@ -6,13 +6,13 @@ view-if: national_front_progress >= 150 and dvp_relation < 30
 on-arrival: z_national = 1 if z_relation < 20 and z_party_leader != "Joos"
 max-visits: 1
 
-= The National Front
+= 民族阵线
 
-With the Nazis embracing their new tactic of subverting democracy truly from within, many doors have been opened. The "National Opposition" has fallen apart and given way to the "National Front", a new alliance of the BVP, DVP, DNVP and NSDAP as well as many other smaller right-wing parties into a firmly reactionary bloc. [? if z_national : Even the Center Party has joined, despite initial reluctance, thanks to our great hostility. ?]
+随着纳粹真正拥抱"从内部颠覆民主"的新策略，许多大门也随之敞开。"民族反对派"已经瓦解，让位于"民族阵线"——一个由巴伐利亚人民党（BVP）、德国人民党（DVP）、德国国家人民党（DNVP）、纳粹党（NSDAP）以及众多更小型的右翼政党组成的彻底反动联盟。[? if z_national : 由于我们与中央党的关系极度敌对，连原本心存犹豫的中央党也加入了阵营。 ?]
 
-The moderate right, of course, believes that they are using the NSDAP's Reichstag seats to take power for themselves, but the NSDAP cannot be underestimated. Hitler is sure to try and ride the wave of the National Front to power if it ever so much as gets close to a parliamentary majority.
+温和右翼当然以为自己是在借纳粹的国会席位为己所用，但纳粹党绝不可低估。希特勒势必会试图借民族阵线的势头登上权力之巅——一旦它逼近议会多数席位。
 
-- @worrying: Worrying.
+- @worrying: 令人忧心。
 
 @worrying
 on-arrival: {!
@@ -45,4 +45,4 @@ Q.catholics_other *= 0.9;
 Q.unemployed_other *= 0.9;
 !}
 
-We will have to keep an eye on them.
+我们必须时刻提防他们。

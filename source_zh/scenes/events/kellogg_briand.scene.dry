@@ -7,13 +7,13 @@ on-arrival: kellogg_briand_seen = 1; kellogg_briand_signed = 1 if foreign_minist
 tags: event
 #face-image: img/portraits/StresemannGustav.jpg
 
-= Kellogg-Briand Pact
+= 凯洛格-白里安公约
 
-An international treaty has been negotiated which promises an end to war. The treaty, negotiated by American Secretary of State Frank Kellogg and French foreign minister Aristide Briand, promises that its signatories will renounce the use of war, and will promise to settle their disputes peacefully. Countries throughout the world are lining up to sign this idealistic agreement. Its detractors argue that it has no enforcement mechanism, and thus is merely a worthless piece of paper.
+一份国际条约谈判完成，承诺终结战争。该条约由美国国务卿弗兰克·凯洛格（Frank Kellogg）与法国外长阿里斯蒂德·白里安（Aristide Briand）牵头谈判，承诺签约国放弃使用战争手段，并以和平方式解决争端。世界各国争相签署这份理想主义协议。批评者则指出，该条约缺乏执行机制，因而不过是一纸空文。
 
-[? if foreign_minister_party = "DVP": Our foreign Minister Gustav Stresemann has signed the treaty. The reaction is generally muted; both pacifists and militarists are skeptical about the efficacy of the treaty. ?]
+[? if foreign_minister_party = "DVP": 我国外交部长古斯塔夫·施特雷泽曼已签署了该条约。反响普遍平淡：无论是和平主义者还是黩武派，对条约的效力都持怀疑态度。 ?]
 
-- @sign_treaty: Foreign Minister Breitscheid will sign the treaty, of course.
+- @sign_treaty: 我们的外交部长布赖特沙伊德当然会签署这份条约。
 - @step_forward
 - @not_enough
 
@@ -21,7 +21,7 @@ An international treaty has been negotiated which promises an end to war. The tr
 view-if: spd_in_government and foreign_minister_party = "SPD"
 on-arrival: kellogg_briand_signed = 1
 
-Foreign Minister Breitscheid will sign the treaty, of course. The reaction is generally muted; both pacifists and militarists are skeptical about the efficacy of the treaty.
+我们的外交部长布赖特沙伊德毫不犹豫地签署了该条约。反响普遍平淡：无论是和平主义者还是黩武派，对条约的效力都持怀疑态度。
 
 - @step_forward
 - @not_enough
@@ -30,10 +30,10 @@ Foreign Minister Breitscheid will sign the treaty, of course. The reaction is ge
 title: The treaty is a step forward for peace.
 view-if: kellogg_briand_signed
 
-Despite our misgivings about the treaty, it still represents a step forward for the cause of international peace.
+尽管我们对这份条约心存疑虑，但它仍是国际和平事业向前迈出的一步。
 
 @not_enough
 title: The treaty is not enough.
 view-if: kellogg_briand_signed
 
-Despite the idealism behind the treaty, it is inadequate for its goal of preventing wars. There must be some enforcement mechanism, perhaps automatic trade sanctions, or an intervention force controlled by the League of Nations. As it stands, the League of Nations and this treaty is toothless.
+尽管条约背后理想可嘉，对于"防止战争"这一目标而言却远远不够。必须存在某种执行机制，或许是自动触发的贸易制裁，或许是由国际联盟掌控的干预部队。就目前而言，国际联盟和这纸条约毫无牙齿。

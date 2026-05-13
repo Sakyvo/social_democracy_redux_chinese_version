@@ -6,25 +6,25 @@ tags: event
 max-visits: 1
 new-page: true
 
-= Expropriation of the Princes
+= 没收王公财产
 
-As the economy worsens and the Communists search for ways to revitalize their movement after the embarassing result of [+ thalmann_votes_disp +]% in March, they attempt to capitalize on the current debate over the status of princely lands, and have submitted a bill for the expropriation without compensation.
+随着经济持续恶化，共产党在三月份仅取得 [+ thalmann_votes_disp +]% 的难堪结果后，急于为运动注入新活力，他们试图利用当前关于前王公领地归属的争论，提出了一项无偿没收的法案。
 
-The DDP, meanwhile, has also submitted a bill on the matter, which would empower state Landtags to pass laws for the settling of disputes with the former princely houses. This, as opposed to the communist proposal, may stand a chance of approval in Reichstag; the KPD has no illusions of the Reichstag accepting the bill, and have already begun preparing a referendum, and have even invited us to help organize it, likely expecting a refusal so as to paint us as puppets of the bourgeois.
+与此同时，德国民主党（DDP）也提交了一份相关法案，授权各邦议会通过法律来裁决与昔日王公家族的争端。与共产党的方案相比，这份法案在国会通过的可能性更大；共产党并不指望国会会接受其议案，他们早已开始筹备公投，甚至邀请我们协助组织，多半是料定我们会拒绝，好把我们塑造成资产阶级的傀儡。
 
-At the same time, if we joined the initiative for referendum we would risk alienating our bourgeois parties, and certainly eliminate the chance of a Grand Coalition succeeding the Luther cabinet.
+但与此同时，若我们加入公投倡议，便有疏远资产阶级伙伴的风险，也几乎肯定会断送继路德内阁之后建立大联合政府的可能。
 
-- @early_initiative: Withdraw from coalition talks, and join the communist initiative.
-- @historical_one: Back the DDP's proposal for the time being.
+- @early_initiative: 退出联合政府谈判，加入共产党的倡议。
+- @historical_one: 暂且支持德国民主党的提案。
 
 @early_initiative
 choose-if: left_strength > reformist_strength
 unavailable-subtitle: The majority of the party is skeptical.
 on-arrival: princes_time = time+2; princes_initiated = 1; reformist_dissent += 5; kpd_relation += 5; dvp_relation -= 5; new_middle_spd -= 3; old_middle_spd -= 3; catholics_spd -= 1; marx_relation -= 5
 
-We surprise the bourgeois and party right by effectively withdrawing from coalition talks to focus on opposition politics through the backing of a referendum for the expropriation without compensation of the princes. Though there is no way we could directly back the communist suggestion, the ADGB has mediated a bill that both parties are able to agree on, and preparations for referendum are underway.
+我们令资产阶级和党内右翼大吃一惊：实际上退出了联合谈判，集中精力推动反对派政治，支持一项无偿没收王公财产的公投。虽然我们绝不可能直接支持共产党的方案，但德国总工会（ADGB）已居中斡旋，促成两党都可接受的法案版本，公投的筹备工作正在进行。
 
 @historical_one
 on-arrival: ddp_relation += 5; dvp_relation += 2; z_relation += 2; workers_spd -= 5; unemployed_spd -= 2
 
-The greater priority in the present moment is to entertain this potential Grand Coalition. We must not burn bridges by throwing our lot in with the far-left.
+当前更要紧的是继续争取这一潜在的大联合政府。我们绝不能孤注一掷地投靠极左阵营，断了自己的后路。

@@ -6,11 +6,11 @@ max-visits: 1
 view-if: year == 1931 and month >= 4 and t_elections <= 1 and landtags_enabled and nazi_thuringia and not victory_republic and not (uf_formed or dvp_relation < 20 or coup_progress >= 7)
 on-arrival: nazi_thuringia = 0
 
-= Thuringian Government Collapses
+= 图林根政府垮台
 
-The Thuringian government, a coalition of the bourgeois parties with the Nazis, has finally collapsed following intensified disputes between the DVP and WP (Economic Party) on one end and NSDAP on the other. The result is that the government threatens to fall, unless the local SPD branch provides toleration to the bourgeois so as to enable a smooth removal of Nazis from the state government.
+图林根资产阶级各党与纳粹组成的联合政府，在德国人民党（DVP）和经济党（WP）一方与纳粹党（NSDAP）另一方之间的纷争日益激化后，终于垮台。结果是，除非本邦的社民党分部对资产阶级各党提供容忍，以便平稳地将纳粹从邦政府中清除出去，否则政府将面临倒台之危。
 
-- @thuringia_spd: It is in the hands of the Thuringian SPD.
+- @thuringia_spd: 这事悉听图林根社民党作主。
 
 @thuringia_spd
 go-to: new_elections if left_strength >= 30 or uf_formed; toleration if left_strength < 30 and not uf_formed
@@ -18,22 +18,22 @@ go-to: new_elections if left_strength >= 30 or uf_formed; toleration if left_str
 @new_elections
 on-arrival: thuringia_spd += 0.05; thuringia_dvp += 0.05; thuringia_dnvp -= 0.1; thuringia_other -= 0.05; thuringia_election_month = month+4; thuringia_election_year -= 1 if thuringia_election_month > 12; thuringia_election_month -= 12 if thuringia_election_month > 12
 
-The regional SPD branch refuses to provide toleration to a bourgeois government, leading to new elections to be called for [+ thuringia_election_month : month +] [+ thuringia_election_year +].
+地方社民党分部拒绝对资产阶级政府提供容忍，从而促成新一轮邦议会选举，定于 [+ thuringia_election_month : month +] [+ thuringia_election_year +] 举行。
 
-- @based: The Thuringian SPD did the right thing.
-- @cringe: The Thuringian SPD made a mistake.
+- @based: 图林根社民党做得对。
+- @cringe: 图林根社民党犯了错误。
 
 @based
 on-arrival: left_strength += 5; left_dissent -= 10; reformist_dissent += 5; center_dissent += 5
 
-We take the Thuringian SPD's side, upsetting the reformists and centrists.
+我们站在了图林根社民党一边，惹恼了改良派与中间派。
 
 @cringe
 on-arrival: left_dissent += 10; left_strength -= 5; reformist_dissent -= 10; center_dissent -= 5
 
-We oppose this anti-toleration stance the Thuringian SPD has taken, assuaging the concerns of our reformists but upsetting the left.
+我们反对图林根社民党拒绝容忍的立场，安抚了改良派的疑虑，却也激起了左翼的不满。
 
 @toleration
 on-arrival: thuringeration_timer = 10-(left_strength/10); thuringia_spd -= 0.05; thuringia_toleration = 1; thuringia_kpd += 0.05; left_dissent += 3
 
-The Thuringian SPD provides toleration to the local bourgeois parties as to prevent new elections.
+图林根社民党向本邦的资产阶级各党提供容忍，以避免新一轮邦议会选举。

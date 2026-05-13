@@ -6,13 +6,13 @@ on-arrival: right_coalition_failed = 1; dnvp_in_government = 0
 view-if: year = 1940 and month >= 8 and young_plan_seen == 1 and dnvp_in_government == 1
 max-visits: 1
 
-= Government Collapses
+= 政府垮台
 
-As expected, the ruling government has collapsed as a result of the DNVP's staunch nationalism and opposition to the Young Plan. They have prepared a motion of no confidence which they are expected to call at the next session of the Reichstag. We must decide what we should do.
+不出所料，执政政府因德国国家人民党（DNVP）顽固的民族主义立场及其对扬格计划的反对而垮台。他们已准备好一份不信任动议，预计将在国会下次会议上提出。我们必须决定该如何应对。
 
-- @enter_government: We should take the DNVP's place in government and form a Grand Coalition.
-- @toleration: We will vote against the motion of no confidence, allowing a minority government to continue.
-- @let_election: Let the election happen.
+- @enter_government: 我们应取代 DNVP 入阁，组建大联合政府。
+- @toleration: 我们将对不信任动议投反对票，让少数派政府得以延续。
+- @let_election: 让大选举行吧。
 
 @enter_government
 choose-if: grand_coalition >= 50 and (z_relation >= 45 or z_party_leader == "Joos") and (dvp_relation >= 30 or stresemann_dead == 0)
@@ -26,10 +26,10 @@ subtitle: The current government will continue as long as we vote against the DN
 unavailable-subtitle: We do not have the votes to defeat the motion of no confidence.
 on-arrival: spd_toleration = 1; left_dissent += 5
 
-We have entered into a toleration agreement, allowing a center-right minority government to persist as any motion of no confidence attempted will be defeated. 
+我们已达成容忍协议，使中右翼少数派政府得以延续——任何不信任动议都将因我们投下反对票而被否决。
 
 @let_election
 subtitle: The government will fall and new elections will be scheduled.
 on-arrival: next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year = year + 1 if next_election_month > 12; next_election_month = next_election_month - 12 if next_election_month > 12
 
-We will not save the bourgeois government. It is time for new elections!
+我们绝不挽救这届资产阶级政府。是时候举行新大选了！

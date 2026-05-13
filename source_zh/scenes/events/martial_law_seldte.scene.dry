@@ -5,25 +5,25 @@ new-page: true
 on-arrival: sh_militancy += 0.03
 tags: event
 
-= Martial Law
+= 戒严令
 
-Seeing the continuing collapse of order in Germany, and convinced that they would be able to quell any resistance, President [+ president +] and Chancellor Seldte have come together to declare a state of martial law in Germany. Though this is unconstitutional, the courts have little sway over the enthusiastic army.
+眼见德国秩序持续崩溃，且自信能够弹压任何反抗，[+ president +] 总统与塞尔德特（Seldte）总理联手宣布德国进入戒严状态。此举虽属违宪，但法院对热情高涨的军队几乎毫无约束力。
 
-- @seldte_takes_power: What now?
+- @seldte_takes_power: 现在怎么办？
 
 @seldte_takes_power
 subtitle: The beginning of the end.
 
-The destruction of German democracy has begun, not at the hands of the Nazis but at the hands of the reactionaries who wish to see a return to the days of the German Empire. If we do not fight back now, then we may never get another chance, and all we as a party have stood for will be gone in an instant.
+德国民主的毁灭已经开始，幕后推手不是纳粹，而是那些梦想重返德意志帝国旧时光的反动派。我们如果不现在反抗，就再也不会有机会，党所坚守的一切都将顷刻消散。
 
-- @fight_harzburg: Mobilize our forces and declare a general strike!
-- @reactionary_victory: We have lost.
+- @fight_harzburg: 动员我们的力量，宣布总罢工！
+- @reactionary_victory: 我们输了。
 
 @reactionary_victory
 
-Party offices are raided by army and police forces. Our leaders are rounded up and arrested. Any and all of our reforms are undone, and a police state under the army's control is cemented. The Nazis have failed to take power, but we cannot take much comfort in the fact when a dictatorial fascist government rules all the same. Perhaps in the far future, we may have our moment in the sun once more. We will have a duty to do better then than we have now.
+党的办公场所遭到陆军与警察的突袭。我们的领袖被一一逮捕。我们推动的所有改革皆被废除，一个由军队掌控的警察国家从此扎根。纳粹未能上台，但当一个独裁法西斯政府同样统治这片土地时，我们也无从安慰自己。或许在更遥远的未来，我们还能再有出头之日。届时，我们有责任做得比今天更好。
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
 
 @fight_harzburg
 on-arrival: spd_rebel = 1

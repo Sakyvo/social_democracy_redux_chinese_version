@@ -5,24 +5,24 @@ on-arrival: weimar_dissent += 2 if weimar_plan_adopted
 new-page: true
 tags: event
 
-= Exodus from the Reichsbanner
+= 国旗团大出走
 
-The Reichsbanner has become increasingly militarized as of late, with ever-greater quantities of arms and paramilitary training, as well as a stream of radicalized SPD members. In response, the members associated with the other Weimar parties, the Center Party and [+ ddp_name +], are threatening to leave for good. They signed up for a mass movement to defend the republic, not a socialist militia.
+黑红金国旗团近来日益军事化，武器储备与准军事训练规模不断扩大，激进化的社民党党员源源不断地涌入。作为回应，与其他魏玛派政党（中央党与[+ ddp_name +]）相关的成员威胁要彻底退出。他们当初加入的是一支捍卫共和国的群众运动，而非社会主义民兵。
 
-- @let_go: Let the centrists and liberals go.
-- @lower_militancy: We must lower the Reichsbanner's militancy.
-- @keep_them: Can we convince them that a militant Reichsbanner is necessary for defending the Republic?
+- @let_go: 让中间派与自由派离开吧。
+- @lower_militancy: 我们必须降低国旗团的激进度。
+- @keep_them: 我们能否说服他们，让他们相信一支战斗化的国旗团对于捍卫共和国是必要的？
 
 @let_go
 on-arrival: rb_strength *= 0.9; z_relation -= 5; ddp_relation -= 5; rb_exit = 1; left_strength += 5*(1-dissent)
 
-We have judged that the Reichsbanner's militancy is more important than maintaining a coalition with the Center Party and [+ ddp_name +]. The Reichsbanner members affiliated with these parties leave, while the left of the SPD is strengthened.
+我们认定国旗团的战斗力比维系与中央党、[+ ddp_name +] 的联盟更为重要。隶属上述政党的国旗团成员相继离去，社民党内的左翼力量得到加强。
 
 
 @lower_militancy
 on-arrival: rb_militancy *= 0.5; weimar_dissent -= 2
 
-Bowing to the other parties' demands, we reduce the Reichsbanner's military training, thus inducing them to stay.
+我们顺从了其他党派的要求，削减了国旗团的军事训练，他们因此愿意留下。
 
 
 @keep_them
@@ -30,4 +30,4 @@ unavailable-subtitle: They are unable to be convinced at this time.
 choose-if: (strife >= 5 or weimar_plan_adopted and strife >= 3) and (z_relation >= 50 or (z_party_leader == "Joos" and z_relation >= 30)) and ddp_relation >= 50
 on-arrival: rb_stay = 1; weimar_dissent -= 1
 
-Seeing the strife that has filled Germany's streets, the Center Party and [+ ddp_name +] seem to be convinced that it is necessary for the Reichsbanner to be militarized, and will not leave the organization.
+眼见德国街头冲突频仍，中央党与[+ ddp_name +] 似乎也认同国旗团应当军事化，决定继续留在该组织内。

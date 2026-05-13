@@ -6,13 +6,13 @@ max-visits: 1
 on-arrival: wittorf_affair_seen = 1
 tags: event
 
-= Wittorf Affair
+= 维托夫事件
 
-Our spies and contacts amongst the communists have brought news of a scandal engulfing the KPD leadership. An associate of KPD chairman Ernst Thälmann, a KPD official named John Wittorf, is accused of embezzling campaign funds, diverting thousands of Reichsmarks for personal use, and Thälmann is accused of covering up the affair. The party's central committee considers this charge serious.
+我们在共产党内部的眼线和联络人传来消息——一场风波正笼罩着德共领导层。德共主席台尔曼的亲信、党内官员约翰·维托夫（John Wittorf）被指控挪用竞选款项，将数千帝国马克挪作私用，台尔曼本人则被指控掩盖此事。党中央委员会认为指控严重。
 
-The Conciliators in the KPD, a faction opposed to the party's present hard-line policy, are said to have leaked this information to aid them in the intra-party struggle. Dissident communists in the Leninbund also have information about this affair, and are planning to publish it.
+据传德共内部的调和派——一个反对当前强硬路线的派系——故意泄露了这一消息，以便在党内斗争中占据上风。列宁派（Leninbund）中的异见共产党人也掌握了相关情况，并打算将其公之于众。
 
-What should we do with this information?
+我们该如何处理这一信息？
 
 - @publicize
 - @nothing
@@ -22,15 +22,15 @@ What should we do with this information?
 title: We will publicize the scandal to damage the KPD and Thälmann.
 on-arrival: kpd_relation -= 10; workers_kpd -= 4; unemployed_kpd -= 4; socialism -= 2
 
-Our newspapers are among the first to publicize the affair, bringing a torment of criticism to the hypocrisy of the communists. We have damaged the KPD's standing among the workers, but also perhaps closed the door on further cooperation.
+我们的报刊率先公开此事，让共产党人因其虚伪而饱受批评的炮火。我们削弱了德共在工人中的声望，但或许也关上了进一步合作的大门。
 
-In the end, Stalin's pressure helps to keep Thälmann from facing much in the way of consequences.
+最终，斯大林的施压让台尔曼几乎免于任何严重的后果。
 
 @nothing
 title: Do nothing with the information.
 on-arrival: workers_kpd -= 2; unemployed_kpd -= 2
 
-The information spreads without our help, leading to some loss of KPD support among the workers.
+消息没有我们的助力也照样传开，使德共在工人中的支持率有所下滑。
 
 
 @secret
@@ -39,4 +39,4 @@ choose-if: levi_advisor or rosenfeld_advisor
 unavailable-subtitle: We do not have contacts among the dissident communists.
 on-arrival: wittorf_secret = 1; reformist_dissent += 5; left_dissent += 5
 
-Some among our leadership consider it unsavory to engage in cloak-and-dagger scheming. However, keeping this secret might be necessary to work with the KPD, and the information might become useful later.
+我们领导层中的一些人觉得搞这种暗中算计有失党格。但为了与德共合作，保守这一秘密或许必要，而且这一信息日后或许还能派上用场。

@@ -7,30 +7,30 @@ go-to: hindenburg_menu if president == "Hindenburg"; marx_menu if president == "
 on-arrival: marx_iv_seen = 1
 tags: event
 
-= A New Government Forms
+= 新政府成立
 
-Following the fall of the previous government over secret rearmament plans by the Reichswehr, negotiations for a new one were begun. Due to our role in bringing down the government, we have been excluded from talks.
+上届政府因国防军秘密重整军备计划而垮台后，新一轮组阁谈判随即开始。鉴于我们在推倒前政府中所扮演的角色，我们被排除在了谈判之外。
 
 @hindenburg_menu
 
-Now, President Hindenburg has announced the formation of a new government.
+如今，兴登堡总统宣布组建新政府。
 
-- @marx_iv: A fourth Marx cabinet.
+- @marx_iv: 第四届马克斯内阁。
 
 @marx_iv
 subtitle: Z + BVP + DVP + DNVP ([+ right_coalition +]%)
 on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3; old_middle_other += 3; new_middle_dnvp -= 3; new_middle_other += 3; rural_dnvp -= 3; rural_other += 3
 
-The DNVP has managed to make its way back into the government, as the cabinet is reshuffled to accomodate them. The DDP stays outside of this framework for now, finding Marx's planned policy on schools too favorable towards the denominational schools. 
+德国国家人民党（DNVP）成功重返政府，内阁经过重组以容纳他们。德国民主党（DDP）暂未加入这一框架，因其认为马克斯计划中的学校政策过分偏向教会学校。
 
 @marx_menu
 
-Now, President Marx has announced the formation of a new government.
+如今，马克斯总统宣布组建新政府。
 
-- @bruning_ii: A second Brüning cabinet.
+- @bruning_ii: 第二届布吕宁内阁。
 
 @bruning_ii
 subtitle: Z + BVP + DVP + DNVP ([+ right_coalition +]%)
 on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3; old_middle_other += 3; new_middle_dnvp -= 3; new_middle_other += 3; rural_dnvp -= 3; rural_other += 3
 
-The DNVP has managed to make its way back into the government, as the cabinet is reshuffled to accomodate them. The DDP stays outside of this framework for now, finding Brüning's planned policy on schools too favorable towards the denominational schools. 
+德国国家人民党（DNVP）成功重返政府，内阁经过重组以容纳他们。德国民主党（DDP）暂未加入这一框架，因其认为布吕宁计划中的学校政策过分偏向教会学校。

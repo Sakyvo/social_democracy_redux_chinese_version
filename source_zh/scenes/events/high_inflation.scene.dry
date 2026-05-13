@@ -5,40 +5,39 @@ new-page: true
 on-arrival: capital_strike_progress += 1; hyperinflation += 0.2; workers_spd -= 4; old_middle_spd -= 6; new_middle_spd -= 6; rural_spd -= 5; unemployed_spd -= 4; high_inflation_timer = 4 if inflation > 8; high_inflation_timer = 2 if inflation >= 10; pro_republic -= 5; old_middle_nsdap += 2; new_middle_nsdap += 2; rural_nsdap += 2; socialism -= 2
 tags: event
 
-= High Inflation
+= 高通胀
 
-Inflation has risen. People of all social classes are seeing their purchasing power fall. Memories of the hyperinflation period of 1923 echo through the public conscious, even though the present inflation is not nearly as severe.
+通胀已经抬头。各个社会阶层的人都眼看自己的购买力下滑。1923 年恶性通货膨胀的记忆在公众意识中回响，尽管眼下的通胀程度远未严重至此。
 
-The people and the press are clamoring for action to reduce inflation.
+民众和报刊都在大声疾呼采取行动，遏制通胀。
 
-- @taxes: Raise taxes.
-- @welfare: Reduce welfare and social spending.
-- @price_controls: Impose price and wage controls.
-- @bank: Surely the Reichsbank has a plan this time?
-- @nothing: Realistically, there is nothing we can do.
+- @taxes: 加税。
+- @welfare: 削减福利与社会开支。
+- @price_controls: 实施物价和工资管制。
+- @bank: 帝国银行这次总该拿出方案来了吧？
+- @nothing: 现实地说，我们无能为力。
 
 @taxes
 on-arrival: upper_tax_rates += 1; lower_tax_rates += 1; budget += 2; unemployed += 1.5; capital_strike_progress -= 1; inflation -= 1; hyperinflation -= 0.2; new_middle_spd -= 3; old_middle_spd -= 3; workers_spd -= 3; rural_spd -= 3; kpd_coalition_dissent += 1; kpd_relation -= 5; left_dissent += 5; economic_growth -= 0.4
 
-Raising taxes is unpopular among everyone, but it might be what it takes to keep inflation under control.
+加税在所有人那里都不讨喜，但要把通胀控制住，或许只能如此。
 
 @welfare
 on-arrival: welfare -= 1; budget += 1; capital_strike_progress -= 2; unemployed += 1.5; new_middle_spd += 4*(1-dissent); old_middle_spd += 4*(1-dissent); workers_spd -= 5; unemployed_spd -= 5; inflation -= 1; hyperinflation -= 0.2; left_dissent += 5; labor_dissent += 5; center_dissent += 5; kpd_coalition_dissent += 1; economic_growth -= 0.4
 
-Reducing the amount of government spending should reduce the inflation rate, according to classical economics. But it imposes pain upon the people who are suffering the most.
+按古典经济学的说法，减少政府开支理应压低通胀率。但这同时把痛苦压在了最饱受苦楚的人身上。
 
 @price_controls
 on-arrival: capital_strike_progress += 3; inflation -= 3; hyperinflation = 0; coalition_dissent += 1; unemployed += 1; old_middle_spd -= 4; new_middle_spd -= 3; rural_spd -= 5; workers_spd -= 2; unemployed_spd += 3; labor_dissent += 6; dvp_relation -= 6; z_relation -= 4; ddp_relation -= 4; economic_growth -= 0.4
 
-Price controls are very unpopular with the bourgeoisie and their representatives, as well as rural producers, while wage controls hurt organized workers. However, the policies do stem the tide of inflation, at least somewhat.
+物价管制极不受资产阶级及其代言人欢迎，也让农村生产者反感；与此同时，工资管制又会伤害有组织工人。不过，这些政策至少多少抑制住了通胀的势头。
 
 @bank
 on-arrival: capital_strike_progress += 2
 
-Unfortunately, but perhaps expectedly, the Reichsbank is refusing to help the government, claiming that our socialist policies are solely to blame. Reichsbank president [? if year <= 1930 : Hjalmar Schacht ?][? if year > 1930 : Hans Luther ?] is all but calling for the fall of the government.
+不出所料地遗憾的是，帝国银行拒绝向政府伸出援手，声称问题都怪我们的社会主义政策。帝国银行行长[? if year <= 1930 : 亚尔马·沙赫特 ?][? if year > 1930 : 汉斯·路德 ?]差不多是在公开呼吁政府倒台。
 
 @nothing
 on-arrival: capital_strike_progress += 1
 
-Realistically, there is nothing we can do to stem the tide of inflation.
-
+现实地看，我们无法阻挡通胀的浪潮。
