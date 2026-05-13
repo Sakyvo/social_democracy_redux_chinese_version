@@ -9,39 +9,39 @@ Q.strife = Math.round(Q.strife);
 !}
 go-to: marx_crisis if president == "Marx"; hindenburg_crisis if president == "Hindenburg" and not presidential_powers; gessler_crisis if president == "Gessler" and not presidential_powers; adenauer_crisis if president == "Adenauer" and not presidential_powers; eckener_crisis if president == "Eckener" and not presidential_powers; nothing_to_do if presidential_powers
 
-= Political Crisis
+= 政治危机
 
-For multiple elections in a row now, no government has been able to be formed. This has been destroying the trust of the German people in their democracy, and all eyes turn to the president to see what he will do.
+连续多次大选后，仍无政府得以组建。这正在摧毁德国人民对民主的信任，所有人的目光都聚焦到总统身上，等待他的决定。
 
 @marx_crisis
 on-arrival: chancellor = "Groener"; spd_toleration = 0; chancellor_party = "I"; time_to_election = 12+strife; strife -= 3; sa_militancy -= 0.1; rb_militancy -= 0.1 if rb_militancy >= 0.1; rfb_militancy -= 0.1; sh_militancy -= 0.05; reichswehr_loyalty += 0.1;
 go-to: fascist_uprising if coup_progress >= 10 and sa_force+sh_force >= 50 and nsdap_r+dnvp_r >= 40; next_election_time if coup_progress < 10 or sa_force+sh_force < 45 or nsdap_r+dnvp_r < 35
 
-Wilhelm Marx has become increasingly influenced by an inner cadre of military men and seeing the total inability of the Reichstag to form a government has caved to their increasing calls for martial law. 
+威廉·马克斯日益受到身边一群军方人物的影响，眼见国会完全无法组阁，他屈从于他们日益高涨的实施戒严的呼声。
 
-He has asked Wilhelm Groener to lead a temporary military government and, wielding the powers of Article 48 of the German constitution, declared martial law and cancelled the next elections. 
+他邀请威廉·格勒纳出任临时军政府首脑，并援引《魏玛宪法》第48条赋予的权力，宣布戒严、取消下届大选。
 
 @hindenburg_crisis
 on-arrival: chancellor = "Seldte"; chancellor_party = "DNVP"
 
-Seeing the continuing collapse of order in Germany, and convinced that they would be able to quell any resistance, President [+ president +] and Chancellor Seldte have come together to declare a state of martial law in Germany. Though this is unconstitutional, the courts have little sway over the enthusiastic army.
+眼见德国秩序持续崩溃，且自信能够弹压任何反抗，[+ president +] 总统与塞尔德特总理联手宣布德国进入戒严状态。此举虽属违宪，但法院对热情高涨的军队几乎毫无约束力。
 
-- @seldte_takes_power: What now?
+- @seldte_takes_power: 现在怎么办？
 
 @seldte_takes_power
 subtitle: The beginning of the end.
 on-arrival: reichswehr_loyalty -= 0.1; stalhelm_militancy += 1.5
 
-The destruction of German democracy has begun, not at the hands of the Nazis but at the hands of the reactionaries who wish to see a return to the days of the German Empire. If we do not fight back now, then we may never get another chance, and all we as a party have stood for will be gone in an instant.
+德国民主的毁灭已经开始，幕后推手不是纳粹，而是那些梦想重返德意志帝国旧时光的反动派。我们如果不现在反抗，就再也不会有机会，党所坚守的一切都将顷刻消散。
 
-- @fight_harzburg: Mobilize our forces and declare a general strike!
-- @reactionary_victory: We have lost.
+- @fight_harzburg: 动员我们的力量，宣布总罢工！
+- @reactionary_victory: 我们输了。
 
 @reactionary_victory
 
-Party offices are raided by army and police forces. Our leaders are rounded up and arrested. Any and all of our reforms are undone, and a police state under the army's control is cemented. The Nazis have failed to take power, but we cannot take much comfort in the fact when a dictatorial fascist government rules all the same. Perhaps in the far future, we may have our moment in the sun once more. We will have a duty to do better then than we have now.
+党的办公场所遭到陆军与警察的突袭。我们的领袖被一一逮捕。我们推动的所有改革皆被废除，一个由军队掌控的警察国家从此扎根。纳粹未能上台，但当一个独裁法西斯政府同样统治这片土地时，我们也无从安慰自己。或许在更遥远的未来，我们还能再有出头之日。届时，我们有责任做得比今天更好。
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
 
 @fight_harzburg
 on-arrival: spd_rebel = 1
@@ -51,35 +51,35 @@ go-to: civil_war
 on-arrival: chancellor = "Groener"; spd_toleration = 0; chancellor_party = "I"; time_to_election = 12+strife; strife -= 3; sa_militancy -= 0.1; rb_militancy -= 0.1 if rb_militancy >= 0.1; rfb_militancy -= 0.1; sh_militancy -= 0.05; reichswehr_loyalty += 0.1;
 go-to: fascist_uprising if coup_progress >= 10 and sa_force+sh_force >= 50 and nsdap_r+dnvp_r >= 40; next_election_time if coup_progress < 10 or sa_force+sh_force < 45 or nsdap_r+dnvp_r < 35
 
-Otto Gessler has become increasingly influenced by his inner cadre of military men and seeing the total inability of the Reichstag to form a government has caved to their increasing calls for martial law. 
+奥托·格斯勒日益受到身边一群军方人物的影响，眼见国会完全无法组阁，他屈从于他们日益高涨的实施戒严的呼声。
 
-He has asked Wilhelm Groener to lead a temporary military government and, wielding the powers of Article 48 of the German constitution, declared martial law and cancelled the next elections. 
+他邀请威廉·格勒纳出任临时军政府首脑，并援引《魏玛宪法》第48条赋予的权力，宣布戒严、取消下届大选。
 
 @adenauer_crisis
 on-arrival: chancellor = "Stegerwald"; adenauer_emergency = 1; spd_toleration = 0; chancellor_party = "Z"; time_to_election = 3; sa_militancy -= 0.05; sh_militancy -= 0.05; rfb_militancy -= 0.05; reichswehr_loyalty += 0.05; old_middle_z += 5; new_middle_z += 5; rural_z += 5; catholics_z += 8; workers_z += 3; unemployed_z += 2; old_middle_nsdap -= 4; new_middle_nsdap -= 4; rural_nsdap -= 4; workers_nsdap -= 4; unemployed_nsdap -= 3; pro_republic += 10
 go-to: next_election_time
 
-Adenauer, tired of the chaos, sacks the current chancellor and replaces him with Adam Stegerwald, who has launched a sweeping campaign for the Center Party, calling for law and order and harshly attacking the Nazis as being, in a sense, 'posers', for throwing Germany into disarray while claiming to desire nothing but its greatness.
+阿登纳厌倦了混乱，罢免现任总理，由亚当·施特格瓦尔德接任。施特格瓦尔德为中央党展开了一场大规模运动，高呼法律与秩序，并尖锐抨击纳粹某种意义上是"装腔作势者"——他们一边把德国搅得一团糟，一边声称自己只求祖国的伟大。
 
 @eckener_crisis
 on-arrival: chancellor = "Groener"; spd_toleration = 0; chancellor_party = "I"; time_to_election = 6+strife; strife -= 3; sa_militancy -= 0.1; rb_militancy -= 0.1 if rb_militancy >= 0.1; rfb_militancy -= 0.1; sh_militancy -= 0.05; reichswehr_loyalty += 0.05;
 go-to: fascist_uprising if coup_progress >= 10 and sa_force+sh_force >= 45 and nsdap_r+dnvp_r >= 35; next_election_time if coup_progress < 10 or sa_force+sh_force < 45 or nsdap_r+dnvp_r < 35
 
-Hugo Eckener, seeing the devolving situation in Germany and convinced that a strong hand is needed, appoints Wilhelm Groener chancellor of a temporary military cabinet and declared martial law, swearing this as a temporary measure to secure Germany's future.
+雨果·埃克纳眼见德国局势持续恶化，确信需要一只强硬之手，便任命威廉·格勒纳为临时军政府总理并宣布戒严，发誓这只是为德国未来安全所采取的临时措施。
 
 @fascist_uprising
 on-arrival: sh_strength *= 0.8; sh_strength *= 0.9 if president == "Eckener"; reichswehr_loyalty += 0.1; reichswehr_loyalty += 0.1 if president == "Gessler"; nazi_rebel = 1
 
-Infuriated by this action, the Nazi SA launches an armed insurrection, attempting to seize and take over key infrastructure across the country as the army is deployed against them. Due to the circumstances of the uprising, the Harzburg Front is split, and many in the Stalhelm hesitate.
+纳粹冲锋队对此勃然大怒，发动武装暴动，试图夺取并控制全国各处的关键基础设施，而军队也被派去对付他们。鉴于这场起义的特殊情形，哈尔茨堡阵线产生分裂，钢盔团中许多人犹豫不决。
 
-- @civil_war: Nonetheless, it is a civil war.
+- @civil_war: 即便如此，这仍是一场内战。
 
 # todo: SPD response section if no fascist uprising, eg general strike against martial law..?
 
 @nothing_to_do
 on-arrival: reichswehr_loyalty -= 0.1; sh_strength += 100; sa_strength += 100; pro_republic -= 5; coup_progress += no_majority_elections/2
 
-With presidential powers weakened, there is nothing that can be done. The republic may not last much longer.
+总统的权力被削弱，已无可为之事。共和国可能撑不了多久了。
 
 @next_election_time
-on-arrival: next_election_time = time+time_to_election; next_election_month = month + time_to_election; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; 
+on-arrival: next_election_time = time+time_to_election; next_election_month = month + time_to_election; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;

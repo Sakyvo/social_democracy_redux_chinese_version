@@ -7,13 +7,13 @@ max-visits: 1
 face-image: img/portraits/SchleicherKurt.jpg
 tags: event
 
-= Schleicher's Schemes
+= 施莱彻的阴谋
 
-Chancellor Kurt von Schleicher claims to have a plan to save Germany, and he has reached out to the Social Democrats with vague promises. He claims that in order to govern, the Reichstag must be temporarily suspended to prevent the Nazis and Communists from disrupting government, in effect giving him and Hindenburg dictatorial powers. In the meantime, he is enacting a public works program and job creation plan, which he claims will stabilize the economy, 
+库尔特·冯·施莱彻总理声称他有拯救德国的方案，并以含糊的承诺向社民党示好。他声称为了治理国家，必须暂时停止国会运作，以防止纳粹和共产党人扰乱政府运作——实际上等于把独裁权力交给他和兴登堡。与此同时，他正推行一项公共工程计划与创造就业计划，他声称这能稳定经济。
 
-[? if works_program <= 0: The trade unions are somewhat favorable to Schleicher's plan, as they see a commonality between Schleicher's economic plan and the ADGB's WTB-plan for debt-funded job creation. However, the rest of our party is vehemently against Schleicher. ?]
+[? if works_program <= 0: 工会对施莱彻的方案略持好感，因为他们看到施莱彻的经济方案与 ADGB 的 WTB 计划——靠举债创造就业——存在共通之处。然而党内其他派别都强烈反对施莱彻。 ?]
 
-Rumors are that Schleicher is also reaching out to the Nazis with similar promises of cooperation; he seems to believe that he can "tame" the Nazis. Most in our party do not trust him to not bring the Nazis to power. In addition, working with him would essentially mean the end of our claim to be a "democratic" party.
+有传言说施莱彻也同样对纳粹释放合作的暗示；他似乎以为自己能"驯化"纳粹。我们党内大多数人不相信他不会把纳粹带上台。此外，与他合作实际上意味着我们作为"民主"政党的声誉就此终结。
 
 # if this works: delay elections by 1 year (requires over 50% support - need Z and DVP and others to join as well based on relations; DNVP might support? Also should depend on Hindenburg relations).
 
@@ -25,7 +25,7 @@ Rumors are that Schleicher is also reaching out to the Nazis with similar promis
 title: Accept Schleicher's schemes.
 subtitle: We will support the suspension of the Reichstag.
 
-Are we sure that we wish to do this? The vast majority of the party is against this proposal.
+我们真的要这样做吗？党内绝大多数人都反对这一提议。
 
 - @accept_2
 - @reject
@@ -59,24 +59,24 @@ go-to: schleicher_success if schleicher_support >= 50; schleicher_failed if schl
 
 # There isn't enough resolution in this game to create conditions for when the DNVP would support Schleicher. It's possible that SPD support for Schleicher would push Hugenberg to ally with Hitler.
 
-With the exception of the trade unions, every faction of the SPD is horrified by this betrayal of democracy.
+除工会之外，社民党每一个派系都对这种对民主的背叛感到惊骇。
 
-[? if kpd_relation <= 10 and left_strength + center_strength < labor_strength: Somehow, the DNVP has agreed to Schleicher's proposal, forming a temporary alliance with the general against Nazis and Communists. ?][? if z_relation >= 50 : The Center Party also supports Schleicher's plan. ?][? if dvp_relation >= 25 : In addition, the DVP and some other smaller parties support this proposal. ?][? if kpd_relation > 10 or left_strength + center_strength >= labor_strength: The DNVP, despite being courted by Schleicher, is not interested in joining this alliance. DNVP chairman Hugenberg seems to prefer working with Hitler to any alliance that includes the SPD. ?]
+[? if kpd_relation <= 10 and left_strength + center_strength < labor_strength: 不知何故，德国国家人民党（DNVP）也同意了施莱彻的提议，与这位将军暂时结盟，共同对抗纳粹和共产党。 ?][? if z_relation >= 50 : 中央党也支持施莱彻的方案。 ?][? if dvp_relation >= 25 : 此外，DVP 和其他一些较小政党也支持这一提议。 ?][? if kpd_relation > 10 or left_strength + center_strength >= labor_strength: DNVP 尽管被施莱彻拉拢，但无意加入这一联盟。DNVP 主席胡根贝格似乎更愿意与希特勒合作，而不是参与一个包含社民党的联盟。 ?]
 
-[? if strasser_percent >= 0.25 and schleicher_support >= 50 : Seeing the writing on the wall, many Nazi deputies surrounding Strasser vote for Schleicher's motion alongside us, despite Hitler's continued opposition. Does this signal a Nazi split? ?]
+[? if strasser_percent >= 0.25 and schleicher_support >= 50 : 看清大局之后，施特拉瑟周围的许多纳粹议员尽管希特勒持续反对，仍与我们一道投票支持施莱彻的动议。这是否预示着纳粹的分裂？ ?]
 
 @schleicher_success
 on-arrival: next_election_month = month+13; next_election_time = time+13; next_election_year = year+1; next_election_month -= 12; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; schleichers_scheme_success = 1
 
-The scheme has succeeded - there is a majority in the Reichstag backing Schleicher. New elections have been tentatively set for [+ next_election_month : month +] [+ next_election_year +].
+阴谋得逞——国会有多数支持施莱彻。新一轮大选暂定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @schleicher_failed
 
-Unfortunately, the coalition supporting the dissolution of the Reichstag does not constitute a majority. There will be elections as scheduled.
+可惜，支持解散国会的联盟未构成多数。大选将按原计划进行。
 
 @reject
 title: Reject Schleicher's schemes.
 subtitle: The Reichstag will continue to meet.
 on-arrival: labor_dissent += 10 if works_program = 0
 
-In the end, there is no uptake for Schleicher's schemes by any political party.
+最终，没有任何政党接受施莱彻的阴谋。

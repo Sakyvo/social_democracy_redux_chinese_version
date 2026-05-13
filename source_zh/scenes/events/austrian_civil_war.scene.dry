@@ -7,19 +7,19 @@ on-arrival: austrian_civil_war_seen = 1
 face-image: img/schutzbund.png
 tags: event
 
-= Uprising in Austria
+= 奥地利起义
 
 # pre-emptive democratic victory if sdapo strength >= 6
 # long civil war if sdapo_strength = 5 or 4 - opportunity for interference/forced peace
 # instant defeat if sdapo_strength < 4
 
-The crisis in Austria is continuing. The "Austrofascist" government led by Engelbert Dollfuß continues to rule by emergency decree. It has been persecuting its political opposition, primarily the social democrats of the SDAPÖ.
+奥地利的危机仍在持续。由恩格尔伯特·陶尔斐斯领衔的"奥地利法西斯"政府继续以紧急法令统治，并迫害其政治反对派，主要是奥地利社民党（SDAPÖ）。
 
-[? if sdapo_strength < 6: Now, Austria is entering a state of civil war. When the police attempted to seize weapons from the Republikanischer Schutzbund, the Schutzbund responded with force, shooting at the government troops. Fighting has sporadically broken out between Schutzbund and government forces all over Austria. ?]
+[? if sdapo_strength < 6: 如今，奥地利正陷入内战状态。当警方试图缴获共和保护团（Republikanischer Schutzbund）的武器时，保护团以武力回应，向政府军开火。保护团与政府军之间的零星交火在奥地利各地相继爆发。 ?]
 
-[? if sdapo_strength >= 6: The government's attempts to suppress the socialist party and the Schutzbund were met with mass protest, supported by the SPD[? if foreign_minister_party = "SPD":  and the German government?]. [? if eu_austria: They are also supported by the recently formed European Union, with economic sanctions targeting the government. ?] ?]
+[? if sdapo_strength >= 6: 政府压制社会民主党与共和保护团的企图，遭到群众示威的回击，并得到社民党[? if foreign_minister_party = "SPD": 及德国政府?]的支持。[? if eu_austria: 他们也获得了新成立的欧洲联盟的支持，对奥地利政府实施了经济制裁。 ?] ?]
 
-Eventually...
+最终……
 
 - @crushed
 - @long_war
@@ -30,14 +30,14 @@ title: The rebellious Schutzbund has been crushed.
 on-arrival: austria_defeat = 1
 view-if: sdapo_strength < 4
 
-The uprising lasted for no more than a few days before it was crushed. The Schutzbund and SDAPÖ were too weak and too divided to stand against the forces of the state.
+起义不过持续数日便被粉碎。共和保护团与奥地利社民党太过弱小、太过分裂，无法对抗国家机器。
 
 @long_war
 title: It is a civil war.
 view-if: sdapo_strength = 5 or sdapo_strength = 4
 on-arrival: austria_civil_war = 1
 
-Neither side is backing down, and the SDAPÖ have formed an alternative government after defeating the government troops in some cities. Austria is in a state of civil war.
+双方都不退让，奥地利社民党在某些城市击败政府军后组建了替代政府。奥地利陷入内战。
 
 - @support_sdapo_party
 - @support_sdapo_govt
@@ -51,7 +51,7 @@ choose-if: resources >= 2
 on-arrival: resources -= 2; sdapo_strength += 1
 go-to: sdapo_victory if sdapo_strength >= 6; long_war_2 if sdapo_strength < 6
 
-The SPD raises its resources to provide arms and volunteers for the SDAPÖ.
+社民党动用资源为奥地利社民党提供武器与志愿者。
 
 @support_sdapo_govt
 title: The Foreign Ministry will support the democratic Austrian forces.
@@ -59,7 +59,7 @@ view-if: spd_in_government and foreign_minister_party = "SPD"
 on-arrival: sdapo_strength += 1
 go-to: sdapo_victory if sdapo_strength >= 6; long_war_2 if sdapo_strength < 6
 
-We provide diplomatic and some financial and material support to the SDAPÖ forces.
+我们向奥地利社民党武装提供外交支持以及部分财政和物资援助。
 
 @force_peace
 title: Can we bring the sides together for a peace?
@@ -68,15 +68,15 @@ on-arrival: austria_peace = 1; pro_republic += 3; coup_progress -= 1; socialism 
 
 achievement: arbeiter_von_wien
 
-The Austrian government obviously sees us as biased, so there is no way they will let us host peace negotiations. However, negotiations begin nonetheless. In Switzerland, with Fascist Italy as the Austrofascists' protector and Germany as the SDAPÖ's, a peace deal is hammered out. The socialists are disarmed and give up all pretense of revolution, while the right-wing paramilitaries are also disarmed. Dictatorship ends, and normal government is restored, with free elections.
+奥地利政府显然视我们为偏袒一方，因此他们绝不会让我们主持和平谈判。但谈判仍开始进行。在瑞士，由法西斯意大利充当奥法西斯方的保护者、德国充当奥地利社民党方的保护者，一份和平协议被敲定。社会主义者解除武装、彻底放弃革命的旗号；与此同时，右翼准军事组织也被解除武装。独裁结束，正常的政府秩序得以恢复，自由选举重新举行。
 
-Given the SDAPÖ's starting position, this is treated as a victory. Now begins the long work of reconstruction...
+考虑到奥地利社民党起初的处境，这被视作一场胜利。漫长的重建工作此刻开始……
 
 @long_war_2
 title: There is nothing we can do.
 on-arrival: z_relation -= 6; dvp_relation -= 6; coalition_dissent += 1; workers_spd -= 3; new_middle_spd -= 5; rural_spd -= 6; old_middle_spd -= 6; unemployed_spd -= 4
 
-No matter our efforts, the war continues. Too many lives are extinguished. Refugees begin to flow into Germany, and trade suffers. Many are calling our Austrian interference a mistake.
+无论我们如何努力，战争仍在继续。无数生命消逝。难民开始涌入德国，贸易受损。许多人开始把我们对奥地利的干预称作错误。
 
 
 @sdapo_victory
@@ -85,6 +85,6 @@ on-arrival: pro_republic += 5; west_relation += 1; east_relation += 1; austria_v
 view-if: sdapo_strength >= 6
 achievement: arbeiter_von_wien
 
-The result is that the Austrofascists have backed down! Caught in an untenable position domestically and abroad, they have agreed to restore the National Council and resign from government, holding new elections. Now begins the long work of reconstruction. Our countries are likely to be brought closer together as a result.
+最终结果是奥法西斯让步！陷入内外难以为继的困境，他们同意恢复国民议会、辞去政府职务、举行新一轮大选。漫长的重建工作此刻开始。两国可能因此走得更近。
 
-[? if eu_austria: This is a great success of the new European Union, and its prestige is seen to rise internationally. ?]
+[? if eu_austria: 这是新生的欧洲联盟的一大成功，其国际威望也随之提升。 ?]
