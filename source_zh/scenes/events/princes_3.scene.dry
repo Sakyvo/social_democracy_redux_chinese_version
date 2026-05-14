@@ -22,106 +22,106 @@ Q.socialism += 5;
 !}
 new-page: true
 
-= Expropriation of the Princes
+= 没收王公财产
 
-The petition has reached [+ petition_support +]% of Germany's eligible voting population, surpassing the 10% quorum by around [+ petition_proportion +] times. The result has come as a startling surprise, and indicates a strong rise in the support of the workers' parties.
+请愿征集到了德国合资格选民中 [+ petition_support +]% 的支持，约为 10% 法定起征线的 [+ petition_proportion +] 倍。结果令人震惊，表明工人阶级各党的支持正强劲上升。
 
-Regardless, the petition is now to be voted on by the Reichstag. Its rejection is inevitable, which will mean, as anticipated, a referendum on the matter. [? if princes_initiated : Perhaps we truly can manage to win? ?]
+无论如何，请愿现已交由国会投票。其被否决已是必然，意味着——正如预期——将就此事举行公投。[? if princes_initiated : 也许我们真的能赢？ ?]
 
-- @vote_for: We will vote for the law in the Reichstag.
-- @vote_against: We will vote against the law in the Reichstag.
-- @luther_and_hindenburg_suck: President Hindenburg and the [+ chancellor +] cabinet throw us a new hurdle.
-- @zmarx_reference: The reactionary judiciary throws us a new hurdle.
-- @zmarx_wholesome: The DVP throws us a new hurdle.
+- @vote_for: 我们将在国会投票支持该法案。
+- @vote_against: 我们将在国会投票反对该法案。
+- @luther_and_hindenburg_suck: 兴登堡总统与 [+ chancellor +] 内阁给我们设了新障碍。
+- @zmarx_reference: 反动派把持的司法机关给我们设了新障碍。
+- @zmarx_wholesome: 德国人民党（DVP）给我们设了新障碍。
 
 @vote_for
 view-if: not princes_initiated
 on-arrival: reformist_dissent += 5; dvp_relation -= 5
 
-Seeing the writing on the wall following the overperformance of the petition, we change course and vote for the law in the Reichstag. It, as expected, fails, meaning the holding of a referendum on the manner.
+请愿超额完成让我们看清形势，我们改变路线，在国会投票支持该法案。结果一如预期地未获通过，意味着将就此事举行公投。
 
-- @back_referendum: A referendum which we will support.
-- @neutral: A referendum we will continue to have no part in.
+- @back_referendum: 我们将支持的公投。
+- @neutral: 我们仍然不参与的公投。
 
 @back_referendum
 on-arrival: reformist_dissent += 5; dvp_relation -= 5; z_relation -= 5; marx_relation -= 2; princes_initiated = 1; new_middle_spd -= 2; old_middle_spd -= 3
 
-Despite our previous opposition, we have chosen to in the end campaign in favor of the referendum. We will of course conduct our campaigns alone, and avoid any association with the communists; nonetheless it would cost too much for us to allow the communists to monopolize this clearly significant vote.
+尽管我们此前反对，最终我们选择为公投造势。我们当然会独立开展运动，避免与共产党人产生任何关联；但若任由共产党人独享这场显然意义重大的投票，我们的代价太高。
 
-- @luther_and_hindenburg_suck: President Hindenburg and the [+ chancellor +] cabinet throw us a new hurdle.
-- @zmarx_reference: The reactionary judiciary throws us a new hurdle.
-- @zmarx_wholesome: The DVP throws us a new hurdle.
+- @luther_and_hindenburg_suck: 兴登堡总统与 [+ chancellor +] 内阁给我们设了新障碍。
+- @zmarx_reference: 反动派把持的司法机关给我们设了新障碍。
+- @zmarx_wholesome: 德国人民党（DVP）给我们设了新障碍。
 
 @neutral
 
-It will be up to the communists to win this referendum, which now has little chance of success especially with the recent opinion of the government that the KPD's proposed law, being unconstitutional, would require a majority of all eligible voters, not just those voting in the referendum.
+这场公投的胜负要由共产党人自己承担。眼下胜算渺茫——政府最近的意见是，由于德共提出的法案违宪，将需要全体合资格选民的多数支持，而不仅仅是投票者的多数。
 
 @vote_against
 view-if: not princes_initiated
 on-arrival: workers_spd -= 3; unemployed_spd -= 3; left_dissent += 10; marx_relation += 2
 
-We vote against the proposed bill, though many on our party's left break party discipline to vote in favor anyway. With only the KPD and these dissidents backing the proposal, it, as expected, fails. Now, a referendum will be held, one of almost certain defeat for the communists as the government finds the referendum to be unconstitutional and thus require an absolute majority of all eligible voters to pass.
+我们投票反对该提案，但党内左翼许多人打破党纪，仍投了赞成票。仅有德共与这些异见者支持该提案，如预期般未获通过。如今将举行公投——但鉴于政府认定该公投属违宪、需获全体合资格选民绝对多数才能通过，共产党人几乎注定失败。
 
 @luther_and_hindenburg_suck
 view-if: princes_initiated and president == "Hindenburg"
 subtitle: They allege the bill to be unconstitutional, which would make the referendum one of constitutional revision.
 
-It is the opinion of the aristocratic President Hindenburg that this bill, which targets the aristocracy, is unconstitutional, not serving the common good but instead being entirely politically motivated.
+贵族出身的兴登堡总统持此意见：该针对贵族的法案违宪，并非服务公共利益，纯属政治动机驱使。
 
-- @justice_minister_marx: Justice Minister Wilhelm Marx confirms this fact.
-- @justice_minister_radbruch: Justice Minister Gustav Radbruch must make a decision.
+- @justice_minister_marx: 司法部长威廉·马克斯确认了这一说法。
+- @justice_minister_radbruch: 司法部长古斯塔夫·拉德布鲁赫须作出决定。
 
 @justice_minister_radbruch
 view-if: justice_minister_party == "SPD"
 
-As we control the Justice Ministry in the [+ chancellor +] cabinet, we can choose whether or not the referendum is constitutional.
+由于我们掌控着 [+ chancellor +] 内阁中的司法部，由我们决定公投是否合宪。
 
-- @constitutional: It is, of course, entirely constitutional.
-- @unconstitutional: The referendum is indeed unconstitutional.
+- @constitutional: 它当然完全合宪。
+- @unconstitutional: 公投确属违宪。
 
 @constitutional
 on-arrival: princes_constitutional = 1; coalition_dissent += 1; coup_progress += 1
 
-We contradict Hindenburg's opinion and declare that the referendum is constitutional, as the provisions of the bill mean that it indeed would serve the common good. This causes significant controversy within the cabinet.
+我们驳斥兴登堡的意见，宣告该公投合宪——法案条款意味着其确实服务公共利益。此举在内阁内引起重大争议。
 
-- @radbruch_resigns: Justice Minister Radbruch must resign.
-- @dvp_withdraws_gov: The DVP withdraws from government.
-- @menu_for_no_real_reason: But, for now, the government survives.
+- @radbruch_resigns: 司法部长拉德布鲁赫必须辞职。
+- @dvp_withdraws_gov: DVP 退出政府。
+- @menu_for_no_real_reason: 但眼下，政府仍然存续。
 
 @radbruch_resigns
 view-if: coalition_dissent >= 3 or (coalition_dissent >= 2 and dvp_relation < 40)
 on-arrival: princes_constitutional = 0; justice_minister_party = "Z"; coup_progress -= 1; coalition_dissent -= 1
 go-to: menu_for_no_real_reason
 
-To preserve the coalition, Radbruch must resign. He is replaced by Wilhelm Marx from the Center Party, who immediately reverses our decision: the referendum remains unconstitutional.
+为维系联合政府，拉德布鲁赫必须辞职。中央党的威廉·马克斯接任，立即推翻我们的决定：公投仍属违宪。
 
 @dvp_withdraws_gov
 view-if: coalition_dissent >= 3 or (coalition_dissent >= 2 and dvp_relation < 40)
 on-arrival: princes_constitutional = 0; coup_progress -= 1; dvp_relation -= 5; z_relation -= 5; chancellor = "Marx"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 go-to: menu_for_no_real_reason
 
-The DVP has withdrawn its confidence in the Koch-Weser cabinet over the decision of our justice minister. Koch-Weser then resigns, and Hindenburg appoints as replacement Wilhelm Marx to lead a bourgeois minority government backed, for now, by the DNVP. They immediately reverse our decision, finding the referendum to be unconstitutional.
+DVP 因我方司法部长的决定撤回对科赫-韦泽内阁的信任。科赫-韦泽随即辞职，兴登堡任命威廉·马克斯组建由 DNVP 暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
 
 @unconstitutional
 view-if: not princes_initiated
 on-arrival: coalition_dissent -= 1; z_relation += 4; dvp_relation += 4; kpd_relation -= 10; left_dissent += 10; workers_spd -= 3; unemployed_spd -= 3; workers_kpd += 3; unemployed_kpd += 3
 
-We agree with Hindenburg's opinion that the referendum is unconstitutional. This provokes outrage within the party, but has greatly pleased the bourgeois parties.
+我们认同兴登堡的意见：公投违宪。此举激起党内愤慨，但资产阶级各党大悦。
 
 @justice_minister_marx
 view-if: justice_minister_party != "SPD"
 go-to: menu_for_no_real_reason
 
-With the [+ chancellor +] cabinet confirming the opinion of Hindenburg, then, this referendum would require not just a majority of yes voters over no voters, but a majority of all eligible voters in Germany. 
+[+ chancellor +] 内阁确认兴登堡的意见后，公投不仅需要赞成票多于反对票，而且需要德国全体合资格选民的多数支持。
 
-Perhaps more luckily, however, this has also eliminated the possibility of compromise, as any compromise bill would need to be approved by both the SPD and the DNVP to reach the 2/3rds required for constitutional revisions. As a result, many supporters of the bourgeois parties have taken a liking to our bill, and the DDP has declared neutrality.
+或许幸运的是，这同时也消除了任何妥协的可能——任何折中议案都需获得社民党和 DNVP 的共同支持才能达到修宪所需的 2/3 多数。结果是，许多资产阶级各党的支持者开始喜欢我们的法案，DDP 已宣布中立。
 
 @menu_for_no_real_reason
 view-if: coalition_dissent < 2 or (coalition_dissent < 3 and (dvp_relation >= 40 or (dvp_relation >= 30 and president == "Marx")))
 
-- @campaign_big: Launch a massive campaign in support of the referendum!
-- @campaign_small: Launch a campaign in support of the referendum.
-- @filler: The referendum is in three months.
+- @campaign_big: 发起一场支持公投的大规模运动！
+- @campaign_small: 发起一场支持公投的运动。
+- @filler: 公投将于三个月后举行。
 
 @campaign_big
 view-if: not prince_campaigned
@@ -130,7 +130,7 @@ subtitle: -2 resources
 on-arrival: resources -= 2; socialism += 3; workers_spd += 2*(1-dissent); rural_spd += 1*(1-dissent); princes_bonus += 5; prince_campaigned = 1
 go-to: menu_for_no_real_reason
 
-We launch a large campaign in support of the referendum, rallying our supporters and even those that we can from the bourgeois parties to vote for the expropriation of the princes.
+我们发起大规模公投支持运动，动员我们的支持者，甚至从资产阶级各党中能争取的人也一同投票支持没收王公财产。
 
 @campaign_small
 view-if: not prince_campaigned
@@ -139,52 +139,52 @@ subtitle: -1 resource
 on-arrival: resources -= 1; socialism += 1; workers_spd += 1*(1-dissent); princes_bonus += 2; prince_campaigned = 1
 go-to: menu_for_no_real_reason
 
-We launch a reasonable campaign in support of the referendum, rallying our supporters to vote for the expropriation of the princes.
+我们发起规模适中的公投支持运动，动员我们的支持者投票支持没收王公财产。
 
 @filler
 
-We shall see in three months whether our preparations will have been enough.
+三个月后，我们将看到我们的准备是否足够。
 
 @zmarx_reference
 subtitle: They allege the bill to be unconstitutional, which would make the referendum one of constitutional revision.
 view-if: princes_initiated and president == "Marx" and judicial_reform < 2
 
-The *Reichsgerichts* (Supreme Court) has submitted an opinion to the Justice Ministry, held by the [+ justice_minister_party +], that the referendum proposed is unconstitutional, and would thus require an extraordinary majority of not just those voting but all eligible German voters.
+帝国法院（最高法院）向由 [+ justice_minister_party +] 主政的司法部提交意见：该公投提案违宪，因此需获非凡多数——不仅是投票者的多数，而是全体合资格德国选民的多数。
 
-- @wrong_and_lame: The Justice Ministry finds the referendum entirely constitutional.
-- @true_true: The Justice Ministry agrees with the Supreme Court's opinion.
+- @wrong_and_lame: 司法部认定公投完全合宪。
+- @true_true: 司法部认同最高法院的意见。
 
 @wrong_and_lame
 view-if: justice_minister_party == "SPD"
 on-arrival: coalition_dissent += 1; reichswehr_loyalty -= 0.05; coup_progress += 2; princes_constitutional = 1
 
-Justice Minister Gustav Radbruch has reviewed the Supreme Court's opinion and found his own, that the referendum is indeed constitutional, serving the common good as the constitution prescribes, to be the correct one. 
+司法部长古斯塔夫·拉德布鲁赫审查了最高法院的意见，仍坚持自己的看法——公投确实合宪，按宪法所述服务公共利益。
 
-This causes significant friction with the DVP, which is being pushed by its right flank to turn against the Grand Coalition.
+此举与 DVP 产生重大摩擦，DVP 右翼正推动该党转而反对大联合政府。
 
-- @radbruch_resigns2: Justice Minister Radbruch must resign.
-- @dvp_withdraws_gov2: The DVP withdraws from government.
-- @menu_for_no_real_reason: But, for now, the government survives.
+- @radbruch_resigns2: 司法部长拉德布鲁赫必须辞职。
+- @dvp_withdraws_gov2: DVP 退出政府。
+- @menu_for_no_real_reason: 但眼下，政府仍然存续。
 
 @radbruch_resigns2
 view-if: coalition_dissent >= 3 or (coalition_dissent >= 2 and dvp_relation < 30)
 on-arrival: princes_constitutional = 0; justice_minister_party = "Z"; coup_progress -= 1; coalition_dissent -= 1; marx_relation += 5
 go-to: menu_for_no_real_reason
 
-To preserve the coalition, Radbruch must resign. He is replaced by Johannes Bell from the Center Party, who immediately reverses our decision: the referendum remains unconstitutional.
+为维系联合政府，拉德布鲁赫必须辞职。中央党的约翰内斯·贝尔（Bell）接任，立即推翻我们的决定：公投仍属违宪。
 
 @dvp_withdraws_gov2
 view-if: coalition_dissent >= 3 or (coalition_dissent >= 2 and dvp_relation < 30)
 on-arrival: princes_constitutional = 0; coup_progress -= 1; dvp_relation -= 5; z_relation -= 5; marx_relation -= 5; chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 go-to: menu_for_no_real_reason
 
-The DVP has withdrawn its confidence in the Koch-Weser cabinet over the decision of our justice minister. Koch-Weser then resigns, and Marx appoints as replacement Brüning to lead a bourgeois minority government backed, for now, by the DNVP. They immediately reverse our decision, finding the referendum to be unconstitutional.
+DVP 因我方司法部长的决定撤回对科赫-韦泽内阁的信任。科赫-韦泽随即辞职，马克斯任命布吕宁组建由 DNVP 暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
 
 @true_true
 view-if: justice_minister_party != "SPD"
 go-to: menu_for_no_real_reason
 
-The Justice Ministry has corroborated the Supreme Court's claim: the referendum is unconstitutional. There is unfortunately little we can do about this. Regardless, the referendum may yet succeed: we can begin campaigning to reinforce this chance
+司法部佐证了最高法院的说法：公投违宪。可惜我们对此无能为力。无论如何，公投仍可能成功：我们可以开始造势以增加这一可能性。
 
 # todo: SPD withdraw from gov over justice ministry's shit take
 
@@ -192,31 +192,31 @@ The Justice Ministry has corroborated the Supreme Court's claim: the referendum 
 view-if: princes_initiated and president == "Marx" and judicial_reform >= 2
 subtitle: They allege the bill to be unconstitutional, which would make the referendum one of constitutional revision.
 
-The DVP's legal experts have come to the opinion that the referendum is unconstitutional, and the DVP has forwarded these complaints to the Justice Ministry, under pressure from its right flank to shoot the bill down by whatever means necessary.
+DVP 的法律专家提出意见认为公投违宪，DVP 已将这些异议转交司法部，其右翼正向党施压，要求无论如何也要否决该法案。
 
-- @wrong_and_lame2: The Justice Ministry finds the referendum entirely constitutional.
-- @coalition_dispute: The coalition is divided.
+- @wrong_and_lame2: 司法部认定公投完全合宪。
+- @coalition_dispute: 联合政府陷入分歧。
 
 @wrong_and_lame2
 view-if: justice_minister_party == "SPD"
 on-arrival: princes_constitutional = 1; coalition_dissent += 1; reichswehr_loyalty -= 0.05; coup_progress += 2
 
-Justice Minister Gustav Radbruch has reviewed the DVP's opinion and found his own, that the referendum is indeed constitutional, serving the common good as the constitution prescribes, to be the correct one. 
+司法部长古斯塔夫·拉德布鲁赫审查了 DVP 的意见，仍坚持自己的看法——公投确实合宪，按宪法所述服务公共利益。
 
-This causes significant friction with the DVP, which is being pushed by its right flank to turn against the Grand Coalition.
+此举与 DVP 产生重大摩擦，DVP 右翼正推动该党转而反对大联合政府。
 
-- @radbruch_resigns2: Justice Minister Radbruch must resign.
-- @dvp_withdraws_gov2: The DVP withdraws from government.
-- @menu_for_no_real_reason: But, for now, the government survives.
+- @radbruch_resigns2: 司法部长拉德布鲁赫必须辞职。
+- @dvp_withdraws_gov2: DVP 退出政府。
+- @menu_for_no_real_reason: 但眼下，政府仍然存续。
 
 @coalition_dispute
 view-if: justice_minister_party != "SPD"
 
-The coalition is split, and the opinion of the Justice Minister means little over the firmly convinced Reichstag delegations of the two parties.
+联合政府陷入分裂，司法部长的意见在两党立场坚定的国会议员团面前几乎无足轻重。
 
-- @pressure: The DVP must accept that it is constitutional.
-- @concede: The SPD must accept that it is unconstitutional.
-- @collapse: The government collapses.
+- @pressure: DVP 必须接受公投合宪。
+- @concede: 社民党必须接受公投违宪。
+- @collapse: 政府垮台。
 
 @pressure
 choose-if: coalition_dissent < 2
@@ -224,16 +224,16 @@ unavailable-subtitle: The DVP is unwilling.
 on-arrival: coalition_dissent += 1; marx_relation -= 2
 go-to: menu_for_no_real_reason
 
-We pressure the Justice Ministry into agreeing with our opinion, and the DVP into then accepting this opinion. The government shall survive, and the referendum remain constitutional.
+我们向司法部施压，使其同意我们的意见，并让 DVP 接受这一意见。政府得以存续，公投仍属合宪。
 
 @concede
 on-arrival: left_dissent += 5; marx_relation += 5
 go-to: menu_for_no_real_reason
 
-For the sake of preserving the coalition, we concede. The left is upset, but at least we shall remain in government.
+为了维系联合政府，我们让步。左翼不满，但至少我们仍在政府中。
 
 @collapse
 on-arrival: princes_constitutional = 0; coup_progress -= 1; dvp_relation -= 5; z_relation -= 5; marx_relation -= 3; chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 go-to: menu_for_no_real_reason
 
-The government has fallen over the dispute, and Koch-Weser has resigned. Marx appoints as replacement Brüning to lead a bourgeois minority government backed, for now, by the DNVP. They immediately reverse our decision, finding the referendum to be unconstitutional.
+政府因此次争议而垮台，科赫-韦泽辞职。马克斯任命布吕宁组建由 DNVP 暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。

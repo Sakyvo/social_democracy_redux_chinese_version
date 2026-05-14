@@ -3,20 +3,20 @@ subtitle: The KPD has risen to the forefront of German politics...
 new-page: true
 view-if: kpd_influence >= 10 and (in_left_front or in_popular_front or (kpd_r >= 50 and chancellor_party == "KPD")) and (sa_banned and sh_banned) and ((president == "Münzenberg" or president == "Thälmann") or (red_banner == 1) or ((kpd_r*rfb_strength*rfb_militancy) >= (spd_r*rb_strength*rb_militancy*(1-dissent))))
 tags: event
-on-arrival: socialist_unity = 1 if left_strength >= (center_strength + reformist_strength + neorevisionist_strength) and left_strength >= labor_strength and ((kpd_party_leader == "Conciliators") or kpd_relation >= 80) 
+on-arrival: socialist_unity = 1 if left_strength >= (center_strength + reformist_strength + neorevisionist_strength) and left_strength >= labor_strength and ((kpd_party_leader == "Conciliators") or kpd_relation >= 80)
 go-to: confrontation
 max-visits: 1
 
-= A New Soviet Germany
+= 新苏维埃德国
 
-Ever since the first entrance of the Communists into government they have worked to transform Germany into their image, to rebuild it from the ground up. These efforts finally seem to have come to fruition, as the Communists stand miraculously at the forefront of the German political arena, with none left to oppose them in their quest.
+自共产党人首次入阁起，他们就一直致力于把德国按自己的样子重塑，从根基上重建。这些努力似乎终于结出果实——共产党人奇迹般地站上德国政治舞台的最前沿，再无人能在他们的征程上阻挡他们。
 
 @confrontation
 
-Except, of course, what remains of our forces - the Reichsbanner, the ministries we hold, the Soviets in which we lead, the trade unions affiliated to us...
+当然，除了我方残存的力量——黑红金国旗团、我们掌握的部委、由我们领导的工人苏维埃、与我们结盟的工会……
 
-- @resist: Together, we can stop the [? if president != "Thälmann" and president != "Münzenberg" and chancellor_party != "KPD" : [+ kpd_leader +] ?][? if president == "Thälmann" or president == "Münzenberg" : [+ president +] ?][? if chancellor_party == "KPD" and president != "Thälmann" and president != "Münzenberg" : [+ chancellor +] ?] putsch!
-- @cave: Germany embraces the revolution.
+- @resist: 联手起来，我们可以阻止 [? if president != "Thälmann" and president != "Münzenberg" and chancellor_party != "KPD" : [+ kpd_leader +] ?][? if president == "Thälmann" or president == "Münzenberg" : [+ president +] ?][? if chancellor_party == "KPD" and president != "Thälmann" and president != "Münzenberg" : [+ chancellor +] ?] 的政变！
+- @cave: 德国拥抱革命。
 
 @resist
 on-arrival: socialist_unity = 0; {!
@@ -109,41 +109,41 @@ if (Q.chancellor_party == "SPD") {
     Q.republican_strength += Q.spd_votes/4;
 }
 !}
-go-to: defeat if republican_strength < communist_strength; victory if republican_strength >= communist_strength 
+go-to: defeat if republican_strength < communist_strength; victory if republican_strength >= communist_strength
 
-Firefights erupt across the nation between the Reichsbanner and RFB. For one day, the whole of Germany is in a confused chaos as ministry contradicts ministry and soviet turns on soviet.[? if chancellor_party == "KPD" : The confusion benefits the communists, as they hold the chancellory. ?][? if chancellor_party == "SPD" : The confusion benefits us, as we hold the chancellory. ?]
+全国各地国旗团与 RFB 之间爆发交火。一天之内，整个德国陷入一片混乱——部委之间相互掣肘，工人苏维埃彼此倒戈。[? if chancellor_party == "KPD" : 混乱有利于共产党人，他们掌控着总理职务。 ?][? if chancellor_party == "SPD" : 混乱有利于我们，我们掌控着总理职务。 ?]
 
 @defeat
 
-Eventually, the communists emerge victorious. [? if chancellor_party != "KPD" : [+ chancellor +] is forced to resign, and a new all-communist government formed. Resisting ministries fall, and the nation is brought under communist control. ?]
+最终，共产党人胜出。[? if chancellor_party != "KPD" : [+ chancellor +] 被迫辞职，新的全共产党政府组建。抵抗的部委一一垮台，全国落入共产党控制。 ?]
 
-- @conclusion: We tried our best.
+- @conclusion: 我们尽力了。
 
 @victory
 on-arrival: in_left_front = 0; in_popular_front = 0; time_to_election = 3; kpd_influence = 0; communist_coalition -= 3; kpd_relation -= 60; rfb_militancy -= 0.5; rfb_strength *= 0.6; workers_kpd *= 0.7; unemployed_kpd *= 0.9; new_middle_kpd *= 0.9;
 call: set_next_election_time
 
-Eventually, the RFB's forces fall, and putschist soviets brought under the Iron Front's control. The capital is secured, and all communist ministers sacked as the coup falls apart. Social Democracy has prevailed.
+最终，RFB 的力量崩溃，政变派苏维埃被铁阵线控制。首都被守住，所有共产党籍部长在政变垮塌时被罢免。社会民主主义获胜。
 
-- @ban_kpd: Crack down on the communists.
-- @forgive: What's done is done.
+- @ban_kpd: 镇压共产党人。
+- @forgive: 木已成舟。
 
 @ban_kpd
 on-arrival: kpd_banned = 1; party_bans = 1; left_dissent += 25
 
-Putschism cannot be forgiven. The communists at our mercy, we put an end to their aspirations once and for all by banning the party. 
+政变之罪不可宽恕。共产党人任由我们处置，我们以查禁该党的方式彻底了结他们的野心。
 
-- @unban_bourgeois: Unban the [+ ddp_name +] and Center.
-- @unban_ddp: Unban the [+ ddp_name +].
-- @unban_z: Unban the Center Party.
-- @maintain: Now and forever, Social Democracy shall reign.
+- @unban_bourgeois: 解禁 [+ ddp_name +] 和中央党。
+- @unban_ddp: 解禁 [+ ddp_name +]。
+- @unban_z: 解禁中央党。
+- @maintain: 从今往后，社会民主主义将永远执政。
 
 @unban_bourgeois
 view-if: ddp_banned and z_banned
 on-arrival: ddp_banned = 0; z_banned = 0
 subtitle: We must begin to undo the damage that the KPD has done.
 
-Of course, we re-legalize the moderate liberal parties. The KPD fought hard to stifle democracy, and now we shall let it flourish again.
+我们当然重新合法化温和自由派各党。德共曾竭力扼杀民主，如今我们要让民主重新繁荣。
 
 @maintain
 view-if: ddp_banned or z_banned
@@ -156,48 +156,48 @@ view-if: ddp_banned and not z_banned
 on-arrival: ddp_banned = 0
 subtitle: We must begin to undo the damage that the KPD has done.
 
-Of course, we re-legalize the [+ ddp_name +]. The KPD fought hard to stifle democracy, and now we shall let it flourish again.
+我们当然重新合法化 [+ ddp_name +]。德共曾竭力扼杀民主，如今我们要让民主重新繁荣。
 
 @unban_z
 view-if: z_banned and not ddp_banned
 on-arrival: z_banned = 0
 subtitle: We must begin to undo the damage that the KPD has done.
 
-Of course, we re-legalize the Center Party. The KPD fought hard to stifle democracy, and now we shall let it flourish again.
+我们当然重新合法化中央党。德共曾竭力扼杀民主，如今我们要让民主重新繁荣。
 
 @forgive
 on-arrival: kpd_relation += 10
 
-What's done is done. We don't need to ban the KPD, they have exhausted the threat they pose in their failed putsch.
+木已成舟。我们不必查禁德共，他们已在失败的政变中耗尽了自己构成的威胁。
 
 @cave
 go-to: conclusion
 
-[? if chancellor_party != "KPD" : [+ chancellor +] resigns before the wishes of the [? if supreme_soviet : soviet ?][? if not supreme_soviet : Reichstag ?]and RFB, following the Reichsbanner's capitulation to the latter. ?][? if president != "Thälmann" and president != "Münzenberg" and not presidential_powers : The President is stripped of their powers by a constitutional amendment. ?][? if spd_r >= kpd_r : A snap election is called, in which the communists win. ?]
+[? if chancellor_party != "KPD" : [+ chancellor +] 屈从于 [? if supreme_soviet : 苏维埃 ?][? if not supreme_soviet : 国会 ?]和 RFB 的意愿而辞职，国旗团向后者投降。 ?][? if president != "Thälmann" and president != "Münzenberg" and not presidential_powers : 总统通过一项宪法修正案被剥夺权力。 ?][? if spd_r >= kpd_r : 闪电大选举行，共产党人获胜。 ?]
 
-Germany's transformation is begun, and Social Democracy stands not in its way.
+德国的变革开始了，社会民主主义没有挡道。
 
 @conclusion
 
-Now, as the last state institutions are cleansed of anticommunists and bourgeois influences, the last reactionaries jailed or otherwise silenced, it seems that Germany truly shall join the USSR as the second Marxist-Leninist nation. All that remains to be asked is the fate of Social Democracy in this new future.
+如今，最后的国家机构被肃清反共与资产阶级影响，最后的反动派被关押或以其他方式沉默，看来德国真的将与苏联一道成为第二个马列主义国家。剩下的唯一问题：社会民主主义在这一新未来中的命运。
 
-- @sed: The reunification of our parties.
-- @kpd: The banning of the SPD.
+- @sed: 我们两党的再统一。
+- @kpd: 社民党被查禁。
 
 @sed
 view-if: socialist_unity
 
-A party congress is called, uniquely with the purpose of adopting a new party program - a joint party program. Indeed, this party congress is not of the SPD, or of the KPD, but of both. 
+一场党代会被召集——目的独特，专为通过一份新党纲——一份共同党纲。其实，这场党代会既不属于社民党，也不属于德共，而是属于双方。
 
-In the following days, the process of reunification is completed, this time under the banner of the "Socialist Unity Party". Revisionist influences are expelled, and opposition parties suppressed. The fate of Germany is sealed under the direction of the SED. Let us hope it is a good one.
+随后数日，再统一的进程完成，这次在"社会主义统一党"的旗帜下。修正主义影响被清除，反对派各党被压制。德国的命运在 SED 的指引下尘埃落定。但愿这是一个好命运。
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
 
 @kpd
 view-if: not socialist_unity
 
-Eventually, our luck runs out. The Communists ban all opposition parties, including ours. We are lucky to be spared the worst of the crackdowns, though many on the former party's right are not so lucky. 
+最终，我们的运气用尽。共产党人查禁所有反对党，包括我们。我们能逃过最严厉的镇压已属万幸，前党右翼中许多人却没有这般运气。
 
-The KPD has won the privilege of writing Germany's future. All we can do now is hope that the future they write will be a good one.
+德共赢得了书写德国未来的特权。我们如今所能做的，就是寄望他们书写的未来是一个好未来。
 
-- @game_over: Game over.
+- @game_over: 游戏结束。
