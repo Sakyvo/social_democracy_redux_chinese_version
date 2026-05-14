@@ -9,21 +9,21 @@ tags: event
 go-to: election_algorithm
 set-jump: pres_election
 
-= Presidential Elections
+= 总统选举
 
-Finally, as the country emerges from civil war, presidential elections will be held. [? if not kpd_banned : The KPD is planning to run [? if kpd_party_leader == "Conciliators" : Willi Münzenberg?][? if kpd_party_leader != "Conciliators" : Ernst Thälmann?] ?][? if z_relation < 50 or dvp_banned != 1 or dnvp_banned != 1 :[? if not kpd_banned :, while the?][? if kpd_banned : The?] right rallies behind[? if dnvp_banned != 1 : Oskar Hergt?][? if dnvp_banned and dvp_banned != 1 and dvp_relation < 35 : Hans Luther?][? if dnvp_banned and dvp_banned and president == "Wirth" : Joseph Wirth?][? if dnvp_banned and dvp_banned and president != "Wirth" and z_relation < 50 : Konrad Adenauer?][? if dvp_banned != 1 and dnvp_banned and dvp_relation >= 35 : Otto Gessler ?] ?]. 
+随着国家从内战中走出，总统选举终于得以举行。[? if not kpd_banned : 德共计划推出[? if kpd_party_leader == "Conciliators" : 维利·明岑伯格（Münzenberg）?][? if kpd_party_leader != "Conciliators" : 恩斯特·台尔曼?] ?][? if z_relation < 50 or dvp_banned != 1 or dnvp_banned != 1 :[? if not kpd_banned : ；而右翼?][? if kpd_banned : 右翼?]则围绕[? if dnvp_banned != 1 : 奥斯卡·赫尔格特（Hergt）?][? if dnvp_banned and dvp_banned != 1 and dvp_relation < 35 : 汉斯·路德（Luther）?][? if dnvp_banned and dvp_banned and president == "Wirth" : 约瑟夫·维尔特（Wirth）?][? if dnvp_banned and dvp_banned and president != "Wirth" and z_relation < 50 : 康拉德·阿登纳（Adenauer）?][? if dvp_banned != 1 and dnvp_banned and dvp_relation >= 35 : 奥托·盖斯勒（Gessler） ?]集结 ?]。
 
-[? if president == "Wirth" : Joseph Wirth is tired, but will run for re-election if we support him. ?] We may convince Otto Braun to run, or back another candidate. Kurt Schumacher rose to prominence during the civil war, and we may choose to run him if Otto Braun is unwilling.
+[? if president == "Wirth" : 约瑟夫·维尔特已身心俱疲，但若得到我党支持，仍愿谋求连任。 ?] 我们可以说服奥托·布劳恩（Braun）出马，也可以支持其他候选人。库尔特·舒马赫（Schumacher）在内战中声名鹊起；若布劳恩不愿出马，我们可以推举他。
 
 @pres_election
 
-- @support_braun: Run Otto Braun.
-- @support_schumacher: Run Kurt Schumacher.
-- @support_wirth: Support Joseph Wirth.
-- @support_thalmann: Support Ernst Thälmann.
-- @support_munzenburg: Support Willi Münzenberg.
-- @support_gessler: Support Otto Gessler.
-- @support_adenauer: Support Konrad Adenauer.
+- @support_braun: 推出奥托·布劳恩参选。
+- @support_schumacher: 推出库尔特·舒马赫参选。
+- @support_wirth: 支持约瑟夫·维尔特。
+- @support_thalmann: 支持恩斯特·台尔曼。
+- @support_munzenburg: 支持维利·明岑伯格。
+- @support_gessler: 支持奥托·盖斯勒。
+- @support_adenauer: 支持康拉德·阿登纳。
 
 @support_braun
 subtitle: -2 resources.
@@ -32,23 +32,23 @@ unavailable-subtitle: He's sleepy.
 on-arrival: resources -= 2; braun_campaign = 1; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50; z_support_braun = 1 if z_relation >= 50
 go-to: spd_presidential
 
-Otto Braun reluctantly agrees to run for President, and enters into the race as our candidate. [? if motivate_adenauer : Our entering the race has motivated the Center Party to run Konrad Adenauer against us. ?][? if z_relation >= 50 : The Center Party backs Otto Braun. ?]
+奥托·布劳恩勉强同意参选总统，作为我党候选人加入选战。[? if motivate_adenauer : 我党参选促使中央党推出康拉德·阿登纳与我们对决。 ?][? if z_relation >= 50 : 中央党支持奥托·布劳恩。 ?]
 
 @support_schumacher
 subtitle: -2 resources.
 on-arrival: resources -= 2; schumacher_campaign = 1; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50; z_support_schumacher = 1 if z_relation >= 50
 go-to: spd_presidential
 
-Kurt Schumacher happily agrees to run for President, and enters into the race as our candidate. [? if motivate_adenauer : Our entering the race has motivated the Center Party to run Konrad Adenauer against us. ?][? if z_relation >= 50 : The Center Party backs Otto Braun. ?]
+库尔特·舒马赫欣然同意参选总统，作为我党候选人加入选战。[? if motivate_adenauer : 我党参选促使中央党推出康拉德·阿登纳与我们对决。 ?][? if z_relation >= 50 : 中央党支持奥托·布劳恩。 ?]
 
 @support_wirth
 subtitle: The incumbent, interim president.
 view-if: wirth_campaign
 on-arrival: z_relation += 5
 
-Joseph Wirth, after some consideration, agrees to run for re-election as the Weimar candidate, with backing from us, [+ ddp_name +], and of course the Center Party.
+经过深思熟虑，约瑟夫·维尔特同意作为魏玛阵营的候选人寻求连任，获得我党、[+ ddp_name +] 以及中央党的支持。
 
-- @final_election: The final results...
+- @final_election: 最终结果……
 
 @support_thalmann
 subtitle: Thälmann is very unpopular among the reformists.
@@ -56,17 +56,17 @@ view-if: kpd_party_leader != "Conciliators"
 choose-if: kpd_relation >= 50 and reformist_strength < left_strength
 unavailable-subtitle: [? if kpd_relation < 50 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this arrangement. ?]
 
-Supporting Thälmann is rather unpopular in our party, even if the Communists accept our support. Are we sure?
+即便共产党人接受我们的支持，在党内支持台尔曼也极不受欢迎。我们当真要这样做？
 
-- @support_thalmann_2: Yes, we will support Thälmann, despite the reformists' pleas against it.
-- @pres_election: Support someone else.
+- @support_thalmann_2: 是的，纵使改良派恳求反对，我们仍将支持台尔曼。
+- @pres_election: 支持其他人。
 
 @support_thalmann_2
 on-arrival: spd_support_thalmann = 1; reformist_dissent += 15; center_dissent += 10; labor_dissent += 5; neorevisionist_dissent += 10; catholics_spd -= 5; workers_spd -= 3; kpd_relation += 10; communist_coalition += 2; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 10; weimar_dissent += 3; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
 
-Fine. We have thrown our support to Chairman Thälmann of the KPD.
+好。我党决定支持德共主席台尔曼。
 
-- @final_election: The final results...
+- @final_election: 最终结果……
 
 @support_munzenburg
 subtitle: Supporting Münzenberg is unpopular among the reformists, but less so than Thälmann would've been.
@@ -75,46 +75,46 @@ choose-if: kpd_relation >= 40 and reformist_strength < left_strength
 unavailable-subtitle: [? if kpd_relation < 40 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this arrangement. ?]
 on-arrival: spd_support_munzenburg = 1; kpd_relation += 5; reformist_dissent += 5; ddp_relation -= 3; dvp_relation -= 5; z_relation -= 5; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
 
-We have endorsed Willi Münzenberg of the KPD.
+我们为德共的维利·明岑伯格背书。
 
-- @final_election: The final results...
+- @final_election: 最终结果……
 
 @support_gessler
 subtitle: Otto Gessler is running as the DVP's candidate.
 view-if: not dvp_banned and gessler_campaign and not wirth_campaign
 on-arrival: left_dissent += 5; spd_support_gessler = 1; z_support_gessler = 1 if z_relation >= 45; adenauer_campaign = 0 if z_relation >= 45
 
-We have endorsed Otto Gessler of the Bürgerblock. [? if z_relation >= 45 : The Center Party soon follows suite. ?]
+我们为资产阶级集团的奥托·盖斯勒背书。[? if z_relation >= 45 : 中央党随即效仿。 ?]
 
-- @final_election: The final results...
+- @final_election: 最终结果……
 
 @support_adenauer
 subtitle: Konrad Adenauer may run as the Center Party's candidate.
 view-if: not wirth_campaign
 on-arrival: spd_support_adenauer = 1; adenauer_campaign = 1
 
-We have endorsed Konrad Adenauer of the Center Party.
+我们为中央党的康拉德·阿登纳背书。
 
-- @final_election: The final results...
+- @final_election: 最终结果……
 
 ## todo: center support should be based on risks, so Z backs gessler alongside SPD if KPD strong, runs with SPD if DNVP/DVP strong, otherwise runs alone even if good relations
 
 @spd_presidential
 
-- @convince_z: Can we sway the Center Party?
-- @convince_kpd: Can we convince the KPD?
-- @final_election: The final results...
+- @convince_z: 我们能否争取中央党？
+- @convince_kpd: 我们能否说服德共？
+- @final_election: 最终结果……
 
 @convince_z
 view-if: (not z_support_braun and braun_campaign) or (not z_support_schumacher and schumacher_campaign)
 choose-if: (z_relation >= 40 or (z_relation >= 35 and hergt_plurality)) and (z_votes < spd_votes + ddp_votes or (z_votes < spd_votes + ddp_votes + kpd_votes and (kpd_support_braun or kpd_support_schumacher)))
 unavailable_subtitle: The Center Party isn't willing to be convinced.
 
-The Center Party isn't currently backing our candidate, but is willing to be convinced.
+中央党目前并不支持我党候选人，但仍愿被说服。
 
-- @pay_z: Promise to front the resources needed for a joint campaign.
-- @appeal_hergt: Appeal to the threat of Oskar Hegt's election.
-- @spd_presidential: Find another party to support us.
+- @pay_z: 承诺为联合竞选承担费用。
+- @appeal_hergt: 以奥斯卡·赫尔格特当选的威胁动之以情。
+- @spd_presidential: 寻找其他政党支持我们。
 
 @pay_z
 choose-if: resources >= 2
@@ -122,7 +122,7 @@ unavailable_subtitle: We don't have the resources.
 on-arrival: resources -= 2; adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign
 go-to: spd_presidential
 
-The Center Party has endorsed our candidate and dropped out of the race.
+中央党已为我党候选人背书并退出选战。
 
 @appeal_hergt
 choose-if: z_relation >= 40
@@ -131,19 +131,19 @@ unavailable_subtitle: The Center Party doesn't trust us enough.
 on-arrival: adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign
 go-to: spd_presidential
 
-The Center Party has endorsed our candidate and dropped out of the race.
+中央党已为我党候选人背书并退出选战。
 
 @convince_kpd
 view-if: ((not kpd_support_braun and braun_campaign) or (not kpd_support_schumacher and schumacher_campaign)) and not kpd_banned
 choose-if: (kpd_relation >= 40 or (kpd_relation >= 35 and hergt_plurality)) and (kpd_votes < spd_votes + ddp_votes or (kpd_votes < spd_votes + ddp_votes + z_votes and (z_support_braun or z_support_schumacher)))
 unavailable_subtitle: The Communist Party isn't willing to be convinced.
 
-The Communists are not currently backing our candidate, but are willing to be convinced.
+共产党目前并不支持我党候选人，但仍愿被说服。
 
-- @use_relations: Use our relations.
-- @pay_kpd: Promise to front the resources needed for a joint campaign.
-- @appeal_hergt_2: Appeal to the threat of Oskar Hegt's election.
-- @spd_presidential: Find another party to support us.
+- @use_relations: 借助良好关系。
+- @pay_kpd: 承诺为联合竞选承担费用。
+- @appeal_hergt_2: 以奥斯卡·赫尔格特当选的威胁动之以情。
+- @spd_presidential: 寻找其他政党支持我们。
 
 @use_relations
 choose-if: kpd_relation >= 60 or (kpd_relation >= 50 and kpd_party_leader == "Conciliators")
@@ -151,7 +151,7 @@ on-arrival: communist_coalition += 1; thalmann_campaign = 0; munzenburg_campaign
 unavailable_subtitle: We do not have good enough relations.
 go-to: spd_presidential
 
-The KPD has endorsed our candidate and dropped out of the race.
+德共已为我党候选人背书并退出选战。
 
 @pay_kpd
 choose-if: resources >= 2
@@ -159,7 +159,7 @@ unavailable_subtitle: We don't have the resources.
 on-arrival: resources -= 2; thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign
 go-to: spd_presidential
 
-The KPD has endorsed our candidate and dropped out of the race.
+德共已为我党候选人背书并退出选战。
 
 @appeal_hergt_2
 choose-if: kpd_relation >= 40
@@ -168,7 +168,7 @@ unavailable_subtitle: The Communist Party doesn't trust us enough.
 on-arrival: thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign
 go-to: spd_presidential
 
-The KPD has endorsed our candidate and dropped out of the race.
+德共已为我党候选人背书并退出选战。
 
 @final_election
 on-arrival: election_round = 0
@@ -464,79 +464,79 @@ go-to: braun_wins if braun_majority == 1; schumacher_wins if schumacher_majority
 
 Results:
 
-[? if thalmann_campaign : Thälmann - [+ thalmann_votes_disp +]% ?]
-[? if munzenburg_campaign : Münzenberg - [+ munzenburg_votes_disp +]% ?]
+[? if thalmann_campaign : 台尔曼 - [+ thalmann_votes_disp +]% ?]
+[? if munzenburg_campaign : 明岑伯格 - [+ munzenburg_votes_disp +]% ?]
 
-[? if braun_campaign : Braun - [+ braun_votes_disp +]% ?]
-[? if schumacher_campaign : Schumacher - [+ schumacher_votes_disp +]% ?]
+[? if braun_campaign : 布劳恩 - [+ braun_votes_disp +]% ?]
+[? if schumacher_campaign : 舒马赫 - [+ schumacher_votes_disp +]% ?]
 
-[? if wirth_campaign : Wirth - [+ wirth_votes_disp +]% ?]
-[? if adenauer_campaign : Adenauer - [+ adenauer_votes_disp +]% ?]
+[? if wirth_campaign : 维尔特 - [+ wirth_votes_disp +]% ?]
+[? if adenauer_campaign : 阿登纳 - [+ adenauer_votes_disp +]% ?]
 
-[? if gessler_campaign : Gessler - [+ gessler_votes_disp +]% ?]
-[? if luther_campaign : Luther - [+ luther_votes_disp +]% ?]
+[? if gessler_campaign : 盖斯勒 - [+ gessler_votes_disp +]% ?]
+[? if luther_campaign : 路德 - [+ luther_votes_disp +]% ?]
 
-[? if hergt_campaign : Hergt - [+ hergt_votes_disp +]% ?]
+[? if hergt_campaign : 赫尔格特 - [+ hergt_votes_disp +]% ?]
 
 @no_majority_round1
 go-to: luther_back_hergt if hergt_campaign and luther_campaign and hergt_votes >= (luther_votes*2) and (hergt_votes >= adenauer_votes and hergt_votes >= wirth_votes) and (braun_plurality or thalmann_plurality or schumacher_plurality or munzenburg_plurality); luther_back_adenauer if luther_campaign and adenauer_campaign and adenauer_votes >= luther_votes and (adenauer_votes >= hergt_votes) and (braun_plurality or thalmann_plurality or schumacher_plurality or munzenburg_plurality); hergt_drop_out if hergt_campaign and (braun_plurality or thalmann_plurality or munzenburg_plurality or schumacher_plurality) and (not luther_campaign or (adenauer_votes >= luther_votes and (adenauer_votes >= hergt_votes))); luther_back_wirth if luther_campaign and wirth_campaign and (thalmann_plurality or munzenburg_plurality and hergt_votes < wirth_votes); gessler_back_wirth if wirth_campaign and gessler_campaign and (thalmann_plurality or munzenburg_plurality or (hergt_plurality and dvp_relation >= 40)); munzenburg_back_wirth if wirth_campaign and munzenburg_campaign and (kpd_relation >= 45 and hergt_plurality) or (kpd_relation >= 65 and luther_plurality); gessler_back_adenauer if gessler_campaign and adenauer_votes >= gessler_votes and not adenauer_plurality and not spd_support_gessler; adenauer_back_gessler if adenauer_campaign and gessler_campaign and gessler_votes >= adenauer_votes and not gessler_plurality and not spd_support_adenauer
 set-jump: no_majority_round1
 
-- @round2_convince_z: Convince the Center to switch their support to us.
-- @round2_convince_kpd: Convince the KPD to switch their support to us. 
-- @round2_adenauer: Switch our support to Adenauer.
-- @round2_gessler: Switch our support to Gessler.
-- @round2_thalmann: Switch our support to Thälmann.
-- @round2_munzenburg: Switch our support to Münzenberg.
-- @round2_vote: Let the second round voting begin.
+- @round2_convince_z: 说服中央党改投我方。
+- @round2_convince_kpd: 说服德共改投我方。
+- @round2_adenauer: 改投阿登纳。
+- @round2_gessler: 改投盖斯勒。
+- @round2_thalmann: 改投台尔曼。
+- @round2_munzenburg: 改投明岑伯格。
+- @round2_vote: 第二轮投票开始。
 
 @luther_back_hergt
 on-arrival: dvp_support_hergt = 1; luther_campaign = 0; hergt_plurality = 1 if luther_votes + hergt_votes >= plurality_votes
 go-to: no_majority_round1
 
-Hans Luther of the DVP has dropped out to consolidate the vote for the right, endorsing Oskar Hergt of the DNVP.
+为整合右翼选票，德国人民党的汉斯·路德已退出选战，转而背书德国国家人民党的奥斯卡·赫尔格特。
 
 @luther_back_adenauer
 on-arrival: dvp_support_adenauer = 1; luther_campaign = 0
 go-to: no_majority_round1
 
-Hans Luther of the DVP has dropped out to consolidate the vote for the bourgeois parties, endorsing Adenauer of the Center Party.
+为整合资产阶级政党选票，德国人民党的汉斯·路德已退出选战，转而背书中央党的阿登纳。
 
 @hergt_drop_out
 on-arrival: hergt_campaign = 0; dvp_support_adenauer = 1 if dvp_support_hergt; dvp_support_hergt = 0;
 go-to: no_majority_round1
 
-Oskar Hergt of the DNVP has dropped out, leaving the right-wing parties to rally behind[? if luther_campaign : Luther?][? if gessler_campaign : Gessler ?][? if adenauer_campaign and not gessler_campaign and not luther_campaign : Adenauer ?][? if not adenauer_campaign and not gessler_campaign and not luther_campaign and wirth_campaign : Wirth ?].
+德国国家人民党的奥斯卡·赫尔格特已退出选战，右翼各党改而围绕[? if luther_campaign : 路德 ?][? if gessler_campaign : 盖斯勒 ?][? if adenauer_campaign and not gessler_campaign and not luther_campaign : 阿登纳 ?][? if not adenauer_campaign and not gessler_campaign and not luther_campaign and wirth_campaign : 维尔特 ?]集结。
 
 @luther_back_wirth
 on-arrival: dvp_support_wirth = 1; luther_campaign = 0
 go-to: no_majority_round1
 
-Hans Luther of the DVP has dropped and endorsed Joseph Wirth to consolidate the vote of the anticommunist parties.
+为整合反共政党选票，德国人民党的汉斯·路德已退出选战，转而背书约瑟夫·维尔特。
 
 @gessler_back_wirth
 on-arrival: dvp_support_wirth = 1; gessler_campaign = 0;
 go-to: no_majority_round1
 
-Otto Gessler has dropped out and endorsed Joseph Wirth to consolidate the vote of the moderate parties.
+为整合温和派政党选票，奥托·盖斯勒已退出选战，转而背书约瑟夫·维尔特。
 
 @gessler_back_adenauer
 on-arrival: dvp_support_adenauer = 1; gessler_campaign = 0
 go-to: no_majority_round1
 
-In order to consolidate the vote for the moderate Bürgerblock, Otto Gessler has dropped out and endorsed Konrad Adenauer.
+为整合温和资产阶级集团选票，奥托·盖斯勒已退出选战，转而背书康拉德·阿登纳。
 
 @adenauer_back_gessler
 on-arrival: z_support_gessler = 1; adenauer_campaign = 0;
 go-to: no_majority_round1
 
-In order to consolidate the vote for the moderate Bürgerblock, Konrad Adenauer has dropped out and endorsed Otto Gessler.
+为整合温和资产阶级集团选票，康拉德·阿登纳已退出选战，转而背书奥托·盖斯勒。
 
 @munzenburg_back_wirth
 on-arrival: kpd_support_wirth = 1; munzenburg_campaign = 0
 go-to: no_majority_round1
 
-In a surprise move, Willi Münzenberg has dropped out and endorsed Joseph Wirth as part of the emerging "Popular Front" tactic, in order to prevent the election of a right-wing president.
+出人意料地，维利·明岑伯格已退出选战，作为新兴「人民阵线」策略的一部分，转而背书约瑟夫·维尔特，以阻止右翼总统的当选。
 
 @round2_convince_z
 view-if: (braun_campaign or schumacher_campaign) and not z_support_braun and not z_support_schumacher
@@ -544,19 +544,19 @@ choose-if: z_relation >= 35 and braun_votes >= z_votes
 unavailable-subtitle: The Center Party isn't willing to be convinced.
 max-visits: 1
 
-The Center Party isn't currently backing our candidate, but is willing to be convinced.
+中央党目前并不支持我党候选人，但仍愿被说服。
 
-- @relation_z2: Use our relations.
-- @pay_z2: Promise to front the resources needed for a joint campaign.
-- @appeal_hergt2: Appeal to the threat of Oskar Hegt's election.
-- @no_majority_round1: Nevermind the Center Party.
+- @relation_z2: 借助良好关系。
+- @pay_z2: 承诺为联合竞选承担费用。
+- @appeal_hergt2: 以奥斯卡·赫尔格特当选的威胁动之以情。
+- @no_majority_round1: 放弃中央党。
 
 @relation_z2
 choose-if: z_relation >= 45
 on-arrival: adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign; z_support_luther = 0; z_support_gessler = 0; braun_plurality = 1 if braun_campaign and z_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and z_votes + schumacher_votes >= plurality_votes
 go-to: no_majority_round1
 
-The Center Party has endorsed our candidate and dropped out of the race.
+中央党已为我党候选人背书并退出选战。
 
 @pay_z2
 choose-if: resources >= 2
@@ -564,7 +564,7 @@ unavailable_subtitle: We don't have the resources.
 on-arrival: resources -= 2; adenauer_campaign = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign; z_support_luther = 0; z_support_gessler = 0; braun_plurality = 1 if braun_campaign and z_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and z_votes + schumacher_votes >= plurality_votes
 go-to: no_majority_round1
 
-The Center Party has endorsed our candidate and dropped out of the race.
+中央党已为我党候选人背书并退出选战。
 
 @appeal_hergt2
 choose-if: z_relation >= 40
@@ -573,7 +573,7 @@ unavailable_subtitle: The Center Party doesn't trust us enough.
 on-arrival: adenauer_campaign = 0; z_support_gessler = 0; z_support_luther = 0; z_support_braun = 1 if braun_campaign; z_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and z_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and z_votes + schumacher_votes >= plurality_votes
 go-to: no_majority_round1
 
-The Center Party has endorsed our candidate and dropped out of the race.
+中央党已为我党候选人背书并退出选战。
 
 @round2_convince_kpd
 view-if: ((not kpd_support_braun and braun_campaign) or (not kpd_support_schumacher and schumacher_campaign)) and not kpd_banned
@@ -581,12 +581,12 @@ choose-if: (kpd_relation >= 40 or (kpd_relation >= 35 and hergt_plurality)) and 
 unavailable_subtitle: The Communist Party isn't willing to be convinced.
 max-visits: 1
 
-The Communists are not currently backing our candidate, but are willing to be convinced.
+共产党目前并不支持我党候选人，但仍愿被说服。
 
-- @use_relations2: Use our relations.
-- @pay_kpd2: Promise to front the resources needed for a joint campaign.
-- @appeal_hergt2_2: Appeal to the threat of Oskar Hegt's election.
-- @no_majority_round1: Nevermind the KPD.
+- @use_relations2: 借助良好关系。
+- @pay_kpd2: 承诺为联合竞选承担费用。
+- @appeal_hergt2_2: 以奥斯卡·赫尔格特当选的威胁动之以情。
+- @no_majority_round1: 放弃德共。
 
 @use_relations2
 choose-if: kpd_relation >= 60 or (kpd_relation >= 50 and kpd_party_leader == "Conciliators")
@@ -594,7 +594,7 @@ on-arrival: communist_coalition += 1; thalmann_campaign = 0; munzenburg_campaign
 unavailable_subtitle: We do not have good enough relations.
 go-to: no_majority_round1
 
-The KPD has endorsed our candidate and dropped out of the race.
+德共已为我党候选人背书并退出选战。
 
 @pay_kpd2
 choose-if: resources >= 2
@@ -602,7 +602,7 @@ unavailable_subtitle: We don't have the resources.
 on-arrival: resources -= 2; thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and kpd_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and kpd_votes + schumacher_votes >= plurality_votes
 go-to: no_majority_round1
 
-The KPD has endorsed our candidate and dropped out of the race.
+德共已为我党候选人背书并退出选战。
 
 @appeal_hergt2_2
 choose-if: kpd_relation >= 40
@@ -611,41 +611,41 @@ unavailable_subtitle: The Communist Party doesn't trust us enough.
 on-arrival: thalmann_campaign = 0; munzenburg_campaign = 0; kpd_support_braun = 1 if braun_campaign; kpd_support_schumacher = 1 if schumacher_campaign; braun_plurality = 1 if braun_campaign and kpd_votes + braun_votes >= plurality_votes; schumacher_plurality = 1 if schumacher_campaign = 1 and kpd_votes + schumacher_votes >= plurality_votes
 go-to: no_majority_round1
 
-The KPD has endorsed our candidate and dropped out of the race.
+德共已为我党候选人背书并退出选战。
 
 @round2_adenauer
 view-if: not spd_support_adenauer and adenauer_campaign
 on-arrival: braun_campaign = 0; schumacher_campaign = 0; motivate_gessler = 1 if spd_support_gessler and not adenauer_plurality and adenauer_votes >= gessler_votes; gessler_campaign = 0 if spd_support_gessler and not adenauer_plurality and adenauer_votes >= gessler_votes; dvp_support_adenauer = 1 if spd_support_gessler and not adenauer_plurality and adenauer_votes >= gessler_votes; spd_support_braun = 0; spd_support_thalmann = 0; spd_support_schumacher = 0; spd_support_munzenburg = 0; spd_support_gessler = 0; spd_support_adenauer = 1; kpd_support_braun = 0; kpd_support_schumacher = 0; thalmann_campaign = 1 if not kpd_banned and kpd_party_leader != "Conciliators"; munzenburg_campaign = 1 if not kpd_banned and kpd_party_leader == "Conciliators"
 
-We switch our endorsement to Konrad Adenauer of the Center Party. [? if motivate_gessler : Otto Gessler has followed suit, dropping out of the race and endorsing Konrad Adenauer. ?]
+我们将背书转向中央党的康拉德·阿登纳。[? if motivate_gessler : 奥托·盖斯勒随即效仿，退出选战并背书康拉德·阿登纳。 ?]
 
-- @round2_vote: Let the second round of voting begin...
+- @round2_vote: 第二轮投票开始……
 
 @round2_gessler
 view-if: not spd_support_gessler and gessler_campaign
 on-arrival: braun_campaign = 0; schumacher_campaign = 0; motivate_ade = 1 if spd_support_adenauer and not gessler_plurality and gessler_votes >= adenauer_votes; adenauer_campaign = 0 if motivate_ade; z_support_gessler = 1 if motivate_ade; spd_support_braun = 0; spd_support_thalmann = 0; spd_support_schumacher = 0; spd_support_munzenburg = 0; spd_support_gessler = 1; spd_support_adenauer = 0; kpd_support_braun = 0; kpd_support_schumacher = 0; thalmann_campaign = 1 if not kpd_banned and kpd_party_leader != "Conciliators"; munzenburg_campaign = 1 if not kpd_banned and kpd_party_leader == "Conciliators"
 
-We switch our endorsement to Otto Gessler. [? if motivate_ade : Konrad Adenauer has followed suit, dropping out of the race and endorsing Otto Gessler. ?]
+我们将背书转向奥托·盖斯勒。[? if motivate_ade : 康拉德·阿登纳随即效仿，退出选战并背书奥托·盖斯勒。 ?]
 
-- @round2_vote: Let the second round of voting begin...
+- @round2_vote: 第二轮投票开始……
 
 @round2_thalmann
 view-if: not spd_support_thalmann and not kpd_support_braun and not kpd_support_schumacher and thalmann_campaign
-choose-if: kpd_relation >= 50 and left_strength > reformist_strength 
+choose-if: kpd_relation >= 50 and left_strength > reformist_strength
 unavailable-subtitle: [? if kpd_relation < 50 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this bizarre arrangement. ?]
 max-visits: 1
 
-Supporting Thälmann is rather unpopular in our party, even if the Communists accept our support. Are we sure?
+即便共产党人接受我们的支持，在党内支持台尔曼也极不受欢迎。我们当真要这样做？
 
-- @round2_thalmann_2_2: Yes, we will support Thälmann, despite the reformists' pleas against it.
-- @no_majority_round1: Never mind.
+- @round2_thalmann_2_2: 是的，纵使改良派恳求反对，我们仍将支持台尔曼。
+- @no_majority_round1: 不必了。
 
 @round2_thalmann_2_2
 on-arrival: spd_support_thalmann = 1; reformist_dissent += 15; center_dissent += 10; labor_dissent += 5; neorevisionist_dissent += 10; catholics_spd -= 5; workers_spd -= 3; kpd_relation += 10; communist_coalition += 2; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 10; weimar_dissent += 3; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
 
-Fine. We have thrown our support to Chairman Thälmann of the KPD.
+好。我党决定支持德共主席台尔曼。
 
-- @round2_vote: Let the second round of voting begin...
+- @round2_vote: 第二轮投票开始……
 
 @round2_munzenburg
 subtitle: Supporting Münzenberg is unpopular among the reformists, but less so than Thälmann would've been.
@@ -654,9 +654,9 @@ choose-if: kpd_relation >= 40 and reformist_strength < left_strength
 unavailable-subtitle: [? if kpd_relation < 40 : We do not have good enough relations with the Communists, so they are not even willing to accept our support. ?] [? if reformist_strength >= left_strength : The reformist faction is able to dissuade the party from supporting this arrangement. ?]
 on-arrival: spd_support_munzenburg = 1; kpd_relation += 5; reformist_dissent += 5; ddp_relation -= 3; dvp_relation -= 5; z_relation -= 5; wirth_campaign = 0; motivate_adenauer = 1 if z_relation < 50 and president == "Wirth"; adenauer_campaign = 1 if z_relation < 50
 
-We have endorsed Willi Münzenberg of the KPD.
+我们为德共的维利·明岑伯格背书。
 
-- @round2_vote: Let the second round of voting begin...
+- @round2_vote: 第二轮投票开始……
 
 @round2_vote
 go-to: election_algorithm
@@ -668,45 +668,45 @@ go-to: braun_wins if braun_plurality; schumacher_wins if schumacher_plurality; t
 @braun_wins
 on-arrival: president = "Braun"
 
-Otto Braun of the SPD has won the election!
+社民党的奥托·布劳恩赢得了选举！
 
 @schumacher_wins
 on-arrival: president = "Schumacher"
 
-Kurt Schumacher of the SPD has won the election!
+社民党的库尔特·舒马赫赢得了选举！
 
 @thalmann_wins
 on-arrival: president = "Thälmann"
 
-Ernst Thälmann of the KPD has won the election!
+德共的恩斯特·台尔曼赢得了选举！
 
 @munzenburg_wins
 on-arrival: president = "Münzenberg"
 achievement: rote_millionar
 
-Willi Münzenberg of the KPD has won the election!
+德共的维利·明岑伯格赢得了选举！
 
 @gessler_wins
 on-arrival: president = "Gessler"
 
-Otto Gessler of the liberal bloc has won the election!
+自由派集团的奥托·盖斯勒赢得了选举！
 
 @luther_wins
 on-arrival: president = "Luther"
 
-Hans Luther of the DVP has won the elections.
+德国人民党的汉斯·路德赢得了选举。
 
 @hergt_wins
 on-arrival: president = "Hergt"
 
-Oskar Hergt of the DNVP has won the elections, somehow, even after we crushed the reactionaries in a civil war.
+不知何故，纵使我们在内战中击败了反动派，德国国家人民党的奥斯卡·赫尔格特仍赢得了选举。
 
 @adenauer_wins
 on-arrival: president = "Adenauer"
 
-Konrad Adenauer of the Center Party has won the elections!
+中央党的康拉德·阿登纳赢得了选举！
 
 @wirth_wins
 on-arrival: president = "Wirth"
 
-Joseph Wirth of the Center Party has won the elections!
+中央党的约瑟夫·维尔特赢得了选举！
