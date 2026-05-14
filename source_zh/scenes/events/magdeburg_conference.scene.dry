@@ -9,11 +9,11 @@ max-visits: 1
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
 
-= Heidelberg Conference
+= 马格德堡党代会
 
-The SPD is holding its biannual conference in the city of Magdeburg, where it is expected that the Armed Forces Commission of the SPD will present its report and guidelines on military policy for vote. [? if spd_in_government and in_grand_coalition : Furthermore, the Grand Coalition with the DVP has come under increasing scrutiny as the left wing agitates against the pragmatic leadership of the party. ?]
+社民党正在马格德堡市召开两年一度的党代会，预计党的武装力量委员会将提交其报告与军事政策准则，交付表决。[? if spd_in_government and in_grand_coalition : 此外，与德国人民党（DVP）的大联合政府随着党内左翼鼓动反对务实派领导层而日益受到审视。 ?]
 
-- @faction_algorithm: The delegates enter...
+- @faction_algorithm: 代表入场……
 
 @faction_algorithm
 on-arrival: {!
@@ -254,14 +254,14 @@ else {
 ];
 }
 if (window && d3) {
-    var width = 500; 
+    var width = 500;
     var height = 500;
     var screenWidth = document.getElementById('content').offsetWidth;
     if (screenWidth < width - 50) {
-        width = screenWidth - 50; 
+        width = screenWidth - 50;
         height = width;
         document.getElementById("reichstag").style.height = screenWidth/2 + "px";
-    } 
+    }
 
     var parliament = d3.parliament();
     parliament.width(width).height(height).innerRadiusCoef(0.4);
@@ -274,25 +274,25 @@ go-to: coalition_menu if spd_in_government and in_grand_coalition; spd_military_
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
-{!<table>!} 
-{!<tr><td>Party</td><td>Vote share</td></tr>!}
+{!<table>!}
+{!<tr><td>派系</td><td>得票率</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} Left: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} 左派： {!</td><td>!} [+ left_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} Center: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} 中间派： {!</td><td>!} [+ center_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} Labor: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} 工会派： {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} Reformists: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} 改良派： {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
 
 @coalition_menu
 
-[? if panzerkreuzer_funded : The construction of a battlecruiser by a government that the SPD participates in has caused significant backlash, backlash the left hopes to exploit to take down the Grand Coalition. ?][? if not panzerkreuzer_funded : Though the SPD has prevented the construction of a battlecruise, the Grand Coalition remains controversial, and the left hopes to bring it down. ?]
+[? if panzerkreuzer_funded : 由社民党参与的政府建造装甲巡洋舰一事引发了重大反弹，左翼希望借此推翻大联合政府。 ?][? if not panzerkreuzer_funded : 虽然社民党阻止了装甲巡洋舰的建造，大联合政府仍颇具争议，左翼希望将其推翻。 ?]
 
-Thus, to pre-empt the left, a motion is submitted by the centrists to pass the matter on to the agenda, while the left around Aufhäuser and Sender attempt to pass a motion to criticize the behavior of the SPD's ministers and press the parliamentary group to advocate a variety of the demands of labor, something the trade unions are naturally sympathetic towards.
+为先发制人，中间派提交动议，将此事推至议程之外；而以奥夫豪泽和森德尔为首的左翼则试图通过动议，批评社民党部长们的行为、并要求议会党团倡导工会的诸多诉求——工会自然乐见其成。
 
-- @destroy_groko: The motion by Aufhäuser and Sender against the grand coalition is passed.
-- @preserve_groko: The motion to pass the matter on to the agenda so as to preserve the government is passed.
+- @destroy_groko: 奥夫豪泽与森德尔反对大联合政府的动议通过。
+- @preserve_groko: 将此事推至议程之外、以维系政府的动议通过。
 
 @destroy_groko
 subtitle: The Left and Labor ([+ antitoleration_unity +]%) [? if antitoleration_unity < 50 : - some centrists may be swayed. ?]
@@ -300,7 +300,7 @@ choose-if: pragmatic_unity < 65
 on-arrival: reformist_dissent += 15; dvp_relation -= 10; z_relation -= 5; ddp_relation -= 5; left_strength += 10; center_dissent += 5; coalition_dissent += 2
 go-to: spd_military_policy
 
-The motion by the left is passed, tying the SPD's ministers and parliamentary group to party discipline for advocacy of the demands of labor irregardless of the concerns of the coalition. Naturally, the bourgeois parties are upset, and the government as a whole less stable.
+左翼的动议获通过，把社民党的部长与议会党团绑在党纪之下，要求他们倡导工会的诉求，而不顾联合政府的关切。资产阶级各党自然不悦，整个政府也变得更不稳定。
 
 @preserve_groko
 subtitle: The Center and the Right ([+ pragmatic_unity +]%) [? if pragmatic_unity < 50 : - some trade unionists may be swayed. ?]
@@ -308,14 +308,14 @@ choose-if: antitoleration_unity < 65
 on-arrival: left_dissent += 5; reformist_dissent -= 5; center_strength += 5
 go-to: spd_military_policy
 
-The motion by the center is passed, effectively delaying any firm committment by the SPD either way in the interests of preserving the unity of both party and government. The left is disappointed, but the motion is passed regardless.
+中间派的动议获通过，为维系党和政府的团结，社民党两边的明确承诺被有效推迟。左翼失望，但动议依旧通过。
 
 @spd_military_policy
 
-Meanwhile, the Armed Forces Commission of the SPD has presented before the conference its report, outlining the guidelines for future military policy by the SPD.
+与此同时，社民党武装力量委员会向党代会提交了报告，概述社民党未来军事政策的指导方针。
 
 - @wip: WIP
 
 @wip
-subtitle: There should be two options here, but I need to find a good source on the military policy in question before I can add two options for a vote result. But don't worry, you aren't missing out on much, probably. It'd just be like "the left doesn't like this because imperialism but the center and right like it because government" and then you pick which one and trade off some dissent in return. So yeah, it's not so important, don't worry about missing out. The much cooler thing here is the fun graphs of your internal factions. One day I'm gonna tie it to economic plans, just you wait. 
+subtitle: There should be two options here, but I need to find a good source on the military policy in question before I can add two options for a vote result. But don't worry, you aren't missing out on much, probably. It'd just be like "the left doesn't like this because imperialism but the center and right like it because government" and then you pick which one and trade off some dissent in return. So yeah, it's not so important, don't worry about missing out. The much cooler thing here is the fun graphs of your internal factions. One day I'm gonna tie it to economic plans, just you wait.
 go-to: root
