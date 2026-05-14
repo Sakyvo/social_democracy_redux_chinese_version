@@ -6,17 +6,17 @@ on-arrival: round25 = 0; ebert_dead = 1; president = "Simons (acting)"; jarres_c
 tags: event
 go-to: pres_menu
 
-= The Death of Ebert
+= 艾伯特之死
 
-President Friedrich Ebert has passed away at age 54 after delaying treatment for illness in order to defend himself from defamation. [? if left_strength > reformist_strength : Though he may have sold out to the Reichswehr and turned against the workers which elected him in the first place, he had managed to keep the republic intact. His death means uncertainty in the republic's future. ?][? if reformist_strength > left_strength : Though he had his flaws, Ebert guided Germany from the brink of destruction and protected a newborn democracy from demise through hard and tireless work. His death means uncertainty in the republic's future. ?]
+弗里德里希·艾伯特（Ebert）总统因延迟治疗——为出庭自辩诽谤诉讼——以54岁之龄辞世。[? if left_strength > reformist_strength : 尽管他曾向国防军（Reichswehr）妥协，转而反对当初将他选上台的工人，但他终究守住了共和国。他的逝世意味着共和国的未来陷入不确定。 ?][? if reformist_strength > left_strength : 艾伯特虽有缺陷，却在德国濒临毁灭之际为国掌舵，以艰辛而不懈的努力守护新生的民主免于覆灭。他的逝世意味着共和国的未来陷入不确定。 ?]
 
-Now, new presidential elections have been scheduled. It is expected that a wide variety of candidates will enter the race, though there has also been much discussion about joint candidates. One suggestion which has been floated is Otto Gessler, to be backed by the SPD, DDP, Center Party, and DVP. However, our party's left-wing is decisively opposed to this, and the DVP has shown quite a reluctance. Alternatively, we could run our own candidate in the elections. Though Paul Löbe has refused to run, Otto Braun may be willing to if no other options were to present themselves.
+如今新一轮总统选举已被列入议程。预计将有形形色色的候选人参选，但联合候选人方案亦讨论甚多。其中一种构想是由社民党、德国民主党（DDP）、中央党与德国人民党（DVP）共同推举奥托·盖斯勒（Gessler）。然而本党左翼对此坚决反对，DVP方面亦面露难色。或者，我们可推出本党自己的候选人。保罗·勒贝（Löbe）已拒绝参选，但若再无其他人选，奥托·布劳恩（Braun）或许愿意出马。
 
 @pres_menu
 
-- @back_gessler: Back Otto Gessler as a joint democratic candidate.
-- @back_braun: Run Otto Braun, to represent the SPD.
-- @back_thalmann: Back Ernst Thälmann of the KPD.
+- @back_gessler: 支持奥托·盖斯勒作为联合民主派候选人。
+- @back_braun: 推出奥托·布劳恩代表社民党参选。
+- @back_thalmann: 支持德共的恩斯特·台尔曼（Thälmann）。
 
 @back_gessler
 subtitle: -1 resource - The party's left-wing will likely revolt.
@@ -24,9 +24,9 @@ choose-if: left_strength+labor_strength < reformist_strength and dvp_relation >=
 unavailable-subtitle: -1 resource. [? if left_strength+labor_strength < reformist_strength : The party refuses. ?][? if dvp_relation < 50 : The DVP itself is unwilling. ?][? if resources < 1 : The DVP wants us to front the resources for a campaign. ?]
 on-arrival: gessler_campaign = 1; hergt25_campaign = 1; jarres_campaign = 0; marx_campaign = 0; hellpach_campaign = 0; resources -= 1; left_dissent += 20; workers_spd -= 6; workers_kpd += 6; unemployed_spd -= 6; unemployed_kpd += 6; old_middle_dvp -= 5; rural_dvp -= 5
 
-Somehow, we have managed to engineer a Gessler coalition. The left is understandably outraged, and the communist campaign is bolstered.
+我们竟然真的促成了盖斯勒联盟。可想而知，党内左翼为之愤怒，共产党的选战因而声势大涨。
 
-- @campaign_gessler: Now, we must campaign.
+- @campaign_gessler: 现在，我们必须投入竞选。
 
 ## todo: second round, hindenburg enters, DVP gets cold feet about continuing to back gessler and you need to bribe them which will cause defections to the DNVP if they stay, and if they dont basiclaly guaranteed himdembrurer wim
 
@@ -34,21 +34,21 @@ Somehow, we have managed to engineer a Gessler coalition. The left is understand
 subtitle: The consensus choice.
 on-arrival: braun_campaign = 1; spd_prussia = 0
 
-We have entered Otto Braun into the race, and he has resigned as Minister-President to pursue this course. Now it is time to campaign - without a healthy campaign, Otto Braun may not even be assured the votes of the SPD.
+我们已让奥托·布劳恩参选，他为此辞去普鲁士州长之职。现在该全力竞选了——若不展开有力的竞选，布劳恩甚至可能拿不到全部社民党选票。
 
-- @campaign_braun: Now, we must campaign.
+- @campaign_braun: 现在，我们必须投入竞选。
 
 @campaign_gessler
 go-to: cg2
 
-The KPD has entered into the race the little known Ernst Thälmann, while the DNVP runs Oskar Hergt, who has attempted to peel away the DVP's more right-wing members from Gessler. The BVP, unwilling to commit to any of the main candidates, has run Heinrich Held, their leader. Meanwhile, the recently reformed National Socialists are backing Ludendorff.
+德共推出了名不见经传的恩斯特·台尔曼；德国国家人民党（DNVP）推出奥斯卡·赫尔格特（Hergt），试图把DVP内部偏右翼者从盖斯勒阵营中拉走。巴伐利亚人民党（BVP）不愿支持任何主要候选人，推出党魁海因里希·黑尔德（Held）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫（Ludendorff）。
 
 @cg2
 
-- @attack_thalmann_g: Attempt to win back our left-wing, and attack Thälmann.
-- @democracy_rally_g: Rally for democracy, and against monarchism.
-- @donate_dvp: Provide more campaign resources for the right to spend.
-- @round1: Let the voting begin...
+- @attack_thalmann_g: 设法挽回左翼，并攻击台尔曼。
+- @democracy_rally_g: 高举民主旗帜，反对君主主义。
+- @donate_dvp: 提供更多竞选资源供右翼使用。
+- @round1: 投票开始……
 
 @attack_thalmann_g
 subtitle: -1 resource - this may have the effect of popularizing Thälmann!
@@ -57,7 +57,7 @@ go-to: cg2
 choose-if: resources >= 1
 max-visits: 1
 
-We attack Thälmann for every fault we can find, and make concessions to our left. In doing so, we bolster Hergt's ammunition that Gessler is but a puppet of Marxists, and popularize the previously unknown figure. Still, the left-wing rebellion seems to be over, reluctantly.
+我们竭力攻击台尔曼的一切瑕疵，并向左翼让步。此举无意中替赫尔格特送上把柄——他可以借机宣传盖斯勒不过是马克思主义者的傀儡，并使原本籍籍无名的台尔曼广为人知。即便如此，左翼的反叛似乎勉强平息。
 
 @democracy_rally_g
 subtitle: -1 resource - this may have the effect of legitimizing the DVP's monarchists!
@@ -66,7 +66,7 @@ on-arrival: resources -= 1; pro_republic += 6; dvp_relation += 2; nationalism -=
 go-to: cg2
 max-visits: 1
 
-We rally behind Otto Gessler as a defender of democracy and the republic. Hergt counters by, as always, attempting to split the DVP, this time aiming at their monarchist members.
+我们高举奥托·盖斯勒作为民主与共和国之守护者的大旗。赫尔格特一如往常地试图分裂DVP，此次瞄准其中的君主派成员。
 
 @donate_dvp
 subtitle: -1 resource - this may anger our left-wing further!
@@ -75,19 +75,19 @@ on-arrival: resources -= 1; old_middle_dvp += 3; rural_dvp += 3; left_dissent +=
 go-to: cg2
 max-visits: 1
 
-We contribute to the campaign by helping the DVP recover their right flank with resources. Let's hope that it's enough.
+我们以资源助DVP稳住右翼侧翼。但愿这能奏效。
 
 @campaign_braun
 on-arrival: braun_percent = 0.7
 go-to: cb2
 
-The KPD has entered into the race the little known Ernst Thälmann, while the DVP and DNVP run Karl Jarres as the "Reichsblock" candidate. The Center Party has run Wilhelm Marx, their party leader, while the BVP, unwilling to commit to any of the main candidates, has run Heinrich Held. The DDP is running Willy Hellpach and meanwhile, the recently reformed National Socialists are backing Ludendorff.
+德共推出了名不见经传的恩斯特·台尔曼；DVP与DNVP共推卡尔·亚雷斯（Jarres）作为「帝国集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的BVP则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
 
 @cb2
 
-- @large_campaign: We will launch a large-scale campaign for Braun.
-- @small_campaign: We will launch a small-scale campaign for Braun.
-- @round1: Let the voting begin...
+- @large_campaign: 我们将为布劳恩发动大规模竞选。
+- @small_campaign: 我们将为布劳恩发动小规模竞选。
+- @round1: 投票开始……
 
 @large_campaign
 subtitle: -2 resources
@@ -97,7 +97,7 @@ on-arrival: resources -= 2; braun_percent += 0.3;
 go-to: cb2
 max-visits: 1
 
-We launch a large-scale campaign for Braun to ensure turnout from our party members.
+我们为布劳恩发动大规模竞选，以确保党员的投票率。
 
 @small_campaign
 subtitle: -1 resource
@@ -107,7 +107,7 @@ view-if: braun_percent <= 0.7
 go-to: cb2
 max-visits: 1
 
-We launch a small-scale campaign for Braun to try and ensure turnout from our party members.
+我们为布劳恩发动小规模竞选，努力争取党员的投票率。
 
 @back_thalmann
 choose-if: never
@@ -115,7 +115,7 @@ unavailable-subtitle: Uhm...who? Oh, he's the KPD candidate? Huh.
 on-arrival: never = 0
 go-to: pres_menu
 
-Nuh uh.
+不行。
 
 @round1
 on-arrival: round25 += 1
@@ -287,65 +287,65 @@ go-to: hindenburg_wins if hindenburg_majority == 1; marx_wins if marx_majority =
 
 Results:
 
-[? if thalmann_campaign : Thälmann - [+ thalmann_votes_disp +]% ?]
+[? if thalmann_campaign : 台尔曼 - [+ thalmann_votes_disp +]% ?]
 
-[? if braun_campaign : Braun - [+ braun_votes_disp +]% ?]
+[? if braun_campaign : 布劳恩 - [+ braun_votes_disp +]% ?]
 
-[? if hellpach_campaign : Hellpach - [+ hellpach_votes_disp +]% ?]
+[? if hellpach_campaign : 黑尔帕赫 - [+ hellpach_votes_disp +]% ?]
 
-[? if marx_campaign : Marx - [+ marx_votes_disp +]% ?]
+[? if marx_campaign : 马克斯 - [+ marx_votes_disp +]% ?]
 
-[? if gessler_campaign : Gessler - [+ gessler_votes_disp +]% ?]
+[? if gessler_campaign : 盖斯勒 - [+ gessler_votes_disp +]% ?]
 
-[? if held_campaign : Held - [+ held_votes_disp +]% ?]
+[? if held_campaign : 黑尔德 - [+ held_votes_disp +]% ?]
 
-[? if jarres_campaign : Jarres - [+ jarres_votes_disp +]% ?]
+[? if jarres_campaign : 亚雷斯 - [+ jarres_votes_disp +]% ?]
 
-[? if hergt25_campaign : Hergt - [+ hergt_votes_disp +]% ?]
+[? if hergt25_campaign : 赫尔格特 - [+ hergt_votes_disp +]% ?]
 
-[? if hindenburg_campaign : Hindenburg - [+ hindenburg_votes_disp +]% ?]
+[? if hindenburg_campaign : 兴登堡 - [+ hindenburg_votes_disp +]% ?]
 
-[? if ludendorff_campaign : Ludendorff - [+ ludendorff_votes_disp +]% ?]
+[? if ludendorff_campaign : 鲁登道夫 - [+ ludendorff_votes_disp +]% ?]
 
 @hindenburg_wins
 on-arrival: former_president = "Hindenburg"; president = "Hindenburg"; pro_republic -= 5; nationalism += 5; workers_spd -= 6; unemployed_spd -= 6; workers_kpd += 4; unemployed_kpd += 4; west_relation -= 2; east_relation -= 2; dvp_relation -= 5; kpd_relation += 5; left_strength += 5; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-Paul von Hindenburg has won the election with the backing of all the reactionary right organized under the **Reichsblock** behind him. Though many in our party anticipate an immediate restructuring of Germany along authoritarian and aristocratic lines, he seems, for now, to be following the constitution. Regardless, this signals a dark turn for German democracy. Who knows what Hindenburg may do in power?
+保罗·冯·兴登堡（Hindenburg）在反动派右翼齐集**帝国集团**之下赢得了选举。尽管党内不少人预计他将立即按威权与贵族路线重塑德国，但目前他似乎仍在遵循宪法。无论如何，这都是德国民主转向黑暗的征兆。谁知道兴登堡掌权后会做什么呢？
 
 @marx_wins
 on-arrival: former_president = "Marx"; president = "Marx"; marx_relation += 10; pro_republic += 5; nationalism -= 5; z_relation += 5; ddp_relation += 5; reformist_strength += 5; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-Wilhelm Marx has won the election with the backing of all the republican left organized under the **Volksblock** behind him. This is a victory for German democracy and the continued normalization of the republic.
+威廉·马克斯在共和派左翼共同组成的**人民集团**（Volksblock）支持下赢得了选举。这是德国民主的一次胜利，也是共和制度继续走向常态化的标志。
 
 @braun_wins
 on-arrival: president = "Braun"; pro_republic += 8; socialism += 4; nationalism -= 2; dvp_relation -= 5; left_dissent -= 5; center_dissent -= 5; reformist_dissent -= 5; labor_dissent -= 5; workers_spd += 5*(1-dissent); new_middle_spd += 4*(1-dissent); unemployed_spd += 4*(1-dissent); rural_spd += 2*(1-dissent); jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-Otto Braun has won the election! This has only been possible thanks to the backing of the **Volksblock**, the Center and Democratic parties. Regardless, the continuation of Social Democratic rule over Germany is a significant victory, and the party is jubilant.
+奥托·布劳恩赢得了选举！这唯有借助**人民集团**——中央党与民主党的支持——才有可能。无论如何，社会民主党继续统治德国是一场重大胜利，全党为之欢呼。
 
 @gessler_wins
 on-arrival: president = "Gessler"; pro_republic += 2; socialism -= 5; left_dissent += 5; dvp_relation += 10; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-Otto Gessler has won the election as the candidate of the democratic parties, including the DVP. We have in this campaign pulled the DVP away from the DNVP and the right as a whole towards the center, but also created a whole on the left that the KPD is eager to fill. 
+奥托·盖斯勒作为各民主派政党（包括DVP）的候选人赢得了选举。这场选战使我们成功地将DVP从DNVP与整个右翼阵营中拉向中间，但也在左翼留下了一片空白——德共正急于填补。
 
 @no_majority_round1
 go-to: braun_consolidation if braun_campaign; gessler_consolidation if gessler_campaign
 
-As expected, there is no majority in the first round of voting.
+果不其然，首轮投票未产生过半多数。
 
 @braun_consolidation
 on-arrival: hellpach_campaign = 0; ddp_support_marx = 1; braun_percent += 0.1 if braun_percent <= 0.9; braun_percent = 1 if braun_percent > 0.9
 go-to: braun2_menu
 
-Otto Braun has landed [? if braun_votes_disp > spd_r : a stunning ?] [+ braun_votes_disp +]%, easily ahead of all other parties in the Weimar Coalition. Nonetheless, experience from the elections of the German Empire shows that bourgeois voters rarely vote social democrats in runoffs - it may be better to endorse Wilhelm Marx in the second round, especially as they have promised to vote for Otto Braun to be the Minister-President of Prussia if we do.
+奥托·布劳恩拿下了[? if braun_votes_disp > spd_r : 惊人的 ?] [+ braun_votes_disp +]%，轻松领先魏玛联合内的其他政党。然而，德意志帝国时代的选举经验显示，资产阶级选民在决选中很少投票给社会民主党人——或许第二轮转而支持威廉·马克斯更为明智，尤其是中央党承诺：若我党如此行事，他们将投票让奥托·布劳恩出任普鲁士州长。
 
-Meanwhile, the **Reichsblock** of the right begins to desperately search for a candidate able to mobilize higher turnout from their camp. Whether or not they will succeed remains to be seen.
+与此同时，右翼的**帝国集团**绝望地寻找一名能够动员其阵营更高投票率的候选人。他们能否成功，尚未可知。
 
 @braun2_menu
 
-- @convince_ddp: Convince the DDP to back Braun.
-- @convince_z: Convince the Center Party to back Braun.
-- @back_marx: Drop out and endorse Wilhelm Marx as the candidate of the **Volksblock**.
-- @finished_campaign_braun: Let the voting begin...
+- @convince_ddp: 说服德国民主党支持布劳恩。
+- @convince_z: 说服中央党支持布劳恩。
+- @back_marx: 退出选战，背书威廉·马克斯作为**人民集团**的候选人。
+- @finished_campaign_braun: 投票开始……
 
 @convince_ddp
 view-if: braun_campaign
@@ -355,7 +355,7 @@ on-arrival: ddp_support_braun = 1; ddp_support_marx = 0
 max-visits: 1
 go-to: braun2_menu
 
-We have convinced the DDP to endorse Braun!
+我们已说服德国民主党为布劳恩背书！
 
 @convince_z
 view-if: braun_campaign
@@ -363,11 +363,11 @@ choose-if: z_relation >= 55
 unavailable-subtitle: The Center Party is unwilling to back Otto Braun.
 max-visits: 1
 
-The Center Party is willing to be convinced; how do we convince them?
+中央党愿意被说服；问题是如何说服他们？
 
-- @resources_z: Front the resources for a joint campaign.
-- @relations_z: Use our relations.
-- @braun2_menu: Nevermind the Center Party.
+- @resources_z: 自费承担联合竞选的费用。
+- @relations_z: 借助良好关系。
+- @braun2_menu: 不必管中央党了。
 
 @resources_z
 subtitle: -1 resource
@@ -375,7 +375,7 @@ choose-if: resources >= 1
 on-arrival: z_relation += 5; resources -= 1; left_dissent += 2; marx_campaign = 0; z_support_braun = 1; bvp_support_hindenburg = 1
 go-to: braun2_menu
 
-With our resources, the Center Party has agreed to back Otto Braun. The Bavarian People's Party however, with about 3% of the vote behind it, has not, and turns to Hindenburg.
+凭借我党的资源，中央党同意支持奥托·布劳恩。然而握有约3%选票的巴伐利亚人民党却不肯，转而投向兴登堡。
 
 @relations_z
 subtitle: We require good relations.
@@ -383,29 +383,29 @@ choose-if: z_relation >= 65
 on-arrival: z_relation -= 5; marx_campaign = 0; z_support_braun = 1; bvp_support_hindenburg = 1
 go-to: braun2_menu
 
-Using our relations to win them over, the Center Party has agreed to back Otto Braun. The Bavarian People's Party however, with about 3% of the vote behind it, has not, and turns to Hindenburg.
+借助良好关系赢得他们的支持，中央党同意支持奥托·布劳恩。然而握有约3%选票的巴伐利亚人民党却不肯，转而投向兴登堡。
 
 @back_marx
 view-if: marx_campaign and not spd_support_marx
 on-arrival: spd_prussia = 1; ddp_support_braun = 0; ddp_support_marx = 1; spd_support_marx = 1; left_dissent += 5; workers_spd -= 1; braun_campaign = 0
 go-to: braun2_menu
 
-We have dropped out and endorsed Wilhelm Marx, who is now the candidate of the **Volksblock**. In return, the Center Party has voted Otto Braun as M-P of Prussia.
+我们退出选战并背书威廉·马克斯——他如今成为**人民集团**的候选人。作为回报，中央党投票让奥托·布劳恩出任普鲁士州长。
 
 @finished_campaign_braun
 on-arrival: held_campaign = 0; jarres_campaign = 0; ludendorff_campaign = 0; dvp_support_hindenburg = 1; hindenburg_campaign = 1; bvp_support_hindenburg = 1 if z_relation < 55 and spd_support_marx; bvp_support_marx = 1 if z_relation > 65 or not spd_support_marx; nationalism += 5
 go-to: marx_campaign if spd_support_marx; bc2 if braun_campaign
 
-Just as we conclude our own decisions with regards to the presidential campaign, we receive news of the entry of Paul von Hindenburg into the race. Considered by the right-wing a war hero, Paul von Hindenburg was a Field Marshal in the German Empire and managed to win the Battle of Tannenberg against Russia. To us, however, he is a reactionary junker and one of the primary peddlers of the stab-in-the-back myth, the same which recently cost Friedrich Ebert his life. 
+正当我们敲定关于总统选战的决定时，传来了保罗·冯·兴登堡参选的消息。兴登堡被右翼视为战争英雄——他在德意志帝国时期任陆军元帅，曾在坦能堡战役中击败俄国。但在我党眼中，他是反动的容克贵族，是「背后捅刀子」神话的主要兜售者之一，正是这一神话夺去了弗里德里希·艾伯特的生命。
 
-He has received the backing of the DVP, the DNVP[? if bvp_support_hindenburg :, the BVP?], the NSDAP, and the various minor parties of the center-right. A victory for him could mean the end of democracy as we know it.
+DVP、DNVP[? if bvp_support_hindenburg :、BVP?]、纳粹党以及众多中右翼小党都已为他背书。他若获胜，可能意味着我们所知的民主走向终结。
 
 @marx_campaign
 
-- @attack_thalmann_m: Attempt to win back our left-wing, and attack Thälmann.
-- @democracy_rally_m: Rally for democracy, and against monarchism.
-- @donate_z: Provide more campaign resources for the right to spend.
-- @round1: Let the voting begin...
+- @attack_thalmann_m: 设法挽回左翼，并攻击台尔曼。
+- @democracy_rally_m: 高举民主旗帜，反对君主主义。
+- @donate_z: 提供更多竞选资源供右翼使用。
+- @round1: 投票开始……
 
 @attack_thalmann_m
 subtitle: -1 resource - this may have the effect of popularizing Thälmann!
@@ -414,7 +414,7 @@ go-to: marx_campaign
 choose-if: resources >= 1
 max-visits: 1
 
-We attack Thälmann for every fault we can find, and make concessions to our left wing. In doing so, we may be inadvertantly advertising Thälmann, all the while causing further uncertainty amongst right-wing swing voters. Still, any major risk of the party's left refusing to vote Marx seems gone, for now.
+我们竭力攻击台尔曼的一切瑕疵，并向左翼让步。此举可能在不经意间为台尔曼造势，同时令右翼摇摆选民更加摇摆。即便如此，党内左翼拒投马克斯的重大风险眼下似已消散。
 
 @democracy_rally_m
 subtitle: -1 resource
@@ -423,7 +423,7 @@ on-arrival: resources -= 1; pro_republic += 6; nationalism -= 3; workers_dnvp -=
 go-to: marx_campaign
 max-visits: 1
 
-We rally behind Wilhelm Marx as a defender of democracy and the republic against Paul von Hindenburg and the monarchists backing him.
+我们高举威廉·马克斯作为民主与共和国之守护者的大旗，对抗保罗·冯·兴登堡及其背后的君主派。
 
 @donate_z
 subtitle: -1 resource - this may anger our left-wing further!
@@ -432,13 +432,13 @@ on-arrival: resources -= 1; catholics_z += 2; left_dissent += 2
 go-to: marx_campaign
 max-visits: 1
 
-We contribute to the campaign by helping the Centrists recover their right flank with resources. Let's hope that it's enough.
+我们以资源助中央党稳住右翼侧翼。但愿这能奏效。
 
 @bc2
 
-- @rally_b: Rally for Otto Braun!
-- @campaign_b: Campaign for Otto Braun!
-- @round1: Let the voting begin...
+- @rally_b: 为奥托·布劳恩造势！
+- @campaign_b: 为奥托·布劳恩动员竞选！
+- @round1: 投票开始……
 
 @rally_b
 subtitle: -1 resource
@@ -446,48 +446,48 @@ choose-if: resources >= 1
 on-arrival: resources -= 1
 max-visits: 1
 
-- @class_struggle: The class struggle of the proletariat against the bourgeoisie.
-- @welfare: Sozialpolitik - the maintenance and expansion of social welfare programs.
-- @democracy: Expanding our nascent democracy and defending it against dictatorship and fascism.
-- @pacifism: Opposing war, nationalism, and militarism at all costs.
-- @local: A mixture of various local and national concerns that resonate most with the audience.
+- @class_struggle: 无产阶级反对资产阶级的阶级斗争。
+- @welfare: 社会政策——维持并扩大社会福利计划。
+- @democracy: 扩大我们方兴未艾的民主，并捍卫其免于独裁与法西斯主义。
+- @pacifism: 不惜一切代价反对战争、民族主义与军国主义。
+- @local: 各种最能引起听众共鸣的地方与全国议题的组合。
 
 
 @class_struggle
 on-arrival: workers_spd += 4*(1-dissent); unemployed_spd += 3*(1-dissent) if left_strength > reformist_strength; workers_spd += 4*(1-dissent) if nationalization_progress > 0; unemployed_spd += 3*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; old_middle_spd -= 3; new_middle_spd -= 2 if not new_middle_conscious; socialism += 2*(1-dissent); ddp_relation -= 10; z_relation -= 10; dvp_relation -= 10
 go-to: bc2
 
-Our message of class struggle appeals to the left wing of the working class, while potentially alienating the middle class. [? if nationalization_progress > 0 : Our achievements in nationalization have assisted our messaging. ?]
+阶级斗争的信息打动了工人阶级中的左翼，但可能疏远中产阶级。[? if nationalization_progress > 0 : 我们在国有化方面的成就强化了这一信息。 ?]
 
 @welfare
 on-arrival: workers_spd += 3*(1-dissent); workers_spd += 3*(1-dissent) if welfare > 0; unemployed_spd += 3*(1-dissent) if welfare > 0; unemployed_spd += 4*(1-dissent) if welfare > 1; reformist_strength += 3; labor_strength += 4; reformist_dissent -= 3; labor_dissent -= 3;
 go-to: bc2
 
-The reformist message appeals to the organized workers, whose benefits are the accomplishments of social democracy. [? if welfare > 1 : Our achievements in expanding welfare have made this message more effective. ?]
+改良派的信息打动了有组织工人——他们的福利正是社会民主主义的成就。[? if welfare > 1 : 我们在扩大福利方面的成就使这一信息更具感染力。 ?]
 
 @democracy
-on-arrival: democratization += 1; pro_republic += 2*(1 - dissent); workers_spd += 4*(1-dissent) if democratization >= 3; unemployed_spd += 3*(1-dissent) if democratization >= 3; pro_republic += 4*(1 - dissent) if democratization >= 3; new_middle_spd += 4*(1-dissent) if democratization >= 3 
+on-arrival: democratization += 1; pro_republic += 2*(1 - dissent); workers_spd += 4*(1-dissent) if democratization >= 3; unemployed_spd += 3*(1-dissent) if democratization >= 3; pro_republic += 4*(1 - dissent) if democratization >= 3; new_middle_spd += 4*(1-dissent) if democratization >= 3
 go-to: bc2
 
-Our speakers defend the republican system and rail against the monarchists and authoritarians who threaten it.
+我们的演讲者捍卫共和制度，痛斥那些威胁它的君主主义者和威权主义者。
 
-[? if democratization < 3 : Talk of democracy does not excite the workers as much as more practical issues. But that may change; part of our job is to provide political education to the proletariat. ?]
-[? if democratization >= 3 : Since we have consistently made democratization a theme of our campaign, the workers are enthusiastic about our message. ?]
+[? if democratization < 3 : 谈论民主未必能像更实际的议题那样令工人振奋。但这或许会改变；我们的部分工作就是向无产阶级提供政治教育。 ?]
+[? if democratization >= 3 : 既然我们一以贯之地以民主化作为竞选主题，工人对我们的信息热情高涨。 ?]
 
 @pacifism
 on-arrival: pacifism += 1; nationalism -= 2*(1 - dissent); workers_spd += 4*(1 - dissent) if pacifism >= 3; unemployed_spd += 3*(1-dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; new_middle_spd += 4*(1-dissent) if pacifism >= 3
 go-to: bc2
 
-Our speakers denounce the military establishment and all the spending entering that black hole. Some adventurous speakers question the responsibility of the military elites in organizing the Great War.
+我们的演讲者痛斥军方建制及其挥霍无度的预算。一些胆大的演讲者甚至质问军方精英在策划一战中的责任。
 
-[? if pacifism < 3 : Given the volume of nationalist indoctrination in our society, it is difficult to argue so vehemently against the military. ?]
-[? if pacifism >= 3 : Since we have consistently made pacifism a theme of our campaign, the workers are enthusiastic about our message. ?]
+[? if pacifism < 3 : 鉴于我们社会中民族主义灌输之深，要如此激烈地反对军方实属不易。 ?]
+[? if pacifism >= 3 : 既然我们一以贯之地以和平主义作为竞选主题，工人对我们的信息热情高涨。 ?]
 
 @local
 on-arrival: workers_spd += 3*(1-dissent); old_middle_spd += 1*(1-dissent); new_middle_spd += 2*(1-dissent); unemployed_spd += 3*(1-dissent);
 go-to: bc2
 
-Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.
+我们的演讲者把握了现场气氛，针对此刻最能打动工人的议题发表演说。
 
 @campaign_b
 subtitle: -1 resource
@@ -495,68 +495,68 @@ choose-if: resources >= 1
 on-arrival: resources -= 1
 max-visits: 1
 
-- @workers: The urban working class, our traditional support base.
-- @new_middle: The "new middle class" of government employees and white-collar workers.
-- @old_middle: The "old middle class" of small independent businessmen and artisans.
-- @rural: Rural workers and small farmers, who have felt neglected by us in the past.
-- @unemployed: The unemployed.
+- @workers: 城市工人阶级，我党传统的支持基础。
+- @new_middle: 由公务员与白领劳动者组成的「新中产阶级」。
+- @old_middle: 由小独立商人与手工业者组成的「旧中产阶级」。
+- @rural: 过去被我们忽视的农村劳动者与小农。
+- @unemployed: 失业者。
 
 @workers
 on-arrival: workers_spd += 6*(1-dissent); workers_spd -= 2 if unemployed >= 15; workers_spd -= 2 if unemployed >= 25; workers_spd += 6*(1-dissent) if wtb_adopted = 1; workers_spd += 3*(1-dissent) if nationalization_progress >= 1;
 go-to: bc2
 
-We have increased our campaigning among the workers. [? if unemployed >= 15: The high levels of unemployment make our campaign more difficult. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract workers. ?]
+我们加大了对工人的竞选力度。[? if unemployed >= 15: 高失业率使我们的竞选更为艰难。 ?][? if wtb_adopted = 1 : 通过WTB计划为我们提供了新的工人集结点。 ?]
 
 @new_middle
 on-arrival: new_middle_spd += 6*(1-dissent); new_middle_spd -= 4 if socialism <= 49 and peoples_party == 0; peoples_party_support += 1;
 go-to: bc2
 
-We have increased our campaigning among the new middle class. [? if socialism <= 49 and peoples_party == 0: The popular antipathy towards socialism among this group makes our campaign more difficult. ?] [? if peoples_party > 0: As a people's party, we have an easier time increasing support among the middle class than before. ?]
+我们加大了对新中产阶级的竞选力度。[? if socialism <= 49 and peoples_party == 0: 这一群体对社会主义的普遍反感使我们的竞选更为艰难。 ?] [? if peoples_party > 0: 作为一个人民党，我们在中产阶级中赢得支持比以前更为容易。 ?]
 
 @old_middle
 on-arrival: old_middle_spd += 5*(1-dissent); old_middle_spd -= 3 if nationalism >= 51 and peoples_party == 0; peoples_party_support += 1
 go-to: bc2
 
-We have increased our campaigning among the old middle class. [? if nationalism >= 51 and peoples_party == 0: The high levels of nationalism among this group make our campaign more difficult. ?] [? if peoples_party > 0: As a people's party, we have an easier time increasing support among the middle class than before. ?]
+我们加大了对旧中产阶级的竞选力度。[? if nationalism >= 51 and peoples_party == 0: 这一群体高涨的民族主义情绪使我们的竞选更为艰难。 ?] [? if peoples_party > 0: 作为一个人民党，我们在中产阶级中赢得支持比以前更为容易。 ?]
 
 @rural
 on-arrival: rural_spd += 5*(1-dissent); rural_spd -= 3*(1-dissent) if peoples_party == 0; peoples_party_support += 1; rural_spd += 3*(1-dissent) if rural_policy >= 2
 go-to: bc2
 
-We have increased our campaigning among farmers. [? if peoples_party == 0: We have not historically campaigned much among the farmers, and they do not trust us. ?][? if peoples_party > 0: As a people's party, we have an easier time increasing support among farmers than before. ?][? if rural_policy >= 2 : Our rural policies have made it easier for us to build support among farmers. ?]
+我们加大了对农民的竞选力度。[? if peoples_party == 0: 我党历来在农民中竞选甚少，他们对我们不甚信任。 ?][? if peoples_party > 0: 作为一个人民党，我们在农民中赢得支持比以前更为容易。 ?][? if rural_policy >= 2 : 我党的农村政策使我们更易于在农民中建立支持。 ?]
 
 @unemployed
 on-arrival: unemployed_spd += 6*(1-dissent); unemployed_spd -= 3 if welfare < 0; unemployed_spd += 6*(1-dissent) if wtb_adopted = 1; unemployed_spd += 3*(1-dissent) if welfare >= 2;
 go-to: bc2
 
-We have increased our campaigning among the unemployed. [? if welfare < 0: The welfare cuts and resultant poverty make our campaign more difficult, since we are associated with the government that enacted these cuts, and our campaign may even backfire. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract support from the unemployed. ?]
+我们加大了对失业者的竞选力度。[? if welfare < 0: 福利削减及由此产生的贫困使我们的竞选更为艰难——我们与实施这些削减的政府有所关联，竞选甚至可能弄巧成拙。 ?][? if wtb_adopted = 1 : 通过WTB计划为我们提供了吸引失业者的新集结点。 ?]
 
 @gessler_consolidation
 
-Otto Gessler has landed [+ gessler_votes_disp +]%, and is, at first, the favorite to win.
+奥托·盖斯勒拿下了 [+ gessler_votes_disp +]%，起初是夺冠的热门人选。
 
-- @but: But...
+- @but: 然而……
 
 @but
 subtitle: There's always a but.
 on-arrival: held_campaign = 0; hergt25_campaign = 0; ludendorff_campaign = 0; hindenburg_campaign = 1; bvp_support_hindenburg = 1 if z_relation < 55; bvp_support_gessler = 1 if z_relation > 65; nationalism += 5
 
-Paul von Hindenburg has unexpectedly entered the race in the second round as the candidate of the **Reichsblock**. Considered by the right-wing a war hero, Paul von Hindenburg was a Field Marshal in the German Empire and managed to win the Battle of Tannenberg against Russia. To us, however, he is a reactionary junker and one of the primary peddlers of the stab-in-the-back myth, the same which recently cost Friedrich Ebert his life. 
+保罗·冯·兴登堡出人意料地以**帝国集团**候选人的身份在第二轮参选。兴登堡被右翼视为战争英雄——他在德意志帝国时期任陆军元帅，曾在坦能堡战役中击败俄国。但在我党眼中，他是反动的容克贵族，是「背后捅刀子」神话的主要兜售者之一，正是这一神话夺去了弗里德里希·艾伯特的生命。
 
-The DVP is under immense internal pressure to withdraw its backing of Gessler, which would leave us without a candidate and force us to field another one.
+DVP承受着巨大的内部压力，要求其撤回对盖斯勒的支持——如此一来我党将失去候选人，被迫另推一人。
 
-- @convince_dvp_gessler: Convince the DVP to continue to back Gessler.
-- @convince_dvp_abstain: Convince the DVP to abstain.
-- @unfortunate: Unfortunate.
+- @convince_dvp_gessler: 说服DVP继续支持盖斯勒。
+- @convince_dvp_abstain: 说服DVP弃权。
+- @unfortunate: 不幸的结果。
 
 @convince_dvp_gessler
 choose-if: resources >= 2
 subtitle: -2 resources
 on-arrival: resources -= 2; dvp_abstain = 1; old_middle_dvp -= 4; new_middle_dvp -= 3; rural_dvp -= 4; dvp_relation -= 10; left_dissent += 10; workers_spd -= 3; unemployed_spd -= 3; left_strength += 5
 
-We try to convince the DVP to stay in the Gessler campaign, causing immense debate within the DVP. Many on the right may vote Hindenburg anyway. In the end, in the name of party unity, it is decided the DVP will abstain in the election.
+我们试图说服DVP继续支持盖斯勒，由此在党内引发激烈辩论。右翼中许多人无论如何都会投兴登堡。最终，为顾全党的团结，DVP决定在选举中弃权。
 
-- @round1: Let the voting begin...
+- @round1: 投票开始……
 
 @convince_dvp_abstain
 choose-if: resources >= 1
@@ -564,29 +564,29 @@ subtitle: -1 resource
 on-arrival: resources -= 1; dvp_support_hindenburg = 1; old_middle_dvp -= 2; new_middle_dvp -= 1; rural_dvp -= 2; dvp_relation -= 5; left_dissent += 5; workers_spd -= 2; unemployed_spd -= 2
 go-to: unfortunate
 
-We try to convince the DVP to at least abstain, but our efforts are a failure and the party elects to withdraw its backing for Gessler and turn to the war hero Hindenburg instead. We will need to find another candidate to field against Hindenburg.
+我们试图说服DVP至少弃权，但努力归于失败——该党决定撤回对盖斯勒的支持，转而支持战争英雄兴登堡。我们将需要另寻人选与兴登堡对决。
 
 @unfortunate
 on-arrival: left_dissent += 2 if not dvp_support_hindenburg; dvp_support_hindenburg = 1
 
-[? if not dvp_support_hindenburg : Without Gessler, we will need to find another candidate to field. ?]
+[? if not dvp_support_hindenburg : 没有盖斯勒，我们需要再找一名候选人。 ?]
 
-- @braun_r2: Braun?
-- @marx_r2: Marx?
+- @braun_r2: 布劳恩？
+- @marx_r2: 马克斯？
 
 @braun_r2
 choose-if: not_lazy
 unavailable-subtitle: The Weimar parties are unwilling.
 
-Nah uh
+不行。
 
 @marx_r2
 subtitle: It may be necessary to preserve the coalition.
 on-arrival: spd_prussia = 1; braun_percent = 0.8; gessler_campaign = 0; spd_support_marx = 1; ddp_support_marx = 1; marx_campaign = 1; bvp_support_marx = 1 if bvp_support_gessler; bvp_support_gessler = 0
 
-We back Wilhelm Marx from the Center Party. In return, the Center Party votes Otto Braun for M-P of Prussia.
+我们改为支持中央党的威廉·马克斯。作为回报，中央党投票让奥托·布劳恩出任普鲁士州长。
 
-- @round1: Let the voting begin...
+- @round1: 投票开始……
 
 @round2_results
 go-to: hindenburg_wins if hindenburg_plurality; braun_wins if braun_plurality; marx_wins if marx_plurality; gessler_wins if gessler_plurality
