@@ -9,11 +9,11 @@ set-jump: post_congress
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
 
-= SPD Party Congress, [+ month : month +] [+ year +]
+= SPD党代会，[+ month : month +] [+ year +]
 
-The Party congress is to be held now.
+党代会即将召开。
 
-- @faction_algorithm: May we do our best...
+- @faction_algorithm: 愿我们竭尽全力……
 
 @faction_algorithm
 on-arrival: {!
@@ -272,102 +272,102 @@ if (window && d3) {
 !}
 go-to: coalition_menu
 
-= Election results
+= 党代会结果
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
-{!<table>!} 
+{!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} Left: {!</td><td>!} [+ left_c +]% {!</td><td>!} [+ str_change_left +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} 左翼: {!</td><td>!} [+ left_c +]% {!</td><td>!} [+ str_change_left +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} Center: {!</td><td>!} [+ center_c +]% {!</td><td>!} [+ str_change_center +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} 中派: {!</td><td>!} [+ center_c +]% {!</td><td>!} [+ str_change_center +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} Labor: {!</td><td>!} [+ labor_c +]% {!</td><td>!} [+ str_change_labor +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} 工人派: {!</td><td>!} [+ labor_c +]% {!</td><td>!} [+ str_change_labor +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} Reformists: {!</td><td>!} [+ reformist_c +]% {!</td><td>!} [+ str_change_reformist +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} 改良派: {!</td><td>!} [+ reformist_c +]% {!</td><td>!} [+ str_change_reformist +] {!</td></tr>!}
 
-[? if neorevisionism == 1 : {!<tr><td><div class="box" style='background-color:#ff14a5'> </div> !}Neorevisionists: {!</td><td>!} [+ neorevisionist_c +]% {!</td><td>!} [+ str_change_neorevisionist +] {!</td></tr>!} ?]
+[? if neorevisionism == 1 : {!<tr><td><div class="box" style='background-color:#ff14a5'> </div> !}新修正派: {!</td><td>!} [+ neorevisionist_c +]% {!</td><td>!} [+ str_change_neorevisionist +] {!</td></tr>!} ?]
 
 @coalition_menu
 
-- @marxist_unity: Marxist Unity
-- @left_majority: The Left
-- @center_majority: The Center
-- @toleration_unity: The Pro-Toleration Wing
-- @pragmatic_unity: The Pragmatist Wing
-- @reformist_majority: The Reformists
-- @neorevisionist_majority: The Neorevisionists
-- @labor_majority: Labor
-- @antitoleration_unity: The Anti-Toleration Wing
-- @lassalean_unity: Lassalean Unity
+- @marxist_unity: 马克思主义团结
+- @left_majority: 左翼
+- @center_majority: 中派
+- @toleration_unity: 容忍派阵营
+- @pragmatic_unity: 务实派阵营
+- @reformist_majority: 改良派
+- @neorevisionist_majority: 新修正派
+- @labor_majority: 工人派
+- @antitoleration_unity: 反容忍派阵营
+- @lassalean_unity: 拉萨尔派团结
 
 @marxist_unity
 view-if: marxist_unity >= 50
 subtitle: Left + Center ([+ marxist_unity +]%)
 on-arrival: reformist_strength -= 5; neorevisionist_strength -= 5; labor_strength -= 5; left_dissent -= 5; center_dissent -= 5
 
-The party retains a Marxist platform.
+本党坚持马克思主义路线。
 
-@left_majority  
-view-if: left_c >= 50  
-subtitle: Left ([+ left_c +]%)  
+@left_majority
+view-if: left_c >= 50
+subtitle: Left ([+ left_c +]%)
 on-arrival: left_strength += 10; reformist_dissent += 10; neorevisionist_dissent += 10; labor_dissent += 5; center_dissent += 5
 
-The party is increasingly driven by the radical left.
+激进左翼对本党的主导日益加强。
 
-@center_majority  
-view-if: center_c >= 50  
-subtitle: Center ([+ center_c +]%)  
+@center_majority
+view-if: center_c >= 50
+subtitle: Center ([+ center_c +]%)
 on-arrival: center_strength += 10; left_dissent += 5; reformist_dissent += 5; neorevisionist_dissent += 5; labor_dissent += 5
 
-The party remains in the hands of the Centrist Marxists.
+本党仍掌握在中派马克思主义者手中。
 
-@reformist_majority  
-view-if: reformist_c >= 50  
-subtitle: Reformists ([+ reformist_c +]%)  
+@reformist_majority
+view-if: reformist_c >= 50
+subtitle: Reformists ([+ reformist_c +]%)
 on-arrival: reformist_strength += 10; left_dissent += 10; center_dissent += 5; labor_dissent += 5
 
-The party emphasizes legal reform and parliamentary pragmatism over confrontation.
+本党更重视合法改良与议会务实，胜过对抗。
 
-@neorevisionist_majority  
-view-if: neorevisionist_c >= 50  
-subtitle: Neorevisionists ([+ neorevisionist_c +]%)  
+@neorevisionist_majority
+view-if: neorevisionist_c >= 50
+subtitle: Neorevisionists ([+ neorevisionist_c +]%)
 on-arrival: neorevisionist_strength += 10; left_dissent += 15; center_dissent += 10; labor_dissent += 5
 
-The party has fallen under the control of the neorevisionists.
+本党已落入新修正派之手。
 
-@labor_majority  
-view-if: labor_c >= 50  
-subtitle: Labor ([+ labor_c +]%)  
+@labor_majority
+view-if: labor_c >= 50
+subtitle: Labor ([+ labor_c +]%)
 on-arrival: labor_strength += 10; center_dissent += 10; left_dissent += 5; reformist_dissent += 5
 
-The party has fallen under the control of the trade unions.
+本党已落入工会之手。
 
-@toleration_unity  
+@toleration_unity
 view-if: toleration_unity >= 50 and spd_toleration and neorevisionism
-subtitle: Center + Reformists + Neorevisionists ([+ toleration_unity +]%)  
+subtitle: Center + Reformists + Neorevisionists ([+ toleration_unity +]%)
 on-arrival: labor_strength -= 5; left_strength -= 5; left_dissent += 5; z_relation += 5
 
-The party has taken a pro-toleration course.
+本党走上了容忍主义路线。
 
 @pragmatic_unity
 view-if: pragmatic_unity >= 50 and (not spd_toleration or not neorevisionism)
 subtitle: Center + Reformists ([+ pragmatic_unity +]%)
 on-arrival: center_strength += 5; reformist_strength += 5
 
-The party pragmatists have won out in this congress.
+党内务实派在本届党代会上胜出。
 
-@antitoleration_unity  
+@antitoleration_unity
 view-if: antitoleration_unity >= 50 and spd_toleration
-subtitle: Left + Labor ([+ antitoleration_unity +]%)  
+subtitle: Left + Labor ([+ antitoleration_unity +]%)
 on-arrival: center_strength -= 5; reformist_strength -= 5; neorevisionist_strength -= 5; reformist_dissent += 5; neorevisionist_dissent += 5
 
-The party has taken an anti-toleration course.
+本党走上了反容忍主义路线。
 
-@lassalean_unity  
-view-if: lassalean_unity >= 50  
-subtitle: Reformists + Neorevisionists ([+ lassalean_unity +]%)  
+@lassalean_unity
+view-if: lassalean_unity >= 50
+subtitle: Reformists + Neorevisionists ([+ lassalean_unity +]%)
 on-arrival: reformist_strength += 5; neorevisionist_strength += 5; left_dissent += 10; center_dissent += 5
 
-The party has taken a less than Marxist course.
+本党走上了一条偏离马克思主义的道路。

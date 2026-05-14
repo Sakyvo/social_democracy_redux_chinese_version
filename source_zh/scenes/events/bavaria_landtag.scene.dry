@@ -10,11 +10,11 @@ set-jump: bavaria_election_1928
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_blelation + (pro_republic/2); z_coalition *= 1.25 if z_party_leader == "Joos";
 
-= Bavarian Elections, [+ month : month +] [+ year +]
+= 巴伐利亚选举，[+ month : month +] [+ year +]
 
-The Bavarian elections are to be held now.
+巴伐利亚邦议会选举即将举行。
 
-- @election_algorithm: May we do our best...
+- @election_algorithm: 愿我们竭尽全力……
 
 @bavaria_election_1928
 on-arrival: {!
@@ -335,11 +335,11 @@ if (window && d3) {
 !}
 go-to: coalition_menu
 
-= Election results
+= 选举结果
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
-{!<table>!} 
+{!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_bl +]%** {!</td><td>!} **[+ stbl_change_spd +]** {!</td></tr>!}
 
@@ -354,29 +354,29 @@ go-to: coalition_menu
 {!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !} BVP: {!</td><td>!} [+ z_bl +]% {!</td><td>!} [+ stbl_change_z +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_bl +]% {!</td><td>!} [+ stbl_change_dvp +] {!</td></tr>!}
- 
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_bl +] % {!</td><td>!} [+ stbl_change_other +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} 其他: {!</td><td>!} [+ other_bl +] % {!</td><td>!} [+ stbl_change_other +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_bl +]% {!</td><td>!} [+ stbl_change_dnvp +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_bl +]% {!</td><td>!} [+ stbl_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
-**Potential coalitions:**
+**潜在联合政府：**
 
-Weimar Coalition (SPD + Z + [+ ddp_name +]): [+ b_weimar_coalition +]%
+魏玛联合（SPD + Z + [+ ddp_name +]）：[+ b_weimar_coalition +]%
 
-Grand Coalition (SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP): [+ b_grand_coalition +]%
+大联合（SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP）：[+ b_grand_coalition +]%
 
-Bourgeois Coalition (Z + [+ bvp_name +] + [+ ddp_name +] + DVP + Others): [+ b_bourgeois_coalition +]%
+资产阶级联合（Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他）：[+ b_bourgeois_coalition +]%
 
-Right-wing Coalition (Z + [+ bvp_name +] + DVP + Others + DNVP): [+ b_right_coalition +]%
+右翼联合（Z + [+ bvp_name +] + DVP + 其他 + DNVP）：[+ b_right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_bl >= 15 : The rapid rise in NSDAP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
+[? if nazi_urgency <= 1 and nsdap_bl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
-[? if b_anti_democratic_coalition >= 50 : Together, the anti-democratic KPD, DNVP, and NSDAP have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
+[? if b_anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
-There are some potential coalition arrangements.
+目前有若干潜在的联合政府方案。
 
 @coalition_menu
 
@@ -386,37 +386,37 @@ There are some potential coalition arrangements.
 - @spd_bavaria
 
 @bourgeois_bavaria
-title: A bourgeois-right coalition.
+title: 资产阶级—右翼联合政府。
 subtitle: BVP + BB + DNVP + Others ([+ b_bourgeois_coalition +]%)
 choose-if: nsdap_bl < 50 and spd_bl < 50
 unavailable-subtitle: BVP + BB + DNVP + Others ([+ b_bourgeois_coalition +]%) - An alternative government can be formed.
 
-Heinrich Held, the leader of the BVP's parliamentary delegation, has been re-elected Minister-President of Bavaria. [? if b_bourgeois_coalition < 50 : He has survived as a minority government thanks to the constructive VONC of the Bavarian constitution. ?]
+巴伐利亚人民党（BVP）议会党团领袖海因里希·黑尔德（Held）再次当选巴伐利亚州长。[? if b_bourgeois_coalition < 50 : 凭借巴伐利亚宪法中的建设性不信任投票，他以少数派政府的形式得以存续。 ?]
 
 @nazi_bavaria
-title: A Nazi majority government.
+title: 纳粹党多数派政府。
 subtitle: NSDAP ([+ nsdap_bl +]%)
 view-if: nsdap_bl >= 50
 on-arrival: rural_nsdap += 6; old_middle_nsdap += 4; catholics_nsdap += 3; bavaria_other -= 0.2; bavaria_nsdap += 0.3; coup_progress += 2; sa_militancy += 0.05; sa_strength += 20
 
-Somehow, the Nazis have won a majority in Bavaria. Epp has been made Minister-President and now leads an all-Nazi coalition government, which quickly sets to work consolidating power within the state.
+不知何故，纳粹党在巴伐利亚赢得了多数。埃普（Epp）被任命为州长，领导一个清一色的纳粹联合政府，迅速着手在邦内巩固权力。
 
 @left_bavaria
-title: A "Popular Front" of all parties on the Bavarian left.
+title: 巴伐利亚所有左翼政党的「人民阵线」。
 subtitle: KPD + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%)
 unavailable-subtitle: KPD + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%) - [? if ddp_relation < 45 : The [+ ddp_name +] won't vote for us. ?][? if kpd_relation < 55 or communist_coalition < 3 : The KPD won't vote for us. ?]
 view-if: b_popular_front_coalition >= 50
 choose-if: ((kpd_relation >= 55 and communist_coalition >= 3) or (spd_bl+ddp_bl >= 50 and ddp_relation >= 45)) and ((ddp_relation >= 45) or (kpd_bl+spd_bl >= 50 and kpd_relation >= 55 and communist_coalition >= 3))
 on-arrival: spd_bavaria = 1; workers_spd += 4*(1-dissent); catholics_spd += 4*(1-dissent); rural_spd += 4*(1-dissent); sh_militancy -= 0.05; rb_militancy += 0.05; coup_progress += 1; capital_strike_progress += 2
 
-Somehow, a "Popular Front" of the KPD, [+ ddp_name +] and us has been able to outvote the right-wing parties for rulership of Bavaria, instating a social democrat as Minister-President.
+不知何故，由德共、[+ ddp_name +] 与我党组成的「人民阵线」在巴伐利亚的统治权之争中击败了右翼政党，将一位社会民主党人推上州长之位。
 
 @spd_bavaria
-title: SPD majority government
+title: 社民党多数派政府
 subtitle: SPD ([+ spd_bl +]%)
 view-if: spd_bl >= 50
 on-arrival: spd_bavaria = 1; workers_spd += 5*(1-dissent); catholics_spd += 8*(1-dissent); rural_spd += 8*(1-dissent); sh_militancy -= 0.05; rb_militancy += 0.1
 
-Somehow, the SPD has won a majority in Bavaria.
+不知何故，社民党在巴伐利亚赢得了多数。
 
-- @root: That's crazy.
+- @root: 简直不可思议。
