@@ -6,30 +6,30 @@ view-if: ((year = next_election_year and month >= next_election_month) or (year 
 on-departure: month_actions += 1; in_election = 0; next_election_year = next_election_year + 4; n_elections += 1; next_election_time = time + 48;
 set-jump: post_election_1928
 
-= Elections, [+ month : month +] [+ year +]
+= 议会选举，[+ month : month +] [+ year +]
 
-The council elections are to be held now.
+议会选举即将举行。
 
-- @election_algorithm: May we do our best...
+- @election_algorithm: 愿我们竭尽全力……
 - @cancel_elections
 
 @cancel_elections
-title: We cannot hold the elections now. Cancel the elections.
-subtitle: This is an anti-democratic move that may backfire.
+title: 我们现在无法举行选举。取消选举。
+subtitle: 此举反民主，可能适得其反。
 view-if: in_emergency_government == 1 and president == "Braun" and not presidential_powers
 
-Since we are currently ruling as part of an emergency government, we may use quasi-constitutional trickery to significantly delay these elections, and continue governing via Article 48. This is likely to be extremely unpopular both with our base and with the other parties. However, this may be necessary to prevent the extremists from gaining power.
+由于我们目前以紧急政府形式执政，可借助准宪法手段大幅推迟这次选举，并继续以第48条法令施政。此举可能在我们的基本盘与其他政党之间极度不受欢迎。然而，为阻止极端主义者夺权，此举或有必要。
 
-- @cancel_elections_2: Yes, do it.
-- @election_algorithm: No, let's hold the elections.
+- @cancel_elections_2: 是的，就这样做。
+- @election_algorithm: 不，我们还是举行选举。
 
 @cancel_elections_2
 on-departure: next_election_year = next_election_year + 1; next_election_time = time + 12; pro_republic -= 10; dvp_relation -= 8; z_relation -= 8; ddp_relation -= 10; kpd_relation -= 8; coup_progress += 2; workers_spd -= 4; new_middle_spd -= 5; old_middle_spd -= 5; rural_spd -= 5; catholics_spd -= 5; unemployed_spd -= 5; coup_progress += 2 if nsdap_normalized >= 0.3; coup_progress += 2 if nsdap_normalized + dnvp_normalized >= 0.5
 achievement: ausnahmezustand
 
-Fine. President [+ president +] has taken the unprecedented step of canceling these elections. New elections are scheduled for [+ next_election_month : month +] [+ next_election_year +].
+好。[+ president +] 总统采取了前所未有的步骤，取消了这次选举。新的选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
-Let us hope this does not backfire.
+让我们希望此举不会弄巧成拙。
 
 @post_election_1928
 on-arrival: {!
@@ -292,11 +292,11 @@ if (window && d3) {
 !}
 go-to: coalition_menu
 
-**Election results:**
+**选举结果：**
 
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
-{!<table>!} 
+{!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_r +]%** {!</td><td>!} **[+ str_change_spd +]** {!</td></tr>!}
 
@@ -311,15 +311,15 @@ go-to: coalition_menu
 {!<tr><td><div class="box" style='background-color:#69A2BE'> </div> !} [+ bvp_name +]: {!</td><td>!} 3% {!</td><td>!} 0 {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP: {!</td><td>!} [+ dvp_r +]% {!</td><td>!} [+ str_change_dvp +] {!</td></tr>!}
- 
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_r +] % {!</td><td>!} [+ str_change_other +] {!</td></tr>!}
+
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} 其他: {!</td><td>!} [+ other_r +] % {!</td><td>!} [+ str_change_other +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_r +]% {!</td><td>!} [+ str_change_dnvp +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_r +]% {!</td><td>!} [+ str_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
-There are some potential coalition arrangements.
+目前有若干潜在的联合政府方案。
 
 @coalition_menu
 

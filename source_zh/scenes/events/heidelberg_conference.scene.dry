@@ -9,13 +9,13 @@ max-visits: 1
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
 
-= Heidelberg Conference
+= 海德堡党代会
 
-The SPD is holding its biannual conference in the city of Heidelberg, the burial place of the recently deceased Friedrich Ebert. Among the priorities on the agenda is the drafting of a new party program to replace the Görlitz program, which is seen by many as deviating too far from Marxism and as a result costing the SPD amongst the working class.
+社民党正在海德堡市召开两年一度的党代会——此地正是不久前去世的弗里德里希·艾伯特（Ebert）的安葬之地。议程上的优先事项之一，是起草新的党纲以取代《格尔利茨纲领》。该纲领被许多人视为偏离马克思主义过远，因而使社民党在工人阶级中失分。
 
-Another issue is that of Saxony, where the regional party organization has split nearly in half over Max Heldt's decision to govern with the DVP.
+另一议题则关乎萨克森邦：当地党组织因马克斯·黑尔特（Max Heldt）决定与德国人民党（DVP）联合执政而几乎分裂为两派。
 
-- @faction_algorithm: The delegates enter...
+- @faction_algorithm: 代表们入场……
 
 @faction_algorithm
 on-arrival: {!
@@ -279,22 +279,22 @@ go-to: coalition_menu
 {!<table>!} 
 {!<tr><td>Party</td><td>Vote share</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} Left: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} 左翼: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} Center: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} 中派: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} Labor: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} 工人派: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} Reformists: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} 改良派: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
 
 @coalition_menu
 
-The first matter in the conference is what is to be done regarding the party program. The Center has drafted a new program, a significant shift to the left, though the Left gathered around Levi remains skeptical.
+党代会的第一项议题是党纲存废。中派起草了新党纲，明显左转；但聚集在李维（Levi）周围的左翼对此仍持怀疑态度。
 
-Alternatively, the Görlitz program could be maintained, with revisions to match the changing times. With Heidelberg not even entirely satisfying the party left, this would certainly provoke quite the rebellion.
+或者，可保留《格尔利茨纲领》，仅作修订以适应时代变迁。鉴于即便是海德堡纲领也未能让左翼完全满意，此举几乎注定会引发一场反叛。
 
-- @heidelberg: Adopt a new party program as written by the Centrists.
-- @gorlitz: Retain the Görlitz program, but moderately revised.
+- @heidelberg: 通过中派所拟之新党纲。
+- @gorlitz: 保留《格尔利茨纲领》，仅作温和修订。
 
 @heidelberg
 subtitle: The Center ([+ center_c +]%) [? if center_c < 50 : - though the Centrists lack a majority, it can still pass as a compromise resolution. ?]
@@ -302,7 +302,7 @@ choose-if: reformist_c < 50
 on-arrival: heidelberg_program = 1; center_strength += 5; reformist_strength -= 5; left_dissent -= 5; center_dissent -= 10; reformist_dissent += 5; dvp_relation -= 5; kpd_relation += 5
 go-to: coalition_issue
 
-The party has adopted the Heidelberg program, written by Karl Kautsky of the party center and representing a return towards the party's Marxist roots. 
+党代会通过了由党中派的卡尔·考茨基（Kautsky）执笔的《海德堡纲领》，标志着本党向马克思主义本源的回归。
 
 @gorlitz
 subtitle: The Right ([+ reformist_c +]%) [? if reformist_c < 50 : - though the Reformists lack a majority, the trade unions may be convinced. ?]
@@ -310,14 +310,14 @@ choose-if: (reformist_c+labor_c) >= 50
 on-arrival: gorlitz_program = 1; center_strength -= 5; marx_relation += 5; left_strength -= 5; reformist_strength += 10; left_dissent += 20; center_dissent += 15; reformist_dissent -= 5; peoples_party_support += 1; dvp_relation += 5; kpd_relation -= 5; labor_strength += 10 if reformist_c < 50; center_dissent += 5 if reformist_c < 50
 go-to: coalition_issue
 
-The party has, surprisingly, chosen to retain the bulk of the Görlitz program. The left and center wings of the party are incensed by this decision. [? if reformist_c < 50 : The trade unions have been given significant concessions to be convinced of this, further angering the centrists. ?]
+出人意料地，党代会决定基本保留《格尔利茨纲领》。党的左翼与中派对这一决定大为震怒。[? if reformist_c < 50 : 为说服各方接受此结果，工会获得了重大让步，这进一步激怒了中派。 ?]
 
 @coalition_issue
 
-Max Seydewitz of the left meanwhile has proposed before the conference what would amount to a rejection of coalitions with the bourgeois parties in order to represent the interests of the proletariat in all future struggles without regard to their opinions.
+与此同时，左翼的马克斯·赛德维茨（Seydewitz）在党代会上提出动议：拒绝与资产阶级政党组阁，以便在今后的一切斗争中不顾对方意见、专为无产阶级利益代言。
 
-- @seydewitz: The motion is passed by the conference.
-- @silly: The motion is defeated by the conference.
+- @seydewitz: 党代会通过此项动议。
+- @silly: 党代会否决此项动议。
 
 @seydewitz
 choose-if: left_c >= 50 or ((left_c+labor_c >= 50 and not gorlitz_program) or (reformist_c < 50 and seydewitz_advisor and not gorlitz_program and left_c+labor_c >= center_c and president != "Marx" and dvp_relation < 40 and z_relation < 50))
@@ -325,7 +325,7 @@ subtitle: The Left ([+ left_c +]%) [? if left_c < 50 : - though the Leftists lac
 on-arrival: left_strength += 20; reformist_strength -= 10; reformist_dissent += 25; center_dissent += 10; labor_dissent += ((z_relation+dvp_relation)/10); marx_relation -= 10; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 15; kpd_relation += 10; communist_coalition += 1
 #go-to: saxon_struggle
 
-Surprisingly, the motion to reject cooperation with the bourgeoisie is passed through the conference. The party's right wing is incensed by this decision, with some even threatening revolt.
+令人意外的是，拒绝与资产阶级合作的动议在党代会上获得通过。党内右翼对此决定怒不可遏，部分人甚至以分裂相要挟。
 
 @silly
 choose-if: left_c < 50
@@ -333,8 +333,8 @@ subtitle: The Center and Right ([+ pragmatic_unity +]%)
 on-arrival: reformist_dissent -= 5; left_dissent += 5
 #go-to: saxon_struggle
 
-As expected, the motion is defeated. The party remains too attached to the Weimar Coalition for such a move to be feasible.
+不出所料，动议遭到否决。本党对魏玛联合仍过于眷恋，此种激进举措在当下并不可行。
 
 @saxon_struggle
 
-Finally, the last main issue for the conference is what should be done about Saxony, where the SPD has essentially split in half following the decision of Max Heldt to govern with the DVP despite the local party chapter's express refusal.
+最后，党代会的核心议题是萨克森问题。当地马克斯·黑尔特无视党组织的明确反对，执意与德国人民党联合执政，导致萨克森党几乎一分为二。

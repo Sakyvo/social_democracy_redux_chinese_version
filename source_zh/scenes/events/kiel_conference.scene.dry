@@ -9,11 +9,11 @@ max-visits: 1
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
 
-= Heidelberg Conference
+= 基尔党代会
 
-The SPD is holding its biannual conference in the city of Kiel, where Baade is expected to present his agricultural programme for adoption by the SPD, and the left expected to demand, even more clearly than in the last conference, the SPD reject entrance into government.
+社民党正在基尔市召开两年一度的党代会。预计巴德（Baade）将提交其农业纲领供本党通过，而左翼则会比上届党代会更明确地要求本党拒绝入阁。
 
-- @faction_algorithm: The delegates enter...
+- @faction_algorithm: 代表们入场……
 
 @faction_algorithm
 on-arrival: {!
@@ -277,20 +277,20 @@ go-to: coalition_menu
 {!<table>!} 
 {!<tr><td>Party</td><td>Vote share</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} Left: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#9c0000'> </div> !} 左翼: {!</td><td>!} [+ left_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} Center: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#e30000'> </div> !} 中派: {!</td><td>!} [+ center_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} Labor: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff681d'> </div> !} 工人派: {!</td><td>!} [+ labor_c +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} Reformists: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#ff6ba9'> </div> !} 改良派: {!</td><td>!} [+ reformist_c +]% {!</td></tr>!}
 
 @coalition_menu
 
-The prominent issue in the conference becomes clear as the left around Toni Sender and Siegfried Aufhäuser propose a resolution that would explicitly state that the class struggle can only be waged from opposition. In opposition are the reformists on the party right, as well as the bulk of the center and the trade unions, though with Aufhäuser joining in the push an understanding between the unions and the left against the [? if center_c+reformist_c >= left_c : dominating ?] pragmatists may be possible.
+党代会的核心议题逐渐浮现：围绕在托妮·森德尔（Sender）与齐格弗里德·奥夫霍伊泽尔（Aufhäuser）周围的左翼，提出一项决议——明确阶级斗争只能从在野立场上展开。反对者包括党内右翼的改良派、大部分中派与工会，但鉴于奥夫霍伊泽尔加入了左翼的推动，工会与左翼之间或可达成谅解，共同对抗[? if center_c+reformist_c >= left_c : 占主导地位的 ?]务实派。
 
-- @oppositionist: The resolution is adopted, rejecting the notion of government participation.
-- @participationist: The resolution is defeated, and instead one in support is adopted.
+- @oppositionist: 决议通过，拒绝入阁的主张。
+- @participationist: 决议被否决，并通过了一项支持入阁的决议。
 
 @oppositionist
 choose-if: left_c >= 50 or (pragmatic_unity < 50 and dvp_relation < 40 and z_relation < 50)
@@ -298,7 +298,7 @@ subtitle: The Left ([+ left_c +]%) [? if left_c < 50 : - though the Left lacks a
 on-arrival: coalition_dissent += 5; left_strength += 20; reformist_strength -= 10; reformist_dissent += 30; center_dissent += 15; labor_dissent += ((z_relation+dvp_relation)/10); marx_relation -= 10; z_relation -= 15; dvp_relation -= 15; ddp_relation -= 15; kpd_relation += 10; communist_coalition += 1
 go-to: unions
 
-The resolution expressly rejecting government participation as a means of class struggle is accepted by the conference, much to the uproar of the party right. 
+明确拒绝以入阁作为阶级斗争手段的决议获党代会通过，党内右翼为之哗然。
 
 @participationist
 choose-if: left_c < 50
@@ -306,14 +306,14 @@ subtitle: The Center and the Right ([+ pragmatic_unity +]%) [? if pragmatic_unit
 on-arrival: left_dissent += 5; dvp_relation += 10; z_relation += 10; ddp_relation += 10; reformist_dissent -= 5; left_strength -= 5; labor_dissent += 5 if dvp_relation < 40 and z_relation < 50
 go-to: unions
 
-The resolution is, as expected, rejected by the conference, to the disappointment of the [? if left_c < 15 : increasingly sidelined ?] left.
+正如预期，决议遭党代会否决，令[? if left_c < 15 : 日益被边缘化的 ?]左翼大失所望。
 
 @unions
 
-With the major polarizing issue out of the way, the next proposal to be voted on is a resolution of support for the trade unions and expression of solidarity with the new middle class, perhaps engineered to satisfy those unions upset by the adoption of the previous resolution.
+主要的两极分化议题既已了结，下一项付诸表决的，是一份对工会表示支持、并对新中产阶级表达团结的决议——此举或许是为安抚因前一决议而不满的工会。
 
-- @union_support: The resolution is adopted.
-- @nah: The resolution is rejected.
+- @union_support: 决议获得通过。
+- @nah: 决议遭到否决。
 
 @union_support
 subtitle: -1 resource - Labor ([+ labor_c +]%)
@@ -321,7 +321,7 @@ choose-if: resources >= 1
 on-arrival: resources -= 1; labor_dissent -= 10; labor_strength += 5; new_middle_spd += 3*(1-dissent)
 go-to: agriculture_program
 
-The resolution is adopted, expressing and providing support to the trade unions as the defenders of working class prosperity, including that of the new middle class.
+决议获得通过，将工会确立为工人阶级（包括新中产阶级）繁荣的捍卫者，并提供相应支持。
 
 @nah
 subtitle: There are greater priorities.
@@ -329,24 +329,24 @@ choose-if: labor_strength < 50 or resources < 1
 on-arrival: labor_dissent += 5; labor_strength -= 5
 go-to: agriculture_program
 
-The resolution is ultimately rejected, with the conference considering support for the unions and the new middle class to not be a pressing priority.
+决议最终被否决，党代会认为对工会与新中产阶级的支持目前并非当务之急。
 
 @agriculture_program
 
-Finally to be voted on is the agricultural programme proposed by Fritz Baade, published in January. The program is a step towards the SPD expanding its voteshare beyond simply the urban working class, but into other working class groups too. Some on the left worry, however, that this opens the door to revisionist "Volkspartei" rhetoric or that it would result in the SPD supporting petty bourgeois producers.
+最后付诸表决的，是弗里茨·巴德（Baade）于1月发表的农业纲领。该纲领标志社民党试图将选票基础从单纯的城市工人阶级扩展至其他劳动阶层。然而党内左翼忧虑此举可能为修正主义的「人民党」言论打开门户，或导致本党转而支持小资产阶级生产者。
 
-- @program_adopted: The agricultural programme is adopted.
-- @program_refused: The agricultural programme is rejected.
+- @program_adopted: 农业纲领获得通过。
+- @program_refused: 农业纲领遭到否决。
 
 @program_adopted
 subtitle: The Right ([+ reformist_c +]%) [? if reformist_c < 50 : - though the reformists lack a majority, much of the center and trade unions are sympathetic. ?]
 choose-if: left_c < 50
 on-arrival: peoples_party_support += 1
 
-The programme is adopted. Perhaps this will enable the SPD to breach into the rural regions that the DNVP currently dominates.
+纲领获得通过。或许这将助力社民党进入德国国家人民党（DNVP）目前主导的乡村地区。
 
 @program_refused
 subtitle: The Left ([+ left_c +]%) [? if left_c < 50 : - though the left lacks a majority, much of the center and trade unions are sympathetic. ?]
 choose-if: reformist_c < 50
 
-The programme is rejected. It seems the SPD shall continue to remain a strictly urban working class party.
+纲领被否决。看来社民党仍将保持一个严格以城市工人阶级为基础的党。
