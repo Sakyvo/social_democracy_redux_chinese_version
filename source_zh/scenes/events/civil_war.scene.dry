@@ -299,181 +299,181 @@ on-arrival: pro_republic -= 10; z_relation -= 5; z_relation -= 5 if z_party_lead
 @enable_hindenburg
 view-if: president == "Hindenburg"
 
-President Hindenburg refuses to sign our Enabling Act, demanding it go to a referendum. What do we do?
+兴登堡总统拒绝签署我们的《授权法》，要求该法案交付全民公投。我们该如何应对？
 
-- @government: Absolutely nothing, I'm not coding this yet.
+- @government: 干脆什么也不做，这部分我还没写。
 
 @agenda_reb
 view-if: spd_rebel = 1
 on-arrival: judicial_reform += 4
 
-The defeat of the reactionaries presents to us a unique opportunity. We have multiple issues to address.
+反动派的失败为我们带来了独特的机会。我们有多个问题需要处理。
 
-- @presidency: The presidency.
-- @chancellorship: The cabinet.
-- @constitutional: The constitution.
-- @decrees: The country.
-- @communists: The KPD.
-- @council: The Reichstag.
+- @presidency: 总统职位。
+- @chancellorship: 内阁。
+- @constitutional: 宪法。
+- @decrees: 国家。
+- @communists: 德共。
+- @council: 国会。
 
 @presidency
 view-if: not presidency_decided
 on-arrival: presidency_decided = 1
 
-[? if president == "Hindenburg" : As Hindenburg was a reactionary and enabled Hitler to take power, forcing his resignation is a popular idea amongst the party. ?][? if president == "Hitler" : With Hitler's defeat, the role of presidency has become vacant. Usual protocol is for a snap election to be held, but we hold the cards here. ?]
+[? if president == "Hindenburg" : 兴登堡作为反动派，又纵容希特勒上台，因此党内普遍支持迫使其辞职。 ?][? if president == "Hitler" : 随着希特勒的失败，总统一职已空缺。通常的程序是举行临时选举，但如今主动权在我们手中。 ?]
 
-- @snap_election: We will hold new presidential elections.
+- @snap_election: 我们将举行新的总统选举。
 #- @braun: We will install Braun as President.
-- @provisional: The Reichstag will elect a provisional president to serve until elections can be held.
-- @abolish: We will abolish the Presidency entirely.
+- @provisional: 国会将选出一名临时总统，直至选举举行。
+- @abolish: 我们将彻底废除总统制。
 
 @snap_election
 on-arrival: presidency_vacated = 1; presidential_timer = 2; president = "Bumke" if year >= 1933 and judicial_reform < 4; president = "Großmann" if year >= 1933 and judicial_reform >= 4; president = "N/A" if year < 1933; presidential_timer -= 1 if year < 1933
 go-to: agenda_reb
 
-New presidential elections have been scheduled for shortly.
+新一届总统选举已定于近期举行。
 
 @braun
 on-arrival: president = "Braun"
 
-We have made Otto Braun the President of Germany.
+我们已让奥托·布劳恩（Braun）出任德国总统。
 
-- @agenda_reb: Continue...
+- @agenda_reb: 继续……
 
 @provisional
-on-arrival: president = "Wirth"; presidential_timer = 12; presidency_vacated = 1; 
+on-arrival: president = "Wirth"; presidential_timer = 12; presidency_vacated = 1;
 
-We leave the election to the Reichstag, which elects Joseph Wirth of the Center as a compromise candidate.
+我们将选举交由国会决定，国会选出中央党的约瑟夫·维尔特（Wirth）作为妥协人选。
 
-- @agenda_reb: Continue...
+- @agenda_reb: 继续……
 
 @abolish
 on-arrival: presidency_abolished = 1; presidential_powers = 1; president = "N/A"
 
-We choose to abolish the presidency entirely, in favor of a strictly parliamentary republic.
+我们选择完全废除总统制，转向严格的议会制共和国。
 
-- @agenda_reb: Continue...
+- @agenda_reb: 继续……
 
 @chancellorship
 view-if: not chancellorship_decided
 on-arrival: leverage = spd_votes; chancellorship_decided = 1; spd_in_government = 1; spd_toleration = 0;
 
-Having deposed the Nazi cabinet through our civil war, we must decide how to fill these roles and distribute positions in our post-war provisional government. Before anything else however, we must choose which party to build our provisional government with.
+通过内战推翻了纳粹内阁之后，我们必须决定如何填补这些职位，以及在战后临时政府中如何分配各项职务。但首先，我们必须选择与哪个政党共同组建临时政府。
 
-- @kpd_coalition: Naturally, the Communists.
-- @weimar_coalition_: Naturally, our Weimar partners.
-- @antifa: Perhaps we can build one with both?
-- @no_allies: The SPD will govern alone.
+- @kpd_coalition: 当然是共产党人。
+- @weimar_coalition_: 当然是我们的魏玛伙伴们。
+- @antifa: 或许我们可以与他们两者都合作？
+- @no_allies: 社民党独自执政。
 
 @kpd_coalition
 view-if: kpd_relation >= 45 and communist_coalition >= 3 and kpd_tried != 1
 go-to: chancellor_kpd if kpd_relation >= 60; sway_kpd if kpd_relation < 60
 
-We can pursue the building of a provisional government with the Communists. They will be more likely to approve of radical changes that our Weimar partners would oppose.
+我们可以与共产党共同组建临时政府。他们将比我们的魏玛伙伴更愿意支持激进的变革。
 
 @chancellor_kpd
 on-arrival: in_left_front = 1; kpd_relation += 5; z_relation -= 5; ddp_relation -= 5; dvp_relation -= 10; leverage *= ((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy)); time_to_election = 3
 call: set_next_election_time
 
-The Communists are happy to join our provisional government. Who should we choose to be chancellor?
+共产党乐意加入我们的临时政府。我们要选谁来担任总理？
 
-- @breitscheid_2: Appoint Rudolf Breitscheid.
-- @thalmann: Appoint Ernst Thälmann of the Communists.
+- @breitscheid_2: 任命鲁道夫·布赖特沙伊德（Breitscheid）。
+- @thalmann: 任命共产党的恩斯特·台尔曼（Thälmann）。
 
 @sway_kpd
 on-arrival: z_relation -= 5; ddp_relation -= 5; dvp_relation -= 10
 on-departure: kpd_tried = 1
 
-The Communists are demanding the position of Chancellor as a prerequisite to participation in the provisional government. We can concede, look for other partners, or satisfy them in other ways.
+共产党要求获得总理职位，作为加入临时政府的前提条件。我们可以让步、另寻盟友，或以其他方式安抚他们。
 
-- @thalmann: We will concede the Chancellorship to Ernst Thälmann of the Communists.
-- @bribe: Smooth things over with our resources, and appoint Rudolf Breitscheid.
-- @chancellorship: The Communists are unworkable. We'll find other allies.
+- @thalmann: 我们将总理一职让给共产党的恩斯特·台尔曼。
+- @bribe: 用我们的资源打点关系，并任命鲁道夫·布赖特沙伊德。
+- @chancellorship: 共产党无法合作。我们另找盟友。
 
 @bribe
-subtitle: -3 resources.
+subtitle: -3 资源。
 on-arrival: resources -= 3; unemployed_kpd += 3; workers_kpd += 3; chancellor = "Breitscheid"; chancellor_party = "SPD"; leverage *= ((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy)); time_to_election = 3
 call: set_next_election_time
 go-to: cabinet_kpd
 
-The Communists concede, and agree to form a coalition.
+共产党让步，同意组建联合政府。
 
 @weimar_coalition_
 view-if: z_relation >= 40 and ddp_relation >= 20
 on-arrival: in_weimar_coalition = 1; time_to_election = 3
 call: set_next_election_time
 
-- @breitscheid: Appoint Rudolf Breitscheid.
-- @wels: Appoint Otto Wels.
-- @bruning: Appoint Heinrich Brüning of the Center.
+- @breitscheid: 任命鲁道夫·布赖特沙伊德（Breitscheid）。
+- @wels: 任命奥托·韦尔斯（Wels）。
+- @bruning: 任命中央党的海因里希·布吕宁（Brüning）。
 
 @antifa
 view-if: ((((kpd_relation >= 65 and kpd_party_leader == "Thälmann") or (kpd_relation >= 45 and kpd_party_leader == "Conciliators")) and ((z_relation >= 45 and z_party_leader == "Joos") or (z_relation >= 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation >= 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators")) and ddp_relation >= 50 and communist_coalition >= 3) or (z_party_leader == "Joos" and kpd_party_leader == "Conciliators" and z_relation >= 30 and kpd_relation >= 30))
 on-arrival: in_popular_front = 1; leverage *= 0.8; chancellor = "Breitscheid"; chancellor_party = "SPD"; antifa_gov = 1; time_to_election = 3
 call: set_next_election_time
 
-Surprisingly, both the Communists and the Center Party are willing to form a provisional Popular Front government headed by Breitscheid, and due to the changed circumstances the Communists are even willing to take a spot or two on the cabinet. The only position the Center Party is willing to concede to the Communists is the Interior or Labor Ministry.
+令人惊讶的是，共产党与中央党都愿意组建一个由布赖特沙伊德领导的临时人民阵线政府；考虑到形势变化，共产党甚至愿意在内阁中担任一两个职位。中央党唯一愿意让给共产党的是内政部或劳工部。
 
-- @ministries: Let's see.
+- @ministries: 那就开始分配吧。
 
 @no_allies
 on-arrival: in_spd_majority = 1; pro_republic -= 10; rfb_strength += 100; sa_strength += 25; workers_spd -= 3; new_middle_spd -= 3; sh_strength += 50; rb_strength -= 100; z_relation -= 10; ddp_relation -= 10; dvp_relation -= 10; kpd_relation -= 10; coup_progress += 3; reichswehr_loyalty -= 0.05; labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; justice_minister_party = "SPD"; economic_minister_party = "SPD"; foreign_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
 
-We have been forced to rule solely in our provisional govenrment. This has hurt confidence in the post-war government, and all the parties have scrambled to oppose us. At least we will be going ahead with snap elections, right?
+我们被迫在临时政府中独自执政。这损害了对战后政府的信任，各政党争相反对我们。至少我们将按计划举行临时选举，对吧？
 
-- @of_course: Of course.
-- @mocharooms: How can we hold elections in an environment this volatile?
+- @of_course: 当然了。
+- @mocharooms: 这样动荡的环境下我们怎么能举行选举？
 
 @of_course
 call: set_next_election_time
 on-arrival: time_to_election = 3
 
-We would never do something so blatantly undemocratic as to cancel elections, of course.
+我们当然不会做出取消选举这种公然破坏民主的事情。
 
-- @agenda_reb: Indeed so. We would never.
+- @agenda_reb: 确实如此。我们绝不会这么做。
 
 @mocharooms
 on-arrival: pro_republic -= 3; coup_progress += 2
 
-Are...are you s-sure about this, Mr. Braun? Really? Okay, if you say so...I'll get to it. We won't let those Nazis...we won't...why are you looking at me like that? Mr. Braun?
+您……您确定吗，布劳恩先生？真的吗？好吧，您说怎么办……我这就去办。我们不能让那些纳粹……不能……您为什么这样看着我？布劳恩先生？
 
-- @agenda_reb: Let's move on.
+- @agenda_reb: 继续吧。
 
 @breitscheid
 on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"
 
-- @ministries: Now for the cabinet.
+- @ministries: 现在轮到组建内阁。
 
 @wels
 on-arrival: chancellor = "Wels"; chancellor_party = "SPD"
 
-- @ministries: Now for the cabinet.
+- @ministries: 现在轮到组建内阁。
 
 @bruning
 view-if: z_relation >= 45
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; leverage += 5; z_relation += 5; kpd_relation -= 10
 
-- @ministries: Now for the cabinet.
+- @ministries: 现在轮到组建内阁。
 
 @thalmann
 view-if: kpd_relation >= 60 and left_strength > reformist_strength + center_strength + neorevisionist_strength
 on-arrival: chancellor = "Thälmann"; chancellor_party = "KPD"; z_relation -= 10; reformist_dissent += 10; kpd_relation += 5; leverage *= (2*((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy))); time_to_election = 3
 call: set_next_election_time
 
-- @cabinet_kpd: Now for the cabinet.
+- @cabinet_kpd: 现在轮到组建内阁。
 
 @breitscheid_2
 on-arrival: chancellor = "Breitscheid"; chancellor_party = "SPD"
 
-- @cabinet_kpd: Now for the cabinet.
+- @cabinet_kpd: 现在轮到组建内阁。
 
 @cabinet_kpd
 on-arrival: labor_minister_party = "KPD"; interior_minister_party = "KPD"; finance_minister_party = "KPD"; economic_minister_party = "KPD"; justice_minister_party = "KPD"; foreign_minister_party = "KPD"; agriculture_minister_party = "KPD"; reichswehr_minister_party = "KPD"
 go-to: real_cabinet_kpd
 
-Now we must build our provisional government, and decide which cabinet positions will go to whom. [? if chancellor_party == "KPD" : The Communists are satisfied by our concession of the Chancellorship and are less likely to demand many positions. ?]
+现在我们必须组建临时政府，决定哪些内阁职位由谁担任。[? if chancellor_party == "KPD" : 由于我们让出了总理职位，共产党比较满意，可能不会要求太多职位。 ?]
 
-Anything that we don't take will go to the KPD. 
+我们不接手的职位都将归共产党。
 
 @real_cabinet_kpd
 
@@ -481,122 +481,122 @@ Anything that we don't take will go to the KPD.
 - #drop_mins_kpd
 
 @labor_kpd
-title: Labor Ministry
-subtitle: Taking the Labor Ministry is expected of us. [? if historical_mode : Labor will be displeased if we do not. ?]
-unavailable-subtitle: We do not have enough leverage.
+title: 劳工部
+subtitle: 由我们出任劳工部长是众望所归。[? if historical_mode : 若我们不接手，工会方面将不悦。 ?]
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
 choose-if: leverage >= 5
 view-if: labor_minister_party != "SPD"
 on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
 go-to: real_cabinet_kpd
 
-Rudolf Wissell of the SPD has been appointed labor minister.
+社民党的鲁道夫·维塞尔（Wissell）被任命为劳工部长。
 
 @interior_kpd
-title: Interior Ministry
-subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
-unavailable-subtitle: We do not have enough leverage.
+title: 内政部
+subtitle: 由我们出任内政部长是众望所归。内政部掌管国内安全事务。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
 choose-if: leverage >= 10
 view-if: interior_minister_party != "SPD"
 on-arrival: leverage -= 10; interior_minister_party = "SPD"; interior_minister = "Severing"
 go-to: real_cabinet_kpd
 
-Carl Severing of the SPD has been appointed Interior Minister.
+社民党的卡尔·泽韦林（Severing）被任命为内政部长。
 
 @finance_kpd
-title: Finance Ministry
-subtitle: The Finance Ministry controls the government budget and taxes.
-unavailable-subtitle: We do not have enough leverage.
+title: 财政部
+subtitle: 财政部掌管政府预算与税收。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: finance_minister_party != "SPD"
 on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
 go-to: real_cabinet_kpd
 
-Rudolf Hilferding of the SPD has been appointed Finance Minister.
+社民党的鲁道夫·希法亭（Hilferding）被任命为财政部长。
 
 @economic_kpd
-title: Economic Ministry
-subtitle: The Economic Ministry controls broader economic policy.
-unavailable-subtitle: We do not have enough leverage.
+title: 经济部
+subtitle: 经济部掌管更广泛的经济政策。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
 choose-if: leverage >= 15
 view-if: economic_minister_party != "SPD"
 on-arrival: leverage -= 15; economic_minister_party = "SPD"; economic_minister = "Schmidt"
 go-to: real_cabinet_kpd
 
-Robert Schmidt of the SPD has been appointed Economic Minister.
+社民党的罗伯特·施密特（Schmidt）被任命为经济部长。
 
 @justice_kpd
-title: Justice Ministry
-subtitle: The Justice Ministry controls the courts.
-unavailable-subtitle: We do not have enough leverage.
+title: 司法部
+subtitle: 司法部掌管法院系统。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: justice_minister_party != "SPD"
 on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
 go-to: real_cabinet_kpd
 
-Gustav Radbruch of the SPD has been appointed Justice Minister.
+社民党的古斯塔夫·拉德布鲁赫（Radbruch）被任命为司法部长。
 
 @foreign_kpd
-title: Foreign Ministry
-subtitle: This is usually the domain of Gustav Stresemann of the DVP.
-unavailable-subtitle: We do not have enough leverage.
+title: 外交部
+subtitle: 该职位通常由DVP的古斯塔夫·施特雷泽曼（Stresemann）担任。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: foreign_minister_party != "SPD"
 on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
 go-to: real_cabinet_kpd
 
-Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+社民党的鲁道夫·布赖特沙伊德（Breitscheid）被任命为外交部长。
 
 
 @agriculture_kpd
-title: Agricultural Ministry
-subtitle: This is not our usual domain.
-unavailable-subtitle: We do not have enough leverage.
+title: 农业部
+subtitle: 这不是我们一贯的职责范围。
+unavailable-subtitle: 我们的筹码不足。
 choose-if: leverage >= 5
 view-if: agriculture_minister_party != "SPD"
 on-arrival: leverage -= 5; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
 go-to: real_cabinet_kpd
 tags: mins_kpd
 
-Fritz Baade of the SPD has been appointed Agriculture Minister.
+社民党的弗里茨·巴德（Baade）被任命为农业部长。
 
 @reichswehr_kpd
-title: Reichswehr Ministry
-subtitle: Leaving this to the Communists could lead to a coup.
-unavailable-subtitle: We do not have enough leverage.
+title: 国防部
+subtitle: 将这一职位留给共产党可能引发政变。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_kpd
-choose-if: leverage >= 5 
+choose-if: leverage >= 5
 view-if: reichswehr_minister_party != "SPD"
 on-arrival: leverage -= 5; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
 go-to: real_cabinet_kpd
 
-Julius Leber of the SPD has been appointed Reichswehr Minister.
+社民党的尤利乌斯·勒贝尔（Leber）被任命为国防部长。
 
 
 
 @no_more_kpd
-title: No more ministries.
+title: 不再增加部委。
 on-arrival: labor_dissent += 10 if historical_mode and labor_minister_party != "SPD"
-subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+subtitle: [? if leverage >= 10 : 我们还有筹码可换取更多部委。 ?][? if leverage < 10 : 我们的筹码所剩不多了。 ?]
 tags: mins_kpd
 go-to: agenda_reb
 
-This coalition arrangement is tolerable to all.
+这一联盟安排各方都能接受。
 
 @drop_labor_kpd
-title: Drop the Labor Ministry.
+title: 放弃劳工部。
 view-if: labor_minister_party = "SPD"
 on-arrival: labor_minister_party = "KPD"; leverage += 5;
 tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_interior_kpd
-title: Drop the Interior Ministry.
+title: 放弃内政部。
 view-if: interior_minister_party = "SPD"
 on-arrival: interior_minister_party = "KPD"; leverage += 10;
 tags: drop_mins_kpd
