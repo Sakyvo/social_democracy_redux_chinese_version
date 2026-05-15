@@ -603,42 +603,42 @@ tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_finance_kpd
-title: Drop the Finance Ministry.
+title: 放弃财政部。
 view-if: finance_minister_party = "SPD"
 on-arrival: leverage += 10; finance_minister_party = "KPD"
 tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_economic_kpd
-title: Drop the Economic Ministry.
+title: 放弃经济部。
 view-if: economic_minister_party = "SPD"
 on-arrival: leverage += 15; economic_minister_party = "KPD"
 tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_justice_kpd
-title: Drop the Justice Ministry.
+title: 放弃司法部。
 view-if: justice_minister_party = "SPD"
 on-arrival: justice_minister_party = "KPD"; leverage += 10;
 tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_foreign_kpd
-title: Drop the Foreign Ministry.
+title: 放弃外交部。
 view-if: foreign_minister_party = "SPD"
 on-arrival: leverage += 10; foreign_minister_party = "KPD"
 tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_agriculture_kpd
-title: Drop the Agriculture Ministry.
+title: 放弃农业部。
 view-if: agriculture_minister_party = "SPD"
 on-arrival: agriculture_minister_party = "KPD"; leverage += 5
 tags: drop_mins_kpd
 go-to: real_cabinet_kpd
 
 @drop_reichswehr_kpd
-title: Drop the Reichswehr Ministry.
+title: 放弃国防部。
 view-if: reichswehr_minister_party = "SPD"
 on-arrival: reichswehr_minister_party = "KPD"; leverage += 5;
 tags: drop_mins_kpd
@@ -646,205 +646,205 @@ go-to: real_cabinet_kpd
 
 @ministries
 
-We can pick from any number of ministries. Controlling a ministry allows us to directly effect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the KPD. ?] [? if in_left_front and reichswehr_minister_party == "KPD" : If the KPD controls the Reichswehr Ministry, the army will most likely revolt. ?]
+我们可以从任意多的部委中挑选。掌控一个部委使我们能够直接影响该领域的政策。[? if in_left_front : 我们不接手的任何部委将归KPD所有。 ?] [? if in_left_front and reichswehr_minister_party == "KPD" : 若KPD掌控国防部，军队很可能反叛。 ?]
 
-[? if historical_mode : Labor expects us to take the Labor Ministry in order to represent their interests in government and will be upset if we do not. ?]
+[? if historical_mode : 工会期望我们接手劳工部以代表他们在政府中的利益，若我们不这么做，他们将不悦。 ?]
 
 - #mins_emergency
 - #drop_mins_emergency
 
 @labor
-title: Labor Ministry
-subtitle: Taking the Labor Ministry is expected of us. [? if historical_mode : Labor will be displeased if we do not. ?]
-unavailable-subtitle: We do not have enough leverage.
+title: 劳工部
+subtitle: 由我们出任劳工部长是众望所归。[? if historical_mode : 若我们不接手，工会方面将不悦。 ?]
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
 choose-if: leverage >= 5
 view-if: labor_minister_party != "SPD"
 on-arrival: leverage -= 5; labor_minister_party = "SPD"; labor_minister = "Wissell"
 go-to: ministries
 
-Rudolf Wissell of the SPD has been appointed labor minister.
+社民党的鲁道夫·维塞尔（Wissell）被任命为劳工部长。
 
 @interior
-title: Interior Ministry
-subtitle: Taking the Interior Ministry is expected of us. The Interior Ministry controls domestic security.
-unavailable-subtitle: We do not have enough leverage.
+title: 内政部
+subtitle: 由我们出任内政部长是众望所归。内政部掌管国内安全事务。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
 choose-if: leverage >= 5
 view-if: interior_minister_party != "SPD"
 on-arrival: leverage -= 5; interior_minister_party = "SPD"; interior_minister = "Severing"
 go-to: ministries
 
-Carl Severing of the SPD has been appointed Interior Minister.
+社民党的卡尔·泽韦林（Severing）被任命为内政部长。
 
 @finance
-title: Finance Ministry
-subtitle: The Finance Ministry controls the government budget and taxes.
-unavailable-subtitle: We do not have enough leverage.
+title: 财政部
+subtitle: 财政部掌管政府预算与税收。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: finance_minister_party != "SPD"
 on-arrival: leverage -= 10; finance_minister_party = "SPD"; finance_minister = "Hilferding"
 go-to: ministries
 
-Rudolf Hilferding of the SPD has been appointed Finance Minister.
+社民党的鲁道夫·希法亭（Hilferding）被任命为财政部长。
 
 @economic
-title: Economic Ministry
-subtitle: The Economic Ministry controls broader economic policy.
-unavailable-subtitle: We do not have enough leverage.
+title: 经济部
+subtitle: 经济部掌管更广泛的经济政策。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: economic_minister_party != "SPD"
 on-arrival: leverage -= 10; economic_minister_party = "SPD"; economic_minister = "Schmidt"
 go-to: ministries
 
-Robert Schmidt of the SPD has been appointed Economic Minister.
+社民党的罗伯特·施密特（Schmidt）被任命为经济部长。
 
 @justice
-title: Justice Ministry
-subtitle: The Justice Ministry controls the courts.
-unavailable-subtitle: We do not have enough leverage.
+title: 司法部
+subtitle: 司法部掌管法院系统。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: justice_minister_party != "SPD"
 on-arrival: leverage -= 10; justice_minister_party = "SPD"; justice_minister = "Radbruch"
 go-to: ministries
 
-Gustav Radbruch of the SPD has been appointed Justice Minister.
+社民党的古斯塔夫·拉德布鲁赫（Radbruch）被任命为司法部长。
 
 @foreign
-title: Foreign Ministry
-subtitle: This is usually the domain of Gustav Stresemann of the DVP.
-unavailable-subtitle: We do not have enough leverage.
+title: 外交部
+subtitle: 该职位通常由DVP的古斯塔夫·施特雷泽曼（Stresemann）担任。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
-choose-if: leverage >= 10 
+choose-if: leverage >= 10
 view-if: foreign_minister_party != "SPD"
 on-arrival: leverage -= 10; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"
 go-to: ministries
 
-Rudolf Breitscheid of the SPD has been appointed Foreign Minister.
+社民党的鲁道夫·布赖特沙伊德（Breitscheid）被任命为外交部长。
 
 
 @agriculture
-title: Agricultural Ministry
-subtitle: This is not our usual domain.
-unavailable-subtitle: We do not have enough leverage.
-choose-if: leverage >= 10 
+title: 农业部
+subtitle: 这不是我们一贯的职责范围。
+unavailable-subtitle: 我们的筹码不足。
+choose-if: leverage >= 10
 view-if: agriculture_minister_party != "SPD"
 on-arrival: leverage -= 10; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"
 go-to: ministries
 tags: mins_emergency
 
-Fritz Baade of the SPD has been appointed Agriculture Minister.
+社民党的弗里茨·巴德（Baade）被任命为农业部长。
 
 @reichswehr
-title: Reichswehr Ministry
-subtitle: The Ministry responsible for the armed forces is not typically our domain; General Groener and the bourgeois-conservatives will be displeased.
-unavailable-subtitle: We do not have enough leverage.
+title: 国防部
+subtitle: 负责武装力量的部委通常不归我们管辖；格勒纳（Groener）将军及资产阶级保守派将不悦。
+unavailable-subtitle: 我们的筹码不足。
 tags: mins_emergency
-choose-if: leverage >= 15 
+choose-if: leverage >= 15
 view-if: reichswehr_minister_party != "SPD"
 on-arrival: leverage -= 15; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"
 go-to: ministries
 
-Julius Leber of the SPD has been appointed Reichswehr Minister.
+社民党的尤利乌斯·勒贝尔（Leber）被任命为国防部长。
 
 
 
 @no_more
-title: No more ministries.
+title: 不再增加部委。
 on-arrival: labor_dissent += 10 if historical_mode and labor_minister_party != "SPD"; antifa_gov = 0
-subtitle: [? if leverage >= 10 : We still have some more leverage to gain ministries. ?][? if leverage < 10 : We do not have much leverage left. ?]
+subtitle: [? if leverage >= 10 : 我们还有筹码可换取更多部委。 ?][? if leverage < 10 : 我们的筹码所剩不多了。 ?]
 tags: mins_emergency
 go-to: agenda_reb
 
-This coalition arrangement is tolerable to all.
+这一联盟安排各方都能接受。
 
 @drop_labor
-title: Drop the Labor Ministry.
+title: 放弃劳工部。
 view-if: labor_minister_party = "SPD"
 on-arrival: labor_minister_party = "Z" if antifa_gov != 1; labor_minister = "Stegerwald" if antifa_gov != 1; leverage += 5; labor_minister_party = "KPD" if antifa_gov
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_interior
-title: Drop the Interior Ministry.
+title: 放弃内政部。
 view-if: interior_minister_party = "SPD"
 on-arrival: interior_minister_party = "Z" if antifa_gov != 1; interior_minister = "Wirth" if antifa_gov != 1; leverage += 5; interior_minister_party = "KPD" if antifa_gov
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_finance
-title: Drop the Finance Ministry.
+title: 放弃财政部。
 view-if: finance_minister_party = "SPD"
 on-arrival: leverage += 10; finance_minister_party = "Z"; finance_minister = "Köhler"
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_economic
-title: Drop the Economic Ministry.
+title: 放弃经济部。
 view-if: economic_minister_party = "SPD"
 on-arrival: leverage += 10; economic_minister_party = "DDP"; economic_minister = "Dietrich"
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_justice
-title: Drop the Justice Ministry.
+title: 放弃司法部。
 view-if: justice_minister_party = "SPD"
 on-arrival: justice_minister_party = "DDP"; justice_minister = "Koch-Weser"; leverage += 10;
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_foreign
-title: Drop the Foreign Ministry.
+title: 放弃外交部。
 view-if: foreign_minister_party = "SPD"
 on-arrival: leverage += 10; foreign_minister_party = "Z"; foreign_minister = "Wirth"
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_agriculture
-title: Drop the Agriculture Ministry.
+title: 放弃农业部。
 view-if: agriculture_minister_party = "SPD"
 on-arrival: agriculture_minister_party = "DDP"; agriculture_minister = "Dietrich"; leverage += 10
 tags: drop_mins_emergency
 go-to: ministries
 
 @drop_reichswehr
-title: Drop the Reichswehr Ministry.
+title: 放弃国防部。
 view-if: reichswehr_minister_party = "SPD"
 on-arrival: reichswehr_minister_party = "DDP"; reichswehr_minister = "Gessler"; leverage += 15;
 tags: drop_mins_emergency
 go-to: ministries
 
 @constitutional
-view-if: not constitution_decided 
+view-if: not constitution_decided
 on-arrival: constitution_decided = 1
 
-We can push through as many constitutional reforms as we want now that we hold de-facto power.
+我们现在事实上掌握权力，可以推动任何我们想要的宪法改革。
 
-- @vote_threshold: Change the vote threshold.
-- @constructive_vonc: Ban non-constructive votes of no confidence.
-- @presidential_powers: Reduce presidential powers.
-- @supreme_soviet: Empower work councils to make them the new basis of governance.
-- @agenda_reb: We have done enough in this department. Next.
+- @vote_threshold: 修改选票门槛。
+- @constructive_vonc: 禁止非建设性不信任投票。
+- @presidential_powers: 削减总统权力。
+- @supreme_soviet: 赋予工人委员会更大权力，使其成为新的治理基础。
+- @agenda_reb: 这一领域我们已做得够多了。下一项。
 #- @constitutional_bans: Allow the banning of anti-constitutional parties.
 #- @constitutional_convention: Hold a constitutional convention to draft a wholly new constitution for the country.
 
 @vote_threshold
-subtitle: Change the vote threshold to 5% for parties to be represented in the Reichstag.
+subtitle: 将政党进入国会所需的选票门槛提高至 5%。
 view-if: electoral_threshold = 0
 
 # The left is opposed to this.
 
-Some political thinkers believe that the proliferation of minor parties is responsible for the instability of the republic. They believe that a higher electoral threshold will reduce the influence of small radical parties. Parties that win a plurality in a constituency will maintain their representation, a gift to regional parties such as the [+ bvp_name +]. 
+一些政治思想家认为，小党林立是共和国不稳定的根源。他们认为，更高的选举门槛能减少激进小党的影响力。在某一选区获得相对多数的政党仍将保有代表权——这对 [+ bvp_name +] 等地区性政党而言是个利好。
 
-The smaller parties will obviously oppose this reform. [? if z_relation > 30 : The Center Party supports this reform, while their [+ bvp_name +] partners oppose it. ?] [? if kpd_relation > 50 and kpd_normalized >= 0.1 : Perhaps surprisingly, the KPD supports this reform. ?] [? if nsdap_normalized >= 0.2 : The NSDAP supports this reform, as they believe they have something to gain. ?]
+小党显然会反对此项改革。[? if z_relation > 30 : 中央党支持此项改革，而其 [+ bvp_name +] 伙伴则反对。 ?] [? if kpd_relation > 50 and kpd_normalized >= 0.1 : 或许令人意外，KPD 支持此项改革。 ?] [? if nsdap_normalized >= 0.2 : NSDAP 也支持此项改革，因为他们认为自己能从中获益。 ?]
 
-The SPD Left opposes this change, as they believe it to be anti-democratic.
+SPD 左翼反对这一改革，认为它有违民主精神。
 
-- @vote_threshold_2: And so it shall be.
-- @constitutional: See other reform options.
+- @vote_threshold_2: 那就这么定了。
+- @constitutional: 查看其他改革选项。
 
 
 @vote_threshold_2
@@ -854,85 +854,85 @@ go-to: constitutional
 
 # this should result in a redistribution of votes - other parties should not get so many votes anymore. maybe ddp and dvp get a recovery of middle-class votes? or maybe they flow to the others.
 
-We have passed a constitutional amendment to increase the electoral threshold to 5%. This is likely to benefit the larger parties and harm the smaller ones.
+我们通过了一项宪法修正案，将选举门槛提高至 5%。这很可能让大党受益，而损害小党的利益。
 
 
 
 @constructive_vonc
-subtitle: Votes of no confidence can only be called if an alternative plan for government formation can be passed, greatly reducing their incidence.
+subtitle: 不信任投票只能在能够提出替代组阁方案时发起，从而大幅减少其发生频率。
 view-if: constructive_vonc = 0
 
-[? if z_relation >= 30 : The Weimar Coalition parties, the DDP and Center Party, support this reform, which will greatly improve the stability of the government. ?] [? if z_relation < 30 : The DDP supports this reform, but the Center Party does not trust us enough to support the constitutional referendum. ?] The more conservative and radical right-wing parties and the KPD are in opposition, as they seem to relish in the republican system's instability.
+[? if z_relation >= 30 : 魏玛联合的两党——DDP 与中央党，支持此项改革，它将大幅改善政府的稳定性。 ?] [? if z_relation < 30 : DDP 支持此项改革，但中央党对我们的信任不足以支持这一宪法公投。 ?] 更保守与激进的右翼政党以及 KPD 反对，他们似乎乐于看到共和制度的不稳定。
 
-- @constructive_vonc_2: And so it shall be.
-- @constitutional: See other reform options.
+- @constructive_vonc_2: 那就这么定了。
+- @constitutional: 查看其他改革选项。
 
 @constructive_vonc_2
 on-arrival: constitutional_reform += 1; constructive_vonc = 1
 achievement: verfassungsreform
 go-to: constitutional
 
-We have successfully passed a constitutional amendment to ban votes of no confidence when a new government cannot be formed. Hopefully this increases the stability of our governments.
+我们成功通过了一项宪法修正案，禁止在无法组建新政府时发起不信任投票。希望这能提升政府的稳定性。
 
 @presidential_powers
-subtitle: The president can no longer dissolve the Reichstag at will, or call a *Reichsexekution* on state governments.
+subtitle: 总统不再能随意解散国会，或对邦政府发动「联邦执行」（Reichsexekution）。
 view-if: presidential_powers = 0
 
-The wide-ranging presidential powers promised by the constitution are a potential gateway to authoritarianism. Thus, we can support reforms that limit the powers of the president, ending his power to unilaterally terminate an elected government and to remove state governments.
+宪法赋予总统的广泛权力，是通往威权主义的潜在通道。因此，我们可以支持限制总统权力的改革——终结其单方面终止已选举政府、罢免邦政府的权力。
 
-The KPD is in favor of this reform, having been victims of the *Reichsexekution* in the past (when KPD-supported state governments in Thuringia and Saxony were removed). The democrats of the DDP also support this. [? if president == "Hindenburg": However, the opposition from conservatives is vehement, as they see a reduction in presidential powers as disrespectful to Hindenburg. ?] [? if z_relation <= 49 and president == "Hindenburg" : Thus, the Center Party has been influenced to oppose these reforms. ?] [? if z_relation > 49 and president == "Hindenburg" : Despite this, the Center Party supports the proposed reform. ?] [? if president == "Braun" : The Center Party supports this reform. ?]
+KPD 支持此项改革，他们曾是 *Reichsexekution* 的受害者（当 KPD 支持的图林根与萨克森邦政府被罢黜时）。DDP 的民主派也支持。[? if president == "Hindenburg": 然而，保守派强烈反对，他们认为削减总统权力是对兴登堡的不敬。 ?] [? if z_relation <= 49 and president == "Hindenburg" : 因此，中央党受其影响，反对这些改革。 ?] [? if z_relation > 49 and president == "Hindenburg" : 尽管如此，中央党仍支持所提议的改革。 ?] [? if president == "Braun" : 中央党支持此项改革。 ?]
 
-- @presidential_powers_2: And so it shall be.
-- @constitutional: See other reform options.
+- @presidential_powers_2: 那就这么定了。
+- @constitutional: 查看其他改革选项。
 
 @presidential_powers_2
 on-arrival: constitutional_reform += 1; presidential_powers = 1
 achievement: verfassungsreform
 go-to: constitutional
 
-We have successfully passed a constitutional amendment to limit presidential powers! Hopefully this results in a less authoritarian Germany.
+我们成功通过了一项宪法修正案，限制了总统权力！希望这能造就一个不那么威权化的德国。
 
 @supreme_soviet
-subtitle: Establish a new "Supreme Soviet" elected by the works councils to replace the Reichstag.
+subtitle: 设立由工人委员会选举产生的全新「最高苏维埃」以取代国会。
 view-if: nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1)
 
-Our large-scale socializations of the economy and empowerment of works councils has laid the groundwork for a transition into a full dictatorship of the proletariat, effectively turning the Reichstag into a rump parliament with little genuine power. All to the left of and including most of the SPD will vote for, but we will face immense opposition from everyone else.
+我们对经济的大规模社会化以及对工人委员会的赋权，已为向完全的无产阶级专政过渡奠定了基础，实际上将国会变为一个权力有限的残余议会。SPD 左翼及大部分中派将投票支持，但我们将面临所有其他派别的强烈反对。
 
-- @supreme_soviet_2: And so it shall be.
-- @constitutional: See other reform options.
+- @supreme_soviet_2: 那就这么定了。
+- @constitutional: 查看其他改革选项。
 
 @supreme_soviet_2
 on-arrival: constitutional_reform += 1; supreme_soviet = 1; capital_strike_progress += 15; z_relation -= 15; ddp_relation -= 25; dvp_relation -= 50; coalition_dissent += 3
 achievement: raterrepublik
 go-to: constitutional
 
-We have successfully passed a constitutional amendment to effectively make works councils the dominant body of governance in the country. 
+我们成功通过了一项宪法修正案，实际上使工人委员会成为国家的主导治理机构。
 
 @decrees
 view-if: not decree_decided
 on-arrival: decree_decided = 1; land_seizure_cost = (4 - land_reform); nationalize_budget = 4; nationalize_budget -= 1 if works_councils >= 2; nationalize_budget -= 1 if works_councils >= 3; nationalize_budget -= 1 if socializations + nationalization_progress >= 2;
 
-With our triumph over the reactionaries, we have for a short while near free-reign in molding Germany to our will. Thus various politicians in the party have eagerly drafted decrees which they now present to us for signing. If we sign too many decrees, we risk weakening confidence in the republic and damaging our relations with the bourgeois parties, however.
+随着我们战胜反动派，在短期内我们近乎可以随心所欲地塑造德国。因此，党内多位政治家热切地起草了若干法令，呈交我们签署。然而，若我们签署的法令过多，可能会损害对共和国的信心，并恶化我们与资产阶级政党的关系。
 
-- @land_seizure: Sweeping land reform to destroy the base of the reactionaries for good.
-- @mass_nationalization: Mass nationalizations of industry.
-- @wealth_seizure: Seize the Reichsbank and other assets of the rich.
-- @dnvp_ban: Ban the DNVP.
-- @dvp_ban: Ban the DVP.
-- @enable: A sixth-month long Enabling Act to speed denazification up.
-- @agenda_1: That is enough.
+- @land_seizure: 通过全面土地改革，彻底摧毁反动派的根基。
+- @mass_nationalization: 大规模工业国有化。
+- @wealth_seizure: 没收国家银行（Reichsbank）及其他富人资产。
+- @dnvp_ban: 禁止 DNVP。
+- @dvp_ban: 禁止 DVP。
+- @enable: 通过为期六个月的《授权法》以加快去纳粹化。
+- @agenda_1: 这已足够了。
 
 @land_seizure
 view-if: land_reform < 4 and not land_seizure
-subtitle: -[+ land_seizure_cost +] budget.
+subtitle: -[+ land_seizure_cost +] 预算。
 on-arrival: budget -= land_seizure_cost; land_seizure = 1; land_reform += land_seizure_cost; pro_republic -= (4*land_seizure_cost); coalition_dissent += land_seizure_cost; rural_spd += land_seizure_cost*(5*(1-dissent)); rural_nsdap -= land_seizure_cost*(4*(1-dissent)); unemployed -= land_seizure_cost if unemployed >= 5; dvp_relation -= (5*land_seizure_cost); z_relation -= (4*land_seizure_cost); left_strength += (8*land_seizure_cost); left_dissent -= (5*land_seizure_cost); rural_sol += (3*land_seizure_cost); rural_policy += land_seizure_cost; sa_strength += 25; sh_strength += 10; sa_militancy += 0.05
 
-In a sweeping program of land reform, we seize aristocratic estates and distribute them to the landless farmers working them. The bourgeois parties denounce this abuse of our post-war position, calling it unconstitutional, while the aristocrats who's lands we seize turn to the remaining Nazi insurgents for solasce.
+我们以一项全面的土地改革计划，没收贵族庄园并将其分配给在其上劳作的无地农民。资产阶级政党谴责我们滥用战后地位，称其违宪；而被没收土地的贵族则转向残余的纳粹叛乱者寻求安慰。
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @mass_nationalization
-subtitle: -[+ nationalize_budget +] budget. [? if works_councils >= 3 : Our works councils have reduced the budget necessary for this program. ?] [? if socializations >= 2: Our existing socialization policies have reduced the budget necessary for this program. ?]
+subtitle: -[+ nationalize_budget +] 预算。[? if works_councils >= 3 : 我们的工人委员会已减少该项目所需预算。 ?] [? if socializations >= 2: 我们既有的社会化政策已减少该项目所需预算。 ?]
 view-if: not mass_nationalization and not sapd_formed
 on-arrival: mass_nationalization = 1; ddp_relation -= 4; z_relation -= 5; dvp_relation -= 7; coalition_dissent += 1; capital_strike_progress += 1; pro_republic -= 6; reformist_dissent += 4
 go-to: nationalize_deficit if budget < nationalize_budget; nationalize_no_deficit if budget >= nationalize_budget
@@ -941,60 +941,60 @@ go-to: nationalize_deficit if budget < nationalize_budget; nationalize_no_defici
 on-arrival: nationalization_progress += 1; capital_strike_progress += 2; unemployed -= 3.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; new_middle_spd -= 2 if not new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 2
 achievement: wirtschaftspolitik
 
-[? if nationalization_progress == 1 : We have begun purchasing idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
+[? if nationalization_progress == 1 : 我们已开始从资本家手中收购停摆的企业[? if works_councils >= 1: ，并与赋权后的工人委员会协同运营 ?]。通过保持生产持续，我们可以抑制日益增长的失业。 ?]
 
-[? if nationalization_progress == 1 : The Left argues that this should only be a first step in the socialist transformation of the economy. Eventually, much of the economy must be brought under popular control. ?]
+[? if nationalization_progress == 1 : 左翼主张这应仅是经济社会主义转型的第一步。最终，大部分经济必须置于民众控制之下。 ?]
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @nationalize_deficit
 
-Unfortunately, we do not have the budget to begin buying out industrial facilities. Some are urging for deficit spending in order to purchase factories, while others are encouraging (currently illegal) factory takeovers by workers, or nationalization without compensation. Taking any of these actions would require a vast departure from our previous party stances.
+不幸的是，我们没有预算去开始收购工业设施。一些人主张以赤字支出来购买工厂，另一些人则鼓励（目前非法的）工人接管工厂，或在不予补偿的情况下进行国有化。采取这些行动中的任何一种，都将与我们以往的党派立场大相径庭。
 
 - @nationalize_deficit_1
 - @nationalize_without_compensation
 - @empower_workers
-- @decrees: No, we should not do this.
+- @decrees: 不，我们不应这么做。
 
 
 @nationalize_deficit_1
-title: Take a budget deficit to fund the nationalization program.
+title: 接受财政赤字以资助国有化计划。
 choose-if: left_strength > reformist_strength + center_strength or woytinsky_advisor == 1
-subtitle: [? if woytinsky_advisor: Woytinsky can bring us around to supporting a budget deficit. ?]
-unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: The party does not yet support budget deficits for this purpose. ?] [? if not woytinsky_advisor : Perhaps bringing on an advisor might help make this action palatable? ?]
+subtitle: [? if woytinsky_advisor: 沃廷斯基（Woytinsky）能说服我们支持财政赤字。 ?]
+unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: 党尚不支持为此目的接受财政赤字。 ?] [? if not woytinsky_advisor : 或许引入一位顾问能使这一行动更易被接受？ ?]
 on-arrival: nationalization_progress += 1; capital_strike_progress += 3; unemployed -= 3 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3; budget -= nationalize_budget; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 5*(1-dissent); coalition_dissent += 2; dvp_relation -= 6; z_relation -= 4; new_middle_spd -= 3; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 3; economy_goal_completed += 1; inflation += 3
 achievement: wirtschaftspolitik
 
-[? if woytinsky_advisor: Most of the party, even on the left, are opposed to budget deficits for any purpose, with the exception of Wladimir Woytinsky. While he did not originally support the left's "transformational" plan, he has come around, and has persuaded the party and the Finance Ministry to support budget deficits in limited cases, for the purpose of exiting from the depression. ?]
+[? if woytinsky_advisor: 党内多数人，甚至左翼，都反对为任何目的接受财政赤字，唯一的例外是弗拉基米尔·沃廷斯基（Wladimir Woytinsky）。他原本并不支持左翼的「转型」计划，但已转变立场，并说服党与财政部在有限情况下支持财政赤字，以助走出萧条。 ?]
 
-[? if nationalization_progress == 1 : We have begun purchasing idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
+[? if nationalization_progress == 1 : 我们已开始从资本家手中收购停摆的企业[? if works_councils >= 1: ，并与赋权后的工人委员会协同运营 ?]。通过保持生产持续，我们可以抑制日益增长的失业。 ?]
 
-[? if nationalization_progress == 1 : The Left argues that this should only be a first step in the socialist transformation of the economy. Eventually, much of the economy must be brought under popular control. ?]
+[? if nationalization_progress == 1 : 左翼主张这应仅是经济社会主义转型的第一步。最终，大部分经济必须置于民众控制之下。 ?]
 
-[? if nationalization_progress > 1 : We purchase additional underutilized enterprises and run them in a coordinated socialist fashion with the works councils, hiring formerly laid off workers. A significant portion of the economy is now under public control. ?]
+[? if nationalization_progress > 1 : 我们收购更多未充分利用的企业，并以协同社会主义方式与工人委员会共同运营，重新雇用此前被裁减的工人。经济中相当一部分如今已置于公众控制之下。 ?]
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @nationalize_without_compensation
-title: Nationalize without compensation.
-subtitle: There is no reason why we should not simply take over idle factories. This is likely to provoke a confrontation with the capitalists.
-unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: The bulk of the party does not support this quasi-legal action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?]
+title: 不予补偿地实行国有化。
+subtitle: 我们没有理由不直接接管闲置工厂。这很可能引发与资本家的对抗。
+unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: 党内大部分人不支持这种半合法行动。 ?] [? if judicial_reform < 3 : 司法系统将反对此行动。 ?]
 choose-if: left_strength > reformist_strength + center_strength and judicial_reform >= 3
 on-arrival: nationalization_progress += 1; capital_strike_progress += 7; coup_progress += 3; unemployed -= 2.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3 and unemployed >= 3; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 6*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 8; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 4
 achievement: wirtschaftspolitik
 
-The capitalists are, predictably, up in arms about our policy of nationalization without compensation. They call it illegal expropriation, and it is. Nevertheless, it is clear that they have failed by keeping their factories idle, and we must take radical action.
+不出所料，资本家对我们不予补偿的国有化政策极为愤怒。他们称之为非法征收，确实如此。然而显而易见的是，他们已任由工厂闲置而失败，我们必须采取激进行动。
 
-[? if nationalization_progress == 1 : We have begun acquiring idling enterprises from the capitalists[? if works_councils >= 1: , and running them in coordination with empowered works councils ?]. By keeping production going, we can stave off the rising unemployment. ?]
+[? if nationalization_progress == 1 : 我们已开始从资本家手中接管停摆的企业[? if works_councils >= 1: ，并与赋权后的工人委员会协同运营 ?]。通过保持生产持续，我们可以抑制日益增长的失业。 ?]
 
-[? if nationalization_progress > 1 : We acquired additional underutilized enterprises and run them in a coordinated socialist fashion with the works councils, hiring formerly laid off workers. A significant portion of the economy is now under public control. ?]
+[? if nationalization_progress > 1 : 我们接管更多未充分利用的企业，并以协同社会主义方式与工人委员会共同运营，重新雇用此前被裁减的工人。经济中相当一部分如今已置于公众控制之下。 ?]
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @empower_workers
-title: Empower workers to take over factories.
-subtitle: We can promise to legalize factory occupations, giving the factories over to worker unions. This is highly confrontational, and would likely provoke a reaction from right-wing militants as well as capitalists.
-unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : The bulk of the party does not support this radical action. ?] [? if judicial_reform < 3 : The judiciary would oppose this action. ?] [? if rb_militancy < 0.25 : If we increased the strength of our paramilitary forces, perhaps we could do this. ?] [? if works_councils < 1 : We need the support of the works councils first. ?]
+title: 赋权工人接管工厂。
+subtitle: 我们可承诺将工厂占领合法化，把工厂交给工人工会。这极具对抗性，可能引发右翼民兵及资本家的反应。
+unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : 党内大部分人不支持这一激进行动。 ?] [? if judicial_reform < 3 : 司法系统将反对此行动。 ?] [? if rb_militancy < 0.25 : 若我们加强准军事力量，或许就能做到。 ?] [? if works_councils < 1 : 我们首先需要工人委员会的支持。 ?]
 choose-if: left_strength > reformist_strength + neorevisionist_strength and (judicial_reform >= 3 or rb_militancy >= 0.25) and works_councils >= 1
 on-arrival: nationalization_progress += 1; capital_strike_progress += 6; unemployed -= 3 if unemployed >= 6; unemployed -= 1.5 if works_councils >= 3 and unemployed > 4; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; workers_nsdap -= 5*(1-dissent); unemployed_nsdap -= 5*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 10; factory_takeovers += 1; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 3
 achievement: wirtschaftspolitik
