@@ -999,165 +999,165 @@ choose-if: left_strength > reformist_strength + neorevisionist_strength and (jud
 on-arrival: nationalization_progress += 1; capital_strike_progress += 6; unemployed -= 3 if unemployed >= 6; unemployed -= 1.5 if works_councils >= 3 and unemployed > 4; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; dvp_relation -= 10; z_relation -= 8; ddp_relation -= 8; workers_nsdap -= 5*(1-dissent); unemployed_nsdap -= 5*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 10; factory_takeovers += 1; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 3
 achievement: wirtschaftspolitik
 
-The capitalists are, predictably, up in arms about our policy of legalizing factory occupations. They call it illegal expropriation, and it is. Nevertheless, it is clear that they have failed, and we must take radical action.
+不出所料，资本家对我们将工厂占领合法化的政策极为愤怒。他们称之为非法征收，确实如此。然而显而易见的是，他们已失败，我们必须采取激进行动。
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @wealth_seizure
 view-if: not wealth_seized
-subtitle: +6 budget.
+subtitle: +6 预算。
 on-arrival: wealth_seized = 1; upper_tax_rates += 3; coalition_dissent += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 6; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6
 
-We seize the assets of the rich and even the Reichsbank in a mass redistribution of wealth, greatly increasing our budget. Of course, the bourgeoisie and their parties are immediately up in arms about this, threatening our provisional governing coalition.
+我们没收富人的资产，甚至包括国家银行（Reichsbank）的资产，进行大规模财富再分配，大幅增加了我们的预算。当然，资产阶级与他们的政党立即为此愤怒，威胁要瓦解我们的临时执政联盟。
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @dnvp_ban
 view-if: not dnvp_banned
-subtitle: We will deny the remaining reactionaries a party.
+subtitle: 我们要让残余反动派失去一个政党。
 on-arrival: dnvp_banned = 1; dvp_relation -= 5; z_relation -= 4 if z_party_leader != "Joos"; pro_republic -= 4; old_middle_dnvp *= 0.9; rural_dnvp *= 0.95; new_middle_dnvp *= 0.8; sh_strength *= 0.9; sh_militancy -= 0.05
 
-Recognizing the DNVP's own participation in the far-right struggle against the Republic, we have banned their party as well, pre-empting a potential moderation in the absence of Hugenberg to lead them.
+鉴于 DNVP 自身亦参与了反共和的极右翼斗争，我们也已禁止该党，以防其在缺乏胡根贝格（Hugenberg）领导下出现潜在的温和化转向。
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @dvp_ban
 view-if: not dvp_banned and (left_strength > reformist_strength + center_strength) and dnvp_banned
-subtitle: The DVP are hardly better than the other reactionaries.
+subtitle: DVP 与其他反动派也没好到哪去。
 on-arrival: dvp_banned = 1; reformist_dissent += 15; center_dissent += 5; z_relation -= 10; ddp_relation -= 10; coalition_dissent += 2; pro_republic -= 7; new_middle_spd -= 4; old_middle_spd -= 5
 
-We have banned the DVP, as well as many smaller adjacent bourgeois reactionary parties. To allow them to continue to exist in our new Republic is a threat to our socialist principles. Unfortunately, Zentrum and the DDP/DStP do not see it that way.
+我们已禁止 DVP 以及众多相近的资产阶级反动小党。容许它们继续存在于我们的新共和国中，是对社会主义原则的威胁。可惜，中央党与 DDP/DStP 并不这样看。
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @enable
 view-if: not enabling_act
-subtitle: This will be controversial.
+subtitle: 这将引发争议。
 on-arrival: pro_republic -= 10; z_relation -= 6; z_relation -= 6 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 12; enabling_act = 1
 
-We pass an Enabling Act, giving the cabinet greatly heightened powers to combat the Nazis and whipe them out entirely. 
+我们通过了《授权法》，赋予内阁极大的权力以对抗纳粹并彻底将其铲除。
 
-- @decrees_2: Excellent.
+- @decrees_2: 太好了。
 
 @decrees_2
 go-to: decrees
 
-We may continue decrees.
+我们可以继续颁布法令。
 
 @agenda_1
 go-to: agenda_gov if not spd_rebel; agenda_reb if spd_rebel
 
-We have other items on our agenda.
+我们的议程上还有其他事项。
 
 @communists
 on-arrival: communists_decided = 1
-view-if: kpd_relation < 45 and not communists_decided 
+view-if: kpd_relation < 45 and not communists_decided
 
-The communists did not help us in our uprising against Hitler. They also arguably contributed to his rise to power through their own extremist anticonstitutional rhetoric. We could ban the party as well as the NSDAP, though the Left is vehemently opposed.
+共产党人未在我们对希特勒的起义中助我们一臂之力。他们也可以说，通过自身的极端主义反宪法言论，助长了希特勒的崛起。我们或可一并禁止 NSDAP 与 KPD，尽管左翼对此强烈反对。
 
-- @ban: Ban the KPD
-- @agenda_reb: We will allow the KPD to continue to exist.
+- @ban: 禁止 KPD。
+- @agenda_reb: 我们将允许 KPD 继续存在。
 
 @ban
 on-arrival: kpd_banned = 1; left_dissent += 40; workers_spd -= 5; unemployed_spd -= 5; new_middle_spd += 2; old_middle_spd += 2; z_relation += 10; ddp_relation += 5; dvp_relation += 5
 
-We have banned the KPD. Many workers desert, agitated by the KPD to do so, while our party Left has become increasingly upset  with our party's policy.
+我们已禁止 KPD。许多工人在 KPD 煽动下脱党，党内左翼则对党的政策日益不满。
 
-- @agenda_reb: Continue...
+- @agenda_reb: 继续……
 
 @council
 view-if: (((kpd_relation >= 60 and ((left_strength >= reformist_strength + neorevisionist_strength) or (in_left_front == 1))) and supreme_soviet != 1 and not (nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1))) and chancellorship_decided and constitution_decided) and reichstag_decided != 1
 on-arrival: reichstag_decided = 1
 
-Many on our party's left as well as in the KPD blame the takeover of the country by the Nazis on liberal democracy itself and call for the dissolution of the Reichstag and its replacement with a "Supreme Soviet" of worker's councils. This idea is opposed by the right of our party, and our bourgeois partners.
+党内左翼及 KPD 中的许多人将纳粹掌控国家归咎于自由民主制度本身，呼吁解散国会并以工人委员会的「最高苏维埃」取而代之。这一构想受到我党右翼及我们的资产阶级伙伴的反对。
 
-- @supreme_soviet_3: And so it shall be.
-- @bad_idea: No, we will keep the Reichstag.
+- @supreme_soviet_3: 那就这么定了。
+- @bad_idea: 不，我们将保留国会。
 
 @supreme_soviet_3
 on-arrival: economic_democracy += (3-works_councils) if works_councils < 3; works_councils = 3 if works_councils < 3; kpd_relation += 20; left_strength += 15; labor_strength += 10; labor_dissent += 5; left_dissent -= 10; reformist_dissent += 10; neorevisionist_dissent += 5; constitutional_reform += 1; supreme_soviet = 1; capital_strike_progress += 15; z_relation -= 15; ddp_relation -= 25; dvp_relation -= 50
 go-to: agenda_reb
 
-We have enshrined a new Supreme Soviet in our constitution. Let us hope this move towards a dictatorship of the proletariat puts an end to the risk of fascism for good.
+我们已在宪法中确立新的「最高苏维埃」。希望这一向无产阶级专政的迈进，能彻底消除法西斯主义的风险。
 
 @bad_idea
 on-arrival: left_dissent += 5; kpd_relation -= 5
 go-to: agenda_reb
 
-We refuse to instate a classist and fundamentally undemocratic form of governance. What were we fighting against if not totalitarianism?
+我们拒绝建立一种阶级化且根本上不民主的治理形式。如果不是为了反对极权主义，我们的奋斗究竟为何？
 
 @agenda_kpd
 view-if: president == "Thälmann"
 on-arrival: workers_kpd += 10; workers_spd -= 5; unemployed_kpd += 15; unemployed_spd -= 5; unemployed_nsdap -= 5; rfb_strength += 100; rb_strength -= 75; rfb_militancy += 0.05; in_left_front = 1; in_weimar_coalition = 0; in_grand_coalition = 0; in_popular_front = 0; in_spd_majority = 0;
 
-The defeat of the reactionaries leaves us and our socialist partners in near uncontested control over the country. [? if president == "Thälmann" : However, the KPD has a significant upper hand in this relationship, so we must be careful. ?]
+反动派的失败使我们及社会主义伙伴几乎掌控了整个国家。[? if president == "Thälmann" : 然而，KPD 在这一关系中占据明显上风，我们必须谨慎应对。 ?]
 
-- @the_agenda_kpd: Now, the agenda.
-- @the_agenda_spd: Now, the agenda.
-- @the_agenda_power: Now, the agenda.
+- @the_agenda_kpd: 现在，议程。
+- @the_agenda_spd: 现在，议程。
+- @the_agenda_power: 现在，议程。
 
 @the_agenda_kpd
 view-if: president == "Thälmann" and presidential_powers != 1
 on-arrival: negotiating_power = kpd_relation; negotiating_power += (spd_votes - kpd_votes); negotiating_power *= ((rb_strength*rb_militancy)/(rfb_strength*rfb_militancy)); negotiating_power -= ((left_strength/100)*left_dissent); negotiating_power *= 1.25 if kpd_party_leader == "Conciliators"; negotiating_power *= 0.75 if peoples_party = 1
 go-to: menu
 
-Unfortunately, we do not have much control over the agenda of the new Germany, as Thälmann is President and the Presidency retains its overarching powers. [? if kpd_party_leader == "Conciliators" : Luckily, the Conciliator leadership of the KPD will make them more amenable to moderation. ?]
+不幸的是，由于台尔曼担任总统而总统职位保留了其包罗万象的权力，我们对新德国的议程几无掌控。[? if kpd_party_leader == "Conciliators" : 所幸 KPD 由调和派领导，他们较为温和。 ?]
 
-President Thälmann has prepared multiple decrees to pass via Article 48, and we will not be able to negotiate away all of them. 
+台尔曼总统已准备通过宪法第 48 条颁布多项法令，我们无法谈判取消所有这些法令。
 
 @menu
 
 DEBUG: [+ negotiating_power +]
 
-- @chancellorship_kpd: The cabinet.
-- @party_legality: The parties.
-- @constitution: The constitution.
-- @decrees_kpd: The country.
-- @noske: It is clear negotiation won't work. We must crush the KPD.
+- @chancellorship_kpd: 内阁。
+- @party_legality: 政党合法性。
+- @constitution: 宪法。
+- @decrees_kpd: 国家。
+- @noske: 显然谈判行不通。我们必须粉碎 KPD。
 
 @chancellorship_kpd
 view-if: not chancellorship_decided
 on-arrival: chancellorship_decided = 1
 
-With the reactionaries rising up upon Thälmann's election, he never managed to appoint a true cabinet, or chancellor. We can allow the KPD to have the Chancellorship for more negotiating power, or nominate Breitscheid as is mostly expected by the KPD.
+随着台尔曼当选后反动派起义，他始终未能任命真正的内阁或总理。我们可以让 KPD 出任总理以换取更多谈判筹码，或如 KPD 大多数人期望的那样提名布赖特沙伊德（Breitscheid）。
 
-- @pieck: Accept the KPD pick, Wilhelm Pieck.
-- @eberlein: Accept the KPD pick, Hugo Eberlein.
-- @breitscheid_kpd: Nominate Rudolf Breitscheid from our party.
-- @ossietzky: Perhaps the independent Carl von Ossietzky as a compromise?
-- @go_back: Back.
+- @pieck: 接受 KPD 的人选——威廉·皮克（Pieck）。
+- @eberlein: 接受 KPD 的人选——胡戈·埃伯莱因（Eberlein）。
+- @breitscheid_kpd: 提名我党的鲁道夫·布赖特沙伊德。
+- @ossietzky: 或许独立人士卡尔·冯·奥西茨基（Ossietzky）作为妥协人选？
+- @go_back: 返回。
 
 @pieck
 view-if: kpd_party_leader != "Conciliators"
 on-arrival: negotiating_power += 10; chancellor_party = "KPD"; chancellor = "Pieck"; reformist_dissent += 5; neorevisionist_dissent += 5; center_dissent += 5
 
-We accept the KPD's choice, Wilhelm Pieck, conceding significant control over the cabinet to the KPD.
+我们接受 KPD 的人选威廉·皮克（Pieck），将对内阁的重大控制权让给了 KPD。
 
-- @cabinet_thalmann: Now for the cabinet.
+- @cabinet_thalmann: 现在轮到组建内阁。
 
 @eberlein
 view-if: kpd_party_leader == "Conciliators"
 on-arrival: negotiating_power += 10; chancellor_party = "KPD"; chancellor = "Eberlein"; reformist_dissent += 5; neorevisionist_dissent += 5
 
-We accept the KPD's choice, Hugo Eberlein, conceding significant control over the cabinet to the KPD.
+我们接受 KPD 的人选胡戈·埃伯莱因（Eberlein），将对内阁的重大控制权让给了 KPD。
 
-- @cabinet_thalmann: Now for the cabinet.
+- @cabinet_thalmann: 现在轮到组建内阁。
 
 @breitscheid_kpd
 choose-if: negotiating_power >= 10
-unavailable_subtitle: We lack the negotiating power to push for this.
+unavailable_subtitle: 我们的谈判筹码不足以推动此事。
 on-arrival: negotiating_power -= 10; chancellor_party = "SPD"; chancellor = "Breitscheid"
 
-We nominate our own candidate, Rudolf Breitscheid, which the KPD accepts. Our party is reassured, though this gives us less power to object other moves by the KPD.
+我们提名了自己的候选人鲁道夫·布赖特沙伊德，KPD 接受了。我党人心稍定，但我们对 KPD 其他举动的反对力量随之削弱。
 
-- @cabinet_thalmann: Interesting.
+- @cabinet_thalmann: 有意思。
 
 @ossietzky
 on-arrival: chancellor_party = "I"; chancellor = "Ossietzky"
 
-As a compromise, we have nominated Carl von Ossietzky, an independent socialist. The KPD is surprised, but cautiously accepts. Let's hope that Carl von Ossietzky doesn't have his own agenda and is happy to be a figurehead.
+作为妥协人选，我们提名了独立社会主义者卡尔·冯·奥西茨基（Ossietzky）。KPD 颇感惊讶，但谨慎地接受了。希望奥西茨基没有自己的算盘，乐于充当一个名义上的领导人。
 
-- @cabinet_thalmann: Let's hope...
+- @cabinet_thalmann: 我们希望如此……
 
 @go_back
 on-arrival: chancellorship_decided = 0
@@ -1166,103 +1166,103 @@ go-to: menu
 @cabinet_thalmann
 on-arrival: cabinet_stubborn = 50; cabinet_stubborn += 10 if kpd_party_leader == "Conciliators"; cabinet_stubborn -= 20 if chancellor_party == "KPD"; in_left_front = 1; spd_toleration = 0; spd_in_government = 1
 
-The KPD, emboldened by their recent victories, has decided to themselves take positions on the cabinet rather than simply tolerate a Social Democratic one. 
+KPD 在近期胜利的鼓舞下，已决定自己在内阁中担任职位，而非仅仅容忍一个由社民党组成的内阁。
 
-Their requests are for control over the Labor Ministry, the Economic Ministry, the Foreign Ministry, the Interior Ministry, and the Finance Ministry. [? if chancellor_party == "KPD" : Luckily, conceding the position of chancellor will make it easier to negotiate them down from these demands. ?]
+他们要求掌控劳工部、经济部、外交部、内政部与财政部。[? if chancellor_party == "KPD" : 所幸，让出总理一职将使我们更易在这些要求上向 KPD 施压。 ?]
 
-- @unconditional_accept: We will accept the KPD's ministry demands, and take the rest for ourselves.
-- @negotiate: We will convince the KPD to drop some of their demands.
-- @sole_spd: We will convince the KPD to allow an all-SPD cabinet.
+- @unconditional_accept: 我们接受 KPD 的部委要求，其余部门归我们。
+- @negotiate: 我们将说服 KPD 放弃部分要求。
+- @sole_spd: 我们将说服 KPD 同意全 SPD 内阁。
 
 @unconditional_accept
 on-arrival: kpd_relation += 10; negotiating_power += 10; negotiating_power += 10 if chancellor_party = "KPD"; labor_minister_party = "KPD"; economic_minister_party = "KPD"; interior_minister_party = "KPD"; foreign_minister_party = "KPD"; finance_minister_party = "KPD"; justice_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
 
-We concede to the KPD's ministry demands, to their surprise. This will make negotiating on other matters easier.
+我们让步，接受 KPD 的部委要求，他们颇感意外。这将使其他议题的谈判更为顺利。
 
-- @menu: Now, onwards...
+- @menu: 那么继续……
 
 @negotiate
 choose-if: (negotiating_power >= (cabinet_stubborn/3)) or chancellor_party == "KPD"
 on-arrival: cabinet_spot = 0; negotiating_power -= (cabinet_stubborn/3) if chancellor_party != "KPD"; individual_cabinet = ((cabinet_stubborn*(2/3))/5); labor_minister_party = "KPD"; economic_minister_party = "KPD"; interior_minister_party = "KPD"; foreign_minister_party = "KPD"; finance_minister_party = "KPD"; justice_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
-unavailable_subtitle: We do not have the negotiating power to negotiate them down from these demands.
+unavailable_subtitle: 我们没有足够的谈判筹码使他们让步。
 go-to: begin_ministries
 
-The KPD is happy to moderate their demands for ministries.
+KPD 乐意降低对部委的要求。
 
 @begin_ministries
 
-Which ministries will we pursuade them to drop?
+我们要说服他们放弃哪些部委？
 
-- @sway_labor: Persuade them to drop the Labor Ministry.
-- @sway_interior: Persuade them to drop the Interior Ministry.
-- @sway_finance: Persuade them to drop the Finance Ministry.
-- @sway_economic: Persuade them to drop the Economic Ministry.
-- @sway_foreign: Persuade them to drop the Foreign Ministry.
-- @let_it_be: This is an acceptable cabinet arrangement.
+- @sway_labor: 说服他们放弃劳工部。
+- @sway_interior: 说服他们放弃内政部。
+- @sway_finance: 说服他们放弃财政部。
+- @sway_economic: 说服他们放弃经济部。
+- @sway_foreign: 说服他们放弃外交部。
+- @let_it_be: 这是一种可以接受的内阁安排。
 
 @sway_labor
 view-if: labor_minister_party == "KPD"
 choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
-unavailable_subtitle: The KPD is unwilling to negotiate any further.
+unavailable_subtitle: KPD 不愿意再让步。
 on-arrival: labor_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
 
-We have successfully convinced the KPD to let us have the Labor Ministry.
+我们成功说服 KPD 让我们出任劳工部长。
 
-- @begin_ministries: Excellent.
+- @begin_ministries: 太好了。
 
 @sway_interior
 view-if: interior_minister_party == "KPD"
 choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
-unavailable_subtitle: The KPD is unwilling to negotiate any further.
+unavailable_subtitle: KPD 不愿意再让步。
 on-arrival: interior_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
 
-We have successfully convinced the KPD to let us have the Interior Ministry.
+我们成功说服 KPD 让我们出任内政部长。
 
-- @begin_ministries: Excellent.
+- @begin_ministries: 太好了。
 
 @sway_finance
 view-if: finance_minister_party == "KPD"
 choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
-unavailable_subtitle: The KPD is unwilling to negotiate any further.
+unavailable_subtitle: KPD 不愿意再让步。
 on-arrival: finance_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
 
-We have successfully convinced the KPD to let us have the Finance Ministry.
+我们成功说服 KPD 让我们出任财政部长。
 
-- @begin_ministries: Excellent.
+- @begin_ministries: 太好了。
 
 @sway_economic
 view-if: economic_minister_party == "KPD"
 choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
-unavailable_subtitle: The KPD is unwilling to negotiate any further.
+unavailable_subtitle: KPD 不愿意再让步。
 on-arrival: economic_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
 
-We have successfully convinced the KPD to let us have the Economic Ministry.
+我们成功说服 KPD 让我们出任经济部长。
 
-- @begin_ministries: Excellent.
+- @begin_ministries: 太好了。
 
 @sway_foreign
 view-if: foreign_minister_party == "KPD"
 choose-if: (negotiating_power >= individual_cabinet) and cabinet_spot < 4
-unavailable_subtitle: The KPD is unwilling to negotiate any further.
+unavailable_subtitle: KPD 不愿意再让步。
 on-arrival: foreign_minister_party = "SPD"; negotiating_power -= individual_cabinet; individual_cabinet += 5; cabinet_spot += 1
 
-We have successfully convinced the KPD to let us have the Foreign Ministry.
+我们成功说服 KPD 让我们出任外交部长。
 
-- @begin_ministries: Excellent.
+- @begin_ministries: 太好了。
 
 @let_it_be
 view-if: cabinet_spot >= 1
 go-to: menu
 
-We have concluded the cabinet talks.
+我们已结束内阁谈判。
 
 @sole_spd
 choose-if: chancellor_party != "SPD" and negotiating_power >= (cabinet_stubborn*2)
 on-arrival: negotiating_power -= (cabinet_stubborn*2); labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; economic_minister_party = "SPD"; foreign_minister_party = "SPD"; justice_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
 
-We manage to convince the KPD to allow us control over cabinet. Let's hope this will be worth it.
+我们设法说服 KPD 让我们掌控内阁。希望这是值得的。
 
-- @menu: Onwards...
+- @menu: 继续……
 
 @party_legality
 view-if: party_decided != 1
