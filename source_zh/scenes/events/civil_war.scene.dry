@@ -1268,41 +1268,41 @@ on-arrival: negotiating_power -= (cabinet_stubborn*2); labor_minister_party = "S
 view-if: party_decided != 1
 on-arrival: party_decided = 1; party_stubborn = 50 if kpd_party_leader != "Conciliators"; party_stubborn = 20 if kpd_party_leader = "Conciliators"
 
-The KPD is adamant on banning the reactionary parties and is highly likely to push for equally harsh crackdowns on the bourgeois parties. [? if peoples_party : Our own status as a 'volkspartei' has even caused some in the KPD to call for us to be banned. ?]
+KPD 坚决要禁止反动派的政党，也极有可能推动对资产阶级政党的同等严厉打击。[? if peoples_party : 由于我们自身的「人民党」（volkspartei）定位，KPD 中甚至有人呼吁连我们一起禁掉。 ?]
 
-- @defend_joos: Stand up for the Center Party.
-- @defend_kaas: Stand up for the Center Party.
-- @defend_ddp: Stand up for the DDP/DStP.
-- @finalize_party: We're finished in this department.
-- @go_back_2: Back.
+- @defend_joos: 为中央党辩护。
+- @defend_kaas: 为中央党辩护。
+- @defend_ddp: 为 DDP/DStP 辩护。
+- @finalize_party: 该部门我们已结束。
+- @go_back_2: 返回。
 
 @defend_joos
 view-if: z_party_leader == "Joos" and not z_safe
-subtitle: The dominance of trade unions in the party makes this easier.
-unavailable_subtitle: We lack the negotiating power to successfully protest this.
+subtitle: 工会在党内的主导地位使这一辩护更容易。
+unavailable_subtitle: 我们没有足够的谈判筹码来成功阻止此事。
 choose-if: negotiating_power >= party_stubborn
 on-arrival: negotiating_power -= party_stubborn; z_relation += 5; z_safe = 1
 go-to: party_legality
 
-We argue that the Center Party is in a sense proletarian, thanks to the leadership of Joseph Joos, a Catholic trade unionist. They yield and reluctantly agree to allow the party to continue existing.
+我们辩称，在天主教工会人士约瑟夫·尤斯（Joos）领导下，中央党在某种意义上是无产阶级政党。他们让步，勉强同意允许该党继续存在。
 
 @defend_kaas
 view-if: z_party_leader != "Joos" and not z_safe
-unavailable_subtitle: We lack the negotiating power to successfully protest this.
+unavailable_subtitle: 我们没有足够的谈判筹码来成功阻止此事。
 choose-if: negotiating_power >= (party_stubborn*2)
 on-arrival: negotiating_power -= (party_stubborn*2); party_stubborn += 5; z_relation += 5; kpd_relation -= 5; z_safe = 1
 go-to: party_legality
 
-We defend the Center Party in spite of what the Communists view as their enabling of the Nazi threat and opposition to the working class. Still, they concede, reluctantly
+尽管共产党人认为中央党纵容了纳粹威胁、反对工人阶级，我们仍为中央党辩护。最终他们勉强让步。
 
 @defend_ddp
 view-if: not ddp_safe
-unavailable_subtitle: We lack the negotiating power to successfully protest this.
+unavailable_subtitle: 我们没有足够的谈判筹码来成功阻止此事。
 choose-if: negotiating_power >= (ddp_votes + (party_stubborn/2))
 on-arrival: negotiating_power -= (ddp_votes + (party_stubborn/2)); party_stubborn += 2; ddp_relation += 10; ddp_safe = 1
 go-to: party_legality
 
-We defend the DDP/DStP, to which the KPD theatrically objects but, not really viewing the DDP/DStP as a threat due to their electorally moribund nature, accepts. 
+我们为 DDP/DStP 辩护，KPD 装腔作势地反对，但因其选举上奄奄一息，并不真正视其为威胁，最终接受。
 
 @go_back_2
 view-if: z_safe + ddp_safe != 2
@@ -1317,38 +1317,38 @@ go-to: menu
 view-if: not kpd_constitution_decided
 on-arrival: kpd_constitution_decided = 1; constitution_stubborn = 80; constitution_stubborn -= 10 if kpd_party_leader == "Conciliators"
 
-The KPD has many ideas for drastic changes to the German constitution, primarily for the transition to a council republic. With reactionaries crushed, it will be very difficult to convince the KPD not to transition to a council republic.
+KPD 对德国宪法有许多激进的变革构想，主要是向苏维埃式委员会共和国过渡。反动派既被粉碎，要说服 KPD 放弃这一过渡将极为困难。
 
-- @accept_soviet: Accept the KPD's wishes for a council republic.
-- @conditional: We will agree if the KPD passes other constitutional amendments that we want.
-- @refuse_soviet: We will not compromise the foundations of our republic.
-- @go_back_3: Back.
+- @accept_soviet: 接受 KPD 关于委员会共和国的诉求。
+- @conditional: 我们将同意，但前提是 KPD 通过我们想要的其他宪法修正案。
+- @refuse_soviet: 我们不会动摇共和国的根基。
+- @go_back_3: 返回。
 
 @accept_soviet
 on-arrival: amendment_cost = 30; reformist_dissent += 15; left_strength += 10; supreme_soviet = 1; z_relation -= 10; ddp_relation -= 10; dvp_relation -= 10; workers_kpd += 10
 
-We accept the KPD's demands for the move towards a council republic, satisfying them. We can push for other constitutional amendments, should we wish.
+我们接受 KPD 关于向委员会共和国过渡的要求，使他们感到满意。我们也可以推动我们想要的其他宪法修正案。
 
-- @other_amendments: Push for other constitutional amendments.
-- @menu: The constitution is good as is.
+- @other_amendments: 推动其他宪法修正案。
+- @menu: 宪法已经够好了。
 
 @conditional
 choose-if: negotiating_power >= constitution_stubborn
-unavailable_subtitle: We do not have the negotiating power to push for this.
+unavailable_subtitle: 我们没有足够的谈判筹码推动此事。
 on-arrival: kpd_relation -= 10; negotiating_power -= constitution_stubborn; amendment_cost = 10; supreme_soviet = 1; workers_kpd += 10
 
-The KPD is incensed that we refuse to give them a blank cheque to pursue their Soviet machinations, but agree to "consider" our other proposals first.
+KPD 对我们拒绝给予他们推进苏维埃化的空白支票感到愤怒，但同意「考虑」我们的其他提案。
 
-- @other_amendments: So, first off...
+- @other_amendments: 那么，首先……
 
 @refuse_soviet
 choose-if: negotiating_power >= (constitution_stubborn*2.5)
-unavailable_subtitle: The KPD is entirely unwilling to cede this.
+unavailable_subtitle: KPD 完全不愿在此问题上让步。
 on-arrival: kpd_relation -= 15; negotiating_power -= (constitution_stubborn*2.5); rfb_strength += 25; rfb_militancy += 0.02; workers_spd -= 5; workers_kpd += 5
 
-The KPD is outraged at our outright refusal, but somehow accepts it, very reluctantly, perhaps due to our relative position of strength. They waste no time in publicizing our refusal and campaigning against us, and overall this does not bode well for cooperation.
+KPD 对我们的断然拒绝感到愤怒，但出于我们相对强势的地位，极不情愿地接受了。他们迅速将我们的拒绝公之于众并对我们展开攻击，整体而言这对合作并无利好。
 
-- @menu: And so the constitution will remain unchanged...
+- @menu: 所以宪法保持不变……
 
 @go_back_3
 on-arrival: kpd_constitution_decided = 0
@@ -1356,44 +1356,44 @@ go-to: menu
 
 @other_amendments
 
-The KPD is willing to hear out our proposals.
+KPD 愿意倾听我们的提案。
 
-- @vote_threshold_kpd: Change the vote threshold.
-- @constructive_vonc_kpd: Ban non-constructive votes of no confidence.
-- @presidential_powers_kpd: Reduce presidential powers.
-- @menu: We have done enough in this department. Next.
+- @vote_threshold_kpd: 修改选票门槛。
+- @constructive_vonc_kpd: 禁止非建设性不信任投票。
+- @presidential_powers_kpd: 削减总统权力。
+- @menu: 这一领域我们已做得够多了。下一项。
 #- @constitutional_bans: Allow the banning of anti-constitutional parties.
 #- @constitutional_convention: Hold a constitutional convention to draft a wholly new constitution for the country.
 
 @vote_threshold_kpd
-subtitle: Change the vote threshold to 5% for parties to be represented in the Reichstag.
+subtitle: 将政党进入国会所需的选票门槛提高至 5%。
 view-if: electoral_threshold = 0
 
-The KPD is generally ambivalent towards the idea of an electoral threshold, but is more than happy to accept it, if perhaps for different reasons than us. The Left has however convinced them to oppose the amendment, if just theatrically.
+KPD 对选举门槛大体持中立态度，但十分愿意接受——也许出于和我们不同的理由。然而，左翼说服他们出于戏剧效果反对该修正案。
 
-- @vote_threshold_3: We will convince the KPD.
-- @other_amendments: See other reform options.
+- @vote_threshold_3: 我们将说服 KPD。
+- @other_amendments: 查看其他改革选项。
 
 
 @vote_threshold_3
 choose-if: negotiating_power >= (amendment_cost/2)
-unavailable_subtitle: We do not have the negotiating power to sway the KPD.
+unavailable_subtitle: 我们没有足够的谈判筹码来说服 KPD。
 on-arrival: constitutional_reform += 1; negotiating_power -= (amendment_cost/2); electoral_threshold = 5; ddp_relation -= 25; dvp_relation -= 25; left_dissent += 10; workers_other *= 0.1; new_middle_other *= 0.1; old_middle_other *= 0.1; rural_other *= 0.2; unemployed_other *= 0.2; catholics_other *= 0.1;
 achievement: verfassungsreform
 go-to: other_amendments
 
-We have passed a constitutional amendment to increase the electoral threshold to 5%. This is likely to benefit the larger parties and harm the smaller ones.
+我们通过了一项宪法修正案，将选举门槛提高至 5%。这很可能让大党受益，而损害小党的利益。
 
 
 
 @constructive_vonc_kpd
-subtitle: Votes of no confidence can only be called if an alternative plan for government formation can be passed, greatly reducing their incidence.
+subtitle: 不信任投票只能在能够提出替代组阁方案时发起，从而大幅减少其发生频率。
 view-if: constructive_vonc = 0
 
-[? if chancellor_party == "KPD" : The KPD is all too happy to accept this with the recent agreement for the position to be held by the KPD. ?][? if chancellor_party != "KPD" : The KPD does not have a strong stance on the idea, but is generally opposed for fear of it weakening their influence. ?]
+[? if chancellor_party == "KPD" : 鉴于近期总理职位由 KPD 担任的安排，KPD 乐于接受。 ?][? if chancellor_party != "KPD" : KPD 对此并无强烈立场，但因担心削弱其影响力，总体上反对。 ?]
 
-- @constructive_vonc_3: We will convince the KPD.
-- @other_amendments: See other reform options.
+- @constructive_vonc_3: 我们将说服 KPD。
+- @other_amendments: 查看其他改革选项。
 
 @constructive_vonc_3
 choose-if: (negotiating_power >= amendment_cost) or chancellor_party == "KPD"
@@ -1401,152 +1401,152 @@ on-arrival: constitutional_reform += 1; constructive_vonc = 1; negotiating_power
 achievement: verfassungsreform
 go-to: other_amendments
 
-We have successfully passed a constitutional amendment to ban votes of no confidence when a new government cannot be formed. Hopefully this increases the stability of our governments.
+我们成功通过了一项宪法修正案，禁止在无法组建新政府时发起不信任投票。希望这能提升政府的稳定性。
 
 @presidential_powers_kpd
-subtitle: The president can no longer dissolve the Reichstag at will, or call a *Reichsexekution* on state governments.
+subtitle: 总统不再能随意解散国会，或对邦政府发动「联邦执行」（Reichsexekution）。
 view-if: presidential_powers = 0
 on-arrival: multiplier = 3.5 if kpd_party_leader != "Conciliators"; multiplier = 2 if kpd_party_leader = "Conciliators"; multiplier += 0.5 if no_enabling
 
-The KPD is strongly opposed to the weakening of the presidency, viewing it as a direct attack on them and a push towards it as a signal of distrust. [? if kpd_party_leader == "Conciliators" : However, the Conciliator leadership of the KPD is more understanding, and will be easier to convince. ?]
+KPD 强烈反对削弱总统职权，视其为对他们的直接攻击，以及对他们不信任的信号。[? if kpd_party_leader == "Conciliators" : 不过，KPD 由调和派领导，他们更善解人意，也更容易被说服。 ?]
 
-- @presidential_powers_3: We will convince the KPD.
-- @other_amendments: See other reform options.
+- @presidential_powers_3: 我们将说服 KPD。
+- @other_amendments: 查看其他改革选项。
 
 @presidential_powers_3
 choose-if: negotiating_power >= (amendment_cost*multiplier)
-unavailable_subtitle: The KPD is not willing to accept this.
+unavailable_subtitle: KPD 不愿接受此事。
 on-arrival: constitutional_reform += 1; presidential_powers = 1; negotiating_power -= (amendment_cost*multiplier)
 achievement: verfassungsreform
 go-to: other_amendments
 
-We have successfully passed a constitutional amendment to limit presidential powers! Hopefully this results in a less authoritarian Germany.
+我们成功通过了一项宪法修正案，限制了总统权力！希望这能造就一个不那么威权化的德国。
 
 @decrees_kpd
 view-if: not decree_kpd_decided
 
-President Thälmann has many decrees planned which he intends to pass through Article 48 of the constitution. Many of these are likely non-negotiable to the KPD, but we can do our best to convince him not to pursue some of them.
+台尔曼总统计划通过宪法第 48 条颁布多项法令。其中许多对 KPD 而言可能没有商量余地，但我们仍可尽力说服他放弃其中一些。
 
-- @land_social_kpd: Mass socialization and collectivization of land.
-- @wealth_seizure_kpd: Mass seizure of wealth.
-- @mass_nationalize: Mass nationalizations of industry.
-- @enable_kpd: An "Enabling Act" to help eliminate the reactionaries.
-- @done: We have decided on everything.
-- @go_back_4: Back.
+- @land_social_kpd: 土地的大规模社会化与集体化。
+- @wealth_seizure_kpd: 大规模没收财富。
+- @mass_nationalize: 大规模工业国有化。
+- @enable_kpd: 通过《授权法》以协助清除反动派。
+- @done: 我们已就一切作出决定。
+- @go_back_4: 返回。
 
 @land_social_kpd
 view-if: land_decided != 1
 on-arrival: land_social_cost = (6 - land_reform); land_seizure_cost = (4 - land_reform); land_stubborn = 40; land_stubborn -= 10 if kpd_party_leader == "Conciliators"; land_stubborn += 10 if land_reform < 1
 
-The Communists have written up a comprehensive plan for the socialization and collectivization of land, going beyond simple redistribution to farmers but towards the complete revolutionizing of the countryside.
+共产党人已起草了一份土地社会化与集体化的全面计划，不仅是简单地将土地分配给农民，而是要对农村进行彻底的革命化改造。
 
-Many in our party worry that such radical changes in land ownership may jeopardize our food security, however. What should we do?
+但党内许多人担心，如此激进的土地所有权变革可能危及我们的粮食安全。我们应当如何应对？
 
-- @accept_social: Allow the decree.
-- @negotiate_social: Negotiate the Communists down to a simple land reform program.
-- @refuse_social: Convince the KPD to drop the decree altogether.
+- @accept_social: 允许该法令。
+- @negotiate_social: 与共产党协商，将其降级为简单的土地改革计划。
+- @refuse_social: 说服 KPD 完全放弃该法令。
 
 @accept_social
-subtitle: -[+ land_social_cost +] budget.
+subtitle: -[+ land_social_cost +] 预算。
 on-arrival: budget -= land_social_cost; land_decided = 1; socialized_land = 1; reformist_dissent += 5; negotiating_power += 10 if chancellor_party == "KPD"; land_reform += land_social_cost; pro_republic -= (4*land_social_cost); rural_kpd += land_social_cost; rural_nsdap -= (land_social_cost*2); unemployed -= land_social_cost if unemployed >= land_social_cost; dvp_relation -= (7*land_social_cost); z_relation -= (6*land_social_cost); ddp_relation -= (4*land_social_cost); left_strength += (10*land_social_cost); left_dissent -= (8*land_social_cost); rural_sol += land_social_cost; sa_strength += 50; sh_strength += 25; sa_militancy += 0.05
 
-The decree is signed, and a mass campaign of socialization and collectivization in the countrysides begins. For the time being, it proceeds largely without hickup, but many in the SPD are still wary.
+法令获签，乡村开始大规模的社会化与集体化运动。一时之间进展基本顺畅，但许多 SPD 党员仍心存疑虑。
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @negotiate_social
-subtitle: -[+ land_seizure_cost +] budget.
-unavailable_subtitle: The Communists are unwilling to concede on this issue.
+subtitle: -[+ land_seizure_cost +] 预算。
+unavailable_subtitle: 共产党人不愿就此问题让步。
 choose-if: negotiating_power >= (land_stubborn/2)
 on-arrival: negotiating_power -= (land_stubborn/2); budget -= land_seizure_cost; land_decided = 1; land_reform += land_seizure_cost; pro_republic -= (4*land_seizure_cost); rural_kpd += (land_seizure_cost*3); rural_spd += ((land_seizure_cost*2)*(1-dissent)); rural_nsdap -= land_seizure_cost*(4*(1-dissent)); unemployed -= land_seizure_cost if unemployed >= 5; dvp_relation -= (5*land_seizure_cost); z_relation -= (4*land_seizure_cost); left_strength += (8*land_seizure_cost); left_dissent -= (5*land_seizure_cost); rural_sol += (3*land_seizure_cost); rural_policy += land_seizure_cost; sa_strength += 25; sh_strength += 10; sa_militancy += 0.05
 
-The Communists yield and agree to a more moderate program of land seizure, still dismantling the reactionary powerbase in the countryside without as much upsetting the power balance there.
+共产党人让步，同意一项较为温和的土地没收方案，仍能瓦解乡村的反动派根基，但对当地权力格局的冲击较小。
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @refuse_social
-subtitle: This may offend the KPD.
+subtitle: 这可能冒犯 KPD。
 choose-if: negotiating_power >= land_stubborn
-unavailable_subtitle: The Communists are unwilling to concede on this issue.
+unavailable_subtitle: 共产党人不愿就此问题让步。
 on-arrival: negotiating_power -= land_stubborn; kpd_relation -= 5; kpd_coalition_dissent += 1 if chancellor_party != "KPD"; rural_spd -= 3; land_decided = 1
 
-The KPD is shocked at our unwillingness to pursue any agrarian reforms at the moment but concedes. They will surely demand other concessions if not this, however.
+KPD 对我们目前不愿推动任何农业改革感到震惊，但仍让步。然而他们必将在别处提出其他让步要求。
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @wealth_seizure_kpd
 view-if: wealth_decided != 1
 on-arrival: wealth_stubborn = 60; wealth_stubborn -= 20 if kpd_party_leader == "Conciliators"
 
-In order to finance their other programs, the KPD have made a plan for the seizure of assets from the rich, nationalization of the Reichsbank, and other such measures. Such an action would however surely provoke a confrontation with the capitalists.
+为了给其他计划筹资，KPD 制定了从富人那里没收资产、将国家银行（Reichsbank）国有化以及其他类似措施的方案。然而，这样的行动必然引发与资本家的对抗。
 
-- @accept_seizure: Allow the decree.
-- @refuse_seizure: Convince the KPD to drop the decree.
+- @accept_seizure: 允许该法令。
+- @refuse_seizure: 说服 KPD 放弃该法令。
 
 @accept_seizure
 on-arrival: wealth_decided = 1; wealth_seized = 1; upper_tax_rates += 3; workers_spd += 6*(1-dissent); unemployed_spd += 6*(1-dissent); z_relation -= 10; ddp_relation -= 12; dvp_relation -= 16; pro_republic -= 8; budget += 6; capital_strike_progress += 15; old_middle_spd *= 0.25; new_middle_spd *= 0.6
 
-We allow the KPD to go forward with the decree, greatly increasing the budget available to be spent by the government on other directives.
+我们允许 KPD 推行该法令，大幅增加了政府用于其他方向支出的可用预算。
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @refuse_seizure
 choose-if: negotiating_power >= wealth_stubborn
 on-arrival: kpd_relation -= 5; kpd_coalition_dissent += 1 if chancellor_party != "KPD"; negotiating_power -= wealth_stubborn; left_dissent += 10; wealth_decided = 1
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @mass_nationalize
 view-if: left_decided != 1
 on-arrival: left_stubborn = 100; left_stubborn -= 10 if chancellor_party == "KPD" and kpd_party_leader != "Conciliators"
 
-Wanting to bring the economy under state control, the KPD has prepared a decree for the mass nationalizations of industry, claiming it will bring an end to the Great Depression and by dismantling capitalism ensure one never happens again.
+为了将经济置于国家控制之下，KPD 已起草了一项工业大规模国有化的法令，声称这将终结大萧条，并通过摧毁资本主义确保大萧条永不再来。
 
-- @allow_nationalization: Allow the decree.
-- @refuse_nationalization: Convince the KPD to drop the decree.
+- @allow_nationalization: 允许该法令。
+- @refuse_nationalization: 说服 KPD 放弃该法令。
 
 @allow_nationalization
 on-arrival: left_decided = 1; nationalization_progress += 1; pro_republic -= 6; capital_strike_progress += 2; unemployed -= 3.5 if unemployed >= 6; new_middle_kpd += 5 if economic_minister_party == "KPD"; unemployed -= 1.2 if works_councils >= 3; workers += 2.5; budget -= nationalize_budget; works_program += 1; workers_kpd += 6; unemployed_kpd += 4; coalition_dissent += 1; dvp_relation -= 4; left_dissent -= 5; old_middle_spd -= 2; economy_goal_completed += 1; inflation += 2
 
-We allow the decree to go ahead, with large swaths of the economy soon being quickly brought under public control. [? if economic_minister_party == "KPD" : Control over the state-run industries falls to the KPD-run Economic Ministry, leading to an expanding bureaucratic base of their party. ?]
+我们允许该法令推行，经济中的大片领域很快被纳入公众控制。[? if economic_minister_party == "KPD" : 国营产业的控制权落入由 KPD 掌握的经济部，扩大了该党的官僚根基。 ?]
 
 # TODO: distinction between deficit or no deficit
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @refuse_nationalization
 choose-if: negotiating_power >= left_stubborn
-unavailable_subtitle: The KPD will not back down on this matter.
+unavailable_subtitle: KPD 不会在此问题上让步。
 on-arrival: kpd_relation -= 10; left_dissent += 5; workers_spd -= 5; workers_kpd += 5; kpd_coalition_dissent += 1; kpd_coalition_dissent += 1 if chancellor_party != "KPD"; left_decided = 1; negotiating_power -= left_stubborn
 
-We convince the KPD not to go ahead with the mass nationalization, though they by no means have dropped the idea, and likely only backed down due to our position of relative strength in comparison. They campaign against us and overall this spat does not bode well for our cooperation long term.
+我们说服 KPD 放弃大规模国有化，但他们绝未放弃这一想法，可能仅因我们相对强势的地位而退让。他们继续对我们发起攻击，整体而言这一争执对长期合作不利。
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @enable_kpd
 view-if: enable_decided != 1
 on-arrival: enable_stubborn = 100; enable_stubborn -= 50 if kpd_party_leader == "Conciliators"; enable_stubborn *= 1.25 if presidential_powers == 1
 
-The KPD, arguing its necessity in rooting out the reactionaries for good, has drafted an "Enabling Act" giving even further sweeping powers to the presidency as well as the cabinet. [? if kpd_party_leader != "Conciliators" : The KPD is quite insistent on this proposal, leading many to believe it as a pretext for a consolidation of power into their hands. ?]
+KPD 以彻底清除反动派之必要性为由，起草了一项《授权法》，给予总统职位及内阁更为广泛的权力。[? if kpd_party_leader != "Conciliators" : KPD 对该提案极为坚持，使许多人怀疑这是他们集中权力的借口。 ?]
 
-- @accept_enabling: Allow the decree.
-- @refuse_enabling: Convince the KPD to drop the decree.
+- @accept_enabling: 允许该法令。
+- @refuse_enabling: 说服 KPD 放弃该法令。
 
 @accept_enabling
 on-arrival: negotiating_power += 10 if chancellor_party == "KPD"; negotiating_power += 10 if presidential_powers != 1; enable_decided = 1; workers_kpd += 10; rfb_strength += 100; rfb_militancy += 0.05; reichswehr_militancy -= 0.05; unemployed_kpd += 10; unemployed_nsdap -= 10; new_middle_kpd += 10 if chancellor_party == "KPD"; old_middle_nsdap -= 10; new_middle_nsdap -= 10; rural_nsdap -= 10; strife += 1; pro_republic -= 10; z_relation -= 6; z_relation -= 6 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 12; enabling_act = 1; reformist_dissent += 10; neorevisonist_dissent += 15
 
-We allow the KPD to go ahead with their Enabling Act. Immediately, mass crackdowns are launched on the remaining Nazi Party bases, while similar ones are prepared against the other right-wing parties that were banned. Reformists and Neorevisionists protest our compliance in what they view as blatant consolidation of power by the Soviets.
+我们允许 KPD 推行其《授权法》。残存的纳粹党据点立刻遭到大规模镇压，与此同时对其他被禁的右翼政党也准备类似行动。改良派与新修正派抗议我们对这种他们眼中赤裸裸的苏维埃式权力集中的纵容。
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @refuse_enabling
 choose-if: negotiating_power >= enable_stubborn
 on-arrival: negotiating_power -= enable_stubborn; kpd_relation -= 5 if kpd_party_leader != "Conciliators"; enable_decided = 1
-unavailable_subtitle: The KPD is not willing to budge on this demand.
+unavailable_subtitle: KPD 不愿在此要求上让步。
 
-We convince the KPD not to pursue this decree, arguing that it would only bolster the conviction of anti-republican forces and make us appear no better than them. [? if kpd_party_leader != "Conciliators" : The KPD labels us as weak-willed constitutionalists and says that our inaction will allow reactionary resurgence, but backs down nonetheless. ?]
+我们说服 KPD 不推行该法令，主张这只会强化反共和力量的信念，使我们看起来与他们无异。[? if kpd_party_leader != "Conciliators" : KPD 把我们贴上软弱的立宪主义者标签，并称我们的不作为将允许反动派东山再起，但仍让步。 ?]
 
-- @decrees_kpd: Next on the agenda...
+- @decrees_kpd: 议程下一项……
 
 @done
 view-if: land_decided == 1 and wealth_decided == 1 and left_decided == 1 and enable_decided == 1
@@ -1561,16 +1561,16 @@ go-to: menu
 @noske
 view-if: month == 13
 
-I hate Noske sorry try another time.
+我讨厌诺斯克（Noske），抱歉，下次再说吧。
 
-- @menu: Aw man.
+- @menu: 啊，可惜。
 
 @the_agenda_spd
 view-if: president != "Thälmann"
 
-Nothing here yet.
+此处暂无内容。
 
 @the_agenda_power
 view-if: president == "Thälmann" and presidential_powers == 1
 
-Nothing here yet.
+此处暂无内容。
