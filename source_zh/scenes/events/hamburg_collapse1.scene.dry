@@ -14,10 +14,10 @@ go-to: landtag_dissolved if dissolve_hl >= 50; landtag_not_dissolved if dissolve
 @landtag_dissolved
 on-arrival: hamburg_election_year = year; hamburg_election_month = month+3; hamburg_election_year += 1 if hamburg_election_month > 12; hamburg_election_month -= 12 if hamburg_election_month > 12
 
-最终，以 [+ dissolve_hl +]% 赞成，邦议会被解散。[? if not ((kpd_relation < 70 and kpd_party_leader != "Conciliators") or (kpd_relation < 50 and kpd_party_leader == "Conciliators")) : 这要归功于德共关键的解散投票。 ?]
+最终，以 [+ dissolve_hl +]% 赞成，邦议会被解散。[? if not ((kpd_relation < 70 and kpd_party_leader != "Conciliators") or (kpd_relation < 50 and kpd_party_leader == "Conciliators")) : 这要归功于共产党关键的解散投票。 ?]
 
 新选举定于 [+ hamburg_election_month : month +] [+ hamburg_election_year +] 举行。
 
 @landtag_not_dissolved
 
-出人意料，动议失败，仅 [+ dissolve_hl +]% 赞成。[? if ((kpd_relation < 70 and kpd_party_leader != "Conciliators") or (kpd_relation < 50 and kpd_party_leader == "Conciliators"))  : 这要归功于德共关键的反对解散投票。 ?]
+出人意料，动议失败，仅 [+ dissolve_hl +]% 赞成。[? if ((kpd_relation < 70 and kpd_party_leader != "Conciliators") or (kpd_relation < 50 and kpd_party_leader == "Conciliators"))  : 这要归功于共产党关键的反对解散投票。 ?]

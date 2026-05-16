@@ -253,7 +253,7 @@ go-to: coalition_menu
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD： {!</td><td>!} [+ sapd_schl +]% {!</td><td>!} [+ stpl_change_sapd +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD： {!</td><td>!} [+ kpd_schl +]% {!</td><td>!} [+ stpl_change_kpd +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}共产党： {!</td><td>!} [+ kpd_schl +]% {!</td><td>!} [+ stpl_change_kpd +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]： {!</td><td>!} [+ ddp_schl +]% {!</td><td>!} [+ stpl_change_ddp +] {!</td></tr>!}
 
@@ -280,7 +280,7 @@ go-to: coalition_menu
 
 [? if nazi_urgency <= 1 and nsdap_schl >= 15 : NSDAP 得票率的迅速上升令人忧虑。许多人此前认为该党已濒临消亡，如今我们中一些人将其视为德国民主面临的最大威胁。 ?]
 
-[? if sch_anti_democratic_coalition >= 50 : 反民主的 KPD、DNVP、NSDAP 三党合计已在邦议会中拥有多数。要形成稳定的执政多数几乎不可能。 ?]
+[? if sch_anti_democratic_coalition >= 50 : 反民主的 共产党、DNVP、NSDAP 三党合计已在邦议会中拥有多数。要形成稳定的执政多数几乎不可能。 ?]
 
 存在一些可能的执政联盟方案。
 

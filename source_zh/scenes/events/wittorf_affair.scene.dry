@@ -8,9 +8,9 @@ tags: event
 
 = 维托夫事件
 
-我们在共产党内部的眼线和联络人传来消息——一场风波正笼罩着德共领导层。德共主席台尔曼的亲信、党内官员约翰·维托夫（John Wittorf）被指控挪用竞选款项，将数千国家马克挪作私用，台尔曼本人则被指控掩盖此事。党中央委员会认为指控严重。
+我们在共产党内部的眼线和联络人传来消息——一场风波正笼罩着共产党领导层。共产党主席台尔曼的亲信、党内官员约翰·维托夫（John Wittorf）被指控挪用竞选款项，将数千国家马克挪作私用，台尔曼本人则被指控掩盖此事。党中央委员会认为指控严重。
 
-据传德共内部的调和派——一个反对当前强硬路线的派系——故意泄露了这一消息，以便在党内斗争中占据上风。列宁派（Leninbund）中的异见共产党人也掌握了相关情况，并打算将其公之于众。
+据传共产党内部的调和派——一个反对当前强硬路线的派系——故意泄露了这一消息，以便在党内斗争中占据上风。列宁派（Leninbund）中的异见共产党人也掌握了相关情况，并打算将其公之于众。
 
 我们该如何处理这一信息？
 
@@ -19,10 +19,10 @@ tags: event
 - @secret
 
 @publicize
-title: We will publicize the scandal to damage the KPD and Thälmann.
+title: We will publicize the scandal to damage the 共产党 and Thälmann.
 on-arrival: kpd_relation -= 10; workers_kpd -= 4; unemployed_kpd -= 4; socialism -= 2
 
-我们的报刊率先公开此事，让共产党人因其虚伪而饱受批评的炮火。我们削弱了德共在工人中的声望，但或许也关上了进一步合作的大门。
+我们的报刊率先公开此事，让共产党人因其虚伪而饱受批评的炮火。我们削弱了共产党在工人中的声望，但或许也关上了进一步合作的大门。
 
 最终，斯大林的施压让台尔曼几乎免于任何严重的后果。
 
@@ -30,13 +30,13 @@ on-arrival: kpd_relation -= 10; workers_kpd -= 4; unemployed_kpd -= 4; socialism
 title: Do nothing with the information.
 on-arrival: workers_kpd -= 2; unemployed_kpd -= 2
 
-消息没有我们的助力也照样传开，使德共在工人中的支持率有所下滑。
+消息没有我们的助力也照样传开，使共产党在工人中的支持率有所下滑。
 
 
 @secret
-title: It is best to keep this information secret. Prevent the Leninbund and dissident KPD members from spreading this.
+title: It is best to keep this information secret. Prevent the Leninbund and dissident 共产党 members from spreading this.
 choose-if: levi_advisor or rosenfeld_advisor
 unavailable-subtitle: We do not have contacts among the dissident communists.
 on-arrival: wittorf_secret = 1; reformist_dissent += 5; left_dissent += 5
 
-我们领导层中的一些人觉得搞这种暗中算计有失党格。但为了与德共合作，保守这一秘密或许必要，而且这一信息日后或许还能派上用场。
+我们领导层中的一些人觉得搞这种暗中算计有失党格。但为了与共产党合作，保守这一秘密或许必要，而且这一信息日后或许还能派上用场。

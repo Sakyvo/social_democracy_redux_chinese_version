@@ -29,4 +29,4 @@ on-arrival: crisis_urgency += 1
 view-if: right_coalition_failed == 1 and spd_in_government == 0 and spd_toleration == 0
 on-arrival: z_relation -= 5; workers_spd += 3; workers_kpd -= 2; workers_nsdap -= 1; new_middle_dnvp -= 2; old_middle_dnvp -= 2; rural_dnvp -= 2; catholics_z -= 1
 
-我们将危机归咎于已经垮台的右翼政府，将自身定位为相对纳粹党和德共的更温和选择，不过在我们尚未推出修复经济的纲领之前，能就此进行的竞选活动有限。
+我们将危机归咎于已经垮台的右翼政府，将自身定位为相对纳粹党和共产党的更温和选择，不过在我们尚未推出修复经济的纲领之前，能就此进行的竞选活动有限。

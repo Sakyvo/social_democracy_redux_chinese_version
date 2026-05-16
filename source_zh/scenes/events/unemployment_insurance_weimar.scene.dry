@@ -26,7 +26,7 @@ go-to: cut_benefits_done if not legislature_enabled; legislative_menu if legisla
 @cut_benefits_done
 on-arrival: workers_spd -= 0.12*workers_spd; unemployed_spd -= 0.2*unemployed_spd; workers_kpd += 6; workers_nsdap += 6; unemployed_kpd += 5; unemployed_nsdap += 5; left_dissent += 15; center_dissent += 10; labor_dissent += 15; reformist_dissent += 5; welfare -= 2; budget += 1; unemployed += 3; pro_republic -= 4; kpd_relation -= 8; inflation -= 2; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; economic_growth -= 0.4; socialism -= 1
 
-出于预算考虑，我们削减了失业保险福利。但财政紧缩的逻辑对工人而言完全是另一个世界的语言。他们对我们的背叛勃然大怒，党内各派系的相当一部分成员同样如此。我们的失分就是德共的得分，连那群资产阶级的哈巴狗——纳粹党——也加入了对我们紧缩政策的批判之列。
+出于预算考虑，我们削减了失业保险福利。但财政紧缩的逻辑对工人而言完全是另一个世界的语言。他们对我们的背叛勃然大怒，党内各派系的相当一部分成员同样如此。我们的失分就是共产党的得分，连那群资产阶级的哈巴狗——纳粹党——也加入了对我们紧缩政策的批判之列。
 
 
 @increase_employers

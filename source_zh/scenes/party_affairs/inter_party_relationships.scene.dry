@@ -33,9 +33,9 @@ on-arrival: kpd_relation += 6*(1 - dissent); communist_coalition += 1 if kpd_int
 
 @kpd_rectification_of_history
 
-我们与德共关系的一个绊脚石，是双方追溯至 1918 与 1919 年的冲突史。德共尤其蔑视社民党的「血腥猎犬」古斯塔夫·诺斯克（Gustav Noske）——据称正是他下令暴力镇压了斯巴达克派起义及德共的其他暴动。他们还将罗莎·卢森堡和卡尔·李卜克内西之死归咎于我们——这两位社民党出身、后加入德共的领袖在镇压起义期间被杀。
+我们与共产党关系的一个绊脚石，是双方追溯至 1918 与 1919 年的冲突史。共产党尤其蔑视社民党的「血腥猎犬」古斯塔夫·诺斯克（Gustav Noske）——据称正是他下令暴力镇压了斯巴达克派起义及共产党的其他暴动。他们还将罗莎·卢森堡和卡尔·李卜克内西之死归咎于我们——这两位社民党出身、后加入共产党的领袖在镇压起义期间被杀。
 
-要进一步改善与德共的关系，或许须驱逐诺斯克，并为卢森堡与李卜克内西举办某种纪念活动。
+要进一步改善与共产党的关系，或许须驱逐诺斯克，并为卢森堡与李卜克内西举办某种纪念活动。
 
 - @yes_history: 是的，我们必须为过去的所作所为道歉。
 - @no_history: 不，我们无需道歉。
@@ -43,7 +43,7 @@ on-arrival: kpd_relation += 6*(1 - dissent); communist_coalition += 1 if kpd_int
 @yes_history
 on-arrival: reformist_dissent += 12; reformist_strength -= 2; neorevisionist_dissent += 5; left_dissent -= 6; left_strength += 5; kpd_rectified_history = 1; z_relation -= 6; dvp_relation -= 6; ddp_relation -= 4; kpd_relation += 8*(1-dissent); coalition_dissent += 1
 
-作为与德共关系正常化的一环，我们必须承认昔日的过失。我们驱逐了诺斯克，并为起义期间被军队杀害者举办了公开纪念活动。
+作为与共产党关系正常化的一环，我们必须承认昔日的过失。我们驱逐了诺斯克，并为起义期间被军队杀害者举办了公开纪念活动。
 
 此举在党内温和派与改良派中引起紧张，也招致保守派与自由派政党的批评。
 
@@ -56,7 +56,7 @@ on-arrival: kpd_relation -= 3
 @kpd_2
 on-arrival: kpd_relation += 8*(1 - dissent); communist_coalition += 1 if kpd_inter_party_seen <= 1; reformist_dissent += 2; z_relation -= 3; dvp_relation -= 3
 
-由于与德共组成联合政府的成功经验，他们如今对我们明显更为亲善。
+由于与共产党组成联合政府的成功经验，他们如今对我们明显更为亲善。
 
 @kpd_blutmai
 on-arrival: kpd_relation += 3*(1 - dissent); reformist_dissent += 1

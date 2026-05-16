@@ -374,7 +374,7 @@ go-to: coalition_menu
 
 [? if nazi_urgency <= 1 and nsdap_bl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
-[? if b_anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
+[? if b_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
 目前有若干潜在的联合政府方案。
 
@@ -403,13 +403,13 @@ on-arrival: rural_nsdap += 6; old_middle_nsdap += 4; catholics_nsdap += 3; bavar
 
 @left_bavaria
 title: 巴伐利亚所有左翼政党的「人民阵线」。
-subtitle: KPD + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%)
-unavailable-subtitle: KPD + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%) - [? if ddp_relation < 45 : The [+ ddp_name +] won't vote for us. ?][? if kpd_relation < 55 or communist_coalition < 3 : The KPD won't vote for us. ?]
+subtitle: 共产党 + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%)
+unavailable-subtitle: 共产党 + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%) - [? if ddp_relation < 45 : The [+ ddp_name +] won't vote for us. ?][? if kpd_relation < 55 or communist_coalition < 3 : The 共产党 won't vote for us. ?]
 view-if: b_popular_front_coalition >= 50
 choose-if: ((kpd_relation >= 55 and communist_coalition >= 3) or (spd_bl+ddp_bl >= 50 and ddp_relation >= 45)) and ((ddp_relation >= 45) or (kpd_bl+spd_bl >= 50 and kpd_relation >= 55 and communist_coalition >= 3))
 on-arrival: spd_bavaria = 1; workers_spd += 4*(1-dissent); catholics_spd += 4*(1-dissent); rural_spd += 4*(1-dissent); sh_militancy -= 0.05; rb_militancy += 0.05; coup_progress += 1; capital_strike_progress += 2
 
-不知何故，由德共、[+ ddp_name +] 与我党组成的「人民阵线」在巴伐利亚的统治权之争中击败了右翼政党，将一位社会民主党人推上州长之位。
+不知何故，由共产党、[+ ddp_name +] 与我党组成的「人民阵线」在巴伐利亚的统治权之争中击败了右翼政党，将一位社会民主党人推上州长之位。
 
 @spd_bavaria
 title: 社民党多数派政府

@@ -59,7 +59,7 @@ on-arrival: rb_militancy -= 0.02; rb_strength -= 50; pacifism += 1
 @truce_rfb
 choose-if: kpd_relation >= 45
 view-if: kpd_truce == 0
-unavailable-subtitle: 德共并无此意。
+unavailable-subtitle: 共产党并无此意。
 on-arrival: kpd_truce = 1; kpd_relation += 5; rfb_strength += 50; rb_strength += 50; sa_strength += 50;
 
-我们与德共至少达成了暂时的休战，双方的准军事组织将停止相互厮杀。
+我们与共产党至少达成了暂时的休战，双方的准军事组织将停止相互厮杀。

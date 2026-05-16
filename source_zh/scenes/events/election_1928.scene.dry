@@ -411,7 +411,7 @@ go-to: coalition_menu if not vonc_formed; coalition_vonc if vonc_formed
 
 [? if nazi_urgency <= 1 and nsdap_r >= 15 : 纳粹党选票的迅速攀升令人极度忧虑。许多人此前以为该党已奄奄一息；如今，我们中的一些人将其视为德国民主的最大威胁。 ?]
 
-[? if anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在国会占有多数席位。稳定的执政多数几乎无从建立。 ?]
+[? if anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在国会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
 目前有若干潜在的联合政府方案。
 
@@ -495,8 +495,8 @@ on-arrival: spd_in_government = 0; spd_toleration = 0; in_bourgeois_coalition = 
 
 @popular_front_coalition
 title: 新的「人民阵线」联合政府？
-subtitle: SPD + KPD + Z + [+ ddp_name +] ([+ popular_front_coalition +]%)
-unavailable-subtitle: SPD + KPD + Z + [+ ddp_name +] ([+ popular_front_coalition +]%) - [? if kpd_relation < 50: 我们与德共的关系不够好。 ?][? if z_relation < 50: 我们与中央党的关系不够好。 ?][? if communist_coalition < 3 : 共产党人完全不愿妥协。 ?][? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?][? if president == "Hindenburg" and coup_progress >= 8 and popular_front < 55 and historical_mode : 兴登堡不愿任命此届政府。 ?]
+subtitle: SPD + 共产党 + Z + [+ ddp_name +] ([+ popular_front_coalition +]%)
+unavailable-subtitle: SPD + 共产党 + Z + [+ ddp_name +] ([+ popular_front_coalition +]%) - [? if kpd_relation < 50: 我们与共产党的关系不够好。 ?][? if z_relation < 50: 我们与中央党的关系不够好。 ?][? if communist_coalition < 3 : 共产党人完全不愿妥协。 ?][? if president == "Hitler" : 希特勒拒绝在这种执政安排下任命总理。 ?][? if president == "Hindenburg" and coup_progress >= 8 and popular_front < 55 and historical_mode : 兴登堡不愿任命此届政府。 ?]
 view-if: popular_front_coalition >= 50 or (sapd_formed == 1 and (popular_front_coalition + sapd_r) >= 50)
 choose-if: ((((kpd_relation >= 65 and kpd_party_leader == "Thälmann") or (kpd_relation >= 45 and kpd_party_leader == "Conciliators")) and ((z_relation >= 45 and z_party_leader == "Joos") or (z_relation >= 65 and z_party_leader != "Joos" and kpd_party_leader != "Conciliators") or (z_relation >= 55 and z_party_leader != "Joos" and kpd_party_leader == "Conciliators")) and ddp_relation >= 50 and communist_coalition >= 3) or (z_party_leader == "Joos" and kpd_party_leader == "Conciliators" and z_relation >= 30 and kpd_relation >= 30)) and president != "Hitler" and (president != "Hindenburg" or ((coup_progress < 8 or popular_front >= 55 or not historical_mode) and not spd_sackings))
 
@@ -510,7 +510,7 @@ choose-if: ((((kpd_relation >= 65 and kpd_party_leader == "Thälmann") or (kpd_r
 @popular_front_2
 view-if: z_party_leader != "Joos" or kpd_party_leader != "Conciliators"
 
-某种程度上，共产党人与中央党至少愿意进行谈判。当然，德共激进派和中央党保守派几乎立刻令谈判陷入僵局。德共要求以本党主席恩斯特·台尔曼领导联合政府，[? if spd_r > kpd_r : 尽管我们的得票率更高，?]而中央党则对帮助布尔什维克入主政府的前景感到愤慨。必须采取*某些*措施来恢复平衡。
+某种程度上，共产党人与中央党至少愿意进行谈判。当然，共产党激进派和中央党保守派几乎立刻令谈判陷入僵局。共产党要求以本党主席恩斯特·台尔曼领导联合政府，[? if spd_r > kpd_r : 尽管我们的得票率更高，?]而中央党则对帮助布尔什维克入主政府的前景感到愤慨。必须采取*某些*措施来恢复平衡。
 
 - @popular_front_resources
 - @popular_front_democracy
@@ -526,9 +526,9 @@ on-arrival: resources -= 4
 go-to: popular_front_success
 
 @popular_front_democracy
-title: 说服德共接受民主。
-subtitle: [? if kpd_party_leader == "Conciliators" : 德共的调和派领导层至少声称支持人民阵线。 ?]
-unavailable-subtitle: 我们与德共的关系不够深厚。
+title: 说服共产党接受民主。
+subtitle: [? if kpd_party_leader == "Conciliators" : 共产党的调和派领导层至少声称支持人民阵线。 ?]
+unavailable-subtitle: 我们与共产党的关系不够深厚。
 choose-if: (kpd_relation >= 60 and communist_coalition >= 3) or kpd_party_leader == "Conciliators"
 go-to: popular_front_success
 
@@ -543,22 +543,22 @@ on-arrival: spd_in_government = 1; in_popular_front = 1; chancellor = "Breitsche
 achievement: grosse_volksfront
 go-to: popular_front_civil_war if coup_progress >= 10; popular_front_no_civil_war if coup_progress < 10
 
-不知为何，联合政府竟成功组建！中央党与德共的调和派领导层让谈判成为可能。我们仍需确定总理人选；各方唯一能接受的人选是社民党的鲁道夫·布莱特沙伊德，中央党与德共均可接受 [? if president == "Hindenburg" : ，兴登堡总统亦勉强接受 ?]。
+不知为何，联合政府竟成功组建！中央党与共产党的调和派领导层让谈判成为可能。我们仍需确定总理人选；各方唯一能接受的人选是社民党的鲁道夫·布莱特沙伊德，中央党与共产党均可接受 [? if president == "Hindenburg" : ，兴登堡总统亦勉强接受 ?]。
 
 @popular_front_success
 on-arrival: spd_in_government = 1; in_popular_front = 1; chancellor = "Breitscheid"; chancellor_party = "SPD"; kpd_relation += 10; coup_progress += 2; in_left_front = 0; in_weimar_coalition = 0; in_grand_coalition = 0; coalition_dissent = 0;
 go-to: popular_front_civil_war if coup_progress >= 10 and (sa_banned != 1 or sh_banned != 1); popular_front_no_civil_war if coup_progress < 10 or (sa_banned and sh_banned)
 achievement: volksfront
 
-出人意料，联合政府竟神奇地成功组建！我们仍需确定总理人选；各方唯一能接受的人选是社民党的鲁道夫·布莱特沙伊德，中央党与德共均可接受 [? if president == "Hindenburg" : ，兴登堡总统亦勉强接受 ?]。
+出人意料，联合政府竟神奇地成功组建！我们仍需确定总理人选；各方唯一能接受的人选是社民党的鲁道夫·布莱特沙伊德，中央党与共产党均可接受 [? if president == "Hindenburg" : ，兴登堡总统亦勉强接受 ?]。
 
 @popular_front_no_civil_war
 on-arrival: kpd_goals_seen = 0; finance_minister_party = "Z"; interior_minister_party = "Z"; economic_minister_party = "Z"; labor_minister_party = "Z"; foreign_minister_party = "Z"; agriculture_minister_party = "Z"; reichswehr_minister = "I"; leverage += kpd_r
 achievement: volksfront
 
-面对德共入主政府，右翼暂时采取「观望」态度。他们预期人民阵线政府将不稳定且无能，并将自行瓦解，从而使左翼和中间派蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
+面对共产党入主政府，右翼暂时采取「观望」态度。他们预期人民阵线政府将不稳定且无能，并将自行瓦解，从而使左翼和中间派蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
 
-德共在部长职位问题上采取弃权立场。他们自称在人民阵线政府内扮演「忠诚反对派」角色，从外部支持我们，同时开展自己的宣传运动，争取工人倒向己方。他们似乎预期人民阵线终将失败，而我们的失败将使他们获益。
+共产党在部长职位问题上采取弃权立场。他们自称在人民阵线政府内扮演「忠诚反对派」角色，从外部支持我们，同时开展自己的宣传运动，争取工人倒向己方。他们似乎预期人民阵线终将失败，而我们的失败将使他们获益。
 
 - @ministries: 首先，我们必须选定部长。
 
@@ -566,9 +566,9 @@ achievement: volksfront
 @popular_front_civil_war
 on-arrival: kpd_relation = 80; reichswehr_loyalty += 0.25; nazi_rebel = 1; labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; economic_minister_party = "SPD"; justice_minister_party = "SPD"; foreign_minister_party = "SPD" if spd_r >= 35; foreign_minister_party = "Z" if spd_r < 35; agriculture_minister_party = "Z"; reichswehr_minister_party = "I"
 
-面对德共入主政府，右翼立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，立刻与我们的支持者发生冲突！国防军内的反动军官率部离营，加入钢盔团阻止我们夺取权力。
+面对共产党入主政府，右翼立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，立刻与我们的支持者发生冲突！国防军内的反动军官率部离营，加入钢盔团阻止我们夺取权力。
 
-中央党化解了国防军和钢盔团的部分敌意，但未能阻止战斗爆发。无论是否情愿，我们都被迫与德共并肩作战。
+中央党化解了国防军和钢盔团的部分敌意，但未能阻止战斗爆发。无论是否情愿，我们都被迫与共产党并肩作战。
 
 - @civil_war: 内战，就这样。
 
@@ -616,7 +616,7 @@ on-arrival: coup_progress += 2
 on-arrival: enabling_r += dnvp_r; enabling_r += nsdap_r; enabling_r += other_r; enabling_r += dvp_r if dvp_relation < 45; enabling_r += z_r if z_relation < 30; against_enable += spd_r*(1-(left_strength/100)); against_enable += dvp_r if dvp_relation >= 70; against_enable += z_r if z_relation >= 65; dvp_voted = 1 if dvp_relation >= 70 or dvp_relation < 45; z_voted = 1 if z_relation >= 65 or z_relation < 30
 go-to: enabling_menu
 
-通过暴力竞选手段，纳粹与德国国家人民党合计赢得多数，但这还不够——希特勒渴望彻底和绝对的权力。为此，他提出一项法案——「授权法」——将赋予他与内阁立法权力，完全绕过国会。该法通过需要三分之二的多数票，但德共议员已遭逮捕，无法投票反对，我党左翼的部分议员亦然。
+通过暴力竞选手段，纳粹与德国国家人民党合计赢得多数，但这还不够——希特勒渴望彻底和绝对的权力。为此，他提出一项法案——「授权法」——将赋予他与内阁立法权力，完全绕过国会。该法通过需要三分之二的多数票，但共产党议员已遭逮捕，无法投票反对，我党左翼的部分议员亦然。
 
 关键环节现在是中央党。他们曾是捍卫魏玛宪法的宝贵伙伴——他们是否会与我们并肩阻止希特勒将其摧毁？ [? if dvp_relation >= 60 : DVP 对我们也出人意料地友好。我们能说服他们阻止希特勒吗？ ?]
 
@@ -776,12 +776,12 @@ on-arrival: spd_rebel = 1; sa_militancy -= 0.2; sa_strength *= 0.8; reichswehr_l
 
 @left_coalition
 title: 左翼统一联合政府可能实现吗？
-subtitle: SPD + KPD ([+ left_coalition +]%)
-unavailable-subtitle: SPD + KPD ([+ left_coalition +]%)。 [? if kpd_relation < 50 : 我们与德共的关系不够充分。 ?][? if communist_coalition < 3 : 共产党人过于激进，无法参与执政。 ?][? if president == "Hitler" or president == "Göring" or president == "Seldte" or president == "Seeckt" or president == "Hindenburg" : [+ president +] 拒绝在这种执政安排下任命总理。 ?]
+subtitle: SPD + 共产党 ([+ left_coalition +]%)
+unavailable-subtitle: SPD + 共产党 ([+ left_coalition +]%)。 [? if kpd_relation < 50 : 我们与共产党的关系不够充分。 ?][? if communist_coalition < 3 : 共产党人过于激进，无法参与执政。 ?][? if president == "Hitler" or president == "Göring" or president == "Seldte" or president == "Seeckt" or president == "Hindenburg" : [+ president +] 拒绝在这种执政安排下任命总理。 ?]
 view-if: left_coalition >= 50 or (sapd_formed == 1 and (left_coalition + sapd_r) >= 50)
 choose-if: (kpd_relation >= 50 or (kpd_party_leader == "Conciliators" and kpd_relation >= 40)) and communist_coalition >= 3 and president != "Hitler" and president != "Göring" and president != "Seldte" and president != "Seeckt" and (president != "Hindenburg" or year < 1929)
 
-SPD 与 KPD 的选票已足够组建联合政府，如果这真的可行的话。[? if sapd_formed == 1 and left_coalition < 50 : 德国社会党将容忍这一执政安排，使我们得以在席位微弱的情况下组建政府。 ?]
+SPD 与 共产党 的选票已足够组建联合政府，如果这真的可行的话。[? if sapd_formed == 1 and left_coalition < 50 : 德国社会党将容忍这一执政安排，使我们得以在席位微弱的情况下组建政府。 ?]
 
 若这样的联合政府得以成形，极右翼或将尝试发动政变。
 
@@ -796,7 +796,7 @@ go-to: coalition_menu
 
 @left_coalition_possible
 
-德共基层与我们党员的友好往来尽管存在，该党仍对加入联合政府极度抵触。斯大林主义领导层对此坚决反对。他们要求以恩斯特·台尔曼出任总理作为联合的条件，[? if president == "Hindenburg" : 兴登堡总统绝不可能批准任命一名铁杆共产主义者为总理。 ?] 或者，若我们与他们关系足够好，可以说服他们支持任命我们党内的中间或左倾成员为总理。
+共产党基层与我们党员的友好往来尽管存在，该党仍对加入联合政府极度抵触。斯大林主义领导层对此坚决反对。他们要求以恩斯特·台尔曼出任总理作为联合的条件，[? if president == "Hindenburg" : 兴登堡总统绝不可能批准任命一名铁杆共产主义者为总理。 ?] 或者，若我们与他们关系足够好，可以说服他们支持任命我们党内的中间或左倾成员为总理。
 
 - @thalmann_chancellor: 任命台尔曼为总理。
 - @left_coalition_resources
@@ -811,12 +811,12 @@ go-to: thalmann_war if not victory_republic; thalmann_no_war if victory_republic
 
 极不情愿地，[+ president +] 总统任命 [+ chancellor +] 为总理。
 
-立即，[+ chancellor +] 着手建设「苏维埃德国」：尽可能将权力集中于德共，清洗国家机构中的反共分子，并派遣街头武装攻击「人民公敌」。
+立即，[+ chancellor +] 着手建设「苏维埃德国」：尽可能将权力集中于共产党，清洗国家机构中的反共分子，并派遣街头武装攻击「人民公敌」。
 
 @thalmann_war
 on-arrival: nazi_rebel = 1; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; kpd_relation = 80
 
-面对 [+ chancellor +] 出任总理，右翼力量几乎立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，立刻与我们的支持者发生冲突！国防军内的反动军官率部离营，加入钢盔团阻止德共夺取权力。无论是否情愿，我们都被迫与德共并肩作战。
+面对 [+ chancellor +] 出任总理，右翼力量几乎立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，立刻与我们的支持者发生冲突！国防军内的反动军官率部离营，加入钢盔团阻止共产党夺取权力。无论是否情愿，我们都被迫与共产党并肩作战。
 
 - @civil_war
 
@@ -838,8 +838,8 @@ on-arrival: resources -= 3
 go-to: left_coalition_success
 
 @left_coalition_relations
-title: 说服德共接受民主。
-unavailable-subtitle: 我们与德共的关系不够好。
+title: 说服共产党接受民主。
+unavailable-subtitle: 我们与共产党的关系不够好。
 choose-if: kpd_relation >= 60  or kpd_party_leader == "Conciliators"
 go-to: left_coalition_success
 
@@ -849,23 +849,23 @@ on-arrival: spd_in_government = 1; in_left_front = 1; chancellor = "Breitscheid"
 go-to: left_coalition_civil_war if coup_progress >= 10 and (sa_banned != 1 or sh_banned != 1); left_coalition_no_civil_war if (coup_progress < 10 or (sa_banned and sh_banned)) and not victory_republic; post_war_left_coalition if (coup_progress < 10 or (sa_banned and sh_banned)) and victory_republic
 achievement: einheitsfront
 
-出人意料，左翼联合政府竟神奇地成功组建，而未以台尔曼为总理。经社民党、德共与 [+ president +] 总统协商一致的总理人选是鲁道夫·布莱特沙伊德，他属于社民党中间派，但因曾是左翼反战独立社民党成员而为左翼所接受。
+出人意料，左翼联合政府竟神奇地成功组建，而未以台尔曼为总理。经社民党、共产党与 [+ president +] 总统协商一致的总理人选是鲁道夫·布莱特沙伊德，他属于社民党中间派，但因曾是左翼反战独立社民党成员而为左翼所接受。
 
 # just raise the coup limit, don't immediately go to civil war
 
 @left_coalition_no_civil_war
 on-arrival: kpd_goals_seen = 0; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_loyalty -= 0.05
 
-面对德共入主政府，右翼暂时采取「观望」态度。他们预期我们的政府将不稳定且无能，并将自行瓦解，从而使左翼蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
+面对共产党入主政府，右翼暂时采取「观望」态度。他们预期我们的政府将不稳定且无能，并将自行瓦解，从而使左翼蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
 
-德共在部长职位问题上采取弃权立场。他们自称在工人政府内扮演「忠诚反对派」角色，从外部支持我们，同时开展自己的宣传运动，争取工人倒向己方。他们似乎预期我们终将失败，而我们的失败将使他们获益。
+共产党在部长职位问题上采取弃权立场。他们自称在工人政府内扮演「忠诚反对派」角色，从外部支持我们，同时开展自己的宣传运动，争取工人倒向己方。他们似乎预期我们终将失败，而我们的失败将使他们获益。
 
 无论他们的盘算如何，社民党现在掌控着政府各部。
 
 @left_coalition_civil_war
 on-arrival: reichswehr_loyalty += 0.1; nazi_rebel = 1; kpd_goals_seen = 0; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD";
 
-面对德共入主政府，右翼立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，开始与我们的支持者冲突。国防军内的反动军官率部离营，加入钢盔团阻止我们夺取权力。
+面对共产党入主政府，右翼立即发动政变企图。钢盔团与纳粹党冲锋队的部队进入柏林，开始与我们的支持者冲突。国防军内的反动军官率部离营，加入钢盔团阻止我们夺取权力。
 
 - @civil_war: 内战，就这样。
 
@@ -873,7 +873,7 @@ on-arrival: reichswehr_loyalty += 0.1; nazi_rebel = 1; kpd_goals_seen = 0; forei
 on-arrival: kpd_goals_seen = 0; leverage = ((spd_r/(spd_r+kpd_r))*(kpd_relation/1.5)); leverage *= 0.8 if kpd_r > spd_r; leverage *= 0.6 if kpd_r >= 50; foreign_minister_party = "KPD"; interior_minister_party = "KPD"; justice_minister_party = "KPD"; labor_minister_party = "KPD"; reichswehr_minister_party = "KPD"; economic_minister_party = "KPD"; finance_minister_party = "KPD"; agriculture_minister_party = "KPD";
 go-to: postwar_left
 
-面对德共入主政府，右翼暂时采取「观望」态度。他们预期我们的政府将不稳定且无能，并将自行瓦解，从而使左翼蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
+面对共产党入主政府，右翼暂时采取「观望」态度。他们预期我们的政府将不稳定且无能，并将自行瓦解，从而使左翼蒙羞，最终促成魏玛共和国的覆灭。我们的任务是证明他们错了。
 
 随着我们在内战中的胜利，共产党人有了直接参与政府的信心。他们放弃了弃权立场，将接受我们未占据的任何部门。
 
@@ -1046,16 +1046,16 @@ tags: drop_mins_left
 go-to: postwar_left
 
 @kpd_majority
-title: 德共可单独执政。
-subtitle: KPD ([+ kpd_r +]%)
+title: 共产党可单独执政。
+subtitle: 共产党 ([+ kpd_r +]%)
 view-if: kpd_r >= 50 and president == "Braun" or president == "Thälmann"
 go-to: kpd_thalmann if president == "Thälmann"; kpd_braun if president == "Braun"
 
 @kpd_thalmann
 
-共产党不知怎的，竟单独赢得了多数。台尔曼总统任命威廉·皮克（Wilhelm Pieck）主持纯德共内阁。
+共产党不知怎的，竟单独赢得了多数。台尔曼总统任命威廉·皮克（Wilhelm Pieck）主持纯共产党内阁。
 
-- @communist_victory: 德共迅速巩固权力。
+- @communist_victory: 共产党迅速巩固权力。
 
 @kpd_braun
 
@@ -1356,7 +1356,7 @@ view-if: schleicher_support >= 50
 subtitle: 红将军确保了自己的未来。
 on-arrival: schleicher_victory = 1
 
-施莱谢尔成功地在政治光谱上拼凑出一个古怪的联盟，赢下了由活跃的德共发起的不信任投票。凭借 DNE 的政治机器、兴登堡的信任及国防军勉强的支持，施莱谢尔的未来已确保。希特勒已败，但代价几何？
+施莱谢尔成功地在政治光谱上拼凑出一个古怪的联盟，赢下了由活跃的共产党发起的不信任投票。凭借 DNE 的政治机器、兴登堡的信任及国防军勉强的支持，施莱谢尔的未来已确保。希特勒已败，但代价几何？
 
 - @game_over: 游戏结束。
 
@@ -1699,7 +1699,7 @@ on-arrival: no_majority_bruning_elections += 1
 
 无组建多数政府的途径。一种选择是延续当前的布吕宁政府；如果我们容忍它，它就能在不信任投票中保住多数。
 
-或者，我们可以尝试组建一个「新大联合」，包括除纳粹党、德共和德国国家人民党之外的所有合宪政党。绊脚石是「中产阶级经济党」等保守小党，他们厌恶任何一丝社会主义气息，宁愿毁掉国家也不愿与马克思主义者合作。
+或者，我们可以尝试组建一个「新大联合」，包括除纳粹党、共产党和德国国家人民党之外的所有合宪政党。绊脚石是「中产阶级经济党」等保守小党，他们厌恶任何一丝社会主义气息，宁愿毁掉国家也不愿与马克思主义者合作。
 
 第三个选择是举行新选举。
 
@@ -1811,7 +1811,7 @@ go-to: papen_second_term if papen_two_term
 
 选举后，帕彭仍极不受欢迎，毫无联合支持的迹象。针对他的不信任投票几乎立即被发起。无论我们如何投票，该议案都将通过。国会再次被解散。
 
-新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。[? if largest_party == "NSDAP" : 尽管纳粹党成为最大党，但他们未能组阁，运动失去势头，把空间让给德共和 DNVP。 ?]
+新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。[? if largest_party == "NSDAP" : 尽管纳粹党成为最大党，但他们未能组阁，运动失去势头，把空间让给共产党和 DNVP。 ?]
 
 纳粹拒绝支持帕彭政府，引发其极右翼基本盘的困惑与失望。
 
@@ -2079,7 +2079,7 @@ title: 纳粹立即对我们发起不信任投票……
 view-if: far_right_coalition < 45
 on-arrival: z_no_confidence = 1 if z_relation < 45; kpd_no_confidence = 1 if (kpd_relation < 45 or (kpd_r >= spd_r and kpd_r >= nsdap_r and kpd_r + spd_r >= 50)); other_no_confidence = 1 if (z_relation + dvp_relation)/2 < 45; dvp_no_confidence = 1 if dvp_relation < 45; sa_strength += 200; sh_strength += 200; no_confidence_votes = nsdap_r + dnvp_r; no_confidence_votes += z_r if z_no_confidence; no_confidence_votes += kpd_r if kpd_no_confidence; no_confidence_votes += sapd_r if kpd_no_confidence; no_confidence_votes += other_r if other_no_confidence; no_confidence_votes += dvp_r if dvp_no_confidence; kpd_relation -= 10 if kpd_no_confidence; no_confidence_succeeds = 1 if no_confidence_votes > 50
 
-纳粹党和 DNVP 当然会反对我们。其他政党凭良心投票。[? if z_no_confidence: 中央党反对我们。 ?] [? if kpd_no_confidence: 德共反对我们。 ?] [? if other_no_confidence: 各小党也反对我们。 ?]
+纳粹党和 DNVP 当然会反对我们。其他政党凭良心投票。[? if z_no_confidence: 中央党反对我们。 ?] [? if kpd_no_confidence: 共产党反对我们。 ?] [? if other_no_confidence: 各小党也反对我们。 ?]
 
 国会中合计 [+ no_confidence_votes +]% 反对我们。[? if no_confidence_succeeds : 我们输掉了不信任投票。 ?]
 
@@ -2605,7 +2605,7 @@ on-arrival: next_election_time = time+3; next_election_month = month + 3; next_e
 
 @ministries
 
-我们可以从多个部委中挑选。掌控一个部委能让我们在该领域直接影响政策。[? if in_left_front : 任何我们不接手的部委都将交给德共。 ?] [? if in_left_front and reichswehr_minister_party == "KPD" : 如果德共掌控国防部，军队最可能反叛。 ?]
+我们可以从多个部委中挑选。掌控一个部委能让我们在该领域直接影响政策。[? if in_left_front : 任何我们不接手的部委都将交给共产党。 ?] [? if in_left_front and reichswehr_minister_party == "KPD" : 如果共产党掌控国防部，军队最可能反叛。 ?]
 
 [? if historical_mode : 劳工期望我们出任劳动部以在政府中代表其利益，若我们不接，他们将感到不满。 ?]
 

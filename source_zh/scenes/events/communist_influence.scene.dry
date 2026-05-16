@@ -1,5 +1,5 @@
 title: Communists Gaining Influence...
-subtitle: The KPD is becoming increasingly powerful.
+subtitle: The 共产党 is becoming increasingly powerful.
 new-page: true
 on-arrival: communist_influence_seen = 1
 view-if: kpd_influence >= 6
@@ -8,6 +8,6 @@ max-visits: 1
 
 = 共产党的影响力
 
-自德共正式入阁以来，我们注意到他们的影响力日益增强。越来越多的官僚被替换为共产党人，各部委被德共逐步整合，进而推行激进政策——而我们一直允许这些政策通过。
+自共产党正式入阁以来，我们注意到他们的影响力日益增强。越来越多的官僚被替换为共产党人，各部委被共产党逐步整合，进而推行激进政策——而我们一直允许这些政策通过。
 
-我党内有人警告即将到来的共产党政变，但另一方面，执政党扩大影响力难道不是自然之事？尽管如此，如果我们不希望德共夺权，这或许是值得我们留意的事情。
+我党内有人警告即将到来的共产党政变，但另一方面，执政党扩大影响力难道不是自然之事？尽管如此，如果我们不希望共产党夺权，这或许是值得我们留意的事情。

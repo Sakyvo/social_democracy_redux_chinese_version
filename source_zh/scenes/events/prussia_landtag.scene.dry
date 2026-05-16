@@ -289,11 +289,11 @@ go-to: coalition_menu
 
 [? if nazi_urgency <= 1 and nsdap_pl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
-[? if p_anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
+[? if p_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
 [? if spd_prussia : 普鲁士目前由州长奥托·布劳恩（Otto Braun）执政，他掌握内阁——除非出现支持另一政府的多数，否则该掌控不可被剥夺。这赋予社民党在邦内重大权力，而资产阶级正觊觎将其剥离。 ?]
 
-[? if z_prussia : 普鲁士目前由州长亚当·施特格瓦尔德（Stegerwald）执政，他掌握内阁——除非出现支持另一政府的多数，否则该掌控不可被剥夺。这赋予资产阶级在邦内重大权力，包括随时将我党排除出政府的权力；除非我党与德共能同时赢得多数并就共同候选人达成一致，否则我们将无力反击。 ?]
+[? if z_prussia : 普鲁士目前由州长亚当·施特格瓦尔德（Stegerwald）执政，他掌握内阁——除非出现支持另一政府的多数，否则该掌控不可被剥夺。这赋予资产阶级在邦内重大权力，包括随时将我党排除出政府的权力；除非我党与共产党能同时赢得多数并就共同候选人达成一致，否则我们将无力反击。 ?]
 
 目前有若干潜在的联合政府方案。
 
@@ -391,27 +391,27 @@ on-departure: z_prussia = 1; spd_prussia = 0; prussia_spd -= 0.1 if prussia_spd 
 
 @left_prussia
 title: 左翼政党的「统一战线」。
-subtitle: KPD + SPD ([+ p_left_coalition +]%)
+subtitle: 共产党 + SPD ([+ p_left_coalition +]%)
 view-if: spd_prussia or p_left_coalition >= 50
 choose-if: (spd_prussia and (p_right_coalition < 50 or z_relation >= 45 or not dnvp_reform or year >= 1930)) or p_left_coalition >= 50 and kpd_relation >= 55 and communist_coalition >= 3
-unavailable-subtitle: KPD + SPD ([+ p_left_coalition +]%) - [? if p_left_coalition < 50 : We lack the votes. ?][? if kpd_relation < 55 or communist_coalition < 3 : The KPD is unwilling. ?]
+unavailable-subtitle: 共产党 + SPD ([+ p_left_coalition +]%) - [? if p_left_coalition < 50 : We lack the votes. ?][? if kpd_relation < 55 or communist_coalition < 3 : The 共产党 is unwilling. ?]
 on-arrival: dvp_relation -= 10; z_relation -= 5; dvp_relation -= 5 if dvp_prussia; z_relation -= 5 if z_prussia;
 on-departure: dvp_prussia = 0; kpd_prussia = 1; spd_prussia = 1; z_prussia = 0; prussia_kpd += 0.1 if prussia_kpd < 1.3; prussia_spd += 0.05 if prussia_spd < 1.1; coup_progress += 4; capital_strike_progress += 1
 
-我们拥有足够席位与德共组建统一战线。[? if dvp_prussia : 德国人民党被排除出政府，对此甚为不满。 ?]
+我们拥有足够席位与共产党组建统一战线。[? if dvp_prussia : 德国人民党被排除出政府，对此甚为不满。 ?]
 
 [? if p_left_coalition < 50 : 我们凭借建设性不信任投票保住了这一职位。 ?]
 
 @popular_front_prussia
 title: 「人民阵线」是否可行？
-subtitle: KPD + SPD + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%)
+subtitle: 共产党 + SPD + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%)
 view-if: spd_prussia or p_popular_front_coalition >= 50
 choose-if: (spd_prussia and (p_right_coalition < 50 or z_relation >= 40 or not dnvp_reform or year >= 1930)) or p_popular_front_coalition >= 50 and kpd_relation >= 60 and z_relation >= 60 and communist_coalition >= 3
-unavailable-subtitle: KPD + SPD + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%) - [? if p_popular_front_coalition < 50 : We lack the votes. ?][? if kpd_relation < 60 or communist_coalition < 3 : The KPD is unwilling. ?][? if z_relation < 60 : The Center Party is unwilling. ?]
+unavailable-subtitle: 共产党 + SPD + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%) - [? if p_popular_front_coalition < 50 : We lack the votes. ?][? if kpd_relation < 60 or communist_coalition < 3 : The 共产党 is unwilling. ?][? if z_relation < 60 : The Center Party is unwilling. ?]
 on-arrival: dvp_relation -= 5; dvp_relation -= 5 if dvp_prussia
 on-departure: dvp_prussia = 0; kpd_prussia = 1; spd_prussia = 1; z_prussia = 0; prussia_kpd += 0.05 if prussia_kpd < 1.2; prussia_spd -= 0.05 if prussia_spd >= 0.9; coup_progress += 3; capital_strike_progress += 1
 
-我们拥有足够席位与德共、中央党组建人民阵线。[? if dvp_prussia : 德国人民党被排除出政府，对此甚为不满。 ?]
+我们拥有足够席位与共产党、中央党组建人民阵线。[? if dvp_prussia : 德国人民党被排除出政府，对此甚为不满。 ?]
 
 [? if p_popular_front_coalition < 50 : 我们凭借建设性不信任投票保住了这一职位。 ?]
 
@@ -454,4 +454,4 @@ on-arrival: coup_progress += 5; sa_militancy += 0.2; rb_militancy -= 0.1; rfb_mi
 
 灾难降临——反动派赢得了多数，从我们手中夺走了长久以来视为珍宝的民主堡垒。如今它已化为反动的堡垒。
 
-邦内随即开始对社民党、尤其是德共的大规模迫害。它或许再也不会回到民主。
+邦内随即开始对社民党、尤其是共产党的大规模迫害。它或许再也不会回到民主。

@@ -57,7 +57,7 @@ on-arrival: budget += 1 if works_program <= 2; unemployed -= 5 if (works_program
 
 经济总算开始好转。连资产阶级诸党也开始看到了希望[? if grand_coalition :，尽管 DVP 仍对政府干预经济啧有烦言 ?]。
 
-[? if in_popular_front or in_left_front: 不过德共仍反对我们「拯救」资本主义的政策。 ?]
+[? if in_popular_front or in_left_front: 不过共产党仍反对我们「拯救」资本主义的政策。 ?]
 
 @implement_wtb_no_deficit
 title: 实施 WTB 计划。
@@ -76,7 +76,7 @@ achievement: wirtschaftspolitik
 
 我们开始推行 WTB 计划。资金通过大型公共工程的投资开始在经济中流动。
 
-[? if in_popular_front or in_left_front: 德共反对 WTB 计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
+[? if in_popular_front or in_left_front: 共产党反对 WTB 计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
 
 @implement_wtb_deficit
 title: 实施 WTB 计划。
@@ -95,7 +95,7 @@ achievement: wirtschaftspolitik
 
 我们已迈入赤字开支的领域。联合政府伙伴对此深恶痛绝，但公共以工代赈计划仍得以实施。资金通过大型公共工程的投资开始在经济中流动。
 
-[? if in_popular_front or in_left_front: 德共反对 WTB 计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
+[? if in_popular_front or in_left_front: 共产党反对 WTB 计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
 
 
 ####################### left economic policies (socializations)
@@ -217,7 +217,7 @@ achievement: wirtschaftspolitik
 
 [? if unemployed < 10 : 失业率已足够低，该计划似乎未达到预期效果。 ?]
 
-[? if in_popular_front or in_left_front: 德共反对此经济计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
+[? if in_popular_front or in_left_front: 共产党反对此经济计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
 
 @moderate_plan_limited_budget
 title: 以较低成本部分实施改良派就业创造计划。
@@ -242,7 +242,7 @@ achievement: wirtschaftspolitik
 
 [? if unemployed < 10 : 失业率已足够低，该计划似乎未达到预期效果。 ?]
 
-[? if in_popular_front or in_left_front: 德共反对此经济计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
+[? if in_popular_front or in_left_front: 共产党反对此经济计划，视之为对资本主义的拯救而非通向真正社会主义的一步。 ?]
 
 #######################################
 # Synthesis plan

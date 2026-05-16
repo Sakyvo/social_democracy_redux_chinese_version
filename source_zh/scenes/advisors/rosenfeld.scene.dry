@@ -7,7 +7,7 @@ new-page: true
 
 = 库尔特·罗森菲尔德
 
-罗森菲尔德是柏林的一位律师，专为左翼人士和事业辩护。他倾向于与德共合作，并主张社民党走阶级斗争路线。
+罗森菲尔德是柏林的一位律师，专为左翼人士和事业辩护。他倾向于与共产党合作，并主张社民党走阶级斗争路线。
 
 - @building_the_left
 - @kpd_cooperation
@@ -24,13 +24,13 @@ on-arrival: advisor_action_timer = 6; left_strength += 6; left_dissent -= 8; ref
 我们增强了社民党内左派派系的力量。
 
 @kpd_cooperation
-title: 与德共合作
-subtitle: 推动党对德共更为友善。
+title: 与共产党合作
+subtitle: 推动党对共产党更为友善。
 unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 6; left_strength += 5; kpd_relation += 4*(1-dissent); reformist_dissent += 2; communist_coalition += 1 if kpd_cooperation_seen <= 1; kpd_cooperation_seen += 1
 
-透过其工作，罗森菲尔德曾为个别德共党员辩护；这应当能为两党之间建立一些联系。
+透过其工作，罗森菲尔德曾为个别共产党党员辩护；这应当能为两党之间建立一些联系。
 
 @against_toleration
 title: 反对容忍

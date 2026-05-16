@@ -7,33 +7,33 @@ on-arrival: month_actions += 1; spd_dominance = 0; kpd_dominance = 0; fascist_di
 
 = 五一劳动节
 
-正值 [+ year +] 年的五一，我们在筹备之际，讨论起与德共联手举办集会的可能性——主题是废除资本主义经济、迅速过渡到社会主义以终结经济危机给工人带来的苦难。据我们所知，德共对这一想法持开放态度，但此举无疑会令资产阶级、选民及各党闻风丧胆。[? if volksmai = 1 : 1929 年我们与德共联手举行的集会的成功为这一想法增添了正当性。 ?]
+正值 [+ year +] 年的五一，我们在筹备之际，讨论起与共产党联手举办集会的可能性——主题是废除资本主义经济、迅速过渡到社会主义以终结经济危机给工人带来的苦难。据我们所知，共产党对这一想法持开放态度，但此举无疑会令资产阶级、选民及各党闻风丧胆。[? if volksmai = 1 : 1929 年我们与共产党联手举行的集会的成功为这一想法增添了正当性。 ?]
 
 我们应当推进这一构想吗？
 
-- @invite_kpd_1: 让我们邀请德共一起举行工人阶级团结起来反对资本主义及其危机的集会！
-- @invite_kpd_2: 让我们邀请德共一起举行工人阶级团结起来反对资本主义及其危机的集会！
-- @dismiss: 我们与德共固然多有共同之处，但保持本党的独立性最为要紧。
+- @invite_kpd_1: 让我们邀请共产党一起举行工人阶级团结起来反对资本主义及其危机的集会！
+- @invite_kpd_2: 让我们邀请共产党一起举行工人阶级团结起来反对资本主义及其危机的集会！
+- @dismiss: 我们与共产党固然多有共同之处，但保持本党的独立性最为要紧。
 
 @dismiss
 on-arrival: left_dissent += 5; center_dissent -= 10; reformist_dissent -= 10; labor_dissent -= 5; neorevisionist_dissent -= 10; left_strength -= 5
 
-我们不会与德共共同参加此类活动。
+我们不会与共产党共同参加此类活动。
 
 @invite_kpd_1
 view-if: kpd_normalized <= spd_normalized
 
-我们决定推进计划，向德共表达合作意向。他们对此持开放态度，但党内一些更强硬的成员仍需进一步说服。
+我们决定推进计划，向共产党表达合作意向。他们对此持开放态度，但党内一些更强硬的成员仍需进一步说服。
 
 - @relations: 动用我们的关系。
 - @resources: 动用我们的资源。
 - @appeal_1929: 提醒他们我们在 1929 年的成功。
-#- @let_kpd: 让德共组织并主导集会。
+#- @let_kpd: 让共产党组织并主导集会。
 
 @invite_kpd_2
 view-if: kpd_normalized > spd_normalized
 
-我们决定推进计划，向德共表达合作意向。出乎意料地，他们非常乐意推进该方案。各项准备就绪，连开支都由德共率先垫付，万事俱备。
+我们决定推进计划，向共产党表达合作意向。出乎意料地，他们非常乐意推进该方案。各项准备就绪，连开支都由共产党率先垫付，万事俱备。
 
 - @rally_kpd_2: 现在到了集会环节……
 - @rally_disruption: 现在到了集会环节……
@@ -42,7 +42,7 @@ view-if: kpd_normalized > spd_normalized
 view-if: kpd_relation >= 75
 on-arrival: spd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)>=((rfb_strength*rfb_militancy)*kpd_normalized)); kpd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)<((rfb_strength*rfb_militancy)*kpd_normalized)); fascist_disruption = 1 if ((sa_strength*sa_militancy)+(sh_strength*sh_militancy)) >= 1000
 
-幸好我们关系良好，劝德共接受这一构想并不困难。各项准备工作就绪，集会很快可以举行。
+幸好我们关系良好，劝共产党接受这一构想并不困难。各项准备工作就绪，集会很快可以举行。
 
 - @rally_spd_1: 现在到了集会环节……
 - @rally_disruption: 现在到了集会环节……
@@ -54,7 +54,7 @@ subtitle: -1 resources
 choose-if: resources >= 1
 on-arrival: resources -= 1; spd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)>=((rfb_strength*rfb_militancy)*kpd_normalized)); kpd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_normalized)<((rfb_strength*rfb_militancy)*kpd_normalized)); fascist_disruption = 1 if ((sa_strength*sa_militancy)+(sh_strength*sh_militancy)) >= 1000
 
-我们承诺出资以筹办集会，德共予以接受。各项准备工作就绪，集会很快可以举行。
+我们承诺出资以筹办集会，共产党予以接受。各项准备工作就绪，集会很快可以举行。
 
 - @rally_spd_1: 现在到了集会环节……
 - @rally_disruption: 现在到了集会环节……
@@ -76,13 +76,13 @@ on-arrival: spd_dominance = 1 if (((rb_strength*rb_militancy*(1-dissent))*spd_no
 view-if: fascist_disruption != 1
 on-arrival: workers_kpd += 12; unemployed_kpd += 12; workers_spd += 3*(1-dissent); unemployed_spd += 3*(1-dissent); new_middle_spd -= 7; new_middle_spd += 4 if new_middle_conscious; old_middle_spd -= 7; z_relation -= 15; dvp_relation -= 15; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.05; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; socialism += 3
 
-集会如期举行，德共在其中扮演了极为活跃的角色。原因很快显现：他们显然主导了整场集会和议程，把社民党的参与视为附庸辅助。集会带来的支持绝大部分流向德共，社民党只能捡些残羹冷炙。反动派趁机将社民党称为德共的傀儡。借着我们与德共集会引发的反共情绪上升，他们也扩张了自身力量。
+集会如期举行，共产党在其中扮演了极为活跃的角色。原因很快显现：他们显然主导了整场集会和议程，把社民党的参与视为附庸辅助。集会带来的支持绝大部分流向共产党，社民党只能捡些残羹冷炙。反动派趁机将社民党称为共产党的傀儡。借着我们与共产党集会引发的反共情绪上升，他们也扩张了自身力量。
 
 @rally_spd_1
 on-arrival: workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); workers_kpd += 5; unemployed_kpd += 5; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.02; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; unemployed_spd += 3*(1-dissent) if left_strength > reformist_strength; workers_spd += 4*(1-dissent) if nationalization_progress > 0; unemployed_spd += 3*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; socialism += 2
 view-if: spd_dominance == 1 and fascist_disruption != 1
 
-集会如期举行，整体上颇为成功。所获支持的绝大部分归于社民党，但德共也分得了应得的一份。反动派攻击我们不过是 KPD 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
+集会如期举行，整体上颇为成功。所获支持的绝大部分归于社民党，但共产党也分得了应得的一份。反动派攻击我们不过是 共产党 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
 
 @rally_disruption
 view-if: fascist_disruption == 1
@@ -95,7 +95,7 @@ view-if: fascist_disruption == 1
 @give_up
 on-arrival: workers_nsdap += 4; rfb_strength -= 25; sa_strength += 25; sh_strength += 25; unemployed_nsdap += 3; kpd_relation -= 10; left_dissent += 5; pacifism += 1; workers_spd -= 7; workers_kpd += 5; workers_sapd += 2; socialism -= 2
 
-反动派在这场实力较量中胜出。德共大肆抨击我们的怯懦，许多工人离弃了我们党。
+反动派在这场实力较量中胜出。共产党大肆抨击我们的怯懦，许多工人离弃了我们党。
 
 @rb
 on-arrival: socialist_strength = (rb_strength*rb_militancy*(1-dissent))+(rfb_strength*rfb_militancy); reactionary_strength = (sa_strength*sa_militancy)+(sh_strength*sh_militancy); socialist_strength += (prussian_police_strength*prussian_police_loyalty) if prussian_police_loyalty >= 0.75 and spd_prussia == 1; reactionary_strength += (prussian_police_strength*(1-prussian_police_loyalty)) if (spd_prussia == 1 and prussian_police_loyalty < 0.4 and interior_police_loyalty < 0.5) or (spd_prussia == 0 and prussian_police_loyalty < 0.5); strife += 1; pro_republic -= 3
@@ -123,4 +123,4 @@ on-arrival: rfb_strength += 50; rb_strength -= 25; strife += 1; pacifism -= 1; p
 view-if: kpd_dominance == 1 and fascist_disruption != 1
 on-arrival: workers_spd += 5*(1-dissent); unemployed_spd += 5*(1-dissent); workers_kpd += 10; unemployed_kpd += 10; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.05; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; unemployed_spd += 2*(1-dissent) if left_strength > reformist_strength; workers_spd += 3*(1-dissent) if nationalization_progress > 0; unemployed_spd += 2*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; socialism += 3
 
-集会如期举行，整体上颇为成功，但由于德共强势登场，所获支持的绝大部分流向了德共。反动派注意到此事，攻击我们不过是 KPD 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
+集会如期举行，整体上颇为成功，但由于共产党强势登场，所获支持的绝大部分流向了共产党。反动派注意到此事，攻击我们不过是 共产党 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。

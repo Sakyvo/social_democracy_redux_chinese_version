@@ -7,7 +7,7 @@ new-page: true
 
 = 弗里德里希·施坦普费尔
 
-弗里德里希·施坦普费尔是我党机关报《前进报》（Vorwärts）长期以来的总编辑，也是国会议员。历史上，他隶属于支持我们参加一战的「多数派」社民党，但同时也支持与德共合作以挽救共和国。
+弗里德里希·施坦普费尔是我党机关报《前进报》（Vorwärts）长期以来的总编辑，也是国会议员。历史上，他隶属于支持我们参加一战的「多数派」社民党，但同时也支持与共产党合作以挽救共和国。
 
 - @media_
 - @faction_support_
@@ -66,10 +66,10 @@ on-arrival: neorevisionist_dissent -= 8; neorevisionist_strength += 8
 《前进报》发表社论，支持新修正派的理念。
 
 @kpd_cooperation
-title: 与德共合作
-subtitle: 我们能否通过媒体与德共建立更紧密的联系？
+title: 与共产党合作
+subtitle: 我们能否通过媒体与共产党建立更紧密的联系？
 unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 6; left_strength += 2; kpd_relation += 4*(1-dissent); reformist_dissent += 2
 
-施坦普费尔通过我们的媒体与德共建立更紧密的联系。
+施坦普费尔通过我们的媒体与共产党建立更紧密的联系。

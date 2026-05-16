@@ -1,5 +1,5 @@
-title: The KPD calls a vote of no confidence against the current government!
-subtitle: We have angered the KPD too much...
+title: The 共产党 calls a vote of no confidence against the current government!
+subtitle: We have angered the 共产党 too much...
 new-page: true
 view-if: spd_in_government = 1 and ((in_popular_front = 1 and kpd_coalition_dissent >= 3) or (in_left_front = 1 and kpd_coalition_dissent >= 4)) and spd_r < 50 and not constructive_vonc
 tags: event
@@ -7,7 +7,7 @@ go-to: menu
 
 = 不信任投票
 
-由于我们各项政策与分歧，德共已对我们发起不信任投票。如果通过，几个月后将举行大选。
+由于我们各项政策与分歧，共产党已对我们发起不信任投票。如果通过，几个月后将举行大选。
 
 @menu
 
@@ -17,7 +17,7 @@ go-to: menu
 
 @try_assuage
 
-我们如何安抚德共？
+我们如何安抚共产党？
 
 - @resources: 动用我们的资源以减少联合政府内部的不满。
 - @thalmann: 让台尔曼出任总理，取代 [+ chancellor +]。
@@ -34,12 +34,12 @@ go-to: thalmann_war if not victory_republic; thalmann_no_war if victory_republic
 
 [+ president +] 总统极不情愿地任命 [+ chancellor +] 为总理。
 
-[+ chancellor +] 立即着手打造"苏维埃德国"：尽可能地把权力集中到德共手中，把反共分子从国家机构中清除出去，并派出街头打手对付"人民公敌"。
+[+ chancellor +] 立即着手打造"苏维埃德国"：尽可能地把权力集中到共产党手中，把反共分子从国家机构中清除出去，并派出街头打手对付"人民公敌"。
 
 @thalmann_war
 on-arrival: nazi_rebel = 1; foreign_minister_party = "SPD"; interior_minister_party = "SPD"; justice_minister_party = "SPD"; labor_minister_party = "SPD"; reichswehr_minister_party = "SPD"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; agriculture_minister_party = "SPD"; kpd_relation = 80
 
-[+ chancellor +] 出任总理一事一经宣布，右翼势力几乎立刻发动政变。钢盔团和纳粹冲锋队（SA）的部队进入柏林，立即与我们的支持者发生冲突！国防军中的反动派军官把部队带出兵营、与钢盔团合流以阻止德共上台。我们被迫与德共站在同一边，无论我们是否情愿。
+[+ chancellor +] 出任总理一事一经宣布，右翼势力几乎立刻发动政变。钢盔团和纳粹冲锋队（SA）的部队进入柏林，立即与我们的支持者发生冲突！国防军中的反动派军官把部队带出兵营、与钢盔团合流以阻止共产党上台。我们被迫与共产党站在同一边，无论我们是否情愿。
 
 - @civil_war
 
@@ -61,7 +61,7 @@ on-arrival: resources -= 3; kpd_coalition_dissent -= 1; kpd_influence += 1; rfb_
 choose-if: (weimar_coalition >= 50 and z_relation >= 40) or (grand_coalition >= 50 and z_relation >= 45 and dvp_relation >= 30)
 unavailable-subtitle: [? if grand_coalition < 50 : This would not give us a majority. ?] [? if z_relation < 45 : After working with the Communists, the Center Party does not wish to form a coalition with us. ?] [? if dvp_relation < 30 : The DVP would rather see the government fall than rescue us from the Communists. ?]
 
-我们可以试图把德共踢出执政联盟，与资产阶级各党组建新政府。
+我们可以试图把共产党踢出执政联盟，与资产阶级各党组建新政府。
 
 - @election_1928.weimar_coalition: 组建魏玛联合？
 - @election_1928.grand_coalition: 组建大联合政府？

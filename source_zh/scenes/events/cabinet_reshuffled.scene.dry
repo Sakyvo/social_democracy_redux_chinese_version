@@ -15,7 +15,7 @@ go-to: menu if chancellor != "Wirth"; wirth_resign_hindenburg if chancellor == "
 - @try_assuage: 设法安抚我们的伙伴。
 - @right_coalition: 由 DNVP 取代我们入阁。
 - @minority_bruning: 布吕宁内阁作为少数派政府继续存续。
-- @breitscheid_vonc: 与德共一道提出建设性不信任动议！
+- @breitscheid_vonc: 与共产党一道提出建设性不信任动议！
 - @sack_bruning: [+ president +] 解散国会，举行闪电大选。
 - @bourgeois_coalition: 资产阶级单独拥有多数。
 - @tolerate: 任改组发生，并容忍这届新的少数派政府。
@@ -74,7 +74,7 @@ choose-if: left_coalition >= 50 and kpd_relation >= 50
 unavailable-subtitle: [? if left_coalition < 50 : We do not have a majority in favor of Breitscheid. ?][? if kpd_relation < 50 : The Communists are unwilling. ?]
 on-arrival: old_chancellor = chancellor; in_left_front = 1; in_grand_coalition = 0; in_weimar_coalition = 0; in_popular_front = 0; chancellor_party = "SPD"; chancellor = "Breitscheid"; labor_minister_party = "SPD"; interior_minister_party = "SPD"; finance_minister_party = "SPD"; economic_minister_party = "SPD"; justice_minister_party = "SPD"; foreign_minister_party = "SPD"; agriculture_minister_party = "SPD"; reichswehr_minister_party = "SPD"
 
-我们成功通过建设性不信任动议，以布赖特沙伊德取代 [+ old_chancellor +]。我们现在与德共组成了左翼阵线执政。
+我们成功通过建设性不信任动议，以布赖特沙伊德取代 [+ old_chancellor +]。我们现在与共产党组成了左翼阵线执政。
 
 @sack_bruning
 view-if: constructive_vonc and president == "Braun" or president == "Schumacher" or president == "Juchacz"

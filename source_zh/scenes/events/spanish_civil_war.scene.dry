@@ -75,7 +75,7 @@ on-arrival: non_intervention = 1; capital_strike_progress -= 0.5; coup_progress 
 
 党内许多人呼吁我们向共和派提供军事援助。然而，这样的行动会直接违反《凡尔赛条约》，可能损害我们与法国的关系。
 
-[? if in_popular_front or in_left_front : 德共支持援助[? if in_popular_front : ，但中央党反对。 ?] ?][? if in_weimar_coalition: 中央党反对援助。 ?][? if in_grand_coalition : 中央党与 DVP 都反对援助。 ?]
+[? if in_popular_front or in_left_front : 共产党支持援助[? if in_popular_front : ，但中央党反对。 ?] ?][? if in_weimar_coalition: 中央党反对援助。 ?][? if in_grand_coalition : 中央党与 DVP 都反对援助。 ?]
 
 - @aid: 向共和派提供援助。
 - @neutrality: 我们暂时保持中立。
@@ -133,7 +133,7 @@ on-arrival: next_election_time = time+3 if next_election_time >= time+3; next_el
 @foreign_support
 on-arrival: budget -= 1; reichswehr_loyalty -= 0.05; spain_involved = 1; aid_level = 3; left_dissent -= 4; dvp_relation -= 4; z_relation -= 2; coup_progress += 1 if coup_progress >= 4; coup_progress += 1; west_relation -= 1; soviet_relation += 1; nationalism -= democratization; democratization += 1; pro_republic += 3; socialism += 2; workers_spd += 2*(1-dissent); new_middle_spd += 1*(1-dissent); workers_kpd += 2; republic_strength += 2
 
-我们支持德共向共和派提供军事援助，任其推进。共和派力量得到增援，但援助过多倾向社会主义者，尤其是西班牙共产党（PCE）。
+我们支持共产党向共和派提供军事援助，任其推进。共和派力量得到增援，但援助过多倾向社会主义者，尤其是西班牙共产党（PCE）。
 
 @foreign_oppose
 on-arrival: kpd_coalition_dissent += 1; kpd_relation -= 5; left_dissent += 5; new_middle_spd -= 1; z_relation += 2; republic_strength += 1

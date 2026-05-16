@@ -75,7 +75,7 @@ go-to: cut_benefits_done if not legislature_enabled; legislative_menu if legisla
 @cut_benefits_done
 on-arrival: workers_spd -= 0.12*workers_spd; unemployed_spd -= 0.2*unemployed_spd; workers_kpd += 6; workers_nsdap += 6; unemployed_kpd += 5; unemployed_nsdap += 5; left_dissent += 15; center_dissent += 10; labor_dissent += 15; reformist_dissent += 5; welfare -= 2; budget += 1; unemployed += 3; pro_republic -= 4; kpd_relation -= 8; inflation -= 2; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; economic_growth -= 0.1;
 
-出于预算考虑，我们削减了失业保险待遇。遗憾的是，工人无法理解我们对财政纪律的执着。他们对我们的背叛怒不可遏，党内各派系相当一部分人亦然。我们的损失即德共的所得，甚至连 NSDAP——那些资产阶级的哈巴狗——也加入了对我们紧缩政策的抨击。
+出于预算考虑，我们削减了失业保险待遇。遗憾的是，工人无法理解我们对财政纪律的执着。他们对我们的背叛怒不可遏，党内各派系相当一部分人亦然。我们的损失即共产党的所得，甚至连 NSDAP——那些资产阶级的哈巴狗——也加入了对我们紧缩政策的抨击。
 
 
 

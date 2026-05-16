@@ -1,4 +1,4 @@
-title: The KPD checks upon our progress in accomplishing the coalition's goals...
+title: The 共产党 checks upon our progress in accomplishing the coalition's goals...
 view-if: (in_popular_front or in_left_front) and (kpd_ultimatum_timer = 0 or (welfare_goal_completed and agriculture_goal_completed and economy_goal_completed and finance_goal_completed and labor_goal_completed and reichswehr_goal_completed)) and kpd_goals_seen = 1 and kpd_ultimatum_seen = 0 and spd_in_government
 on-arrival: {!
 Q.kpd_ultimatum_seen = 1;
@@ -40,9 +40,9 @@ new-page: true
 tags: event
 go-to: goals_success if kpd_goals_completed; goals_failed if not kpd_goals_completed
 
-= 德共目标
+= 共产党目标
 
-本届政府成立之初，德共曾为联合政府提出了一系列目标：
+本届政府成立之初，共产党曾为联合政府提出了一系列目标：
 
 [? if welfare_goal = 1 : - 扩大社会福利计划 - [? if welfare_goal_completed : 完成 ?][? if not welfare_goal_completed: 未完成 ?] ?]
 
@@ -61,7 +61,7 @@ go-to: goals_success if kpd_goals_completed; goals_failed if not kpd_goals_compl
 @goals_failed
 on-arrival: kpd_relation -= 10; workers_spd -= 8; unemployed_spd -= 8;
 
-可惜，我们未能完成德共所设定的全部目标。他们计划对我们的政府发起不信任投票，并已开始展开宣传攻势，要在工人眼中削弱我们政府的合法性。
+可惜，我们未能完成共产党所设定的全部目标。他们计划对我们的政府发起不信任投票，并已开始展开宣传攻势，要在工人眼中削弱我们政府的合法性。
 
 - @appeal: 恳请共产党人耐心——我们正在努力！
 - @kpd_vote_of_no_confidence.support_center: 我们能否以中央党与 [+ ddp_name +]（可能再加 DVP）为基础组建新政府？
@@ -73,14 +73,14 @@ choose-if: (kpd_score >= 4 and kpd_relation > 50 and kpd_appeal_seen = 0) or kpd
 unavailable-subtitle: [? if kpd_score < 4: They do not see us as serious in trying to achieve the goals of the coalition. ?] [? if kpd_relation < 50: Our relations are too poor. ?] [? if kpd_appeal_seen = 1: we do not have any more time. ?]
 on-arrival: kpd_ultimatum_seen = 0; kpd_ultimatum_timer += 6; kpd_appeal_seen = 1
 
-我们辩称自己正在努力实现联合政府的大多数目标，本着无产阶级团结之名，必须让这一联合政府正常运作。出乎意料的是，德共听进了我们的恳求，愿意在我们必须达成联合政府目标之前再给我们六个月。
+我们辩称自己正在努力实现联合政府的大多数目标，本着无产阶级团结之名，必须让这一联合政府正常运作。出乎意料的是，共产党听进了我们的恳求，愿意在我们必须达成联合政府目标之前再给我们六个月。
 
 
 @goals_success
 on-arrival: workers_spd += 8; unemployed_spd += 8; kpd_relation += 10; workers_kpd += 5; kpd_coalition_success += 1
 go-to: popular_front_achievement if in_popular_front; united_front_achievement if in_left_front
 
-出人意料地，德共的目标全部达成！显然共产党人没有为这种结果做准备：一个通过民主手段成功建立的工人政府。他们将在我们任期余下的时间继续"容忍"我们的政府，同时仍作为防止资产阶级反复的看门人。
+出人意料地，共产党的目标全部达成！显然共产党人没有为这种结果做准备：一个通过民主手段成功建立的工人政府。他们将在我们任期余下的时间继续"容忍"我们的政府，同时仍作为防止资产阶级反复的看门人。
 
 
 @popular_front_achievement
@@ -95,4 +95,4 @@ achievement: einheitsfront_2
 view-if: constructive_vonc
 on-arrival: in_popular_front = 0; in_left_front = 0; in_minority_government = 1;
 
-我们实际上沦为了少数派政府，德共有意阻挠我们推动政策。
+我们实际上沦为了少数派政府，共产党有意阻挠我们推动政策。

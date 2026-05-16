@@ -29,7 +29,7 @@ subtitle: The Reichstag has been burned down!
 on-arrival: spd_rebel = 1; kpd_relation += 10; rb_strength *= 0.8; rfb_strength += 100; workers_spd -= 10; workers_dne += 10
 go-to: civil_war
 
-我们动员国旗团残部和 ADGB 抵抗这场赤裸裸的镇压。但 ADGB 拒绝相随。[? if kpd_party_leader != "Conciliators" : 看到领导人被关入大牢的德共，更愿意加入我们对法西斯主义的最终一战，但这够不够？ ?]
+我们动员国旗团残部和 ADGB 抵抗这场赤裸裸的镇压。但 ADGB 拒绝相随。[? if kpd_party_leader != "Conciliators" : 看到领导人被关入大牢的共产党，更愿意加入我们对法西斯主义的最终一战，但这够不够？ ?]
 
 @lib
 on-arrival: {!

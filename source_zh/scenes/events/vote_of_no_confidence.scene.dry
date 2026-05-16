@@ -16,7 +16,7 @@ go-to: vonc_menu
 @vonc_menu
 
 - @try_assuage: 试图安抚我们的伙伴。
-- @support_kpd: 我们能否争取德共投弃权票？
+- @support_kpd: 我们能否争取共产党投弃权票？
 - @let_it_happen: 让投票自行发生。
 - @let_it_happen25: 让投票自行发生。
 
@@ -27,7 +27,7 @@ go-to: vonc_menu
 - @give_up_prussia: 放弃普鲁士的领导权。
 - @austerity: 推出一项大规模紧缩计划。
 - @resources: 动用我们的资源以减少联合政府内部的不满。
-- @support_kpd: 我们能否争取德共投弃权票？
+- @support_kpd: 我们能否争取共产党投弃权票？
 - @let_it_happen: 算了。让投票自行发生。
 - @let_it_happen25: 算了。让投票自行发生。
 
@@ -57,18 +57,18 @@ go-to: vonc_formation if (fun_value == 3 and year >= 1935)
 view-if: tried_supporting_kpd = 0
 on-arrival: tried_supporting_kpd = 1
 choose-if: (in_grand_coalition and communist_coalition >= 3 and kpd_relation >= 50 and kpd_r >= dvp_r) or (in_weimar_coalition and kpd_relation >= 50 and kpd_r >= z_r and communist_coalition >= 3)
-unavailable-subtitle: [? if communist_coalition < 3 : The KPD won't take part in parliamentary government. ?] [? if kpd_relation < 50 : The KPD is not friendly enough with us. ?] [? if (in_grand_coalition and kpd_r < dvp_r) or (in_weimar_coalition and kpd_r < z_r): The KPD does not have enough votes. ?] [? if in_popular_front : We are already in a Popular Front with the KPD. ?]
+unavailable-subtitle: [? if communist_coalition < 3 : The 共产党 won't take part in parliamentary government. ?] [? if kpd_relation < 50 : The 共产党 is not friendly enough with us. ?] [? if (in_grand_coalition and kpd_r < dvp_r) or (in_weimar_coalition and kpd_r < z_r): The 共产党 does not have enough votes. ?] [? if in_popular_front : We are already in a Popular Front with the KPD. ?]
 
-如果共产党人投弃权票，我们实际上可以维持一届少数派政府[? if president=="Hindenburg":，但缺少兴登堡总统的支持（我们也无此支持），政策推进将极为艰难 ?]。果真如此，我们将欠下德共一份巨大的人情。这可能在未来引发更广泛的合作，福祸难料。
+如果共产党人投弃权票，我们实际上可以维持一届少数派政府[? if president=="Hindenburg":，但缺少兴登堡总统的支持（我们也无此支持），政策推进将极为艰难 ?]。果真如此，我们将欠下共产党一份巨大的人情。这可能在未来引发更广泛的合作，福祸难料。
 
-- @support_kpd_2: 说服德共"容忍"我们？
+- @support_kpd_2: 说服共产党"容忍"我们？
 - @let_it_happen: 算了。让投票自行发生。
 
 @support_kpd_2
 on-arrival: communist_coalition += 1; workers_kpd += 3; kpd_relation += 5
 go-to: support_kpd_weimar if in_weimar_coalition; support_kpd_grand if in_grand_coalition
 
-德共对"容忍"安排不感兴趣；他们只会在能以联合政府一员身份参政的前提下支持我们。而且，如果达成容忍协议，右翼各党就不会愿意支持我们。
+共产党对"容忍"安排不感兴趣；他们只会在能以联合政府一员身份参政的前提下支持我们。而且，如果达成容忍协议，右翼各党就不会愿意支持我们。
 
 @support_kpd_grand
 

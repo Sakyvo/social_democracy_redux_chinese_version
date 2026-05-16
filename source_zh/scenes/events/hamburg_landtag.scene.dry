@@ -290,7 +290,7 @@ go-to: coalition_menu
 
 [? if nazi_urgency <= 1 and nsdap_hl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
-[? if h_anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
+[? if h_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
 目前有若干潜在的联合政府方案。
 
@@ -323,21 +323,21 @@ on-arrival: in_hamburg_soclib = 1; in_hamburg_groko = 0; in_hamburg_left = 0; in
 
 @left_front
 title: 「统一战线」是否可行？
-subtitle: SPD + KPD ([+ h_left_coalition +]%)
+subtitle: SPD + 共产党 ([+ h_left_coalition +]%)
 view-if: h_left_coalition >= 50 or in_hamburg_left
 choose-if: h_left_coalition >= 50 or (in_hamburg_left and not nsdap_hl >= 50)
 
-此种联合不无可能。但要促成，汉堡社民党必须克服其改良主义倾向，且全国与地方两级的德共须批准此种联合。
+此种联合不无可能。但要促成，汉堡社民党必须克服其改良主义倾向，且全国与地方两级的共产党须批准此种联合。
 
 - @formed: 左翼阵线成立。
 - @coalition_menu: 此路不通。
 
 @formed
-unavailable-subtitle: [? if reformist_strength >= 25 : 汉堡社民党不愿。 ?][? if kpd_relation < 55 or communist_coalition < 2 : 德共不愿。 ?]
+unavailable-subtitle: [? if reformist_strength >= 25 : 汉堡社民党不愿。 ?][? if kpd_relation < 55 or communist_coalition < 2 : 共产党不愿。 ?]
 choose-if: reformist_strength < 25 and kpd_relation >= 55 and communist_coalition >= 2
 on-arrival: in_hamburg_left = 1; in_hamburg_soclib = 0; in_hamburg_groko = 0; in_spd_hamburg = 0; in_nazi_hamburg = 0; workers_spd += 5*(1-dissent); workers_kpd += 2
 
-社民党与德共组成联合政府。[? if h_left_coalition < 50 : 尽管联合并不具备多数席位。 ?]
+社民党与共产党组成联合政府。[? if h_left_coalition < 50 : 尽管联合并不具备多数席位。 ?]
 
 @spd_majority
 title: 社民党赢得绝对多数。

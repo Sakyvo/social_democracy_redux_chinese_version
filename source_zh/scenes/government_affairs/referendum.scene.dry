@@ -56,7 +56,7 @@ on-arrival: budget -= 1; land_reform += 1; coalition_dissent += 1; rural_spd += 
 @land_reform_fail
 view-if: not referendum_succeed
 
-遗憾的是，公投仅以 [+ referendum_support +]% 的得票率告败。不过，我们借公投所作的土地改革倡导改善了与德共的关系，也提升了我们在乡村地区的地位。
+遗憾的是，公投仅以 [+ referendum_support +]% 的得票率告败。不过，我们借公投所作的土地改革倡导改善了与共产党的关系，也提升了我们在乡村地区的地位。
 
 @nationalization_vote
 view-if: (nationalization_adopted or socializations >= 2) and unemployed >= 20 and nationalization_referendum_timer = 0
@@ -67,7 +67,7 @@ on-arrival: nationalization_referendum_timer += 12; kpd_relation += 10; national
 Q.referendum_support.toFixed(1);
 !}
 
-我们发起一项请愿，由政府将大型闲置工业收归国有，并[? if works_councils >= 2 : 交由工人委员会与国家代表共同组成的全国规划机构 ?][? if works_councils < 2 : 交由政府 ?]管辖，以挽救经济。我们在德国工业区逐厂房、逐[? if works_councils >= 2 : 工人委员会 ?]地为此请愿造势——德共随即加入造势。请愿迅速达到所需签名数，进入全国公投。
+我们发起一项请愿，由政府将大型闲置工业收归国有，并[? if works_councils >= 2 : 交由工人委员会与国家代表共同组成的全国规划机构 ?][? if works_councils < 2 : 交由政府 ?]管辖，以挽救经济。我们在德国工业区逐厂房、逐[? if works_councils >= 2 : 工人委员会 ?]地为此请愿造势——共产党随即加入造势。请愿迅速达到所需签名数，进入全国公投。
 
 - @nationalization_success: 公投通过。
 - @nationalization_fail: 公投失败。
@@ -115,7 +115,7 @@ on-arrival: buyer_referendum_timer += 12; rural_spd += 2*(1-dissent); rural_nsda
 Q.referendum_support.toFixed(1);
 !}
 
-我们发起一项国家收购计划的请愿，同时在乡村为农民造势、在城市为工人造势。德共也加入造势，虽规模不大，但请愿很快征集到公投所需签名。
+我们发起一项国家收购计划的请愿，同时在乡村为农民造势、在城市为工人造势。共产党也加入造势，虽规模不大，但请愿很快征集到公投所需签名。
 
 - @state_buyer_success: 公投通过。
 - @state_buyer_fail: 公投失败。

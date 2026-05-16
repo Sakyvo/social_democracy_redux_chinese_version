@@ -21,14 +21,14 @@ choose-if: ((dvp_relation+spd_votes+kpd_votes+socialism) >= 125) or (marx_relati
 unavailable-subtitle: The parties of the center-right view it as too radical
 on-arrival: coalition_dissent += 1; dvp_relation += 5; rural_spd += 4*(1-dissent); workers_kpd -= 2*(1-dissent); workers_spd += 2*(1-dissent); princes_initiated = 0; kpd_relation -= 5
 
-我们成功向资产阶级各党施压，使其支持 DDP 去年的提案。借此，我们得以为不参与公投做出说明，但德共还是不依不饶地攻击我们。
+我们成功向资产阶级各党施压，使其支持 DDP 去年的提案。借此，我们得以为不参与公投做出说明，但共产党还是不依不饶地攻击我们。
 
 @accept_dvp
 choose-if: reformist_strength > left_strength+center_strength or (reformist_strength > left_strength and not princes_initiated)
 unavailable-subtitle: The party is by far opposed to the bill in question
 on-arrival: coalition_dissent -= 1; marx_relation += 5; left_dissent += 5; kpd_relation -= 10; workers_kpd += 4; workers_spd -= 4; unemployed_kpd += 4; unemployed_spd -= 4; princes_initiated = 0; dvp_relation += 5; z_relation += 5
 
-我们成功说服了党内同志支持 DVP 提议的妥协方案。左翼勃然大怒，许多人无论如何都会与德共并肩投票。
+我们成功说服了党内同志支持 DVP 提议的妥协方案。左翼勃然大怒，许多人无论如何都会与共产党并肩投票。
 
 @referendum_ftw
 view-if: princes_initiated
@@ -37,7 +37,7 @@ on-arrival: coalition_dissent += 1; marx_relation -= 5
 这份妥协毫无可接受之处。我们将继续推进没收王公财产的公投。就此事而言，必须决定该如何开展运动。
 
 - @spd_only: 社民党独立为公投造势。
-- @united_front: 社民党与德共必须以统一阵线并肩开展运动。
+- @united_front: 社民党与共产党必须以统一阵线并肩开展运动。
 
 @whoops
 view-if: not princes_initiated
@@ -45,22 +45,22 @@ view-if: not princes_initiated
 任何这些妥协都不可接受。鉴于无法在国会内解决此事，许多人呼吁我们即使姗姗来迟，也仍应加入公投。
 
 - @join_referendum: 社民党加入共产党的倡议。
-- @delulu: 德共在这场公投中孤军作战。
+- @delulu: 共产党在这场公投中孤军作战。
 
 @spd_only
 on-arrival: workers_spd += 3*(1-dissent); workers_kpd -= 1; unemployed_spd += 2*(1-dissent); unemployed_kpd -= 1; rural_spd += 2*(1-dissent); z_relation += 3; ddp_relation += 3; dvp_relation += 1
 
-切莫误解：我们支持这一公投并非意味着与德共组成统一阵线。我们将始终独立于德共为该法案进行动员，开展各自的运动。
+切莫误解：我们支持这一公投并非意味着与共产党组成统一阵线。我们将始终独立于共产党为该法案进行动员，开展各自的运动。
 
 @united_front
 on-arrival: coalition_dissent += 1; princes_bonus += 3; marx_relation -= 5; kpd_relation += 10; reformist_dissent += 10; workers_spd += 2*(1-dissent); workers_kpd += 2; unemployed_spd += 1*(1-dissent); unemployed_kpd += 3; rural_spd += 2*(1-dissent); socialism += 4; z_relation -= 4; ddp_relation -= 3; dvp_relation -= 5
 
-这场公投只有靠社民党与德共共同动员无产阶级才能成功。若不与德共并肩开展运动，胜利无从谈起。我们的联合政府伙伴对此深感厌恶。
+这场公投只有靠社民党与共产党共同动员无产阶级才能成功。若不与共产党并肩开展运动，胜利无从谈起。我们的联合政府伙伴对此深感厌恶。
 
 @join_referendum
 on-arrival: princes_initiated = 1; coalition_dissent += 1; marx_relation -= 3; workers_spd += 1*(1-dissent); rural_spd += 1*(1-dissent); z_relation -= 2; ddp_relation -= 2; dvp_relation -= 3; left_dissent += 5; reformist_dissent += 5
 
-尽管我们绝不可能直接支持共产党的方案，但德国总工会（ADGB）在我们一番犹豫不决之后斡旋出一份两党都可接受的法案版本。这种犹豫损害了党的公信力，让左右两翼都不甚满意。同时，我们为公投开展的运动与德共分开进行，避免给人形成真正的统一阵线的印象。
+尽管我们绝不可能直接支持共产党的方案，但德国总工会（ADGB）在我们一番犹豫不决之后斡旋出一份两党都可接受的法案版本。这种犹豫损害了党的公信力，让左右两翼都不甚满意。同时，我们为公投开展的运动与共产党分开进行，避免给人形成真正的统一阵线的印象。
 
 @delulu
 on-arrival: workers_kpd += 2; workers_spd -= 2; unemployed_spd -= 3; unemployed_kpd += 3; left_dissent += 10; marx_relation += 4

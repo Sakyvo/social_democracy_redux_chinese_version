@@ -1596,7 +1596,7 @@ Q.bill_support = Math.round(Q.bill_support);
 
 当前有 [+ bill_support +]% 支持我们的议案。
 
-- @sway_kpd: 游说德共。
+- @sway_kpd: 游说共产党。
 - @sway_sapd: 游说社工党（SAPD）。
 - @sway_ddp: 游说[+ ddp_name +]。
 - @sway_z: 游说中央党。
@@ -1610,7 +1610,7 @@ Q.bill_support = Math.round(Q.bill_support);
 !}
 on-departure: welfare_cut_vote = 0; welfare_fund_pre_depression_vote = 0; welfare_fund_post_depression_vote = 0; women_vote = 0; council_vote_1 = 0; council_vote_2 = 0; council_vote_3 = 0; socialization_vote = 0; cooperative_vote = 0; judicial_vote = 0; concordat_vote = 0; eu_vote = 0; progressive_tax_vote = 0; raise_rich_vote = 0; cut_vote = 0; raise_vote = 0; regressive_vote = 0; tariff_cut_vote = 0; tariff_hike_vote = 0; women_labor_vote = 0; women_family_vote = 0; cut_benefits_vote = 0; increase_employers_vote = 0; balance_vote = 0; wtb_no_deficit_vote = 0; wtb_deficit_vote = 0; nationalize_vote = 0; reformist_vote = 0; synthesis_vote = 0; rearmament_vote = 0; disarmament_vote = 0; military_reform_vote = 0; school_board_vote = 0; public_hs_vote = 0; kwg_vote = 0; applied_vote = 0; medical_vote = 0; cut_science_vote = 0; war_guilt_vote = 0; shorten_hours_vote = 0; land_reform_vote = 0; state_buyer_vote = 0
 
-KPD：[+ kpd_vote : vote_display +]
+共产党：[+ kpd_vote : vote_display +]
 
 [? if sapd_formed : SAPD：[+ sapd_vote : vote_display +] ?]
 
@@ -1637,7 +1637,7 @@ view-if: in_left_front or in_popular_front and not welfare_cut_vote and not kpd_
 on-arrival: bill_support += kpd_r; kpd_coalition_dissent += 1; kpd_vote = 1; kpd_relation -= 5; reformist_dissent += 10; left_strength += 5; workers_spd -= 2; workers_kpd += 2; unemployed_spd -= 1; unemployed_kpd += 1
 go-to: success if bill_support >= 50; swaying_menu if bill_support < 50
 
-我们向德共作出了足够的让步，令其同意支持我们的议案。
+我们向共产党作出了足够的让步，令其同意支持我们的议案。
 
 @sway_sapd
 view-if: in_left_front or in_popular_front or in_weimar_coalition and not welfare_cut_vote and not wtb_deficit_vote and not sapd_vote and sapd_formed
@@ -1677,7 +1677,7 @@ go-to: success if bill_support >= 50; swaying_menu if bill_support < 50
 on-arrival: left_dissent += 5 if left_dissent < 40; center_dissent += 5 if center_dissent < 40; reformist_dissent += 5 if reformist_dissent < 50; neorevisionist_dissent += 5 if neorevisionist_dissent < 50; labor_dissent += 5 if labor_dissent < 50
 on-departure: welfare_cut_vote = 0; welfare_fund_pre_depression_vote = 0; welfare_fund_post_depression_vote = 0; women_vote = 0; council_vote_1 = 0; council_vote_2 = 0; council_vote_3 = 0; socialization_vote = 0; cooperative_vote = 0; judicial_vote = 0; concordat_vote = 0; eu_vote = 0; progressive_tax_vote = 0; raise_rich_vote = 0; cut_vote = 0; raise_vote = 0; regressive_vote = 0; tariff_cut_vote = 0; tariff_hike_vote = 0; women_labor_vote = 0; women_family_vote = 0; cut_benefits_vote = 0; increase_employers_vote = 0; balance_vote = 0; wtb_no_deficit_vote = 0; wtb_deficit_vote = 0; nationalize_vote = 0; reformist_vote = 0; synthesis_vote = 0; rearmament_vote = 0; disarmament_vote = 0; military_reform_vote = 0; school_board_vote = 0; public_hs_vote = 0; kwg_vote = 0; applied_vote = 0; medical_vote = 0; cut_science_vote = 0; war_guilt_vote = 0; shorten_hours_vote = 0; land_reform_vote = 0; state_buyer_vote = 0
 
-KPD：[+ kpd_vote : vote_display +]
+共产党：[+ kpd_vote : vote_display +]
 
 [? if sapd_formed : SAPD：[+ sapd_vote : vote_display +] ?]
 

@@ -22,7 +22,7 @@ face-image: img/blutmai.jpg
 
 我们下令禁止示威并派警察执行禁令。警察与共产党人发生对峙，暴力冲突爆发。据报道，柏林警察打死了数十名示威者及无辜旁观者。共产党人已开始把这一事件称作*Blutmai*——"血腥五月"。
 
-这或将断绝与德共和解的任何可能，但中央党和德国人民党认可我们的行动。
+这或将断绝与共产党和解的任何可能，但中央党和德国人民党认可我们的行动。
 
 - @corrupt_police: 是警察中腐败和反动分子的过错。清洗相关责任人。
 - @communist_fault: 是共产党人拒绝遵守法治的过错。
@@ -38,7 +38,7 @@ on-arrival: kpd_relation += 10; z_relation -= 2; dvp_relation -= 2; prussian_pol
 @communist_fault
 on-arrival: kpd_relation -= 10; z_relation += 5; dvp_relation += 5; rfb_strength -= 80; rfb_banned = 1; left_dissent += 5
 
-如果德共继续违法行事，他们就必须承担后果。因此我们查禁了 RFB——他们的准军事组织。资产阶级和倾右各党表示赞同。
+如果共产党继续违法行事，他们就必须承担后果。因此我们查禁了 RFB——他们的准军事组织。资产阶级和倾右各党表示赞同。
 
 @no_fault
 
@@ -54,7 +54,7 @@ on-arrival: kpd_relation += 5; workers_kpd += 5; unemployed_kpd += 5; socialism 
 @allow
 on-arrival: workers_kpd += 5; unemployed_kpd += 5; kpd_relation += 10; rfb_strength += 50; z_relation -= 3; dvp_relation -= 3; coalition_dissent += 1; rfb_militancy += 0.1; socialism += 2
 
-示威在警察少量部署下和平进行。围观者钦佩共产党工人的力量——也许我们的一部分成员被他们带走了。德共虽然嘴上不会承认，但他们对我们的敌意正在减弱（即便还没到*喜欢*我们的程度）。我们的中间派盟友谴责示威，但他们的呼喊已无济于事。
+示威在警察少量部署下和平进行。围观者钦佩共产党工人的力量——也许我们的一部分成员被他们带走了。共产党虽然嘴上不会承认，但他们对我们的敌意正在减弱（即便还没到*喜欢*我们的程度）。我们的中间派盟友谴责示威，但他们的呼喊已无济于事。
 
 
 @join

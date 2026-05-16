@@ -1,16 +1,16 @@
-title: KPD Party Conference
-subtitle: The KPD chooses their new central committee - will the Wittorf Affair have an influence on their choice?
+title: 共产党 Party Conference
+subtitle: The 共产党 chooses their new central committee - will the Wittorf Affair have an influence on their choice?
 new-page: true
 view-if: kpd_relation >= 50 and wittorf_soviet_union = 1 and year = 1929 and month >= 6 and month <= 8
 max-visits: 1
 on-arrival: kpd_party_conference_seen = 1
 tags: event
 
-= 德共党代会
+= 共产党党代会
 
-德共即将召开全国党代会，选举新一届领导层。维托夫事件（Wittorf Affair）的阴影笼罩其上。一方是台尔曼（Thälmann）的强硬派支持者，主张"社会法西斯主义"路线，将社民党与纳粹等量齐观；另一方则是"调和派"，主张对社民党采取更具合作精神的路线。
+共产党即将召开全国党代会，选举新一届领导层。维托夫事件（Wittorf Affair）的阴影笼罩其上。一方是台尔曼（Thälmann）的强硬派支持者，主张"社会法西斯主义"路线，将社民党与纳粹等量齐观；另一方则是"调和派"，主张对社民党采取更具合作精神的路线。
 
-我们与苏联方面会谈过后，倾向于认为斯大林至少对调和派持开放态度。要影响德共的领导层选举，我们既要争取共产国际领导，也要争取德共党员的支持。
+我们与苏联方面会谈过后，倾向于认为斯大林至少对调和派持开放态度。要影响共产党的领导层选举，我们既要争取共产国际领导，也要争取共产党党员的支持。
 
 - @conciliator_success
 - @conciliator_fail
@@ -29,4 +29,4 @@ achievement: versohnler
 @conciliator_fail
 title: Thälmann retains his leadership position.
 
-可惜，我们未能左右德共的领导层选举，强硬派得势。台尔曼迅速行动，巩固绝对领导地位，将反对者一一开除或流放。
+可惜，我们未能左右共产党的领导层选举，强硬派得势。台尔曼迅速行动，巩固绝对领导地位，将反对者一一开除或流放。

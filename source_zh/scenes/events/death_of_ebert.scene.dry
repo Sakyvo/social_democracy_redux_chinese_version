@@ -16,7 +16,7 @@ go-to: pres_menu
 
 - @back_gessler: 支持奥托·盖斯勒作为联合民主派候选人。
 - @back_braun: 推出奥托·布劳恩代表社民党参选。
-- @back_thalmann: 支持德共的恩斯特·台尔曼（Thälmann）。
+- @back_thalmann: 支持共产党的恩斯特·台尔曼（Thälmann）。
 
 @back_gessler
 subtitle: -1 resource - The party's left-wing will likely revolt.
@@ -41,7 +41,7 @@ on-arrival: braun_campaign = 1; spd_prussia = 0
 @campaign_gessler
 go-to: cg2
 
-德共推出了名不见经传的恩斯特·台尔曼；德国国家人民党（DNVP）推出奥斯卡·赫尔格特（Hergt），试图把DVP内部偏右翼者从盖斯勒阵营中拉走。巴伐利亚人民党（BVP）不愿支持任何主要候选人，推出党魁海因里希·黑尔德（Held）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫（Ludendorff）。
+共产党推出了名不见经传的恩斯特·台尔曼；德国国家人民党（DNVP）推出奥斯卡·赫尔格特（Hergt），试图把DVP内部偏右翼者从盖斯勒阵营中拉走。巴伐利亚人民党（BVP）不愿支持任何主要候选人，推出党魁海因里希·黑尔德（Held）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫（Ludendorff）。
 
 @cg2
 
@@ -81,7 +81,7 @@ max-visits: 1
 on-arrival: braun_percent = 0.7
 go-to: cb2
 
-德共推出了名不见经传的恩斯特·台尔曼；DVP与DNVP共推卡尔·亚雷斯（Jarres）作为「国家集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的BVP则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
+共产党推出了名不见经传的恩斯特·台尔曼；DVP与DNVP共推卡尔·亚雷斯（Jarres）作为「国家集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的BVP则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
 
 @cb2
 
@@ -111,7 +111,7 @@ max-visits: 1
 
 @back_thalmann
 choose-if: never
-unavailable-subtitle: Uhm...who? Oh, he's the KPD candidate? Huh.
+unavailable-subtitle: Uhm...who? Oh, he's the 共产党 candidate? Huh.
 on-arrival: never = 0
 go-to: pres_menu
 
@@ -325,7 +325,7 @@ on-arrival: president = "Braun"; pro_republic += 8; socialism += 4; nationalism 
 @gessler_wins
 on-arrival: president = "Gessler"; pro_republic += 2; socialism -= 5; left_dissent += 5; dvp_relation += 10; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-奥托·盖斯勒作为各民主派政党（包括DVP）的候选人赢得了选举。这场选战使我们成功地将DVP从DNVP与整个右翼阵营中拉向中间，但也在左翼留下了一片空白——德共正急于填补。
+奥托·盖斯勒作为各民主派政党（包括DVP）的候选人赢得了选举。这场选战使我们成功地将DVP从DNVP与整个右翼阵营中拉向中间，但也在左翼留下了一片空白——共产党正急于填补。
 
 @no_majority_round1
 go-to: braun_consolidation if braun_campaign; gessler_consolidation if gessler_campaign

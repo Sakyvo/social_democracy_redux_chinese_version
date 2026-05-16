@@ -431,7 +431,7 @@ tags: reformist_advisor
 
 @add_levi
 title: 保罗·列维
-subtitle: 保罗·列维曾是德共的领导人，因批评共产党政策而被清洗出党。
+subtitle: 保罗·列维曾是共产党的领导人，因批评共产党政策而被清洗出党。
 is-card: true
 card-image: img/portraits/LeviPaul.jpg
 view-if: levi_advisor = 0 and levi_dead = 0 and n_advisors < 3 and left_split = 0

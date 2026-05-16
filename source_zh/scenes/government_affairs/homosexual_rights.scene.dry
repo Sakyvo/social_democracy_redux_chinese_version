@@ -26,7 +26,7 @@ view-if: repealed_175 == 0
 choose-if: progressive_coalition >= 50
 on-arrival: repealed_175 = 1; homosexual_rights += 1; z_relation -= 5; kpd_relation += 4*(1-dissent); ddp_relation += 4*(1-dissent); coalition_dissent += 1 if (in_grand_coalition or in_weimar_coalition); catholics_spd -= 4; weimar_dissent += 1 if weimar_plan_adopted; weimar_dissent += 1 if z_party_leader == "Kaas" and weimar_plan_adopted; economic_growth += 0.1;
 
-在德共与[+ ddp_name +]中进步派的支持下，我们已在德国实质上将同性性行为除罪化。只要警察仍忠于共和国，因私人行为而迫害同性恋者的做法将告停止。
+在共产党与[+ ddp_name +]中进步派的支持下，我们已在德国实质上将同性性行为除罪化。只要警察仍忠于共和国，因私人行为而迫害同性恋者的做法将告停止。
 
 当然，保守派与极右翼指责我们「堕落败德」。
 
@@ -38,7 +38,7 @@ view-if: reformed_183 == 0
 choose-if: progressive_coalition >= 50
 on-arrival: reformed_183 = 1; homosexual_rights += 1; z_relation -= 5; kpd_relation += 4*(1-dissent); ddp_relation += 4*(1-dissent); coalition_dissent += 1 if (in_grand_coalition or in_weimar_coalition); catholics_spd -= 4; weimar_dissent += 1 if weimar_plan_adopted; weimar_dissent += 1 if z_party_leader == "Kaas" and weimar_plan_adopted; economic_growth += 0.1;
 
-在与德共及[+ ddp_name +]中进步派一同投票表决下，我们修订了第 183 条，使其不再将公开同性恋行为与异装入罪。
+在与共产党及[+ ddp_name +]中进步派一同投票表决下，我们修订了第 183 条，使其不再将公开同性恋行为与异装入罪。
 
 
 @change_sex

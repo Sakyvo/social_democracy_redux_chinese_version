@@ -138,7 +138,7 @@ go-to: vote_of_no_confidence.vonc_menu if in_weimar_coalition or in_grand_coalit
 
 # instant VONC from zentrum
 
-SPD、DDP、DVP 与 KPD 票决支持世俗教育，压过宗教色彩浓厚的中央党与 DNVP 的反对。我们已拨款资助世俗社区学校，取代部分原有的教派学校。
+SPD、DDP、DVP 与 共产党 票决支持世俗教育，压过宗教色彩浓厚的中央党与 DNVP 的反对。我们已拨款资助世俗社区学校，取代部分原有的教派学校。
 
 [? if in_weimar_coalition or in_grand_coalition or in_popular_front or in_emergency_government: 中央党自然对此提案群情激愤，要求对本届政府发起不信任投票。 ?]
 

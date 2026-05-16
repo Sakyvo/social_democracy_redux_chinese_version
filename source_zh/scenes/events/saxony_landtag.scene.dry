@@ -326,7 +326,7 @@ go-to: coalition_menu
 
 [? if nazi_urgency <= 1 and nsdap_sl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
-[? if s_anti_democratic_coalition >= 50 : 反民主的德共、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
+[? if s_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
 目前有若干潜在的联合政府方案。
 
@@ -371,14 +371,14 @@ on-arrival: saxon_dispute = 1; saxony_nsdap += 0.05 if saxony_nsdap < 1.2; refor
 [? if nsdap_sl < s_center_right_coalition : 所幸纳粹党满足于仅容忍该内阁，但他们仍因资产阶级依赖其阻止重新选举而获得合法性。 ?][? if nsdap_sl >= s_center_right_coalition : 纳粹党拒绝只做资产阶级的容忍伙伴，已直接入阁。左翼政党随即遭到压制。 ?]
 
 @red_saxony
-title: 与德共组建「统一战线」。
-subtitle: KPD + SPD ([+ s_left_coalition +]%)
+title: 与共产党组建「统一战线」。
+subtitle: 共产党 + SPD ([+ s_left_coalition +]%)
 view-if: s_left_coalition >= 50
 choose-if: kpd_relation >= 40 and communist_coalition >= 2
-unavailable-subtitle: The KPD doesn't trust us enough.
+unavailable-subtitle: The 共产党 doesn't trust us enough.
 on-arrival: saxony_kpd += 0.2 if saxony_kpd < 1.5; coup_progress += 2; capital_strike_progress += 2; red_saxony = 1; saxony_nsdap -= 0.1 if saxony_nsdap >= 0.7; workers_spd += 4*(1-dissent); unemployed_spd += 3*(1-dissent)
 
-我们与德共联手赢得了多数。资产阶级政党对萨克森重回社会主义路线深感忧虑，匆忙组织反对该政府的行动。
+我们与共产党联手赢得了多数。资产阶级政党对萨克森重回社会主义路线深感忧虑，匆忙组织反对该政府的行动。
 
 @spd_majority
 title: 社民党可单独执政。
@@ -414,11 +414,11 @@ go-to: kpd_did_this if s_left_coalition >= 50
 @kpd_did_this
 on-arrival: kpd_saxony_warmed = 1; saxony_kpd -= 0.3; saxony_spd += 0.3
 
-德共与纳粹党一同投票解散邦议会的举动似乎事与愿违，邦内不少德共选民转而投向我党。
+共产党与纳粹党一同投票解散邦议会的举动似乎事与愿违，邦内不少共产党选民转而投向我党。
 
 @hung_landtag
 
-虽然无任何政府方案能取得多数，但鉴于其反对我党的策略带来的不利结果，德共改变路线，投票反对解散邦议会。该邦虽仍无法施政，但至少不会进行重新选举，前任政府将以看守政府身份留任。
+虽然无任何政府方案能取得多数，但鉴于其反对我党的策略带来的不利结果，共产党改变路线，投票反对解散邦议会。该邦虽仍无法施政，但至少不会进行重新选举，前任政府将以看守政府身份留任。
 
 @refused_toleration
 on-arrival: dvp_relation -= 5; reformist_dissent += 5; center_dissent += 2; saxony_election_month += 5; saxony_election_year += 1 if saxony_election_month > 12; saxony_election_month -= 12 if saxony_election_month > 12; saxony_dvp -= 0.1 if saxony_dvp >= 0.5; saxony_other -= 0.25 if saxony_other >= 0.9; saxony_ddp -= 0.1 if saxony_ddp >= 0.7; saxony_nsdap += 0.1 if saxony_nsdap < 1.3; saxony_spd -= 0.1 if saxony_spd >= 0.8;

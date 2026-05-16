@@ -50,7 +50,7 @@ on-arrival: budget -= 2; upper_tax_rates -= 1; lower_tax_rates -= 1; unemployed 
 与此同时，政府上任后的第一桩举措就是减税，试图刺激经济。能否奏效，唯有时间能给出答案。
 
 - @tolerate_luther: 暂且让路德执政。
-#- @vonc_luther: 与德共一道发起不信任动议。
+#- @vonc_luther: 与共产党一道发起不信任动议。
 
 @tolerate_luther
 on-arrival: spd_toleration = 1; dvp_relation += 3; z_relation += 4; ddp_relation += 4; marx_relation += 3;
@@ -70,7 +70,7 @@ on-arrival: princes_initiated = 1; princes_time = time+2; kpd_relation += 5; dvp
 view-if: not princes_initiated
 on-arrival: princes_time = time+3; left_dissent += 5; workers_spd -= 4; workers_kpd += 4; unemployed_spd -= 5; unemployed_kpd += 5; rural_kpd += 1; dvp_relation += 5; z_relation += 5; ddp_relation += 5; marx_relation += 5
 
-我们继续拒绝支持共产党人的公投倡议。这虽让德共得了便宜，但也为在国会内通过妥协解决问题留下了空间。
+我们继续拒绝支持共产党人的公投倡议。这虽让共产党得了便宜，但也为在国会内通过妥协解决问题留下了空间。
 
 @vonc_luther
 choose-if: left_strength > center_strength+reformist_strength
@@ -122,7 +122,7 @@ on-arrival: budget -= 2; upper_tax_rates -= 1; lower_tax_rates -= 1; unemployed 
 与此同时，政府上任后的第一桩举措就是减税，试图刺激经济。能否奏效，唯有时间能给出答案。
 
 - @tolerate_luther: 暂且让路德执政。
-#- @vonc_luther: 与德共一道发起不信任动议。
+#- @vonc_luther: 与共产党一道发起不信任动议。
 
 @braun_chancellor
 
@@ -166,4 +166,4 @@ on-arrival: budget -= 2; upper_tax_rates -= 1; lower_tax_rates -= 1; unemployed 
 与此同时，政府上任后的第一桩举措就是减税，试图刺激经济。能否奏效，唯有时间能给出答案。
 
 - @tolerate_luther: 暂且让路德执政。
-#- @vonc_luther: 与德共一道发起不信任动议。
+#- @vonc_luther: 与共产党一道发起不信任动议。

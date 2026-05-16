@@ -241,7 +241,7 @@ view-if: chancellor_party == "KPD" or president == "Thälmann" or socialist_unit
 tags: endings
 go-to: eg_menu
 
-在我们的协助下，德共（KPD）赢得了德国的权力。他们将试图把德国改造成苏联的模样。其能否成功、成功几何，仍有待揭晓。
+在我们的协助下，共产党（共产党）赢得了德国的权力。他们将试图把德国改造成苏联的模样。其能否成功、成功几何，仍有待揭晓。
 
 @reactionary_victory
 title: 反动派胜利
@@ -361,15 +361,15 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_red_tzar_of_prussia : **Roter Zar von Preußen（普鲁士的红色沙皇）** —— 奥托·布劳恩同时出任总统、总理与普鲁士邦总理。 ?]
 
-[? if game_achievement_einheitsfront: **Einheitsfront（统一战线）** —— 组建由社民党与德共共同组成的政府。 ?]
+[? if game_achievement_einheitsfront: **Einheitsfront（统一战线）** —— 组建由社民党与共产党共同组成的政府。 ?]
 
-[? if game_achievement_einheitsfront_2: **Sieg für die Einheitsfront（统一战线的胜利）** —— 组建一个挺过德共要挟的左翼阵线。 ?]
+[? if game_achievement_einheitsfront_2: **Sieg für die Einheitsfront（统一战线的胜利）** —— 组建一个挺过共产党要挟的左翼阵线。 ?]
 
-[? if game_achievement_volksfront: **Volksfront（人民阵线）** —— 组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if game_achievement_volksfront: **Volksfront（人民阵线）** —— 组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
-[? if game_achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导德共的前提下，组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if game_achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导共产党的前提下，组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
-[? if game_achievement_volksfront_2: **Sieg für die Volksfront（人民阵线的胜利）** —— 组建一个挺过德共要挟的人民阵线。 ?]
+[? if game_achievement_volksfront_2: **Sieg für die Volksfront（人民阵线的胜利）** —— 组建一个挺过共产党要挟的人民阵线。 ?]
 
 [? if game_achievement_constitutional_coalition: **Verfassungskoalition（宪政联合）** —— 组建一届「宪政联合」。 ?]
 
@@ -385,7 +385,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_rote_millionar: **Der rote Millionär（红色百万富翁）** —— 威利·明岑贝格（Willi Münzenberg）当选总统。 ?]
 
-[? if game_achievement_versohnler: **Versöhnler（调和派）** —— 调和派领导德共。 ?]
+[? if game_achievement_versohnler: **Versöhnler（调和派）** —— 调和派领导共产党。 ?]
 
 [? if game_achievement_deport_hitler : **Der österreichische Gefreiter（奥地利下士）** —— 驱逐希特勒。 ?]
 
@@ -405,7 +405,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_bruder_zur_sonne: **Brüder, zur Sonne, zur Freiheit（兄弟们，向着太阳，向着自由）** —— 在一次至少普通难度的通关中，降低失业率、暂停战争赔款、提升妇女权利、选出奥托·布劳恩为总统，并驱逐希特勒。 ?]
 
-[? if game_achievement_die_rote_fahne: **Die Rote Fahne（红旗）** —— 在五一劳动节与德共并肩游行。 ?]
+[? if game_achievement_die_rote_fahne: **Die Rote Fahne（红旗）** —— 在五一劳动节与共产党并肩游行。 ?]
 
 [? if game_achievement_panik_im_mittelstand: **Panik im Mittelstand（中产恐慌）** —— 社民党在新中产阶级中的支持率不低于 50%。 ?]
 
@@ -468,15 +468,15 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_red_tzar_of_prussia : **Roter Zar von Preußen（普鲁士的红色沙皇）** —— 奥托·布劳恩同时出任总统、总理与普鲁士邦总理。 ?]
 
-[? if achievement_einheitsfront: **Einheitsfront（统一战线）** —— 组建由社民党与德共共同组成的政府。 ?]
+[? if achievement_einheitsfront: **Einheitsfront（统一战线）** —— 组建由社民党与共产党共同组成的政府。 ?]
 
-[? if achievement_einheitsfront_2: **Sieg für die Einheitsfront（统一战线的胜利）** —— 组建一个挺过德共要挟的左翼阵线。 ?]
+[? if achievement_einheitsfront_2: **Sieg für die Einheitsfront（统一战线的胜利）** —— 组建一个挺过共产党要挟的左翼阵线。 ?]
 
-[? if achievement_volksfront: **Volksfront（人民阵线）** —— 组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if achievement_volksfront: **Volksfront（人民阵线）** —— 组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
-[? if achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导德共的前提下，组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导共产党的前提下，组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
-[? if achievement_volksfront_2: **Sieg für die Volksfront（人民阵线的胜利）** —— 组建一个挺过德共要挟的人民阵线。 ?]
+[? if achievement_volksfront_2: **Sieg für die Volksfront（人民阵线的胜利）** —— 组建一个挺过共产党要挟的人民阵线。 ?]
 
 [? if achievement_constitutional_coalition: **Verfassungskoalition（宪政联合）** —— 组建一届「宪政联合」。 ?]
 
@@ -492,7 +492,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_rote_millionar: **Der rote Millionär（红色百万富翁）** —— 威利·明岑贝格当选总统。 ?]
 
-[? if achievement_versohnler: **Versöhnler（调和派）** —— 调和派领导德共。 ?]
+[? if achievement_versohnler: **Versöhnler（调和派）** —— 调和派领导共产党。 ?]
 
 [? if achievement_deport_hitler : **Der österreichische Gefreiter（奥地利下士）** —— 驱逐希特勒。 ?]
 
@@ -512,7 +512,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_bruder_zur_sonne: **Brüder, zur Sonne, zur Freiheit（兄弟们，向着太阳，向着自由）** —— 在一次至少普通难度的通关中，降低失业率、暂停战争赔款、提升妇女权利、选出奥托·布劳恩为总统，并驱逐希特勒。 ?]
 
-[? if achievement_die_rote_fahne: **Die Rote Fahne（红旗）** —— 在五一劳动节与德共并肩游行。 ?]
+[? if achievement_die_rote_fahne: **Die Rote Fahne（红旗）** —— 在五一劳动节与共产党并肩游行。 ?]
 
 [? if achievement_panik_im_mittelstand: **Panik im Mittelstand（中产恐慌）** —— 社民党在新中产阶级中的支持率不低于 50%。 ?]
 
@@ -569,15 +569,15 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if not achievement_red_tzar_of_prussia : **Roter Zar von Preußen（普鲁士的红色沙皇）** —— 奥托·布劳恩同时出任总统、总理与普鲁士邦总理。 ?]
 
-[? if not achievement_einheitsfront: **Einheitsfront（统一战线）** —— 组建由社民党与德共共同组成的政府。 ?]
+[? if not achievement_einheitsfront: **Einheitsfront（统一战线）** —— 组建由社民党与共产党共同组成的政府。 ?]
 
-[? if not achievement_einheitsfront_2: **Sieg für die Einheitsfront（统一战线的胜利）** —— 组建一个挺过德共要挟的左翼阵线。 ?]
+[? if not achievement_einheitsfront_2: **Sieg für die Einheitsfront（统一战线的胜利）** —— 组建一个挺过共产党要挟的左翼阵线。 ?]
 
-[? if not achievement_volksfront: **Volksfront（人民阵线）** —— 组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if not achievement_volksfront: **Volksfront（人民阵线）** —— 组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
-[? if not achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导德共的前提下，组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if not achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导共产党的前提下，组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
-[? if not achievement_volksfront_2: **Sieg für die Volksfront（人民阵线的胜利）** —— 组建一个挺过德共要挟的人民阵线。 ?]
+[? if not achievement_volksfront_2: **Sieg für die Volksfront（人民阵线的胜利）** —— 组建一个挺过共产党要挟的人民阵线。 ?]
 
 [? if not achievement_constitutional_coalition: **Verfassungskoalition（宪政联合）** —— 组建一届「宪政联合」。 ?]
 
@@ -593,7 +593,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if not achievement_rote_millionar: **Der rote Millionär（红色百万富翁）** —— 威利·明岑贝格当选总统。 ?]
 
-[? if not achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导德共的前提下，组建由社民党、德共、中央党与民主党共同组成的政府。 ?]
+[? if not achievement_grosse_volksfront: **Große Volksfront（大人民阵线）** —— 在约斯（Joos）领导中央党、调和派领导共产党的前提下，组建由社民党、共产党、中央党与民主党共同组成的政府。 ?]
 
 [? if not achievement_deport_hitler : **Der österreichische Gefreiter（奥地利下士）** —— 驱逐希特勒。 ?]
 
@@ -613,7 +613,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if not achievement_bruder_zur_sonne: **Brüder, zur Sonne, zur Freiheit（兄弟们，向着太阳，向着自由）** —— 在一次至少普通难度的通关中，降低失业率、暂停战争赔款、提升妇女权利、选出奥托·布劳恩为总统，并驱逐希特勒。 ?]
 
-[? if not achievement_die_rote_fahne: **Die Rote Fahne（红旗）** —— 在五一劳动节与德共并肩游行。 ?]
+[? if not achievement_die_rote_fahne: **Die Rote Fahne（红旗）** —— 在五一劳动节与共产党并肩游行。 ?]
 
 [? if not achievement_panik_im_mittelstand: **Panik im Mittelstand（中产恐慌）** —— 社民党在新中产阶级中的支持率不低于 50%。 ?]
 

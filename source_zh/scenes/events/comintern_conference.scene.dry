@@ -19,14 +19,14 @@ new-page: true
 view-if: (kpd_party_leader != "Conciliators" and (communist_coalition*soviet_relation < 10) and not kpd_ally and not in_left_front) or ((kpd_relation <= 40 and rfb_banned == 1) or kpd_relation <= 20)
 on-arrival: workers_spd -= 4; workers_kpd += 3; unemployed_spd -= 6; unemployed_kpd += 6; kpd_relation -= 10; third_period = 1; socialism -= 2
 
-由于法西斯主义威胁被认为不足，共产国际维持了第三时期理论。这将损害我们与德共结盟的任何尝试，并削弱全球左翼力量。
+由于法西斯主义威胁被认为不足，共产国际维持了第三时期理论。这将损害我们与共产党结盟的任何尝试，并削弱全球左翼力量。
 
 @popular_front
 choose-if: (kpd_party_leader == "Conciliators" or (communist_coalition*soviet_relation >= 10) or kpd_ally or in_left_front) and ((kpd_relation > 40 or rfb_banned != 1) and kpd_relation > 20)
 unavailable_subtitle: 对人民阵线的支持不足。
 on-arrival: third_period = 0; kpd_relation += 10; communist_coalition += 3; socialism += 1
 
-受德国境内德共与社民党合作阻止法西斯蔓延的相对成功的启发，加之苏联希望采取更灵活的外交策略以打破孤立，第七次共产国际大会以放弃第三时期理论、采纳新理论「人民阵线」（即左翼与社会主义团体结盟以阻止法西斯蔓延、捍卫工人阶级所取得成果的联盟）告终。
+受德国境内共产党与社民党合作阻止法西斯蔓延的相对成功的启发，加之苏联希望采取更灵活的外交策略以打破孤立，第七次共产国际大会以放弃第三时期理论、采纳新理论「人民阵线」（即左翼与社会主义团体结盟以阻止法西斯蔓延、捍卫工人阶级所取得成果的联盟）告终。
 
 @influence_popular_front
 subtitle: -1 资源
@@ -35,4 +35,4 @@ choose-if: resources >= 1
 unavailable_subtitle: -1 资源。资源不足。
 on-arrival: resources -= 1; third_period = 0; kpd_relation += 10; communist_coalition += 3; socialism += 1
 
-通过我们在共产国际的间谍网络稍加推动，加之受德国境内德共与社民党合作阻止法西斯蔓延的相对成功的启发，第七次共产国际大会以放弃第三时期理论、采纳新理论「人民阵线」告终。
+通过我们在共产国际的间谍网络稍加推动，加之受德国境内共产党与社民党合作阻止法西斯蔓延的相对成功的启发，第七次共产国际大会以放弃第三时期理论、采纳新理论「人民阵线」告终。

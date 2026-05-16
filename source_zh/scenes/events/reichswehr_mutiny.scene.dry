@@ -7,17 +7,17 @@ view-if: reichswehr_minister_party == "KPD"
 
 = 国防军危机
 
-危机发生了！德共在新一届联合政府中接掌了国防部，军中将领公然拒绝合作。整营整座兵营实际上已经起兵抗命，而德共方面则准备了一整套足以彻底解散国防军的庞大改革方案。
+危机发生了！共产党在新一届联合政府中接掌了国防部，军中将领公然拒绝合作。整营整座兵营实际上已经起兵抗命，而共产党方面则准备了一整套足以彻底解散国防军的庞大改革方案。
 
 军方要求我们罢免共产党籍的国防部长，而共产党人则准备用红色阵线战士同盟（RFB）的武力来镇压哗变，并期望我们武装忠于政府的工人民兵、调动警察予以配合。我们该怎么办？
 
-- @gegen_groener: 我们将协助德共平息哗变。
+- @gegen_groener: 我们将协助共产党平息哗变。
 - @gegen_thalmann: 我们别无他选，必须罢免国防部长。
 
 @gegen_groener
 on-arrival: government_strength = rfb_strength*rfb_militancy; government_strength += ((left_strength/100)*rb_strength*rb_militancy)/2; government_strength += (prussian_police_strength*prussian_police_militancy*prussian_police_loyalty); mutiny_strength = (reichswehr_strength*reichswehr_militancy*(1-(reichswehr_loyalty/2))); mutiny_strength += (sa_strength*sa_militancy) if sa_banned != 1; mutiny_strength += (sh_strength*sh_militancy) if sh_banned != 1
 
-我们选择以武力镇压哗变、与联合政府伙伴并肩作战。但共产党担心这还不够，要求我们将忠于社民党和德共的工人武装编为国家承认的民兵，协助占领反叛兵营。
+我们选择以武力镇压哗变、与联合政府伙伴并肩作战。但共产党担心这还不够，要求我们将忠于社民党和共产党的工人武装编为国家承认的民兵，协助占领反叛兵营。
 
 - @arm_workers: 我们将武装工人。
 - @the_fight: 这太过头了。让法律来处理。

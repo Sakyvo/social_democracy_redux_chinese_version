@@ -23,7 +23,7 @@ Q.bill_support = Math.round(Q.bill_support);
 
 我们党基层成员对这一决定极为不满。许多党部加大力度反对我们的议会党团。[? if panzerkreuzer_funded : 不过，鉴于此前已建造过一艘，这次结果近乎注定，反应并不强烈。 ?]
 
-KPD：反对
+共产党：反对
 
 [? if sapd_formed : SAPD：反对 ?]
 
@@ -45,7 +45,7 @@ NSDAP：赞成
 
 支持率 [+ bill_support +]%，投票通过。
 
-支持建造装甲巡洋舰的投票轻易通过，唯有德共反对。该舰将开建。
+支持建造装甲巡洋舰的投票轻易通过，唯有共产党反对。该舰将开建。
 
 @vote_no
 on-arrival: bill_support = (100-progressive_coalition); dvp_relation -= 8; z_relation -= 5; pacifism += 1; nationalism -= 5*(1-dissent); coalition_dissent += 1; workers_spd += 4*(1-dissent) if nationalism < 49; weimar_dissent += 1 if z_party_leader != "Joos" and weimar_plan_adopted
@@ -58,11 +58,11 @@ on-arrival: bill_support = 100*((bourgeois_coalition+far_right_coalition)/(100-(
 Q.bill_support = Math.round(Q.bill_support);
 !}
 
-中右翼各党对我们弃权的决定提出批评，而左翼的压力也未完全平息。尽管我们弃权，国会投票仍通过——除社民党和德共外所有党都投了赞成票。该舰将开建。
+中右翼各党对我们弃权的决定提出批评，而左翼的压力也未完全平息。尽管我们弃权，国会投票仍通过——除社民党和共产党外所有党都投了赞成票。该舰将开建。
 
 [? if panzerkreuzer_funded : 鉴于此前已建造过一艘，这次结果近乎注定，反应并不强烈。 ?]
 
-KPD：反对
+共产党：反对
 
 [? if sapd_formed : SAPD：反对 ?]
 
@@ -87,9 +87,9 @@ NSDAP：赞成
 @built
 on-arrival: panzerkreuzer_b_funded = 1
 
-[+ chancellor +] 总理将此事提交国会全体表决，结果通过——除社民党和德共外所有党都投了赞成票。该舰将开建。
+[+ chancellor +] 总理将此事提交国会全体表决，结果通过——除社民党和共产党外所有党都投了赞成票。该舰将开建。
 
-KPD：反对
+共产党：反对
 
 [? if sapd_formed : SAPD：反对 ?]
 
@@ -114,9 +114,9 @@ NSDAP：赞成
 @not_built
 on-arrival: panzerkreuzer_b_funded = 0; budget += 1 if panzerkreuzer_funded = 0; coup_progress += 1
 
-我们反对建造装甲巡洋舰的投票获得通过，得到德共与 [+ ddp_name +] 反战派的支持。该舰不会开建！[? if panzerkreuzer_funded == 0 : 我们因未为两艘船拨款而节省了部分预算。 ?]
+我们反对建造装甲巡洋舰的投票获得通过，得到共产党与 [+ ddp_name +] 反战派的支持。该舰不会开建！[? if panzerkreuzer_funded == 0 : 我们因未为两艘船拨款而节省了部分预算。 ?]
 
-KPD：反对
+共产党：反对
 
 [? if sapd_formed : SAPD：反对 ?]
 

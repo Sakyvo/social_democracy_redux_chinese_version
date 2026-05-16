@@ -53,7 +53,7 @@ choose-if: resources >= 1
 unavailable-subtitle: 资源不足。
 on-arrival: resources -= 1; kpd_relation += 5*(1-dissent); communist_coalition += 1 if comintern_seen == 0; comintern_seen += 1
 
-德共的斯大林主义者坚持把我们称作「社会法西斯」，暗示我们社会民主党人与真正的法西斯一样糟糕、甚至更坏。不消说，这对我们与共产党的关系毫无益处。通过对共产国际的观察，我们能更好地了解德共——既可借此改善关系，也可在必要时予以反击。
+共产党的斯大林主义者坚持把我们称作「社会法西斯」，暗示我们社会民主党人与真正的法西斯一样糟糕、甚至更坏。不消说，这对我们与共产党的关系毫无益处。通过对共产国际的观察，我们能更好地了解共产党——既可借此改善关系，也可在必要时予以反击。
 
 [? if wittorf_soviet_union != 1 and spd_in_government == 0 and dnvp_in_government and volksmai == 1 and comintern_seen >= 1 and wittorf_secret = 1 and ((year = 1929 and month < 7) or year = 1928) and wittorf_soviet_union = 0 : 我们在共产国际内部已建立足够多的联络渠道——若我们愿意，可通过他们直通莫斯科，确认苏联人是否知晓维托夫事件（Wittorf Affair），以及他们是否知道我们知道。 ?]
 

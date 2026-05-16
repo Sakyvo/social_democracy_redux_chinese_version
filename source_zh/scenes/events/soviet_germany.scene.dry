@@ -1,5 +1,5 @@
 title: A New Soviet Germany
-subtitle: The KPD has risen to the forefront of German politics...
+subtitle: The 共产党 has risen to the forefront of German politics...
 new-page: true
 view-if: kpd_influence >= 10 and (in_left_front or in_popular_front or (kpd_r >= 50 and chancellor_party == "KPD")) and (sa_banned and sh_banned) and ((president == "Münzenberg" or president == "Thälmann") or (red_banner == 1) or ((kpd_r*rfb_strength*rfb_militancy) >= (spd_r*rb_strength*rb_militancy*(1-dissent))))
 tags: event
@@ -141,9 +141,9 @@ on-arrival: kpd_banned = 1; party_bans = 1; left_dissent += 25
 @unban_bourgeois
 view-if: ddp_banned and z_banned
 on-arrival: ddp_banned = 0; z_banned = 0
-subtitle: We must begin to undo the damage that the KPD has done.
+subtitle: We must begin to undo the damage that the 共产党 has done.
 
-我们当然重新合法化温和自由派各党。德共曾竭力扼杀民主，如今我们要让民主重新繁荣。
+我们当然重新合法化温和自由派各党。共产党曾竭力扼杀民主，如今我们要让民主重新繁荣。
 
 @maintain
 view-if: ddp_banned or z_banned
@@ -154,21 +154,21 @@ go-to: root
 @unban_ddp
 view-if: ddp_banned and not z_banned
 on-arrival: ddp_banned = 0
-subtitle: We must begin to undo the damage that the KPD has done.
+subtitle: We must begin to undo the damage that the 共产党 has done.
 
-我们当然重新合法化 [+ ddp_name +]。德共曾竭力扼杀民主，如今我们要让民主重新繁荣。
+我们当然重新合法化 [+ ddp_name +]。共产党曾竭力扼杀民主，如今我们要让民主重新繁荣。
 
 @unban_z
 view-if: z_banned and not ddp_banned
 on-arrival: z_banned = 0
-subtitle: We must begin to undo the damage that the KPD has done.
+subtitle: We must begin to undo the damage that the 共产党 has done.
 
-我们当然重新合法化中央党。德共曾竭力扼杀民主，如今我们要让民主重新繁荣。
+我们当然重新合法化中央党。共产党曾竭力扼杀民主，如今我们要让民主重新繁荣。
 
 @forgive
 on-arrival: kpd_relation += 10
 
-木已成舟。我们不必查禁德共，他们已在失败的政变中耗尽了自己构成的威胁。
+木已成舟。我们不必查禁共产党，他们已在失败的政变中耗尽了自己构成的威胁。
 
 @cave
 go-to: conclusion
@@ -187,7 +187,7 @@ go-to: conclusion
 @sed
 view-if: socialist_unity
 
-一场党代会被召集——目的独特，专为通过一份新党纲——一份共同党纲。其实，这场党代会既不属于社民党，也不属于德共，而是属于双方。
+一场党代会被召集——目的独特，专为通过一份新党纲——一份共同党纲。其实，这场党代会既不属于社民党，也不属于共产党，而是属于双方。
 
 随后数日，再统一的进程完成，这次在"社会主义统一党"的旗帜下。修正主义影响被清除，反对派各党被压制。德国的命运在 SED 的指引下尘埃落定。但愿这是一个好命运。
 
@@ -198,6 +198,6 @@ view-if: not socialist_unity
 
 最终，我们的运气用尽。共产党人查禁所有反对党，包括我们。我们能逃过最严厉的镇压已属万幸，前党右翼中许多人却没有这般运气。
 
-德共赢得了书写德国未来的特权。我们如今所能做的，就是寄望他们书写的未来是一个好未来。
+共产党赢得了书写德国未来的特权。我们如今所能做的，就是寄望他们书写的未来是一个好未来。
 
 - @game_over: 游戏结束。

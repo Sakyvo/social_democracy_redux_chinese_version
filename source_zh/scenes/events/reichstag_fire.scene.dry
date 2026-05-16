@@ -18,7 +18,7 @@ max-visits: 1
 on-arrival: spd_rebel = 1; kpd_relation += 20
 go-to: civil_war
 
-我们动员黑红金国旗团和 ADGB 剩余的力量抵抗这赤裸裸的镇压。[? if kpd_party_leader != "Conciliators" : 眼见自身领袖入狱，德共更倾向于加入我们对法西斯的最后一战，但这够吗？ ?]
+我们动员黑红金国旗团和 ADGB 剩余的力量抵抗这赤裸裸的镇压。[? if kpd_party_leader != "Conciliators" : 眼见自身领袖入狱，共产党更倾向于加入我们对法西斯的最后一战，但这够吗？ ?]
 
 @lib
 on-arrival: {!

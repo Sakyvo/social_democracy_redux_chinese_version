@@ -47,7 +47,7 @@ on-arrival: east_relation += 2;
 
 @improve_soviet
 title: 改善与苏联的关系。
-subtitle: 我们也可借机触及德共问题……
+subtitle: 我们也可借机触及共产党问题……
 
 苏联同样受苦于《凡尔赛条约》建立的国际秩序；他们一直参与我们的秘密重整军备计划。1922 年的《拉帕洛条约》已确认双方友好关系。
 
@@ -71,9 +71,9 @@ on-arrival: budget -= 1; soviet_relation += 2; coalition_dissent += 1; foreign_g
 
 苏联对我们提供的援助表示满意，也未要求具体回报。我们的联合伙伴则并不那么满意。
 
-- @kpd: 询问莫斯科能否协助修复我们与德共的关系。
+- @kpd: 询问莫斯科能否协助修复我们与共产党的关系。
 - @wittorf: 苏联人是否知晓维托夫事件？他们是否知道我们也知道？
-- @root: 不提及德共。
+- @root: 不提及共产党。
 
 @soviet_economic_aid_no
 
@@ -83,7 +83,7 @@ on-arrival: budget -= 1; soviet_relation += 2; coalition_dissent += 1; foreign_g
 @kpd
 on-arrival: kpd_relation += 8*(1-dissent); communist_coalition += 1 if kpd_foreign_seen == 0; kpd_foreign_seen = 1
 
-我们也在与苏联大使的交谈中提及德共。对方声称德共完全独立于苏联政府，此番冲突乃台尔曼一人所为。但在此次谈话之后不久，我们注意到德共的态度稍有改善。
+我们也在与苏联大使的交谈中提及共产党。对方声称共产党完全独立于苏联政府，此番冲突乃台尔曼一人所为。但在此次谈话之后不久，我们注意到共产党的态度稍有改善。
 
 @wittorf
 view-if: wittorf_secret = 1 and ((year = 1929 and month < 6) or year = 1928) and wittorf_soviet_union = 0

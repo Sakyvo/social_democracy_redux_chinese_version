@@ -66,7 +66,7 @@ title: 对汉堡实施「国家执行」。
 subtitle: 此举将激怒社民党！
 on-arrival: in_hamburg_left = 0; in_spd_hamburg = 1
 
-我们对汉堡政府实施了「国家执行」，将德共部长撤职。
+我们对汉堡政府实施了「国家执行」，将共产党部长撤职。
 
 @reichsexekute_thuringia
 view-if: red_thuringia
@@ -75,7 +75,7 @@ title: 对图林根实施「国家执行」。
 subtitle: 此举将激怒社民党！
 on-arrival: red_thuringia = 0
 
-我们对图林根政府实施了「国家执行」，将德共部长撤职。
+我们对图林根政府实施了「国家执行」，将共产党部长撤职。
 
 @reichsexekute_saxony
 view-if: red_saxony
@@ -84,7 +84,7 @@ title: 对萨克森实施「国家执行」。
 subtitle: 此举将激怒社民党！
 on-arrival: red_saxony = 0
 
-我们对萨克森政府实施了「国家执行」，将德共部长撤职。
+我们对萨克森政府实施了「国家执行」，将共产党部长撤职。
 
 @reichsexekute_prussia
 view-if: kpd_prussia
@@ -93,4 +93,4 @@ title: 对普鲁士实施「国家执行」。
 subtitle: 此举将激怒社民党！
 on-arrival: kpd_prussia = 0
 
-我们对普鲁士政府实施了「国家执行」，将德共部长撤职。
+我们对普鲁士政府实施了「国家执行」，将共产党部长撤职。

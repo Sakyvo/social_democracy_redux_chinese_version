@@ -54,13 +54,13 @@ on-arrival: reformist_dissent += 5; dvp_relation -= 5; z_relation -= 5; marx_rel
 
 @neutral
 
-这场公投的胜负要由共产党人自己承担。眼下胜算渺茫——政府最近的意见是，由于德共提出的法案违宪，将需要全体合资格选民的多数支持，而不仅仅是投票者的多数。
+这场公投的胜负要由共产党人自己承担。眼下胜算渺茫——政府最近的意见是，由于共产党提出的法案违宪，将需要全体合资格选民的多数支持，而不仅仅是投票者的多数。
 
 @vote_against
 view-if: not princes_initiated
 on-arrival: workers_spd -= 3; unemployed_spd -= 3; left_dissent += 10; marx_relation += 2
 
-我们投票反对该提案，但党内左翼许多人打破党纪，仍投了赞成票。仅有德共与这些异见者支持该提案，如预期般未获通过。如今将举行公投——但鉴于政府认定该公投属违宪、需获全体合资格选民绝对多数才能通过，共产党人几乎注定失败。
+我们投票反对该提案，但党内左翼许多人打破党纪，仍投了赞成票。仅有共产党与这些异见者支持该提案，如预期般未获通过。如今将举行公投——但鉴于政府认定该公投属违宪、需获全体合资格选民绝对多数才能通过，共产党人几乎注定失败。
 
 @luther_and_hindenburg_suck
 view-if: princes_initiated and president == "Hindenburg"

@@ -46,19 +46,19 @@ go-to: menu
 
 **1919 年**：斯巴达克派起义——共产党工人企图夺取政权——爆发。该起义在总统弗里德里希·艾伯特（Friedrich Ebert）与总理菲利普·谢德曼领导下的社民党政府镇压下失败，并得到了极右翼「自由军团」（Freikorps）的协助。起义的两位核心领袖罗莎·卢森堡（Rosa Luxemburg）与卡尔·李卜克内西（Karl Liebknecht）遭自由军团杀害。在德国各政治派别的强烈抗议中，《凡尔赛条约》签署，正式结束一战。《魏玛宪法》随之签署。首届「魏玛联合」政府由社民党、民主党（DDP）与中央党（Z）组建。
 
-**1920 年**：卡普政变爆发——反动派军官企图夺权——在工人总罢工的抵抗下失败。随后鲁尔爆发左翼起义，被国防军与自由军团镇压。魏玛联合在选举中落败，右翼与极左翼得票均有增长。这一时期的民选政府极不稳定，往往仅维持数月。独立社民党发生分裂，多数派加入德共（KPD）及苏联主导的共产国际（Comintern）。
+**1920 年**：卡普政变爆发——反动派军官企图夺权——在工人总罢工的抵抗下失败。随后鲁尔爆发左翼起义，被国防军与自由军团镇压。魏玛联合在选举中落败，右翼与极左翼得票均有增长。这一时期的民选政府极不稳定，往往仅维持数月。独立社民党发生分裂，多数派加入共产党（共产党）及苏联主导的共产国际（Comintern）。
 
 **1921 年**：萨克森与汉堡的共产党人起义被镇压。签署《凡尔赛条约》的中央党领袖马蒂亚斯·埃茨贝格（Matthias Erzberger）遭暗杀。
 
 **1922 年**：民主党外交部长瓦尔特·拉特瑙（Walther Rathenau）遭暗杀。社民党与独立社民党剩余多数派重新合并。
 
-**1923 年**：恶性通货膨胀开始，主要源于针对法国占领鲁尔的「消极抵抗」政策以及《凡尔赛条约》的战争赔款。货币迅速贬值，生活必需品价格飙升至数十亿国家马克。政府对由社民党与德共联合政府执政的萨克森发动了「国家执行」（*Reichsexekution*）。纳粹在慕尼黑发动「啤酒馆政变」失败，希特勒被捕。最终，一系列新政策稳定了货币，法国亦结束了占领。
+**1923 年**：恶性通货膨胀开始，主要源于针对法国占领鲁尔的「消极抵抗」政策以及《凡尔赛条约》的战争赔款。货币迅速贬值，生活必需品价格飙升至数十亿国家马克。政府对由社民党与共产党联合政府执政的萨克森发动了「国家执行」（*Reichsexekution*）。纳粹在慕尼黑发动「啤酒馆政变」失败，希特勒被捕。最终，一系列新政策稳定了货币，法国亦结束了占领。
 
 **1924 年**：国会选举分别于 5 月与 12 月举行，后者催生了一直延续至 1928 年的资产阶级右翼政府。随着恶性通胀危机的结束，德国进入一段相对稳定的时期。希特勒出狱。
 
 **1925 年**：总统弗里德里希·艾伯特去世，新一届总统选举随即举行，保罗·冯·兴登堡（Paul von Hindenburg）在第二轮以微弱优势当选。兴登堡是一位战争英雄，也是一名右翼反动派。社民党通过《海德堡纲领》作为党纲。
 
-**1926 年**：由社民党与德共支持的「剥夺王公财产」公投失败。
+**1926 年**：由社民党与共产党支持的「剥夺王公财产」公投失败。
 
 @curr_gov
 go-to: cabinet if spd_in_government; menu if not spd_in_government
@@ -77,7 +77,7 @@ SPD：[+ spd_r +]%
 # 1928: 15, 1930: 15, 1932:
 Z + BVP：[+ z_r +]%
 # 1928: 10, 1930: 13
-KPD：[+ kpd_r +]%
+共产党：[+ kpd_r +]%
 # 1928: 5, 1930: 4 (as DstP)
 [+ ddp_name +]：[+ ddp_r +]%
 # 1928: 9, 1930: 5
@@ -94,7 +94,7 @@ NSDAP：[+ nsdap_r +]%
 
 [? if spd_in_government and not in_spd_majority and not in_left_front : 联合政府不满：[+ coalition_dissent : coalition_dissent +] ?]
 
-[? if spd_in_government and (in_left_front or in_popular_front): 德共联合不满：[+ kpd_coalition_dissent : coalition_dissent +] ?]
+[? if spd_in_government and (in_left_front or in_popular_front): 共产党联合不满：[+ kpd_coalition_dissent : coalition_dissent +] ?]
 
 @cabinet
 go-to: menu
@@ -122,7 +122,7 @@ go-to: menu
 
 **人口阶层**
 
-**工人阶级**：城市工人阶级——在工厂、作坊、矿场等处从事体力劳动的蓝领工人。他们大多倾向社会主义，支持社民党或德共。占总人口的 40–50%。
+**工人阶级**：城市工人阶级——在工厂、作坊、矿场等处从事体力劳动的蓝领工人。他们大多倾向社会主义，支持社民党或共产党。占总人口的 40–50%。
 
 **旧中产阶级**（*Old Mittelstand*）：由独立工匠、小店主与小商人构成。倾向保守，是极右翼最坚实的票仓。占总人口的 10–15%。
 
@@ -132,7 +132,7 @@ go-to: menu
 
 **天主教徒**为最大宗教少数群体，约占总人口的 30%。他们不成比例地支持中央党（在巴伐利亚则为巴伐利亚人民党）。
 
-**犹太人**约占总人口的 0.5% 至 1%，多支持自由派政党，主要为 [+ ddp_name +]，但也有相当数量支持社民党或德共。
+**犹太人**约占总人口的 0.5% 至 1%，多支持自由派政党，主要为 [+ ddp_name +]，但也有相当数量支持社民党或共产党。
 
 
 @public_opinion
@@ -169,7 +169,7 @@ SPD：[+ spd_votes +]%
 Z + BVP：[+ z_votes +]%
 
 # 1928: 10, 1930: 13
-KPD：[+ kpd_votes +]%
+共产党：[+ kpd_votes +]%
 
 # 1928: 5, 1930: 4 (as DstP)
 [+ ddp_name +]：[+ ddp_votes +]%
@@ -188,17 +188,17 @@ NSDAP：[+ nsdap_votes +]%
 
 **各阶层详细支持率**
 
-工人：SPD：[+ workers_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ workers_sapd_display +]%， ?] Z：[+ workers_z_display +]%，KPD：[+ workers_kpd_display +]%，[+ ddp_name +]：[+ workers_ddp_display +]%，DVP：[+ workers_dvp_display +]%；DNVP：[+ workers_dnvp_display +]%，NSDAP：[+ workers_nsdap_display +]%，其他：[+ workers_other_display +]%
+工人：SPD：[+ workers_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ workers_sapd_display +]%， ?] Z：[+ workers_z_display +]%，共产党：[+ workers_kpd_display +]%，[+ ddp_name +]：[+ workers_ddp_display +]%，DVP：[+ workers_dvp_display +]%；DNVP：[+ workers_dnvp_display +]%，NSDAP：[+ workers_nsdap_display +]%，其他：[+ workers_other_display +]%
 
-新中产阶级：SPD：[+ new_middle_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ new_middle_sapd_display +]%， ?] Z：[+ new_middle_z_display +]%，KPD：[+ new_middle_kpd_display +]%，[+ ddp_name +]：[+ new_middle_ddp_display +]%，DVP：[+ new_middle_dvp_display +]%；DNVP：[+ new_middle_dnvp_display +]%，NSDAP：[+ new_middle_nsdap_display +]%，其他：[+ new_middle_other_display +]%
+新中产阶级：SPD：[+ new_middle_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ new_middle_sapd_display +]%， ?] Z：[+ new_middle_z_display +]%，共产党：[+ new_middle_kpd_display +]%，[+ ddp_name +]：[+ new_middle_ddp_display +]%，DVP：[+ new_middle_dvp_display +]%；DNVP：[+ new_middle_dnvp_display +]%，NSDAP：[+ new_middle_nsdap_display +]%，其他：[+ new_middle_other_display +]%
 
-旧中产阶级：SPD：[+ old_middle_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ old_middle_sapd_display +]%， ?] Z：[+ old_middle_z_display +]%，KPD：[+ old_middle_kpd_display +]%，[+ ddp_name +]：[+ old_middle_ddp_display +]%，DVP：[+ old_middle_dvp_display +]%；DNVP：[+ old_middle_dnvp_display +]%，NSDAP：[+ old_middle_nsdap_display +]%，其他：[+ old_middle_other_display +]%
+旧中产阶级：SPD：[+ old_middle_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ old_middle_sapd_display +]%， ?] Z：[+ old_middle_z_display +]%，共产党：[+ old_middle_kpd_display +]%，[+ ddp_name +]：[+ old_middle_ddp_display +]%，DVP：[+ old_middle_dvp_display +]%；DNVP：[+ old_middle_dnvp_display +]%，NSDAP：[+ old_middle_nsdap_display +]%，其他：[+ old_middle_other_display +]%
 
-农村：SPD：[+ rural_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ rural_sapd_display +]%， ?] Z：[+ rural_z_display +]%，KPD：[+ rural_kpd_display +]%，[+ ddp_name +]：[+ rural_ddp_display +]%，DVP：[+ rural_dvp_display +]%；DNVP：[+ rural_dnvp_display +]%，NSDAP：[+ rural_nsdap_display +]%，其他：[+ rural_other_display +]%
+农村：SPD：[+ rural_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ rural_sapd_display +]%， ?] Z：[+ rural_z_display +]%，共产党：[+ rural_kpd_display +]%，[+ ddp_name +]：[+ rural_ddp_display +]%，DVP：[+ rural_dvp_display +]%；DNVP：[+ rural_dnvp_display +]%，NSDAP：[+ rural_nsdap_display +]%，其他：[+ rural_other_display +]%
 
-失业者：SPD：[+ unemployed_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ unemployed_sapd_display +]%， ?] Z：[+ unemployed_z_display +]%，KPD：[+ unemployed_kpd_display +]%，[+ ddp_name +]：[+ unemployed_ddp_display +]%，DVP：[+ unemployed_dvp_display +]%；DNVP：[+ unemployed_dnvp_display +]%，NSDAP：[+ unemployed_nsdap_display +]%，其他：[+ unemployed_other_display +]%
+失业者：SPD：[+ unemployed_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ unemployed_sapd_display +]%， ?] Z：[+ unemployed_z_display +]%，共产党：[+ unemployed_kpd_display +]%，[+ ddp_name +]：[+ unemployed_ddp_display +]%，DVP：[+ unemployed_dvp_display +]%；DNVP：[+ unemployed_dnvp_display +]%，NSDAP：[+ unemployed_nsdap_display +]%，其他：[+ unemployed_other_display +]%
 
-天主教徒：SPD：[+ catholics_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ catholics_sapd_display +]%， ?] Z：[+ catholics_z_display +]%，KPD：[+ catholics_kpd_display +]%，[+ ddp_name +]：[+ catholics_ddp_display +]%，DVP：[+ catholics_dvp_display +]%；DNVP：[+ catholics_dnvp_display +]%，NSDAP：[+ catholics_nsdap_display +]%，其他：[+ catholics_other_display +]%
+天主教徒：SPD：[+ catholics_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ catholics_sapd_display +]%， ?] Z：[+ catholics_z_display +]%，共产党：[+ catholics_kpd_display +]%，[+ ddp_name +]：[+ catholics_ddp_display +]%，DVP：[+ catholics_dvp_display +]%；DNVP：[+ catholics_dnvp_display +]%，NSDAP：[+ catholics_nsdap_display +]%，其他：[+ catholics_other_display +]%
 
 @parties
 go-to: menu
@@ -224,7 +224,7 @@ go-to: menu
 
 当前关系：[+ dnvp_relation : relationships +]
 
-**KPD** —— *Kommunistische Partei Deutschlands*（德国共产党）—— 源于 1918 年德国革命后、从社民党分裂而出的激进左翼。他们追随莫斯科的路线，反对议会民主，主张苏维埃式的革命。
+**共产党** —— *Kommunistische Partei Deutschlands*（共产党）—— 源于 1918 年德国革命后、从社民党分裂而出的激进左翼。他们追随莫斯科的路线，反对议会民主，主张苏维埃式的革命。
 
 当前关系：[+ kpd_relation : relationships +]
 
@@ -250,7 +250,7 @@ go-to: menu
 
 军事化程度：[+ rb_militancy : militancy +]
 
-**红色阵线战士同盟**（Rotfrontkämpferbund, RFB）：依附于德共。
+**红色阵线战士同盟**（Rotfrontkämpferbund, RFB）：依附于共产党。
 
 兵力：[+ rfb_strength +] 千人
 
@@ -289,7 +289,7 @@ go-to: neorevisionists if neorevisionism > 0; menu if neorevisionism <= 0
 
 **左派**
 
-许多左派成员是前独立社民党（反战的左翼独立社会民主党）成员，或年轻激进分子。他们中不少人主张与德共更紧密的合作，一些人支持议会外行动。
+许多左派成员是前独立社民党（反战的左翼独立社会民主党）成员，或年轻激进分子。他们中不少人主张与共产党更紧密的合作，一些人支持议会外行动。
 
 实力：[+ left_strength : strength +]
 
@@ -508,7 +508,7 @@ if (d3 && window) {
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#FF7F50'> </div></td> <td>!}SAPD： {!</td><td>!} [+ sapd_r +]% {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div></td> <td>!}KPD： {!</td><td>!} [+ kpd_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div></td> <td>!}共产党： {!</td><td>!} [+ kpd_r +]% {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div></td><td>!} [+ ddp_name +]： {!</td><td>!} [+ ddp_r +]% {!</td></tr>!}
 

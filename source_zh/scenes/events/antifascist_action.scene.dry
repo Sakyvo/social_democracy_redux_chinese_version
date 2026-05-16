@@ -1,24 +1,24 @@
 title: A United Front Against Fascism
 new-page: true
-subtitle: The KPD proposes to organize against the rising Nazi threat
+subtitle: The 共产党 proposes to organize against the rising Nazi threat
 tags: event
 view-if: communist_coalition >= 3 and kpd_relation >= 50 and nazi_urgency >= 2 and left_strength >= 50 and black_brown_seen = 1 and not spd_toleration
 max-visits: 1
 
 = 反法西斯统一阵线
 
-随着近来的不稳定与共和国的动荡，资产阶级选民和工业家纷纷投奔纳粹，连布吕宁与中央党都一度考虑过转向纳粹寻求支持（其后谈判破裂）。已与我们冰释前嫌的德共此刻提议组建一个"统一阵线"。[? if iron_front_formed : 该阵线将包含已有的铁阵线，并扩展纳入德共系组织以及一项联合行动方案。 ?]
+随着近来的不稳定与共和国的动荡，资产阶级选民和工业家纷纷投奔纳粹，连布吕宁与中央党都一度考虑过转向纳粹寻求支持（其后谈判破裂）。已与我们冰释前嫌的共产党此刻提议组建一个"统一阵线"。[? if iron_front_formed : 该阵线将包含已有的铁阵线，并扩展纳入共产党系组织以及一项联合行动方案。 ?]
 
 党内残存的右翼极力反对，但这样做能在与法西斯不可避免的对决中显著加强我方左翼力量，但同时也可能刺激反动派抢先动手。
 
-- @form_uf: 在社民党与德共之间组建统一阵线！
+- @form_uf: 在社民党与共产党之间组建统一阵线！
 - @literally_why_would_anyone_whos_at_this_point_in_the_game_choose_this_like_what: 我们不得不拒绝这一提议。
 
 @form_uf
 on-arrival: antifa_formed = 1; kpd_relation += 10; rb_militancy += 0.03; rfb_militancy += 0.04; coup_progress += communist_coalition; workers_kpd += 4; workers_spd += 6*(1-dissent); unemployed_kpd += 5; unemployed_spd += 5*(1-dissent); new_middle_spd += 5*(1-dissent) if new_middle_conscious; workers_nsdap -= 2; new_middle_nsdap -= 2; unemployed_nsdap -= 2
 go-to: uf_menu
 
-我们组建了统一阵线，由社民党与德共各下属组织汇集而成，通过它对抗日益法西斯化的资产阶级开展阶级斗争。
+我们组建了统一阵线，由社民党与共产党各下属组织汇集而成，通过它对抗日益法西斯化的资产阶级开展阶级斗争。
 
 @uf_menu
 
@@ -43,7 +43,7 @@ view-if: nationalization_adopted
 on-arrival: uf_strength += 2; workers_spd += 3*(1-dissent); workers_kpd += 2; unemployed_kpd += 3; unemployed_spd += 2*(1-dissent); workers_nsdap -= 3*(1-dissent); unemployed_nsdap -= 2*(1-dissent); old_middle_nsdap += 3; rural_nsdap += 2; new_middle_nsdap += 2 if not new_middle_conscious
 go-to: uf_menu
 
-我们与德共并肩在左翼计划的旗帜下集结。
+我们与共产党并肩在左翼计划的旗帜下集结。
 
 @rally_iron_front
 max-visits: 1
@@ -51,7 +51,7 @@ view-if: iron_front_formed
 on-arrival: uf_strength += 2; workers_spd += 3*(1-dissent); new_middle_spd += 2*(1-dissent); unemployed_spd += 2*(1-dissent); new_middle_nsdap -= 2*(1-dissent); neorevisionist_strength += 5; neorevisionist_dissent -= 5; rb_strength += 50*(1-dissent);
 go-to: uf_menu
 
-我们把铁阵线纳入统一阵线，相对于德共而言增强了社民党的力量，也整体上进一步壮大了运动。
+我们把铁阵线纳入统一阵线，相对于共产党而言增强了社民党的力量，也整体上进一步壮大了运动。
 
 @rally_afa
 max-visits: 1
@@ -59,7 +59,7 @@ view-if: new_middle_conscious
 on-arrival: uf_strength += 2; new_middle_spd += 5*(1-dissent); new_middle_nsdap -= 3*(1-dissent); workers_spd -= 1; workers_kpd += 1; unemployed_spd -= 2; unemployed_kpd += 2;
 go-to: uf_menu
 
-我们将 AfA 联盟纳入统一阵线，借助新中产阶级近来倾向于与无产阶级其他部分结盟的态势，终结纳粹在该群体中的扩展。但代价是，我们也让德共在传统工人阶级群体中进一步壮大。
+我们将 AfA 联盟纳入统一阵线，借助新中产阶级近来倾向于与无产阶级其他部分结盟的态势，终结纳粹在该群体中的扩展。但代价是，我们也让共产党在传统工人阶级群体中进一步壮大。
 
 @done
 on-arrival: old_middle_nsdap += uf_strength; rural_nsdap += uf_strength/2; new_middle_nsdap += uf_strength/4 if not new_middle_conscious;

@@ -13,22 +13,22 @@ tags: party_affairs
 
 [? if enemies != 0 : 我们此前已将 [+ enemies +] 列为首要敌人。是否有必要调整方向？ ?]
 
-- @anti_dem: 极右与极左的反民主政党——德共、纳粹党与 DNVP。
+- @anti_dem: 极右与极左的反民主政党——共产党、纳粹党与 DNVP。
 - @far_right: 极右翼——纳粹党与 DNVP。
 - @nsdap: 仅针对纳粹党。
-- @kpd: 德共。
+- @kpd: 共产党。
 - @bourgeois: 资产阶级诸党——中央党与 DVP。
 - @easy_discard
 
 @anti_dem
 on-arrival: enemies = "anti-democratic parties"; center_strength += 5; reformist_strength += 5; left_dissent += 5; workers_kpd -= 2; workers_nsdap -= 2; workers_dnvp -= 2; kpd_relation -= 10
 
-抨击极右与极左受到党内除左派以外所有派系欢迎——左派则更希望同资产阶级诸党斗争。此举也可能削弱我们将来与德共和解的能力。
+抨击极右与极左受到党内除左派以外所有派系欢迎——左派则更希望同资产阶级诸党斗争。此举也可能削弱我们将来与共产党和解的能力。
 
 @far_right
 on-arrival: enemies = "far right"; left_strength += 5; left_dissent -= 5; workers_nsdap -= 3; workers_dnvp -= 3;
 
-抨击极右翼在全党得到普遍支持；不过左派认为资产阶级诸党同样危险，而右派则批评我们对德共缺乏回应。资产阶级联合伙伴也质疑我们反共立场的坚决程度。
+抨击极右翼在全党得到普遍支持；不过左派认为资产阶级诸党同样危险，而右派则批评我们对共产党缺乏回应。资产阶级联合伙伴也质疑我们反共立场的坚决程度。
 
 @nsdap
 on-arrival: enemies = "NSDAP"; neorevisionist_strength += 5; nazi_urgency += 1; workers_nsdap -= 4;
@@ -38,7 +38,7 @@ on-arrival: enemies = "NSDAP"; neorevisionist_strength += 5; nazi_urgency += 1; 
 @kpd
 on-arrival: enemies = "KPD"; reformist_strength += 5; left_dissent += 8; reformist_dissent -= 5; kpd_relation -= 15; dvp_relation += 5; z_relation += 5; workers_kpd -= 4;
 
-抨击德共获得除最左翼社会主义者以外所有人的支持，也为我们在资产阶级诸党中赢得一定好感。不过，若我们意欲与德共和解，此非上选。
+抨击共产党获得除最左翼社会主义者以外所有人的支持，也为我们在资产阶级诸党中赢得一定好感。不过，若我们意欲与共产党和解，此非上选。
 
 @bourgeois
 on-arrival: enemies = "bourgeois parties"; left_strength += 8; left_dissent -= 5; dvp_relation -= 5; z_relation -= 5; kpd_relation += 5; reformist_dissent += 8; workers_z -= 3; coalition_dissent += 1

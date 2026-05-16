@@ -7,7 +7,7 @@ new-page: true
 
 = 保罗·列维
 
-列维曾是德共的领导人，因不满该党对暴力与革命冒险主义的执迷而离党。
+列维曾是共产党的领导人，因不满该党对暴力与革命冒险主义的执迷而离党。
 
 - @building_the_left
 - @kpd_cooperation
@@ -23,10 +23,10 @@ on-arrival: advisor_action_timer = 6; left_strength += 10; left_dissent -= 8; re
 我们增强了社民党内左派派系的力量。此举引起了党内温和改良派的忧虑。
 
 @kpd_cooperation
-title: 与德共合作
-subtitle: 两党之间的合作，既需德共让步，也需社民党妥协。
+title: 与共产党合作
+subtitle: 两党之间的合作，既需共产党让步，也需社民党妥协。
 unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?]
 choose-if: advisor_action_timer = 0
 on-arrival: advisor_action_timer = 6; left_strength += 5; kpd_relation += 6*(1-dissent); reformist_dissent += 3; communist_coalition += 1 if kpd_cooperation_seen <= 1; kpd_cooperation_seen += 1
 
-列维设法联系他昔日的同志，劝说德共放弃当前的极端斯大林主义路线。对方作出了一些让步。
+列维设法联系他昔日的同志，劝说共产党放弃当前的极端斯大林主义路线。对方作出了一些让步。
