@@ -13,7 +13,7 @@ go-to: bribe if dvp_relation >= 35 and z_relation >= 40 and ddp_relation >= 50 a
 
 @bribe
 
-为避免危机，资产阶级政党——甚至包括 DVP——提议重组政府，将社民党纳入新的大联合。然而，党内多数人对重整军备仍感愤怒，要说服党内接受这一行动可能困难。
+为避免危机，资产阶级政党——甚至包括德国人民党——提议重组政府，将社民党纳入新的大联合。然而，党内多数人对重整军备仍感愤怒，要说服党内接受这一行动可能困难。
 
 - @grand_coalition_marx: 加入政府。
 - @demand_resignation: 在任何事之前，要求政府辞职。
@@ -21,7 +21,7 @@ go-to: bribe if dvp_relation >= 35 and z_relation >= 40 and ddp_relation >= 50 a
 @grand_coalition_marx
 subtitle: SPD + Z + BVP + DDP + DVP ([+ grand_coalition +]%)
 choose-if: left_strength+center_strength < reformist_strength
-unavailable-subtitle: SPD + Z + BVP + DDP + DVP ([+ grand_coalition +]%) - 党内反对过于强烈。
+unavailable-subtitle: 社民党 + Z + 巴伐利亚人民党 + 德国民主党 + 德国人民党 ([+ grand_coalition +]%) - 党内反对过于强烈。
 on-arrival: left_dissent += 10; leverage = spd_r; leverage += 5; center_dissent += 5; labor_dissent += 5; pacifism -= 2; workers_spd -= 3; new_middle_spd -= 2; unemployed_spd -= 3; workers_kpd += 2; unemployed_kpd += 2; reichswehr_loyalty += 0.05
 go-to: election_1928.ministries
 

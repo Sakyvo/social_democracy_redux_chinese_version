@@ -259,7 +259,7 @@ go-to: coalition_menu
 
 {!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_hl +]%** {!</td><td>!} **[+ sthl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党:** {!</td><td>!} **[+ spd_hl +]%** {!</td><td>!} **[+ sthl_change_spd +]** {!</td></tr>!}
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_hl +]% {!</td><td>!} [+ sthl_change_sapd +] {!</td></tr>!} ?]
 
@@ -280,15 +280,15 @@ go-to: coalition_menu
 
 **潜在联合政府：**
 
-魏玛联合（SPD + Z + [+ ddp_name +]）：[+ h_weimar_coalition +]%
+魏玛联合（社民党 + Z + [+ ddp_name +]）：[+ h_weimar_coalition +]%
 
-大联合（SPD + Z + [+ ddp_name +] + DVP）：[+ h_grand_coalition +]%
+大联合（社民党 + Z + [+ ddp_name +] + 德国人民党）：[+ h_grand_coalition +]%
 
-资产阶级联合（Z + [+ ddp_name +] + DVP + 其他）：[+ h_bourgeois_coalition +]%
+资产阶级联合（Z + [+ ddp_name +] + 德国人民党 + 其他）：[+ h_bourgeois_coalition +]%
 
-右翼联合（Z + DVP + 其他 + DNVP）：[+ h_right_coalition +]%
+右翼联合（Z + 德国人民党 + 其他 + 德国国家人民党）：[+ h_right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_hl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
+[? if nazi_urgency <= 1 and nsdap_hl >= 15 : 纳粹党得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
 [? if h_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
@@ -310,7 +310,7 @@ view-if: h_grand_coalition >= 50 or h_elections < 1 or in_hamburg_groko
 choose-if: h_grand_coalition >= 50 or ((h_elections < 1 or in_hamburg_groko) and not nsdap_hl >= 50)
 on-arrival: in_hamburg_groko = 1; in_hamburg_soclib = 0; in_hamburg_left = 0; in_spd_hamburg = 0; in_nazi_hamburg = 0;
 
-社民党与 [+ ddp_name +] 及 DVP 组成联合政府。[? if h_grand_coalition < 50 : 尽管联合并不具备多数席位。 ?]
+社民党与 [+ ddp_name +] 及德国人民党组成联合政府。[? if h_grand_coalition < 50 : 尽管联合并不具备多数席位。 ?]
 
 @social_liberal
 title: 「社会自由派」联合政府。
@@ -323,7 +323,7 @@ on-arrival: in_hamburg_soclib = 1; in_hamburg_groko = 0; in_hamburg_left = 0; in
 
 @left_front
 title: 「统一战线」是否可行？
-subtitle: SPD + 共产党 ([+ h_left_coalition +]%)
+subtitle: 社民党 + 共产党 ([+ h_left_coalition +]%)
 view-if: h_left_coalition >= 50 or in_hamburg_left
 choose-if: h_left_coalition >= 50 or (in_hamburg_left and not nsdap_hl >= 50)
 

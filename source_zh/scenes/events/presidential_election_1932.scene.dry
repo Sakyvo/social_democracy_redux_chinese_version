@@ -99,7 +99,7 @@ go-to: eckener_campaign
 @eckener_campaign
 on-arrival: dvp_support_eckener = 1 if dvp_relation > 40; burgerblock_campaign = 1 if dvp_relation <= 40;
 
-[? if dvp_support_eckener : 借助我党与DVP的良好关系，DVP放弃了自行推出资产阶级集团候选人的构想，转而背书埃克纳。 ?]
+[? if dvp_support_eckener : 借助我党与德国人民党的良好关系，德国人民党放弃了自行推出资产阶级集团候选人的构想，转而背书埃克纳。 ?]
 
 - @final_election: 最终投票……
 
@@ -190,19 +190,19 @@ go-to: braun_campaign
 max-visits: 1
 go-to: convince_liberals_success if dvp_relation >= 50; convince_liberals_fail if dvp_relation < 50
 
-自由派的选票（[+ ddp_name +] 与 DVP）一直在流失，因而对我们助益甚微。无论如何，[+ ddp_name +] 已愿意支持布劳恩。
+自由派的选票（[+ ddp_name +] 与德国人民党）一直在流失，因而对我们助益甚微。无论如何，[+ ddp_name +] 已愿意支持布劳恩。
 
 @convince_liberals_success
 on-arrival: dvp_support_braun = 1
 go-to: braun_campaign
 
-凭借良好关系，DVP承诺在选举中支持布劳恩。
+凭借良好关系，德国人民党承诺在选举中支持布劳恩。
 
 @convince_liberals_fail
 on-arrival: dvp_support_braun = 0
 go-to: braun_campaign
 
-我们未能说服DVP支持布劳恩。
+我们未能说服德国人民党支持布劳恩。
 
 
 

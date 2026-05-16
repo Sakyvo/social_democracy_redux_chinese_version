@@ -12,7 +12,7 @@ set-jump: pres_election
 @pres_election
 on-arrival: reactionary_consolidate = 0; reactionary_consolidate = 1 if nsdap_votes < dnvp_votes + other_votes + dvp_votes
 
-The presidential election is coming up soon. [? if spd_in_government = 0 : 尽管总理职位通常更为重要，但近期各届政府仰赖总统的紧急法令权力，使该职位至关紧要。 ?] [? if hitler_deported==0 : 纳粹党将推出希特勒参选，共产党将推出台尔曼（Thälmann）。希特勒一旦获胜，将意味着议会民主的终结，以及一个充满难以言喻恐怖的时代的开端。 ?][? if hitler_deported==1 : 希特勒被驱逐之后，纳粹党改派赫尔曼·戈林（Göring）出战。他被普遍视为希特勒的代理人——希特勒虽身陷法律追诉，仍保有一支希望他重返德国的群众基础。共产党则推出恩斯特·台尔曼。 ?] 德国国家人民党（DNVP）亦已加入战局，推举钢盔团联合首领、极端反犹的特奥多尔·杜斯特贝格（Duesterberg）。
+The presidential election is coming up soon. [? if spd_in_government = 0 : 尽管总理职位通常更为重要，但近期各届政府仰赖总统的紧急法令权力，使该职位至关紧要。 ?] [? if hitler_deported==0 : 纳粹党将推出希特勒参选，共产党将推出台尔曼（Thälmann）。希特勒一旦获胜，将意味着议会民主的终结，以及一个充满难以言喻恐怖的时代的开端。 ?][? if hitler_deported==1 : 希特勒被驱逐之后，纳粹党改派赫尔曼·戈林（Göring）出战。他被普遍视为希特勒的代理人——希特勒虽身陷法律追诉，仍保有一支希望他重返德国的群众基础。共产党则推出恩斯特·台尔曼。 ?] 德国国家人民党（德国国家人民党）亦已加入战局，推举钢盔团联合首领、极端反犹的特奥多尔·杜斯特贝格（Duesterberg）。
 
 此外，自然还有现任总统马克斯。只要我们继续支持他，他几乎肯定将留在选战中，以阻止左翼或右翼的极端总统上台。
 
@@ -160,19 +160,19 @@ go-to: braun_campaign
 max-visits: 1
 go-to: convince_liberals_success if dvp_relation >= 60; convince_liberals_fail if dvp_relation < 60
 
-自由派的选票（[+ ddp_name +] 与 DVP）一直在流失，因而对我们助益甚微。无论如何，[+ ddp_name +] 已愿意支持布劳恩。
+自由派的选票（[+ ddp_name +] 与德国人民党）一直在流失，因而对我们助益甚微。无论如何，[+ ddp_name +] 已愿意支持布劳恩。
 
 @convince_liberals_success
 on-arrival: dvp_support_braun = 1
 go-to: braun_campaign
 
-凭借良好关系，DVP承诺在选举中支持布劳恩。
+凭借良好关系，德国人民党承诺在选举中支持布劳恩。
 
 @convince_liberals_fail
 on-arrival: dvp_support_braun = 0
 go-to: braun_campaign
 
-我们未能说服DVP支持布劳恩。
+我们未能说服德国人民党支持布劳恩。
 
 @final_election
 on-arrival: election_round = 0

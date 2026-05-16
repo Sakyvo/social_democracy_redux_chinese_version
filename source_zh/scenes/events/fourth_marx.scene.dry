@@ -21,7 +21,7 @@ tags: event
 subtitle: Z + BVP + DVP + DNVP ([+ right_coalition +]%)
 on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3; old_middle_other += 3; new_middle_dnvp -= 3; new_middle_other += 3; rural_dnvp -= 3; rural_other += 3
 
-德国国家人民党（DNVP）成功重返政府，内阁经过重组以容纳他们。德国民主党（DDP）暂未加入这一框架，因其认为马克斯计划中的学校政策过分偏向教会学校。
+德国国家人民党（德国国家人民党）成功重返政府，内阁经过重组以容纳他们。德国民主党（德国民主党）暂未加入这一框架，因其认为马克斯计划中的学校政策过分偏向教会学校。
 
 @marx_menu
 
@@ -33,4 +33,4 @@ on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3
 subtitle: Z + BVP + DVP + DNVP ([+ right_coalition +]%)
 on-arrival: in_right_coalition = 1; dnvp_in_government = 1; old_middle_dnvp -= 3; old_middle_other += 3; new_middle_dnvp -= 3; new_middle_other += 3; rural_dnvp -= 3; rural_other += 3
 
-德国国家人民党（DNVP）成功重返政府，内阁经过重组以容纳他们。德国民主党（DDP）暂未加入这一框架，因其认为布吕宁计划中的学校政策过分偏向教会学校。
+德国国家人民党（德国国家人民党）成功重返政府，内阁经过重组以容纳他们。德国民主党（德国民主党）暂未加入这一框架，因其认为布吕宁计划中的学校政策过分偏向教会学校。

@@ -10,7 +10,7 @@ go-to: pres_menu
 
 弗里德里希·艾伯特（Ebert）总统因延迟治疗——为出庭自辩诽谤诉讼——以54岁之龄辞世。[? if left_strength > reformist_strength : 尽管他曾向国防军（Reichswehr）妥协，转而反对当初将他选上台的工人，但他终究守住了共和国。他的逝世意味着共和国的未来陷入不确定。 ?][? if reformist_strength > left_strength : 艾伯特虽有缺陷，却在德国濒临毁灭之际为国掌舵，以艰辛而不懈的努力守护新生的民主免于覆灭。他的逝世意味着共和国的未来陷入不确定。 ?]
 
-如今新一轮总统选举已被列入议程。预计将有形形色色的候选人参选，但联合候选人方案亦讨论甚多。其中一种构想是由社民党、德国民主党（DDP）、中央党与德国人民党（DVP）共同推举奥托·盖斯勒（Gessler）。然而本党左翼对此坚决反对，DVP方面亦面露难色。或者，我们可推出本党自己的候选人。保罗·勒贝（Löbe）已拒绝参选，但若再无其他人选，奥托·布劳恩（Braun）或许愿意出马。
+如今新一轮总统选举已被列入议程。预计将有形形色色的候选人参选，但联合候选人方案亦讨论甚多。其中一种构想是由社民党、德国民主党（德国民主党）、中央党与德国人民党（德国人民党）共同推举奥托·盖斯勒（Gessler）。然而本党左翼对此坚决反对，德国人民党方面亦面露难色。或者，我们可推出本党自己的候选人。保罗·勒贝（Löbe）已拒绝参选，但若再无其他人选，奥托·布劳恩（Braun）或许愿意出马。
 
 @pres_menu
 
@@ -41,7 +41,7 @@ on-arrival: braun_campaign = 1; spd_prussia = 0
 @campaign_gessler
 go-to: cg2
 
-共产党推出了名不见经传的恩斯特·台尔曼；德国国家人民党（DNVP）推出奥斯卡·赫尔格特（Hergt），试图把DVP内部偏右翼者从盖斯勒阵营中拉走。巴伐利亚人民党（BVP）不愿支持任何主要候选人，推出党魁海因里希·黑尔德（Held）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫（Ludendorff）。
+共产党推出了名不见经传的恩斯特·台尔曼；德国国家人民党（德国国家人民党）推出奥斯卡·赫尔格特（Hergt），试图把德国人民党内部偏右翼者从盖斯勒阵营中拉走。巴伐利亚人民党（巴伐利亚人民党）不愿支持任何主要候选人，推出党魁海因里希·黑尔德（Held）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫（Ludendorff）。
 
 @cg2
 
@@ -66,7 +66,7 @@ on-arrival: resources -= 1; pro_republic += 6; dvp_relation += 2; nationalism -=
 go-to: cg2
 max-visits: 1
 
-我们高举奥托·盖斯勒作为民主与共和国之守护者的大旗。赫尔格特一如往常地试图分裂DVP，此次瞄准其中的君主派成员。
+我们高举奥托·盖斯勒作为民主与共和国之守护者的大旗。赫尔格特一如往常地试图分裂德国人民党，此次瞄准其中的君主派成员。
 
 @donate_dvp
 subtitle: -1 resource - this may anger our left-wing further!
@@ -75,13 +75,13 @@ on-arrival: resources -= 1; old_middle_dvp += 3; rural_dvp += 3; left_dissent +=
 go-to: cg2
 max-visits: 1
 
-我们以资源助DVP稳住右翼侧翼。但愿这能奏效。
+我们以资源助德国人民党稳住右翼侧翼。但愿这能奏效。
 
 @campaign_braun
 on-arrival: braun_percent = 0.7
 go-to: cb2
 
-共产党推出了名不见经传的恩斯特·台尔曼；DVP与DNVP共推卡尔·亚雷斯（Jarres）作为「国家集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的BVP则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
+共产党推出了名不见经传的恩斯特·台尔曼；德国人民党与德国国家人民党共推卡尔·亚雷斯（Jarres）作为「国家集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的巴伐利亚人民党则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
 
 @cb2
 
@@ -325,7 +325,7 @@ on-arrival: president = "Braun"; pro_republic += 8; socialism += 4; nationalism 
 @gessler_wins
 on-arrival: president = "Gessler"; pro_republic += 2; socialism -= 5; left_dissent += 5; dvp_relation += 10; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-奥托·盖斯勒作为各民主派政党（包括DVP）的候选人赢得了选举。这场选战使我们成功地将DVP从DNVP与整个右翼阵营中拉向中间，但也在左翼留下了一片空白——共产党正急于填补。
+奥托·盖斯勒作为各民主派政党（包括德国人民党）的候选人赢得了选举。这场选战使我们成功地将德国人民党从德国国家人民党与整个右翼阵营中拉向中间，但也在左翼留下了一片空白——共产党正急于填补。
 
 @no_majority_round1
 go-to: braun_consolidation if braun_campaign; gessler_consolidation if gessler_campaign
@@ -398,7 +398,7 @@ go-to: marx_campaign if spd_support_marx; bc2 if braun_campaign
 
 正当我们敲定关于总统选战的决定时，传来了保罗·冯·兴登堡参选的消息。兴登堡被右翼视为战争英雄——他在德意志帝国时期任陆军元帅，曾在坦能堡战役中击败俄国。但在我党眼中，他是反动的容克贵族，是「背后捅刀子」神话的主要兜售者之一，正是这一神话夺去了弗里德里希·艾伯特的生命。
 
-DVP、DNVP[? if bvp_support_hindenburg :、BVP?]、纳粹党以及众多中右翼小党都已为他背书。他若获胜，可能意味着我们所知的民主走向终结。
+德国人民党、德国国家人民党[? if bvp_support_hindenburg :、巴伐利亚人民党?]、纳粹党以及众多中右翼小党都已为他背书。他若获胜，可能意味着我们所知的民主走向终结。
 
 @marx_campaign
 
@@ -543,10 +543,10 @@ on-arrival: held_campaign = 0; hergt25_campaign = 0; ludendorff_campaign = 0; hi
 
 保罗·冯·兴登堡出人意料地以**国家集团**候选人的身份在第二轮参选。兴登堡被右翼视为战争英雄——他在德意志帝国时期任陆军元帅，曾在坦能堡战役中击败俄国。但在我党眼中，他是反动的容克贵族，是「背后捅刀子」神话的主要兜售者之一，正是这一神话夺去了弗里德里希·艾伯特的生命。
 
-DVP承受着巨大的内部压力，要求其撤回对盖斯勒的支持——如此一来我党将失去候选人，被迫另推一人。
+德国人民党承受着巨大的内部压力，要求其撤回对盖斯勒的支持——如此一来我党将失去候选人，被迫另推一人。
 
-- @convince_dvp_gessler: 说服DVP继续支持盖斯勒。
-- @convince_dvp_abstain: 说服DVP弃权。
+- @convince_dvp_gessler: 说服德国人民党继续支持盖斯勒。
+- @convince_dvp_abstain: 说服德国人民党弃权。
 - @unfortunate: 不幸的结果。
 
 @convince_dvp_gessler
@@ -554,7 +554,7 @@ choose-if: resources >= 2
 subtitle: -2 resources
 on-arrival: resources -= 2; dvp_abstain = 1; old_middle_dvp -= 4; new_middle_dvp -= 3; rural_dvp -= 4; dvp_relation -= 10; left_dissent += 10; workers_spd -= 3; unemployed_spd -= 3; left_strength += 5
 
-我们试图说服DVP继续支持盖斯勒，由此在党内引发激烈辩论。右翼中许多人无论如何都会投兴登堡。最终，为顾全党的团结，DVP决定在选举中弃权。
+我们试图说服德国人民党继续支持盖斯勒，由此在党内引发激烈辩论。右翼中许多人无论如何都会投兴登堡。最终，为顾全党的团结，德国人民党决定在选举中弃权。
 
 - @round1: 投票开始……
 
@@ -564,7 +564,7 @@ subtitle: -1 resource
 on-arrival: resources -= 1; dvp_support_hindenburg = 1; old_middle_dvp -= 2; new_middle_dvp -= 1; rural_dvp -= 2; dvp_relation -= 5; left_dissent += 5; workers_spd -= 2; unemployed_spd -= 2
 go-to: unfortunate
 
-我们试图说服DVP至少弃权，但努力归于失败——该党决定撤回对盖斯勒的支持，转而支持战争英雄兴登堡。我们将需要另寻人选与兴登堡对决。
+我们试图说服德国人民党至少弃权，但努力归于失败——该党决定撤回对盖斯勒的支持，转而支持战争英雄兴登堡。我们将需要另寻人选与兴登堡对决。
 
 @unfortunate
 on-arrival: left_dissent += 2 if not dvp_support_hindenburg; dvp_support_hindenburg = 1

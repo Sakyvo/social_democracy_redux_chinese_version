@@ -165,7 +165,7 @@ title: 尽管希特勒已被驱逐，纳粹党仍然上台了……
 tags: endings
 go-to: eg_menu
 
-尽管希特勒已被驱逐，纳粹党（NSDAP）仍以某种方式攀上了权力宝座。[? if long_war == 1 : 我们正与他们争夺对德国的控制。 ?]
+尽管希特勒已被驱逐，纳粹党（纳粹党）仍以某种方式攀上了权力宝座。[? if long_war == 1 : 我们正与他们争夺对德国的控制。 ?]
 
 
 @civil_war_won
@@ -441,7 +441,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if game_achievement_republik_der_wissenschaft : **Republik der Wissenschaft（科学共和国）** —— 阿尔伯特·爱因斯坦当选总统。 ?]
 
-[? if game_achievement_arbeiter_von_wien : **Arbeiter von Wien（维也纳的工人）** —— 奥地利社民党（SDAPÖ）在奥地利取得胜利。 ?]
+[? if game_achievement_arbeiter_von_wien : **Arbeiter von Wien（维也纳的工人）** —— 奥地利社民党（奥地利社会民主工人党）在奥地利取得胜利。 ?]
 
 [? if game_achievement_stolperstein: **Stolperstein（绊脚石）** —— 我们虽败，但历史或会铭记我们…… ?]
 
@@ -544,7 +544,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if achievement_republik_der_wissenschaft : **Republik der Wissenschaft（科学共和国）** —— 阿尔伯特·爱因斯坦当选总统。 ?]
 
-[? if achievement_arbeiter_von_wien : **Arbeiter von Wien（维也纳的工人）** —— 奥地利社民党（SDAPÖ）在奥地利取得胜利。 ?]
+[? if achievement_arbeiter_von_wien : **Arbeiter von Wien（维也纳的工人）** —— 奥地利社民党（奥地利社会民主工人党）在奥地利取得胜利。 ?]
 
 [? if achievement_stolperstein: **Stolperstein（绊脚石）** —— 我们虽败，但历史或会铭记我们…… ?]
 
@@ -649,7 +649,7 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 
 [? if not achievement_republik_der_wissenschaft : **Republik der Wissenschaft（科学共和国）** —— 阿尔伯特·爱因斯坦当选总统。 ?]
 
-[? if not achievement_arbeiter_von_wien : **Arbeiter von Wien（维也纳的工人）** —— 奥地利社民党（SDAPÖ）在奥地利取得胜利。 ?]
+[? if not achievement_arbeiter_von_wien : **Arbeiter von Wien（维也纳的工人）** —— 奥地利社民党（奥地利社会民主工人党）在奥地利取得胜利。 ?]
 
 [? if not achievement_stolperstein: **Stolperstein（绊脚石）** —— 我们虽败，但历史或会铭记我们…… ?]
 

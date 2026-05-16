@@ -9,7 +9,7 @@ go-to: landtag_dissolved if dissolve_hl >= 50; landtag_not_dissolved if dissolve
 
 = 汉堡邦议会解散
 
-随着我们国家层面合作的崩溃及关系进一步下滑，汉堡 DVP 转而反对我们在该地区的大联合。由于建设性不信任投票机制，他们无法将州政府赶下台，但能以简单多数票解散邦议会。
+随着我们国家层面合作的崩溃及关系进一步下滑，汉堡德国人民党转而反对我们在该地区的大联合。由于建设性不信任投票机制，他们无法将州政府赶下台，但能以简单多数票解散邦议会。
 
 @landtag_dissolved
 on-arrival: hamburg_election_year = year; hamburg_election_month = month+3; hamburg_election_year += 1 if hamburg_election_month > 12; hamburg_election_month -= 12 if hamburg_election_month > 12

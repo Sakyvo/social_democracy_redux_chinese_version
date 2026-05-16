@@ -31,7 +31,7 @@ on-arrival: banking_crisis_timer = 2; customs_union = 1; west_relation -= 2; eas
 view-if: spd_in_government = 1
 on-arrival: coalition_dissent += 1; dvp_relation -= 5; z_relation -= 4; z_relation -= 3 if chancellor_party == "Z"; dvp_relation -= 3 if chancellor_party == "Z"
 
-我们尽力让联合政府伙伴明白协约国潜在反应的严重性。提案就此搁置，尽管 DVP 和中央党并不高兴。
+我们尽力让联合政府伙伴明白协约国潜在反应的严重性。提案就此搁置，尽管德国人民党和中央党并不高兴。
 
 
 @end_toleration

@@ -258,7 +258,7 @@ go-to: coalition_menu
 
 {!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_pl +]%** {!</td><td>!} **[+ stpl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党:** {!</td><td>!} **[+ spd_pl +]%** {!</td><td>!} **[+ stpl_change_spd +]** {!</td></tr>!}
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_pl +]% {!</td><td>!} [+ stpl_change_sapd +] {!</td></tr>!} ?]
 
@@ -279,15 +279,15 @@ go-to: coalition_menu
 
 **潜在联合政府：**
 
-魏玛联合（SPD + Z + [+ ddp_name +]）：[+ p_weimar_coalition +]%
+魏玛联合（社民党 + Z + [+ ddp_name +]）：[+ p_weimar_coalition +]%
 
-大联合（SPD + Z + [+ ddp_name +] + DVP）：[+ p_grand_coalition +]%
+大联合（社民党 + Z + [+ ddp_name +] + 德国人民党）：[+ p_grand_coalition +]%
 
-资产阶级联合（Z + [+ ddp_name +] + DVP + 其他）：[+ p_bourgeois_coalition +]%
+资产阶级联合（Z + [+ ddp_name +] + 德国人民党 + 其他）：[+ p_bourgeois_coalition +]%
 
-右翼联合（Z + DVP + 其他 + DNVP）：[+ p_right_coalition +]%
+右翼联合（Z + 德国人民党 + 其他 + 德国国家人民党）：[+ p_right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_pl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
+[? if nazi_urgency <= 1 and nsdap_pl >= 15 : 纳粹党得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
 [? if p_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
@@ -391,10 +391,10 @@ on-departure: z_prussia = 1; spd_prussia = 0; prussia_spd -= 0.1 if prussia_spd 
 
 @left_prussia
 title: 左翼政党的「统一战线」。
-subtitle: 共产党 + SPD ([+ p_left_coalition +]%)
+subtitle: 共产党 + 社民党 ([+ p_left_coalition +]%)
 view-if: spd_prussia or p_left_coalition >= 50
 choose-if: (spd_prussia and (p_right_coalition < 50 or z_relation >= 45 or not dnvp_reform or year >= 1930)) or p_left_coalition >= 50 and kpd_relation >= 55 and communist_coalition >= 3
-unavailable-subtitle: 共产党 + SPD ([+ p_left_coalition +]%) - [? if p_left_coalition < 50 : We lack the votes. ?][? if kpd_relation < 55 or communist_coalition < 3 : The 共产党 is unwilling. ?]
+unavailable-subtitle: 共产党 + 社民党 ([+ p_left_coalition +]%) - [? if p_left_coalition < 50 : We lack the votes. ?][? if kpd_relation < 55 or communist_coalition < 3 : The 共产党 is unwilling. ?]
 on-arrival: dvp_relation -= 10; z_relation -= 5; dvp_relation -= 5 if dvp_prussia; z_relation -= 5 if z_prussia;
 on-departure: dvp_prussia = 0; kpd_prussia = 1; spd_prussia = 1; z_prussia = 0; prussia_kpd += 0.1 if prussia_kpd < 1.3; prussia_spd += 0.05 if prussia_spd < 1.1; coup_progress += 4; capital_strike_progress += 1
 
@@ -404,10 +404,10 @@ on-departure: dvp_prussia = 0; kpd_prussia = 1; spd_prussia = 1; z_prussia = 0; 
 
 @popular_front_prussia
 title: 「人民阵线」是否可行？
-subtitle: 共产党 + SPD + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%)
+subtitle: 共产党 + 社民党 + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%)
 view-if: spd_prussia or p_popular_front_coalition >= 50
 choose-if: (spd_prussia and (p_right_coalition < 50 or z_relation >= 40 or not dnvp_reform or year >= 1930)) or p_popular_front_coalition >= 50 and kpd_relation >= 60 and z_relation >= 60 and communist_coalition >= 3
-unavailable-subtitle: 共产党 + SPD + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%) - [? if p_popular_front_coalition < 50 : We lack the votes. ?][? if kpd_relation < 60 or communist_coalition < 3 : The 共产党 is unwilling. ?][? if z_relation < 60 : The Center Party is unwilling. ?]
+unavailable-subtitle: 共产党 + 社民党 + [+ ddp_name +] + Z ([+ p_popular_front_coalition +]%) - [? if p_popular_front_coalition < 50 : We lack the votes. ?][? if kpd_relation < 60 or communist_coalition < 3 : The 共产党 is unwilling. ?][? if z_relation < 60 : The Center Party is unwilling. ?]
 on-arrival: dvp_relation -= 5; dvp_relation -= 5 if dvp_prussia
 on-departure: dvp_prussia = 0; kpd_prussia = 1; spd_prussia = 1; z_prussia = 0; prussia_kpd += 0.05 if prussia_kpd < 1.2; prussia_spd -= 0.05 if prussia_spd >= 0.9; coup_progress += 3; capital_strike_progress += 1
 

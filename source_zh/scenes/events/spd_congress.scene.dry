@@ -9,7 +9,7 @@ set-jump: post_congress
 # the low priority means that this event is only seen after all other events are resolved for the month.
 # note: z_coalition = z_celation + (pro_cepublic/2); z_coalition *= 1.25 if z_faction_leader == "Joos";
 
-= SPD党代会，[+ month : month +] [+ year +]
+= 社民党党代会，[+ month : month +] [+ year +]
 
 党代会即将召开。
 

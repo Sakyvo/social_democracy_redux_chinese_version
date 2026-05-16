@@ -15,7 +15,7 @@ tags: event
 
 @unacceptable
 
-中央党和民主党同声反对。路德让步，修改提议，将其限定为只在海外领事机构使用。即便如此，这仍是对德意志民族主义的过度让步，DDP 在这一点上态度一致。
+中央党和民主党同声反对。路德让步，修改提议，将其限定为只在海外领事机构使用。即便如此，这仍是对德意志民族主义的过度让步，德国民主党在这一点上态度一致。
 
 - @in_government: 在内阁表决中击败路德。
 - @vonc_luther: 对路德发起不信任动议。
@@ -33,9 +33,9 @@ go-to: hindenburg_vonc if president == "Hindenburg"; marx_vonc if president == "
 @hindenburg_vonc
 on-arrival: chancellor = "Gessler"; chancellor_party = "DDP"
 
-DNVP 在不信任投票中站在路德一边，动议未获通过。然而，DDP 关于谴责路德的动议获得通过；他随即宣布辞职，效果与不信任投票通过无异。
+德国国家人民党在不信任投票中站在路德一边，动议未获通过。然而，德国民主党关于谴责路德的动议获得通过；他随即宣布辞职，效果与不信任投票通过无异。
 
-DDP 的奥托·格斯勒被任命为代理总理，新政府的谈判仍在进行；兴登堡寄望格斯勒能成功组阁。
+德国民主党的奥托·格斯勒被任命为代理总理，新政府的谈判仍在进行；兴登堡寄望格斯勒能成功组阁。
 
 - @vonc_gessler: 我们不能支持一个国防军口袋里的政府。
 
@@ -67,7 +67,7 @@ on-arrival: z_relation -= 5 if z_relation >= 50 and dvp_relation >= 50; dvp_rela
 subtitle: Wilhelm Marx assumes the task of government formation.
 on-arrival: chancellor = "Marx"; chancellor_party = "Z"
 
-最终又组建了一届少数派政府，由威廉·马克斯出任总理。DVP[? if z_relation < 40 : 与中央党 ?] 把这届少数派政府视为通往与 DNVP 组建多数派政府的过渡，DDP[? if z_relation > 50 : 与中央党 ?] 则把它视为通往与我们组建多数派政府的过渡。
+最终又组建了一届少数派政府，由威廉·马克斯出任总理。德国人民党[? if z_relation < 40 : 与中央党 ?] 把这届少数派政府视为通往与德国国家人民党组建多数派政府的过渡，德国民主党[? if z_relation > 50 : 与中央党 ?] 则把它视为通往与我们组建多数派政府的过渡。
 
 最终走向何方仍有待观察。眼下，这就是统治德国的政府。
 
@@ -79,7 +79,7 @@ on-arrival: chancellor = "Marx"; chancellor_party = "Z"
 @marx_vonc
 on-arrival: chancellor = "Gessler"; chancellor_party = "DDP"
 
-DNVP 在不信任投票中站在路德一边，动议未获通过。然而，DDP 关于谴责路德的动议获得通过；他随即宣布辞职，效果与不信任投票通过无异。
+德国国家人民党在不信任投票中站在路德一边，动议未获通过。然而，德国民主党关于谴责路德的动议获得通过；他随即宣布辞职，效果与不信任投票通过无异。
 
 由于路德拒绝担任临时总理，奥托·格斯勒接任副总理。然而他和马克斯总统都心知肚明：他不可能赢得我们对其少数派政府的支持。
 
@@ -114,7 +114,7 @@ on-arrival: z_relation -= 5 if z_relation >= 45 and dvp_relation >= 50; dvp_rela
 subtitle: Z + BVP + DDP + DVP (35%)
 on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
 
-最终又组建了一届少数派政府，由海因里希·布吕宁出任总理。DVP[? if z_relation < 40 : 与中央党 ?] 把这届少数派政府视为通往与 DNVP 组建多数派政府的过渡，DDP[? if z_relation > 50 : 与中央党 ?] 则把它视为通往与我们组建多数派政府的过渡。
+最终又组建了一届少数派政府，由海因里希·布吕宁出任总理。德国人民党[? if z_relation < 40 : 与中央党 ?] 把这届少数派政府视为通往与德国国家人民党组建多数派政府的过渡，德国民主党[? if z_relation > 50 : 与中央党 ?] 则把它视为通往与我们组建多数派政府的过渡。
 
 最终走向何方仍有待观察。眼下，这就是统治德国的政府。
 

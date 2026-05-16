@@ -82,7 +82,7 @@ on-arrival: workers_kpd += 12; unemployed_kpd += 12; workers_spd += 3*(1-dissent
 on-arrival: workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); workers_kpd += 5; unemployed_kpd += 5; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.02; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; unemployed_spd += 3*(1-dissent) if left_strength > reformist_strength; workers_spd += 4*(1-dissent) if nationalization_progress > 0; unemployed_spd += 3*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; socialism += 2
 view-if: spd_dominance == 1 and fascist_disruption != 1
 
-集会如期举行，整体上颇为成功。所获支持的绝大部分归于社民党，但共产党也分得了应得的一份。反动派攻击我们不过是 共产党 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
+集会如期举行，整体上颇为成功。所获支持的绝大部分归于社民党，但共产党也分得了应得的一份。反动派攻击我们不过是共产党的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
 
 @rally_disruption
 view-if: fascist_disruption == 1
@@ -112,7 +112,7 @@ on-arrival: rfb_strength += 75; rb_militancy += 0.03; pacifism -= 1; kpd_relatio
 @defeat
 on-arrival: rfb_strength -= 25; rb_strength -= 75; rb_militancy += 0.02; pacifism -= 1; workers_nsdap += 4; sa_strength += 50; sh_strength += 50; unemployed_nsdap += 3; workers_spd -= 6; workers_kpd -= 4; unemployed_kpd -= 5; unemployed_spd -= 5; old_middle_nsdap += 2; new_middle_nsdap += 2; rural_nsdap += 2; new_middle_spd -= 3; new_middle_spd += 1 if new_middle_conscious; old_middle_spd -= 3; rural_spd -= 3; old_middle_dvp -= 1; rural_dvp -= 1; pro_republic -= 10; socialism -= 1
 
-我们输掉了这场战斗——我方力量与共产党力量[? if harzburg_front_seen == 1 : 在哈尔茨堡阵线力量打击下 ?]双双被驱散。许多反共的资产阶级选民被纳粹党捍卫德国免受革命的姿态打动，加入了 NSDAP；冲锋队与钢盔团则借胜利之势招募新人，规模壮大。
+我们输掉了这场战斗——我方力量与共产党力量[? if harzburg_front_seen == 1 : 在哈尔茨堡阵线力量打击下 ?]双双被驱散。许多反共的资产阶级选民被纳粹党捍卫德国免受革命的姿态打动，加入了纳粹党；冲锋队与钢盔团则借胜利之势招募新人，规模壮大。
 
 @tie
 on-arrival: rfb_strength += 50; rb_strength -= 25; strife += 1; pacifism -= 1; pro_republic -= 5; sa_strength += 25; sh_strength += 25; sa_militancy += 0.05; sh_militancy += 0.05; rfb_militancy += 0.05; new_middle_spd -= 2; new_middle_spd += 1 if new_middle_conscious; old_middle_spd -= 2; rural_spd -= 2; unemployed_kpd += 2; unemployed_nsdap += 2; workers_kpd += 1; z_relation -= 2; dvp_relation -= 3; prussian_police_loyalty -= 0.02; interior_police_loyalty -= 0.03; coup_progress += 1; coup_progress += 2 if spd_in_government == 1; kpd_relation += 5
@@ -123,4 +123,4 @@ on-arrival: rfb_strength += 50; rb_strength -= 25; strife += 1; pacifism -= 1; p
 view-if: kpd_dominance == 1 and fascist_disruption != 1
 on-arrival: workers_spd += 5*(1-dissent); unemployed_spd += 5*(1-dissent); workers_kpd += 10; unemployed_kpd += 10; z_relation -= 10; dvp_relation -= 10; coalition_dissent += 2; communist_coalition += 1; rfb_strength += 50; rfb_militancy += 0.05; sa_strength += 25; sh_strength += 25; coup_progress += 1 if spd_in_government == 1; capital_strike_progress += 1 if spd_in_government == 1; unemployed_spd += 2*(1-dissent) if left_strength > reformist_strength; workers_spd += 3*(1-dissent) if nationalization_progress > 0; unemployed_spd += 2*(1-dissent) if nationalization_progress > 0; left_strength += 5; left_dissent -= 5; socialism += 3
 
-集会如期举行，整体上颇为成功，但由于共产党强势登场，所获支持的绝大部分流向了共产党。反动派注意到此事，攻击我们不过是 共产党 的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。
+集会如期举行，整体上颇为成功，但由于共产党强势登场，所获支持的绝大部分流向了共产党。反动派注意到此事，攻击我们不过是共产党的傀儡，借助我们引发的反共情绪上升作为招募工具，扩张了自身力量。

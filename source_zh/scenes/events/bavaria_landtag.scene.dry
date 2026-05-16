@@ -341,7 +341,7 @@ go-to: coalition_menu
 
 {!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_bl +]%** {!</td><td>!} **[+ stbl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党:** {!</td><td>!} **[+ spd_bl +]%** {!</td><td>!} **[+ stbl_change_spd +]** {!</td></tr>!}
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_bl +]% {!</td><td>!} [+ stbl_change_sapd +] {!</td></tr>!} ?]
 
@@ -364,15 +364,15 @@ go-to: coalition_menu
 
 **潜在联合政府：**
 
-魏玛联合（SPD + Z + [+ ddp_name +]）：[+ b_weimar_coalition +]%
+魏玛联合（社民党 + Z + [+ ddp_name +]）：[+ b_weimar_coalition +]%
 
-大联合（SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP）：[+ b_grand_coalition +]%
+大联合（社民党 + Z + [+ bvp_name +] + [+ ddp_name +] + 德国人民党）：[+ b_grand_coalition +]%
 
-资产阶级联合（Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他）：[+ b_bourgeois_coalition +]%
+资产阶级联合（Z + [+ bvp_name +] + [+ ddp_name +] + 德国人民党 + 其他）：[+ b_bourgeois_coalition +]%
 
-右翼联合（Z + [+ bvp_name +] + DVP + 其他 + DNVP）：[+ b_right_coalition +]%
+右翼联合（Z + [+ bvp_name +] + 德国人民党 + 其他 + 德国国家人民党）：[+ b_right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_bl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
+[? if nazi_urgency <= 1 and nsdap_bl >= 15 : 纳粹党得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
 [? if b_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
@@ -391,7 +391,7 @@ subtitle: BVP + BB + DNVP + Others ([+ b_bourgeois_coalition +]%)
 choose-if: nsdap_bl < 50 and spd_bl < 50
 unavailable-subtitle: BVP + BB + DNVP + Others ([+ b_bourgeois_coalition +]%) - An alternative government can be formed.
 
-巴伐利亚人民党（BVP）议会党团领袖海因里希·黑尔德（Held）再次当选巴伐利亚州长。[? if b_bourgeois_coalition < 50 : 凭借巴伐利亚宪法中的建设性不信任投票，他以少数派政府的形式得以存续。 ?]
+巴伐利亚人民党（巴伐利亚人民党）议会党团领袖海因里希·黑尔德（Held）再次当选巴伐利亚州长。[? if b_bourgeois_coalition < 50 : 凭借巴伐利亚宪法中的建设性不信任投票，他以少数派政府的形式得以存续。 ?]
 
 @nazi_bavaria
 title: 纳粹党多数派政府。
@@ -403,8 +403,8 @@ on-arrival: rural_nsdap += 6; old_middle_nsdap += 4; catholics_nsdap += 3; bavar
 
 @left_bavaria
 title: 巴伐利亚所有左翼政党的「人民阵线」。
-subtitle: 共产党 + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%)
-unavailable-subtitle: 共产党 + SPD + [+ ddp_name +] ([+ b_popular_front_coalition +]%) - [? if ddp_relation < 45 : The [+ ddp_name +] won't vote for us. ?][? if kpd_relation < 55 or communist_coalition < 3 : The 共产党 won't vote for us. ?]
+subtitle: 共产党 + 社民党 + [+ ddp_name +] ([+ b_popular_front_coalition +]%)
+unavailable-subtitle: 共产党 + 社民党 + [+ ddp_name +] ([+ b_popular_front_coalition +]%) - [? if ddp_relation < 45 : The [+ ddp_name +] won't vote for us. ?][? if kpd_relation < 55 or communist_coalition < 3 : The 共产党 won't vote for us. ?]
 view-if: b_popular_front_coalition >= 50
 choose-if: ((kpd_relation >= 55 and communist_coalition >= 3) or (spd_bl+ddp_bl >= 50 and ddp_relation >= 45)) and ((ddp_relation >= 45) or (kpd_bl+spd_bl >= 50 and kpd_relation >= 55 and communist_coalition >= 3))
 on-arrival: spd_bavaria = 1; workers_spd += 4*(1-dissent); catholics_spd += 4*(1-dissent); rural_spd += 4*(1-dissent); sh_militancy -= 0.05; rb_militancy += 0.05; coup_progress += 1; capital_strike_progress += 2

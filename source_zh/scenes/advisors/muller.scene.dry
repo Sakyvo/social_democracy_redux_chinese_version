@@ -22,7 +22,7 @@ choose-if: advisor_action_timer <= 0 and spd_in_government = 1
 unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?][? if not spd_in_government: 社民党当前不在政府之中。 ?]
 on-arrival: advisor_action_timer = 6; coalition_dissent -= 1 if spd_in_government = 1 and coalition_dissent > 0; z_relation += 5; ddp_relation += 5; dvp_relation += 5
 
-我们改善了与中央党、[+ ddp_name +]及 DVP 的关系，缓和了联合政府内部的紧张。
+我们改善了与中央党、[+ ddp_name +]及德国人民党的关系，缓和了联合政府内部的紧张。
 
 
 @toleration

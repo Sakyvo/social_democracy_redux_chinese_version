@@ -26,14 +26,14 @@ go-to: candidate_menu
 [? if hitler_deported : 希特勒被驱逐之后，纳粹党改派赫尔曼·戈林（Göring）参选。 ?]
 这或许是纳粹党的最后一搏；该党的内部矛盾日益尖锐，且陷入严重资金短缺。
 
-德国国家人民党（DNVP）将提名弗朗茨·塞尔德特（Seldte）——钢盔团（Stahlhelm）准军事组织的领袖。他将获得兴登堡最右翼支持者的背书。他们与纳粹党的合作较以往更为紧密；预计第二轮中，极右翼各党将整合为单一的反共和阵线。
+德国国家人民党（德国国家人民党）将提名弗朗茨·塞尔德特（Seldte）——钢盔团（Stahlhelm）准军事组织的领袖。他将获得兴登堡最右翼支持者的背书。他们与纳粹党的合作较以往更为紧密；预计第二轮中，极右翼各党将整合为单一的反共和阵线。
 
 [? if kpd_party_leader = "Conciliators" : 鉴于台尔曼此前两次竞选总统的失败，加之他在党内地位下降，共产党将推出维利·明岑伯格（Münzenberg）——一位备受争议、有「红色百万富翁」之称的人物。他是一名媒体大亨，领导若干共产党的外围组织。 ?]
 [? if kpd_party_leader != "Conciliators" : 这将是恩斯特·台尔曼以共产党领袖身份第三次竞选总统。尽管此前两次落选，他仍获得本党与斯大林苏联的忠诚支持。 ?]
 
 中央党、[+ ddp_name +] 与社民党中的众多共和派人士，提议推举雨果·埃克纳（Eckener）作为统一候选人——他是国民闻名的齐柏林飞艇船长。他虽有些民族主义观点，但热切反对纳粹主义。
 
-否则，若社民党自行推出候选人，中央党与 [+ ddp_name +] 计划在第一轮中各推出自己的候选人。中央党正考虑提名康拉德·阿登纳（Adenauer）——科隆市长、普鲁士邦议会议员。他主张建立一个涵盖天主教徒与新教徒的保守派基督教民主联盟。 [+ ddp_name +] 则可能提名奥托·盖斯勒（Gessler）——前国防部长，对DVP及其他厌恶DNVP-NSDAP阵线的政党中的保守派颇具吸引力。
+否则，若社民党自行推出候选人，中央党与 [+ ddp_name +] 计划在第一轮中各推出自己的候选人。中央党正考虑提名康拉德·阿登纳（Adenauer）——科隆市长、普鲁士邦议会议员。他主张建立一个涵盖天主教徒与新教徒的保守派基督教民主联盟。 [+ ddp_name +] 则可能提名奥托·盖斯勒（Gessler）——前国防部长，对德国人民党及其他厌恶德国国家人民党-纳粹党阵线的政党中的保守派颇具吸引力。
 
 至于社民党，我们可以支持魏玛联合共同候选人，也可以推出自己的候选人。
 [? if braun_campaign : 奥托·布劳恩（Braun）已身心俱疲。他在前两届总统选举中两度参选且失败，不愿再次出马。妻子病重，他希望陪伴在侧。 ?][? if braun_campaign = 0 and not spd_prussia: 奥托·布劳恩已身心俱疲。在被罢黜普鲁士州长之后，他基本退出了政治，专心照料垂危的妻子。 ?][? if braun_campaign = 0 and spd_prussia : 奥托·布劳恩已身心俱疲。他不愿再次出马，但若能让他相信此刻众望所归，他仍可被说服。他的妻子病入膏肓，他不愿再承担更多责任。 ?]
@@ -82,9 +82,9 @@ go-to: r1_menu
 on-arrival: spd_candidate = "Gessler"; ddp_relation += 4; dvp_candidate = "Seldte" if dvp_relation < 40; is_unity_candidate = 1
 go-to: r1_menu
 
-我们为前DDP成员、独立人士奥托·盖斯勒背书。
+我们为前德国民主党成员、独立人士奥托·盖斯勒背书。
 
-[? if dvp_relation < 40 : 在我党支持盖斯勒之后，DVP内原本支持他的部分与之分道扬镳，转而支持塞尔德特。 ?]
+[? if dvp_relation < 40 : 在我党支持盖斯勒之后，德国人民党内原本支持他的部分与之分道扬镳，转而支持塞尔德特。 ?]
 
 @thalmann_r1
 view-if: kpd_candidate = "Thälmann"
@@ -351,7 +351,7 @@ on-arrival: dvp_candidate = spd_candidate
 go-to: r1_menu if round = 0; r2_campaigning if round > 0
 max-visits: 1
 
-[? if dvp_candidate = spd_candidate: 凭借良好关系，DVP被说服支持 [+ spd_candidate +]！ ?]
+[? if dvp_candidate = spd_candidate: 凭借良好关系，德国人民党被说服支持 [+ spd_candidate +]！ ?]
 
 @convince_dvp_unity
 title: 说服德国人民党支持 [+ spd_candidate +]。
@@ -362,7 +362,7 @@ on-arrival: dvp_candidate = spd_candidate
 go-to: r1_menu if round = 0; r2_campaigning if round > 0
 max-visits: 1
 
-[? if dvp_candidate = spd_candidate: 凭借良好关系，加之我党候选人是与社民党无关的统一候选人，DVP被说服支持 [+ spd_candidate +]。 ?]
+[? if dvp_candidate = spd_candidate: 凭借良好关系，加之我党候选人是与社民党无关的统一候选人，德国人民党被说服支持 [+ spd_candidate +]。 ?]
 
 
 
@@ -629,12 +629,12 @@ go-to: r2_menu
 
 领先者是 [+ winner_desc +]。第一轮没有过半多数。第二轮中，得票最多者将最终胜出。
 
-[? if dnvp_candidate = "Hitler" : DNVP与NSDAP已整合选举力量，DNVP现已在第二轮为希特勒背书。一些右翼选民对此安排不安，或可能弃票。 ?]
-[? if dnvp_candidate = "Göring" : DNVP与NSDAP已整合选举力量，DNVP现已在第二轮为戈林背书。 ?]
-[? if nsdap_candidate = "Seldte" : DNVP与NSDAP已整合选举力量，NSDAP现已在第二轮为塞尔德特背书。 ?]
+[? if dnvp_candidate = "Hitler" : 德国国家人民党与纳粹党已整合选举力量，德国国家人民党现已在第二轮为希特勒背书。一些右翼选民对此安排不安，或可能弃票。 ?]
+[? if dnvp_candidate = "Göring" : 德国国家人民党与纳粹党已整合选举力量，德国国家人民党现已在第二轮为戈林背书。 ?]
+[? if nsdap_candidate = "Seldte" : 德国国家人民党与纳粹党已整合选举力量，纳粹党现已在第二轮为塞尔德特背书。 ?]
 
 [? if gessler_drops_out : 自由派候选人奥托·盖斯勒已退出选战，转而背书中央党的康拉德·阿登纳。这整合了温和资产阶级集团的选票。 ?]
-[? if adenauer_drops_out : 中央党候选人康拉德·阿登纳已退出选战，转而背书DStP-DVP候选人奥托·盖斯勒。这整合了温和资产阶级集团的选票。 ?]
+[? if adenauer_drops_out : 中央党候选人康拉德·阿登纳已退出选战，转而背书德国国家党-德国人民党候选人奥托·盖斯勒。这整合了温和资产阶级集团的选票。 ?]
 
 我们该如何行动？
 
@@ -662,7 +662,7 @@ on-arrival: reformist_dissent += 15; center_dissent += 10; labor_dissent += 5; n
 on-departure: z_candidate = "Adenauer" if z_candidate = "Braun" or z_candidate = "Schumacher" or z_candidate = "Juchacz"; ddp_candidate = z_candidate if ddp_candidate = "Braun" or ddp_candidate = "Schumacher" or ddp_candidate = "Juchacz"; dvp_candidate = z_candidate if dvp_candidate = "Braun" or dvp_candidate = "Schumacher" or dvp_candidate = "Juchacz"; spd_candidate = "Thälmann";
 max-visits: 1
 
-我们将背书转向共产党的恩斯特·台尔曼。[? if z_candidate = spd_candidate : 原本盟友中央党视此举为背叛。 ?][? if z_candidate = "Braun" or z_candidate = "Schumacher" or z_candidate = "Juchacz": 他们现在将再次支持康拉德·阿登纳。 ?][? if ddp_candidate = "Braun" or ddp_candidate = "Schumacher" or ddp_candidate = "Juchacz": [+ ddp_name +] 也将转而支持中央党候选人。 ?][? if dvp_candidate = "Braun" or dvp_candidate = "Schumacher" or dvp_candidate = "Juchacz": DVP亦将支持中央党候选人。 ?]
+我们将背书转向共产党的恩斯特·台尔曼。[? if z_candidate = spd_candidate : 原本盟友中央党视此举为背叛。 ?][? if z_candidate = "Braun" or z_candidate = "Schumacher" or z_candidate = "Juchacz": 他们现在将再次支持康拉德·阿登纳。 ?][? if ddp_candidate = "Braun" or ddp_candidate = "Schumacher" or ddp_candidate = "Juchacz": [+ ddp_name +] 也将转而支持中央党候选人。 ?][? if dvp_candidate = "Braun" or dvp_candidate = "Schumacher" or dvp_candidate = "Juchacz": 德国人民党亦将支持中央党候选人。 ?]
 
 - @r2_vote: 投票开始。
 
@@ -676,7 +676,7 @@ on-arrival: reformist_dissent += 12; center_dissent += 10; labor_dissent += 5; n
 on-departure: z_candidate = "Adenauer" if z_candidate = "Braun" or z_candidate = "Schumacher" or z_candidate = "Juchacz"; ddp_candidate = z_candidate if ddp_candidate = "Braun" or ddp_candidate = "Schumacher" or ddp_candidate = "Juchacz"; dvp_candidate = z_candidate if dvp_candidate = "Braun" or dvp_candidate = "Schumacher" or dvp_candidate = "Juchacz"; spd_candidate = "Münzenberg";
 max-visits: 1
 
-我们将背书转向共产党的维利·明岑伯格。[? if z_candidate = spd_candidate : 原本盟友中央党视此举为背叛。 ?][? if z_candidate = "Braun" or z_candidate = "Schumacher" or z_candidate = "Juchacz": 他们现在将再次支持康拉德·阿登纳。 ?][? if ddp_candidate = "Braun" or ddp_candidate = "Schumacher" or ddp_candidate = "Juchacz": [+ ddp_name +] 也将转而支持中央党候选人。 ?][? if dvp_candidate = "Braun" or dvp_candidate = "Schumacher" or dvp_candidate = "Juchacz": DVP亦将支持中央党候选人。 ?]
+我们将背书转向共产党的维利·明岑伯格。[? if z_candidate = spd_candidate : 原本盟友中央党视此举为背叛。 ?][? if z_candidate = "Braun" or z_candidate = "Schumacher" or z_candidate = "Juchacz": 他们现在将再次支持康拉德·阿登纳。 ?][? if ddp_candidate = "Braun" or ddp_candidate = "Schumacher" or ddp_candidate = "Juchacz": [+ ddp_name +] 也将转而支持中央党候选人。 ?][? if dvp_candidate = "Braun" or dvp_candidate = "Schumacher" or dvp_candidate = "Juchacz": 德国人民党亦将支持中央党候选人。 ?]
 
 - @r2_vote: 投票开始。
 
@@ -700,9 +700,9 @@ view-if: ddp_candidate = "Gessler" and spd_candidate != ddp_candidate
 on-departure: kpd_candidate = "Thälmann" if kpd_candidate == spd_candidate and kpd_party_leader != "Conciliators"; kpd_candidate = "Münzenberg" if kpd_candidate == spd_candidate and kpd_party_leader == "Conciliators"; sapd_candidate = kpd_candidate; spd_candidate = "Gessler"; ddp_relation += 4; dvp_candidate = "Seldte" if dvp_relation < 40; is_unity_candidate = 1
 go-to: r2_campaigning
 
-我们为前DDP成员、独立人士奥托·盖斯勒背书。
+我们为前德国民主党成员、独立人士奥托·盖斯勒背书。
 
-[? if dvp_relation < 40 : 在我党支持盖斯勒之后，DVP内原本支持他的部分与之分道扬镳，转而支持塞尔德特。 ?]
+[? if dvp_relation < 40 : 在我党支持盖斯勒之后，德国人民党内原本支持他的部分与之分道扬镳，转而支持塞尔德特。 ?]
 
 [? if kpd_candidate = spd_candidate: 共产党现在与我党此前的联盟决裂，转而支持本党候选人。 ?]
 
@@ -857,4 +857,4 @@ go-to: nazis_lose
 @nazis_lose
 on-arrival: nazi_peak = 1; nazi_peak_timer = 2; nazi_peak_timer += (nsdap_votes/5); nazi_decline = 1; pro_republic += 10
 
-选举失利之后，NSDAP-DNVP联盟陷入内讧与财务破产。极右翼的时刻似乎已暂告结束——至少目前如此。
+选举失利之后，纳粹党-德国国家人民党联盟陷入内讧与财务破产。极右翼的时刻似乎已暂告结束——至少目前如此。

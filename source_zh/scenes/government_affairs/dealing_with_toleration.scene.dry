@@ -88,7 +88,7 @@ on-arrival: workers_spd -= 2; unemployed_spd -= 3; left_dissent += 5; labor_diss
 title: 改善与联合政府诸党的关系。
 on-arrival: z_relation += 5*(1-dissent); dvp_relation += 4*(1-dissent); left_dissent += 5;
 
-我们加大了与联合政府诸党——主要是中央党与 DVP——的接触与磋商。
+我们加大了与联合政府诸党——主要是中央党与德国人民党——的接触与磋商。
 
 我们对中右翼的示好招致党内左派人士的不屑。
 
@@ -100,13 +100,13 @@ title: 我们能否在新的大联合政府中重返执政？
 view-if: neo_weimar_coalition >= 50
 choose-if: z_relation >= 50 and dvp_relation >= 30 and resources >= 2
 subtitle: 我们需要 2 资源来顺利推进联合政府的组建。
-unavailable-subtitle: [? if z_relation < 50 : 我们与中央党关系不足。 ?][? if dvp_relation < 30 : 我们与 DVP 关系不足。 ?] [? if resources < 2 : 资源不足。 ?]
+unavailable-subtitle: [? if z_relation < 50 : 我们与中央党关系不足。 ?][? if dvp_relation < 30 : 我们与德国人民党关系不足。 ?] [? if resources < 2 : 资源不足。 ?]
 on-arrival: resources -= 2; spd_in_government = 1; in_grand_coalition = 1; spd_toleration = 0; left_dissent += 6; reformist_strength += 5; leverage = 20 if leverage >= 20
 achievement: constitutional_coalition
 
-我们的谈判获得成功，中央党与 DVP 已同意与我们组建新的联合政府！
+我们的谈判获得成功，中央党与德国人民党已同意与我们组建新的联合政府！
 
-我们现已成为「宪政联合」政府的一员——囊括 共产党、DNVP、NSDAP 三大极端政党之外的所有党派。[+ chancellor +] 将继续担任总理。党内左派对此安排心存疑虑。
+我们现已成为「宪政联合」政府的一员——囊括共产党、德国国家人民党、纳粹党三大极端政党之外的所有党派。[+ chancellor +] 将继续担任总理。党内左派对此安排心存疑虑。
 
 - @election_1928.ministries: 现在，我们须择选各部门。
 

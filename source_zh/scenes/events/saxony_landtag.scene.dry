@@ -295,7 +295,7 @@ go-to: coalition_menu
 
 {!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_sl +]%** {!</td><td>!} **[+ stsl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党:** {!</td><td>!} **[+ spd_sl +]%** {!</td><td>!} **[+ stsl_change_spd +]** {!</td></tr>!}
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_sl +]% {!</td><td>!} [+ stsl_change_sapd +] {!</td></tr>!} ?]
 
@@ -318,13 +318,13 @@ go-to: coalition_menu
 
 **潜在联合政府：**
 
-魏玛联合（SPD + Z + [+ ddp_name +]）：[+ s_weimar_coalition +]%
+魏玛联合（社民党 + Z + [+ ddp_name +]）：[+ s_weimar_coalition +]%
 
-大联合（SPD + Z + [+ ddp_name +] + DVP）：[+ s_grand_coalition +]%
+大联合（社民党 + Z + [+ ddp_name +] + 德国人民党）：[+ s_grand_coalition +]%
 
-反共联合（ASPD + [+ ddp_name +] + Z + DVP + 其他 + DNVP + NSDAP）：[+ s_anticommunist_coalition +]%
+反共联合（老社民党 + [+ ddp_name +] + Z + 德国人民党 + 其他 + 德国国家人民党 + 纳粹党）：[+ s_anticommunist_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_sl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
+[? if nazi_urgency <= 1 and nsdap_sl >= 15 : 纳粹党得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
 [? if s_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
@@ -346,7 +346,7 @@ subtitle: SPD + ASPD[? if sapd_formed : + SAPD?] ([+ s_progressive_coalition +]%
 view-if: s_progressive_coalition >= 50 and spd_sl < 50
 on-arrival: workers_spd += 2*(1-dissent); left_dissent -= 5; reformist_dissent -= 5
 
-在ASPD[? if sapd_formed : 与SAPD?]的支持下，一个温和的社会主义联合政府成立。
+在老社民党[? if sapd_formed : 与社会主义工人党?]的支持下，一个温和的社会主义联合政府成立。
 
 @bourgeois_saxony
 title: 中右翼资产阶级联合政府。
@@ -372,7 +372,7 @@ on-arrival: saxon_dispute = 1; saxony_nsdap += 0.05 if saxony_nsdap < 1.2; refor
 
 @red_saxony
 title: 与共产党组建「统一战线」。
-subtitle: 共产党 + SPD ([+ s_left_coalition +]%)
+subtitle: 共产党 + 社民党 ([+ s_left_coalition +]%)
 view-if: s_left_coalition >= 50
 choose-if: kpd_relation >= 40 and communist_coalition >= 2
 unavailable-subtitle: The 共产党 doesn't trust us enough.

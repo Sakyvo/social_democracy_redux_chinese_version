@@ -24,9 +24,9 @@ go-to: dvp_foreign if foreign_minister_party == "DVP"; z_foreign if foreign_mini
 @dvp_foreign
 on-arrival: coalition_dissent += 1; dvp_relation -= 5
 
-DVP 极不情愿改变立场。他们能接受的最大限度是：搁置此事但不签署不干预公约。
+德国人民党极不情愿改变立场。他们能接受的最大限度是：搁置此事但不签署不干预公约。
 
-- @persuade_dvp: 说服 DVP 搁置此事。
+- @persuade_dvp: 说服德国人民党搁置此事。
 - @collapse_govt: 不可接受。我们将推翻政府、举行新一轮大选。
 - @allow_foreign: 再考虑一下，我们退让。
 
@@ -35,7 +35,7 @@ choose-if: dvp_relation >= 45
 unavailable-subtitle: The DVP is unwilling to compromise in the slightest.
 on-arrival: left_dissent += 3; new_middle_spd -= 1; republic_strength += 1 if not third_period
 
-我们劝服了极不情愿的 DVP 接受搁置的折中方案，但作为长期解决之道恐怕难以为继。但愿在没有我们援助的情况下，共和派仍能撑住。
+我们劝服了极不情愿的德国人民党接受搁置的折中方案，但作为长期解决之道恐怕难以为继。但愿在没有我们援助的情况下，共和派仍能撑住。
 
 @collapse_govt
 on-arrival: spd_in_government = 0; in_grand_coalition = 0; in_weimar_coalition = 0; chancellor = "Brüning"; chancellor_party = "Z"; next_election_time = time + 3 if next_election_time > time+3; next_election_month = month + 3 if next_election_time >= time+3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; spd_toleration = 0; left_strength += 6; pro_republic -= 4; reformist_dissent += 4
@@ -75,7 +75,7 @@ on-arrival: non_intervention = 1; capital_strike_progress -= 0.5; coup_progress 
 
 党内许多人呼吁我们向共和派提供军事援助。然而，这样的行动会直接违反《凡尔赛条约》，可能损害我们与法国的关系。
 
-[? if in_popular_front or in_left_front : 共产党支持援助[? if in_popular_front : ，但中央党反对。 ?] ?][? if in_weimar_coalition: 中央党反对援助。 ?][? if in_grand_coalition : 中央党与 DVP 都反对援助。 ?]
+[? if in_popular_front or in_left_front : 共产党支持援助[? if in_popular_front : ，但中央党反对。 ?] ?][? if in_weimar_coalition: 中央党反对援助。 ?][? if in_grand_coalition : 中央党与德国人民党都反对援助。 ?]
 
 - @aid: 向共和派提供援助。
 - @neutrality: 我们暂时保持中立。

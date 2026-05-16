@@ -52,4 +52,4 @@ go-to: balance_done if not legislature_enabled; legislative_menu if legislature_
 @balance_done
 on-arrival: workers_spd -= 4; unemployed_spd -= 5; workers_kpd += 4; unemployed_kpd += 3; unemployed_nsdap += 3; left_dissent += 10; labor_dissent += 8; center_dissent += 5; welfare -= 1; budget += 1; month += 1; kpd_relation -= 4; inflation -= 1; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; coalition_dissent = 2 if in_grand_coalition and dvp_relation < 30; coalition_dissent += 1 if in_grand_coalition; economic_growth -= 0.2; socialism -= 1
 
-双方对这一折中方案都不算完全满意。不少工人和失业者把这视为背叛，尽管我们将其呈现为成功化解更糟选项的方案。[? if in_grand_coalition: 与此同时，DVP 对哪怕轻微地提高对企业的征税都感到震惊。 ?]
+双方对这一折中方案都不算完全满意。不少工人和失业者把这视为背叛，尽管我们将其呈现为成功化解更糟选项的方案。[? if in_grand_coalition: 与此同时，德国人民党对哪怕轻微地提高对企业的征税都感到震惊。 ?]

@@ -9,6 +9,6 @@ call: set_next_election_time
 
 = [? if chancellor == "Marx" : 马克思第四届 ?][? if chancellor == "Brüning" : 布吕宁第二届 ?]政府倒台
 
-[? if chancellor == "Marx" : 威廉·马克思 ?][? if chancellor == "Brüning" : 海因里希·布吕宁 ?]的内阁最终在学校立法争端中崩溃，由于 DVP 较世俗一派的顾虑，联合无法达成一致。
+[? if chancellor == "Marx" : 威廉·马克思 ?][? if chancellor == "Brüning" : 海因里希·布吕宁 ?]的内阁最终在学校立法争端中崩溃，由于德国人民党较世俗一派的顾虑，联合无法达成一致。
 
 因此，国会被解散，新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。

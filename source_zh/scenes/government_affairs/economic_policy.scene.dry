@@ -29,7 +29,7 @@ card-image: img/portraits/SchmidtRobert.jpg
 @wtb_2
 title: 继续实施 WTB 计划。
 subtitle: -3 预算
-unavailable-subtitle: [? if unemployed <= 8 : 失业率已足够低，WTB 计划的时机已过。 ?][? if economic_minister_party == "DVP" : 由 DVP 掌控的经济部在阻挠我们的计划。 ?]
+unavailable-subtitle: [? if unemployed <= 8 : 失业率已足够低，WTB 计划的时机已过。 ?][? if economic_minister_party == "DVP" : 由德国人民党掌控的经济部在阻挠我们的计划。 ?]
 view-if: wtb_implemented > 2 and budget >= 3
 choose-if: unemployed > 8 and economic_minister_party != "DVP"
 on-arrival: works_program += 1; budget -= 3; workers_spd += 7*(1-dissent); workers += 1 if works_program <= 4; unemployed -= 3 if unemployed > 8; unemployed_spd += 7*(1-dissent); workers_kpd -= 3; workers_nsdap -= 3; wtb_implemented += 1; kpd_coalition_dissent += 1; kpd_relation -= 5 if in_popular_front or in_left_front; inflation += 2; economic_growth += 1.6; coalition_dissent += 1 if in_grand_coalition; economic_growth -= 0.6 if economic_growth > 5; socialism -= 3
@@ -40,7 +40,7 @@ on-arrival: works_program += 1; budget -= 3; workers_spd += 7*(1-dissent); worke
 @wtb_2_deficit
 title: 继续实施 WTB 计划。
 subtitle: -3 预算 —— 我们将进入赤字。
-unavailable-subtitle: [? if unemployed <= 10 : 失业率已足够低，不宜进行赤字开支。 ?][? if economic_minister_party == "DVP" : 由 DVP 掌控的经济部在阻挠我们的计划。 ?][? if finance_minister_party != "SPD" : 未掌握财政部，我们无法进行此等规模的赤字开支。 ?]
+unavailable-subtitle: [? if unemployed <= 10 : 失业率已足够低，不宜进行赤字开支。 ?][? if economic_minister_party == "DVP" : 由德国人民党掌控的经济部在阻挠我们的计划。 ?][? if finance_minister_party != "SPD" : 未掌握财政部，我们无法进行此等规模的赤字开支。 ?]
 view-if: wtb_implemented > 2 and budget < 3 and budget >= -3
 choose-if: unemployed > 10 and economic_minister_party != "DVP" and finance_minister_party == "SPD"
 on-arrival: works_program += 1; budget -= 3; workers_spd += 6*(1-dissent); workers += 1 if works_program <= 4; unemployed -= 3 if unemployed > 8; unemployed_spd += 6*(1-dissent); workers_kpd -= 2; workers_nsdap -= 2; coalition_dissent += 1; coalition_dissent += 1 if in_grand_coalition; capital_strike_progress += 1; wtb_implemented += 1; kpd_coalition_dissent += 1; kpd_relation -= 5 if in_popular_front or in_left_front; inflation += 3; economic_growth += 1.6; economic_growth -= 0.6 if economic_growth > 5; socialism -= 4
@@ -55,14 +55,14 @@ on-arrival: budget += 1 if works_program <= 2; unemployed -= 5 if (works_program
 
 我们在公共工程上的支出让失业保险与福利的需求下降；随着新增资金在经济中循环，乘数效应也令税收提高，一定程度上收回了支出。我们继续把新增财政收入的大部分投入该计划。
 
-经济总算开始好转。连资产阶级诸党也开始看到了希望[? if grand_coalition :，尽管 DVP 仍对政府干预经济啧有烦言 ?]。
+经济总算开始好转。连资产阶级诸党也开始看到了希望[? if grand_coalition :，尽管德国人民党仍对政府干预经济啧有烦言 ?]。
 
 [? if in_popular_front or in_left_front: 不过共产党仍反对我们「拯救」资本主义的政策。 ?]
 
 @implement_wtb_no_deficit
 title: 实施 WTB 计划。
 subtitle: -[+ wtb_budget +] 预算。[? if wtb_budget == 3 : 我们的亲劳工政策降低了该计划的成本。 ?]
-unavailable-subtitle: [? if unemployed <= 8 : 失业率已足够低，WTB 计划的时机已过。 ?][? if economic_minister_party == "DVP" : 由 DVP 掌控的经济部在阻挠我们的计划。 ?]
+unavailable-subtitle: [? if unemployed <= 8 : 失业率已足够低，WTB 计划的时机已过。 ?][? if economic_minister_party == "DVP" : 由德国人民党掌控的经济部在阻挠我们的计划。 ?]
 view-if: budget >= wtb_budget and wtb_implemented == 0 and wtb_adopted == 1
 choose-if: unemployed > 8 and economic_minister_party != "DVP"
 on-arrival: wtb_no_deficit_vote = 1
@@ -81,7 +81,7 @@ achievement: wirtschaftspolitik
 @implement_wtb_deficit
 title: 实施 WTB 计划。
 subtitle: -[+ wtb_budget +] 预算 —— 我们将进入赤字开支。[? if wtb_budget == 3 : 我们的亲劳工政策降低了该计划的成本。 ?]
-unavailable-subtitle: [? if unemployed <= 8 : 失业率已足够低，WTB 计划的时机已过。 ?][? if economic_minister_party == "DVP" : 由 DVP 掌控的经济部在阻挠我们的计划。 ?][? if finance_minister_party != "SPD" : 未掌握财政部，我们无法进行此等规模的赤字开支。 ?]
+unavailable-subtitle: [? if unemployed <= 8 : 失业率已足够低，WTB 计划的时机已过。 ?][? if economic_minister_party == "DVP" : 由德国人民党掌控的经济部在阻挠我们的计划。 ?][? if finance_minister_party != "SPD" : 未掌握财政部，我们无法进行此等规模的赤字开支。 ?]
 view-if: budget < wtb_budget and wtb_implemented == 0 and wtb_adopted == 1
 choose-if: unemployed > 8 and economic_minister_party != "DVP" and finance_minister_party == "SPD"
 on-arrival: wtb_deficit_vote = 1
@@ -105,7 +105,7 @@ title: 实施左翼经济转型计划。
 subtitle: -[+ nationalize_budget +] 预算。[? if works_councils >= 3 : 工人委员会的发展降低了该计划所需的预算。 ?] [? if socializations >= 2: 我们既有的社会化政策降低了该计划所需的预算。 ?]
 view-if: nationalization_adopted == 1 and nationalization_progress == 0
 choose-if: economic_minister_party != "DVP"
-unavailable-subtitle: 由 DVP 掌控的经济部绝不会允许此类行动。
+unavailable-subtitle: 由德国人民党掌控的经济部绝不会允许此类行动。
 on-arrival: nationalize_vote = 1
 go-to: nationalize_done if not legislature_enabled; legislative_menu if legislature_enabled
 
@@ -185,7 +185,7 @@ title: 继续推行左翼经济转型计划。
 subtitle: -[+ nationalize_budget +] 预算。[? if works_councils >= 3 : 工人委员会的发展降低了该计划所需的预算。 ?] [? if socializations + nationalization_progress >= 2: 我们既有的社会化政策降低了该计划所需的预算。 ?]
 view-if: nationalization_adopted == 1 and nationalization_progress >= 1
 choose-if: economic_minister_party != "DVP"
-unavailable-subtitle: 由 DVP 掌控的经济部绝不会允许此类行动。
+unavailable-subtitle: 由德国人民党掌控的经济部绝不会允许此类行动。
 on-arrival: nationalize_vote = 1
 go-to: nationalize_done if not legislature_enabled; legislative_menu if legislature_enabled
 
@@ -213,7 +213,7 @@ achievement: wirtschaftspolitik
 
 [? if moderate_plan_progress > 1 : 我们继续为就业创造计划提供经费，把资金用于德国各地的公共工程。 ?]
 
-[? if unemployed >= 10 : 资产阶级诸党将此计划视作「最不坏」的选项，认其为拯救德国经济所必需[? if dvp_relation < 35 and in_grand_coalition : ——尽管 DVP 仍略有保留 ?]。 ?]
+[? if unemployed >= 10 : 资产阶级诸党将此计划视作「最不坏」的选项，认其为拯救德国经济所必需[? if dvp_relation < 35 and in_grand_coalition : ——尽管德国人民党仍略有保留 ?]。 ?]
 
 [? if unemployed < 10 : 失业率已足够低，该计划似乎未达到预期效果。 ?]
 
@@ -250,7 +250,7 @@ achievement: wirtschaftspolitik
 @synthesis_plan
 title: 实施中间派的就业创造与国有化计划。
 subtitle: -[+ synthesis_budget +] 预算。[? if synthesis_budget < 3 : 我们既有的计划使之成本更低。 ?]
-unavailable-subtitle: [? if budget < synthesis_budget : -[+ synthesis_budget +] 预算。我们的预算不足。 ?][? if economic_minister_party == "DVP" : 由 DVP 掌控的经济部在阻挠我们的计划。 ?]
+unavailable-subtitle: [? if budget < synthesis_budget : -[+ synthesis_budget +] 预算。我们的预算不足。 ?][? if economic_minister_party == "DVP" : 由德国人民党掌控的经济部在阻挠我们的计划。 ?]
 view-if: synthesis_plan_adopted == 1
 choose-if: budget >= synthesis_budget and economic_minister_party != "DVP"
 on-arrival: synthesis_vote = 1

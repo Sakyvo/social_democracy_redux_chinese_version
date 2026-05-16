@@ -259,7 +259,7 @@ go-to: coalition_menu
 
 {!<table>!} 
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_wl +]%** {!</td><td>!} **[+ stwl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党:** {!</td><td>!} **[+ spd_wl +]%** {!</td><td>!} **[+ stwl_change_spd +]** {!</td></tr>!}
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_wl +]% {!</td><td>!} [+ stwl_change_sapd +] {!</td></tr>!} ?]
 
@@ -284,9 +284,9 @@ go-to: coalition_menu
 
 大联合 (SPD + Z + [+ ddp_name +] + DVP)：[+ w_grand_coalition +]%
 
-资产阶级联合 (Z + [+ ddp_name +] + DVP + 其他)：[+ w_bourgeois_coalition +]%
+资产阶级联合 (Z + [+ ddp_name +] + 德国人民党 + 其他)：[+ w_bourgeois_coalition +]%
 
-右翼联合 (Z + DVP + 其他 + DNVP)：[+ w_right_coalition +]%
+右翼联合 (Z + 德国人民党 + 其他 + DNVP)：[+ w_right_coalition +]%
 
 [? if nazi_urgency <= 1 and nsdap_wl >= 15 : 纳粹党选票的迅速攀升令人极度忧虑。许多人此前以为该党已奄奄一息；如今，我们中的一些人将其视为德国民主的最大威胁。 ?]
 

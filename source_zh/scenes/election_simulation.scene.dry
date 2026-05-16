@@ -305,38 +305,38 @@ Q.neo_weimar_coalition = Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r;
 **选举结果：**
 
 # 1928: 30, 1930: 25, 1932: 22
-SPD：[+ spd_r +]
+社民党：[+ spd_r +]
 
-[? if sapd_formed == 1 : SAPD：[+ sapd_votes +]% ?]
+[? if sapd_formed == 1 : 社会主义工人党：[+ sapd_votes +]% ?]
 
 # 1928: 15, 1930: 15, 1932:
-Z + BVP：[+ z_r +]
+Z + 巴伐利亚人民党：[+ z_r +]
 
 # 1928: 10, 1930: 13
 共产党：[+ kpd_r +]
 
 # 1928: 5, 1930: 4 (as DstP)
-DDP：[+ ddp_r +]
+德国民主党：[+ ddp_r +]
 
 # 1928: 9, 1930: 5
-DVP：[+ dvp_r +]
+德国人民党：[+ dvp_r +]
 
 # 1928: 14, 1930: 7
-DNVP：[+ dnvp_r +]
+德国国家人民党：[+ dnvp_r +]
 
 # 1928: 3, 1930: 18
-NSDAP：[+ nsdap_r +]
+纳粹党：[+ nsdap_r +]
 
 # 1928: 9, 1930: 10
 其他：[+ other_r +]
 
 **潜在联合方案：**
 
-魏玛联合（SPD + Z + DDP）：[+ weimar_coalition +]
+魏玛联合（社民党 + Z + 德国民主党）：[+ weimar_coalition +]
 
-大联合（SPD + Z + BVP + DDP + DVP）：[+ grand_coalition +]
+大联合（社民党 + Z + 巴伐利亚人民党 + 德国民主党 + 德国人民党）：[+ grand_coalition +]
 
-资产阶级联合（Z + BVP + DDP + DVP + 其他）：[+ bourgeois_coalition +]
+资产阶级联合（Z + 巴伐利亚人民党 + 德国民主党 + 德国人民党 + 其他）：[+ bourgeois_coalition +]
 
-右翼联合（Z + BVP + DVP + 其他 + DNVP）：[+ right_coalition +]
+右翼联合（Z + 巴伐利亚人民党 + 德国人民党 + 其他 + 德国国家人民党）：[+ right_coalition +]
 

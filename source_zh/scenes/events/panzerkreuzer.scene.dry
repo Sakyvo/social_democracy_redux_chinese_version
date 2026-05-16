@@ -24,23 +24,23 @@ Q.bill_support = Math.round(Q.bill_support);
 
 共产党：反对
 
-[? if sapd_formed : SAPD：反对 ?]
+[? if sapd_formed : 社会主义工人党：反对 ?]
 
-SPD：立场分裂
+社民党：立场分裂
 
 [+ ddp_name +]：赞成
 
 Z：赞成
 
-BVP：赞成
+巴伐利亚人民党：赞成
 
-DVP：赞成
+德国人民党：赞成
 
 其他：赞成
 
-DNVP：赞成
+德国国家人民党：赞成
 
-NSDAP：赞成
+纳粹党：赞成
 
 支持率 [+ bill_support +]%，投票通过。
 
@@ -68,23 +68,23 @@ on-arrival: panzerkreuzer_funded = 0; nationalism -= 3*(1-dissent); panzerkreuze
 
 共产党：反对
 
-[? if sapd_formed : SAPD：反对 ?]
+[? if sapd_formed : 社会主义工人党：反对 ?]
 
-SPD：反对
+社民党：反对
 
 [+ ddp_name +]：赞成
 
 Z：赞成
 
-BVP：赞成
+巴伐利亚人民党：赞成
 
-DVP：赞成
+德国人民党：赞成
 
 其他：赞成
 
-DNVP：赞成
+德国国家人民党：赞成
 
-NSDAP：赞成
+纳粹党：赞成
 
 仅 [+ bill_support +]% 赞成，动议未获通过、被撤回。
 
@@ -95,23 +95,23 @@ on-arrival: panzerkreuzer_funded = 1; bill_support = bourgeois_coalition+far_rig
 
 共产党：反对
 
-[? if sapd_formed : SAPD：反对 ?]
+[? if sapd_formed : 社会主义工人党：反对 ?]
 
-SPD：反对
+社民党：反对
 
 [+ ddp_name +]：赞成
 
 Z：赞成
 
-BVP：赞成
+巴伐利亚人民党：赞成
 
-DVP：赞成
+德国人民党：赞成
 
 其他：赞成
 
-DNVP：赞成
+德国国家人民党：赞成
 
-NSDAP：赞成
+纳粹党：赞成
 
 支持率 [+ bill_support +]%，投票通过。
 
@@ -122,23 +122,23 @@ on-arrival: panzerkreuzer_funded = 0; nationalism -= 3*(1-dissent); panzerkreuze
 
 共产党：反对
 
-[? if sapd_formed : SAPD：反对 ?]
+[? if sapd_formed : 社会主义工人党：反对 ?]
 
-SPD：反对
+社民党：反对
 
 [+ ddp_name +]：赞成
 
 Z：赞成
 
-BVP：赞成
+巴伐利亚人民党：赞成
 
-DVP：赞成
+德国人民党：赞成
 
 其他：赞成
 
-DNVP：赞成
+德国国家人民党：赞成
 
-NSDAP：赞成
+纳粹党：赞成
 
 仅 [+ bill_support +]% 赞成，动议未获通过、被撤回。
 
@@ -149,23 +149,23 @@ on-arrival: panzerkreuzer_funded = 1; bill_support = bourgeois_coalition+far_rig
 
 共产党：反对
 
-[? if sapd_formed : SAPD：反对 ?]
+[? if sapd_formed : 社会主义工人党：反对 ?]
 
-SPD：反对
+社民党：反对
 
 [+ ddp_name +]：赞成
 
 Z：赞成
 
-BVP：赞成
+巴伐利亚人民党：赞成
 
-DVP：赞成
+德国人民党：赞成
 
 其他：赞成
 
-DNVP：赞成
+德国国家人民党：赞成
 
-NSDAP：赞成
+纳粹党：赞成
 
 支持率 [+ bill_support +]%，投票通过。
 
@@ -178,22 +178,22 @@ Q.bill_support = Math.round(Q.bill_support);
 
 共产党：反对
 
-[? if sapd_formed : SAPD：反对 ?]
+[? if sapd_formed : 社会主义工人党：反对 ?]
 
-SPD：弃权
+社民党：弃权
 
 [+ ddp_name +]：赞成
 
 Z：赞成
 
-BVP：赞成
+巴伐利亚人民党：赞成
 
-DVP：赞成
+德国人民党：赞成
 
 其他：赞成
 
-DNVP：赞成
+德国国家人民党：赞成
 
-NSDAP：赞成
+纳粹党：赞成
 
 支持率 [+ bill_support +]%，投票通过。

@@ -13,11 +13,11 @@ tags: party_affairs
 
 [? if enemies != 0 : 我们此前已将 [+ enemies +] 列为首要敌人。是否有必要调整方向？ ?]
 
-- @anti_dem: 极右与极左的反民主政党——共产党、纳粹党与 DNVP。
-- @far_right: 极右翼——纳粹党与 DNVP。
+- @anti_dem: 极右与极左的反民主政党——共产党、纳粹党与德国国家人民党。
+- @far_right: 极右翼——纳粹党与德国国家人民党。
 - @nsdap: 仅针对纳粹党。
 - @kpd: 共产党。
-- @bourgeois: 资产阶级诸党——中央党与 DVP。
+- @bourgeois: 资产阶级诸党——中央党与德国人民党。
 - @easy_discard
 
 @anti_dem

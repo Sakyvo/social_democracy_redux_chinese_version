@@ -20,9 +20,9 @@ max-visits: 1
 
 = 胡根贝格 vs 布吕宁
 
-通过失业保险危机将我们排挤出布吕宁政府之后，DNVP 大致从中分裂为两派，胡根贝格试图扳倒布吕宁内阁，遭到韦斯塔尔普及党内剩余「温和派」的抵制。
+通过失业保险危机将我们排挤出布吕宁政府之后，德国国家人民党大致从中分裂为两派，胡根贝格试图扳倒布吕宁内阁，遭到韦斯塔尔普及党内剩余「温和派」的抵制。
 
-我们或能通过投票推翻布吕宁近期的紧急预算削减令其下台，能否成功取决于 DNVP 的决定。
+我们或能通过投票推翻布吕宁近期的紧急预算削减令其下台，能否成功取决于德国国家人民党的决定。
 
 - @vote_against: 在国会动议推翻布吕宁的预算削减。
 
@@ -36,9 +36,9 @@ go-to: successful_motion if bourgeois_coalition < 50; failed_motion if bourgeois
 on-arrival: time_to_election = 3; dnvp_toleration = 0;
 call: set_next_election_time
 
-尽管韦斯塔尔普一派从党内出走，DNVP 多数仍按胡根贝格的意愿倒向反对布吕宁，使动议成功通过。国会被解散，紧急选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
+尽管韦斯塔尔普一派从党内出走，德国国家人民党多数仍按胡根贝格的意愿倒向反对布吕宁，使动议成功通过。国会被解散，紧急选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @failed_motion
 on-arrival: in_bourgeois_coalition = 1; dnvp_toleration = 0; what_the_hell = 1
 
-DNVP 多数议员追随韦斯塔尔普离党并容忍布吕宁，我们的动议险些通过。或许这是塞翁失马，我们将有更多时间未受沾染地在野，重建我们的民望，而资产阶级政党则相互撕咬。
+德国国家人民党多数议员追随韦斯塔尔普离党并容忍布吕宁，我们的动议险些通过。或许这是塞翁失马，我们将有更多时间未受沾染地在野，重建我们的民望，而资产阶级政党则相互撕咬。

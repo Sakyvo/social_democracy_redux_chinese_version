@@ -11,7 +11,7 @@ go-to: what_do if unemployment_insurance_crisis = 2
 
 经济危机引发了全德国范围的大规模裁员，对工业工人阶级打击最为深重。由于需求剧增，我们的福利开支不断增加。
 
-与此同时，我们的右翼联合政府伙伴——DVP 和中央党——提出了一项方案，要削减失业者的福利、降低富人税、提高劳动阶级的税负，并以此平衡预算、约束劳工。他们认为没有妥协余地。如果我们不接受，他们将让联合政府爆炸。
+与此同时，我们的右翼联合政府伙伴——德国人民党和中央党——提出了一项方案，要削减失业者的福利、降低富人税、提高劳动阶级的税负，并以此平衡预算、约束劳工。他们认为没有妥协余地。如果我们不接受，他们将让联合政府爆炸。
 
 [? if unemployment_insurance_crisis = 2 : 这已是右翼第二次抛出此类最后通牒。资产阶级显然在试图把我们从政府中撵出去。 ?]
 
@@ -50,7 +50,7 @@ on-arrival: scholz_dnvp = 1 if year < 1931; next_election_month=month+3 if year 
 
 [? if year >= 1931 : 新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。 ?]
 
-[? if year < 1931 : DNVP 出现分裂，其残存的温和派在席勒（DNVP 的高层成员）被纳入内阁后拒绝对肖尔茨投反对票。 ?]
+[? if year < 1931 : 德国国家人民党出现分裂，其残存的温和派在席勒（德国国家人民党的高层成员）被纳入内阁后拒绝对肖尔茨投反对票。 ?]
 
 @destroy
 view-if: chancellor != "Scholz"
@@ -62,7 +62,7 @@ on-arrival: dnvp_toleration = 1 if year < 1931 and not confrontation_seen and pr
 
 [? if year >= 1931 or confrontation_seen : 新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。 ?]
 
-[? if year < 1931 and not confrontation_seen : DNVP 出现分裂，其残存的温和派在席勒（DNVP 的高层成员）被纳入内阁后拒绝对布吕宁投反对票。 ?]
+[? if year < 1931 and not confrontation_seen : 德国国家人民党出现分裂，其残存的温和派在席勒（德国国家人民党的高层成员）被纳入内阁后拒绝对布吕宁投反对票。 ?]
 
 @accept
 on-arrival: workers_spd -= 0.15*workers_spd; unemployed_spd -= 0.3*unemployed_spd; workers_kpd += 5; workers_kpd += 2 if sapd_consolidated == 0; workers_sapd += 2 if sapd_consolidated == 1; workers_nsdap += 7; unemployed_kpd += 4; unemployed_kpd += 1 if sapd_consolidated == 0; unemployed_sapd += 1 if sapd_consolidated == 1; unemployed_nsdap += 5; left_dissent += 15; center_dissent += 10; labor_dissent += 15; reformist_dissent += 5; welfare -= 2; budget += 1; unemployed += 3; month += 1; pro_republic -= 4; kpd_relation -= 8; inflation -= 2; economic_growth -= 0.6; socialism -= 2
@@ -75,7 +75,7 @@ on-arrival: workers_spd -= 0.15*workers_spd; unemployed_spd -= 0.3*unemployed_sp
 unavailable-subtitle: We do not have good enough relations with the right-wing parties. [? if chancellor == "Scholz" : Chancellor Scholz refuses to compromise. ?]
 choose-if: dvp_relation >= 35 and chancellor != "Scholz"
 
-凭借我们良好的关系，DVP 提出了一份折中方案：对富人略加增税，同时缩小福利削减幅度。我们的成员对是否接受这一折中态度不一。改良派和中间派支持维系政府，将法西斯主义者和共产党人挡在门外；劳工派普遍反对任何削减；左翼则反对与资产阶级妥协。
+凭借我们良好的关系，德国人民党提出了一份折中方案：对富人略加增税，同时缩小福利削减幅度。我们的成员对是否接受这一折中态度不一。改良派和中间派支持维系政府，将法西斯主义者和共产党人挡在门外；劳工派普遍反对任何削减；左翼则反对与资产阶级妥协。
 
 - @accept_compromise: 接受折中方案。
 - @destroy: 拒绝折中方案，让这届政府垮台。

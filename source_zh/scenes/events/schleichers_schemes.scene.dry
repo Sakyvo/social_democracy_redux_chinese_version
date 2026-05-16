@@ -61,7 +61,7 @@ go-to: schleicher_success if schleicher_support >= 50; schleicher_failed if schl
 
 除工会之外，社民党每一个派系都对这种对民主的背叛感到惊骇。
 
-[? if kpd_relation <= 10 and left_strength + center_strength < labor_strength: 不知何故，德国国家人民党（DNVP）也同意了施莱彻的提议，与这位将军暂时结盟，共同对抗纳粹和共产党。 ?][? if z_relation >= 50 : 中央党也支持施莱彻的方案。 ?][? if dvp_relation >= 25 : 此外，DVP 和其他一些较小政党也支持这一提议。 ?][? if kpd_relation > 10 or left_strength + center_strength >= labor_strength: DNVP 尽管被施莱彻拉拢，但无意加入这一联盟。DNVP 主席胡根贝格似乎更愿意与希特勒合作，而不是参与一个包含社民党的联盟。 ?]
+[? if kpd_relation <= 10 and left_strength + center_strength < labor_strength: 不知何故，德国国家人民党（德国国家人民党）也同意了施莱彻的提议，与这位将军暂时结盟，共同对抗纳粹和共产党。 ?][? if z_relation >= 50 : 中央党也支持施莱彻的方案。 ?][? if dvp_relation >= 25 : 此外，德国人民党和其他一些较小政党也支持这一提议。 ?][? if kpd_relation > 10 or left_strength + center_strength >= labor_strength: 德国国家人民党尽管被施莱彻拉拢，但无意加入这一联盟。德国国家人民党主席胡根贝格似乎更愿意与希特勒合作，而不是参与一个包含社民党的联盟。 ?]
 
 [? if strasser_percent >= 0.25 and schleicher_support >= 50 : 看清大局之后，施特拉瑟周围的许多纳粹议员尽管希特勒持续反对，仍与我们一道投票支持施莱彻的动议。这是否预示着纳粹的分裂？ ?]
 

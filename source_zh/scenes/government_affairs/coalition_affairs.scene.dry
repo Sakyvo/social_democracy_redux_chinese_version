@@ -9,7 +9,7 @@ card-image: img/muller_cabinet.jpg
 
 = 联合政府事务
 
-我们的联合政府陷入了困境。中央党右翼成员[? if in_grand_coalition: 与 DVP ?]不断对我们的政策横加批评，并威胁通过不信任投票推翻本届政府[? if spd_prussia :，或对我们在普鲁士邦的政府如法炮制 ?]。
+我们的联合政府陷入了困境。中央党右翼成员[? if in_grand_coalition: 与德国人民党 ?]不断对我们的政策横加批评，并威胁通过不信任投票推翻本届政府[? if spd_prussia :，或对我们在普鲁士邦的政府如法炮制 ?]。
 
 如何缓解联合政府内部的紧张？
 

@@ -36,15 +36,15 @@ go-to: menu
 
 = 社民党与共和国大事年表（至 1928 年）
 
-**1875 年**：社民党（SPD）由费迪南德·拉萨尔（Ferdinand Lassalle）创立的全德工人联合会与威廉·李卜克内西（Wilhelm Liebknecht）和奥古斯特·倍倍尔（August Bebel）领导的德国社会民主工党合并而成。最终，社民党发展为德意志帝国最大的政党。
+**1875 年**：社民党（社民党）由费迪南德·拉萨尔（Ferdinand Lassalle）创立的全德工人联合会与威廉·李卜克内西（Wilhelm Liebknecht）和奥古斯特·倍倍尔（August Bebel）领导的德国社会民主工党合并而成。最终，社民党发展为德意志帝国最大的政党。
 
 **1914 年**：第一次世界大战爆发。社民党投票通过战争拨款案，党内异议颇多。由此开启所谓「城堡和平政策」（*Burgfriedenspolitik*）——各政党与工会之间暂时休兵。
 
-**1917 年**：独立社民党（USPD）作为社民党左翼反战派分裂而出，正式成立。
+**1917 年**：独立社民党（U社民党）作为社民党左翼反战派分裂而出，正式成立。
 
 **1918 年**：战败与士兵、水兵、工人起义接连爆发之后，社民党领袖菲利普·谢德曼（Philipp Scheidemann）宣告德意志共和国成立，德皇威廉二世退位。停战协议签订，一战结束。中左翼社会民主党人与极左翼激进派在柏林及其他地方的街头发生激烈冲突。
 
-**1919 年**：斯巴达克派起义——共产党工人企图夺取政权——爆发。该起义在总统弗里德里希·艾伯特（Friedrich Ebert）与总理菲利普·谢德曼领导下的社民党政府镇压下失败，并得到了极右翼「自由军团」（Freikorps）的协助。起义的两位核心领袖罗莎·卢森堡（Rosa Luxemburg）与卡尔·李卜克内西（Karl Liebknecht）遭自由军团杀害。在德国各政治派别的强烈抗议中，《凡尔赛条约》签署，正式结束一战。《魏玛宪法》随之签署。首届「魏玛联合」政府由社民党、民主党（DDP）与中央党（Z）组建。
+**1919 年**：斯巴达克派起义——共产党工人企图夺取政权——爆发。该起义在总统弗里德里希·艾伯特（Friedrich Ebert）与总理菲利普·谢德曼领导下的社民党政府镇压下失败，并得到了极右翼「自由军团」（Freikorps）的协助。起义的两位核心领袖罗莎·卢森堡（Rosa Luxemburg）与卡尔·李卜克内西（Karl Liebknecht）遭自由军团杀害。在德国各政治派别的强烈抗议中，《凡尔赛条约》签署，正式结束一战。《魏玛宪法》随之签署。首届「魏玛联合」政府由社民党、民主党（德国民主党）与中央党（Z）组建。
 
 **1920 年**：卡普政变爆发——反动派军官企图夺权——在工人总罢工的抵抗下失败。随后鲁尔爆发左翼起义，被国防军与自由军团镇压。魏玛联合在选举中落败，右翼与极左翼得票均有增长。这一时期的民选政府极不稳定，往往仅维持数月。独立社民党发生分裂，多数派加入共产党（共产党）及苏联主导的共产国际（Comintern）。
 
@@ -72,20 +72,20 @@ go-to: cabinet if spd_in_government; menu if not spd_in_government
 国会席位构成：
 
 # 1928: 30, 1930: 25, 1932: 22
-SPD：[+ spd_r +]%
-[? if sapd_formed and sapd_r > 0: SAPD：[+ sapd_r +]% ?]
+社民党：[+ spd_r +]%
+[? if sapd_formed and sapd_r > 0: 社会主义工人党：[+ sapd_r +]% ?]
 # 1928: 15, 1930: 15, 1932:
-Z + BVP：[+ z_r +]%
+Z + 巴伐利亚人民党：[+ z_r +]%
 # 1928: 10, 1930: 13
 共产党：[+ kpd_r +]%
 # 1928: 5, 1930: 4 (as DstP)
 [+ ddp_name +]：[+ ddp_r +]%
 # 1928: 9, 1930: 5
-DVP：[+ dvp_r +]%
+德国人民党：[+ dvp_r +]%
 # 1928: 14, 1930: 7
-DNVP：[+ dnvp_r +]%
+德国国家人民党：[+ dnvp_r +]%
 # 1928: 3, 1930: 18
-NSDAP：[+ nsdap_r +]%
+纳粹党：[+ nsdap_r +]%
 # 1928: 9, 1930: 10
 其他：[+ other_r +]%
 
@@ -128,7 +128,7 @@ go-to: menu
 
 **新中产阶级**（*New Mittelstand*）：由白领员工与政府雇员构成，是自由主义的基本盘。占总人口的 10–15%。
 
-**农村**：大小农户与独立乡村劳动者。新教农民多支持德国国家人民党（DNVP）。占总人口的 20–30%。
+**农村**：大小农户与独立乡村劳动者。新教农民多支持德国国家人民党（德国国家人民党）。占总人口的 20–30%。
 
 **天主教徒**为最大宗教少数群体，约占总人口的 30%。他们不成比例地支持中央党（在巴伐利亚则为巴伐利亚人民党）。
 
@@ -161,12 +161,12 @@ go-to: menu
 **选举结果预测**（若即刻举行选举）：
 
 # 1928: 30, 1930: 25, 1932: 22
-SPD：[+ spd_votes +]%
+社民党：[+ spd_votes +]%
 
-[? if sapd_formed == 1 : SAPD：[+ sapd_votes +]% ?]
+[? if sapd_formed == 1 : 社会主义工人党：[+ sapd_votes +]% ?]
 
 # 1928: 15, 1930: 15, 1932:
-Z + BVP：[+ z_votes +]%
+Z + 巴伐利亚人民党：[+ z_votes +]%
 
 # 1928: 10, 1930: 13
 共产党：[+ kpd_votes +]%
@@ -175,39 +175,39 @@ Z + BVP：[+ z_votes +]%
 [+ ddp_name +]：[+ ddp_votes +]%
 
 # 1928: 9, 1930: 5
-DVP：[+ dvp_votes +]%
+德国人民党：[+ dvp_votes +]%
 
 # 1928: 14, 1930: 7
-DNVP：[+ dnvp_votes +]%
+德国国家人民党：[+ dnvp_votes +]%
 
 # 1928: 3, 1930: 18
-NSDAP：[+ nsdap_votes +]%
+纳粹党：[+ nsdap_votes +]%
 
 # 1928: 9, 1930: 10
 其他：[+ other_votes +]%
 
 **各阶层详细支持率**
 
-工人：SPD：[+ workers_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ workers_sapd_display +]%， ?] Z：[+ workers_z_display +]%，共产党：[+ workers_kpd_display +]%，[+ ddp_name +]：[+ workers_ddp_display +]%，DVP：[+ workers_dvp_display +]%；DNVP：[+ workers_dnvp_display +]%，NSDAP：[+ workers_nsdap_display +]%，其他：[+ workers_other_display +]%
+工人：社民党：[+ workers_spd_display +]%，[? if sapd_formed == 1 : 社会主义工人党：[+ workers_sapd_display +]%， ?] Z：[+ workers_z_display +]%，共产党：[+ workers_kpd_display +]%，[+ ddp_name +]：[+ workers_ddp_display +]%，德国人民党：[+ workers_dvp_display +]%；德国国家人民党：[+ workers_dnvp_display +]%，纳粹党：[+ workers_nsdap_display +]%，其他：[+ workers_other_display +]%
 
-新中产阶级：SPD：[+ new_middle_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ new_middle_sapd_display +]%， ?] Z：[+ new_middle_z_display +]%，共产党：[+ new_middle_kpd_display +]%，[+ ddp_name +]：[+ new_middle_ddp_display +]%，DVP：[+ new_middle_dvp_display +]%；DNVP：[+ new_middle_dnvp_display +]%，NSDAP：[+ new_middle_nsdap_display +]%，其他：[+ new_middle_other_display +]%
+新中产阶级：社民党：[+ new_middle_spd_display +]%，[? if sapd_formed == 1 : 社会主义工人党：[+ new_middle_sapd_display +]%， ?] Z：[+ new_middle_z_display +]%，共产党：[+ new_middle_kpd_display +]%，[+ ddp_name +]：[+ new_middle_ddp_display +]%，德国人民党：[+ new_middle_dvp_display +]%；德国国家人民党：[+ new_middle_dnvp_display +]%，纳粹党：[+ new_middle_nsdap_display +]%，其他：[+ new_middle_other_display +]%
 
-旧中产阶级：SPD：[+ old_middle_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ old_middle_sapd_display +]%， ?] Z：[+ old_middle_z_display +]%，共产党：[+ old_middle_kpd_display +]%，[+ ddp_name +]：[+ old_middle_ddp_display +]%，DVP：[+ old_middle_dvp_display +]%；DNVP：[+ old_middle_dnvp_display +]%，NSDAP：[+ old_middle_nsdap_display +]%，其他：[+ old_middle_other_display +]%
+旧中产阶级：社民党：[+ old_middle_spd_display +]%，[? if sapd_formed == 1 : 社会主义工人党：[+ old_middle_sapd_display +]%， ?] Z：[+ old_middle_z_display +]%，共产党：[+ old_middle_kpd_display +]%，[+ ddp_name +]：[+ old_middle_ddp_display +]%，德国人民党：[+ old_middle_dvp_display +]%；德国国家人民党：[+ old_middle_dnvp_display +]%，纳粹党：[+ old_middle_nsdap_display +]%，其他：[+ old_middle_other_display +]%
 
-农村：SPD：[+ rural_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ rural_sapd_display +]%， ?] Z：[+ rural_z_display +]%，共产党：[+ rural_kpd_display +]%，[+ ddp_name +]：[+ rural_ddp_display +]%，DVP：[+ rural_dvp_display +]%；DNVP：[+ rural_dnvp_display +]%，NSDAP：[+ rural_nsdap_display +]%，其他：[+ rural_other_display +]%
+农村：社民党：[+ rural_spd_display +]%，[? if sapd_formed == 1 : 社会主义工人党：[+ rural_sapd_display +]%， ?] Z：[+ rural_z_display +]%，共产党：[+ rural_kpd_display +]%，[+ ddp_name +]：[+ rural_ddp_display +]%，德国人民党：[+ rural_dvp_display +]%；德国国家人民党：[+ rural_dnvp_display +]%，纳粹党：[+ rural_nsdap_display +]%，其他：[+ rural_other_display +]%
 
-失业者：SPD：[+ unemployed_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ unemployed_sapd_display +]%， ?] Z：[+ unemployed_z_display +]%，共产党：[+ unemployed_kpd_display +]%，[+ ddp_name +]：[+ unemployed_ddp_display +]%，DVP：[+ unemployed_dvp_display +]%；DNVP：[+ unemployed_dnvp_display +]%，NSDAP：[+ unemployed_nsdap_display +]%，其他：[+ unemployed_other_display +]%
+失业者：社民党：[+ unemployed_spd_display +]%，[? if sapd_formed == 1 : 社会主义工人党：[+ unemployed_sapd_display +]%， ?] Z：[+ unemployed_z_display +]%，共产党：[+ unemployed_kpd_display +]%，[+ ddp_name +]：[+ unemployed_ddp_display +]%，德国人民党：[+ unemployed_dvp_display +]%；德国国家人民党：[+ unemployed_dnvp_display +]%，纳粹党：[+ unemployed_nsdap_display +]%，其他：[+ unemployed_other_display +]%
 
-天主教徒：SPD：[+ catholics_spd_display +]%，[? if sapd_formed == 1 : SAPD：[+ catholics_sapd_display +]%， ?] Z：[+ catholics_z_display +]%，共产党：[+ catholics_kpd_display +]%，[+ ddp_name +]：[+ catholics_ddp_display +]%，DVP：[+ catholics_dvp_display +]%；DNVP：[+ catholics_dnvp_display +]%，NSDAP：[+ catholics_nsdap_display +]%，其他：[+ catholics_other_display +]%
+天主教徒：社民党：[+ catholics_spd_display +]%，[? if sapd_formed == 1 : 社会主义工人党：[+ catholics_sapd_display +]%， ?] Z：[+ catholics_z_display +]%，共产党：[+ catholics_kpd_display +]%，[+ ddp_name +]：[+ catholics_ddp_display +]%，德国人民党：[+ catholics_dvp_display +]%；德国国家人民党：[+ catholics_dnvp_display +]%，纳粹党：[+ catholics_nsdap_display +]%，其他：[+ catholics_other_display +]%
 
 @parties
 go-to: menu
 
-**SPD** —— *Sozialdemokratische Partei Deutschlands*（德国社会民主党）—— 即我党。我们是工人阶级的社会主义民主政党，马克思与恩格斯、拉萨尔与倍倍尔之遗产的继承者，也是共和国最坚定的捍卫者。现代社民党由支持一战的「多数派」社民党与反对战争的「独立」社民党（USPD）合并而成。
+**社民党** —— *Sozialdemokratische Partei Deutschlands*（德国社会民主党）—— 即我党。我们是工人阶级的社会主义民主政党，马克思与恩格斯、拉萨尔与倍倍尔之遗产的继承者，也是共和国最坚定的捍卫者。现代社民党由支持一战的「多数派」社民党与反对战争的「独立」社民党（U社民党）合并而成。
 
-[? if sapd_formed == 1 : **SAPD** —— *Sozialistische Arbeiterpartei Deutschlands*（德国社会主义工人党）—— 一个由本党左翼异见者分裂而出的小党。 ?]
+[? if sapd_formed == 1 : **社会主义工人党** —— *Sozialistische Arbeiterpartei Deutschlands*（德国社会主义工人党）—— 一个由本党左翼异见者分裂而出的小党。 ?]
 
-**Z** —— *Zentrumspartei*（中央党）—— 一个中间偏右的天主教政党，支持共和制，历史上常支持我们在劳工、社会福利与反军国主义方面的诸多主张。他们多次与我们组成联合政府。他们常与 **BVP**（巴伐利亚人民党）相提并论——后者代表巴伐利亚的天主教徒。[? if year >= 1930 or chancellor = "Brüning" and z_party_leader == "Kaas" : 近来，随着布吕宁与党魁路德维希·卡斯（Ludwig Kaas）的崛起，他们似乎已转向更保守的立场。 ?]
+**Z** —— *Zentrumspartei*（中央党）—— 一个中间偏右的天主教政党，支持共和制，历史上常支持我们在劳工、社会福利与反军国主义方面的诸多主张。他们多次与我们组成联合政府。他们常与 **巴伐利亚人民党**（巴伐利亚人民党）相提并论——后者代表巴伐利亚的天主教徒。[? if year >= 1930 or chancellor = "Brüning" and z_party_leader == "Kaas" : 近来，随着布吕宁与党魁路德维希·卡斯（Ludwig Kaas）的崛起，他们似乎已转向更保守的立场。 ?]
 
 当前关系：[+ z_relation : relationships +]
 
@@ -216,11 +216,11 @@ go-to: menu
 
 当前关系：[+ ddp_relation : relationships +]
 
-**DVP** —— *Deutsche Volkspartei*（德国人民党）—— 一个保守自由派政党，基本盘为中产与资产阶级。我们偶尔会与之结为联合政府。
+**德国人民党** —— *Deutsche Volkspartei*（德国人民党）—— 一个保守自由派政党，基本盘为中产与资产阶级。我们偶尔会与之结为联合政府。
 
 当前关系：[+ dvp_relation : relationships +]
 
-**DNVP** —— *Deutschnationale Volkspartei*（德国国家人民党）—— 一个右翼民族主义-保守政党，带有威权、君主制与种族主义色彩。其基本盘为昔日贵族、乡村地主与保守路德宗信徒。
+**德国国家人民党** —— *Deutschnationale Volkspartei*（德国国家人民党）—— 一个右翼民族主义-保守政党，带有威权、君主制与种族主义色彩。其基本盘为昔日贵族、乡村地主与保守路德宗信徒。
 
 当前关系：[+ dnvp_relation : relationships +]
 
@@ -228,11 +228,11 @@ go-to: menu
 
 当前关系：[+ kpd_relation : relationships +]
 
-**NSDAP** —— *Nationalsozialistische Deutsche Arbeiterpartei*（国家社会主义德国工人党，即纳粹党）—— 一个极右翼民族主义反犹政党。由阿道夫·希特勒领导，1923 年曾企图政变并因此被取缔，后已重新合法化。
+**纳粹党** —— *Nationalsozialistische Deutsche Arbeiterpartei*（国家社会主义德国工人党，即纳粹党）—— 一个极右翼民族主义反犹政党。由阿道夫·希特勒领导，1923 年曾企图政变并因此被取缔，后已重新合法化。
 
 当前关系：[+ nsdap_relation : relationships +]
 
-**其他政党** —— 还有众多规模较小、以保守派为主的政党，例如德国中产阶级经济党、农民党、农业同盟等。其政治立场通常介于 DVP 与 DNVP 之间。
+**其他政党** —— 还有众多规模较小、以保守派为主的政党，例如德国中产阶级经济党、农民党、农业同盟等。其政治立场通常介于德国人民党与德国国家人民党之间。
 
 @paramilitaries
 on-arrival: {!
@@ -256,7 +256,7 @@ go-to: menu
 
 军事化程度：[+ rfb_militancy : militancy +]
 
-**钢盔团**（Der Stahlhelm）：一个主要由一战老兵组成的右翼民族主义组织，承袭战后自由军团（*Freikorps*）的传统，依附于 DNVP。
+**钢盔团**（Der Stahlhelm）：一个主要由一战老兵组成的右翼民族主义组织，承袭战后自由军团（*Freikorps*）的传统，依附于德国国家人民党。
 
 兵力：[+ sh_strength +] 千人
 
@@ -504,9 +504,9 @@ if (d3 && window) {
 {!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
 
 {!<table>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div></td><td>!} **SPD：** {!</td><td>!} **[+ spd_r +]%** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div></td><td>!} **社民党：** {!</td><td>!} **[+ spd_r +]%** {!</td></tr>!}
 
-[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#FF7F50'> </div></td> <td>!}SAPD： {!</td><td>!} [+ sapd_r +]% {!</td></tr>!} ?]
+[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#FF7F50'> </div></td> <td>!}社会主义工人党： {!</td><td>!} [+ sapd_r +]% {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#8B0000'> </div></td> <td>!}共产党： {!</td><td>!} [+ kpd_r +]% {!</td></tr>!}
 
@@ -514,15 +514,15 @@ if (d3 && window) {
 
 {!<tr><td><div class="box" style='background-color:#000'> </div></td><td>!} Z： {!</td><td>!} [+ z_minus_bvp_r +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#69A2BE'> </div></td><td>!} BVP： {!</td><td>!} 3% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#69A2BE'> </div></td><td>!} 巴伐利亚人民党： {!</td><td>!} 3% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#D5AC27'> </div></td><td>!} DVP： {!</td><td>!} [+ dvp_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div></td><td>!} 德国人民党： {!</td><td>!} [+ dvp_r +]% {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div></td><td>!} 其他政党： {!</td><td>!} [+ other_r +] % {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div></td><td>!} DNVP： {!</td><td>!} [+ dnvp_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div></td><td>!} 德国国家人民党： {!</td><td>!} [+ dnvp_r +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div></td><td>!} NSDAP： {!</td><td>!} [+ nsdap_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#954B00'> </div></td><td>!} 纳粹党： {!</td><td>!} [+ nsdap_r +]% {!</td></tr>!}
 {!</table>!}
 
 = 历次选举

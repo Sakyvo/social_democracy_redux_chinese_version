@@ -97,7 +97,7 @@ on-arrival: spd_support_adenauer = 1; adenauer_campaign = 1
 
 - @final_election: 最终结果……
 
-## todo: center support should be based on risks, so Z backs gessler alongside SPD if 共产党 strong, runs with SPD if DNVP/DVP strong, otherwise runs alone even if good relations
+## todo: center support should be based on risks, so Z backs gessler alongside 社民党 if 共产党 strong, runs with 社民党 if DNVP/DVP strong, otherwise runs alone even if good relations
 
 @spd_presidential
 

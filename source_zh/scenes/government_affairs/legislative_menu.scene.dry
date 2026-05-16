@@ -1597,10 +1597,10 @@ Q.bill_support = Math.round(Q.bill_support);
 当前有 [+ bill_support +]% 支持我们的议案。
 
 - @sway_kpd: 游说共产党。
-- @sway_sapd: 游说社工党（SAPD）。
+- @sway_sapd: 游说社工党（社会主义工人党）。
 - @sway_ddp: 游说[+ ddp_name +]。
 - @sway_z: 游说中央党。
-- @sway_dvp: 游说 DVP。
+- @sway_dvp: 游说德国人民党。
 - @motion_fails: 议案流产。
 
 @success
@@ -1612,23 +1612,23 @@ on-departure: welfare_cut_vote = 0; welfare_fund_pre_depression_vote = 0; welfar
 
 共产党：[+ kpd_vote : vote_display +]
 
-[? if sapd_formed : SAPD：[+ sapd_vote : vote_display +] ?]
+[? if sapd_formed : 社会主义工人党：[+ sapd_vote : vote_display +] ?]
 
-SPD：[? if not spd_split : 赞成 ?][? if spd_split : 分裂 ?]
+社民党：[? if not spd_split : 赞成 ?][? if spd_split : 分裂 ?]
 
 [+ ddp_name +]：[+ ddp_vote : vote_display +]
 
 Z：[+ z_vote : vote_display +]
 
-BVP：[+ bvp_vote : vote_display +]
+巴伐利亚人民党：[+ bvp_vote : vote_display +]
 
-DVP：[+ dvp_vote : vote_display +]
+德国人民党：[+ dvp_vote : vote_display +]
 
 其他：[? if not other_split : [+ other_vote : vote_display +] ?][? if other_split : 分裂 ?]
 
-DNVP：[+ dnvp_vote : vote_display +]
+德国国家人民党：[+ dnvp_vote : vote_display +]
 
-NSDAP：[+ nsdap_vote : vote_display +]
+纳粹党：[+ nsdap_vote : vote_display +]
 
 在 [+ bill_support +]% 的赞成下，议案表决通过。
 
@@ -1644,12 +1644,12 @@ view-if: in_left_front or in_popular_front or in_weimar_coalition and not welfar
 on-arrival: bill_support += sapd_r; sapd_vote = 1; reformist_dissent += 10; left_strength += 5; workers_spd -= 2; workers_sapd += 2
 go-to: success if bill_support >= 50; swaying_menu if bill_support < 50
 
-我们向社工党（SAPD）作出了足够的让步，令其同意支持我们的议案。
+我们向社工党（社会主义工人党）作出了足够的让步，令其同意支持我们的议案。
 
 @sway_ddp
 view-if: in_popular_front or in_weimar_coalition or in_grand_coalition and not ddp_vote
 choose-if: ddp_relation > 50
-unavailable-subtitle: DDP 不愿被说服。
+unavailable-subtitle: 德国民主党不愿被说服。
 on-arrival: bill_support += ddp_r; ddp_vote = 1; left_dissent += 5; new_middle_spd -= 1; new_middle_ddp += 1
 go-to: success if bill_support >= 50; swaying_menu if bill_support < 50
 
@@ -1667,11 +1667,11 @@ go-to: success if bill_support >= 50; swaying_menu if bill_support < 50
 @sway_dvp
 view-if: in_grand_coalition and not dvp_vote and not state_buyer_vote and not shorten_hours_vote and not disarmament_vote and not socialization_vote and not synthesis_vote and not progressive_tax_vote and not increase_employers_vote and not wtb_deficit_vote and not nationalize_vote
 choose-if: dvp_relation > 30
-unavailable-subtitle: DVP 不愿被说服。
+unavailable-subtitle: 德国人民党不愿被说服。
 on-arrival: bill_support += dvp_r; coalition_dissent += 1; dvp_vote = 1; bill_support += 3 if not bvp_vote and not women_family_vote; bvp_vote = 1 if not women_family_vote; left_dissent += 10; old_middle_spd -= 2; old_middle_dvp += 2; workers_spd -= 1
 go-to: success if bill_support >= 50; swaying_menu if bill_support < 50
 
-我们向 DVP 作出了足够的让步，令其同意支持我们的议案。
+我们向德国人民党作出了足够的让步，令其同意支持我们的议案。
 
 @motion_fails
 on-arrival: left_dissent += 5 if left_dissent < 40; center_dissent += 5 if center_dissent < 40; reformist_dissent += 5 if reformist_dissent < 50; neorevisionist_dissent += 5 if neorevisionist_dissent < 50; labor_dissent += 5 if labor_dissent < 50
@@ -1679,22 +1679,22 @@ on-departure: welfare_cut_vote = 0; welfare_fund_pre_depression_vote = 0; welfar
 
 共产党：[+ kpd_vote : vote_display +]
 
-[? if sapd_formed : SAPD：[+ sapd_vote : vote_display +] ?]
+[? if sapd_formed : 社会主义工人党：[+ sapd_vote : vote_display +] ?]
 
-SPD：[? if not spd_split : 赞成 ?][? if spd_split : 分裂 ?]
+社民党：[? if not spd_split : 赞成 ?][? if spd_split : 分裂 ?]
 
 [+ ddp_name +]：[+ ddp_vote : vote_display +]
 
 Z：[+ z_vote : vote_display +]
 
-BVP：[+ bvp_vote : vote_display +]
+巴伐利亚人民党：[+ bvp_vote : vote_display +]
 
-DVP：[+ dvp_vote : vote_display +]
+德国人民党：[+ dvp_vote : vote_display +]
 
 其他：[? if not other_split : [+ other_vote : vote_display +] ?][? if other_split : 分裂 ?]
 
-DNVP：[+ dnvp_vote : vote_display +]
+德国国家人民党：[+ dnvp_vote : vote_display +]
 
-NSDAP：[+ nsdap_vote : vote_display +]
+纳粹党：[+ nsdap_vote : vote_display +]
 
 仅有 [+ bill_support +]% 的赞成，议案未获通过，已被撤回。

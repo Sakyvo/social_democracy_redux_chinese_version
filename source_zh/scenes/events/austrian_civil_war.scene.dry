@@ -13,7 +13,7 @@ tags: event
 # long civil war if sdapo_strength = 5 or 4 - opportunity for interference/forced peace
 # instant defeat if sdapo_strength < 4
 
-奥地利的危机仍在持续。由恩格尔伯特·陶尔斐斯领衔的"奥地利法西斯"政府继续以紧急法令统治，并迫害其政治反对派，主要是奥地利社民党（SDAPÖ）。
+奥地利的危机仍在持续。由恩格尔伯特·陶尔斐斯领衔的"奥地利法西斯"政府继续以紧急法令统治，并迫害其政治反对派，主要是奥地利社民党（奥地利社会民主工人党）。
 
 [? if sdapo_strength < 6: 如今，奥地利正陷入内战状态。当警方试图缴获共和保护团（Republikanischer Schutzbund）的武器时，保护团以武力回应，向政府军开火。保护团与政府军之间的零星交火在奥地利各地相继爆发。 ?]
 

@@ -32,7 +32,7 @@ new-page: true
 - @vote_against: 我们将在国会投票反对该法案。
 - @luther_and_hindenburg_suck: 兴登堡总统与 [+ chancellor +] 内阁给我们设了新障碍。
 - @zmarx_reference: 反动派把持的司法机关给我们设了新障碍。
-- @zmarx_wholesome: 德国人民党（DVP）给我们设了新障碍。
+- @zmarx_wholesome: 德国人民党（德国人民党）给我们设了新障碍。
 
 @vote_for
 view-if: not princes_initiated
@@ -50,7 +50,7 @@ on-arrival: reformist_dissent += 5; dvp_relation -= 5; z_relation -= 5; marx_rel
 
 - @luther_and_hindenburg_suck: 兴登堡总统与 [+ chancellor +] 内阁给我们设了新障碍。
 - @zmarx_reference: 反动派把持的司法机关给我们设了新障碍。
-- @zmarx_wholesome: 德国人民党（DVP）给我们设了新障碍。
+- @zmarx_wholesome: 德国人民党（德国人民党）给我们设了新障碍。
 
 @neutral
 
@@ -85,7 +85,7 @@ on-arrival: princes_constitutional = 1; coalition_dissent += 1; coup_progress +=
 我们驳斥兴登堡的意见，宣告该公投合宪——法案条款意味着其确实服务公共利益。此举在内阁内引起重大争议。
 
 - @radbruch_resigns: 司法部长拉德布鲁赫必须辞职。
-- @dvp_withdraws_gov: DVP 退出政府。
+- @dvp_withdraws_gov: 德国人民党退出政府。
 - @menu_for_no_real_reason: 但眼下，政府仍然存续。
 
 @radbruch_resigns
@@ -100,7 +100,7 @@ view-if: coalition_dissent >= 3 or (coalition_dissent >= 2 and dvp_relation < 40
 on-arrival: princes_constitutional = 0; coup_progress -= 1; dvp_relation -= 5; z_relation -= 5; chancellor = "Marx"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 go-to: menu_for_no_real_reason
 
-DVP 因我方司法部长的决定撤回对科赫-韦泽内阁的信任。科赫-韦泽随即辞职，兴登堡任命威廉·马克斯组建由 DNVP 暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
+德国人民党因我方司法部长的决定撤回对科赫-韦泽内阁的信任。科赫-韦泽随即辞职，兴登堡任命威廉·马克斯组建由德国国家人民党暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
 
 @unconstitutional
 view-if: not princes_initiated
@@ -114,7 +114,7 @@ go-to: menu_for_no_real_reason
 
 [+ chancellor +] 内阁确认兴登堡的意见后，公投不仅需要赞成票多于反对票，而且需要德国全体合资格选民的多数支持。
 
-或许幸运的是，这同时也消除了任何妥协的可能——任何折中议案都需获得社民党和 DNVP 的共同支持才能达到修宪所需的 2/3 多数。结果是，许多资产阶级各党的支持者开始喜欢我们的法案，DDP 已宣布中立。
+或许幸运的是，这同时也消除了任何妥协的可能——任何折中议案都需获得社民党和德国国家人民党的共同支持才能达到修宪所需的 2/3 多数。结果是，许多资产阶级各党的支持者开始喜欢我们的法案，德国民主党已宣布中立。
 
 @menu_for_no_real_reason
 view-if: coalition_dissent < 2 or (coalition_dissent < 3 and (dvp_relation >= 40 or (dvp_relation >= 30 and president == "Marx")))
@@ -160,10 +160,10 @@ on-arrival: coalition_dissent += 1; reichswehr_loyalty -= 0.05; coup_progress +=
 
 司法部长古斯塔夫·拉德布鲁赫审查了最高法院的意见，仍坚持自己的看法——公投确实合宪，按宪法所述服务公共利益。
 
-此举与 DVP 产生重大摩擦，DVP 右翼正推动该党转而反对大联合政府。
+此举与德国人民党产生重大摩擦，德国人民党右翼正推动该党转而反对大联合政府。
 
 - @radbruch_resigns2: 司法部长拉德布鲁赫必须辞职。
-- @dvp_withdraws_gov2: DVP 退出政府。
+- @dvp_withdraws_gov2: 德国人民党退出政府。
 - @menu_for_no_real_reason: 但眼下，政府仍然存续。
 
 @radbruch_resigns2
@@ -178,7 +178,7 @@ view-if: coalition_dissent >= 3 or (coalition_dissent >= 2 and dvp_relation < 30
 on-arrival: princes_constitutional = 0; coup_progress -= 1; dvp_relation -= 5; z_relation -= 5; marx_relation -= 5; chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 go-to: menu_for_no_real_reason
 
-DVP 因我方司法部长的决定撤回对科赫-韦泽内阁的信任。科赫-韦泽随即辞职，马克斯任命布吕宁组建由 DNVP 暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
+德国人民党因我方司法部长的决定撤回对科赫-韦泽内阁的信任。科赫-韦泽随即辞职，马克斯任命布吕宁组建由德国国家人民党暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
 
 @true_true
 view-if: justice_minister_party != "SPD"
@@ -192,7 +192,7 @@ go-to: menu_for_no_real_reason
 view-if: princes_initiated and president == "Marx" and judicial_reform >= 2
 subtitle: They allege the bill to be unconstitutional, which would make the referendum one of constitutional revision.
 
-DVP 的法律专家提出意见认为公投违宪，DVP 已将这些异议转交司法部，其右翼正向党施压，要求无论如何也要否决该法案。
+德国人民党的法律专家提出意见认为公投违宪，德国人民党已将这些异议转交司法部，其右翼正向党施压，要求无论如何也要否决该法案。
 
 - @wrong_and_lame2: 司法部认定公投完全合宪。
 - @coalition_dispute: 联合政府陷入分歧。
@@ -201,12 +201,12 @@ DVP 的法律专家提出意见认为公投违宪，DVP 已将这些异议转交
 view-if: justice_minister_party == "SPD"
 on-arrival: princes_constitutional = 1; coalition_dissent += 1; reichswehr_loyalty -= 0.05; coup_progress += 2
 
-司法部长古斯塔夫·拉德布鲁赫审查了 DVP 的意见，仍坚持自己的看法——公投确实合宪，按宪法所述服务公共利益。
+司法部长古斯塔夫·拉德布鲁赫审查了德国人民党的意见，仍坚持自己的看法——公投确实合宪，按宪法所述服务公共利益。
 
-此举与 DVP 产生重大摩擦，DVP 右翼正推动该党转而反对大联合政府。
+此举与德国人民党产生重大摩擦，德国人民党右翼正推动该党转而反对大联合政府。
 
 - @radbruch_resigns2: 司法部长拉德布鲁赫必须辞职。
-- @dvp_withdraws_gov2: DVP 退出政府。
+- @dvp_withdraws_gov2: 德国人民党退出政府。
 - @menu_for_no_real_reason: 但眼下，政府仍然存续。
 
 @coalition_dispute
@@ -214,7 +214,7 @@ view-if: justice_minister_party != "SPD"
 
 联合政府陷入分裂，司法部长的意见在两党立场坚定的国会议员团面前几乎无足轻重。
 
-- @pressure: DVP 必须接受公投合宪。
+- @pressure: 德国人民党必须接受公投合宪。
 - @concede: 社民党必须接受公投违宪。
 - @collapse: 政府垮台。
 
@@ -224,7 +224,7 @@ unavailable-subtitle: The DVP is unwilling.
 on-arrival: coalition_dissent += 1; marx_relation -= 2
 go-to: menu_for_no_real_reason
 
-我们向司法部施压，使其同意我们的意见，并让 DVP 接受这一意见。政府得以存续，公投仍属合宪。
+我们向司法部施压，使其同意我们的意见，并让德国人民党接受这一意见。政府得以存续，公投仍属合宪。
 
 @concede
 on-arrival: left_dissent += 5; marx_relation += 5
@@ -236,4 +236,4 @@ go-to: menu_for_no_real_reason
 on-arrival: princes_constitutional = 0; coup_progress -= 1; dvp_relation -= 5; z_relation -= 5; marx_relation -= 3; chancellor = "Brüning"; chancellor_party = "Z"; spd_in_government = 0; spd_toleration = 0; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"
 go-to: menu_for_no_real_reason
 
-政府因此次争议而垮台，科赫-韦泽辞职。马克斯任命布吕宁组建由 DNVP 暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。
+政府因此次争议而垮台，科赫-韦泽辞职。马克斯任命布吕宁组建由德国国家人民党暂时支持的资产阶级少数派政府。他们立即推翻我们的决定，认定公投违宪。

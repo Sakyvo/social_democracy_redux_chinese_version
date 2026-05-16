@@ -343,7 +343,7 @@ subtitle: The Right ([+ reformist_c +]%) [? if reformist_c < 50 : - though the r
 choose-if: left_c < 50
 on-arrival: peoples_party_support += 1
 
-纲领获得通过。或许这将助力社民党进入德国国家人民党（DNVP）目前主导的乡村地区。
+纲领获得通过。或许这将助力社民党进入德国国家人民党（德国国家人民党）目前主导的乡村地区。
 
 @program_refused
 subtitle: The Left ([+ left_c +]%) [? if left_c < 50 : - though the left lacks a majority, much of the center and trade unions are sympathetic. ?]

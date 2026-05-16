@@ -249,9 +249,9 @@ go-to: coalition_menu
 
 {!<table>!}
 {!<tr><td>政党</td><td>得票率</td><td>变化 %</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD：** {!</td><td>!} **[+ spd_schl +]%** {!</td><td>!} **[+ stpl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党：** {!</td><td>!} **[+ spd_schl +]%** {!</td><td>!} **[+ stpl_change_spd +]** {!</td></tr>!}
 
-[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD： {!</td><td>!} [+ sapd_schl +]% {!</td><td>!} [+ stpl_change_sapd +] {!</td></tr>!} ?]
+[? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}社会主义工人党： {!</td><td>!} [+ sapd_schl +]% {!</td><td>!} [+ stpl_change_sapd +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}共产党： {!</td><td>!} [+ kpd_schl +]% {!</td><td>!} [+ stpl_change_kpd +] {!</td></tr>!}
 
@@ -259,28 +259,28 @@ go-to: coalition_menu
 
 {!<tr><td><div class="box" style='background-color:#000'> </div> !} Z： {!</td><td>!} [+ z_schl +]% {!</td><td>!} [+ stpl_change_z +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP： {!</td><td>!} [+ dvp_schl +]% {!</td><td>!} [+ stpl_change_dvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} 德国人民党： {!</td><td>!} [+ dvp_schl +]% {!</td><td>!} [+ stpl_change_dvp +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} 其他： {!</td><td>!} [+ other_schl +] % {!</td><td>!} [+ stpl_change_other +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP： {!</td><td>!} [+ dnvp_schl +]% {!</td><td>!} [+ stpl_change_dnvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} 德国国家人民党： {!</td><td>!} [+ dnvp_schl +]% {!</td><td>!} [+ stpl_change_dnvp +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP： {!</td><td>!} [+ nsdap_schl +]% {!</td><td>!} [+ stpl_change_nsdap +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} 纳粹党： {!</td><td>!} [+ nsdap_schl +]% {!</td><td>!} [+ stpl_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
 **潜在的执政联盟：**
 
-魏玛联合（SPD + Z + [+ ddp_name +]）：[+ sch_weimar_coalition +]%
+魏玛联合（社民党 + Z + [+ ddp_name +]）：[+ sch_weimar_coalition +]%
 
-大联合政府（SPD + Z + [+ ddp_name +] + DVP）：[+ sch_grand_coalition +]%
+大联合政府（社民党 + Z + [+ ddp_name +] + 德国人民党）：[+ sch_grand_coalition +]%
 
-资产阶级联盟（Z + [+ ddp_name +] + DVP + 其他）：[+ sch_bourgeois_coalition +]%
+资产阶级联盟（Z + [+ ddp_name +] + 德国人民党 + 其他）：[+ sch_bourgeois_coalition +]%
 
-右翼联盟（Z + DVP + 其他 + DNVP）：[+ sch_right_coalition +]%
+右翼联盟（Z + 德国人民党 + 其他 + 德国国家人民党）：[+ sch_right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_schl >= 15 : NSDAP 得票率的迅速上升令人忧虑。许多人此前认为该党已濒临消亡，如今我们中一些人将其视为德国民主面临的最大威胁。 ?]
+[? if nazi_urgency <= 1 and nsdap_schl >= 15 : 纳粹党得票率的迅速上升令人忧虑。许多人此前认为该党已濒临消亡，如今我们中一些人将其视为德国民主面临的最大威胁。 ?]
 
-[? if sch_anti_democratic_coalition >= 50 : 反民主的 共产党、DNVP、NSDAP 三党合计已在邦议会中拥有多数。要形成稳定的执政多数几乎不可能。 ?]
+[? if sch_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党、纳粹党三党合计已在邦议会中拥有多数。要形成稳定的执政多数几乎不可能。 ?]
 
 存在一些可能的执政联盟方案。
 
@@ -312,7 +312,7 @@ title: ...Huh.
 subtitle: SPD + [+ ddp_name +] + DNVP ([+ sch_huh +]%)
 view-if: sch_huh >= 50 and (year < 1930 or dnvp_reform)
 
-这……有点怪。[? if spd_schl >= 50 : 社民党明明拥有单独多数，却特意把 DNVP 也纳入联合政府？ ?][? if spd_schl < 50 and sch_social_liberal >= 50 : 社民党明明仅与 [+ ddp_name +] 就能形成多数，却特意把 DNVP 也纳入联合政府？ ?]
+这……有点怪。[? if spd_schl >= 50 : 社民党明明拥有单独多数，却特意把德国国家人民党也纳入联合政府？ ?][? if spd_schl < 50 and sch_social_liberal >= 50 : 社民党明明仅与 [+ ddp_name +] 就能形成多数，却特意把德国国家人民党也纳入联合政府？ ?]
 
 - @no_judging: 社民党不评判他人。这或许有些奇怪，但他们必定有充分的理由。
 - @judging: 社民党*绝对*在评判。绍姆堡-利珀到底为何要这样做？

@@ -11,7 +11,7 @@ go-to: vonc_menu
 
 = 不信任投票
 
-[? if in_grand_coalition : 德国人民党（DVP） ?][? if in_weimar_coalition or in_popular_front or in_minority_government: 中央党 ?]因我们在各项政策上的分歧与冲突而对我们发起不信任投票。如果通过，几个月后将举行大选。
+[? if in_grand_coalition : 德国人民党（德国人民党） ?][? if in_weimar_coalition or in_popular_front or in_minority_government: 中央党 ?]因我们在各项政策上的分歧与冲突而对我们发起不信任投票。如果通过，几个月后将举行大选。
 
 @vonc_menu
 
@@ -104,7 +104,7 @@ on-arrival: time_to_election = 3
 @dnvp_tolerate
 on-arrival: dnvp_toleration = 1
 
-DNVP 出现分裂，其残存的温和派在席勒（DNVP 的高层成员）被纳入内阁后拒绝对 [+ chancellor +] 投反对票。
+德国国家人民党出现分裂，其残存的温和派在席勒（德国国家人民党的高层成员）被纳入内阁后拒绝对 [+ chancellor +] 投反对票。
 
 @let_it_happen_braun
 on-arrival: spd_caretaker = 1

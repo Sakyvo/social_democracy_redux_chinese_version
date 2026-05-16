@@ -42,7 +42,7 @@ on-arrival: land_referendum_timer += 12; kpd_relation += 5; rural_spd += 6*(1-di
 Q.referendum_support.toFixed(1);
 !}
 
-我们发起一项推行土地改革的请愿，并在乡间发起运动征集签名。许多基层党员在为请愿奔走时与共产党人并肩造势——后者迅速介入[? if kpd_relation < 25 : ，尽管其对社会民主主义素怀敌意 ?]。该请愿很快征集到足够签名进入公投，DNVP 则激烈反对——一些此前反动的农民转而反对该党，DNVP 在乡村的支持率因此下降。
+我们发起一项推行土地改革的请愿，并在乡间发起运动征集签名。许多基层党员在为请愿奔走时与共产党人并肩造势——后者迅速介入[? if kpd_relation < 25 : ，尽管其对社会民主主义素怀敌意 ?]。该请愿很快征集到足够签名进入公投，德国国家人民党则激烈反对——一些此前反动的农民转而反对该党，德国国家人民党在乡村的支持率因此下降。
 
 - @land_reform_success: 公投通过。
 - @land_reform_fail: 公投失败。
@@ -141,7 +141,7 @@ Q.referendum_support.toFixed(1);
 !}
 max-visits: 1
 
-我们发起一项请愿，推动 WTB 计划第一阶段的实施，并为之造势。ADGB 挑起大梁[? if works_council >= 1 : ，协助我们通过工人委员会组织起对请愿的支持 ?]，请愿迅速征集到所需签名。NSDAP 在工人阶级中的许多支持者也支持此请愿，有助分化其支持基础。
+我们发起一项请愿，推动 WTB 计划第一阶段的实施，并为之造势。ADGB 挑起大梁[? if works_council >= 1 : ，协助我们通过工人委员会组织起对请愿的支持 ?]，请愿迅速征集到所需签名。纳粹党在工人阶级中的许多支持者也支持此请愿，有助分化其支持基础。
 
 - @wtb_vote_success_surplus: 公投通过。
 - @wtb_vote_success_deficit: 公投通过。
@@ -191,7 +191,7 @@ on-arrival: abortion_referendum_timer += 12; weimar_dissent += 1 if weimar_plan_
 Q.referendum_support.toFixed(1);
 !}
 
-我们发起一项堕胎合法化的请愿，旋即掀起风暴。进步派政党全力相挺，中央党与 DNVP 则态度强硬地反对。这一争议对社民党有利与否尚难断言，但确实帮助了一些较小的进步派政党借机扩大声量——DDP 便是一例，它在中产阶级中的声望显著提升。
+我们发起一项堕胎合法化的请愿，旋即掀起风暴。进步派政党全力相挺，中央党与德国国家人民党则态度强硬地反对。这一争议对社民党有利与否尚难断言，但确实帮助了一些较小的进步派政党借机扩大声量——德国民主党便是一例，它在中产阶级中的声望显著提升。
 
 - @abortion_success: 公投通过。
 - @abortion_fail: 公投失败。
@@ -200,7 +200,7 @@ Q.referendum_support.toFixed(1);
 view-if: referendum_succeed
 on-arrival: abortion_rights += 1; womens_rights += 1; z_relation -= 5; catholics_spd -= 5; dvp_relation -= 5; new_middle_spd += 2*(1-dissent); new_middle_ddp += 1; workers_z += 3; new_middle_z += 3; old_middle_z += 3; old_middle_dnvp += 2; rural_dnvp += 2; workers_nsdap -= 3; new_middle_nsdap -= 3; old_middle_nsdap -= 1; rural_nsdap -= 1; unemployed_nsdap -= 2; unemployed_z += 3; unemployed_spd += 3*(1-dissent)
 
-公投以 [+ referendum_support +]% 的得票率通过！我们更进步的支持者为之振奋，同时也损伤了我们与中央党的关系。随着围绕堕胎的政治讨论升温，宗教色彩浓厚的中央党与 DNVP 从 NSDAP 手中抢得了部分保守派选票。
+公投以 [+ referendum_support +]% 的得票率通过！我们更进步的支持者为之振奋，同时也损伤了我们与中央党的关系。随着围绕堕胎的政治讨论升温，宗教色彩浓厚的中央党与德国国家人民党从纳粹党手中抢得了部分保守派选票。
 
 @abortion_fail
 view-if: not referendum_succeed

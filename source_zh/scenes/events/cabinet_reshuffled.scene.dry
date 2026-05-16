@@ -13,7 +13,7 @@ go-to: menu if chancellor != "Wirth"; wirth_resign_hindenburg if chancellor == "
 [+ chancellor +] 总理已向 [+ president +] 总统表明意图，将改组内阁——罢免所有社民党籍部长，由资产阶级人士接替。[? if bourgeois_coalition < 50 and right_coalition < 50 : 所幸他们没有我们就拿不到多数，因此一个简单的不信任动议就能让他们下台。 ?]
 
 - @try_assuage: 设法安抚我们的伙伴。
-- @right_coalition: 由 DNVP 取代我们入阁。
+- @right_coalition: 由德国国家人民党取代我们入阁。
 - @minority_bruning: 布吕宁内阁作为少数派政府继续存续。
 - @breitscheid_vonc: 与共产党一道提出建设性不信任动议！
 - @sack_bruning: [+ president +] 解散国会，举行闪电大选。
@@ -112,7 +112,7 @@ on-arrival: time_to_election = 3
 @dnvp_tolerate
 on-arrival: dnvp_toleration = 1
 
-DNVP 出现分裂，其残存的温和派在席勒（DNVP 的高层成员）被纳入内阁后拒绝对 [+ chancellor +] 投反对票。
+德国国家人民党出现分裂，其残存的温和派在席勒（德国国家人民党的高层成员）被纳入内阁后拒绝对 [+ chancellor +] 投反对票。
 
 @wirth_resign_braun
 call: set_next_election_time

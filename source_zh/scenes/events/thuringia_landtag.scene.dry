@@ -260,7 +260,7 @@ go-to: coalition_menu
 
 {!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **SPD:** {!</td><td>!} **[+ spd_tl +]%** {!</td><td>!} **[+ sttl_change_spd +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **社民党:** {!</td><td>!} **[+ spd_tl +]%** {!</td><td>!} **[+ sttl_change_spd +]** {!</td></tr>!}
 
 [? if sapd_formed == 1 : {!<tr><td><div class="box" style='background-color:#C40000'> </div> !}SAPD: {!</td><td>!} [+ sapd_tl +]% {!</td><td>!} [+ sttl_change_sapd +] {!</td></tr>!} ?]
 
@@ -272,24 +272,24 @@ go-to: coalition_menu
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} 其他: {!</td><td>!} [+ other_tl +] % {!</td><td>!} [+ sttl_change_other +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} DVP [? if dr_exists : (统一名单) ?]: {!</td><td>!} [+ dvp_tl +]% {!</td><td>!} [+ sttl_change_dvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#D5AC27'> </div> !} 德国人民党 [? if dr_exists : (统一名单) ?]: {!</td><td>!} [+ dvp_tl +]% {!</td><td>!} [+ sttl_change_dvp +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP [? if dr_exists : (统一名单) ?]: {!</td><td>!} [+ dnvp_tl +]% {!</td><td>!} [+ sttl_change_dnvp +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} 德国国家人民党 [? if dr_exists : (统一名单) ?]: {!</td><td>!} [+ dnvp_tl +]% {!</td><td>!} [+ sttl_change_dnvp +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_tl +]% {!</td><td>!} [+ sttl_change_nsdap +] {!</td></tr>!}
 {!</table>!}
 
 **潜在联合政府：**
 
-魏玛联合（SPD + Z + [+ ddp_name +]）：[+ t_weimar_coalition +]%
+魏玛联合（社民党 + Z + [+ ddp_name +]）：[+ t_weimar_coalition +]%
 
-大联合（SPD + Z + [+ bvp_name +] + [+ ddp_name +] + DVP）：[+ t_grand_coalition +]%
+大联合（社民党 + Z + [+ bvp_name +] + [+ ddp_name +] + 德国人民党）：[+ t_grand_coalition +]%
 
-资产阶级联合（Z + [+ bvp_name +] + [+ ddp_name +] + DVP + 其他）：[+ t_bourgeois_coalition +]%
+资产阶级联合（Z + [+ bvp_name +] + [+ ddp_name +] + 德国人民党 + 其他）：[+ t_bourgeois_coalition +]%
 
-右翼联合（Z + [+ bvp_name +] + DVP + 其他 + DNVP）：[+ t_right_coalition +]%
+右翼联合（Z + [+ bvp_name +] + 德国人民党 + 其他 + 德国国家人民党）：[+ t_right_coalition +]%
 
-[? if nazi_urgency <= 1 and nsdap_tl >= 15 : NSDAP得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
+[? if nazi_urgency <= 1 and nsdap_tl >= 15 : 纳粹党得票的迅速攀升令人极度忧虑。许多人曾以为该党行将消亡；如今，已有人将其视为德国民主面临的最大威胁。 ?]
 
 [? if t_anti_democratic_coalition >= 50 : 反民主的共产党、德国国家人民党与纳粹党合计在邦议会占有多数席位。稳定的执政多数几乎无从建立。 ?]
 
@@ -329,7 +329,7 @@ on-arrival: nazi_thuringia = 1; thuringia_nazi_times += 1; new_middle_nsdap += 2
 
 @left_coalition
 title: 「统一战线」是否可行？
-subtitle: 共产党 + SPD ([+ t_left_coalition +]%)
+subtitle: 共产党 + 社民党 ([+ t_left_coalition +]%)
 view-if: t_left_coalition >= 50
 choose-if: kpd_relation >= 45 and communist_coalition >= 2
 unavailable-subtitle: The 共产党 doesn't trust us enough.

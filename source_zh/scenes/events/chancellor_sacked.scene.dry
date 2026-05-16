@@ -15,7 +15,7 @@ tags: event
 @bruning_right
 on-arrival: spd_in_government = 0; spd_toleration = 0; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"; in_right_coalition = 1
 
-接替我们的是中央党的布吕宁，他重组了内阁以容纳右翼政党，包括勉强遵从兴登堡意愿的 DNVP。他们的联合在国会中令人沮丧地占据多数，这意味着我们被迫接受失败并为下次选举做准备。
+接替我们的是中央党的布吕宁，他重组了内阁以容纳右翼政党，包括勉强遵从兴登堡意愿的德国国家人民党。他们的联合在国会中令人沮丧地占据多数，这意味着我们被迫接受失败并为下次选举做准备。
 
 @no_majority
 on-arrival: spd_in_government = 0; spd_toleration = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister_party = "DVP"; interior_minister_party = "Z"; justice_minister_party = "Z"; labor_minister_party = "Z"; reichswehr_minister_party = "I"; economic_minister_party = "Z"; finance_minister_party = "Z"; agriculture_minister_party = "Z"

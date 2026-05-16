@@ -75,12 +75,12 @@ go-to: cut_benefits_done if not legislature_enabled; legislative_menu if legisla
 @cut_benefits_done
 on-arrival: workers_spd -= 0.12*workers_spd; unemployed_spd -= 0.2*unemployed_spd; workers_kpd += 6; workers_nsdap += 6; unemployed_kpd += 5; unemployed_nsdap += 5; left_dissent += 15; center_dissent += 10; labor_dissent += 15; reformist_dissent += 5; welfare -= 2; budget += 1; unemployed += 3; pro_republic -= 4; kpd_relation -= 8; inflation -= 2; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; economic_growth -= 0.1;
 
-出于预算考虑，我们削减了失业保险待遇。遗憾的是，工人无法理解我们对财政纪律的执着。他们对我们的背叛怒不可遏，党内各派系相当一部分人亦然。我们的损失即共产党的所得，甚至连 NSDAP——那些资产阶级的哈巴狗——也加入了对我们紧缩政策的抨击。
+出于预算考虑，我们削减了失业保险待遇。遗憾的是，工人无法理解我们对财政纪律的执着。他们对我们的背叛怒不可遏，党内各派系相当一部分人亦然。我们的损失即共产党的所得，甚至连纳粹党——那些资产阶级的哈巴狗——也加入了对我们紧缩政策的抨击。
 
 
 
 @increase_employers
-subtitle: 雇主将强烈反对。[? if in_grand_coalition: DVP 很可能因此打破联合政府。 ?]
+subtitle: 雇主将强烈反对。[? if in_grand_coalition: 德国人民党很可能因此打破联合政府。 ?]
 on-arrival: increase_employers_vote = 1
 go-to: increase_employers_done if not legislature_enabled; legislative_menu if legislature_enabled
 
@@ -92,7 +92,7 @@ on-arrival: capital_strike_progress += 2; coalition_dissent = 2 if in_grand_coal
 我们已增加雇主对失业保险基金的缴费，使该计划得以延续，而又不伤害工人与失业者。资本家及其政党怒火中烧实属情理之中；而我们在工会与失业者中的基本盘则为此欣喜。
 
 @balance
-subtitle: 工人和雇主都不会完全满意、亦不会完全不满。[? if in_grand_coalition and dvp_relation < 30: DVP 很可能认为该折中方案无法接受。 ?][? if in_grand_coalition and dvp_relation >= 30: DVP 或能勉强接受此折中方案。 ?]
+subtitle: 工人和雇主都不会完全满意、亦不会完全不满。[? if in_grand_coalition and dvp_relation < 30: 德国人民党很可能认为该折中方案无法接受。 ?][? if in_grand_coalition and dvp_relation >= 30: 德国人民党或能勉强接受此折中方案。 ?]
 on-arrival: balance_vote = 1
 go-to: balance_done if not legislature_enabled; legislative_menu if legislature_enabled
 
@@ -101,4 +101,4 @@ go-to: balance_done if not legislature_enabled; legislative_menu if legislature_
 @balance_done
 on-arrival: workers_spd -= 4; unemployed_spd -= 5; workers_kpd += 4; unemployed_kpd += 3; unemployed_nsdap += 3; left_dissent += 10; labor_dissent += 8; center_dissent += 5; welfare -= 1; budget += 1; month += 1; kpd_relation -= 4; inflation -= 1; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; coalition_dissent = 2 if in_grand_coalition and dvp_relation < 30; coalition_dissent += 1 if in_grand_coalition; economic_growth -= 0.1;
 
-我们的折中方案难令任何一方尽兴。许多工人与失业者视之为背叛，尽管我们将其呈现为成功避免了更差结果。[? if in_grand_coalition: 与此同时，DVP 对哪怕任何一点对企业增税的前景都惊恐万分。 ?]
+我们的折中方案难令任何一方尽兴。许多工人与失业者视之为背叛，尽管我们将其呈现为成功避免了更差结果。[? if in_grand_coalition: 与此同时，德国人民党对哪怕任何一点对企业增税的前景都惊恐万分。 ?]
