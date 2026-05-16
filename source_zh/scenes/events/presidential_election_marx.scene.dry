@@ -337,7 +337,7 @@ Results:
 on-arrival: president = "Seeckt"; chancellor = "Papen"; chancellor_party = "I"; time_to_election = 3
 call: set_next_election_time
 
-汉斯·冯·泽克特（Hans von Seeckt）作为反动派与反共和派候选人当选总统。他的首项举措便是以前中央党的无党派人士弗朗茨·冯·巴本（Papen）取代现任总理，并解散帝国议会重新选举，期望反动派联合政府能取得多数席位。
+汉斯·冯·泽克特（Hans von Seeckt）作为反动派与反共和派候选人当选总统。他的首项举措便是以前中央党的无党派人士弗朗茨·冯·巴本（Papen）取代现任总理，并解散国会大厦重新选举，期望反动派联合政府能取得多数席位。
 
 @marx_wins
 on-arrival: president = "Marx"; marx_relation += 5; reformist_strength += 5; coup_progress += 2; {!

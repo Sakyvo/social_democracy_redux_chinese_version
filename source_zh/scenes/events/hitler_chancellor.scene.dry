@@ -12,7 +12,7 @@ go-to: choose if not spd_prussia and not z_prussia; prussian_overthrow if spd_pr
 
 他承诺对社会主义者展开复仇运动，纳粹早已在街头染了一手血。在他发表的宣言中，他承诺对犹太人发起难以言喻的恐怖运动，并发动无尽的暴力扩张战争，把整个欧洲推向毁灭。
 
-[? if spd_prussia or z_prussia : 作为巩固绝对权力的第一步，希特勒下令以"帝国执行令"（Reichsexekution）程序解散普鲁士邦政府。我们的许多成员已准备好抵抗——退让无异于走向终结。 ?]
+[? if spd_prussia or z_prussia : 作为巩固绝对权力的第一步，希特勒下令以"国家执行令"（Reichsexekution）程序解散普鲁士邦政府。我们的许多成员已准备好抵抗——退让无异于走向终结。 ?]
 
 我们现在该怎么办？
 

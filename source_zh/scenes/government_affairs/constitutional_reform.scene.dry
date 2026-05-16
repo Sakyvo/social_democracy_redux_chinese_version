@@ -100,7 +100,7 @@ achievement: verfassungsreform
 我们成功通过一项宪法修订：无法组建新政府时，不信任投票不得发起。但愿这能提升政府的稳定性。
 
 @presidential_powers
-subtitle: 总统不再可随意解散国会，或对邦政府发起「帝国执行」。
+subtitle: 总统不再可随意解散国会，或对邦政府发起「国家执行」。
 on-arrival: {!
 Q.reform_support = Q.spd_normalized + Q.ddp_normalized + Q.kpd_normalized;
 if (Q.z_relation > 49 && (Q.president == "Hindenburg" || Q.president == "Eckener")) {
@@ -113,7 +113,7 @@ view-if: presidential_powers = 0
 
 宪法所赋予的总统广泛权力可能是威权主义的潜在通道。因此我们可支持限制总统权力的改革，终结其单方面终止民选政府、以及撤换邦政府的权力。
 
-德共赞成此项改革——他们过去曾是「帝国执行」的受害者（德共支持下的图林根与萨克森邦政府曾被撤换）。[+ ddp_name +] 的民主派也予以支持。[? if president == "Hindenburg": 然而保守派的反对声浪激烈——他们视削减总统权力为对兴登堡的不敬。 ?] [? if z_relation <= 49 and president == "Hindenburg" : 中央党因此受影响而反对这些改革。 ?] [? if z_relation > 49 and president == "Hindenburg" : 尽管如此，中央党仍支持此项改革。 ?] [? if president == "Braun" : 中央党支持此项改革。 ?]
+德共赞成此项改革——他们过去曾是「国家执行」的受害者（德共支持下的图林根与萨克森邦政府曾被撤换）。[+ ddp_name +] 的民主派也予以支持。[? if president == "Hindenburg": 然而保守派的反对声浪激烈——他们视削减总统权力为对兴登堡的不敬。 ?] [? if z_relation <= 49 and president == "Hindenburg" : 中央党因此受影响而反对这些改革。 ?] [? if z_relation > 49 and president == "Hindenburg" : 尽管如此，中央党仍支持此项改革。 ?] [? if president == "Braun" : 中央党支持此项改革。 ?]
 
 - @presidential_powers_2: 发起宪法公投以通过此项改革！
 - @reforms_menu: 查看其他改革选项。

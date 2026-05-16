@@ -81,7 +81,7 @@ max-visits: 1
 on-arrival: braun_percent = 0.7
 go-to: cb2
 
-德共推出了名不见经传的恩斯特·台尔曼；DVP与DNVP共推卡尔·亚雷斯（Jarres）作为「帝国集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的BVP则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
+德共推出了名不见经传的恩斯特·台尔曼；DVP与DNVP共推卡尔·亚雷斯（Jarres）作为「国家集团」（Reichsblock）候选人。中央党推出党魁威廉·马克斯（Marx）；不愿支持任何主要候选人的BVP则推出海因里希·黑尔德。德国民主党推出威利·黑尔帕赫（Hellpach）。与此同时，刚刚改组的国家社会主义者背书鲁登道夫。
 
 @cb2
 
@@ -310,7 +310,7 @@ Results:
 @hindenburg_wins
 on-arrival: former_president = "Hindenburg"; president = "Hindenburg"; pro_republic -= 5; nationalism += 5; workers_spd -= 6; unemployed_spd -= 6; workers_kpd += 4; unemployed_kpd += 4; west_relation -= 2; east_relation -= 2; dvp_relation -= 5; kpd_relation += 5; left_strength += 5; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
 
-保罗·冯·兴登堡（Hindenburg）在反动派右翼齐集**帝国集团**之下赢得了选举。尽管党内不少人预计他将立即按威权与贵族路线重塑德国，但目前他似乎仍在遵循宪法。无论如何，这都是德国民主转向黑暗的征兆。谁知道兴登堡掌权后会做什么呢？
+保罗·冯·兴登堡（Hindenburg）在反动派右翼齐集**国家集团**之下赢得了选举。尽管党内不少人预计他将立即按威权与贵族路线重塑德国，但目前他似乎仍在遵循宪法。无论如何，这都是德国民主转向黑暗的征兆。谁知道兴登堡掌权后会做什么呢？
 
 @marx_wins
 on-arrival: former_president = "Marx"; president = "Marx"; marx_relation += 10; pro_republic += 5; nationalism -= 5; z_relation += 5; ddp_relation += 5; reformist_strength += 5; jarres_campaign = 0; marx_campaign = 0; held_campaign = 0; thalmann_campaign = 0; ludendorff_campaign = 0; hellpach_campaign = 0; gessler_campaign = 0; braun_campaign = 0; z_support_braun = 0; ddp_support_braun = 0; bvp_support_hindenburg = 0
@@ -338,7 +338,7 @@ go-to: braun2_menu
 
 奥托·布劳恩拿下了[? if braun_votes_disp > spd_r : 惊人的 ?] [+ braun_votes_disp +]%，轻松领先魏玛联合内的其他政党。然而，德意志帝国时代的选举经验显示，资产阶级选民在决选中很少投票给社会民主党人——或许第二轮转而支持威廉·马克斯更为明智，尤其是中央党承诺：若我党如此行事，他们将投票让奥托·布劳恩出任普鲁士州长。
 
-与此同时，右翼的**帝国集团**绝望地寻找一名能够动员其阵营更高投票率的候选人。他们能否成功，尚未可知。
+与此同时，右翼的**国家集团**绝望地寻找一名能够动员其阵营更高投票率的候选人。他们能否成功，尚未可知。
 
 @braun2_menu
 
@@ -541,7 +541,7 @@ go-to: bc2
 subtitle: There's always a but.
 on-arrival: held_campaign = 0; hergt25_campaign = 0; ludendorff_campaign = 0; hindenburg_campaign = 1; bvp_support_hindenburg = 1 if z_relation < 55; bvp_support_gessler = 1 if z_relation > 65; nationalism += 5
 
-保罗·冯·兴登堡出人意料地以**帝国集团**候选人的身份在第二轮参选。兴登堡被右翼视为战争英雄——他在德意志帝国时期任陆军元帅，曾在坦能堡战役中击败俄国。但在我党眼中，他是反动的容克贵族，是「背后捅刀子」神话的主要兜售者之一，正是这一神话夺去了弗里德里希·艾伯特的生命。
+保罗·冯·兴登堡出人意料地以**国家集团**候选人的身份在第二轮参选。兴登堡被右翼视为战争英雄——他在德意志帝国时期任陆军元帅，曾在坦能堡战役中击败俄国。但在我党眼中，他是反动的容克贵族，是「背后捅刀子」神话的主要兜售者之一，正是这一神话夺去了弗里德里希·艾伯特的生命。
 
 DVP承受着巨大的内部压力，要求其撤回对盖斯勒的支持——如此一来我党将失去候选人，被迫另推一人。
 

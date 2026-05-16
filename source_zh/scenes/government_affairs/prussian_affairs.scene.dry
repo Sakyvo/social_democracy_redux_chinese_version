@@ -94,4 +94,4 @@ on-arrival: prussian_concordat_progress += 1; z_relation += 2*(1-dissent);
 view-if: prussian_concordat_progress >= 1 and prussian_concordat = 0
 on-arrival: prussian_concordat = 1; z_relation += 5; catholics_spd += 3*(1-dissent)
 
-我们已签署了普鲁士自由邦与罗马天主教会之间的政教协约，保障天主教徒在普鲁士的宗教自由。此举为日后与全德范围内的《帝国政教协约》谈判奠定基础。
+我们已签署了普鲁士自由邦与罗马天主教会之间的政教协约，保障天主教徒在普鲁士的宗教自由。此举为日后与全德范围内的《国家政教协约》谈判奠定基础。

@@ -175,7 +175,7 @@ view-if: reichskonkordat_progress >= 4 and reichskonkordat = 0
 on-arrival: concordat_vote = 1
 go-to: concordat_done if not legislature_enabled; legislative_menu if legislature_enabled
 
-我们将《帝国政教协约》（Reichskonkordat）提交国会表决。
+我们将《国家政教协约》（Reichskonkordat）提交国会表决。
 
 @concordat_done
 on-arrival: reichskonkordat = 1; z_relation += 15*(1-dissent); catholics_spd += 8*(1-dissent); catholics_z += 5 if in_weimar_coalition or in_grand_coalition or in_popular_front;
@@ -216,7 +216,7 @@ view-if: west_relation >= 5 and east_relation >= 4 and eu_progress >= 2 and not 
 on-arrival: eu_vote = 1
 go-to: eu_done if not legislature_enabled; legislative_menu if legislature_enabled
 
-我们将《帝国政教协约》提交国会表决。
+我们将《国家政教协约》提交国会表决。
 
 @eu_done
 on-arrival: eu = 1; unemployed -= 2 if unemployed >= 10; inflation += 2 if inflation <= -2; inflation -= 1 if inflation >= 4.5; workers_spd += 5*(1-dissent); new_middle_spd += 5*(1-dissent); old_middle_spd += 5*(1-dissent); rural_spd += 4*(1-dissent); catholics_spd += 4*(1-dissent); unemployed_spd += 4*(1-dissent); pro_republic += 5; nationalism -= 5; budget += 1; economic_growth += 1; economic_growth += 1 if economic_growth < 3

@@ -14,7 +14,7 @@ on-arrival: thuringia_seen = 1
 
 有充分理由认为纳粹政府的过度行为违宪——自社会主义者在总统选举中获胜以来，这些行为愈演愈烈，他们试图进一步巩固对该邦的控制。若我们不采取行动将其赶下台，他们可能得逞，将该邦塑造成其形象，甚至将其作为政变的跳板。但若我们行动，可能引发内战。
 
-- @reichsexekute_thuringia: [+ president +] 总统将下令对图林根实施「帝国执行」。
+- @reichsexekute_thuringia: [+ president +] 总统将下令对图林根实施「国家执行」。
 - @do_nothing: 我们不能冒险对图林根采取行动而掀起波澜。
 - @easy_discard
 
@@ -23,9 +23,9 @@ go-to: nazi_resist if sa_force+sh_force >= (rb_force*(1-dissent))+((army_force+(
 
 @nazi_resist
 
-命令已签署，「帝国执行」开始。可靠的军警力量进入图林根，迅速占领关键政府基础设施，但很快遭到冲锋队的阻挠——后者已被迅速动员起来抵抗正在进行的「帝国执行」。若我们继续推进，有升级为内战的风险。但若我们取消，将蒙受可能无法修复的羞辱，纳粹宣传机器也将获得无可比拟的助力。
+命令已签署，「国家执行」开始。可靠的军警力量进入图林根，迅速占领关键政府基础设施，但很快遭到冲锋队的阻挠——后者已被迅速动员起来抵抗正在进行的「国家执行」。若我们继续推进，有升级为内战的风险。但若我们取消，将蒙受可能无法修复的羞辱，纳粹宣传机器也将获得无可比拟的助力。
 
-- @force_execution: 强行推进「帝国执行」！
+- @force_execution: 强行推进「国家执行」！
 - @call_it_off: 我们承担不起内战的风险。取消行动。
 
 @force_execution
@@ -36,7 +36,7 @@ go-to: dislodge if reichsexekution_strength > nazi_strength; dislodge_fail if na
 on-arrival: sa_strength *= 0.95; sa_militancy -= 0.02; rb_strength *= 0.99
 go-to: successful_reichsexekution
 
-我方力量向法西斯顽抗者发起进攻，占领该邦各关键阵地——血腥的交火与冲突逐渐平息，无能的纳粹抵抗在国家全力打击下土崩瓦解。弗里茨·绍克尔（Fritz Sauckel）被捕并拘押，该邦控制权通过帝国专员暂时置于联邦权威之下。
+我方力量向法西斯顽抗者发起进攻，占领该邦各关键阵地——血腥的交火与冲突逐渐平息，无能的纳粹抵抗在国家全力打击下土崩瓦解。弗里茨·绍克尔（Fritz Sauckel）被捕并拘押，该邦控制权通过国家专员暂时置于联邦权威之下。
 
 @successful_reichsexekution
 on-arrival: coup_progress += 1 if reichswehr_loyalty < 0.1; coup_progress += 1 if largest_party == "NSDAP"; coup_progress += 2; coup_progress += 1 if sa_force+sh_force >= 50; coup_progress -= 1 if nazi_decline; coup_progress -= 1 if nazi_peak; sa_militancy -= 0.03; sa_strength -= 50; workers_nsdap -= 5; unemployed_nsdap -= 5; new_middle_nsdap -= 4; old_middle_nsdap -= 3; rural_nsdap -= 3; pro_republic -= 2
@@ -44,19 +44,19 @@ on-arrival: coup_progress += 1 if reichswehr_loyalty < 0.1; coup_progress += 1 i
 @dislodge_fail
 on-arrival: nazi_rebel = 1
 
-我方力量向法西斯顽抗者发起进攻，血腥的交火与冲突在该邦各地爆发。哈茨堡阵线动员其力量对抗政府以保卫图林根，纳粹顽强抵抗我们的「帝国执行」。
+我方力量向法西斯顽抗者发起进攻，血腥的交火与冲突在该邦各地爆发。哈茨堡阵线动员其力量对抗政府以保卫图林根，纳粹顽强抵抗我们的「国家执行」。
 
 - @civil_war: 内战爆发了。
 
 @call_it_off
 on-arrival: coup_progress += 4; capital_strike_progress += 2; pro_republic -= 8; sa_strength += 200; sa_strength += 0.1; workers_nsdap += 6; unemployed_nsdap += 6; new_middle_nsdap += 6; old_middle_nsdap += 6; rural_nsdap += 6; workers_spd -= 3
 
-被反动派的力量展示所压倒，我们撤退并取消「帝国执行」。纳粹宣布胜利，其力量大幅增强，继续巩固对图林根的控制，同时借机攻击我们的无能。
+被反动派的力量展示所压倒，我们撤退并取消「国家执行」。纳粹宣布胜利，其力量大幅增强，继续巩固对图林根的控制，同时借机攻击我们的无能。
 
 @nazi_concede
 go-to: successful_reichsexekution
 
-命令已签署，「帝国执行」开始。可靠的军警力量进入图林根，迅速占领关键政府基础设施。纳粹措手不及，政府力量在他们反应过前便已控制图林根，并将其置于联邦直接权威之下。纳粹高呼「马克思主义者巩固权力」，但至少我们阻止了他们将图林根变成其落后堡垒。
+命令已签署，「国家执行」开始。可靠的军警力量进入图林根，迅速占领关键政府基础设施。纳粹措手不及，政府力量在他们反应过前便已控制图林根，并将其置于联邦直接权威之下。纳粹高呼「马克思主义者巩固权力」，但至少我们阻止了他们将图林根变成其落后堡垒。
 
 @do_nothing
 on-arrival: sa_strength += 100; sa_militancy += 0.05; coup_progress += 1; reichswehr_loyalty -= 0.02; pro_republic -= 5; workers_nsdap += 3; unemployed_nsdap += 4; rural_nsdap += 4; old_middle_nsdap += 4; new_middle_nsdap += 3;

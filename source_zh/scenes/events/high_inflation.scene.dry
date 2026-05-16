@@ -14,7 +14,7 @@ tags: event
 - @taxes: 加税。
 - @welfare: 削减福利与社会开支。
 - @price_controls: 实施物价和工资管制。
-- @bank: 帝国银行这次总该拿出方案来了吧？
+- @bank: 国家银行这次总该拿出方案来了吧？
 - @nothing: 现实地说，我们无能为力。
 
 @taxes
@@ -35,7 +35,7 @@ on-arrival: capital_strike_progress += 3; inflation -= 3; hyperinflation = 0; co
 @bank
 on-arrival: capital_strike_progress += 2
 
-不出所料地遗憾的是，帝国银行拒绝向政府伸出援手，声称问题都怪我们的社会主义政策。帝国银行行长[? if year <= 1930 : 亚尔马·沙赫特 ?][? if year > 1930 : 汉斯·路德 ?]差不多是在公开呼吁政府倒台。
+不出所料地遗憾的是，国家银行拒绝向政府伸出援手，声称问题都怪我们的社会主义政策。国家银行行长[? if year <= 1930 : 亚尔马·沙赫特 ?][? if year > 1930 : 汉斯·路德 ?]差不多是在公开呼吁政府倒台。
 
 @nothing
 on-arrival: capital_strike_progress += 1

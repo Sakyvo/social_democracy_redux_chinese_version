@@ -149,7 +149,7 @@ go-to: menu_for_no_real_reason
 subtitle: They allege the bill to be unconstitutional, which would make the referendum one of constitutional revision.
 view-if: princes_initiated and president == "Marx" and judicial_reform < 2
 
-帝国法院（最高法院）向由 [+ justice_minister_party +] 主政的司法部提交意见：该公投提案违宪，因此需获非凡多数——不仅是投票者的多数，而是全体合资格德国选民的多数。
+国家法院（最高法院）向由 [+ justice_minister_party +] 主政的司法部提交意见：该公投提案违宪，因此需获非凡多数——不仅是投票者的多数，而是全体合资格德国选民的多数。
 
 - @wrong_and_lame: 司法部认定公投完全合宪。
 - @true_true: 司法部认同最高法院的意见。

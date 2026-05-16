@@ -12,7 +12,7 @@ set-jump: post_election_1928
 
 = 国会大选，[+ month : month +] [+ year +]
 
-帝国议会选举即将举行。
+国会大厦选举即将举行。
 
 - @election_algorithm: 愿我们全力以赴……
 - @cancel_elections
@@ -703,7 +703,7 @@ view-if: z_party_leader == "Kaas" and reichskonkordat
 on-arrival: against_enable += z_r; z_voted = 1
 go-to: enabling_menu
 
-我们提醒卡斯布莱特沙伊德所促成的「帝国政教协定」，从而消除了中央党支持纳粹的一个重要理由。受此提醒，他们承诺投票反对。
+我们提醒卡斯布莱特沙伊德所促成的「国家政教协定」，从而消除了中央党支持纳粹的一个重要理由。受此提醒，他们承诺投票反对。
 
 @failure_z
 on-arrival: z_relation -= 10; enabling_r += z_r; z_voted = 1
@@ -1112,7 +1112,7 @@ go-to: bruning_lead if no_majority_elections < 3 and (chancellor != "Seldte" or 
 @luther_lead
 on-arrival: chancellor = "Luther"; chancellor_party = "I"
 
-无明显可行多数。[+ president +] 总统对布吕宁屡次组阁失败已感厌倦，将组建政府的任务交给前 DVP 成员、帝国银行行长汉斯·路德，希望他能赢得国会广泛支持。
+无明显可行多数。[+ president +] 总统对布吕宁屡次组阁失败已感厌倦，将组建政府的任务交给前 DVP 成员、国家银行行长汉斯·路德，希望他能赢得国会广泛支持。
 
 - @toleration_luther: 我们将容忍路德。
 - @new_elections: 我们将举行新选举。
@@ -1171,7 +1171,7 @@ go-to: bruning_lead if no_majority_elections < 1; schacht_lead if investigate_fa
 @schacht_lead
 on-arrival: chancellor = "Schacht"; chancellor_party = "I"; schacht_stalhelm = 1 if sh_banned; sh_banned = 0; welfare -= 1; judicial_reform -= 1 if judicial_reform >= 1; schacht_election = 1; next_election_time = time+3; next_election_month = month + 3; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
 
-无明显可行多数。埃克纳总统决定改任命前帝国银行行长亚尔马·沙赫特领导技术官僚内阁。埃克纳期望我们容忍他，但本党多数人对他难以接受。[? if schacht_stalhelm : 他已合法化钢盔团。 ?]
+无明显可行多数。埃克纳总统决定改任命前国家银行行长亚尔马·沙赫特领导技术官僚内阁。埃克纳期望我们容忍他，但本党多数人对他难以接受。[? if schacht_stalhelm : 他已合法化钢盔团。 ?]
 
 幸而，这一艰难抉择已替我们做出——无论我们如何投票，国会多数都将反对他。新选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
@@ -1329,7 +1329,7 @@ max-visits: 1
 on-arrival: schleicher_support += z_r; z_support_schleicher = 1
 go-to: schleicher_menu
 
-中央党已同意支持施莱谢尔[? if not reichskonkordat :，以换取他对帝国政教协定的支持承诺?]。
+中央党已同意支持施莱谢尔[? if not reichskonkordat :，以换取他对国家政教协定的支持承诺?]。
 
 @schleicher_dvp
 view-if: schleicher_support < 50
