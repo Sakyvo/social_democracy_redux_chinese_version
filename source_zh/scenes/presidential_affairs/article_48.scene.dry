@@ -8,7 +8,7 @@ on-departure: article_48_timer += 12
 
 = 第 48 条
 
-凭借总统与总理双重职权的支持，我们可在必要时签署广泛的法令以绕过国会——尽管国会仍可以简单多数废除这些法令。
+凭借总统与总理双重职权的支持，我们可在必要时签署广泛的法令以绕过国会大厦——尽管国会大厦仍可以简单多数废除这些法令。
 
 [? if return_to_normalcy : 鉴于普遍认为危机时期已过，动用紧急权力的想法遭到反对——人们担心此举会开创恶劣先例。 ?]
 
@@ -21,9 +21,9 @@ choose-if: judicial_reform >= 3 and ((neorevisionist_strength+left_strength+unem
 unavailable-subtitle: [? if judicial_reform < 3 : 反动的司法机构会以违宪为由将其推翻。 ?][? if neorevisionist_strength+left_strength+unemployed < 50 : 党内认为这些法令并无必要。 ?]
 on-arrival: reenable_legislature = 1 if legislature_enabled and (in_emergency_government or spd_caretaker); legislature_enabled = 0 if reenable_legislature; coup_progress += 2; capital_strike_progress += 1; z_relation -= 5; ddp_relation -= 5; dvp_relation -= 5; coup_progress += article_48_timer/2; z_relation -= article_48_timer; ddp_relation -= article_48_timer; dvp_relation -= article_48_timer
 
-通过第 48 条，我们可以做到远超常规手段的改变。[? if not spd_caretaker and not in_emergency_government : 然而，只要国会仍在开会，它仍可阻挠我们。我们是否应解散国会？ ?]
+通过第 48 条，我们可以做到远超常规手段的改变。[? if not spd_caretaker and not in_emergency_government : 然而，只要国会大厦仍在开会，它仍可阻挠我们。我们是否应解散国会大厦？ ?]
 
-- @dissolve_reichstag: 解散国会以举行新选举，使我们得以法令治国。
+- @dissolve_reichstag: 解散国会大厦以举行新选举，使我们得以法令治国。
 - #govt_affairs
 
 @dissolve_reichstag

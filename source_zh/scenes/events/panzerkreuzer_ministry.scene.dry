@@ -16,7 +16,7 @@ new-page: true
 @vote_yes
 on-arrival: left_dissent += 10; labor_dissent += 10; center_dissent += 5; reformist_dissent += 5; neorevisionist_dissent += 5; reichswehr_loyalty += 0.1; panzerkreuzer_funded = 1; socialism -= 3
 
-我们支持建造战斗巡洋舰，使军方满意。然而，我们的基层党员对我们的强硬态度感到震惊！许多党支部已开始反对国会党团。
+我们支持建造战斗巡洋舰，使军方满意。然而，我们的基层党员对我们的强硬态度感到震惊！许多党支部已开始反对国会大厦党团。
 
 @vote_no
 on-arrival: coalition_dissent += 1; reichswehr_loyalty -= 0.05; left_dissent -= 10; labor_dissent -= 10; center_dissent -= 5; reformist_dissent -= 5; neorevisionist_dissent -= 5; nationalism -= 5; pacifism += 1; z_relation -= 5; dvp_relation -= 5; workers_spd += 5*(1-dissent); panzerkreuzer_failed = 1; coup_progress += 1; coup_progress += 1 if reichswehr_strength < 100

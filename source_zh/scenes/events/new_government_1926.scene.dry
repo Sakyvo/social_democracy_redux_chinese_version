@@ -58,7 +58,7 @@ on-arrival: spd_toleration = 1; dvp_relation += 3; z_relation += 4; ddp_relation
 我们走着瞧。眼下，社民党不会对政府动手。[? if not princes_initiated: 然而，社民党继续在野，加之大联合政府眼下已成泡影，再次为我们与共产党人就王公财产公投的合作打开了大门。 ?]
 
 - @back_referendum: 支持共产党人发起的公投。
-- @refuse_referendum: 我们仍可在国会内解决此事。
+- @refuse_referendum: 我们仍可在国会大厦内解决此事。
 
 @back_referendum
 view-if: not princes_initiated
@@ -70,7 +70,7 @@ on-arrival: princes_initiated = 1; princes_time = time+2; kpd_relation += 5; dvp
 view-if: not princes_initiated
 on-arrival: princes_time = time+3; left_dissent += 5; workers_spd -= 4; workers_kpd += 4; unemployed_spd -= 5; unemployed_kpd += 5; rural_kpd += 1; dvp_relation += 5; z_relation += 5; ddp_relation += 5; marx_relation += 5
 
-我们继续拒绝支持共产党人的公投倡议。这虽让共产党得了便宜，但也为在国会内通过妥协解决问题留下了空间。
+我们继续拒绝支持共产党人的公投倡议。这虽让共产党得了便宜，但也为在国会大厦内通过妥协解决问题留下了空间。
 
 @vonc_luther
 choose-if: left_strength > center_strength+reformist_strength

@@ -112,7 +112,7 @@ go-to: new_elections_braun_2 if nsdap_normalized + dnvp_normalized >= 0.5 and fa
 
 @new_elections_braun_reject
 
-法西斯拒绝了我们的自由公正大选提议。他们要求 [+ president +] 总统罢免现政府、任命希特勒为总理。[? if far_right_coalition >= 50 : 他们声称，鉴于极右翼联盟在国会拥有多数席位，他们在宪法上有权任命总理。不幸的是，他们的论据并非完全错误。 ?]
+法西斯拒绝了我们的自由公正大选提议。他们要求 [+ president +] 总统罢免现政府、任命希特勒为总理。[? if far_right_coalition >= 50 : 他们声称，鉴于极右翼联盟在国会大厦拥有多数席位，他们在宪法上有权任命总理。不幸的是，他们的论据并非完全错误。 ?]
 
 - @braun_appoints_hitler
 - @fight

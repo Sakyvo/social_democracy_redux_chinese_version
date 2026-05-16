@@ -64,7 +64,7 @@ go-to: muller_passed if left_coalition < 50; muller_beaten if left_coalition >= 
 @muller_beaten
 on-arrival: panzerkreuzer_funded = 0; nationalism -= 3*(1-dissent); panzerkreuzer_failed = 1; workers_spd += 5*(1-dissent); coup_progress += 1; bill_support = bourgeois_coalition+far_right_coalition
 
-联合政府伙伴对我们的强硬大为震惊！尽管穆勒总理否决该提案，其他政党仍把此事提交国会表决，结果同样未通过——即便只有社民党和共产党投反对票。该舰不会开建！
+联合政府伙伴对我们的强硬大为震惊！尽管穆勒总理否决该提案，其他政党仍把此事提交国会大厦表决，结果同样未通过——即便只有社民党和共产党投反对票。该舰不会开建！
 
 共产党：反对
 
@@ -91,7 +91,7 @@ Z：赞成
 @muller_passed
 on-arrival: panzerkreuzer_funded = 1; bill_support = bourgeois_coalition+far_right_coalition
 
-联合政府伙伴对我们的强硬大为震惊！尽管穆勒总理否决该提案，其他政党仍把此事提交国会表决，轻松通过——唯有社民党和共产党投反对票。该舰将开建。
+联合政府伙伴对我们的强硬大为震惊！尽管穆勒总理否决该提案，其他政党仍把此事提交国会大厦表决，轻松通过——唯有社民党和共产党投反对票。该舰将开建。
 
 共产党：反对
 
@@ -118,7 +118,7 @@ Z：赞成
 @vote_no_success
 on-arrival: panzerkreuzer_funded = 0; nationalism -= 3*(1-dissent); panzerkreuzer_failed = 1; workers_spd += 5*(1-dissent); coup_progress += 1; bill_support = bourgeois_coalition+far_right_coalition
 
-联合政府伙伴对我们的强硬大为震惊！[+ chancellor +] 总理把此事提交国会表决，结果失败——尽管除社民党和共产党外所有党都投了赞成票。该舰不会开建！
+联合政府伙伴对我们的强硬大为震惊！[+ chancellor +] 总理把此事提交国会大厦表决，结果失败——尽管除社民党和共产党外所有党都投了赞成票。该舰不会开建！
 
 共产党：反对
 
@@ -145,7 +145,7 @@ Z：赞成
 @vote_no_pass
 on-arrival: panzerkreuzer_funded = 1; bill_support = bourgeois_coalition+far_right_coalition
 
-联合政府伙伴对我们的强硬大为震惊！[+ chancellor +] 总理把此事提交国会表决，结果通过——除社民党和共产党外所有党都投赞成票。该舰将开建。
+联合政府伙伴对我们的强硬大为震惊！[+ chancellor +] 总理把此事提交国会大厦表决，结果通过——除社民党和共产党外所有党都投赞成票。该舰将开建。
 
 共产党：反对
 
@@ -174,7 +174,7 @@ on-arrival: bill_support = 100*((bourgeois_coalition+far_right_coalition)/(100-(
 Q.bill_support = Math.round(Q.bill_support);
 !}
 
-联合政府伙伴对我们的强硬大为震惊！尽管我们弃权，国会表决依然通过——除社民党和共产党外所有党都投赞成票。该舰将开建。
+联合政府伙伴对我们的强硬大为震惊！尽管我们弃权，国会大厦表决依然通过——除社民党和共产党外所有党都投赞成票。该舰将开建。
 
 共产党：反对
 

@@ -291,7 +291,7 @@ on-arrival: government_decided = 1
 view-if: president != "Hindenburg"
 on-arrival: pro_republic -= 10; z_relation -= 5; z_relation -= 5 if z_party_leader == "Kaas"; ddp_relation -= 5; dvp_relation -= 10; enabling_act = 1
 
-我们以 [+ president +] 的签署与国会三分之二多数票通过了《授权法》。这也允许我们在必要时进一步颁布法令。
+我们以 [+ president +] 的签署与国会大厦三分之二多数票通过了《授权法》。这也允许我们在必要时进一步颁布法令。
 
 - @decrees: 我们必须签署法令。
 - @agenda_gov: 这样就够了。
@@ -314,7 +314,7 @@ on-arrival: judicial_reform += 4
 - @constitutional: 宪法。
 - @decrees: 国家。
 - @communists: 共产党。
-- @council: 国会。
+- @council: 国会大厦。
 
 @presidency
 view-if: not presidency_decided
@@ -324,7 +324,7 @@ on-arrival: presidency_decided = 1
 
 - @snap_election: 我们将举行新的总统选举。
 #- @braun: We will install Braun as President.
-- @provisional: 国会将选出一名临时总统，直至选举举行。
+- @provisional: 国会大厦将选出一名临时总统，直至选举举行。
 - @abolish: 我们将彻底废除总统制。
 
 @snap_election
@@ -343,7 +343,7 @@ on-arrival: president = "Braun"
 @provisional
 on-arrival: president = "Wirth"; presidential_timer = 12; presidency_vacated = 1;
 
-我们将选举交由国会决定，国会选出中央党的约瑟夫·维尔特（Wirth）作为妥协人选。
+我们将选举交由国会大厦决定，国会大厦选出中央党的约瑟夫·维尔特（Wirth）作为妥协人选。
 
 - @agenda_reb: 继续……
 
@@ -832,7 +832,7 @@ on-arrival: constitution_decided = 1
 #- @constitutional_convention: Hold a constitutional convention to draft a wholly new constitution for the country.
 
 @vote_threshold
-subtitle: 将政党进入国会所需的选票门槛提高至 5%。
+subtitle: 将政党进入国会大厦所需的选票门槛提高至 5%。
 view-if: electoral_threshold = 0
 
 # The left is opposed to this.
@@ -875,7 +875,7 @@ go-to: constitutional
 我们成功通过了一项宪法修正案，禁止在无法组建新政府时发起不信任投票。希望这能提升政府的稳定性。
 
 @presidential_powers
-subtitle: 总统不再能随意解散国会，或对邦政府发动「联邦执行」（Reichsexekution）。
+subtitle: 总统不再能随意解散国会大厦，或对邦政府发动「联邦执行」（Reichsexekution）。
 view-if: presidential_powers = 0
 
 宪法赋予总统的广泛权力，是通往威权主义的潜在通道。因此，我们可以支持限制总统权力的改革——终结其单方面终止已选举政府、罢免邦政府的权力。
@@ -893,10 +893,10 @@ go-to: constitutional
 我们成功通过了一项宪法修正案，限制了总统权力！希望这能造就一个不那么威权化的德国。
 
 @supreme_soviet
-subtitle: 设立由工人委员会选举产生的全新「最高苏维埃」以取代国会。
+subtitle: 设立由工人委员会选举产生的全新「最高苏维埃」以取代国会大厦。
 view-if: nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1)
 
-我们对经济的大规模社会化以及对工人委员会的赋权，已为向完全的无产阶级专政过渡奠定了基础，实际上将国会变为一个权力有限的残余议会。社民党左翼及大部分中派将投票支持，但我们将面临所有其他派别的强烈反对。
+我们对经济的大规模社会化以及对工人委员会的赋权，已为向完全的无产阶级专政过渡奠定了基础，实际上将国会大厦变为一个权力有限的残余议会。社民党左翼及大部分中派将投票支持，但我们将面临所有其他派别的强烈反对。
 
 - @supreme_soviet_2: 那就这么定了。
 - @constitutional: 查看其他改革选项。
@@ -1069,10 +1069,10 @@ on-arrival: kpd_banned = 1; left_dissent += 40; workers_spd -= 5; unemployed_spd
 view-if: (((kpd_relation >= 60 and ((left_strength >= reformist_strength + neorevisionist_strength) or (in_left_front == 1))) and supreme_soviet != 1 and not (nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1))) and chancellorship_decided and constitution_decided) and reichstag_decided != 1
 on-arrival: reichstag_decided = 1
 
-党内左翼及共产党中的许多人将纳粹掌控国家归咎于自由民主制度本身，呼吁解散国会并以工人委员会的「最高苏维埃」取而代之。这一构想受到我党右翼及我们的资产阶级伙伴的反对。
+党内左翼及共产党中的许多人将纳粹掌控国家归咎于自由民主制度本身，呼吁解散国会大厦并以工人委员会的「最高苏维埃」取而代之。这一构想受到我党右翼及我们的资产阶级伙伴的反对。
 
 - @supreme_soviet_3: 那就这么定了。
-- @bad_idea: 不，我们将保留国会。
+- @bad_idea: 不，我们将保留国会大厦。
 
 @supreme_soviet_3
 on-arrival: economic_democracy += (3-works_councils) if works_councils < 3; works_councils = 3 if works_councils < 3; kpd_relation += 20; left_strength += 15; labor_strength += 10; labor_dissent += 5; left_dissent -= 10; reformist_dissent += 10; neorevisionist_dissent += 5; constitutional_reform += 1; supreme_soviet = 1; capital_strike_progress += 15; z_relation -= 15; ddp_relation -= 25; dvp_relation -= 50
@@ -1366,7 +1366,7 @@ go-to: menu
 #- @constitutional_convention: Hold a constitutional convention to draft a wholly new constitution for the country.
 
 @vote_threshold_kpd
-subtitle: 将政党进入国会所需的选票门槛提高至 5%。
+subtitle: 将政党进入国会大厦所需的选票门槛提高至 5%。
 view-if: electoral_threshold = 0
 
 共产党对选举门槛大体持中立态度，但十分愿意接受——也许出于和我们不同的理由。然而，左翼说服他们出于戏剧效果反对该修正案。
@@ -1404,7 +1404,7 @@ go-to: other_amendments
 我们成功通过了一项宪法修正案，禁止在无法组建新政府时发起不信任投票。希望这能提升政府的稳定性。
 
 @presidential_powers_kpd
-subtitle: 总统不再能随意解散国会，或对邦政府发动「联邦执行」（Reichsexekution）。
+subtitle: 总统不再能随意解散国会大厦，或对邦政府发动「联邦执行」（Reichsexekution）。
 view-if: presidential_powers = 0
 on-arrival: multiplier = 3.5 if kpd_party_leader != "Conciliators"; multiplier = 2 if kpd_party_leader = "Conciliators"; multiplier += 0.5 if no_enabling
 

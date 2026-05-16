@@ -19,7 +19,7 @@ tags: govt_affairs
 
 许多新修正派认为《魏玛宪法》不敷所需。他们认为宪法的若干条款应对国家不稳定负有部分责任，必须加以修订，才能建设更稳定的民主共和国。社会主义者与自由派均有此类倡议。
 
-宪法修订需要国会三分之二以上的超级多数，或通过获得选民多数支持的宪法公投方能通过。若国会未达超级多数，则必须确保在宪法公投中获得其他政党的有力支持。
+宪法修订需要国会大厦三分之二以上的超级多数，或通过获得选民多数支持的宪法公投方能通过。若国会大厦未达超级多数，则必须确保在宪法公投中获得其他政党的有力支持。
 
 @reforms_menu
 
@@ -100,7 +100,7 @@ achievement: verfassungsreform
 我们成功通过一项宪法修订：无法组建新政府时，不信任投票不得发起。但愿这能提升政府的稳定性。
 
 @presidential_powers
-subtitle: 总统不再可随意解散国会，或对邦政府发起「国家执行」。
+subtitle: 总统不再可随意解散国会大厦，或对邦政府发起「国家执行」。
 on-arrival: {!
 Q.reform_support = Q.spd_normalized + Q.ddp_normalized + Q.kpd_normalized;
 if (Q.z_relation > 49 && (Q.president == "Hindenburg" || Q.president == "Eckener")) {
@@ -128,10 +128,10 @@ achievement: verfassungsreform
 
 @supreme_soviet
 view-if: (nationalization_progress + socializations >= 3 and works_councils >= 3 and (president != "Hindenburg" or presidential_powers == 1)) and supreme_soviet != 1
-subtitle: 设立由工人委员会选出的新「最高苏维埃」，取代国会。
+subtitle: 设立由工人委员会选出的新「最高苏维埃」，取代国会大厦。
 on-arrival: reform_support = spd_normalized + kpd_normalized + sapd_normalized
 
-我们大规模的经济社会化与工人委员会赋权已为完整的无产阶级专政奠定基础，事实上已把国会削弱为一个名存实亡的议会。左派以及社民党多数将投下赞成票，但其他所有力量都会强烈反对。
+我们大规模的经济社会化与工人委员会赋权已为完整的无产阶级专政奠定基础，事实上已把国会大厦削弱为一个名存实亡的议会。左派以及社民党多数将投下赞成票，但其他所有力量都会强烈反对。
 
 - @supreme_soviet_2: 发起宪法公投以通过此项改革！
 - @reforms_menu: 查看其他改革选项。

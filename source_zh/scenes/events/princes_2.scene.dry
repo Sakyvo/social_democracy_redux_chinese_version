@@ -42,7 +42,7 @@ view-if: princes_initiated
 @whoops
 view-if: not princes_initiated
 
-任何这些妥协都不可接受。鉴于无法在国会内解决此事，许多人呼吁我们即使姗姗来迟，也仍应加入公投。
+任何这些妥协都不可接受。鉴于无法在国会大厦内解决此事，许多人呼吁我们即使姗姗来迟，也仍应加入公投。
 
 - @join_referendum: 社民党加入共产党的倡议。
 - @delulu: 共产党在这场公投中孤军作战。

@@ -156,7 +156,7 @@ achievement: wirtschaftspolitik
 @nationalize_without_compensation
 title: 无偿国有化。
 subtitle: 我们没有理由不直接接管那些闲置的工厂。此举很可能招致与资本家的正面冲突。
-unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: 党内主流不支持这一准合法行动。 ?] [? if judicial_reform < 3 : 司法系统会反对此举。 ?] [? if left_coalition < 50 : 我们在国会中缺乏多数。 ?]
+unavailable-subtitle: [? if left_strength <= reformist_strength + center_strength: 党内主流不支持这一准合法行动。 ?] [? if judicial_reform < 3 : 司法系统会反对此举。 ?] [? if left_coalition < 50 : 我们在国会大厦中缺乏多数。 ?]
 choose-if: left_strength > reformist_strength + center_strength and judicial_reform >= 3 and left_coalition >= 50
 on-arrival: nationalization_progress += 1; capital_strike_progress += 7; coup_progress += 3; unemployed -= 2.5 if unemployed >= 6; unemployed -= 1.2 if works_councils >= 3 and unemployed >= 3; works_program += 1; workers_spd += 8*(1-dissent); unemployed_spd += 6*(1-dissent); coalition_dissent += 2; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if capital_strike_progress >= 10; dvp_relation -= 12; z_relation -= 8; ddp_relation -= 8; left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 3 if new_middle_conscious; old_middle_spd -= 8; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 4; economic_growth += 1 if economic_growth < 4; socialism -= 1
 achievement: wirtschaftspolitik
@@ -170,7 +170,7 @@ achievement: wirtschaftspolitik
 @empower_workers
 title: 赋权工人接管工厂。
 subtitle: 我们可承诺将工厂占领合法化，把工厂交给工人工会。此举极具对抗性，很可能引发右翼武装与资本家的强烈反击。
-unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : 党内主流不支持这一激进行动。 ?] [? if judicial_reform < 3 : 司法系统会反对此举。 ?] [? if rb_militancy < 0.25 : 若能增强我们的准军事力量，或许可行。 ?] [? if works_councils < 1 : 我们需要先获得工人委员会的支持。 ?][? if left_coalition < 50 : 我们在国会中缺乏多数。 ?]
+unavailable-subtitle: [? if left_strength <= reformist_strength + neorevisionist_strength : 党内主流不支持这一激进行动。 ?] [? if judicial_reform < 3 : 司法系统会反对此举。 ?] [? if rb_militancy < 0.25 : 若能增强我们的准军事力量，或许可行。 ?] [? if works_councils < 1 : 我们需要先获得工人委员会的支持。 ?][? if left_coalition < 50 : 我们在国会大厦中缺乏多数。 ?]
 choose-if: left_strength > reformist_strength + neorevisionist_strength and (judicial_reform >= 3 or rb_militancy >= 0.25) and works_councils >= 1 and left_coalition >= 50
 on-arrival: nationalization_progress += 1; capital_strike_progress += 6; coup_progress += 5; unemployed -= 3 if unemployed >= 6; unemployed -= 1.5 if works_councils >= 3 and unemployed > 4; works_program += 1; workers_spd += 10*(1-dissent); unemployed_spd += 10*(1-dissent); coalition_dissent += 2; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if capital_strike_progress >= 10; coalition_dissent += 1 if coup_progress >= 8; dvp_relation -= 12; z_relation -= 8; ddp_relation -= 8; workers_nsdap -= 5*(1-dissent); unemployed_nsdap -= 5*(1-dissent); left_strength += 15; reformist_dissent += 10; left_dissent -= 10; new_middle_spd -= 5; new_middle_spd += 2 if new_middle_conscious; old_middle_spd -= 10; factory_takeovers += 1; economy_goal_completed += 1; kpd_relation += 5*(1-dissent); inflation += 3; economic_growth += 1 if economic_growth < 3; socialism += 1
 achievement: wirtschaftspolitik

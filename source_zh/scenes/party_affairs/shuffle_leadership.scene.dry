@@ -545,7 +545,7 @@ go-to: advisor_menu
 
 @add_mierendorff
 title: 卡洛·米伦多夫
-subtitle: 卡洛·米伦多夫是国会最年轻的成员之一，「新修正主义」运动的创始人，一位反纳粹战略家。
+subtitle: 卡洛·米伦多夫是国会大厦最年轻的成员之一，「新修正主义」运动的创始人，一位反纳粹战略家。
 is-card: true
 card-image: img/portraits/MierendorffCarlo.jpg
 view-if: mierendorff_advisor = 0 and n_advisors < 3

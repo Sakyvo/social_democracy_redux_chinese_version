@@ -26,10 +26,10 @@ new-page: true
 
 请愿征集到了德国合资格选民中 [+ petition_support +]% 的支持，约为 10% 法定起征线的 [+ petition_proportion +] 倍。结果令人震惊，表明工人阶级各党的支持正强劲上升。
 
-无论如何，请愿现已交由国会投票。其被否决已是必然，意味着——正如预期——将就此事举行公投。[? if princes_initiated : 也许我们真的能赢？ ?]
+无论如何，请愿现已交由国会大厦投票。其被否决已是必然，意味着——正如预期——将就此事举行公投。[? if princes_initiated : 也许我们真的能赢？ ?]
 
-- @vote_for: 我们将在国会投票支持该法案。
-- @vote_against: 我们将在国会投票反对该法案。
+- @vote_for: 我们将在国会大厦投票支持该法案。
+- @vote_against: 我们将在国会大厦投票反对该法案。
 - @luther_and_hindenburg_suck: 兴登堡总统与 [+ chancellor +] 内阁给我们设了新障碍。
 - @zmarx_reference: 反动派把持的司法机关给我们设了新障碍。
 - @zmarx_wholesome: 德国人民党（德国人民党）给我们设了新障碍。
@@ -38,7 +38,7 @@ new-page: true
 view-if: not princes_initiated
 on-arrival: reformist_dissent += 5; dvp_relation -= 5
 
-请愿超额完成让我们看清形势，我们改变路线，在国会投票支持该法案。结果一如预期地未获通过，意味着将就此事举行公投。
+请愿超额完成让我们看清形势，我们改变路线，在国会大厦投票支持该法案。结果一如预期地未获通过，意味着将就此事举行公投。
 
 - @back_referendum: 我们将支持的公投。
 - @neutral: 我们仍然不参与的公投。

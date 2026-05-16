@@ -15,7 +15,7 @@ on-arrival: chancellor = "Marx"; chancellor_party = "Z"
 
 兴登堡邀请威廉·马克斯组阁，后者组建了一届由资产阶级政党构成的少数派政府，作为通往重整大联合政府或右翼联盟的过渡。
 
-- @dnvp_tolerates: 无论我们怎样投票，内阁都将获得国会的信任。
+- @dnvp_tolerates: 无论我们怎样投票，内阁都将获得国会大厦的信任。
 
 @dnvp_tolerates
 subtitle: The DNVP would vote against any vote of no confidence that we propose.
@@ -30,4 +30,4 @@ on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; marx_relation -= 5
 
 马克斯邀请海因里希·布吕宁组阁，后者组建了一届由资产阶级政党构成的少数派政府，作为通往重整大联合政府或右翼联盟的过渡。
 
-- @dnvp_tolerates: 无论我们怎样投票，内阁都将获得国会的信任。
+- @dnvp_tolerates: 无论我们怎样投票，内阁都将获得国会大厦的信任。

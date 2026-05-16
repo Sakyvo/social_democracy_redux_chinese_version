@@ -10,7 +10,7 @@ max-visits: 4
 
 由于大萧条引发的危机，政府预算收入大幅萎缩，福利支出却显著增加。[+ chancellor +] 总理依据《魏玛宪法》第48条颁布紧急法令，削减福利开支。
 
-[? if spd_toleration : 如果我们对此投反对票，便意味着容忍协议的终结，[+ chancellor +] 很可能解散国会、宣布大选。工人当然反对这项政策，但对于经济与政治稳定而言，它或许又是必要的。 ?]
+[? if spd_toleration : 如果我们对此投反对票，便意味着容忍协议的终结，[+ chancellor +] 很可能解散国会大厦、宣布大选。工人当然反对这项政策，但对于经济与政治稳定而言，它或许又是必要的。 ?]
 
 - @nothing_to_do: 我们无能为力。
 - @vote_no
@@ -20,7 +20,7 @@ max-visits: 4
 view-if: spd_toleration == 0
 on-arrival: welfare -= 1; unemployed += 2; unemployed_nsdap += 4; unemployed_kpd += 2; unemployed_kpd += 1 if sapd_consolidated == 0; unemployed_sapd += 1 if sapd_consolidated == 1; unemployed_spd += 2; pro_republic -= 4; budget += 1; inflation -= 2; economic_growth -= 0.5; socialism -= 1
 
-由于国会已被解散，紧急政策按紧急程序生效。纳粹将其用作招募工具，我们也只能如此。
+由于国会大厦已被解散，紧急政策按紧急程序生效。纳粹将其用作招募工具，我们也只能如此。
 
 
 @vote_no

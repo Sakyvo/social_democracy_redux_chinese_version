@@ -17,7 +17,7 @@ new-page: true
 
 @coalition_1
 title: 与联合政府谈判
-subtitle: 布劳恩能改善我们与普鲁士及国会内中间派、中右翼联合伙伴的关系。
+subtitle: 布劳恩能改善我们与普鲁士及国会大厦内中间派、中右翼联合伙伴的关系。
 view_if: moderate_plan_adopted != 1 or weimar_rejected == 1 or weimar_plan_adopted == 1 or weimar_willingness == 0
 choose-if: advisor_action_timer <= 0 and (spd_prussia or in_weimar_coalition or in_grand_coalition or in_popular_front)
 unavailable-subtitle: [? if advisor_action_timer > 0 : 距离下次顾问行动还需 [+ advisor_action_timer +] 个月。 ?] [? if not spd_prussia : 社民党未掌握普鲁士邦政府。 ?]

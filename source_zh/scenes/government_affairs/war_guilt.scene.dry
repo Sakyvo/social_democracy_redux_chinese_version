@@ -6,9 +6,9 @@ on-arrival: war_guilt_timer = 6; month_actions += 1
 view-if: spd_in_government = 1 and war_guilt_timer = 0 and not war_guilt
 card-image: img/reichstag_1.jpg
 
-= 国会战争罪责调查委员会
+= 国会大厦战争罪责调查委员会
 
-战争罪责调查委员会是国会一个时断时续的专门委员会，职在调查一战成因及德国战败的缘由。迄今为止，它遭到了军方建制——上至兴登堡总统——的重重阻挠。
+战争罪责调查委员会是国会大厦一个时断时续的专门委员会，职在调查一战成因及德国战败的缘由。迄今为止，它遭到了军方建制——上至兴登堡总统——的重重阻挠。
 
 - @restart: 重启调查。
 - @root: 不作为。

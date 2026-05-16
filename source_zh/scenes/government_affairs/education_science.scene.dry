@@ -22,7 +22,7 @@ tags: govt_affairs
 
 = 教育与科学
 
-在德国，教育属于邦政府与中央政府交叉管辖的领域。《魏玛宪法》规定学校归中央政府管辖，但实际上大部分事务留给各邦，因国会历来未能通过统一的教育法。当下凭借我们对普鲁士与总理职位的掌控，可以为国家很大一部分地区设定政策。
+在德国，教育属于邦政府与中央政府交叉管辖的领域。《魏玛宪法》规定学校归中央政府管辖，但实际上大部分事务留给各邦，因国会大厦历来未能通过统一的教育法。当下凭借我们对普鲁士与总理职位的掌控，可以为国家很大一部分地区设定政策。
 
 [? if major_curriculum: 当前教育课程——[+ major_curriculum +]，[+ minor_curriculum +] ?]
 
@@ -166,7 +166,7 @@ view-if: school_boards = 0
 on-arrival: school_board_vote = 1
 go-to: school_board_done if not legislature_enabled; legislative_menu if legislature_enabled
 
-我们在国会提议设立学校委员会。
+我们在国会大厦提议设立学校委员会。
 
 @school_board_done
 on-arrival: school_boards += 1; workers_spd += 3*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 2*(1-dissent); education_science += 0.2;

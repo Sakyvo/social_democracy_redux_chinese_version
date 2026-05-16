@@ -9,7 +9,7 @@ tags: event
 
 = 施莱彻的阴谋
 
-库尔特·冯·施莱彻总理声称他有拯救德国的方案，并以含糊的承诺向社民党示好。他声称为了治理国家，必须暂时停止国会运作，以防止纳粹和共产党人扰乱政府运作——实际上等于把独裁权力交给他和兴登堡。与此同时，他正推行一项公共工程计划与创造就业计划，他声称这能稳定经济。
+库尔特·冯·施莱彻总理声称他有拯救德国的方案，并以含糊的承诺向社民党示好。他声称为了治理国家，必须暂时停止国会大厦运作，以防止纳粹和共产党人扰乱政府运作——实际上等于把独裁权力交给他和兴登堡。与此同时，他正推行一项公共工程计划与创造就业计划，他声称这能稳定经济。
 
 [? if works_program <= 0: 工会对施莱彻的方案略持好感，因为他们看到施莱彻的经济方案与 ADGB 的 WTB 计划——靠举债创造就业——存在共通之处。然而党内其他派别都强烈反对施莱彻。 ?]
 
@@ -68,11 +68,11 @@ go-to: schleicher_success if schleicher_support >= 50; schleicher_failed if schl
 @schleicher_success
 on-arrival: next_election_month = month+13; next_election_time = time+13; next_election_year = year+1; next_election_month -= 12; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; schleichers_scheme_success = 1
 
-阴谋得逞——国会有多数支持施莱彻。新一轮大选暂定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
+阴谋得逞——国会大厦有多数支持施莱彻。新一轮大选暂定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @schleicher_failed
 
-可惜，支持解散国会的联盟未构成多数。大选将按原计划进行。
+可惜，支持解散国会大厦的联盟未构成多数。大选将按原计划进行。
 
 @reject
 title: Reject Schleicher's schemes.

@@ -17,7 +17,7 @@ go-to: marx_crisis if president == "Marx"; hindenburg_crisis if president == "Hi
 on-arrival: chancellor = "Groener"; spd_toleration = 0; chancellor_party = "I"; time_to_election = 12+strife; strife -= 3; sa_militancy -= 0.1; rb_militancy -= 0.1 if rb_militancy >= 0.1; rfb_militancy -= 0.1; sh_militancy -= 0.05; reichswehr_loyalty += 0.1;
 go-to: fascist_uprising if coup_progress >= 10 and sa_force+sh_force >= 50 and nsdap_r+dnvp_r >= 40; next_election_time if coup_progress < 10 or sa_force+sh_force < 45 or nsdap_r+dnvp_r < 35
 
-威廉·马克斯日益受到身边一群军方人物的影响，眼见国会完全无法组阁，他屈从于他们日益高涨的实施戒严的呼声。
+威廉·马克斯日益受到身边一群军方人物的影响，眼见国会大厦完全无法组阁，他屈从于他们日益高涨的实施戒严的呼声。
 
 他邀请威廉·格勒纳出任临时军政府首脑，并援引《魏玛宪法》第48条赋予的权力，宣布戒严、取消下届大选。
 
@@ -51,7 +51,7 @@ go-to: civil_war
 on-arrival: chancellor = "Groener"; spd_toleration = 0; chancellor_party = "I"; time_to_election = 12+strife; strife -= 3; sa_militancy -= 0.1; rb_militancy -= 0.1 if rb_militancy >= 0.1; rfb_militancy -= 0.1; sh_militancy -= 0.05; reichswehr_loyalty += 0.1;
 go-to: fascist_uprising if coup_progress >= 10 and sa_force+sh_force >= 50 and nsdap_r+dnvp_r >= 40; next_election_time if coup_progress < 10 or sa_force+sh_force < 45 or nsdap_r+dnvp_r < 35
 
-奥托·格斯勒日益受到身边一群军方人物的影响，眼见国会完全无法组阁，他屈从于他们日益高涨的实施戒严的呼声。
+奥托·格斯勒日益受到身边一群军方人物的影响，眼见国会大厦完全无法组阁，他屈从于他们日益高涨的实施戒严的呼声。
 
 他邀请威廉·格勒纳出任临时军政府首脑，并援引《魏玛宪法》第48条赋予的权力，宣布戒严、取消下届大选。
 

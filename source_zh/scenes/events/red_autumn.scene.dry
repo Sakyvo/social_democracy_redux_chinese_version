@@ -18,7 +18,7 @@ new-page: true
 view-if: strife >= 12
 subtitle: The Reichstag has been burned down!
 
-国会大厦被一名外籍共产党人焚毁。[+ president +] 签署《国家与人民保护令》（即《国会纵火令》），以防止共产主义革命为名中止了核心公民自由。
+国会大厦被一名外籍共产党人焚毁。[+ president +] 签署《国家与人民保护令》（即《国会大厦纵火令》），以防止共产主义革命为名中止了核心公民自由。
 
 该法令赋予 [+ chancellor +] 总理在 [+ next_election_month : month +] 选举前广泛的权力以镇压共产党人、逮捕其领导人。尽管其独裁本质暴露无遗，我们能做的并不多。
 

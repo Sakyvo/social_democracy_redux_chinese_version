@@ -17,7 +17,7 @@ go-to: choose if not spd_prussia and not z_prussia; prussian_overthrow if spd_pr
 @choose
 
 - @fight: 我们将在街头作战，阻止希特勒上台。
-- @give_up_now: 我们将在国会投票反对纳粹。
+- @give_up_now: 我们将在国会大厦投票反对纳粹。
 
 - @fight
 on-arrival: spd_rebel = 1
@@ -25,7 +25,7 @@ on-arrival: spd_rebel = 1
 我们是否明白，这意味着要面对整个国家机器，发动一场内战？
 
 - @civil_war: 是。
-- @give_up_now: 我们没有作战的准备。我们将在国会投票反对纳粹。
+- @give_up_now: 我们没有作战的准备。我们将在国会大厦投票反对纳粹。
 
 @give_up_now
 on-arrival: {!

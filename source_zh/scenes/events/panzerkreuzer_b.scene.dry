@@ -7,7 +7,7 @@ view-if: panzerkreuzer_b_seen = 0 and year = 1931 and month >= 2 and (spd_in_gov
 
 = 装甲巡洋舰 B
 
-海军要求建造另一艘新装甲巡洋舰。[? if panzerkreuzer_funded: 上一艘装甲巡洋舰已获拨款，并已下水。再建一艘将进一步推动德国的重整军备。 ?][? if not panzerkreuzer_funded: 多亏了我们，海军之前要求的装甲巡洋舰未获拨款。军方仍然怨气未消，但他们仍在推进重整军备计划，必须从国会争取拨款。 ?]
+海军要求建造另一艘新装甲巡洋舰。[? if panzerkreuzer_funded: 上一艘装甲巡洋舰已获拨款，并已下水。再建一艘将进一步推动德国的重整军备。 ?][? if not panzerkreuzer_funded: 多亏了我们，海军之前要求的装甲巡洋舰未获拨款。军方仍然怨气未消，但他们仍在推进重整军备计划，必须从国会大厦争取拨款。 ?]
 
 我党许多人坚决反对重整军备，而中间派和右翼各党则一致支持。我们怎么办？
 
@@ -58,7 +58,7 @@ on-arrival: bill_support = 100*((bourgeois_coalition+far_right_coalition)/(100-(
 Q.bill_support = Math.round(Q.bill_support);
 !}
 
-中右翼各党对我们弃权的决定提出批评，而左翼的压力也未完全平息。尽管我们弃权，国会投票仍通过——除社民党和共产党外所有党都投了赞成票。该舰将开建。
+中右翼各党对我们弃权的决定提出批评，而左翼的压力也未完全平息。尽管我们弃权，国会大厦投票仍通过——除社民党和共产党外所有党都投了赞成票。该舰将开建。
 
 [? if panzerkreuzer_funded : 鉴于此前已建造过一艘，这次结果近乎注定，反应并不强烈。 ?]
 
@@ -87,7 +87,7 @@ Z：赞成
 @built
 on-arrival: panzerkreuzer_b_funded = 1
 
-[+ chancellor +] 总理将此事提交国会全体表决，结果通过——除社民党和共产党外所有党都投了赞成票。该舰将开建。
+[+ chancellor +] 总理将此事提交国会大厦全体表决，结果通过——除社民党和共产党外所有党都投了赞成票。该舰将开建。
 
 共产党：反对
 

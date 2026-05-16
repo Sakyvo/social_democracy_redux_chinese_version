@@ -173,7 +173,7 @@ on-arrival: kpd_relation += 10
 @cave
 go-to: conclusion
 
-[? if chancellor_party != "KPD" : [+ chancellor +] 屈从于 [? if supreme_soviet : 苏维埃 ?][? if not supreme_soviet : 国会 ?]和 RFB 的意愿而辞职，国旗团向后者投降。 ?][? if president != "Thälmann" and president != "Münzenberg" and not presidential_powers : 总统通过一项宪法修正案被剥夺权力。 ?][? if spd_r >= kpd_r : 闪电大选举行，共产党人获胜。 ?]
+[? if chancellor_party != "KPD" : [+ chancellor +] 屈从于 [? if supreme_soviet : 苏维埃 ?][? if not supreme_soviet : 国会大厦 ?]和 RFB 的意愿而辞职，国旗团向后者投降。 ?][? if president != "Thälmann" and president != "Münzenberg" and not presidential_powers : 总统通过一项宪法修正案被剥夺权力。 ?][? if spd_r >= kpd_r : 闪电大选举行，共产党人获胜。 ?]
 
 德国的变革开始了，社会民主主义没有挡道。
 

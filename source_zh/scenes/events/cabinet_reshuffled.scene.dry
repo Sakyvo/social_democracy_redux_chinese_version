@@ -16,7 +16,7 @@ go-to: menu if chancellor != "Wirth"; wirth_resign_hindenburg if chancellor == "
 - @right_coalition: 由德国国家人民党取代我们入阁。
 - @minority_bruning: 布吕宁内阁作为少数派政府继续存续。
 - @breitscheid_vonc: 与共产党一道提出建设性不信任动议！
-- @sack_bruning: [+ president +] 解散国会，举行闪电大选。
+- @sack_bruning: [+ president +] 解散国会大厦，举行闪电大选。
 - @bourgeois_coalition: 资产阶级单独拥有多数。
 - @tolerate: 任改组发生，并容忍这届新的少数派政府。
 - @no_tolerate: 推翻这届背后捅刀的新政府！

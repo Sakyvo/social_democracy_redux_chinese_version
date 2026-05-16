@@ -24,7 +24,7 @@ max-visits: 1
 
 我们或能通过投票推翻布吕宁近期的紧急预算削减令其下台，能否成功取决于德国国家人民党的决定。
 
-- @vote_against: 在国会动议推翻布吕宁的预算削减。
+- @vote_against: 在国会大厦动议推翻布吕宁的预算削减。
 
 @vote_against
 on-arrival: bourgeois_coalition += pro_bruning; rural_dnvp -= 5; old_middle_dnvp -= 3; new_middle_dnvp -= 3; catholics_dnvp -= 2; rural_other += 3; old_middle_other += 2; catholics_other += 2
@@ -36,7 +36,7 @@ go-to: successful_motion if bourgeois_coalition < 50; failed_motion if bourgeois
 on-arrival: time_to_election = 3; dnvp_toleration = 0;
 call: set_next_election_time
 
-尽管韦斯塔尔普一派从党内出走，德国国家人民党多数仍按胡根贝格的意愿倒向反对布吕宁，使动议成功通过。国会被解散，紧急选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
+尽管韦斯塔尔普一派从党内出走，德国国家人民党多数仍按胡根贝格的意愿倒向反对布吕宁，使动议成功通过。国会大厦被解散，紧急选举定于 [+ next_election_month : month +] [+ next_election_year +] 举行。
 
 @failed_motion
 on-arrival: in_bourgeois_coalition = 1; dnvp_toleration = 0; what_the_hell = 1

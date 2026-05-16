@@ -71,7 +71,7 @@ go-to: liberalize_fail if progressive_coalition < 50; liberalize_success if prog
 @liberalize_fail
 on-arrival: z_relation -= 5; coalition_dissent += 1; workers_spd += 3*(1-dissent); catholics_spd -= 5; weimar_dissent += 1 if z_party_leader == "Kaas" and weimar_plan_adopted
 
-遗憾的是，我们的提案在国会遭到否决——天主教中央党（我们的老搭档）尤为激烈地反对，本党亦有成员违反党纪。积极分子因此次挫折备受打击，决定蛰伏待时。
+遗憾的是，我们的提案在国会大厦遭到否决——天主教中央党（我们的老搭档）尤为激烈地反对，本党亦有成员违反党纪。积极分子因此次挫折备受打击，决定蛰伏待时。
 
 @liberalize_success
 on-arrival: abortion_rights += 1; womens_rights += 1; coalition_dissent += 1; z_relation -= 8; catholics_spd -= 10; dvp_relation -= 5; workers_spd += 3*(1-dissent); new_middle_spd += 3*(1-dissent); workers_z += 3; new_middle_z += 3; old_middle_z += 3; old_middle_dnvp += 3; rural_dnvp += 3; workers_nsdap -= 3; new_middle_nsdap -= 3; old_middle_nsdap -= 2; rural_nsdap -= 2; unemployed_nsdap -= 2; unemployed_z += 3; unemployed_spd += 3*(1-dissent); weimar_dissent += 1 if weimar_plan_adopted; weimar_dissent += 1 if z_party_leader == "Kaas" and weimar_plan_adopted

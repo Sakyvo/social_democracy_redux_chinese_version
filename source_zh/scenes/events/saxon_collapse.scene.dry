@@ -9,6 +9,6 @@ on-departure: saxony_spd += 0.15; saxony_kpd -= 0.05; saxony_nsdap -= 0.25; saxo
 
 = 萨克森政府垮台
 
-萨克森邦在国会上院支持杨格计划批准之后，德国国家人民党[? if s_center_right_coalition < 50 and not saxony_toleration : 与纳粹党 ?]撤回了对资产阶级内阁的信任。
+萨克森邦在国会大厦上院支持杨格计划批准之后，德国国家人民党[? if s_center_right_coalition < 50 and not saxony_toleration : 与纳粹党 ?]撤回了对资产阶级内阁的信任。
 
 新选举定于 [+ saxony_election_year +] 年 [+ saxony_election_month : month +] 举行。

@@ -25,7 +25,7 @@ view-if: neo_weimar_coalition >= 50
 on-arrival: do_the_thing_after_this = 1 if president == "Marx"; spd_in_government = 0; in_right_coalition = 0; in_grand_coalition = 0; spd_toleration = 0; dvp_relation -= 5; z_relation -= 5;
 go-to: marx if president == "Marx"; thing_did if president != "Marx"
 
-右翼联合政府垮台。如果新联盟未能组成，[+ president +] 很可能解散国会、举行新一轮大选。
+右翼联合政府垮台。如果新联盟未能组成，[+ president +] 很可能解散国会大厦、举行新一轮大选。
 
 @thing_did
 
@@ -45,7 +45,7 @@ subtitle: With the Reichstag hung, [+ president +] will dissolve it
 on-arrival: time_to_election = 3; pro_republic -= 3; z_relation -= 2; dvp_relation -= 3; marx_relation -= 5
 call: set_next_election_time
 
-国会陷入悬浮，[+ president +] 解散国会。
+国会大厦陷入悬浮，[+ president +] 解散国会大厦。
 
 @vonc_no
 title: Support the rump Center-led government, voting in favor of the government.

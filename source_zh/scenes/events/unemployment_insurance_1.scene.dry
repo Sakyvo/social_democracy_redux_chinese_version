@@ -46,7 +46,7 @@ on-arrival: scholz_dnvp = 1 if year < 1931; next_election_month=month+3 if year 
 
 行。资产阶级要是想让政府爆炸，那就让他们炸吧。社会主义者绝不会做毁灭工人阶级的帮凶。
 
-如今，肖尔茨领导一届全资产阶级内阁。借助《魏玛宪法》第48条的紧急权力，肖尔茨与兴登堡总统不顾国会反对，通过了福利削减。
+如今，肖尔茨领导一届全资产阶级内阁。借助《魏玛宪法》第48条的紧急权力，肖尔茨与兴登堡总统不顾国会大厦反对，通过了福利削减。
 
 [? if year >= 1931 : 新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。 ?]
 
@@ -58,7 +58,7 @@ on-arrival: dnvp_toleration = 1 if year < 1931 and not confrontation_seen and pr
 
 行。资产阶级要是想让政府爆炸，那就让他们炸吧。社会主义者绝不会做毁灭工人阶级的帮凶。
 
-[? if chancellor_party = "SPD" : 中央党的海因里希·布吕宁已被任命为总理。 ?] 布吕宁领导一届全资产阶级内阁。借助《魏玛宪法》第48条的紧急权力，布吕宁与兴登堡总统不顾国会反对，通过了福利削减。
+[? if chancellor_party = "SPD" : 中央党的海因里希·布吕宁已被任命为总理。 ?] 布吕宁领导一届全资产阶级内阁。借助《魏玛宪法》第48条的紧急权力，布吕宁与兴登堡总统不顾国会大厦反对，通过了福利削减。
 
 [? if year >= 1931 or confrontation_seen : 新一轮大选已定于 [+ next_election_month : month +] [+ next_election_year +] 举行。 ?]
 
